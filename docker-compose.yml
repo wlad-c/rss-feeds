@@ -1,0 +1,15 @@
+services:
+  poll-position:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      # Set this to your public HTTPS URL (Cloudflare Tunnel, Fly, etc.)
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://127.0.0.1:8787}
+      SYNC_INTERVAL_SECONDS: ${SYNC_INTERVAL_SECONDS:-3600}
+    volumes:
+      - poll_position_data:/data
+    restart: unless-stopped
+
+volumes:
+  poll_position_data:
