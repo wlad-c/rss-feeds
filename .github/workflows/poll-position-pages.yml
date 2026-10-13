@@ -59,6 +59,31 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}/poll-position
         run: python poll-position/sync.py --publish
 
+      # force_orphan rebuilds gh-pages from ./site only — preserve sibling feeds
+      # (e.g. mano-a-mano/) that other workflows publish into the same branch.
+      - name: Checkout existing gh-pages (for sibling feeds)
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-prev
+          fetch-depth: 1
+
+      - name: Preserve sibling feeds from existing gh-pages
+        run: |
+          set -euo pipefail
+          if [ -d gh-pages-prev ]; then
+            for dir in mano-a-mano; do
+              if [ -d "gh-pages-prev/${dir}" ]; then
+                rm -rf "./site/${dir}"
+                cp -a "gh-pages-prev/${dir}" "./site/${dir}"
+                echo "Preserved ${dir}/ from existing gh-pages"
+              fi
+            done
+          else
+            echo "No existing gh-pages checkout — nothing to preserve"
+          fi
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -1,0 +1,54 @@
+name: Mano a Mano → GitHub Pages branch
+
+on:
+  schedule:
+    # Megaphone drops weekly (Thursdays); refresh a few times a day.
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "mano-a-mano/**"
+      - ".github/workflows/mano-a-mano-pages.yml"
+
+# Publishes mirrored feed to gh-pages/mano-a-mano/ without wiping Poll Position.
+# Public URL (jsDelivr):
+#   https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano/rss.xml
+permissions:
+  contents: write
+
+concurrency:
+  group: mano-a-mano-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Mirror Megaphone feed into static site
+        env:
+          PUBLIC_BASE_URL: https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano
+          DATA_DIR: ${{ github.workspace }}/data/mano-a-mano
+          SITE_DIR: ${{ github.workspace }}/site/mano-a-mano
+          PYTHONPATH: ${{ github.workspace }}/mano-a-mano
+        run: python mano-a-mano/sync.py --publish
+
+      - name: Deploy mano-a-mano/ onto gh-pages (keep other feeds)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site/mano-a-mano
+          destination_dir: mano-a-mano
+          keep_files: true
+          enable_jekyll: false
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
