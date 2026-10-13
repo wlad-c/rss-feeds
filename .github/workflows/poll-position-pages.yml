@@ -1,0 +1,70 @@
+name: Poll Position → GitHub Pages
+
+on:
+  schedule:
+    # Every 6 hours — picks up new labelled Poll Position uploads.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "poll-position/**"
+      - "requirements.txt"
+      - ".github/workflows/poll-position-pages.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: poll-position-pages
+  cancel-in-progress: false
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Restore media cache
+        uses: actions/cache@v4
+        with:
+          path: data/media
+          key: poll-position-media-${{ github.run_id }}
+          restore-keys: |
+            poll-position-media-
+
+      - name: Sync episodes and build static site
+        env:
+          PUBLIC_BASE_URL: https://wlad-c.github.io/rss-feeds
+          DATA_DIR: ${{ github.workspace }}/data
+          SITE_DIR: ${{ github.workspace }}/site
+          PYTHONPATH: ${{ github.workspace }}/poll-position
+        run: python poll-position/sync.py --publish
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
+          enable_jekyll: false
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
