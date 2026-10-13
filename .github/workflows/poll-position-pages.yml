@@ -1,8 +1,7 @@
-name: Poll Position → GitHub Pages
+name: Poll Position → GitHub Pages branch
 
 on:
   schedule:
-    # Every 6 hours — picks up new labelled Poll Position uploads.
     - cron: "17 */6 * * *"
   workflow_dispatch:
   push:
@@ -12,22 +11,20 @@ on:
       - "requirements.txt"
       - ".github/workflows/poll-position-pages.yml"
 
+# Publishes static feed to the gh-pages branch. The public podcast URL is the
+# jsDelivr CDN mirror (no GitHub Pages site enablement required):
+#   https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/rss.xml
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: poll-position-pages
+  group: poll-position-gh-pages
   cancel-in-progress: false
 
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 180
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,22 +53,18 @@ jobs:
 
       - name: Sync episodes and build static site
         env:
-          PUBLIC_BASE_URL: https://wlad-c.github.io/rss-feeds
+          PUBLIC_BASE_URL: https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages
           DATA_DIR: ${{ github.workspace }}/data
           SITE_DIR: ${{ github.workspace }}/site
           PYTHONPATH: ${{ github.workspace }}/poll-position
         run: python poll-position/sync.py --publish
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          enablement: true
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
+          enable_jekyll: false
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
