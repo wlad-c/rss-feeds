@@ -1,4 +1,4 @@
-name: Mano a Mano → GitHub Pages branch
+name: Mano a Mano → feeds branch
 
 on:
   schedule:
@@ -11,20 +11,21 @@ on:
       - "mano-a-mano/**"
       - ".github/workflows/mano-a-mano-pages.yml"
 
-# Publishes mirrored feed to gh-pages/mano-a-mano/ without wiping Poll Position.
-# Public URL (jsDelivr):
-#   https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano/rss.xml
+# Publishes mirrored feed to a lightweight `feeds` branch (XML only).
+# Avoids jsDelivr's 50MB package limit on @gh-pages (Poll Position media ~122MB).
+# Public URL:
+#   https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano/rss.xml
 permissions:
   contents: write
 
 concurrency:
-  group: mano-a-mano-gh-pages
+  group: mano-a-mano-feeds
   cancel-in-progress: false
 
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,21 +35,29 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Mirror Megaphone feed into static site
+      - name: Restore enclosure length cache
+        uses: actions/cache@v4
+        with:
+          path: data/mano-a-mano/enclosure-lengths.json
+          key: mano-a-mano-enclosure-lengths-${{ github.run_id }}
+          restore-keys: |
+            mano-a-mano-enclosure-lengths-
+
+      - name: Mirror Megaphone feed (fix enclosure lengths)
         env:
-          PUBLIC_BASE_URL: https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano
+          PUBLIC_BASE_URL: https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano
           DATA_DIR: ${{ github.workspace }}/data/mano-a-mano
           SITE_DIR: ${{ github.workspace }}/site/mano-a-mano
           PYTHONPATH: ${{ github.workspace }}/mano-a-mano
         run: python mano-a-mano/sync.py --publish
 
-      - name: Deploy mano-a-mano/ onto gh-pages (keep other feeds)
+      - name: Deploy orphan feeds branch (XML only)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site/mano-a-mano
-          destination_dir: mano-a-mano
-          keep_files: true
+          publish_dir: ./site
+          publish_branch: feeds
+          force_orphan: true
           enable_jekyll: false
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
