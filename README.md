@@ -8,7 +8,7 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 
 | Podcast | Pocket Casts RSS | Notes |
 |---|---|---|
-| **Mano a Mano** (Spotify Studios) | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano/rss.xml | Mirror of official Megaphone feed; audio stays on Megaphone |
+| **Mano a Mano** (Spotify Studios) | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano/rss.xml | Megaphone mirror on lightweight `feeds` branch; enclosure sizes filled for Pocket Casts |
 | **Poll Position** (The Star) | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/rss.xml | YouTube → Dailymotion MP3s hosted on `gh-pages` |
 
 ---
@@ -17,33 +17,32 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 
 Spotify show: https://open.spotify.com/show/0GnKiYeK11476CfoQEYlEd
 
-This is a Spotify Studios original that **already has a public Megaphone RSS** (same episodes Pocket Casts can play). We mirror that feed onto `gh-pages` so it lives alongside the other personal feeds.
+Spotify Studios publishes this show on **Megaphone**. The upstream feed sets every `<enclosure length="0">`, which makes Pocket Casts show **0 bytes** and block downloads. Our mirror probes each audio URL for `Content-Length` and rewrites those attributes. It is published on a tiny `feeds` branch (XML only) so jsDelivr is not blocked by the ~122MB Poll Position media on `gh-pages`.
 
 ### Stable feed URL
 
 | | |
 |---|---|
-| Landing | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano/ |
-| **RSS (paste into Pocket Casts)** | **https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano/rss.xml** |
-| Official Megaphone (also fine) | https://feeds.megaphone.fm/GLT5279624272 |
-| Pocket Casts web follow | https://pocketcasts.com/follow/https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano/rss.xml |
+| Landing | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano/ |
+| **RSS (paste into Pocket Casts)** | **https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano/rss.xml** |
+| Official Megaphone | https://feeds.megaphone.fm/GLT5279624272 |
+| Pocket Casts web follow | https://pocketcasts.com/follow/https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano/rss.xml |
 
 ### Add to Pocket Casts
 
 1. Pocket Casts → **Discover**
-2. Paste `https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano/rss.xml`
-   (or the official Megaphone URL above)
+2. Paste `https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano/rss.xml`
 3. Tap **Search** on the keyboard → **Subscribe**
 
 ### Manual / local run
 
 ```bash
-export PUBLIC_BASE_URL=https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/mano-a-mano
+export PUBLIC_BASE_URL=https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano
 export PYTHONPATH=$PWD/mano-a-mano
 python mano-a-mano/sync.py --publish
 ```
 
-A GitHub Action refreshes the mirror about every 6 hours and updates `gh-pages/mano-a-mano/`.
+A GitHub Action refreshes the mirror about every 6 hours and force-updates the `feeds` branch.
 
 ---
 

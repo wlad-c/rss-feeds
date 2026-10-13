@@ -20,13 +20,15 @@ SPOTIFY_SHOW_ID = "0GnKiYeK11476CfoQEYlEd"
 
 
 def _default_public_base_url() -> str:
-    """Prefer jsDelivr→gh-pages CDN URL (works without enabling GitHub Pages)."""
+    """Prefer jsDelivr→feeds CDN URL (tiny branch; no Poll Position media)."""
     explicit = os.environ.get("PUBLIC_BASE_URL")
     if explicit:
         return explicit.rstrip("/")
     repo = os.environ.get("GITHUB_REPOSITORY")  # e.g. wlad-c/rss-feeds
     if repo and "/" in repo:
-        return f"https://cdn.jsdelivr.net/gh/{repo}@gh-pages/mano-a-mano"
+        # Dedicated lightweight branch — avoids jsDelivr's 50MB package limit
+        # that breaks @gh-pages because Poll Position media is ~122MB.
+        return f"https://cdn.jsdelivr.net/gh/{repo}@feeds/mano-a-mano"
     return "http://127.0.0.1:8787/mano-a-mano"
 
 
