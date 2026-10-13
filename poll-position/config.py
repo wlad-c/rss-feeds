@@ -20,14 +20,14 @@ DAILYMOTION_USER = os.environ.get("DAILYMOTION_USER", "thestar")
 TITLE_FILTER = os.environ.get("TITLE_FILTER", "Poll Position")
 
 def _default_public_base_url() -> str:
-    """Prefer GitHub Pages URL when running in Actions / when repo is known."""
+    """Prefer jsDelivr→gh-pages CDN URL (works without enabling GitHub Pages)."""
     explicit = os.environ.get("PUBLIC_BASE_URL")
     if explicit:
         return explicit.rstrip("/")
     repo = os.environ.get("GITHUB_REPOSITORY")  # e.g. wlad-c/rss-feeds
     if repo and "/" in repo:
-        owner, name = repo.split("/", 1)
-        return f"https://{owner}.github.io/{name}"
+        # Served from the gh-pages branch via jsDelivr — stable, HTTPS, correct MIME.
+        return f"https://cdn.jsdelivr.net/gh/{repo}@gh-pages"
     return "http://127.0.0.1:8787"
 
 

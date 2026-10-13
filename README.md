@@ -8,22 +8,22 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 
 Automatic feed of every video labelled **Poll Position** from [The Star’s YouTube playlist](https://www.youtube.com/playlist?list=PLUl1gfNnrZcc).
 
-Audio is matched from The Star’s Dailymotion uploads, converted to MP3, and published as a static podcast RSS feed on **GitHub Pages** (free `*.github.io` URL — no custom domain needed).
+Audio is matched from The Star’s Dailymotion uploads, converted to MP3, and published to the `gh-pages` branch. The public podcast URL is the **jsDelivr** CDN mirror of that branch (stable HTTPS, no custom domain, no GitHub Pages site toggle required).
 
-### Stable feed URL (GitHub Pages)
+### Stable feed URL
 
 | | |
 |---|---|
-| Landing | https://wlad-c.github.io/rss-feeds/ |
-| **RSS (paste into Pocket Casts)** | **https://wlad-c.github.io/rss-feeds/rss.xml** |
-| Pocket Casts web follow | https://pocketcasts.com/follow/https://wlad-c.github.io/rss-feeds/rss.xml |
+| Landing | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/ |
+| **RSS (paste into Pocket Casts)** | **https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/rss.xml** |
+| Pocket Casts web follow | https://pocketcasts.com/follow/https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/rss.xml |
 
-GitHub Actions builds the static feed and deploys it to Pages (enables/publishes itself — no Settings click). New episodes sync about every 6 hours.
+A GitHub Action syncs new episodes about every 6 hours and force-updates the `gh-pages` branch.
 
 ### Add to Pocket Casts
 
 1. Pocket Casts → **Discover**
-2. Paste `https://wlad-c.github.io/rss-feeds/rss.xml`
+2. Paste `https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/rss.xml`
 3. Tap **Search** on the keyboard → **Subscribe**
 
 ### How sync works
@@ -31,7 +31,7 @@ GitHub Actions builds the static feed and deploys it to Pages (enables/publishes
 1. Read YouTube playlist `PLUl1gfNnrZcc` (titles containing `Poll Position`)
 2. Match each title on The Star’s Dailymotion account
 3. Extract MP3s and write `rss.xml` + `media/`
-4. Deploy the static tree to the `gh-pages` branch
+4. Deploy the static tree to the `gh-pages` branch (CDN picks it up)
 
 ### Manual / local run
 
@@ -39,22 +39,16 @@ GitHub Actions builds the static feed and deploys it to Pages (enables/publishes
 pip install -r requirements.txt
 sudo apt-get install -y ffmpeg   # or brew install ffmpeg
 
-export PUBLIC_BASE_URL=https://wlad-c.github.io/rss-feeds
+export PUBLIC_BASE_URL=https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages
 export PYTHONPATH=$PWD/poll-position
 python poll-position/sync.py --publish
-```
-
-Optional always-on server (not required when using GitHub Pages):
-
-```bash
-python poll-position/server.py
 ```
 
 ### Env vars
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `PUBLIC_BASE_URL` | `https://<user>.github.io/<repo>` in Actions, else localhost | Absolute URL in RSS enclosures |
+| `PUBLIC_BASE_URL` | jsDelivr `@gh-pages` URL in Actions | Absolute URL in RSS enclosures |
 | `DATA_DIR` | `./data` | Working state + media |
 | `SITE_DIR` | `./site` | Static publish output |
 | `YOUTUBE_PLAYLIST_ID` | `PLUl1gfNnrZcc` | Source playlist |

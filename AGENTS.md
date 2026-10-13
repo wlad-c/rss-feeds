@@ -10,6 +10,6 @@ For work in this repository, cloud/coding agents must:
 2. Finish implementation, tests, and deploy steps themselves.
 3. **Merge into `main` themselves** before ending the turn — via `gh pr merge` (mark ready for review first if the PR is still a draft) or by merging the branch into `main` and pushing.
 4. Close/complete the PR so it is not left open after the code is already on `main`.
-5. **Enable and finish hosting yourselves.** For GitHub Pages, do **not** ask Wlad to open Settings → Pages. Use the official Actions deploy path (`actions/configure-pages` + `actions/upload-pages-artifact` + `actions/deploy-pages`) so the first successful workflow run enables Pages. If a path is blocked for the local `gh` token, change the approach (workflow permissions, deploy method) rather than handing a manual click to the user.
+5. **Finish hosting yourselves.** Do **not** ask Wlad to open Settings → Pages or any other dashboard toggle. Prefer publish methods agents can complete with repo write access (e.g. force-update the `gh-pages` branch + jsDelivr CDN URL). If GitHub Pages site-enable APIs return 403 to the integration token, switch hosting approach — never block on a human click.
 
 Human review / manual dashboard clicks are optional and must never be a blocker for merge or deploy.
