@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
+import shutil
 import subprocess
 import sys
 import urllib.parse
@@ -31,6 +33,7 @@ from config import (
     FEED_TITLE,
     MEDIA_DIR,
     PUBLIC_BASE_URL,
+    SITE_DIR,
     STATE_PATH,
     TITLE_FILTER,
     YOUTUBE_PLAYLIST_URL,
@@ -339,11 +342,26 @@ def write_state(episodes: list[Episode]) -> None:
     )
 
 
+def pocket_casts_subscribe_url(base_url: str) -> str:
+    """Build pktc:// deep link, preserving project-pages path prefixes."""
+    parsed = urllib.parse.urlparse(base_url.rstrip("/"))
+    path = parsed.path.rstrip("/")
+    if path:
+        return f"pktc://subscribe/{parsed.netloc}{path}/rss.xml"
+    return f"pktc://subscribe/{parsed.netloc}/rss.xml"
+
+
+def load_episodes_from_state() -> list[Episode]:
+    if not STATE_PATH.exists():
+        return []
+    raw = json.loads(STATE_PATH.read_text())
+    return [Episode(**item) for item in raw.get("episodes", [])]
+
+
 def render_index_html(episodes: list[Episode], base_url: str) -> str:
     base = base_url.rstrip("/")
     rss = f"{base}/rss.xml"
-    host = urllib.parse.urlparse(base).netloc
-    pktc = f"pktc://subscribe/{host}/rss.xml"
+    pktc = pocket_casts_subscribe_url(base)
     web = f"https://pocketcasts.com/follow/{rss}"
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"/>
@@ -368,18 +386,71 @@ input{{width:100%;padding:.7rem;font-size:1rem;margin:.5rem 0 1rem;box-sizing:bo
 """
 
 
+def write_feed_files(episodes: list[Episode], base_url: str) -> None:
+    base = base_url.rstrip("/")
+    ensure_dirs()
+    FEED_PATH.write_text(render_rss(episodes, base))
+    (DATA_DIR / "index.html").write_text(render_index_html(episodes, base))
+
+
+def publish_site(episodes: list[Episode] | None = None, base_url: str | None = None) -> Path:
+    """Assemble a static GitHub Pages site (rss.xml + media + landing page)."""
+    base = (base_url or PUBLIC_BASE_URL).rstrip("/")
+    eps = episodes if episodes is not None else load_episodes_from_state()
+    if not eps:
+        raise RuntimeError("No episodes to publish — run sync first.")
+
+    write_feed_files(eps, base)
+    if SITE_DIR.exists():
+        # Replace previous publish tree so removed episodes disappear.
+        shutil.rmtree(SITE_DIR)
+    site_media = SITE_DIR / "media"
+    site_media.mkdir(parents=True, exist_ok=True)
+    (SITE_DIR / ".nojekyll").write_text("")
+    (SITE_DIR / "rss.xml").write_text(render_rss(eps, base))
+    (SITE_DIR / "index.html").write_text(render_index_html(eps, base))
+    for ep in eps:
+        src = MEDIA_DIR / ep.media_file
+        if not src.is_file():
+            raise RuntimeError(f"Missing media file for publish: {src}")
+        dest = site_media / ep.media_file
+        dest.write_bytes(src.read_bytes())
+    print(f"Published static site → {SITE_DIR} ({len(eps)} episodes, base={base})")
+    return SITE_DIR
+
+
 def run_sync(base_url: str | None = None) -> list[Episode]:
     base = (base_url or PUBLIC_BASE_URL).rstrip("/")
     episodes = sync_episodes()
-    FEED_PATH.write_text(render_rss(episodes, base))
     write_state(episodes)
-    (DATA_DIR / "index.html").write_text(render_index_html(episodes, base))
+    write_feed_files(episodes, base)
     print(f"Wrote {len(episodes)} episodes → {FEED_PATH}")
     return episodes
 
 
 def main() -> None:
-    run_sync()
+    parser = argparse.ArgumentParser(description="Sync Poll Position → podcast RSS")
+    parser.add_argument(
+        "--publish",
+        action="store_true",
+        help="Also write a static site/ tree for GitHub Pages",
+    )
+    parser.add_argument(
+        "--render-only",
+        action="store_true",
+        help="Skip downloads; rewrite RSS/site from existing state.json + media",
+    )
+    args = parser.parse_args()
+    base = PUBLIC_BASE_URL
+    if args.render_only:
+        episodes = load_episodes_from_state()
+        if not episodes:
+            raise SystemExit("No state.json episodes found")
+        write_feed_files(episodes, base)
+    else:
+        episodes = run_sync(base)
+    if args.publish or args.render_only:
+        publish_site(episodes, base)
 
 
 if __name__ == "__main__":

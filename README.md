@@ -6,77 +6,65 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 
 Automatic feed of every video labelled **Poll Position** from [The Star’s YouTube playlist](https://www.youtube.com/playlist?list=PLUl1gfNnrZcc).
 
-Audio is pulled from The Star’s matching Dailymotion uploads (same titles), converted to MP3, and published as a standard podcast RSS feed that Pocket Casts can follow and auto-queue.
+Audio is matched from The Star’s Dailymotion uploads, converted to MP3, and published as a static podcast RSS feed on **GitHub Pages** (free `*.github.io` URL — no custom domain needed).
 
-### Quick start
+### Stable feed URL (GitHub Pages)
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-# ffmpeg required for audio extract
-sudo apt-get install -y ffmpeg   # or brew install ffmpeg
+After Pages is enabled (one-time — see below):
 
-cd poll-position
-PUBLIC_BASE_URL=http://127.0.0.1:8787 python server.py
-```
+| | |
+|---|---|
+| Landing | https://wlad-c.github.io/rss-feeds/ |
+| **RSS (paste into Pocket Casts)** | **https://wlad-c.github.io/rss-feeds/rss.xml** |
+| Pocket Casts web follow | https://pocketcasts.com/follow/https://wlad-c.github.io/rss-feeds/rss.xml |
 
-Open `http://127.0.0.1:8787/` — the page shows one-tap Pocket Casts links plus the raw RSS URL.
+A GitHub Action syncs new episodes about every 6 hours and redeploys the site.
+
+### One-time: enable GitHub Pages
+
+1. Open https://github.com/wlad-c/rss-feeds/settings/pages  
+2. Under **Build and deployment → Source**, choose **Deploy from a branch**  
+3. Branch: **`gh-pages`** / folder: **/ (root)** → Save  
+
+Wait a minute, then open https://wlad-c.github.io/rss-feeds/rss.xml
 
 ### Add to Pocket Casts
 
-1. Start the server with a **stable public HTTPS URL** (see hosting below).
-2. In Pocket Casts → **Discover**, paste:
-   `https://YOUR-HOST/rss.xml`
-3. Tap **Search** on the keyboard, then **Subscribe**.
-
-Deep links also work:
-
-- App: `pktc://subscribe/YOUR-HOST/rss.xml`
-- Web: `https://pocketcasts.com/follow/https://YOUR-HOST/rss.xml`
-
-New Poll Position uploads sync automatically every hour (override with `SYNC_INTERVAL_SECONDS`).
-
-### Docker
-
-```bash
-export PUBLIC_BASE_URL=https://your-tunnel-or-host.example
-docker compose up --build -d
-```
-
-### Public URL via Cloudflare Tunnel (ephemeral)
-
-```bash
-# terminal 1
-PUBLIC_BASE_URL=http://127.0.0.1:8787 python poll-position/server.py
-
-# terminal 2 — copy the https://….trycloudflare.com URL it prints
-cloudflared tunnel --url http://127.0.0.1:8787
-```
-
-Then restart the server with `PUBLIC_BASE_URL` set to that HTTPS URL so enclosure links in the feed are correct:
-
-```bash
-PUBLIC_BASE_URL=https://….trycloudflare.com python poll-position/server.py
-```
-
-For a permanent feed, point a named Cloudflare Tunnel / Fly.io / Railway / any always-on host at port `8787` and keep `PUBLIC_BASE_URL` aligned with that hostname.
+1. Pocket Casts → **Discover**
+2. Paste `https://wlad-c.github.io/rss-feeds/rss.xml`
+3. Tap **Search** on the keyboard → **Subscribe**
 
 ### How sync works
 
-1. Read the YouTube playlist `PLUl1gfNnrZcc` (videos titled `… | Poll Position`).
-2. Match each title to The Star’s Dailymotion catalogue.
-3. Download / extract MP3s into `data/media/`.
-4. Regenerate `data/rss.xml` with iTunes tags + audio enclosures.
+1. Read YouTube playlist `PLUl1gfNnrZcc` (titles containing `Poll Position`)
+2. Match each title on The Star’s Dailymotion account
+3. Extract MP3s and write `rss.xml` + `media/`
+4. Deploy the static tree to the `gh-pages` branch
+
+### Manual / local run
+
+```bash
+pip install -r requirements.txt
+sudo apt-get install -y ffmpeg   # or brew install ffmpeg
+
+export PUBLIC_BASE_URL=https://wlad-c.github.io/rss-feeds
+export PYTHONPATH=$PWD/poll-position
+python poll-position/sync.py --publish
+```
+
+Optional always-on server (not required when using GitHub Pages):
+
+```bash
+python poll-position/server.py
+```
 
 ### Env vars
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `PUBLIC_BASE_URL` | `http://127.0.0.1:8787` | Absolute URL used in RSS enclosures |
-| `PORT` | `8787` | HTTP listen port |
-| `DATA_DIR` | `./data` | State, RSS, and media storage |
-| `SYNC_INTERVAL_SECONDS` | `3600` | Auto-sync period |
+| `PUBLIC_BASE_URL` | `https://<user>.github.io/<repo>` in Actions, else localhost | Absolute URL in RSS enclosures |
+| `DATA_DIR` | `./data` | Working state + media |
+| `SITE_DIR` | `./site` | Static publish output |
 | `YOUTUBE_PLAYLIST_ID` | `PLUl1gfNnrZcc` | Source playlist |
 | `DAILYMOTION_USER` | `thestar` | Audio source account |
 | `TITLE_FILTER` | `Poll Position` | Title label filter |

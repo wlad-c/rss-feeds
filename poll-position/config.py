@@ -19,10 +19,23 @@ YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={YOUTUBE_PLAYLIST
 DAILYMOTION_USER = os.environ.get("DAILYMOTION_USER", "thestar")
 TITLE_FILTER = os.environ.get("TITLE_FILTER", "Poll Position")
 
-PUBLIC_BASE_URL = os.environ.get("PUBLIC_BASE_URL", "http://127.0.0.1:8787").rstrip("/")
+def _default_public_base_url() -> str:
+    """Prefer GitHub Pages URL when running in Actions / when repo is known."""
+    explicit = os.environ.get("PUBLIC_BASE_URL")
+    if explicit:
+        return explicit.rstrip("/")
+    repo = os.environ.get("GITHUB_REPOSITORY")  # e.g. wlad-c/rss-feeds
+    if repo and "/" in repo:
+        owner, name = repo.split("/", 1)
+        return f"https://{owner}.github.io/{name}"
+    return "http://127.0.0.1:8787"
+
+
+PUBLIC_BASE_URL = _default_public_base_url()
 HOST = os.environ.get("HOST", "0.0.0.0")
 PORT = int(os.environ.get("PORT", "8787"))
 SYNC_INTERVAL_SECONDS = int(os.environ.get("SYNC_INTERVAL_SECONDS", str(60 * 60)))
+SITE_DIR = Path(os.environ.get("SITE_DIR", ROOT / "site"))
 
 FEED_TITLE = "Poll Position (The Star)"
 FEED_AUTHOR = "The Star"
