@@ -12,23 +12,13 @@ Audio is matched from The Star’s Dailymotion uploads, converted to MP3, and pu
 
 ### Stable feed URL (GitHub Pages)
 
-After Pages is enabled (one-time — see below):
-
 | | |
 |---|---|
 | Landing | https://wlad-c.github.io/rss-feeds/ |
 | **RSS (paste into Pocket Casts)** | **https://wlad-c.github.io/rss-feeds/rss.xml** |
 | Pocket Casts web follow | https://pocketcasts.com/follow/https://wlad-c.github.io/rss-feeds/rss.xml |
 
-A GitHub Action syncs new episodes about every 6 hours and redeploys the site.
-
-### One-time: enable GitHub Pages
-
-1. Open https://github.com/wlad-c/rss-feeds/settings/pages  
-2. Under **Build and deployment → Source**, choose **Deploy from a branch**  
-3. Branch: **`gh-pages`** / folder: **/ (root)** → Save  
-
-Wait a minute, then open https://wlad-c.github.io/rss-feeds/rss.xml
+GitHub Actions builds the static feed and deploys it to Pages (enables/publishes itself — no Settings click). New episodes sync about every 6 hours.
 
 ### Add to Pocket Casts
 
