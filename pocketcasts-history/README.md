@@ -59,6 +59,12 @@ Rebuild theme tags + notes (network required for RSS):
 python3 scripts/build_themes_and_notes.py
 ```
 
+Upgrade NPR Up First entries with publisher transcripts (`text.npr.org`):
+
+```bash
+python3 scripts/fetch_publisher_transcripts.py
+```
+
 ## Rebuild standalone file
 
 ```bash
