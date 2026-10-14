@@ -4,7 +4,9 @@ Snapshot of personal Pocket Casts listening history, plus an interactive **Liste
 
 ## Listening Log (charts & explorer)
 
-Open [`index.html`](./index.html) (served over HTTP — see GitHub Pages / local notes below).
+Live explorer: https://raw.githack.com/wlad-c/rss-feeds/gh-pages/pocketcasts-history/
+
+Or open [`index.html`](./index.html) via local HTTP (see below).
 
 Includes:
 - Monthly trend + 3-month average
