@@ -39,6 +39,7 @@
     themeById: {},
     activeTheme: "",
     focusedParentId: "",
+    themeYears: [], // empty = all years; multi-select from themes panel
     charts: {},
     barReveal: {},
     tableReveal: { top: 12 },
@@ -272,6 +273,7 @@
     renderFolderStatusCharts();
     renderDurationChart();
     renderThemeChart();
+    renderThemeYearChart();
   }
 
   async function hardRefresh() {
@@ -666,6 +668,62 @@
     return state.themesDoc?.flat || parentThemes();
   }
 
+  function availableThemeYears() {
+    const fromAgg = state.agg?.meta?.years || [];
+    if (fromAgg.length) return fromAgg.map(String);
+    const years = new Set();
+    for (const t of flatThemes()) {
+      Object.keys(t.byYear || {}).forEach((y) => years.add(String(y)));
+    }
+    return [...years].sort((a, b) => Number(b) - Number(a));
+  }
+
+  function selectedThemeYearSet() {
+    if (!state.themeYears?.length) return null;
+    return new Set(state.themeYears.map(String));
+  }
+
+  function themeCountInYears(t) {
+    if (!t) return 0;
+    const years = selectedThemeYearSet();
+    if (!years) return t.count || 0;
+    let n = 0;
+    for (const y of years) n += Number(t.byYear?.[y] || 0);
+    return n;
+  }
+
+  function themeYearLabel() {
+    const years = availableThemeYears();
+    if (!state.themeYears.length || state.themeYears.length === years.length) {
+      return "All years";
+    }
+    const sorted = state.themeYears.slice().sort((a, b) => Number(a) - Number(b));
+    if (sorted.length <= 2) return sorted.join(", ");
+    return `${sorted[0]}–${sorted[sorted.length - 1]} · ${sorted.length}`;
+  }
+
+  function episodeMatchesThemeYears(ep) {
+    const years = selectedThemeYearSet();
+    if (!years) return true;
+    return years.has(String(ep.y));
+  }
+
+  function sampleInThemeYears(s) {
+    const years = selectedThemeYearSet();
+    if (!years) return true;
+    const y = String(s?.d || "").slice(0, 4);
+    return years.has(y);
+  }
+
+  function refreshThemeViews() {
+    renderThemeYearControls();
+    renderThemeChips();
+    renderThemeChart();
+    renderThemeYearChart();
+    renderThemeDetail(state.activeTheme || state.focusedParentId || "");
+    renderEpisodeList();
+  }
+
   function displayThemeTags(ids) {
     // Prefer child tags; keep parent only when no child of that parent is present.
     const set = new Set(ids || []);
@@ -696,10 +754,15 @@
   function filteredEpisodes() {
     const { year, podcast, q, status, theme } = state.filters;
     const qq = q.trim().toLowerCase();
+    const themeYears = selectedThemeYearSet();
     const out = [];
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
-      if (year !== "all" && String(e.y) !== String(year)) continue;
+      if (themeYears) {
+        if (!episodeMatchesThemeYears(e)) continue;
+      } else if (year !== "all" && String(e.y) !== String(year)) {
+        continue;
+      }
       if (podcast && e.p !== podcast) continue;
       if (status && e.st !== status) continue;
       const th = themeIdsForIndex(i);
@@ -798,18 +861,85 @@
     });
   }
 
+  function renderThemeYearControls() {
+    const panel = $("#themeYearPanel");
+    const label = $("#themeYearLabel");
+    if (label) label.textContent = themeYearLabel();
+    if (!panel) return;
+    const years = availableThemeYears();
+    const selected = new Set(state.themeYears.map(String));
+    const allSelected = !state.themeYears.length || state.themeYears.length === years.length;
+    panel.innerHTML = `
+      <div class="year-multi-actions">
+        <button type="button" data-years="all">All years</button>
+        <button type="button" data-years="none">Clear</button>
+      </div>
+      ${years
+        .map((y) => {
+          const checked = allSelected || selected.has(String(y));
+          const n = state.agg?.meta?.yearCounts?.[y];
+          return `<label class="year-multi-option">
+            <input type="checkbox" value="${escapeHtml(y)}" ${checked ? "checked" : ""} />
+            <span>${escapeHtml(y)}</span>
+            ${n != null ? `<small>${fmt(n)}</small>` : ""}
+          </label>`;
+        })
+        .join("")}`;
+    panel.querySelector("[data-years='all']")?.addEventListener("click", () => {
+      state.themeYears = [];
+      refreshThemeViews();
+    });
+    panel.querySelector("[data-years='none']")?.addEventListener("click", () => {
+      // Uncheck all so the next click starts a fresh multi-select; counts stay "all" until a year is checked.
+      $$("input[type=checkbox]", panel).forEach((b) => {
+        b.checked = false;
+      });
+      state.themeYears = [];
+      if (label) label.textContent = "Pick years…";
+    });
+    $$("input[type=checkbox]", panel).forEach((box) => {
+      box.addEventListener("change", () => {
+        const picked = $$("input[type=checkbox]", panel)
+          .filter((b) => b.checked)
+          .map((b) => b.value);
+        if (!picked.length) {
+          state.themeYears = [];
+          if (label) label.textContent = "Pick years…";
+          renderThemeChips();
+          renderThemeChart();
+          renderThemeYearChart();
+          renderThemeDetail(state.activeTheme || state.focusedParentId || "");
+          renderEpisodeList();
+          return;
+        }
+        state.themeYears = picked.length === years.length ? [] : picked;
+        refreshThemeViews();
+      });
+    });
+  }
+
+  function setThemeYearPanelOpen(open) {
+    const panel = $("#themeYearPanel");
+    const toggle = $("#themeYearToggle");
+    if (!panel || !toggle) return;
+    panel.hidden = !open;
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
   function renderThemeChips() {
     const host = $("#themeChips");
     const childHost = $("#themeChildChips");
     if (!host || !state.themesDoc?.themes) return;
-    const parents = parentThemes();
+    const parents = parentThemes()
+      .slice()
+      .sort((a, b) => themeCountInYears(b) - themeCountInYears(a));
     host.innerHTML = parents
       .map(
         (t) => `
       <button type="button" class="theme-chip${
         state.focusedParentId === t.id || state.activeTheme === t.id ? " active" : ""
       }" data-theme="${escapeHtml(t.id)}">
-        ${escapeHtml(t.name)}<small>${fmt(t.count)}</small>
+        ${escapeHtml(t.name)}<small>${fmt(themeCountInYears(t))}</small>
       </button>`
       )
       .join("");
@@ -820,14 +950,17 @@
     const parent = state.themeById[state.focusedParentId];
     if (childHost) {
       if (parent?.children?.length) {
+        const kids = parent.children
+          .slice()
+          .sort((a, b) => themeCountInYears(b) - themeCountInYears(a));
         childHost.hidden = false;
-        childHost.innerHTML = parent.children
+        childHost.innerHTML = kids
           .map(
             (t) => `
           <button type="button" class="theme-chip child${
             state.activeTheme === t.id ? " active" : ""
           }" data-theme="${escapeHtml(t.id)}">
-            ${escapeHtml(t.name)}<small>${fmt(t.count)}</small>
+            ${escapeHtml(t.name)}<small>${fmt(themeCountInYears(t))}</small>
           </button>`
           )
           .join("");
@@ -843,11 +976,18 @@
     renderThemeBreadcrumb();
     const meta = state.themesDoc.meta || {};
     const notesN = state.notes ? Object.keys(state.notes).length : 0;
+    const yearBit = state.themeYears.length
+      ? ` · years ${state.themeYears
+          .slice()
+          .sort((a, b) => Number(a) - Number(b))
+          .join(", ")}`
+      : "";
     $("#themeCoverage").textContent =
       `${fmt(meta.episodesWithTheme || 0)} / ${fmt(meta.totalEpisodes || 0)} episodes carry at least one theme` +
       (meta.childCount != null
         ? ` · ${fmt(meta.parentCount)} parents / ${fmt(meta.childCount)} child themes`
         : "") +
+      yearBit +
       (notesN ? ` · ${fmt(notesN)} with show notes or published transcripts` : "") +
       `. Child themes are inferred from episode content.`;
   }
@@ -862,10 +1002,11 @@
     if (!state.themesDoc?.themes) return;
     const items = themeChartItems();
     const title = $("#themeChartTitle");
+    const yearSuffix = state.themeYears.length ? ` · ${themeYearLabel()}` : "";
     if (title) {
       title.textContent = state.focusedParentId
-        ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes`
-        : "Parent themes";
+        ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes${yearSuffix}`
+        : `Parent themes${yearSuffix}`;
     }
     renderExpandableHBar({
       key: "theme",
@@ -874,13 +1015,84 @@
       moreSel: "#themeChartMore",
       items,
       labelOf: (d) => d.name,
-      valueOf: (d) => d.count,
+      valueOf: (d) => themeCountInYears(d),
       color: COLORS.teal,
       onClick: (d) => {
         if (!d?.id) return;
         if (!d.parentId) focusParentTheme(d.id);
         else selectTheme(d.id, false);
       },
+    });
+  }
+
+  function themeYearSeriesThemes() {
+    const active = state.themeById[state.activeTheme];
+    if (active?.byYear) return [active];
+    const parent = state.themeById[state.focusedParentId];
+    if (parent?.children?.length) {
+      return parent.children
+        .slice()
+        .sort((a, b) => themeCountInYears(b) - themeCountInYears(a))
+        .slice(0, 6);
+    }
+    return parentThemes()
+      .slice()
+      .sort((a, b) => themeCountInYears(b) - themeCountInYears(a))
+      .slice(0, 6);
+  }
+
+  function renderThemeYearChart() {
+    if (!state.themesDoc?.themes) return;
+    const canvas = $("#themeYearChart");
+    if (!canvas) return;
+    const allYears = availableThemeYears()
+      .slice()
+      .sort((a, b) => Number(a) - Number(b));
+    const yearSet = selectedThemeYearSet();
+    const years = yearSet ? allYears.filter((y) => yearSet.has(y)) : allYears;
+    const series = themeYearSeriesThemes();
+    const title = $("#themeYearChartTitle");
+    const note = $("#themeYearChartNote");
+    const focusName =
+      state.themeById[state.activeTheme]?.name ||
+      state.themeById[state.focusedParentId]?.name;
+    if (title) {
+      title.textContent = focusName
+        ? `${focusName} across years`
+        : "Themes across years";
+    }
+    if (note) {
+      note.textContent = focusName
+        ? `Episode counts for ${focusName}${
+            state.themeYears.length ? ` in ${themeYearLabel()}` : ""
+          }.`
+        : "Top themes over time — select years above or drill into a parent to focus the lines.";
+    }
+    destroyChart("themeYear");
+    state.charts.themeYear = new Chart(canvas, {
+      type: "line",
+      data: {
+        labels: years,
+        datasets: series.map((t, i) => ({
+          label: t.name,
+          data: years.map((y) => Number(t.byYear?.[y] || 0)),
+          borderColor: CATEGORICAL[i % CATEGORICAL.length],
+          backgroundColor: "transparent",
+          tension: 0.28,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          borderWidth: 2.4,
+        })),
+      },
+      options: baseChartOptions({
+        plugins: {
+          legend: {
+            display: series.length > 1,
+            position: "bottom",
+            labels: { boxWidth: 12, boxHeight: 12, padding: 14 },
+          },
+        },
+      }),
     });
   }
 
@@ -893,15 +1105,18 @@
     if (!t) {
       title.textContent = "Pick a theme";
       blurb.textContent =
-        "Tap a parent to open child themes derived from episode content, then filter the explorer.";
+        "Tap a parent to open child themes derived from episode content, pick years to compare eras, then filter the explorer.";
       samples.innerHTML = "";
       btn.hidden = true;
       return;
     }
     const kind = t.parentId ? "Child theme" : "Parent theme";
+    const n = themeCountInYears(t);
+    const yearSuffix = state.themeYears.length ? ` in ${themeYearLabel()}` : "";
     title.textContent = t.name;
-    blurb.textContent = `${kind}. ${t.blurb} · ${fmt(t.count)} episodes.`;
-    samples.innerHTML = (t.samples || [])
+    blurb.textContent = `${kind}. ${t.blurb} · ${fmt(n)} episodes${yearSuffix}.`;
+    const samplesList = (t.samples || []).filter(sampleInThemeYears);
+    samples.innerHTML = samplesList
       .map(
         (s) => `
       <div class="theme-sample">
@@ -909,7 +1124,8 @@
         <span>${escapeHtml(s.p || "Podcast")} · ${escapeHtml(s.d || "")}</span>
       </div>`
       )
-      .join("") || `<div class="empty">No samples.</div>`;
+      .join("") ||
+      `<div class="empty">No samples${yearSuffix || " yet"}.</div>`;
     btn.hidden = false;
     btn.onclick = () => selectTheme(t.id, true);
   }
@@ -929,6 +1145,7 @@
     state.page = 0;
     renderThemeChips();
     renderThemeChart();
+    renderThemeYearChart();
     renderThemeDetail(parentId);
     renderEpisodeList();
   }
@@ -955,6 +1172,7 @@
     state.page = 0;
     renderThemeChips();
     renderThemeChart();
+    renderThemeYearChart();
     renderThemeDetail(themeId);
     renderEpisodeList();
     if (jumpExplore) {
@@ -1074,8 +1292,25 @@
       $("#q").value = "";
       state.filters.q = "";
       state.focusedParentId = "";
+      state.themeYears = [];
       state.barReveal.theme = BAR_PAGE;
+      setThemeYearPanelOpen(false);
       selectTheme("", false);
+      renderThemeYearControls();
+      renderThemeYearChart();
+    });
+    $("#themeYearToggle")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const panel = $("#themeYearPanel");
+      setThemeYearPanelOpen(!!panel?.hidden);
+    });
+    document.addEventListener("click", (e) => {
+      const root = $("#themeYearMulti");
+      if (!root || root.contains(e.target)) return;
+      setThemeYearPanelOpen(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setThemeYearPanelOpen(false);
     });
     $("#prevPage").addEventListener("click", () => {
       state.page -= 1;
@@ -1091,6 +1326,7 @@
       state.filters = { year: "all", podcast: "", q: "", status: "", theme: "" };
       state.activeTheme = "";
       state.focusedParentId = "";
+      state.themeYears = [];
       state.barReveal.theme = BAR_PAGE;
       state.page = 0;
       $("#yearFilter").value = "all";
@@ -1099,10 +1335,8 @@
       if ($("#themeFilter")) $("#themeFilter").value = "";
       $("#q").value = "";
       if ($("#topicQ")) $("#topicQ").value = "";
-      renderThemeChips();
-      renderThemeChart();
-      renderThemeDetail("");
-      renderEpisodeList();
+      setThemeYearPanelOpen(false);
+      refreshThemeViews();
     });
 
     // Nav smooth scroll
@@ -1157,9 +1391,15 @@
       state.themesDoc = themesDoc;
       state.episodeThemes = episodeThemes;
       state.notes = notes || {};
-      state.themeById = Object.fromEntries(
-        (themesDoc?.themes || []).map((t) => [t.id, t])
-      );
+      const flat = themesDoc?.flat || [];
+      const parents = themesDoc?.themes || [];
+      const byId = {};
+      for (const t of parents) {
+        byId[t.id] = t;
+        for (const c of t.children || []) byId[c.id] = c;
+      }
+      for (const t of flat) if (!byId[t.id]) byId[t.id] = t;
+      state.themeById = byId;
 
       $("#exportedAt").textContent = `Snapshot ${agg.meta.exportedAt?.slice(0, 10) || ""}`;
       renderHeroStats(agg.meta);
@@ -1174,8 +1414,10 @@
       renderDurationChart();
       renderHeatmap();
       renderTopTable();
+      renderThemeYearControls();
       renderThemeChips();
       renderThemeChart();
+      renderThemeYearChart();
       renderThemeDetail("");
       renderEpisodeList();
       wire();

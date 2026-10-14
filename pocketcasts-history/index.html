@@ -131,12 +131,18 @@
       <div class="section-head">
         <div>
           <h2>Themes across episodes</h2>
-          <p>Parent themes with content-derived child topics — tap a parent to drill in. Search also covers show notes and published transcripts.</p>
+          <p>Parent themes with content-derived child topics — tap a parent to drill in, and multi-select years to compare eras. Search also covers show notes and published transcripts.</p>
         </div>
       </div>
       <div class="panel">
         <div class="theme-search-row">
           <input id="topicQ" type="search" placeholder="Search a topic — e.g. Gaza, Lula, AUKUS, inflation…" />
+          <div class="year-multi" id="themeYearMulti">
+            <button type="button" class="btn secondary year-multi-toggle" id="themeYearToggle" aria-expanded="false" aria-haspopup="listbox">
+              Years<span class="year-multi-label" id="themeYearLabel">All years</span>
+            </button>
+            <div class="year-multi-panel" id="themeYearPanel" hidden role="listbox" aria-label="Filter themes by year" aria-multiselectable="true"></div>
+          </div>
           <button class="btn secondary" id="clearTopic" type="button">Clear</button>
         </div>
         <p class="panel-note" id="themeCoverage"></p>
@@ -156,6 +162,11 @@
           <div id="themeSamples" class="theme-samples"></div>
           <button class="btn" id="filterByTheme" type="button" hidden>Show matching episodes</button>
         </div>
+      </div>
+      <div class="panel" style="margin-top:12px">
+        <h3 id="themeYearChartTitle">Themes across years</h3>
+        <p class="panel-note" id="themeYearChartNote">Pick years above, then follow a theme’s share of listens over time.</p>
+        <div class="chart-box mid" id="themeYearChartBox"><canvas id="themeYearChart"></canvas></div>
       </div>
     </section>
 
