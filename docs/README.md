@@ -4,6 +4,10 @@ Personal Pocket Casts listening history + **Listening Log** explorer.
 
 Everything lives in this GitHub repository. No third-party hosts or CDNs.
 
+## Live site
+
+**https://wlad-c.github.io/rss-feeds/**
+
 ## Interactive explorer (offline)
 
 Download the single-file app from this repo, then open it on your phone/iPad/laptop:
