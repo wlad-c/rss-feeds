@@ -271,10 +271,68 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
 /* Filters / list */
 .filters {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr)) auto;
+  grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr)) auto;
   gap: 8px;
   margin-bottom: 10px;
 }
+
+.theme-search-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.theme-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.theme-chip {
+  border: 1px solid var(--line);
+  background: #f7fbfd;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+.theme-chip:hover { border-color: var(--sea); transform: translateY(-1px); }
+.theme-chip.active {
+  background: var(--sea-soft);
+  border-color: var(--sea);
+  color: var(--sea);
+}
+.theme-chip small {
+  margin-left: 6px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.theme-chip.active small { color: var(--sea); }
+.theme-samples { display: grid; gap: 8px; margin-bottom: 12px; max-height: 360px; overflow: auto; }
+.theme-sample {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f7fbfd;
+  padding: 10px 12px;
+}
+.theme-sample strong {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+.theme-sample span { color: var(--muted); font-size: 0.78rem; }
+.ep-note {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+.ep-themes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.ep-themes .tag { cursor: pointer; border: 0; font: inherit; }
 input[type="search"], select, .btn {
   border: 1px solid var(--line);
   background: #f7fbfd;
@@ -432,6 +490,7 @@ footer {
 
 body:not(.ready) .charts-block,
 body:not(.ready) #explorePanel,
+body:not(.ready) #themes,
 body:not(.ready) #topPanel { opacity: 0.35; }
 
 @media (max-width: 860px) {
@@ -441,6 +500,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
   .filters { grid-template-columns: 1fr 1fr; }
   .chart-box, .chart-box.tall { height: 260px; }
   .nav-links { display: none; }
+  body:not(.ready) #themes { opacity: 0.35; }
 }
 
 @media (max-width: 520px) {

@@ -22,6 +22,16 @@ def main() -> None:
     agg = json.loads((ROOT / "tables/aggregates.json").read_text(encoding="utf-8"))
     episodes = json.loads((ROOT / "tables/episodes.json").read_text(encoding="utf-8"))
     podcasts = json.loads((ROOT / "tables/podcasts.json").read_text(encoding="utf-8"))
+    themes_path = ROOT / "tables/themes.json"
+    episode_themes_path = ROOT / "tables/episode-themes.json"
+    notes_path = ROOT / "tables/notes.json"
+    themes = json.loads(themes_path.read_text(encoding="utf-8")) if themes_path.exists() else None
+    episode_themes = (
+        json.loads(episode_themes_path.read_text(encoding="utf-8"))
+        if episode_themes_path.exists()
+        else None
+    )
+    notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
 
     fonts = {
         "./vendor/fonts/fraunces-latin-500-normal.woff2": "vendor/fonts/fraunces-latin-500-normal.woff2",
@@ -49,7 +59,14 @@ def main() -> None:
     )
 
     payload = json.dumps(
-        {"aggregates": agg, "episodes": episodes, "podcasts": podcasts},
+        {
+            "aggregates": agg,
+            "episodes": episodes,
+            "podcasts": podcasts,
+            "themes": themes,
+            "episodeThemes": episode_themes,
+            "notes": notes,
+        },
         separators=(",", ":"),
     )
     boot = (
