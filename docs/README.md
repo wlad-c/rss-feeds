@@ -14,7 +14,7 @@ Download the single-file app from this repo, then open it on your phone/iPad/lap
 
 **[`listening-log-standalone.html`](./listening-log-standalone.html)**
 
-It includes the full history, charts, filters, year-over-year comparison, and a listening calendar. It makes **no network requests**.
+It includes the full history, charts, theme suggestions, topic search, filters, year-over-year comparison, and a listening calendar. It makes **no network requests**.
 
 There is also a multi-file version (`index.html` + `explore.js` + `tables/`) for local HTTP preview:
 
@@ -40,6 +40,18 @@ python3 -m http.server 8765
 - [Recent 500 CSV](./tables/recent.csv)
 - [Excel workbook](./PocketCasts_Listening_History.xlsx)
 - [Aggregates JSON](./tables/aggregates.json)
+- [Themes JSON](./tables/themes.json) — suggested topics across listened episodes
+- [Notes / transcripts JSON](./tables/notes.json) — RSS show notes + published transcripts where available
+
+## Themes & searchable notes
+
+Episode **themes** are inferred from titles across the full history (news titles are dense topic labels). Where podcast RSS feeds publish show notes or Podcasting 2.0 `podcast:transcript` files, those texts are stored for search too.
+
+Rebuild theme tags + notes (network required for RSS):
+
+```bash
+python3 scripts/build_themes_and_notes.py
+```
 
 ## Rebuild standalone file
 

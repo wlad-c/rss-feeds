@@ -5,8 +5,13 @@
     agg: null,
     episodes: null,
     podcasts: null,
+    themesDoc: null,
+    episodeThemes: null,
+    notes: null,
+    themeById: {},
+    activeTheme: "",
     charts: {},
-    filters: { year: "all", podcast: "", q: "", status: "" },
+    filters: { year: "all", podcast: "", q: "", status: "", theme: "" },
     page: 0,
     pageSize: 40,
   };
@@ -410,18 +415,50 @@
     podSel.innerHTML =
       `<option value="">All podcasts</option>` +
       names.map((n) => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
+
+    const themeSel = $("#themeFilter");
+    if (themeSel && state.themesDoc?.themes) {
+      themeSel.innerHTML =
+        `<option value="">All themes</option>` +
+        state.themesDoc.themes
+          .map(
+            (t) =>
+              `<option value="${escapeHtml(t.id)}">${escapeHtml(t.name)} (${fmt(t.count)})</option>`
+          )
+          .join("");
+    }
+  }
+
+  function themeIdsForIndex(i) {
+    return (state.episodeThemes && state.episodeThemes[i]) || [];
+  }
+
+  function noteTextForIndex(i) {
+    const n = state.notes && state.notes[String(i)];
+    return n?.text || "";
   }
 
   function filteredEpisodes() {
-    const { year, podcast, q, status } = state.filters;
+    const { year, podcast, q, status, theme } = state.filters;
     const qq = q.trim().toLowerCase();
-    return state.episodes.filter((e) => {
-      if (year !== "all" && String(e.y) !== String(year)) return false;
-      if (podcast && e.p !== podcast) return false;
-      if (status && e.st !== status) return false;
-      if (!qq) return true;
-      return `${e.e} ${e.p} ${e.a} ${e.f}`.toLowerCase().includes(qq);
-    });
+    const out = [];
+    for (let i = 0; i < state.episodes.length; i++) {
+      const e = state.episodes[i];
+      if (year !== "all" && String(e.y) !== String(year)) continue;
+      if (podcast && e.p !== podcast) continue;
+      if (status && e.st !== status) continue;
+      const th = themeIdsForIndex(i);
+      if (theme && !th.includes(theme)) continue;
+      if (qq) {
+        const themeNames = th
+          .map((id) => state.themeById[id]?.name || id)
+          .join(" ");
+        const hay = `${e.e} ${e.p} ${e.a} ${e.f} ${themeNames} ${noteTextForIndex(i)}`.toLowerCase();
+        if (!hay.includes(qq)) continue;
+      }
+      out.push({ ...e, _i: i, _th: th });
+    }
+    return out;
   }
 
   function renderEpisodeList() {
@@ -433,8 +470,23 @@
 
     $("#listMeta").textContent = `${fmt(rows.length)} matching episodes`;
     $("#episodeList").innerHTML = slice
-      .map(
-        (e) => `
+      .map((e) => {
+        const note = noteTextForIndex(e._i);
+        const noteSrc = state.notes?.[String(e._i)]?.src;
+        const themeTags = (e._th || [])
+          .map((id) => {
+            const name = state.themeById[id]?.name || id;
+            return `<button type="button" class="tag ok" data-theme-jump="${escapeHtml(id)}">${escapeHtml(name)}</button>`;
+          })
+          .join("");
+        const snippet =
+          note &&
+          (state.filters.q.trim()
+            ? note
+            : note.length > 280
+              ? note.slice(0, 280) + "…"
+              : note);
+        return `
       <article class="ep">
         <div class="ep-show">${escapeHtml(e.p || "Podcast")}${e.f ? ` · ${escapeHtml(e.f)}` : ""}</div>
         <h3>${escapeHtml(e.e || "(untitled)")}</h3>
@@ -444,14 +496,21 @@
           ${e.st ? `<span class="tag ${e.st === "Played" ? "ok" : e.st === "In progress" ? "warn" : ""}">${escapeHtml(e.st)}</span>` : ""}
           ${e.prog !== "" && e.prog != null ? `<span>${escapeHtml(e.prog)}%</span>` : ""}
           ${e.star ? `<span class="tag ok">Starred</span>` : ""}
+          ${noteSrc ? `<span class="tag">${escapeHtml(noteSrc)}</span>` : ""}
         </div>
-      </article>`
-      )
+        ${themeTags ? `<div class="ep-themes">${themeTags}</div>` : ""}
+        ${snippet ? `<div class="ep-note">${escapeHtml(snippet)}</div>` : ""}
+      </article>`;
+      })
       .join("") || `<div class="empty">No episodes match these filters.</div>`;
 
     $("#pageInfo").textContent = `Page ${state.page + 1} / ${totalPages}`;
     $("#prevPage").disabled = state.page <= 0;
     $("#nextPage").disabled = state.page >= totalPages - 1;
+
+    $$("#episodeList [data-theme-jump]").forEach((btn) => {
+      btn.addEventListener("click", () => selectTheme(btn.dataset.themeJump, true));
+    });
 
     // Insights for current filter
     const byPod = {};
@@ -461,6 +520,122 @@
       ? `<strong>In this view:</strong> ` +
         top.map(([n, c]) => `${escapeHtml(n)} (${fmt(c)})`).join(" · ")
       : "";
+  }
+
+  function renderThemeChips() {
+    const host = $("#themeChips");
+    if (!host || !state.themesDoc?.themes) return;
+    host.innerHTML = state.themesDoc.themes
+      .map(
+        (t) => `
+      <button type="button" class="theme-chip${state.activeTheme === t.id ? " active" : ""}" data-theme="${escapeHtml(t.id)}">
+        ${escapeHtml(t.name)}<small>${fmt(t.count)}</small>
+      </button>`
+      )
+      .join("");
+    $$(".theme-chip", host).forEach((btn) => {
+      btn.addEventListener("click", () => selectTheme(btn.dataset.theme, false));
+    });
+    const meta = state.themesDoc.meta || {};
+    const notesN = state.notes ? Object.keys(state.notes).length : 0;
+    $("#themeCoverage").textContent =
+      `${fmt(meta.episodesWithTheme || 0)} / ${fmt(meta.totalEpisodes || 0)} episodes carry at least one theme` +
+      (notesN ? ` · ${fmt(notesN)} with show notes or published transcripts` : "") +
+      `. Search titles, themes, and notes below or in Explore.`;
+  }
+
+  function renderThemeChart() {
+    if (!state.themesDoc?.themes) return;
+    const themes = state.themesDoc.themes.slice().reverse();
+    destroyChart("theme");
+    state.charts.theme = new Chart($("#themeChart"), {
+      type: "bar",
+      data: {
+        labels: themes.map((t) =>
+          t.name.length > 28 ? t.name.slice(0, 26) + "…" : t.name
+        ),
+        datasets: [
+          {
+            label: "Episodes",
+            data: themes.map((t) => t.count),
+            backgroundColor: "#0f6e56",
+            borderRadius: 5,
+            maxBarThickness: 18,
+          },
+        ],
+      },
+      options: baseChartOptions({
+        indexAxis: "y",
+        plugins: { legend: { display: false } },
+        onClick: (_evt, elements) => {
+          if (!elements.length) return;
+          const idx = elements[0].index;
+          const theme = themes[idx];
+          if (theme) selectTheme(theme.id, false);
+        },
+      }),
+    });
+  }
+
+  function renderThemeDetail(themeId) {
+    const t = state.themeById[themeId];
+    const title = $("#themeDetailTitle");
+    const blurb = $("#themeDetailBlurb");
+    const samples = $("#themeSamples");
+    const btn = $("#filterByTheme");
+    if (!t) {
+      title.textContent = "Pick a theme";
+      blurb.textContent =
+        "Tap a chip or bar to see sample episodes and jump into the explorer.";
+      samples.innerHTML = "";
+      btn.hidden = true;
+      return;
+    }
+    title.textContent = t.name;
+    blurb.textContent = `${t.blurb} · ${fmt(t.count)} episodes tagged from titles.`;
+    samples.innerHTML = (t.samples || [])
+      .map(
+        (s) => `
+      <div class="theme-sample">
+        <strong>${escapeHtml(s.e || "")}</strong>
+        <span>${escapeHtml(s.p || "Podcast")} · ${escapeHtml(s.d || "")}</span>
+      </div>`
+      )
+      .join("") || `<div class="empty">No samples.</div>`;
+    btn.hidden = false;
+    btn.onclick = () => selectTheme(themeId, true);
+  }
+
+  function selectTheme(themeId, jumpExplore) {
+    state.activeTheme = themeId || "";
+    state.filters.theme = themeId || "";
+    const sel = $("#themeFilter");
+    if (sel) sel.value = themeId || "";
+    state.page = 0;
+    renderThemeChips();
+    renderThemeDetail(themeId);
+    renderEpisodeList();
+    if (jumpExplore) {
+      $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function runTopicSearch(raw) {
+    const q = (raw || "").trim();
+    $("#q").value = q;
+    state.filters.q = q;
+    // If query matches a theme name, also select it
+    const ql = q.toLowerCase();
+    const hit = (state.themesDoc?.themes || []).find(
+      (t) => t.name.toLowerCase() === ql || t.id === ql
+    );
+    if (hit) {
+      selectTheme(hit.id, true);
+    } else {
+      state.page = 0;
+      renderEpisodeList();
+      $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   function renderTopTable() {
@@ -499,6 +674,9 @@
       state.page = 0;
       renderEpisodeList();
     });
+    $("#themeFilter")?.addEventListener("change", (e) => {
+      selectTheme(e.target.value || "", false);
+    });
     $("#statusFilter").addEventListener("change", (e) => {
       state.filters.status = e.target.value;
       state.page = 0;
@@ -513,6 +691,23 @@
         renderEpisodeList();
       }, 160);
     });
+    let topicT;
+    $("#topicQ")?.addEventListener("input", (e) => {
+      clearTimeout(topicT);
+      topicT = setTimeout(() => runTopicSearch(e.target.value), 220);
+    });
+    $("#topicQ")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        runTopicSearch(e.target.value);
+      }
+    });
+    $("#clearTopic")?.addEventListener("click", () => {
+      $("#topicQ").value = "";
+      $("#q").value = "";
+      state.filters.q = "";
+      selectTheme("", false);
+    });
     $("#prevPage").addEventListener("click", () => {
       state.page -= 1;
       renderEpisodeList();
@@ -524,12 +719,17 @@
       $("#episodeList").scrollIntoView({ behavior: "smooth", block: "start" });
     });
     $("#resetFilters").addEventListener("click", () => {
-      state.filters = { year: "all", podcast: "", q: "", status: "" };
+      state.filters = { year: "all", podcast: "", q: "", status: "", theme: "" };
+      state.activeTheme = "";
       state.page = 0;
       $("#yearFilter").value = "all";
       $("#podcastFilter").value = "";
       $("#statusFilter").value = "";
+      if ($("#themeFilter")) $("#themeFilter").value = "";
       $("#q").value = "";
+      if ($("#topicQ")) $("#topicQ").value = "";
+      renderThemeChips();
+      renderThemeDetail("");
       renderEpisodeList();
     });
 
@@ -546,22 +746,39 @@
   async function loadAll() {
     if (window.__LISTENING_DATA__) {
       const d = window.__LISTENING_DATA__;
-      return [d.aggregates, d.episodes, d.podcasts];
+      return [
+        d.aggregates,
+        d.episodes,
+        d.podcasts,
+        d.themes || null,
+        d.episodeThemes || null,
+        d.notes || null,
+      ];
     }
     return Promise.all([
       loadJSON("tables/aggregates.json"),
       loadJSON("tables/episodes.json"),
       loadJSON("tables/podcasts.json"),
+      loadJSON("tables/themes.json").catch(() => null),
+      loadJSON("tables/episode-themes.json").catch(() => null),
+      loadJSON("tables/notes.json").catch(() => null),
     ]);
   }
 
   async function init() {
     $("#bootStatus").textContent = "Loading listening history…";
     try {
-      const [agg, episodes, podcasts] = await loadAll();
+      const [agg, episodes, podcasts, themesDoc, episodeThemes, notes] =
+        await loadAll();
       state.agg = agg;
       state.episodes = episodes;
       state.podcasts = podcasts;
+      state.themesDoc = themesDoc;
+      state.episodeThemes = episodeThemes;
+      state.notes = notes || {};
+      state.themeById = Object.fromEntries(
+        (themesDoc?.themes || []).map((t) => [t.id, t])
+      );
 
       $("#exportedAt").textContent = `Snapshot ${agg.meta.exportedAt?.slice(0, 10) || ""}`;
       renderHeroStats(agg.meta);
@@ -576,6 +793,9 @@
       renderDurationChart();
       renderHeatmap();
       renderTopTable();
+      renderThemeChips();
+      renderThemeChart();
+      renderThemeDetail("");
       renderEpisodeList();
       wire();
       document.body.classList.add("ready");

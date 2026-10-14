@@ -16,6 +16,7 @@
       <div class="nav-links">
         <a href="#trends" data-jump="trends">Trends</a>
         <a href="#shows" data-jump="shows">Shows</a>
+        <a href="#themes" data-jump="themes">Themes</a>
         <a href="#patterns" data-jump="patterns">Patterns</a>
         <a href="#explorePanel" data-jump="explorePanel">Explore</a>
       </div>
@@ -25,7 +26,7 @@
   <header class="wrap hero">
     <p class="hero-kicker">Pocket Casts</p>
     <h1>Listening Log</h1>
-    <p class="hero-lead">Explore years of podcast listening — trends, top shows, habits, and every episode in one place.</p>
+    <p class="hero-lead">Explore years of podcast listening — trends, themes across episodes, topic search, and every show in one place.</p>
     <p class="hero-meta" id="exportedAt"></p>
     <div class="stats" id="heroStats"></div>
     <div class="insights-strip" id="insightStrip" hidden></div>
@@ -96,6 +97,35 @@
       </div>
     </section>
 
+    <section id="themes">
+      <div class="section-head">
+        <div>
+          <h2>Themes across episodes</h2>
+          <p>Suggested topics inferred from episode titles, plus show notes / published transcripts where feeds expose them.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="theme-search-row">
+          <input id="topicQ" type="search" placeholder="Search a topic — e.g. Gaza, Lula, AUKUS, inflation…" />
+          <button class="btn secondary" id="clearTopic" type="button">Clear</button>
+        </div>
+        <p class="panel-note" id="themeCoverage"></p>
+        <div class="theme-chips" id="themeChips" aria-label="Suggested themes"></div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div class="panel">
+          <h3>Theme volume</h3>
+          <div class="chart-box tall"><canvas id="themeChart"></canvas></div>
+        </div>
+        <div class="panel">
+          <h3 id="themeDetailTitle">Pick a theme</h3>
+          <p class="panel-note" id="themeDetailBlurb">Tap a chip or bar to see sample episodes and jump into the explorer.</p>
+          <div id="themeSamples" class="theme-samples"></div>
+          <button class="btn" id="filterByTheme" type="button" hidden>Show matching episodes</button>
+        </div>
+      </div>
+    </section>
+
     <section id="patterns">
       <div class="section-head">
         <div>
@@ -134,9 +164,12 @@
       </div>
       <div class="panel">
         <div class="filters">
-          <input id="q" type="search" placeholder="Search episode, show, author…" />
+          <input id="q" type="search" placeholder="Search episode, show, author, notes…" />
           <select id="yearFilter"></select>
           <select id="podcastFilter"></select>
+          <select id="themeFilter">
+            <option value="">All themes</option>
+          </select>
           <select id="statusFilter">
             <option value="">All statuses</option>
             <option value="Played">Played</option>
