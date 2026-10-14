@@ -17,14 +17,14 @@ Interactive **Listening Log** (charts, trends, episode explorer) plus CSV/Excel 
 
 | | |
 |---|---|
-| Explorer | https://wlad-c.github.io/rss-feeds/pocketcasts-history/ |
+| Explorer | https://raw.githack.com/wlad-c/rss-feeds/gh-pages/pocketcasts-history/ |
 | Folder | https://github.com/wlad-c/rss-feeds/tree/main/pocketcasts-history |
 | Episodes CSV | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/episodes.csv |
 | Podcasts CSV | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/podcasts.csv |
 | Recent 500 | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/recent.csv |
 | Excel | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/PocketCasts_Listening_History.xlsx |
 
-Local preview: `cd pocketcasts-history && python3 -m http.server 8765`. Published on the `gh-pages` branch under `pocketcasts-history/`.
+Local preview: `cd pocketcasts-history && python3 -m http.server 8765`. Published on the `gh-pages` branch under `pocketcasts-history/`. Openable web URL uses raw.githack against that branch (GitHub Pages site enablement is 403 for the integration token).
 
 ---
 
