@@ -2,6 +2,7 @@
 (() => {
   const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   /* High-contrast categorical palette (Okabe–Ito + extras); hues stay far apart */
+  const THEME_KEY = "listening-log-theme";
   const COLORS = {
     ink: "#243447",
     muted: "#5b6b7c",
@@ -55,9 +56,53 @@
       .replaceAll('"', "&quot;");
 
   async function loadJSON(path) {
-    const res = await fetch(path, { cache: "no-store" });
+    const bust = path.includes("?") ? "&" : "?";
+    const res = await fetch(`${path}${bust}_=${Date.now()}`, {
+      cache: "reload",
+    });
     if (!res.ok) throw new Error(`Could not load ${path}`);
     return res.json();
+  }
+
+  function isDark() {
+    return document.documentElement.getAttribute("data-theme") === "dark";
+  }
+
+  function chartChrome() {
+    if (isDark()) {
+      return {
+        label: "#e6edf5",
+        muted: "#9aafc2",
+        grid: "rgba(230,237,245,.08)",
+        tooltipBg: "#0b1220",
+        doughnutBorder: "#16202e",
+      };
+    }
+    return {
+      label: "#243447",
+      muted: "#5b6b7c",
+      grid: "rgba(20,32,51,.08)",
+      tooltipBg: "#142033",
+      doughnutBorder: "#ffffff",
+    };
+  }
+
+  function applyTheme(theme) {
+    const next = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (_) {}
+    syncThemeToggle();
+  }
+
+  function syncThemeToggle() {
+    const btn = $("#themeToggle");
+    if (!btn) return;
+    const dark = isDark();
+    btn.setAttribute("aria-pressed", dark ? "true" : "false");
+    btn.textContent = dark ? "Light" : "Dark";
+    btn.title = dark ? "Switch to light mode" : "Switch to dark mode";
   }
 
   function destroyChart(key) {
@@ -68,6 +113,7 @@
   }
 
   function baseChartOptions(extra = {}) {
+    const chrome = chartChrome();
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -75,30 +121,64 @@
       plugins: {
         legend: {
           labels: {
-            color: "#243447",
+            color: chrome.label,
             font: { family: "Figtree, sans-serif", size: 12 },
             boxWidth: 12,
           },
         },
         tooltip: {
-          backgroundColor: "#142033",
+          backgroundColor: chrome.tooltipBg,
           titleFont: { family: "Figtree, sans-serif" },
           bodyFont: { family: "Figtree, sans-serif" },
         },
       },
       scales: {
         x: {
-          ticks: { color: "#5b6b7c", maxRotation: 0, autoSkipPadding: 12 },
-          grid: { color: "rgba(20,32,51,.06)" },
+          ticks: { color: chrome.muted, maxRotation: 0, autoSkipPadding: 12 },
+          grid: { color: chrome.grid },
         },
         y: {
           beginAtZero: true,
-          ticks: { color: "#5b6b7c" },
-          grid: { color: "rgba(20,32,51,.08)" },
+          ticks: { color: chrome.muted },
+          grid: { color: chrome.grid },
         },
       },
       ...extra,
     };
+  }
+
+  function rerenderCharts() {
+    if (!state.agg) return;
+    renderTrendChart();
+    renderCumulativeChart();
+    renderYearChart();
+    renderYoYChart();
+    renderTopPodcastsChart();
+    renderWeekdayHourCharts();
+    renderFolderStatusCharts();
+    renderDurationChart();
+    renderThemeChart();
+  }
+
+  async function hardRefresh() {
+    const btn = $("#hardRefresh");
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Refreshing…";
+    }
+    try {
+      if ("serviceWorker" in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map((r) => r.unregister()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map((k) => caches.delete(k)));
+      }
+    } catch (_) {}
+    const url = new URL(location.href);
+    url.searchParams.set("_", String(Date.now()));
+    location.replace(url.toString());
   }
 
   function renderHeroStats(meta) {
@@ -301,6 +381,7 @@
   }
 
   function renderFolderStatusCharts() {
+    const chrome = chartChrome();
     destroyChart("folder");
     const folders = state.agg.folders.slice(0, 10);
     state.charts.folder = new Chart($("#folderChart"), {
@@ -312,7 +393,7 @@
             data: folders.map((d) => d.count),
             backgroundColor: CATEGORICAL,
             borderWidth: 2,
-            borderColor: "#ffffff",
+            borderColor: chrome.doughnutBorder,
           },
         ],
       },
@@ -323,7 +404,7 @@
           legend: {
             position: "right",
             labels: {
-              color: "#243447",
+              color: chrome.label,
               font: { family: "Figtree, sans-serif", size: 11 },
               boxWidth: 10,
             },
@@ -342,7 +423,7 @@
             data: state.agg.status.map((d) => d.count),
             backgroundColor: [COLORS.teal, COLORS.amber, COLORS.slate, COLORS.blue],
             borderWidth: 2,
-            borderColor: "#ffffff",
+            borderColor: chrome.doughnutBorder,
           },
         ],
       },
@@ -353,7 +434,7 @@
           legend: {
             position: "right",
             labels: {
-              color: "#243447",
+              color: chrome.label,
               font: { family: "Figtree, sans-serif", size: 11 },
               boxWidth: 10,
             },
@@ -586,7 +667,7 @@
           {
             label: "Episodes",
             data: themes.map((t) => t.count),
-            backgroundColor: "#0f6e56",
+            backgroundColor: COLORS.teal,
             borderRadius: 5,
             maxBarThickness: 18,
           },
@@ -775,6 +856,14 @@
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       });
     });
+
+    $("#themeToggle")?.addEventListener("click", () => {
+      applyTheme(isDark() ? "light" : "dark");
+      rerenderCharts();
+    });
+    $("#hardRefresh")?.addEventListener("click", () => {
+      hardRefresh();
+    });
   }
 
   async function loadAll() {
@@ -800,6 +889,7 @@
   }
 
   async function init() {
+    syncThemeToggle();
     $("#bootStatus").textContent = "Loading listening history…";
     try {
       const [agg, episodes, podcasts, themesDoc, episodeThemes, notes] =

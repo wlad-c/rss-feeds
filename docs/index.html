@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Listening Log · Pocket Casts</title>
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("listening-log-theme");
+        const dark =
+          saved === "dark" ||
+          (saved !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.setAttribute(
+          "data-theme",
+          dark ? "dark" : "light"
+        );
+      } catch (_) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="explore.css" />
   <script src="vendor/chart.umd.min.js" defer></script>
   <script src="explore.js" defer></script>
@@ -19,6 +36,10 @@
         <a href="#themes" data-jump="themes">Themes</a>
         <a href="#patterns" data-jump="patterns">Patterns</a>
         <a href="#explorePanel" data-jump="explorePanel">Explore</a>
+      </div>
+      <div class="nav-tools">
+        <button type="button" class="tool-btn" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">Dark</button>
+        <button type="button" class="tool-btn" id="hardRefresh" title="Hard refresh — bypass cache and reload">Refresh</button>
       </div>
     </div>
   </div>

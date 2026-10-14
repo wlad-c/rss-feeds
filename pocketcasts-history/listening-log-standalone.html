@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Listening Log · Pocket Casts</title>
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("listening-log-theme");
+        const dark =
+          saved === "dark" ||
+          (saved !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.setAttribute(
+          "data-theme",
+          dark ? "dark" : "light"
+        );
+      } catch (_) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
   <style>
 @font-face {
   font-family: "Fraunces";
@@ -55,6 +72,8 @@
   --line: rgba(18, 38, 58, 0.12);
   --paper: #e8eef5;
   --panel: rgba(255, 255, 255, 0.86);
+  --input: #f7fbfd;
+  --nav-bg: rgba(231, 238, 244, 0.86);
   --sea: #0072B2;
   --sea-soft: rgba(0, 114, 178, 0.12);
   --clay: #D55E00;
@@ -62,9 +81,45 @@
   --amber: #E69F00;
   --teal: #009E73;
   --shadow: 0 10px 30px rgba(18, 38, 58, 0.07);
+  --bar-track: rgba(20, 32, 51, 0.08);
+  --tag-bg: rgba(20, 32, 51, 0.08);
+  --heat-empty: #e8eef5;
+  --noise-opacity: 0.35;
+  --noise-blend: multiply;
+  --bg-a: #cfe2f4;
+  --bg-b: #f8e8c8;
+  --bg-c: #dce7f0;
+  --bg-d: #e4ebe6;
   --radius: 18px;
   --display: "Fraunces", Georgia, serif;
   --sans: "Figtree", "Segoe UI", sans-serif;
+}
+
+html[data-theme="dark"] {
+  --ink: #e6edf5;
+  --muted: #9aafc2;
+  --line: rgba(230, 237, 245, 0.12);
+  --paper: #0f1722;
+  --panel: rgba(22, 32, 46, 0.92);
+  --input: #1a2636;
+  --nav-bg: rgba(15, 23, 34, 0.88);
+  --sea: #56B4E9;
+  --sea-soft: rgba(86, 180, 233, 0.16);
+  --clay: #E69F00;
+  --navy: #9ecae1;
+  --amber: #E69F00;
+  --teal: #4cd4a5;
+  --shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  --bar-track: rgba(230, 237, 245, 0.1);
+  --tag-bg: rgba(230, 237, 245, 0.1);
+  --heat-empty: #1a2636;
+  --noise-opacity: 0.2;
+  --noise-blend: soft-light;
+  --bg-a: #1a3350;
+  --bg-b: #3a2e14;
+  --bg-c: #121c28;
+  --bg-d: #0f1722;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -74,10 +129,11 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   background:
-    radial-gradient(900px 420px at 8% -8%, #cfe2f4 0%, transparent 55%),
-    radial-gradient(800px 380px at 100% 0%, #f8e8c8 0%, transparent 50%),
-    linear-gradient(180deg, #dce7f0 0%, var(--paper) 42%, #e4ebe6 100%);
+    radial-gradient(900px 420px at 8% -8%, var(--bg-a) 0%, transparent 55%),
+    radial-gradient(800px 380px at 100% 0%, var(--bg-b) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-c) 0%, var(--paper) 42%, var(--bg-d) 100%);
   min-height: 100vh;
+  transition: background 220ms ease, color 180ms ease;
 }
 
 body::before {
@@ -85,9 +141,9 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: var(--noise-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
+  mix-blend-mode: var(--noise-blend);
   z-index: 0;
 }
 
@@ -107,7 +163,7 @@ button, input, select { font: inherit; }
   top: 0;
   z-index: 30;
   backdrop-filter: blur(14px);
-  background: rgba(231, 238, 244, 0.86);
+  background: var(--nav-bg);
   border-bottom: 1px solid var(--line);
 }
 .nav-inner {
@@ -131,6 +187,36 @@ button, input, select { font: inherit; }
   font-weight: 600;
 }
 .nav-links a:hover { color: var(--ink); }
+.nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+.tool-btn {
+  border: 1px solid var(--line);
+  background: var(--input);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 7px 11px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tool-btn:hover {
+  border-color: var(--sea);
+  color: var(--sea);
+}
+.tool-btn[aria-pressed="true"] {
+  background: var(--sea-soft);
+  border-color: var(--sea);
+  color: var(--sea);
+}
+.tool-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
 
 /* Hero */
 .hero {
@@ -256,7 +342,7 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
 .bar {
   width: 100%;
   height: 8px;
-  background: rgba(20, 32, 51, 0.08);
+  background: var(--bar-track);
   border-radius: 99px;
   overflow: hidden;
 }
@@ -297,7 +383,7 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
 }
 .theme-chip {
   border: 1px solid var(--line);
-  background: #f7fbfd;
+  background: var(--input);
   color: var(--ink);
   border-radius: 999px;
   padding: 7px 12px;
@@ -322,7 +408,7 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
 .theme-sample {
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: #f7fbfd;
+  background: var(--input);
   padding: 10px 12px;
 }
 .theme-sample strong {
@@ -343,7 +429,7 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
 .ep-themes .tag { cursor: pointer; border: 0; font: inherit; }
 input[type="search"], select, .btn {
   border: 1px solid var(--line);
-  background: #f7fbfd;
+  background: var(--input);
   border-radius: 12px;
   padding: 10px 12px;
   color: var(--ink);
@@ -355,8 +441,9 @@ input[type="search"], select, .btn {
   font-weight: 700;
   cursor: pointer;
 }
+html[data-theme="dark"] .btn { color: #0f1722; }
 .btn.secondary {
-  background: #f7fbfd;
+  background: var(--input);
   color: var(--ink);
 }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -371,7 +458,7 @@ input[type="search"], select, .btn {
 .ep {
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: #f7fbfd;
+  background: var(--input);
   padding: 12px;
 }
 .ep-show {
@@ -394,12 +481,14 @@ input[type="search"], select, .btn {
   font-size: 0.8rem;
 }
 .tag {
-  background: rgba(20, 32, 51, 0.08);
+  background: var(--tag-bg);
   border-radius: 999px;
   padding: 1px 8px;
 }
 .tag.ok { background: rgba(0, 158, 115, 0.14); color: #00664a; }
 .tag.warn { background: rgba(213, 94, 0, 0.14); color: #8a3d00; }
+html[data-theme="dark"] .tag.ok { background: rgba(76, 212, 165, 0.16); color: #8eefc8; }
+html[data-theme="dark"] .tag.warn { background: rgba(230, 159, 0, 0.18); color: #f0c96a; }
 
 .pager {
   display: flex;
@@ -457,13 +546,17 @@ input[type="search"], select, .btn {
   width: 12px;
   height: 12px;
   border-radius: 3px;
-  background: #e8eef5;
+  background: var(--heat-empty);
 }
 /* Sequential blue scale with large luminance steps for easy intensity reading */
 .heat-cell[data-level="1"] { background: #9ecae1; }
 .heat-cell[data-level="2"] { background: #4292c6; }
 .heat-cell[data-level="3"] { background: #2171b5; }
 .heat-cell[data-level="4"] { background: #084594; }
+html[data-theme="dark"] .heat-cell[data-level="1"] { background: #2b6cb0; }
+html[data-theme="dark"] .heat-cell[data-level="2"] { background: #4299e1; }
+html[data-theme="dark"] .heat-cell[data-level="3"] { background: #63b3ed; }
+html[data-theme="dark"] .heat-cell[data-level="4"] { background: #bee3f8; }
 .heat-legend {
   display: flex;
   align-items: center;
@@ -477,12 +570,16 @@ input[type="search"], select, .btn {
   width: 12px;
   height: 12px;
   border-radius: 3px;
-  background: #e8eef5;
+  background: var(--heat-empty);
 }
 .heat-legend i:nth-child(2) { background: #9ecae1; }
 .heat-legend i:nth-child(3) { background: #4292c6; }
 .heat-legend i:nth-child(4) { background: #2171b5; }
 .heat-legend i:nth-child(5) { background: #084594; }
+html[data-theme="dark"] .heat-legend i:nth-child(2) { background: #2b6cb0; }
+html[data-theme="dark"] .heat-legend i:nth-child(3) { background: #4299e1; }
+html[data-theme="dark"] .heat-legend i:nth-child(4) { background: #63b3ed; }
+html[data-theme="dark"] .heat-legend i:nth-child(5) { background: #bee3f8; }
 
 footer {
   padding: 28px 0 40px;
@@ -508,6 +605,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
   .filters { grid-template-columns: 1fr 1fr; }
   .chart-box, .chart-box.tall { height: 260px; }
   .nav-links { display: none; }
+  .nav-tools { margin-left: 0; }
   body:not(.ready) #themes { opacity: 0.35; }
 }
 
@@ -530,6 +628,10 @@ body:not(.ready) #topPanel { opacity: 0.35; }
         <a href="#themes" data-jump="themes">Themes</a>
         <a href="#patterns" data-jump="patterns">Patterns</a>
         <a href="#explorePanel" data-jump="explorePanel">Explore</a>
+      </div>
+      <div class="nav-tools">
+        <button type="button" class="tool-btn" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">Dark</button>
+        <button type="button" class="tool-btn" id="hardRefresh" title="Hard refresh — bypass cache and reload">Refresh</button>
       </div>
     </div>
   </div>
@@ -731,6 +833,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
 (() => {
   const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   /* High-contrast categorical palette (Okabe–Ito + extras); hues stay far apart */
+  const THEME_KEY = "listening-log-theme";
   const COLORS = {
     ink: "#243447",
     muted: "#5b6b7c",
@@ -784,9 +887,53 @@ body:not(.ready) #topPanel { opacity: 0.35; }
       .replaceAll('"', "&quot;");
 
   async function loadJSON(path) {
-    const res = await fetch(path, { cache: "no-store" });
+    const bust = path.includes("?") ? "&" : "?";
+    const res = await fetch(`${path}${bust}_=${Date.now()}`, {
+      cache: "reload",
+    });
     if (!res.ok) throw new Error(`Could not load ${path}`);
     return res.json();
+  }
+
+  function isDark() {
+    return document.documentElement.getAttribute("data-theme") === "dark";
+  }
+
+  function chartChrome() {
+    if (isDark()) {
+      return {
+        label: "#e6edf5",
+        muted: "#9aafc2",
+        grid: "rgba(230,237,245,.08)",
+        tooltipBg: "#0b1220",
+        doughnutBorder: "#16202e",
+      };
+    }
+    return {
+      label: "#243447",
+      muted: "#5b6b7c",
+      grid: "rgba(20,32,51,.08)",
+      tooltipBg: "#142033",
+      doughnutBorder: "#ffffff",
+    };
+  }
+
+  function applyTheme(theme) {
+    const next = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (_) {}
+    syncThemeToggle();
+  }
+
+  function syncThemeToggle() {
+    const btn = $("#themeToggle");
+    if (!btn) return;
+    const dark = isDark();
+    btn.setAttribute("aria-pressed", dark ? "true" : "false");
+    btn.textContent = dark ? "Light" : "Dark";
+    btn.title = dark ? "Switch to light mode" : "Switch to dark mode";
   }
 
   function destroyChart(key) {
@@ -797,6 +944,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
   }
 
   function baseChartOptions(extra = {}) {
+    const chrome = chartChrome();
     return {
       responsive: true,
       maintainAspectRatio: false,
@@ -804,30 +952,64 @@ body:not(.ready) #topPanel { opacity: 0.35; }
       plugins: {
         legend: {
           labels: {
-            color: "#243447",
+            color: chrome.label,
             font: { family: "Figtree, sans-serif", size: 12 },
             boxWidth: 12,
           },
         },
         tooltip: {
-          backgroundColor: "#142033",
+          backgroundColor: chrome.tooltipBg,
           titleFont: { family: "Figtree, sans-serif" },
           bodyFont: { family: "Figtree, sans-serif" },
         },
       },
       scales: {
         x: {
-          ticks: { color: "#5b6b7c", maxRotation: 0, autoSkipPadding: 12 },
-          grid: { color: "rgba(20,32,51,.06)" },
+          ticks: { color: chrome.muted, maxRotation: 0, autoSkipPadding: 12 },
+          grid: { color: chrome.grid },
         },
         y: {
           beginAtZero: true,
-          ticks: { color: "#5b6b7c" },
-          grid: { color: "rgba(20,32,51,.08)" },
+          ticks: { color: chrome.muted },
+          grid: { color: chrome.grid },
         },
       },
       ...extra,
     };
+  }
+
+  function rerenderCharts() {
+    if (!state.agg) return;
+    renderTrendChart();
+    renderCumulativeChart();
+    renderYearChart();
+    renderYoYChart();
+    renderTopPodcastsChart();
+    renderWeekdayHourCharts();
+    renderFolderStatusCharts();
+    renderDurationChart();
+    renderThemeChart();
+  }
+
+  async function hardRefresh() {
+    const btn = $("#hardRefresh");
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Refreshing…";
+    }
+    try {
+      if ("serviceWorker" in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map((r) => r.unregister()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map((k) => caches.delete(k)));
+      }
+    } catch (_) {}
+    const url = new URL(location.href);
+    url.searchParams.set("_", String(Date.now()));
+    location.replace(url.toString());
   }
 
   function renderHeroStats(meta) {
@@ -1030,6 +1212,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
   }
 
   function renderFolderStatusCharts() {
+    const chrome = chartChrome();
     destroyChart("folder");
     const folders = state.agg.folders.slice(0, 10);
     state.charts.folder = new Chart($("#folderChart"), {
@@ -1041,7 +1224,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
             data: folders.map((d) => d.count),
             backgroundColor: CATEGORICAL,
             borderWidth: 2,
-            borderColor: "#ffffff",
+            borderColor: chrome.doughnutBorder,
           },
         ],
       },
@@ -1052,7 +1235,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
           legend: {
             position: "right",
             labels: {
-              color: "#243447",
+              color: chrome.label,
               font: { family: "Figtree, sans-serif", size: 11 },
               boxWidth: 10,
             },
@@ -1071,7 +1254,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
             data: state.agg.status.map((d) => d.count),
             backgroundColor: [COLORS.teal, COLORS.amber, COLORS.slate, COLORS.blue],
             borderWidth: 2,
-            borderColor: "#ffffff",
+            borderColor: chrome.doughnutBorder,
           },
         ],
       },
@@ -1082,7 +1265,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
           legend: {
             position: "right",
             labels: {
-              color: "#243447",
+              color: chrome.label,
               font: { family: "Figtree, sans-serif", size: 11 },
               boxWidth: 10,
             },
@@ -1315,7 +1498,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
           {
             label: "Episodes",
             data: themes.map((t) => t.count),
-            backgroundColor: "#0f6e56",
+            backgroundColor: COLORS.teal,
             borderRadius: 5,
             maxBarThickness: 18,
           },
@@ -1504,6 +1687,14 @@ body:not(.ready) #topPanel { opacity: 0.35; }
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       });
     });
+
+    $("#themeToggle")?.addEventListener("click", () => {
+      applyTheme(isDark() ? "light" : "dark");
+      rerenderCharts();
+    });
+    $("#hardRefresh")?.addEventListener("click", () => {
+      hardRefresh();
+    });
   }
 
   async function loadAll() {
@@ -1529,6 +1720,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
   }
 
   async function init() {
+    syncThemeToggle();
     $("#bootStatus").textContent = "Loading listening history…";
     try {
       const [agg, episodes, podcasts, themesDoc, episodeThemes, notes] =
