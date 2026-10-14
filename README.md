@@ -11,6 +11,18 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 | **Mano a Mano** (Spotify Studios) | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@feeds/mano-a-mano/rss.xml | Megaphone mirror on lightweight `feeds` branch; enclosure sizes filled for Pocket Casts |
 | **Poll Position** (The Star) | https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/rss.xml | YouTube → Dailymotion MP3s hosted on `gh-pages` |
 
+## Pocket Casts listening history
+
+Personal listening-history snapshot (CSV / Excel / mobile web table) lives in [`pocketcasts-history/`](./pocketcasts-history/).
+
+| | |
+|---|---|
+| Folder | [`pocketcasts-history/`](./pocketcasts-history/) |
+| Episodes CSV | [`pocketcasts-history/tables/episodes.csv`](./pocketcasts-history/tables/episodes.csv) |
+| Podcasts CSV | [`pocketcasts-history/tables/podcasts.csv`](./pocketcasts-history/tables/podcasts.csv) |
+| Excel | [`pocketcasts-history/PocketCasts_Listening_History.xlsx`](./pocketcasts-history/PocketCasts_Listening_History.xlsx) |
+| Web table | https://wlad-c.github.io/rss-feeds/pocketcasts-history/ |
+
 ---
 
 ## Mano a Mano (Spotify)

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Pocket Casts history</title>
+  <style>
+    :root {
+      --bg: #f3efe6;
+      --ink: #1a1a1a;
+      --muted: #5c5c5c;
+      --line: #d9d2c5;
+      --card: #fffdf8;
+      --accent: #0b6e4f;
+      --accent-soft: #d8f3e7;
+      --chip: #ece6da;
+      --shadow: 0 1px 0 rgba(0,0,0,.04);
+      --radius: 14px;
+      --font: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--font); }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #fff9e8 0%, transparent 55%),
+        radial-gradient(900px 400px at 100% 0%, #e7f5ef 0%, transparent 50%),
+        var(--bg);
+    }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(243,239,230,.92);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px 10px;
+    }
+    h1 { margin: 0; font-size: 1.15rem; letter-spacing: -0.02em; }
+    .sub { margin: 2px 0 10px; color: var(--muted); font-size: .82rem; }
+    .controls { display: grid; gap: 8px; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; }
+    input, select, button {
+      font: inherit; border-radius: 12px; border: 1px solid var(--line);
+      background: var(--card); color: var(--ink); padding: 10px 12px;
+    }
+    input[type="search"] { flex: 1; min-width: 160px; }
+    select { min-width: 110px; }
+    button {
+      background: var(--accent); color: white; border-color: var(--accent);
+      font-weight: 600; cursor: pointer;
+    }
+    button.secondary { background: var(--card); color: var(--ink); }
+    button:disabled { opacity: .5; }
+    main { padding: 12px 14px 40px; max-width: 920px; margin: 0 auto; }
+    .tabs { display: flex; gap: 6px; margin: 4px 0 2px; }
+    .tab {
+      border: 1px solid var(--line); background: var(--chip); color: var(--ink);
+      padding: 8px 12px; border-radius: 999px; font-size: .86rem; font-weight: 600;
+    }
+    .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .stats { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 4px; }
+    .stat {
+      background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+      padding: 8px 10px; font-size: .78rem; color: var(--muted); box-shadow: var(--shadow);
+    }
+    .stat b { display: block; color: var(--ink); font-size: 1rem; }
+    .list { display: grid; gap: 8px; margin-top: 10px; }
+    .item {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 12px 12px 10px; box-shadow: var(--shadow);
+    }
+    .item .show {
+      font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 2px;
+    }
+    .item .ep { font-size: .98rem; font-weight: 650; line-height: 1.25; margin: 0 0 6px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 6px 10px; color: var(--muted); font-size: .78rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: var(--chip); border-radius: 999px; padding: 2px 8px;
+    }
+    .pill.ok { background: var(--accent-soft); color: #0b4f3a; }
+    .pill.warn { background: #fff1d6; color: #7a5200; }
+    .empty, .loading { text-align: center; color: var(--muted); padding: 28px 10px; }
+    .pager { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; }
+    .pager .info { color: var(--muted); font-size: .8rem; }
+    footer { margin-top: 18px; color: var(--muted); font-size: .75rem; line-height: 1.4; }
+    a { color: var(--accent); }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pocket Casts history</h1>
+    <div class="sub" id="subtitle">Loading…</div>
+    <div class="tabs">
+      <button class="tab active" data-tab="episodes" type="button">Episodes</button>
+      <button class="tab" data-tab="podcasts" type="button">Podcasts</button>
+    </div>
+    <div class="controls" id="epControls">
+      <div class="row">
+        <input id="q" type="search" placeholder="Search episode or podcast" enterkeyhint="search" />
+      </div>
+      <div class="row">
+        <select id="year"><option value="recent">Recent 500</option></select>
+        <select id="status">
+          <option value="">All statuses</option>
+          <option value="Played">Played</option>
+          <option value="In progress">In progress</option>
+          <option value="Unplayed">Unplayed</option>
+        </select>
+        <button class="secondary" id="reload" type="button">Refresh</button>
+      </div>
+    </div>
+    <div class="controls hidden" id="podControls">
+      <div class="row">
+        <input id="pq" type="search" placeholder="Search podcasts" enterkeyhint="search" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="stats" id="stats"></div>
+    <div id="list" class="list"><div class="loading">Loading listening history…</div></div>
+    <div class="pager" id="pager">
+      <button class="secondary" id="prev" type="button">Previous</button>
+      <div class="info" id="pageInfo"></div>
+      <button class="secondary" id="next" type="button">Next</button>
+    </div>
+    <footer>
+      Mobile view of your Pocket Casts export.
+      Tip: for Google Sheets on iPad, open Sheets → blank spreadsheet → in A1 paste
+      <code id="importHint">=IMPORTDATA("…/tables/podcasts.csv")</code>
+      (podcasts / recent lists). Full history is easier in this page.
+    </footer>
+  </main>
+
+  <script>
+    const PAGE_SIZE = 50;
+    let meta = null;
+    let tab = "episodes";
+    let cache = new Map();
+    let podcasts = [];
+    let viewRows = [];
+    let page = 0;
+
+    const $ = (id) => document.getElementById(id);
+    const listEl = $("list");
+
+    async function getJSON(path) {
+      if (cache.has(path)) return cache.get(path);
+      const res = await fetch(path, { cache: "no-store" });
+      if (!res.ok) throw new Error(`Failed to load ${path}`);
+      const data = await res.json();
+      cache.set(path, data);
+      return data;
+    }
+
+    function pill(text, cls = "") {
+      return `<span class="pill ${cls}">${escapeHtml(text)}</span>`;
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function statusClass(st) {
+      if (st === "Played") return "ok";
+      if (st === "In progress") return "warn";
+      return "";
+    }
+
+    function renderEpisodes() {
+      const start = page * PAGE_SIZE;
+      const slice = viewRows.slice(start, start + PAGE_SIZE);
+      if (!slice.length) {
+        listEl.innerHTML = `<div class="empty">No episodes match.</div>`;
+      } else {
+        listEl.innerHTML = slice.map((r) => `
+          <article class="item">
+            <div class="show">${escapeHtml(r.p || "Podcast")}${r.f ? " · " + escapeHtml(r.f) : ""}</div>
+            <h2 class="ep">${escapeHtml(r.e || "(untitled)")}</h2>
+            <div class="meta">
+              ${pill(r.d || r.t || "")}
+              ${r.dur ? pill(r.dur) : ""}
+              ${r.st ? pill(r.st, statusClass(r.st)) : ""}
+              ${r.prog !== "" && r.prog != null ? pill(r.prog + "%") : ""}
+              ${r.star ? pill("★ Starred", "ok") : ""}
+            </div>
+          </article>
+        `).join("");
+      }
+      const totalPages = Math.max(1, Math.ceil(viewRows.length / PAGE_SIZE));
+      $("pageInfo").textContent = `${viewRows.length.toLocaleString()} episodes · page ${page + 1}/${totalPages}`;
+      $("prev").disabled = page <= 0;
+      $("next").disabled = page >= totalPages - 1;
+      $("stats").innerHTML = `
+        <div class="stat"><b>${(meta?.totalEpisodes || 0).toLocaleString()}</b>total listens</div>
+        <div class="stat"><b>${(meta?.totalPodcasts || 0).toLocaleString()}</b>podcasts</div>
+        <div class="stat"><b>${viewRows.length.toLocaleString()}</b>in this view</div>
+      `;
+    }
+
+    function renderPodcasts() {
+      const q = $("pq").value.trim().toLowerCase();
+      let rows = podcasts;
+      if (q) rows = rows.filter((p) => (p.p + " " + p.a).toLowerCase().includes(q));
+      viewRows = rows;
+      const start = page * PAGE_SIZE;
+      const slice = rows.slice(start, start + PAGE_SIZE);
+      listEl.innerHTML = slice.map((p, idx) => `
+        <article class="item">
+          <div class="show">#${start + idx + 1}</div>
+          <h2 class="ep">${escapeHtml(p.p)}</h2>
+          <div class="meta">
+            ${pill((p.n || 0).toLocaleString() + " episodes")}
+            ${p.a ? pill(p.a) : ""}
+            ${p.last ? pill("Last " + p.last) : ""}
+            ${p.sub ? pill("Subscribed", "ok") : pill("Not subscribed")}
+          </div>
+        </article>
+      `).join("") || `<div class="empty">No podcasts match.</div>`;
+      const totalPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+      $("pageInfo").textContent = `${rows.length.toLocaleString()} podcasts · page ${page + 1}/${totalPages}`;
+      $("prev").disabled = page <= 0;
+      $("next").disabled = page >= totalPages - 1;
+      $("stats").innerHTML = `
+        <div class="stat"><b>${podcasts.length.toLocaleString()}</b>podcasts</div>
+        <div class="stat"><b>${rows.length.toLocaleString()}</b>shown</div>
+      `;
+    }
+
+    function applyEpisodeFilters(rows) {
+      const q = $("q").value.trim().toLowerCase();
+      const st = $("status").value;
+      return rows.filter((r) => {
+        if (st && r.st !== st) return false;
+        if (!q) return true;
+        return (r.e + " " + r.p + " " + r.a + " " + r.f).toLowerCase().includes(q);
+      });
+    }
+
+    async function loadEpisodeView() {
+      listEl.innerHTML = `<div class="loading">Loading…</div>`;
+      const year = $("year").value;
+      let rows;
+      if (year === "recent") rows = await getJSON("tables/recent.json");
+      else if (year === "all") rows = await getJSON("tables/episodes.json");
+      else rows = await getJSON(`tables/years/${year}.json`);
+      viewRows = applyEpisodeFilters(rows);
+      page = 0;
+      renderEpisodes();
+    }
+
+    function setTab(next) {
+      tab = next;
+      document.querySelectorAll(".tab").forEach((el) => {
+        el.classList.toggle("active", el.dataset.tab === tab);
+      });
+      $("epControls").classList.toggle("hidden", tab !== "episodes");
+      $("podControls").classList.toggle("hidden", tab !== "podcasts");
+      page = 0;
+      if (tab === "episodes") loadEpisodeView();
+      else renderPodcasts();
+    }
+
+    async function init() {
+      meta = await getJSON("tables/meta.json");
+      podcasts = await getJSON("tables/podcasts.json");
+      $("subtitle").textContent = `${meta.totalEpisodes.toLocaleString()} episodes · ${meta.totalPodcasts} podcasts · ${meta.years[meta.years.length - 1]}–${meta.years[0]}`;
+      const yearSel = $("year");
+      for (const y of meta.years) {
+        const opt = document.createElement("option");
+        opt.value = y;
+        opt.textContent = `${y} (${(meta.yearCounts[y] || 0).toLocaleString()})`;
+        yearSel.appendChild(opt);
+      }
+      const all = document.createElement("option");
+      all.value = "all";
+      all.textContent = `All years (${meta.totalEpisodes.toLocaleString()})`;
+      yearSel.appendChild(all);
+
+      const base = location.href.replace(/index\.html?$/, "");
+      $("importHint").textContent = `=IMPORTDATA("${base}tables/podcasts.csv")`;
+
+      document.querySelectorAll(".tab").forEach((el) => {
+        el.addEventListener("click", () => setTab(el.dataset.tab));
+      });
+      $("year").addEventListener("change", () => loadEpisodeView());
+      $("status").addEventListener("change", () => loadEpisodeView());
+      $("reload").addEventListener("click", () => { cache.clear(); loadEpisodeView(); });
+      $("q").addEventListener("input", () => {
+        clearTimeout(window.__qTimer);
+        window.__qTimer = setTimeout(() => loadEpisodeView(), 180);
+      });
+      $("pq").addEventListener("input", () => { page = 0; renderPodcasts(); });
+      $("prev").addEventListener("click", () => { page -= 1; tab === "episodes" ? renderEpisodes() : renderPodcasts(); window.scrollTo(0, 0); });
+      $("next").addEventListener("click", () => { page += 1; tab === "episodes" ? renderEpisodes() : renderPodcasts(); window.scrollTo(0, 0); });
+
+      await loadEpisodeView();
+    }
+
+    init().catch((err) => {
+      listEl.innerHTML = `<div class="empty">Could not load history: ${escapeHtml(err.message)}</div>`;
+    });
+  </script>
+</body>
+</html>
