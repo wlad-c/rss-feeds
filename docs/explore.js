@@ -129,6 +129,12 @@
         `<div class="insight"><b>${escapeHtml(String(meta.top5SharePct))}%</b><span>Of all listens come from your top 5 shows</span></div>`
       );
     }
+    if (meta.accountStartedAt && meta.perEpisodeHistoryFrom) {
+      const started = String(meta.accountStartedAt).slice(0, 10);
+      bits.push(
+        `<div class="insight"><b>${escapeHtml(started)} → ${escapeHtml(meta.perEpisodeHistoryFrom)}</b><span>Account age vs first per-episode history (Pocket Casts has no listen rows for 2010–2018)</span></div>`
+      );
+    }
     if (bits.length) {
       strip.hidden = false;
       strip.innerHTML = bits.join("");
