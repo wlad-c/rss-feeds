@@ -40,6 +40,10 @@ python3 -m http.server 8765
 - [Recent 500 CSV](./tables/recent.csv)
 - [Excel workbook](./PocketCasts_Listening_History.xlsx)
 - [Aggregates JSON](./tables/aggregates.json)
+- [History coverage](./tables/coverage.json) — account stats + years probed (2010–2018 empty)
+- [Played without timestamp](./tables/played_without_listen_timestamp.json) — marked-played episodes with no listen date
+
+Per-episode Listening History from Pocket Casts begins **2019-03-07**. Account stats start **2015-09-11**, but `/history/year` returns **0** rows for 2010–2018 (history was never cleared).
 
 ## Rebuild standalone file
 
