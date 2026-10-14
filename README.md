@@ -13,18 +13,19 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 
 ## Pocket Casts listening history
 
-Interactive **Listening Log** (charts, trends, episode explorer) plus CSV/Excel snapshot in [`pocketcasts-history/`](./pocketcasts-history/).
+Interactive **Listening Log** (charts, trends, episode explorer) plus CSV/Excel snapshot in [`pocketcasts-history/`](./pocketcasts-history/). All explorer assets are vendored in-repo (no third-party CDNs).
 
 | | |
 |---|---|
-| Explorer | https://wlad-c.github.io/rss-feeds/pocketcasts-history/ |
+| Offline explorer | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/listening-log-standalone.html |
 | Folder | https://github.com/wlad-c/rss-feeds/tree/main/pocketcasts-history |
+| Chart snapshots | https://github.com/wlad-c/rss-feeds/tree/main/pocketcasts-history/charts |
 | Episodes CSV | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/episodes.csv |
 | Podcasts CSV | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/podcasts.csv |
 | Recent 500 | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/recent.csv |
 | Excel | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/PocketCasts_Listening_History.xlsx |
 
-Local preview: `cd pocketcasts-history && python3 -m http.server 8765`. Hosted on GitHub Pages from this repo (assets vendored under `pocketcasts-history/vendor/`).
+On iPad: open the standalone HTML on GitHub → **Download** → open the file (works offline). Or browse chart PNGs / CSVs in the folder above.
 
 ---
 

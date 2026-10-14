@@ -476,14 +476,22 @@
     });
   }
 
+  async function loadAll() {
+    if (window.__LISTENING_DATA__) {
+      const d = window.__LISTENING_DATA__;
+      return [d.aggregates, d.episodes, d.podcasts];
+    }
+    return Promise.all([
+      loadJSON("tables/aggregates.json"),
+      loadJSON("tables/episodes.json"),
+      loadJSON("tables/podcasts.json"),
+    ]);
+  }
+
   async function init() {
     $("#bootStatus").textContent = "Loading listening history…";
     try {
-      const [agg, episodes, podcasts] = await Promise.all([
-        loadJSON("tables/aggregates.json"),
-        loadJSON("tables/episodes.json"),
-        loadJSON("tables/podcasts.json"),
-      ]);
+      const [agg, episodes, podcasts] = await loadAll();
       state.agg = agg;
       state.episodes = episodes;
       state.podcasts = podcasts;

@@ -1,34 +1,44 @@
 # Pocket Casts listening history
 
-Snapshot of personal Pocket Casts listening history, plus an interactive **Listening Log** explorer.
+Personal Pocket Casts listening history + **Listening Log** explorer.
 
-Everything for this explorer is served from this GitHub repository (no third-party CDNs).
+Everything lives in this GitHub repository. No third-party hosts or CDNs.
 
-## Listening Log (charts & explorer)
+## Interactive explorer (offline)
 
-**Live site (GitHub Pages):** https://wlad-c.github.io/rss-feeds/pocketcasts-history/
+Download the single-file app from this repo, then open it on your phone/iPad/laptop:
 
-Includes:
-- Monthly trend + 3-month average
-- Cumulative listens and per-year totals
-- Top shows leaderboard (click to filter)
-- Folder & play-status mix
-- Weekday / hour-of-day habits
-- Average episode length by year
-- Full episode explorer with search + filters
+**[`listening-log-standalone.html`](./listening-log-standalone.html)**
 
-## Browse tables on GitHub
+It includes the full history, charts, and filters. It makes **no network requests**.
+
+There is also a multi-file version (`index.html` + `explore.js` + `tables/`) for local HTTP preview:
+
+```bash
+cd pocketcasts-history
+python3 -m http.server 8765
+```
+
+## Chart snapshots (view on GitHub)
+
+![Overview](./charts/overview.png)
+
+![Trends](./charts/trends.png)
+
+![Shows](./charts/shows.png)
+
+![Patterns](./charts/patterns.png)
+
+## Tables
 
 - [Episodes CSV](./tables/episodes.csv)
 - [Podcasts CSV](./tables/podcasts.csv)
 - [Recent 500 CSV](./tables/recent.csv)
 - [Excel workbook](./PocketCasts_Listening_History.xlsx)
-- [Precomputed aggregates](./tables/aggregates.json)
+- [Aggregates JSON](./tables/aggregates.json)
 
-## Local preview
+## Rebuild standalone file
 
 ```bash
-cd pocketcasts-history
-python3 -m http.server 8765
-# open http://127.0.0.1:8765/
+python3 build-standalone.py
 ```

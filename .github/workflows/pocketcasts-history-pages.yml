@@ -65,10 +65,13 @@ jobs:
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
 
-  # Enable + publish via GitHub Pages (github.io) — no third-party host.
+  # Best-effort GitHub Pages publish. The Cursor/GitHub App token cannot create
+  # a Pages site (403), so this job is non-blocking; the explorer remains fully
+  # usable from the repo via listening-log-standalone.html.
   deploy-pages:
     runs-on: ubuntu-latest
     needs: publish-branch
+    continue-on-error: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
