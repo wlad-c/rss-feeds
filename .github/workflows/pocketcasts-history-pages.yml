@@ -1,0 +1,60 @@
+name: Pocket Casts history → GitHub Pages branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "pocketcasts-history/**"
+      - ".github/workflows/pocketcasts-history-pages.yml"
+
+# Publishes the listening-history static viewer/data under gh-pages/pocketcasts-history/.
+# Site URL (after Pages is enabled on the gh-pages branch):
+#   https://wlad-c.github.io/rss-feeds/pocketcasts-history/
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: pocketcasts-history-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout existing gh-pages (preserve siblings)
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-prev
+          fetch-depth: 1
+
+      - name: Stage site tree
+        run: |
+          set -euo pipefail
+          rm -rf site
+          mkdir -p site
+          if [ -d gh-pages-prev ]; then
+            # Keep existing gh-pages content, then overlay history folder.
+            cp -a gh-pages-prev/. site/
+            rm -rf site/.git
+          fi
+          rm -rf site/pocketcasts-history
+          cp -a pocketcasts-history site/pocketcasts-history
+          touch site/.nojekyll
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
+          enable_jekyll: false
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com

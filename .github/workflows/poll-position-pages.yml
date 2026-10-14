@@ -73,7 +73,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ -d gh-pages-prev ]; then
-            for dir in mano-a-mano; do
+            for dir in mano-a-mano pocketcasts-history; do
               if [ -d "gh-pages-prev/${dir}" ]; then
                 rm -rf "./site/${dir}"
                 cp -a "gh-pages-prev/${dir}" "./site/${dir}"
