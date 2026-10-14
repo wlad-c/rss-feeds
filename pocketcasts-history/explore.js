@@ -84,6 +84,28 @@
           `<div class="stat"><b>${escapeHtml(v)}</b><span>${escapeHtml(k)}</span></div>`
       )
       .join("");
+
+    const strip = $("#insightStrip");
+    const bits = [];
+    if (meta.busiestMonth) {
+      bits.push(
+        `<div class="insight"><b>${escapeHtml(meta.busiestMonth.month)} · ${fmt(meta.busiestMonth.count)}</b><span>Busiest month by episodes played</span></div>`
+      );
+    }
+    if (meta.busiestDay) {
+      bits.push(
+        `<div class="insight"><b>${escapeHtml(meta.busiestDay.date)} · ${fmt(meta.busiestDay.count)}</b><span>Most active single day</span></div>`
+      );
+    }
+    if (meta.top5SharePct != null) {
+      bits.push(
+        `<div class="insight"><b>${escapeHtml(String(meta.top5SharePct))}%</b><span>Of all listens come from your top 5 shows</span></div>`
+      );
+    }
+    if (bits.length) {
+      strip.hidden = false;
+      strip.innerHTML = bits.join("");
+    }
   }
 
   function renderTrendChart() {
@@ -330,6 +352,51 @@
     });
   }
 
+  function renderYoYChart() {
+    const yoy = state.agg.yoyByMonth || {};
+    const months = ["01","02","03","04","05","06","07","08","09","10","11","12"];
+    const labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const years = (state.agg.meta.years || []).slice().reverse(); // oldest→newest for legend
+    const palette = ["#5b7c99","#1f4b7a","#0b7285","#2a9d8f","#0f6e56","#3d5a80","#4a6fa5","#6b8f71"];
+    destroyChart("yoy");
+    state.charts.yoy = new Chart($("#yoyChart"), {
+      type: "line",
+      data: {
+        labels,
+        datasets: years.map((y, i) => ({
+          label: String(y),
+          data: months.map((m) => (yoy[m] && yoy[m][String(y)]) || 0),
+          borderColor: palette[i % palette.length],
+          backgroundColor: "transparent",
+          tension: 0.25,
+          pointRadius: 0,
+          borderWidth: 2,
+        })),
+      },
+      options: baseChartOptions(),
+    });
+  }
+
+  function renderHeatmap() {
+    const cells = state.agg.heatmap || [];
+    const host = $("#heatmap");
+    if (!cells.length) {
+      host.innerHTML = "";
+      return;
+    }
+    const max = Math.max(...cells.map((c) => c.count), 1);
+    host.innerHTML = cells
+      .map((c) => {
+        let level = 0;
+        if (c.count > 0) level = 1;
+        if (c.count >= max * 0.25) level = 2;
+        if (c.count >= max * 0.5) level = 3;
+        if (c.count >= max * 0.75) level = 4;
+        return `<div class="heat-cell" data-level="${level}" title="${escapeHtml(c.date)}: ${c.count} episode${c.count === 1 ? "" : "s"}"></div>`;
+      })
+      .join("");
+  }
+
   function populateFilters() {
     const yearSel = $("#yearFilter");
     yearSel.innerHTML =
@@ -502,10 +569,12 @@
       renderTrendChart();
       renderCumulativeChart();
       renderYearChart();
+      renderYoYChart();
       renderTopPodcastsChart();
       renderWeekdayHourCharts();
       renderFolderStatusCharts();
       renderDurationChart();
+      renderHeatmap();
       renderTopTable();
       renderEpisodeList();
       wire();

@@ -349,6 +349,72 @@ input[type="search"], select, .btn {
   margin: 8px 0 0;
 }
 
+.insights-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.insight {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+.insight b {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+.insight span { color: var(--muted); font-size: 0.82rem; line-height: 1.35; }
+
+.panel-note {
+  margin: -4px 0 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.heatmap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 12px);
+  grid-auto-columns: 12px;
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.heat-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: rgba(18, 38, 58, 0.08);
+}
+.heat-cell[data-level="1"] { background: rgba(15, 110, 86, 0.22); }
+.heat-cell[data-level="2"] { background: rgba(15, 110, 86, 0.4); }
+.heat-cell[data-level="3"] { background: rgba(15, 110, 86, 0.62); }
+.heat-cell[data-level="4"] { background: rgba(15, 110, 86, 0.88); }
+.heat-legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.heat-legend i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: rgba(18, 38, 58, 0.08);
+}
+.heat-legend i:nth-child(2) { background: rgba(15, 110, 86, 0.22); }
+.heat-legend i:nth-child(3) { background: rgba(15, 110, 86, 0.4); }
+.heat-legend i:nth-child(4) { background: rgba(15, 110, 86, 0.62); }
+.heat-legend i:nth-child(5) { background: rgba(15, 110, 86, 0.88); }
+
 footer {
   padding: 28px 0 40px;
   color: var(--muted);
@@ -367,6 +433,7 @@ body:not(.ready) #topPanel { opacity: 0.35; }
 
 @media (max-width: 860px) {
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .insights-strip { grid-template-columns: 1fr; }
   .grid-2, .grid-2.equal { grid-template-columns: 1fr; }
   .filters { grid-template-columns: 1fr 1fr; }
   .chart-box, .chart-box.tall { height: 260px; }
