@@ -63,6 +63,7 @@ Upgrade NPR Up First entries with publisher transcripts (`text.npr.org`):
 
 ```bash
 python3 scripts/fetch_publisher_transcripts.py
+python3 scripts/fetch_omny_transcripts.py
 ```
 
 ## Rebuild standalone file

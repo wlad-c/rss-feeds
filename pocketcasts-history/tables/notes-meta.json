@@ -5,5 +5,19 @@
   "upgraded": 416,
   "skippedExistingTranscript": 0,
   "notesTotal": 7972,
-  "transcriptCount": 476
+  "transcriptCount": 1264,
+  "shows": {
+    "The Morning Edition": {
+      "feed": "https://www.omnycontent.com/d/playlist/88b564ea-a9a6-4751-910a-a5d800019396/111d8251-9a05-4c76-bcf0-ab84002d2024/e23e2275-2bcf-4868-b394-ab84002d2037/podcast.rss",
+      "feedTranscripts": 99,
+      "fetched": 79,
+      "upgraded": 79
+    },
+    "7am": {
+      "feed": "https://www.omnycontent.com/d/playlist/2fb3740d-3436-44af-8cc0-a91900716aa5/62723a1f-3e96-4fc4-882c-b25e0181da4d/70f29d90-2a63-48aa-bf8f-b25e0181da70/podcast.rss",
+      "feedTranscripts": 830,
+      "fetched": 709,
+      "upgraded": 709
+    }
+  }
 }
