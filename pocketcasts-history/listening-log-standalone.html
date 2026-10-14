@@ -869,8 +869,8 @@ body:not(.ready) #topPanel { opacity: 0.35; }
           {
             label: "Episodes",
             data: top.map((d) => d.count),
-            backgroundColor: CATEGORICAL.map(
-              (_, i) => CATEGORICAL[(top.length - 1 - i) % CATEGORICAL.length]
+            backgroundColor: top.map(
+              (_, i) => CATEGORICAL[i % CATEGORICAL.length]
             ),
             borderRadius: 5,
             maxBarThickness: 18,
