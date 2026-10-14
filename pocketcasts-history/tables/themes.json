@@ -1,7 +1,7 @@
 {
   "meta": {
     "totalEpisodes": 21973,
-    "episodesWithTheme": 11838,
+    "episodesWithTheme": 11839,
     "themeCount": 16,
     "method": "title-keyword",
     "note": "Themes are inferred from episode titles across the full listening history. Full audio transcription of ~9k hours is not stored; search also uses RSS show notes / published transcripts when available."
@@ -26,7 +26,7 @@
         {
           "i": 8,
           "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
-          "p": "",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-10-13"
         },
         {
@@ -98,7 +98,7 @@
         {
           "i": 8,
           "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
-          "p": "",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-10-13"
         },
         {
@@ -143,7 +143,7 @@
       "id": "australia-politics",
       "name": "Australian politics",
       "blurb": "Albanese, Coalition, Labor, Parliament House, and domestic policy.",
-      "count": 2046,
+      "count": 2047,
       "byYear": {
         "2019": 61,
         "2020": 149,
@@ -152,7 +152,7 @@
         "2023": 299,
         "2024": 276,
         "2025": 466,
-        "2026": 367
+        "2026": 368
       },
       "samples": [
         {
@@ -229,7 +229,7 @@
         },
         {
           "i": 79,
-          "e": "What durian reveals about the China-Vietnam border",
+          "e": "cna-correspondent-china-vietnam-durian-audio",
           "p": "CNA Correspondent",
           "d": "2026-10-06"
         },
@@ -332,7 +332,7 @@
         {
           "i": 67,
           "e": "Three Vans, a Startled Farmer and an Iranian Plot Against the U.S.",
-          "p": "",
+          "p": "The Daily",
           "d": "2026-10-07"
         }
       ]
@@ -605,7 +605,7 @@
       "id": "defence-security",
       "name": "Defence & national security",
       "blurb": "Military, intelligence, cyber, and strategic policy.",
-      "count": 562,
+      "count": 561,
       "byYear": {
         "2019": 18,
         "2020": 27,
@@ -614,15 +614,9 @@
         "2023": 81,
         "2024": 87,
         "2025": 127,
-        "2026": 83
+        "2026": 82
       },
       "samples": [
-        {
-          "i": 7,
-          "e": "Intelligence Isn't Power",
-          "p": "The Ezra Klein Show",
-          "d": "2026-10-14"
-        },
         {
           "i": 112,
           "e": "FlyDubai Midair Attack, Trump Midterm Campaigning, Hegseth Reshaping Military",
@@ -664,6 +658,12 @@
           "e": "Albanese’s UN super intelligence",
           "p": "Politics Now",
           "d": "2026-09-23"
+        },
+        {
+          "i": 259,
+          "e": "Defesa de Daniel Vorcaro pede revogação de prisão em meio a crise no STF",
+          "p": "Boletim Folha",
+          "d": "2026-09-19"
         }
       ]
     },
@@ -803,7 +803,7 @@
       "id": "ai-tech",
       "name": "AI & technology",
       "blurb": "Artificial intelligence, platforms, and digital policy.",
-      "count": 368,
+      "count": 369,
       "byYear": {
         "2019": 3,
         "2020": 21,
@@ -812,9 +812,15 @@
         "2023": 55,
         "2024": 74,
         "2025": 79,
-        "2026": 115
+        "2026": 116
       },
       "samples": [
+        {
+          "i": 7,
+          "e": "What if A.I. Is Just a ‘Normal Technology’?",
+          "p": "The Ezra Klein Show",
+          "d": "2026-10-14"
+        },
         {
           "i": 14,
           "e": "'Spicy' late night letters about an AI world",
@@ -856,12 +862,6 @@
           "e": "Trump AI Summit, US Pulls Out Of Iraq, SCOTUS Third Country Deportations",
           "p": "Up First from NPR",
           "d": "2026-09-30"
-        },
-        {
-          "i": 156,
-          "e": "Alan Kohler on how AI's moving interest rates",
-          "p": "ABC News Daily",
-          "d": "2026-09-29"
         }
       ]
     },
@@ -935,7 +935,7 @@
       "id": "migration-borders",
       "name": "Migration & borders",
       "blurb": "Immigration, asylum, borders, and demographic politics.",
-      "count": 303,
+      "count": 302,
       "byYear": {
         "2019": 8,
         "2020": 9,
@@ -944,7 +944,7 @@
         "2023": 47,
         "2024": 71,
         "2025": 90,
-        "2026": 52
+        "2026": 51
       },
       "samples": [
         {
@@ -972,12 +972,6 @@
           "d": "2026-10-07"
         },
         {
-          "i": 79,
-          "e": "What durian reveals about the China-Vietnam border",
-          "p": "CNA Correspondent",
-          "d": "2026-10-06"
-        },
-        {
           "i": 81,
           "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
           "p": "7am",
@@ -994,6 +988,12 @@
           "e": "Trump AI Summit, US Pulls Out Of Iraq, SCOTUS Third Country Deportations",
           "p": "Up First from NPR",
           "d": "2026-09-30"
+        },
+        {
+          "i": 167,
+          "e": "He Was Deported to a Country He’d Never Heard Of",
+          "p": "The Daily",
+          "d": "2026-09-28"
         }
       ]
     },

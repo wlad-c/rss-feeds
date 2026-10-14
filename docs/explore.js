@@ -1,6 +1,33 @@
 /* Pocket Casts listening explore app */
 (() => {
   const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  /* High-contrast categorical palette (Okabe–Ito + extras); hues stay far apart */
+  const COLORS = {
+    ink: "#243447",
+    muted: "#5b6b7c",
+    blue: "#0072B2",
+    amber: "#E69F00",
+    teal: "#009E73",
+    vermillion: "#D55E00",
+    sky: "#56B4E9",
+    olive: "#6A8F00",
+    rose: "#CC79A7",
+    rust: "#A15C00",
+    slate: "#4A5568",
+    navy: "#0B3D6E",
+  };
+  const CATEGORICAL = [
+    COLORS.blue,
+    COLORS.amber,
+    COLORS.teal,
+    COLORS.vermillion,
+    COLORS.sky,
+    COLORS.olive,
+    COLORS.rose,
+    COLORS.rust,
+    COLORS.navy,
+    COLORS.slate,
+  ];
   const state = {
     agg: null,
     episodes: null,
@@ -107,6 +134,12 @@
         `<div class="insight"><b>${escapeHtml(String(meta.top5SharePct))}%</b><span>Of all listens come from your top 5 shows</span></div>`
       );
     }
+    if (meta.accountStartedAt && meta.perEpisodeHistoryFrom) {
+      const started = String(meta.accountStartedAt).slice(0, 10);
+      bits.push(
+        `<div class="insight"><b>${escapeHtml(started)} → ${escapeHtml(meta.perEpisodeHistoryFrom)}</b><span>Account age vs first per-episode history (Pocket Casts has no listen rows for 2010–2018)</span></div>`
+      );
+    }
     if (bits.length) {
       strip.hidden = false;
       strip.innerHTML = bits.join("");
@@ -125,8 +158,8 @@
           {
             label: "Episodes / month",
             data: monthly.map((m) => m.count),
-            borderColor: "#0f6e56",
-            backgroundColor: "rgba(15,110,86,.16)",
+            borderColor: COLORS.blue,
+            backgroundColor: "rgba(0,114,178,.14)",
             fill: true,
             tension: 0.28,
             pointRadius: 0,
@@ -135,12 +168,12 @@
           {
             label: "3-month average",
             data: monthlyRolling3,
-            borderColor: "#0b7285",
+            borderColor: COLORS.amber,
             backgroundColor: "transparent",
             tension: 0.28,
             pointRadius: 0,
-            borderWidth: 2,
-            borderDash: [5, 4],
+            borderWidth: 2.4,
+            borderDash: [6, 4],
           },
         ],
       },
@@ -163,8 +196,8 @@
           {
             label: "Cumulative episodes",
             data: state.agg.cumulative.map((d) => d.total),
-            borderColor: "#1f4b7a",
-            backgroundColor: "rgba(31,75,122,.14)",
+            borderColor: COLORS.navy,
+            backgroundColor: "rgba(11,61,110,.12)",
             fill: true,
             tension: 0.2,
             pointRadius: 0,
@@ -186,7 +219,7 @@
           {
             label: "Episodes",
             data: state.agg.yearly.map((d) => d.count),
-            backgroundColor: "#0f6e56",
+            backgroundColor: COLORS.blue,
             borderRadius: 6,
             maxBarThickness: 42,
           },
@@ -211,7 +244,9 @@
           {
             label: "Episodes",
             data: top.map((d) => d.count),
-            backgroundColor: "#1f4b7a",
+            backgroundColor: top.map(
+              (_, i) => CATEGORICAL[i % CATEGORICAL.length]
+            ),
             borderRadius: 5,
             maxBarThickness: 18,
           },
@@ -234,7 +269,7 @@
           {
             label: "Episodes",
             data: state.agg.weekday.map((d) => d.count),
-            backgroundColor: "#0b7285",
+            backgroundColor: COLORS.vermillion,
             borderRadius: 6,
             maxBarThickness: 36,
           },
@@ -252,8 +287,8 @@
           {
             label: "Episodes by hour (UTC)",
             data: state.agg.hour.map((d) => d.count),
-            borderColor: "#0f6e56",
-            backgroundColor: "rgba(15,110,86,.15)",
+            borderColor: COLORS.teal,
+            backgroundColor: "rgba(0,158,115,.14)",
             fill: true,
             tension: 0.3,
             pointRadius: 0,
@@ -275,19 +310,9 @@
         datasets: [
           {
             data: folders.map((d) => d.count),
-            backgroundColor: [
-              "#0f6e56",
-              "#1f4b7a",
-              "#0b7285",
-              "#5b7c99",
-              "#2a9d8f",
-              "#3d5a80",
-              "#6b8f71",
-              "#4a6fa5",
-              "#2f9e7b",
-              "#4a5568",
-            ],
-            borderWidth: 0,
+            backgroundColor: CATEGORICAL,
+            borderWidth: 2,
+            borderColor: "#ffffff",
           },
         ],
       },
@@ -315,8 +340,9 @@
         datasets: [
           {
             data: state.agg.status.map((d) => d.count),
-            backgroundColor: ["#0f6e56", "#0b7285", "#5b7c99", "#1f4b7a"],
-            borderWidth: 0,
+            backgroundColor: [COLORS.teal, COLORS.amber, COLORS.slate, COLORS.blue],
+            borderWidth: 2,
+            borderColor: "#ffffff",
           },
         ],
       },
@@ -347,7 +373,7 @@
           {
             label: "Avg episode minutes",
             data: state.agg.avgDurationByYear.map((d) => d.avgMinutes),
-            backgroundColor: "#2a9d8f",
+            backgroundColor: COLORS.amber,
             borderRadius: 6,
             maxBarThickness: 42,
           },
@@ -362,7 +388,7 @@
     const months = ["01","02","03","04","05","06","07","08","09","10","11","12"];
     const labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const years = (state.agg.meta.years || []).slice().reverse(); // oldest→newest for legend
-    const palette = ["#5b7c99","#1f4b7a","#0b7285","#2a9d8f","#0f6e56","#3d5a80","#4a6fa5","#6b8f71"];
+    const dashes = [[], [6, 4], [2, 3], [8, 3, 2, 3], [], [6, 4], [2, 3], [8, 3, 2, 3]];
     destroyChart("yoy");
     state.charts.yoy = new Chart($("#yoyChart"), {
       type: "line",
@@ -371,11 +397,13 @@
         datasets: years.map((y, i) => ({
           label: String(y),
           data: months.map((m) => (yoy[m] && yoy[m][String(y)]) || 0),
-          borderColor: palette[i % palette.length],
+          borderColor: CATEGORICAL[i % CATEGORICAL.length],
           backgroundColor: "transparent",
           tension: 0.25,
-          pointRadius: 0,
-          borderWidth: 2,
+          pointRadius: 2,
+          pointHoverRadius: 5,
+          borderWidth: 2.4,
+          borderDash: dashes[i % dashes.length],
         })),
       },
       options: baseChartOptions(),
@@ -609,6 +637,12 @@
   function selectTheme(themeId, jumpExplore) {
     state.activeTheme = themeId || "";
     state.filters.theme = themeId || "";
+    // Theme chips are a dedicated filter; clear free-text so counts match the chip.
+    if (themeId) {
+      state.filters.q = "";
+      if ($("#q")) $("#q").value = "";
+      if ($("#topicQ")) $("#topicQ").value = "";
+    }
     const sel = $("#themeFilter");
     if (sel) sel.value = themeId || "";
     state.page = 0;

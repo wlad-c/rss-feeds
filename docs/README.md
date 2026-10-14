@@ -42,6 +42,10 @@ python3 -m http.server 8765
 - [Aggregates JSON](./tables/aggregates.json)
 - [Themes JSON](./tables/themes.json) — suggested topics across listened episodes
 - [Notes / transcripts JSON](./tables/notes.json) — RSS show notes + published transcripts where available
+- [History coverage](./tables/coverage.json) — account stats + years probed (2010–2018 empty)
+- [Played without timestamp](./tables/played_without_listen_timestamp.json) — marked-played episodes with no listen date
+
+Per-episode Listening History from Pocket Casts begins **2019-03-07**. Account stats start **2015-09-11**, but `/history/year` returns **0** rows for 2010–2018 (history was never cleared).
 
 ## Themes & searchable notes
 
