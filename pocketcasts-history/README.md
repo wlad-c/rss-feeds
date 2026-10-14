@@ -10,7 +10,7 @@ Download the single-file app from this repo, then open it on your phone/iPad/lap
 
 **[`listening-log-standalone.html`](./listening-log-standalone.html)**
 
-It includes the full history, charts, and filters. It makes **no network requests**.
+It includes the full history, charts, filters, year-over-year comparison, and a listening calendar. It makes **no network requests**.
 
 There is also a multi-file version (`index.html` + `explore.js` + `tables/`) for local HTTP preview:
 
