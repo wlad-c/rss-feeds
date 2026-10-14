@@ -2,11 +2,11 @@
 
 Snapshot of personal Pocket Casts listening history, plus an interactive **Listening Log** explorer.
 
+Everything for this explorer is served from this GitHub repository (no third-party CDNs).
+
 ## Listening Log (charts & explorer)
 
-Live explorer: https://raw.githack.com/wlad-c/rss-feeds/gh-pages/pocketcasts-history/
-
-Or open [`index.html`](./index.html) via local HTTP (see below).
+**Live site (GitHub Pages):** https://wlad-c.github.io/rss-feeds/pocketcasts-history/
 
 Includes:
 - Monthly trend + 3-month average
@@ -31,12 +31,4 @@ Includes:
 cd pocketcasts-history
 python3 -m http.server 8765
 # open http://127.0.0.1:8765/
-```
-
-## Google Sheets (iPad)
-
-In a blank sheet, A1:
-
-```
-=IMPORTDATA("https://raw.githubusercontent.com/wlad-c/rss-feeds/main/pocketcasts-history/tables/podcasts.csv")
 ```
