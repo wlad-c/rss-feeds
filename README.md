@@ -13,15 +13,17 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 
 ## Pocket Casts listening history
 
-Personal listening-history snapshot (CSV / Excel / mobile web table) lives in [`pocketcasts-history/`](./pocketcasts-history/).
+Personal listening-history snapshot (CSV / Excel / web table) lives in [`pocketcasts-history/`](./pocketcasts-history/).
 
 | | |
 |---|---|
-| Folder | [`pocketcasts-history/`](./pocketcasts-history/) |
-| Episodes CSV | [`pocketcasts-history/tables/episodes.csv`](./pocketcasts-history/tables/episodes.csv) |
-| Podcasts CSV | [`pocketcasts-history/tables/podcasts.csv`](./pocketcasts-history/tables/podcasts.csv) |
-| Excel | [`pocketcasts-history/PocketCasts_Listening_History.xlsx`](./pocketcasts-history/PocketCasts_Listening_History.xlsx) |
-| Web table | https://wlad-c.github.io/rss-feeds/pocketcasts-history/ |
+| Folder | https://github.com/wlad-c/rss-feeds/tree/main/pocketcasts-history |
+| Episodes CSV | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/episodes.csv |
+| Podcasts CSV | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/podcasts.csv |
+| Recent 500 | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/tables/recent.csv |
+| Excel | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/PocketCasts_Listening_History.xlsx |
+
+On iPad, open the CSV links in Safari/GitHub — GitHub renders them as scrollable tables. Also published under the `gh-pages` branch as `pocketcasts-history/` (GitHub Pages site enablement is currently blocked for the integration token).
 
 ---
 

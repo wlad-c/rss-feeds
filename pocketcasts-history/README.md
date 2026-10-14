@@ -9,9 +9,9 @@ Snapshot of personal Pocket Casts listening history (episodes, podcasts, progres
 - [Recent 500 CSV](./tables/recent.csv)
 - [Excel workbook](./PocketCasts_Listening_History.xlsx)
 
-## Mobile / web table
+## Browse on iPad
 
-Open [`index.html`](./index.html) via the GitHub Pages URL (see root README) after deploy.
+Open the CSV links above in Safari — GitHub shows them as tables.
 
 ## Google Sheets (iPad)
 
@@ -22,4 +22,6 @@ Open [`index.html`](./index.html) via the GitHub Pages URL (see root README) aft
 =IMPORTDATA("https://raw.githubusercontent.com/wlad-c/rss-feeds/main/pocketcasts-history/tables/podcasts.csv")
 ```
 
-For the recent episode list, use `tables/recent.csv` the same way. The full `episodes.csv` is large; prefer the web table or the Excel file.
+For recent episodes use `tables/recent.csv`. Full `episodes.csv` is large; prefer GitHub’s CSV view or the Excel file.
+
+`index.html` is included for a filterable web table once GitHub Pages can be enabled on `gh-pages`.
