@@ -669,7 +669,6 @@
   function displayThemeTags(ids) {
     // Prefer child tags; keep parent only when no child of that parent is present.
     const set = new Set(ids || []);
-    const parents = parentThemes();
     const keep = [];
     for (const id of ids || []) {
       const t = state.themeById[id];
