@@ -130,7 +130,7 @@
     <footer>
       Mobile view of your Pocket Casts export.
       Tip: for Google Sheets on iPad, open Sheets → blank spreadsheet → in A1 paste
-      <code id="importHint">=IMPORTDATA("…/data/podcasts.csv")</code>
+      <code id="importHint">=IMPORTDATA("…/tables/podcasts.csv")</code>
       (podcasts / recent lists). Full history is easier in this page.
     </footer>
   </main>
@@ -248,9 +248,9 @@
       listEl.innerHTML = `<div class="loading">Loading…</div>`;
       const year = $("year").value;
       let rows;
-      if (year === "recent") rows = await getJSON("data/recent.json");
-      else if (year === "all") rows = await getJSON("data/episodes.json");
-      else rows = await getJSON(`data/years/${year}.json`);
+      if (year === "recent") rows = await getJSON("tables/recent.json");
+      else if (year === "all") rows = await getJSON("tables/episodes.json");
+      else rows = await getJSON(`tables/years/${year}.json`);
       viewRows = applyEpisodeFilters(rows);
       page = 0;
       renderEpisodes();
@@ -269,8 +269,8 @@
     }
 
     async function init() {
-      meta = await getJSON("data/meta.json");
-      podcasts = await getJSON("data/podcasts.json");
+      meta = await getJSON("tables/meta.json");
+      podcasts = await getJSON("tables/podcasts.json");
       $("subtitle").textContent = `${meta.totalEpisodes.toLocaleString()} episodes · ${meta.totalPodcasts} podcasts · ${meta.years[meta.years.length - 1]}–${meta.years[0]}`;
       const yearSel = $("year");
       for (const y of meta.years) {
@@ -285,7 +285,7 @@
       yearSel.appendChild(all);
 
       const base = location.href.replace(/index\.html?$/, "");
-      $("importHint").textContent = `=IMPORTDATA("${base}data/podcasts.csv")`;
+      $("importHint").textContent = `=IMPORTDATA("${base}tables/podcasts.csv")`;
 
       document.querySelectorAll(".tab").forEach((el) => {
         el.addEventListener("click", () => setTab(el.dataset.tab));

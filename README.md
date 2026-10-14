@@ -18,8 +18,8 @@ Personal listening-history snapshot (CSV / Excel / mobile web table) lives in [`
 | | |
 |---|---|
 | Folder | [`pocketcasts-history/`](./pocketcasts-history/) |
-| Episodes CSV | [`pocketcasts-history/data/episodes.csv`](./pocketcasts-history/data/episodes.csv) |
-| Podcasts CSV | [`pocketcasts-history/data/podcasts.csv`](./pocketcasts-history/data/podcasts.csv) |
+| Episodes CSV | [`pocketcasts-history/tables/episodes.csv`](./pocketcasts-history/tables/episodes.csv) |
+| Podcasts CSV | [`pocketcasts-history/tables/podcasts.csv`](./pocketcasts-history/tables/podcasts.csv) |
 | Excel | [`pocketcasts-history/PocketCasts_Listening_History.xlsx`](./pocketcasts-history/PocketCasts_Listening_History.xlsx) |
 | Web table | https://wlad-c.github.io/rss-feeds/pocketcasts-history/ |
 
