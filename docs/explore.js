@@ -339,16 +339,68 @@
     });
   }
 
+  const LISTEN_TZ = "Australia/Sydney";
+  const WEEKDAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  function parseListenUtc(t) {
+    if (!t) return null;
+    const iso = t.includes("T") ? t : t.replace(" ", "T");
+    const d = new Date(iso.endsWith("Z") || /[+-]\d{2}:\d{2}$/.test(iso) ? iso : `${iso}Z`);
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
+  function sydneyHourAndWeekday(date) {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: LISTEN_TZ,
+      weekday: "short",
+      hour: "numeric",
+      hourCycle: "h23",
+    }).formatToParts(date);
+    const hour = Number(parts.find((p) => p.type === "hour")?.value ?? NaN);
+    const wd = parts.find((p) => p.type === "weekday")?.value;
+    const map = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
+    return {
+      hour: Number.isFinite(hour) ? hour % 24 : null,
+      weekday: wd in map ? map[wd] : null,
+    };
+  }
+
+  function listeningLocalStats() {
+    if (state._localStats) return state._localStats;
+    const hourCounts = Array.from({ length: 24 }, () => 0);
+    const weekdayCounts = Array.from({ length: 7 }, () => 0);
+    let usedEpisodes = false;
+    if (Array.isArray(state.episodes) && state.episodes.length) {
+      usedEpisodes = true;
+      for (const e of state.episodes) {
+        const d = parseListenUtc(e.t);
+        if (!d) continue;
+        const { hour, weekday } = sydneyHourAndWeekday(d);
+        if (hour != null) hourCounts[hour] += 1;
+        if (weekday != null) weekdayCounts[weekday] += 1;
+      }
+    }
+    const hour = usedEpisodes
+      ? hourCounts.map((count, h) => ({ hour: h, count }))
+      : state.agg?.hour || [];
+    const weekday = usedEpisodes
+      ? weekdayCounts.map((count, i) => ({ day: WEEKDAY_NAMES[i], count }))
+      : state.agg?.weekday || [];
+    state._localStats = { hour, weekday };
+    return state._localStats;
+  }
+
   function renderWeekdayHourCharts() {
+    const { hour, weekday } = listeningLocalStats();
     destroyChart("weekday");
     state.charts.weekday = new Chart($("#weekdayChart"), {
       type: "bar",
       data: {
-        labels: state.agg.weekday.map((d) => d.day),
+        labels: weekday.map((d) => d.day),
         datasets: [
           {
             label: "Episodes",
-            data: state.agg.weekday.map((d) => d.count),
+            data: weekday.map((d) => d.count),
             backgroundColor: COLORS.vermillion,
             borderRadius: 6,
             maxBarThickness: 36,
@@ -362,11 +414,11 @@
     state.charts.hour = new Chart($("#hourChart"), {
       type: "line",
       data: {
-        labels: state.agg.hour.map((d) => `${String(d.hour).padStart(2, "0")}:00`),
+        labels: hour.map((d) => `${String(d.hour).padStart(2, "0")}:00`),
         datasets: [
           {
-            label: "Episodes by hour (UTC)",
-            data: state.agg.hour.map((d) => d.count),
+            label: "Episodes by hour (AEST/AEDT)",
+            data: hour.map((d) => d.count),
             borderColor: COLORS.teal,
             backgroundColor: "rgba(0,158,115,.14)",
             fill: true,
