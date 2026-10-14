@@ -8,15 +8,20 @@
   <script>
     (() => {
       try {
+        const q = new URLSearchParams(location.search).get("theme");
         const saved = localStorage.getItem("listening-log-theme");
+        const pref = q === "dark" || q === "light" ? q : saved;
         const dark =
-          saved === "dark" ||
-          (saved !== "light" &&
+          pref === "dark" ||
+          (pref !== "light" &&
             window.matchMedia("(prefers-color-scheme: dark)").matches);
         document.documentElement.setAttribute(
           "data-theme",
           dark ? "dark" : "light"
         );
+        if (q === "dark" || q === "light") {
+          localStorage.setItem("listening-log-theme", q);
+        }
       } catch (_) {
         document.documentElement.setAttribute("data-theme", "light");
       }
