@@ -356,6 +356,48 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
   flex-wrap: wrap;
   gap: 8px;
 }
+.theme-chips-child {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+.theme-chip.child {
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  background: rgba(15, 110, 86, 0.06);
+}
+.theme-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin: 0 0 10px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+.theme-breadcrumb button {
+  border: 0;
+  background: none;
+  color: var(--sea);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+.theme-breadcrumb button:hover { text-decoration: underline; }
+.chart-more {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  min-height: 1.2em;
+}
+.chart-more .btn {
+  padding: 7px 12px;
+  font-size: 0.82rem;
+}
+.chart-box.expandable {
+  transition: height 180ms ease;
+}
 .theme-chip {
   border: 1px solid var(--line);
   background: var(--input);

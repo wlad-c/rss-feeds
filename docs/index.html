@@ -77,7 +77,8 @@
         </div>
         <div class="panel">
           <h3>Episodes by year</h3>
-          <div class="chart-box short"><canvas id="yearChart"></canvas></div>
+          <div class="chart-box short" id="yearChartBox"><canvas id="yearChart"></canvas></div>
+          <div class="chart-more" id="yearChartMore"></div>
         </div>
       </div>
       <div class="panel" style="margin-top:12px">
@@ -96,8 +97,9 @@
       </div>
       <div class="grid-2">
         <div class="panel">
-          <h3>Top 15 podcasts</h3>
-          <div class="chart-box tall"><canvas id="topChart"></canvas></div>
+          <h3>Podcasts by listens</h3>
+          <div class="chart-box tall" id="topChartBox"><canvas id="topChart"></canvas></div>
+          <div class="chart-more" id="topChartMore"></div>
         </div>
         <div class="panel" id="topPanel">
           <h3>Leaderboard</h3>
@@ -109,12 +111,14 @@
               <tbody></tbody>
             </table>
           </div>
+          <div class="chart-more" id="topTableMore"></div>
         </div>
       </div>
       <div class="grid-2 equal" style="margin-top:12px">
         <div class="panel">
           <h3>Folders</h3>
-          <div class="chart-box"><canvas id="folderChart"></canvas></div>
+          <div class="chart-box" id="folderChartBox"><canvas id="folderChart"></canvas></div>
+          <div class="chart-more" id="folderChartMore"></div>
         </div>
         <div class="panel">
           <h3>Play status</h3>
@@ -127,7 +131,7 @@
       <div class="section-head">
         <div>
           <h2>Themes across episodes</h2>
-          <p>Suggested topics inferred from episode titles, plus show notes / published transcripts where feeds expose them.</p>
+          <p>Parent themes with content-derived child topics — tap a parent to drill in. Search also covers show notes and published transcripts.</p>
         </div>
       </div>
       <div class="panel">
@@ -136,16 +140,19 @@
           <button class="btn secondary" id="clearTopic" type="button">Clear</button>
         </div>
         <p class="panel-note" id="themeCoverage"></p>
-        <div class="theme-chips" id="themeChips" aria-label="Suggested themes"></div>
+        <div class="theme-breadcrumb" id="themeBreadcrumb" hidden></div>
+        <div class="theme-chips" id="themeChips" aria-label="Parent themes"></div>
+        <div class="theme-chips theme-chips-child" id="themeChildChips" aria-label="Child themes" hidden></div>
       </div>
       <div class="grid-2" style="margin-top:12px">
         <div class="panel">
-          <h3>Theme volume</h3>
-          <div class="chart-box tall"><canvas id="themeChart"></canvas></div>
+          <h3 id="themeChartTitle">Parent themes</h3>
+          <div class="chart-box tall" id="themeChartBox"><canvas id="themeChart"></canvas></div>
+          <div class="chart-more" id="themeChartMore"></div>
         </div>
         <div class="panel">
           <h3 id="themeDetailTitle">Pick a theme</h3>
-          <p class="panel-note" id="themeDetailBlurb">Tap a chip or bar to see sample episodes and jump into the explorer.</p>
+          <p class="panel-note" id="themeDetailBlurb">Tap a parent to see child themes from episode content, or jump into matching episodes.</p>
           <div id="themeSamples" class="theme-samples"></div>
           <button class="btn" id="filterByTheme" type="button" hidden>Show matching episodes</button>
         </div>
@@ -162,7 +169,8 @@
       <div class="grid-2 equal">
         <div class="panel">
           <h3>Day of week</h3>
-          <div class="chart-box short"><canvas id="weekdayChart"></canvas></div>
+          <div class="chart-box short" id="weekdayChartBox"><canvas id="weekdayChart"></canvas></div>
+          <div class="chart-more" id="weekdayChartMore"></div>
         </div>
         <div class="panel">
           <h3>Hour of day (UTC)</h3>
@@ -171,7 +179,8 @@
       </div>
       <div class="panel" style="margin-top:12px">
         <h3>Average episode length by year</h3>
-        <div class="chart-box short"><canvas id="durChart"></canvas></div>
+        <div class="chart-box short" id="durChartBox"><canvas id="durChart"></canvas></div>
+        <div class="chart-more" id="durChartMore"></div>
       </div>
       <div class="panel" style="margin-top:12px">
         <h3>Listening calendar</h3>
