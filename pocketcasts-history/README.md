@@ -8,6 +8,8 @@ Everything lives in this GitHub repository. No third-party hosts or CDNs.
 
 **https://wlad-c.github.io/rss-feeds/**
 
+CDN mirror: **https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/pocketcasts-history/**
+
 ## Interactive explorer (offline)
 
 Download the single-file app from this repo, then open it on your phone/iPad/laptop:
