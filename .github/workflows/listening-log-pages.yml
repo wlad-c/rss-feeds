@@ -19,55 +19,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  sync-docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Sync pocketcasts-history → docs
-        run: |
-          set -euo pipefail
-          rm -rf docs
-          mkdir -p docs
-          cp -a pocketcasts-history/. docs/
-          rm -f docs/PocketCasts_Listening_History.xlsx docs/listening-log-standalone.html docs/build-standalone.py
-          touch docs/.nojekyll
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs
-          if git diff --staged --quiet; then
-            echo "docs already in sync"
-          else
-            git commit -m "Sync Listening Log into docs/ for GitHub Pages"
-            git push
-          fi
-
-  # Publish explorer onto gh-pages (preserve RSS/media siblings)
   publish-gh-pages-branch:
     runs-on: ubuntu-latest
-    needs: sync-docs
     steps:
       - uses: actions/checkout@v4
-      - name: Checkout gh-pages
+
+      - name: Checkout existing gh-pages
         continue-on-error: true
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: gh-pages-prev
           fetch-depth: 1
-      - name: Stage
+
+      - name: Stage site tree
         run: |
           set -euo pipefail
-          rm -rf site && mkdir -p site
+          rm -rf site
+          mkdir -p site
           if [ -d gh-pages-prev ]; then
             cp -a gh-pages-prev/. site/
             rm -rf site/.git
           fi
           rm -rf site/pocketcasts-history
           mkdir -p site/pocketcasts-history
-          cp -a pocketcasts-history/. site/pocketcasts-history/
-          rm -f site/pocketcasts-history/PocketCasts_Listening_History.xlsx
-          rm -f site/pocketcasts-history/listening-log-standalone.html
-          rm -f site/pocketcasts-history/build-standalone.py
+          cp -a docs/. site/pocketcasts-history/
           printf '%s\n' \
             '<!DOCTYPE html>' \
             '<meta charset="utf-8" />' \
@@ -76,6 +52,7 @@ jobs:
             '<p><a href="./pocketcasts-history/">Listening Log</a></p>' \
             > site/index.html
           touch site/.nojekyll
+
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -87,24 +64,28 @@ jobs:
 
   deploy-pages:
     runs-on: ubuntu-latest
-    needs: sync-docs
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Build pages-dist from docs
+
+      - name: Build pages artifact
         run: |
           set -euo pipefail
           rm -rf pages-dist
           mkdir -p pages-dist
           cp -a docs/. pages-dist/
           touch pages-dist/.nojekyll
-      - uses: actions/configure-pages@v5
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
         with:
           enablement: true
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: pages-dist
+
       - id: deployment
         uses: actions/deploy-pages@v4
