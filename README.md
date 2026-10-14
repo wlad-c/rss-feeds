@@ -17,6 +17,7 @@ Interactive **Listening Log** (charts, trends, episode explorer) plus CSV/Excel 
 
 | | |
 |---|---|
+| Live site (GitHub Pages) | https://wlad-c.github.io/rss-feeds/ |
 | Offline explorer | https://github.com/wlad-c/rss-feeds/blob/main/pocketcasts-history/listening-log-standalone.html |
 | Folder | https://github.com/wlad-c/rss-feeds/tree/main/pocketcasts-history |
 | Chart snapshots | https://github.com/wlad-c/rss-feeds/tree/main/pocketcasts-history/charts |
