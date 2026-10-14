@@ -45,12 +45,14 @@
   --ink: #12263a;
   --muted: #5a6d80;
   --line: rgba(18, 38, 58, 0.12);
-  --paper: #e7eef4;
-  --panel: rgba(255, 255, 255, 0.84);
-  --sea: #0f6e56;
-  --sea-soft: rgba(15, 110, 86, 0.12);
-  --clay: #0b7285;
-  --navy: #1f4b7a;
+  --paper: #e8eef5;
+  --panel: rgba(255, 255, 255, 0.86);
+  --sea: #0072B2;
+  --sea-soft: rgba(0, 114, 178, 0.12);
+  --clay: #D55E00;
+  --navy: #0B3D6E;
+  --amber: #E69F00;
+  --teal: #009E73;
   --shadow: 0 10px 30px rgba(18, 38, 58, 0.07);
   --radius: 18px;
   --display: "Fraunces", Georgia, serif;
@@ -64,9 +66,9 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   background:
-    radial-gradient(900px 420px at 8% -8%, #cfeee3 0%, transparent 55%),
-    radial-gradient(800px 380px at 100% 0%, #c9dff0 0%, transparent 50%),
-    linear-gradient(180deg, #dce7f0 0%, var(--paper) 42%, #d9e4df 100%);
+    radial-gradient(900px 420px at 8% -8%, #cfe2f4 0%, transparent 55%),
+    radial-gradient(800px 380px at 100% 0%, #f8e8c8 0%, transparent 50%),
+    linear-gradient(180deg, #dce7f0 0%, var(--paper) 42%, #e4ebe6 100%);
   min-height: 100vh;
 }
 
