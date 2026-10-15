@@ -53,15 +53,28 @@ Per-episode Listening History from Pocket Casts begins **2019-03-07**. Account s
 
 Episode **themes** are inferred from titles across the full history (news titles are dense topic labels). Where podcast RSS feeds publish show notes or Podcasting 2.0 `podcast:transcript` files, those texts are stored for search too.
 
-Rebuild theme tags + notes (network required for RSS):
+**Full transcripts** live in `transcripts/full.sqlite` (not shipped to GitHub Pages). `tables/notes.json` keeps searchable **snippets** plus `full` / `chars` flags.
+
+```bash
+# 1) Seed store from any existing notes, then harvest publisher transcripts (full text, free)
+python3 scripts/seed_store_from_notes.py
+python3 scripts/harvest_full_transcripts.py
+
+# 2) Optional free STT for high-value gaps (no paid API)
+#    auto = NoteTakers free 10/day, then local faster-whisper
+python3 scripts/selective_stt.py --engine auto --max-episodes 40 --max-minutes 480 --model base
+
+# 3) Rebuild parent/child themes using full text when available
+python3 scripts/rebuild_theme_hierarchy.py
+
+# 4) Sync slim tables into docs/ for Pages
+python3 scripts/sync_docs_tables.py
+```
+
+Legacy helpers (snippet-capped) still exist:
 
 ```bash
 python3 scripts/build_themes_and_notes.py
-```
-
-Upgrade NPR Up First entries with publisher transcripts (`text.npr.org`):
-
-```bash
 python3 scripts/fetch_publisher_transcripts.py
 python3 scripts/fetch_omny_transcripts.py
 ```
