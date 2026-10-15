@@ -7,6 +7,11 @@ on:
     - cron: "5 13 * * *" # 00:05 AEDT
     - cron: "5 14 * * *" # 00:05 AEST
   workflow_dispatch:
+  # Pushing this workflow file runs a verify sync (skips midnight gate).
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/listening-log-daily-sync.yml"
 
 permissions:
   contents: write
@@ -29,8 +34,9 @@ jobs:
           LOCAL_HOUR="$(date +%H)"
           LOCAL_STAMP="$(date '+%Y-%m-%d %H:%M %Z')"
           echo "Sydney local time: ${LOCAL_STAMP}"
-          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
-            echo "Manual run — skipping midnight gate"
+          echo "Event: ${GITHUB_EVENT_NAME}"
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ] || [ "${GITHUB_EVENT_NAME}" = "push" ]; then
+            echo "Manual/verify run — skipping midnight gate"
             echo "should_run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
