@@ -13,7 +13,7 @@ Personal podcast RSS feeds for Pocket Casts (and any RSS podcast app).
 
 ## Pocket Casts listening history
 
-Interactive **Listening Log** (charts, themes, topic search, trends, episode explorer) plus CSV/Excel snapshot in [`pocketcasts-history/`](./pocketcasts-history/). All explorer assets are vendored in-repo (no third-party CDNs).
+Interactive **Listening Log** (charts, themes, topic search, trends, episode explorer) plus CSV/Excel snapshot in [`pocketcasts-history/`](./pocketcasts-history/). All explorer assets are vendored in-repo (no third-party CDNs). A GitHub Action syncs new Pocket Casts listens around **00:05 Australia/Sydney** daily (repo secrets `POCKETCAST_EMAIL` / `POCKETCAST_PASSWORD`).
 
 | | |
 |---|---|
