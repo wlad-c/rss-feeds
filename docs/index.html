@@ -43,6 +43,10 @@
         <a href="#explorePanel" data-jump="explorePanel">Explore</a>
       </div>
       <div class="nav-tools">
+        <div class="metric-toggle" role="group" aria-label="Rank charts by episodes or hours">
+          <button type="button" class="tool-btn metric-btn" data-metric="episodes" aria-pressed="true" title="Rank by episode count">Eps</button>
+          <button type="button" class="tool-btn metric-btn" data-metric="hours" aria-pressed="false" title="Rank by hours of episode duration">Hours</button>
+        </div>
         <button type="button" class="tool-btn" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">Dark</button>
         <button type="button" class="tool-btn" id="hardRefresh" title="Hard refresh — bypass cache and reload">Refresh</button>
       </div>
@@ -64,7 +68,7 @@
       <div class="section-head">
         <div>
           <h2>Listening over time</h2>
-          <p>Monthly volume with a 3-month average to show the real trend.</p>
+          <p id="trendLead">Monthly episode volume with a 3-month average.</p>
         </div>
       </div>
       <div class="panel">
@@ -72,18 +76,18 @@
       </div>
       <div class="grid-2" style="margin-top:12px">
         <div class="panel">
-          <h3>Cumulative episodes</h3>
+          <h3 id="cumChartTitle">Cumulative episodes</h3>
           <div class="chart-box short"><canvas id="cumChart"></canvas></div>
         </div>
         <div class="panel">
-          <h3>Episodes by year</h3>
+          <h3 id="yearChartTitle">Episodes by year</h3>
           <div class="chart-box short" id="yearChartBox"><canvas id="yearChart"></canvas></div>
           <div class="chart-more" id="yearChartMore"></div>
         </div>
       </div>
       <div class="panel" style="margin-top:12px">
         <h3>Same month, different years</h3>
-        <p class="panel-note">Compare January–December volume across years.</p>
+        <p class="panel-note" id="yoyChartNote">Compare January–December volume across years.</p>
         <div class="chart-box"><canvas id="yoyChart"></canvas></div>
       </div>
     </section>
@@ -97,7 +101,7 @@
       </div>
       <div class="grid-2">
         <div class="panel">
-          <h3>Podcasts by listens</h3>
+          <h3 id="topChartTitle">Podcasts by listens</h3>
           <div class="chart-box tall" id="topChartBox"><canvas id="topChart"></canvas></div>
           <div class="chart-more" id="topChartMore"></div>
         </div>
@@ -106,7 +110,7 @@
           <div style="max-height:360px; overflow:auto">
             <table id="topTable">
               <thead>
-                <tr><th>#</th><th>Podcast</th><th>Eps</th><th></th></tr>
+                <tr><th>#</th><th>Podcast</th><th id="topTableMetricHead">Eps</th><th></th></tr>
               </thead>
               <tbody></tbody>
             </table>
@@ -116,7 +120,7 @@
       </div>
       <div class="grid-2 equal" style="margin-top:12px">
         <div class="panel">
-          <h3>Folders</h3>
+          <h3 id="folderChartTitle">Folders</h3>
           <div class="chart-box" id="folderChartBox"><canvas id="folderChart"></canvas></div>
           <div class="chart-more" id="folderChartMore"></div>
         </div>
@@ -179,12 +183,12 @@
       </div>
       <div class="grid-2 equal">
         <div class="panel">
-          <h3>Day of week (AEST/AEDT)</h3>
+          <h3 id="weekdayChartTitle">Day of week (AEST/AEDT)</h3>
           <div class="chart-box short" id="weekdayChartBox"><canvas id="weekdayChart"></canvas></div>
           <div class="chart-more" id="weekdayChartMore"></div>
         </div>
         <div class="panel">
-          <h3>Hour of day (AEST/AEDT)</h3>
+          <h3 id="hourChartTitle">Hour of day (AEST/AEDT)</h3>
           <div class="chart-box short"><canvas id="hourChart"></canvas></div>
         </div>
       </div>
@@ -195,7 +199,7 @@
       </div>
       <div class="panel" style="margin-top:12px">
         <h3>Listening calendar</h3>
-        <p class="panel-note">Daily episode count for the last ~12 months. Darker = more listens.</p>
+        <p class="panel-note" id="heatmapNote">Daily episode count for the last ~12 months. Darker = more listens.</p>
         <div id="heatmap" class="heatmap" aria-label="Listening activity heatmap"></div>
         <div class="heat-legend"><span>Less</span><i></i><i></i><i></i><i></i><i></i><span>More</span></div>
       </div>

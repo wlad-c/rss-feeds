@@ -3,6 +3,7 @@
   const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   /* High-contrast categorical palette (Okabe–Ito + extras); hues stay far apart */
   const THEME_KEY = "listening-log-theme";
+  const METRIC_KEY = "listening-log-metric";
   const COLORS = {
     ink: "#243447",
     muted: "#5b6b7c",
@@ -40,12 +41,15 @@
     activeTheme: "",
     focusedParentId: "",
     themeYears: [], // empty = all years; multi-select from themes panel
+    metric: "episodes", // "episodes" | "hours"
     charts: {},
     barReveal: {},
     tableReveal: { top: 12 },
     filters: { year: "all", podcast: "", q: "", status: "", theme: "" },
     page: 0,
     pageSize: 40,
+    _durationStats: null,
+    _localStats: null,
   };
   const BAR_PAGE = 12;
 
@@ -53,12 +57,98 @@
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
 
   const fmt = (n) => Number(n || 0).toLocaleString();
+  const fmtHours = (h) => {
+    const n = Number(h) || 0;
+    if (n >= 100) return Math.round(n).toLocaleString();
+    return (Math.round(n * 10) / 10).toLocaleString(undefined, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 1,
+    });
+  };
+  const fmtMetric = (n) => (metricIsHours() ? fmtHours(n) : fmt(n));
   const escapeHtml = (s) =>
     String(s ?? "")
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;");
+
+  function metricIsHours() {
+    return state.metric === "hours";
+  }
+
+  function metricValueLabel() {
+    return metricIsHours() ? "Hours" : "Episodes";
+  }
+
+  function parseDurHours(dur) {
+    if (!dur) return 0;
+    const parts = String(dur)
+      .split(":")
+      .map((x) => Number(x));
+    if (!parts.length || parts.some((n) => !Number.isFinite(n))) return 0;
+    let sec = 0;
+    if (parts.length === 3) sec = parts[0] * 3600 + parts[1] * 60 + parts[2];
+    else if (parts.length === 2) sec = parts[0] * 60 + parts[1];
+    else sec = parts[0];
+    return sec > 0 ? sec / 3600 : 0;
+  }
+
+  function readStoredMetric() {
+    try {
+      const v = localStorage.getItem(METRIC_KEY);
+      if (v === "hours" || v === "episodes") return v;
+    } catch (_) {}
+    return "episodes";
+  }
+
+  function applyMetric(metric, { persist = true, rerender = true } = {}) {
+    const next = metric === "hours" ? "hours" : "episodes";
+    state.metric = next;
+    if (persist) {
+      try {
+        localStorage.setItem(METRIC_KEY, next);
+      } catch (_) {}
+    }
+    syncMetricToggle();
+    updateMetricLabels();
+    if (rerender && state.agg) {
+      state._localStats = null;
+      rerenderCharts();
+      renderHeatmap();
+      renderTopTable();
+      refreshThemeViews();
+    }
+  }
+
+  function syncMetricToggle() {
+    $$("[data-metric]").forEach((btn) => {
+      const on = btn.dataset.metric === state.metric;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  function updateMetricLabels() {
+    const hours = metricIsHours();
+    const setText = (sel, episodesText, hoursText) => {
+      const el = $(sel);
+      if (el) el.textContent = hours ? hoursText : episodesText;
+    };
+    setText("#trendLead", "Monthly episode volume with a 3-month average.", "Monthly hours of episode duration with a 3-month average.");
+    setText("#cumChartTitle", "Cumulative episodes", "Cumulative hours");
+    setText("#yearChartTitle", "Episodes by year", "Hours by year");
+    setText("#yoyChartNote", "Compare January–December volume across years.", "Compare January–December listening hours across years.");
+    setText("#topChartTitle", "Podcasts by listens", "Podcasts by hours");
+    setText("#topTableMetricHead", "Eps", "Hours");
+    setText("#folderChartTitle", "Folders", "Folders by hours");
+    setText("#weekdayChartTitle", "Day of week (AEST/AEDT)", "Day of week by hours (AEST/AEDT)");
+    setText("#hourChartTitle", "Hour of day (AEST/AEDT)", "Hour of day by hours (AEST/AEDT)");
+    setText(
+      "#heatmapNote",
+      "Daily episode count for the last ~12 months. Darker = more listens.",
+      "Daily hours of episode duration for the last ~12 months. Darker = more listening time."
+    );
+  }
 
   async function loadJSON(path) {
     const bust = path.includes("?") ? "&" : "?";
@@ -167,6 +257,7 @@
     items,
     labelOf,
     valueOf,
+    valueLabel,
     color,
     colors,
     onClick,
@@ -181,6 +272,7 @@
     destroyChart(key);
     const canvas = $(canvasSel);
     if (!canvas) return;
+    const label = valueLabel || metricValueLabel();
     state.charts[key] = new Chart(canvas, {
       type: "bar",
       data: {
@@ -190,7 +282,7 @@
         }),
         datasets: [
           {
-            label: "Episodes",
+            label,
             data: visible.map(valueOf),
             backgroundColor: colors
               ? visible.map((_, i) => colors[i % colors.length])
@@ -202,7 +294,18 @@
       },
       options: baseChartOptions({
         indexAxis: "y",
-        plugins: { legend: { display: false } },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label: (ctx) => {
+                const v = ctx.parsed.x ?? ctx.parsed.y ?? ctx.raw;
+                return `${label}: ${fmtMetric(v)}`;
+              },
+            },
+          },
+        },
         onClick: onClick
           ? (_evt, elements) => {
               if (!elements.length) return;
@@ -220,11 +323,107 @@
         items,
         labelOf,
         valueOf,
+        valueLabel,
         color,
         colors,
         onClick,
       })
     );
+  }
+
+  function ensureDurationStats() {
+    if (state._durationStats) return state._durationStats;
+    const byPodcast = Object.create(null);
+    const byPodcastCount = Object.create(null);
+    const byYear = Object.create(null);
+    const byFolder = Object.create(null);
+    const byMonth = Object.create(null);
+    const byStatus = Object.create(null);
+    const byDate = Object.create(null);
+    const byTheme = Object.create(null);
+    const byThemeYear = Object.create(null);
+    const hourHours = Array.from({ length: 24 }, () => 0);
+    const weekdayHours = Array.from({ length: 7 }, () => 0);
+    const hourCounts = Array.from({ length: 24 }, () => 0);
+    const weekdayCounts = Array.from({ length: 7 }, () => 0);
+    const eps = state.episodes || [];
+    for (let i = 0; i < eps.length; i++) {
+      const e = eps[i];
+      const h = parseDurHours(e.dur);
+      const name = e.p || "Unknown";
+      const year = e.y != null && e.y !== "" ? String(e.y) : "";
+      const folder = e.f || "Ungrouped";
+      const month = String(e.d || "").slice(0, 7);
+      const status = e.st || "Unknown";
+      const date = e.d || "";
+      byPodcast[name] = (byPodcast[name] || 0) + h;
+      byPodcastCount[name] = (byPodcastCount[name] || 0) + 1;
+      if (year) byYear[year] = (byYear[year] || 0) + h;
+      byFolder[folder] = (byFolder[folder] || 0) + h;
+      if (month.length === 7) byMonth[month] = (byMonth[month] || 0) + h;
+      byStatus[status] = (byStatus[status] || 0) + h;
+      if (date) byDate[date] = (byDate[date] || 0) + h;
+      const d = parseListenUtc(e.t);
+      if (d) {
+        const loc = sydneyHourAndWeekday(d);
+        if (loc.hour != null) {
+          hourHours[loc.hour] += h;
+          hourCounts[loc.hour] += 1;
+        }
+        if (loc.weekday != null) {
+          weekdayHours[loc.weekday] += h;
+          weekdayCounts[loc.weekday] += 1;
+        }
+      }
+      const themes = (state.episodeThemes && state.episodeThemes[i]) || [];
+      for (const tid of themes) {
+        byTheme[tid] = (byTheme[tid] || 0) + h;
+        if (!year) continue;
+        if (!byThemeYear[tid]) byThemeYear[tid] = Object.create(null);
+        byThemeYear[tid][year] = (byThemeYear[tid][year] || 0) + h;
+      }
+    }
+    const monthsSorted = Object.keys(byMonth).sort();
+    const monthly = monthsSorted.map((month) => ({
+      month,
+      count: byMonth[month],
+    }));
+    const monthlyRolling3 = monthly.map((_, i) => {
+      const slice = monthly.slice(Math.max(0, i - 2), i + 1);
+      const sum = slice.reduce((acc, m) => acc + m.count, 0);
+      return Math.round((sum / slice.length) * 10) / 10;
+    });
+    let running = 0;
+    const cumulative = monthly.map((m) => {
+      running += m.count;
+      return { month: m.month, total: Math.round(running * 10) / 10 };
+    });
+    const yoyByMonth = Object.create(null);
+    for (const m of monthly) {
+      const [y, mo] = m.month.split("-");
+      if (!yoyByMonth[mo]) yoyByMonth[mo] = Object.create(null);
+      yoyByMonth[mo][y] = Math.round(m.count * 10) / 10;
+    }
+    state._durationStats = {
+      byPodcast,
+      byPodcastCount,
+      byYear,
+      byFolder,
+      byMonth,
+      byStatus,
+      byDate,
+      byTheme,
+      byThemeYear,
+      hourHours,
+      weekdayHours,
+      hourCounts,
+      weekdayCounts,
+      monthly,
+      monthlyRolling3,
+      cumulative,
+      yoyByMonth,
+    };
+    return state._durationStats;
   }
 
   function baseChartOptions(extra = {}) {
@@ -343,7 +542,10 @@
   }
 
   function renderTrendChart() {
-    const { monthly, monthlyRolling3 } = state.agg;
+    const hours = metricIsHours();
+    const stats = hours ? ensureDurationStats() : null;
+    const monthly = hours ? stats.monthly : state.agg.monthly;
+    const monthlyRolling3 = hours ? stats.monthlyRolling3 : state.agg.monthlyRolling3;
     destroyChart("trend");
     const ctx = $("#trendChart");
     state.charts.trend = new Chart(ctx, {
@@ -352,7 +554,7 @@
         labels: monthly.map((m) => m.month),
         datasets: [
           {
-            label: "Episodes / month",
+            label: hours ? "Hours / month" : "Episodes / month",
             data: monthly.map((m) => m.count),
             borderColor: COLORS.blue,
             backgroundColor: "rgba(0,114,178,.14)",
@@ -377,21 +579,29 @@
         plugins: {
           ...baseChartOptions().plugins,
           title: { display: false },
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label: (ctx) => `${ctx.dataset.label}: ${fmtMetric(ctx.parsed.y)}`,
+            },
+          },
         },
       }),
     });
   }
 
   function renderCumulativeChart() {
+    const hours = metricIsHours();
+    const series = hours ? ensureDurationStats().cumulative : state.agg.cumulative;
     destroyChart("cum");
     state.charts.cum = new Chart($("#cumChart"), {
       type: "line",
       data: {
-        labels: state.agg.cumulative.map((d) => d.month),
+        labels: series.map((d) => d.month),
         datasets: [
           {
-            label: "Cumulative episodes",
-            data: state.agg.cumulative.map((d) => d.total),
+            label: hours ? "Cumulative hours" : "Cumulative episodes",
+            data: series.map((d) => d.total),
             borderColor: COLORS.navy,
             backgroundColor: "rgba(11,61,110,.12)",
             fill: true,
@@ -401,8 +611,27 @@
           },
         ],
       },
-      options: baseChartOptions(),
+      options: baseChartOptions({
+        plugins: {
+          ...baseChartOptions().plugins,
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label: (ctx) => `${ctx.dataset.label}: ${fmtMetric(ctx.parsed.y)}`,
+            },
+          },
+        },
+      }),
     });
+  }
+
+  function yearChartItems() {
+    if (!metricIsHours()) return state.agg.yearly || [];
+    const byYear = ensureDurationStats().byYear;
+    return Object.keys(byYear).map((year) => ({
+      year: Number(year),
+      count: byYear[year],
+    }));
   }
 
   function renderYearChart() {
@@ -411,22 +640,33 @@
       canvasSel: "#yearChart",
       boxSel: "#yearChartBox",
       moreSel: "#yearChartMore",
-      items: state.agg.yearly || [],
+      items: yearChartItems(),
       labelOf: (d) => String(d.year),
       valueOf: (d) => d.count,
       color: COLORS.blue,
     });
   }
 
+  function topPodcastItems() {
+    if (!metricIsHours()) return state.agg.topPodcasts || [];
+    const { byPodcast, byPodcastCount } = ensureDurationStats();
+    return Object.keys(byPodcast).map((name) => ({
+      name,
+      count: byPodcastCount[name] || 0,
+      hours: byPodcast[name] || 0,
+    }));
+  }
+
   function renderTopPodcastsChart() {
+    const hours = metricIsHours();
     renderExpandableHBar({
       key: "top",
       canvasSel: "#topChart",
       boxSel: "#topChartBox",
       moreSel: "#topChartMore",
-      items: state.agg.topPodcasts || [],
+      items: topPodcastItems(),
       labelOf: (d) => d.name,
-      valueOf: (d) => d.count,
+      valueOf: (d) => (hours ? d.hours : d.count),
       colors: CATEGORICAL,
       onClick: (d) => {
         if (!d?.name) return;
@@ -467,31 +707,30 @@
 
   function listeningLocalStats() {
     if (state._localStats) return state._localStats;
-    const hourCounts = Array.from({ length: 24 }, () => 0);
-    const weekdayCounts = Array.from({ length: 7 }, () => 0);
-    let usedEpisodes = false;
+    const hours = metricIsHours();
     if (Array.isArray(state.episodes) && state.episodes.length) {
-      usedEpisodes = true;
-      for (const e of state.episodes) {
-        const d = parseListenUtc(e.t);
-        if (!d) continue;
-        const { hour, weekday } = sydneyHourAndWeekday(d);
-        if (hour != null) hourCounts[hour] += 1;
-        if (weekday != null) weekdayCounts[weekday] += 1;
-      }
+      const stats = ensureDurationStats();
+      const hourVals = hours ? stats.hourHours : stats.hourCounts;
+      const weekdayVals = hours ? stats.weekdayHours : stats.weekdayCounts;
+      state._localStats = {
+        hour: hourVals.map((count, h) => ({ hour: h, count })),
+        weekday: weekdayVals.map((count, i) => ({
+          day: WEEKDAY_NAMES[i],
+          count,
+        })),
+      };
+      return state._localStats;
     }
-    const hour = usedEpisodes
-      ? hourCounts.map((count, h) => ({ hour: h, count }))
-      : state.agg?.hour || [];
-    const weekday = usedEpisodes
-      ? weekdayCounts.map((count, i) => ({ day: WEEKDAY_NAMES[i], count }))
-      : state.agg?.weekday || [];
-    state._localStats = { hour, weekday };
+    state._localStats = {
+      hour: state.agg?.hour || [],
+      weekday: state.agg?.weekday || [],
+    };
     return state._localStats;
   }
 
   function renderWeekdayHourCharts() {
     const { hour, weekday } = listeningLocalStats();
+    const hours = metricIsHours();
     renderExpandableHBar({
       key: "weekday",
       canvasSel: "#weekdayChart",
@@ -510,7 +749,7 @@
         labels: hour.map((d) => `${String(d.hour).padStart(2, "0")}:00`),
         datasets: [
           {
-            label: "Episodes by hour (AEST/AEDT)",
+            label: hours ? "Hours by hour (AEST/AEDT)" : "Episodes by hour (AEST/AEDT)",
             data: hour.map((d) => d.count),
             borderColor: COLORS.teal,
             backgroundColor: "rgba(0,158,115,.14)",
@@ -521,18 +760,41 @@
           },
         ],
       },
-      options: baseChartOptions({ plugins: { legend: { display: false } } }),
+      options: baseChartOptions({
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label: (ctx) => `${ctx.dataset.label}: ${fmtMetric(ctx.parsed.y)}`,
+            },
+          },
+        },
+      }),
     });
+  }
+
+  function folderChartItems() {
+    if (!metricIsHours()) return state.agg.folders || [];
+    const byFolder = ensureDurationStats().byFolder;
+    return Object.keys(byFolder).map((name) => ({ name, count: byFolder[name] }));
+  }
+
+  function statusChartItems() {
+    if (!metricIsHours()) return state.agg.status || [];
+    const byStatus = ensureDurationStats().byStatus;
+    return Object.keys(byStatus).map((name) => ({ name, count: byStatus[name] }));
   }
 
   function renderFolderStatusCharts() {
     const chrome = chartChrome();
+    const statusItems = statusChartItems();
     renderExpandableHBar({
       key: "folder",
       canvasSel: "#folderChart",
       boxSel: "#folderChartBox",
       moreSel: "#folderChartMore",
-      items: state.agg.folders || [],
+      items: folderChartItems(),
       labelOf: (d) => d.name || "Ungrouped",
       valueOf: (d) => d.count,
       colors: CATEGORICAL,
@@ -542,10 +804,10 @@
     state.charts.status = new Chart($("#statusChart"), {
       type: "doughnut",
       data: {
-        labels: state.agg.status.map((d) => d.name),
+        labels: statusItems.map((d) => d.name),
         datasets: [
           {
-            data: state.agg.status.map((d) => d.count),
+            data: statusItems.map((d) => d.count),
             backgroundColor: [COLORS.teal, COLORS.amber, COLORS.slate, COLORS.blue],
             borderWidth: 2,
             borderColor: chrome.doughnutBorder,
@@ -564,6 +826,14 @@
               boxWidth: 10,
             },
           },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const v = ctx.parsed;
+                return `${ctx.label}: ${fmtMetric(v)}`;
+              },
+            },
+          },
         },
       },
     });
@@ -578,12 +848,14 @@
       items: state.agg.avgDurationByYear || [],
       labelOf: (d) => String(d.year),
       valueOf: (d) => d.avgMinutes,
+      valueLabel: "Avg minutes",
       color: COLORS.amber,
     });
   }
 
   function renderYoYChart() {
-    const yoy = state.agg.yoyByMonth || {};
+    const hours = metricIsHours();
+    const yoy = hours ? ensureDurationStats().yoyByMonth : state.agg.yoyByMonth || {};
     const months = ["01","02","03","04","05","06","07","08","09","10","11","12"];
     const labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const years = (state.agg.meta.years || []).slice().reverse(); // oldest→newest for legend
@@ -605,18 +877,39 @@
           borderDash: dashes[i % dashes.length],
         })),
       },
-      options: baseChartOptions(),
+      options: baseChartOptions({
+        plugins: {
+          ...baseChartOptions().plugins,
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label: (ctx) => `${ctx.dataset.label}: ${fmtMetric(ctx.parsed.y)}`,
+            },
+          },
+        },
+      }),
     });
   }
 
+  function heatmapCells() {
+    const base = state.agg.heatmap || [];
+    if (!metricIsHours() || !base.length) return base;
+    const byDate = ensureDurationStats().byDate;
+    return base.map((c) => ({
+      date: c.date,
+      count: Math.round((byDate[c.date] || 0) * 10) / 10,
+    }));
+  }
+
   function renderHeatmap() {
-    const cells = state.agg.heatmap || [];
+    const cells = heatmapCells();
     const host = $("#heatmap");
     if (!cells.length) {
       host.innerHTML = "";
       return;
     }
     const max = Math.max(...cells.map((c) => c.count), 1);
+    const hours = metricIsHours();
     host.innerHTML = cells
       .map((c) => {
         let level = 0;
@@ -624,7 +917,10 @@
         if (c.count >= max * 0.25) level = 2;
         if (c.count >= max * 0.5) level = 3;
         if (c.count >= max * 0.75) level = 4;
-        return `<div class="heat-cell" data-level="${level}" title="${escapeHtml(c.date)}: ${c.count} episode${c.count === 1 ? "" : "s"}"></div>`;
+        const unit = hours
+          ? `${fmtHours(c.count)} hour${c.count === 1 ? "" : "s"}`
+          : `${c.count} episode${c.count === 1 ? "" : "s"}`;
+        return `<div class="heat-cell" data-level="${level}" title="${escapeHtml(c.date)}: ${escapeHtml(unit)}"></div>`;
       })
       .join("");
   }
@@ -690,6 +986,25 @@
     let n = 0;
     for (const y of years) n += Number(t.byYear?.[y] || 0);
     return n;
+  }
+
+  function themeHoursInYears(t) {
+    if (!t) return 0;
+    const stats = ensureDurationStats();
+    const years = selectedThemeYearSet();
+    if (!years) return stats.byTheme[t.id] || 0;
+    let n = 0;
+    const byYear = stats.byThemeYear[t.id] || {};
+    for (const y of years) n += Number(byYear[y] || 0);
+    return n;
+  }
+
+  function themeMetricInYears(t) {
+    return metricIsHours() ? themeHoursInYears(t) : themeCountInYears(t);
+  }
+
+  function themeMetricLabel(n) {
+    return metricIsHours() ? `${fmtHours(n)}h` : fmt(n);
   }
 
   function themeYearLabel() {
@@ -832,11 +1147,17 @@
 
     // Insights for current filter
     const byPod = {};
-    for (const e of rows) byPod[e.p || "Unknown"] = (byPod[e.p || "Unknown"] || 0) + 1;
+    const hours = metricIsHours();
+    for (const e of rows) {
+      const key = e.p || "Unknown";
+      byPod[key] = (byPod[key] || 0) + (hours ? parseDurHours(e.dur) : 1);
+    }
     const top = Object.entries(byPod).sort((a, b) => b[1] - a[1]).slice(0, 5);
     $("#filterInsights").innerHTML = top.length
       ? `<strong>In this view:</strong> ` +
-        top.map(([n, c]) => `${escapeHtml(n)} (${fmt(c)})`).join(" · ")
+        top
+          .map(([n, c]) => `${escapeHtml(n)} (${fmtMetric(c)}${hours ? "h" : ""})`)
+          .join(" · ")
       : "";
   }
 
@@ -932,14 +1253,14 @@
     if (!host || !state.themesDoc?.themes) return;
     const parents = parentThemes()
       .slice()
-      .sort((a, b) => themeCountInYears(b) - themeCountInYears(a));
+      .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
     host.innerHTML = parents
       .map(
         (t) => `
       <button type="button" class="theme-chip${
         state.focusedParentId === t.id || state.activeTheme === t.id ? " active" : ""
       }" data-theme="${escapeHtml(t.id)}">
-        ${escapeHtml(t.name)}<small>${fmt(themeCountInYears(t))}</small>
+        ${escapeHtml(t.name)}<small>${escapeHtml(themeMetricLabel(themeMetricInYears(t)))}</small>
       </button>`
       )
       .join("");
@@ -952,7 +1273,7 @@
       if (parent?.children?.length) {
         const kids = parent.children
           .slice()
-          .sort((a, b) => themeCountInYears(b) - themeCountInYears(a));
+          .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
         childHost.hidden = false;
         childHost.innerHTML = kids
           .map(
@@ -960,7 +1281,7 @@
           <button type="button" class="theme-chip child${
             state.activeTheme === t.id ? " active" : ""
           }" data-theme="${escapeHtml(t.id)}">
-            ${escapeHtml(t.name)}<small>${fmt(themeCountInYears(t))}</small>
+            ${escapeHtml(t.name)}<small>${escapeHtml(themeMetricLabel(themeMetricInYears(t)))}</small>
           </button>`
           )
           .join("");
@@ -1015,7 +1336,7 @@
       moreSel: "#themeChartMore",
       items,
       labelOf: (d) => d.name,
-      valueOf: (d) => themeCountInYears(d),
+      valueOf: (d) => themeMetricInYears(d),
       color: COLORS.teal,
       onClick: (d) => {
         if (!d?.id) return;
@@ -1027,18 +1348,23 @@
 
   function themeYearSeriesThemes() {
     const active = state.themeById[state.activeTheme];
-    if (active?.byYear) return [active];
+    if (active?.byYear || (metricIsHours() && active)) return [active];
     const parent = state.themeById[state.focusedParentId];
     if (parent?.children?.length) {
       return parent.children
         .slice()
-        .sort((a, b) => themeCountInYears(b) - themeCountInYears(a))
+        .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
         .slice(0, 6);
     }
     return parentThemes()
       .slice()
-      .sort((a, b) => themeCountInYears(b) - themeCountInYears(a))
+      .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
       .slice(0, 6);
+  }
+
+  function themeYearValue(t, y) {
+    if (!metricIsHours()) return Number(t.byYear?.[y] || 0);
+    return Number(ensureDurationStats().byThemeYear[t.id]?.[y] || 0);
   }
 
   function renderThemeYearChart() {
@@ -1056,6 +1382,7 @@
     const focusName =
       state.themeById[state.activeTheme]?.name ||
       state.themeById[state.focusedParentId]?.name;
+    const hours = metricIsHours();
     if (title) {
       title.textContent = focusName
         ? `${focusName} across years`
@@ -1063,10 +1390,12 @@
     }
     if (note) {
       note.textContent = focusName
-        ? `Episode counts for ${focusName}${
+        ? `${hours ? "Hours" : "Episode counts"} for ${focusName}${
             state.themeYears.length ? ` in ${themeYearLabel()}` : ""
           }.`
-        : "Top themes over time — select years above or drill into a parent to focus the lines.";
+        : hours
+          ? "Top themes by hours over time — select years above or drill into a parent to focus the lines."
+          : "Top themes over time — select years above or drill into a parent to focus the lines.";
     }
     destroyChart("themeYear");
     state.charts.themeYear = new Chart(canvas, {
@@ -1075,7 +1404,7 @@
         labels: years,
         datasets: series.map((t, i) => ({
           label: t.name,
-          data: years.map((y) => Number(t.byYear?.[y] || 0)),
+          data: years.map((y) => themeYearValue(t, y)),
           borderColor: CATEGORICAL[i % CATEGORICAL.length],
           backgroundColor: "transparent",
           tension: 0.28,
@@ -1090,6 +1419,12 @@
             display: series.length > 1,
             position: "bottom",
             labels: { boxWidth: 12, boxHeight: 12, padding: 14 },
+          },
+          tooltip: {
+            ...baseChartOptions().plugins.tooltip,
+            callbacks: {
+              label: (ctx) => `${ctx.dataset.label}: ${fmtMetric(ctx.parsed.y)}`,
+            },
           },
         },
       }),
@@ -1111,10 +1446,11 @@
       return;
     }
     const kind = t.parentId ? "Child theme" : "Parent theme";
-    const n = themeCountInYears(t);
+    const n = themeMetricInYears(t);
     const yearSuffix = state.themeYears.length ? ` in ${themeYearLabel()}` : "";
+    const unit = metricIsHours() ? "hours" : "episodes";
     title.textContent = t.name;
-    blurb.textContent = `${kind}. ${t.blurb} · ${fmt(n)} episodes${yearSuffix}.`;
+    blurb.textContent = `${kind}. ${t.blurb} · ${fmtMetric(n)} ${unit}${yearSuffix}.`;
     const samplesList = (t.samples || []).filter(sampleInThemeYears);
     samples.innerHTML = samplesList
       .map(
@@ -1198,21 +1534,25 @@
   }
 
   function renderTopTable() {
-    const all = (state.agg.topPodcasts || []).slice().sort((a, b) => b.count - a.count);
+    const hours = metricIsHours();
+    const all = topPodcastItems()
+      .slice()
+      .sort((a, b) => (hours ? b.hours - a.hours : b.count - a.count) || a.name.localeCompare(b.name));
     if (state.tableReveal.top == null) state.tableReveal.top = BAR_PAGE;
     const shown = Math.min(state.tableReveal.top, all.length);
-    const max = all[0]?.count || 1;
+    const max = (hours ? all[0]?.hours : all[0]?.count) || 1;
     const body = all
       .slice(0, shown)
-      .map(
-        (p, i) => `
+      .map((p, i) => {
+        const val = hours ? p.hours : p.count;
+        return `
       <tr>
         <td>${i + 1}</td>
         <td><button type="button" class="linkish" data-podcast="${escapeHtml(p.name)}">${escapeHtml(p.name)}</button></td>
-        <td>${fmt(p.count)}</td>
-        <td><div class="bar"><span style="width:${(p.count / max) * 100}%"></span></div></td>
-      </tr>`
-      )
+        <td>${fmtMetric(val)}</td>
+        <td><div class="bar"><span style="width:${(val / max) * 100}%"></span></div></td>
+      </tr>`;
+      })
       .join("");
     $("#topTable tbody").innerHTML = body;
     $$("#topTable [data-podcast]").forEach((btn) => {
@@ -1352,6 +1692,12 @@
       applyTheme(isDark() ? "light" : "dark");
       rerenderCharts();
     });
+    $$("[data-metric]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.metric === state.metric) return;
+        applyMetric(btn.dataset.metric);
+      });
+    });
     $("#hardRefresh")?.addEventListener("click", () => {
       hardRefresh();
     });
@@ -1381,6 +1727,9 @@
 
   async function init() {
     syncThemeToggle();
+    state.metric = readStoredMetric();
+    syncMetricToggle();
+    updateMetricLabels();
     $("#bootStatus").textContent = "Loading listening history…";
     try {
       const [agg, episodes, podcasts, themesDoc, episodeThemes, notes] =
@@ -1391,6 +1740,8 @@
       state.themesDoc = themesDoc;
       state.episodeThemes = episodeThemes;
       state.notes = notes || {};
+      state._durationStats = null;
+      state._localStats = null;
       const flat = themesDoc?.flat || [];
       const parents = themesDoc?.themes || [];
       const byId = {};

@@ -168,6 +168,26 @@ button, input, select { font: inherit; }
   gap: 6px;
   margin-left: auto;
 }
+.metric-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--input);
+}
+.metric-toggle .metric-btn {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 7px 10px;
+}
+.metric-toggle .metric-btn + .metric-btn {
+  border-left: 1px solid var(--line);
+}
+.metric-toggle .metric-btn[aria-pressed="true"] {
+  background: var(--sea-soft);
+  color: var(--sea);
+}
 .tool-btn {
   border: 1px solid var(--line);
   background: var(--input);
