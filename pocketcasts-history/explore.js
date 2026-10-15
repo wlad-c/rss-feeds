@@ -363,11 +363,11 @@
   function chartChrome() {
     if (isDark()) {
       return {
-        label: "#e6edf5",
-        muted: "#9aafc2",
-        grid: "rgba(230,237,245,.08)",
+        label: "#f3f7fc",
+        muted: "#c2d0de",
+        grid: "rgba(243,247,252,.12)",
         tooltipBg: "#0b1220",
-        doughnutBorder: "#16202e",
+        doughnutBorder: "#1c2838",
       };
     }
     return {
