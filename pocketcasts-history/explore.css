@@ -213,6 +213,68 @@ button, input, select { font: inherit; }
   cursor: wait;
 }
 
+.period-bar {
+  position: sticky;
+  top: 58px;
+  z-index: 30;
+  margin: 0 0 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  display: grid;
+  gap: 6px;
+}
+.period-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px 10px;
+}
+.period-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sea);
+  margin-bottom: 8px;
+}
+.period-field {
+  display: grid;
+  gap: 3px;
+  min-width: 7.5rem;
+}
+.period-field span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.period-field select {
+  border: 1px solid var(--line);
+  background: var(--input);
+  border-radius: 10px;
+  padding: 8px 10px;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  min-width: 8.5rem;
+}
+.period-field select:disabled {
+  opacity: 0.45;
+}
+.period-summary {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+.period-summary strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 /* Hero */
 .hero {
   padding: 36px 0 18px;
@@ -712,6 +774,8 @@ body:not(.ready) #topPanel { opacity: 0.35; }
   .insights-strip { grid-template-columns: 1fr; }
   .grid-2, .grid-2.equal { grid-template-columns: 1fr; }
   .filters { grid-template-columns: 1fr 1fr; }
+  .period-controls { align-items: stretch; }
+  .period-kicker { margin-bottom: 0; align-self: center; }
   .theme-search-row { grid-template-columns: 1fr auto; }
   .year-multi { grid-column: 1 / -1; }
   .year-multi-panel { left: 0; right: auto; width: min(280px, 100%); }
