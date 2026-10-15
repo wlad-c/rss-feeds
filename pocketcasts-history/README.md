@@ -74,7 +74,9 @@ Refresh listening history from Pocket Casts (needs `POCKETCAST_EMAIL` / `POCKETC
 python3 scripts/sync_listening_history.py
 ```
 
-GitHub Action **Listening Log daily sync** runs this automatically around **00:05 Australia/Sydney** (AEST/AEDT) and on manual `workflow_dispatch`. Repo secrets `POCKETCAST_EMAIL` and `POCKETCAST_PASSWORD` must be set under Settings → Secrets and variables → Actions.
+**Schedule (active):** a Cursor cloud-agent timer runs this around **00:05 Australia/Sydney** (AEST/AEDT) using the existing Cursor `POCKETCAST_*` secrets, then pushes to `main`.
+
+**GitHub Action (optional mirror):** workflow **Listening Log daily sync** is also on `main` with the same midnight Sydney window + `workflow_dispatch`. It needs repo Actions secrets `POCKETCAST_EMAIL` / `POCKETCAST_PASSWORD`. The Cursor GitHub App cannot create those secrets (API 403 — requires a repo admin session).
 
 ## Rebuild standalone file
 

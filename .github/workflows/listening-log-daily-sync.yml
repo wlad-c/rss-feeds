@@ -55,6 +55,20 @@ jobs:
         if: steps.tz.outputs.should_run == 'true'
         run: pip install -r requirements.txt openpyxl
 
+      - name: Require Pocket Casts secrets
+        if: steps.tz.outputs.should_run == 'true'
+        env:
+          POCKETCAST_EMAIL: ${{ secrets.POCKETCAST_EMAIL }}
+          POCKETCAST_PASSWORD: ${{ secrets.POCKETCAST_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${POCKETCAST_EMAIL}" ] || [ -z "${POCKETCAST_PASSWORD}" ]; then
+            echo "::error::Missing repo Actions secrets POCKETCAST_EMAIL / POCKETCAST_PASSWORD."
+            echo "Add them at Settings → Secrets and variables → Actions (repo admin required)."
+            echo "Cursor GitHub App tokens cannot create these secrets (403)."
+            exit 1
+          fi
+
       - name: Sync Pocket Casts history
         if: steps.tz.outputs.should_run == 'true'
         env:
