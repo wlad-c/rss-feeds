@@ -783,7 +783,12 @@
   function statusChartItems() {
     if (!metricIsHours()) return state.agg.status || [];
     const byStatus = ensureDurationStats().byStatus;
-    return Object.keys(byStatus).map((name) => ({ name, count: byStatus[name] }));
+    const order = (state.agg.status || []).map((d) => d.name);
+    const names = [
+      ...order.filter((n) => byStatus[n] != null),
+      ...Object.keys(byStatus).filter((n) => !order.includes(n)),
+    ];
+    return names.map((name) => ({ name, count: byStatus[name] }));
   }
 
   function renderFolderStatusCharts() {
