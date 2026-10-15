@@ -1515,7 +1515,21 @@
     $("#episodeList").innerHTML = slice
       .map((e) => {
         const note = noteTextForIndex(e._i);
-        const noteSrc = state.notes?.[String(e._i)]?.src;
+        const noteMeta = state.notes?.[String(e._i)];
+        const noteSrc = noteMeta?.src;
+        const noteFull = noteMeta?.full || (noteMeta?.chars || 0) > 900;
+        const noteLabel =
+          noteSrc === "stt"
+            ? noteFull
+              ? "full STT"
+              : "STT"
+            : noteSrc === "transcript"
+              ? noteFull
+                ? "full transcript"
+                : "transcript"
+              : noteSrc === "show-notes"
+                ? "show notes"
+                : noteSrc;
         const themeTags = displayThemeTags(e._th || [])
           .map((id) => {
             const name = state.themeById[id]?.name || id;
@@ -1539,7 +1553,7 @@
           ${e.st ? `<span class="tag ${e.st === "Played" ? "ok" : e.st === "In progress" ? "warn" : ""}">${escapeHtml(e.st)}</span>` : ""}
           ${e.prog !== "" && e.prog != null ? `<span>${escapeHtml(e.prog)}%</span>` : ""}
           ${e.star ? `<span class="tag ok">Starred</span>` : ""}
-          ${noteSrc ? `<span class="tag">${escapeHtml(noteSrc)}</span>` : ""}
+          ${noteLabel ? `<span class="tag ${noteFull ? "ok" : ""}">${escapeHtml(noteLabel)}</span>` : ""}
         </div>
         ${themeTags ? `<div class="ep-themes">${themeTags}</div>` : ""}
         ${snippet ? `<div class="ep-note">${escapeHtml(snippet)}</div>` : ""}
@@ -1716,6 +1730,10 @@
             .join(", ")}`
         : "";
     const scoped = chartPeriodActive() ? ensureChartStats() : null;
+    const noteEntries = Object.values(state.notes || {});
+    const txN = noteEntries.filter((n) => n?.src === "transcript" || n?.src === "stt").length;
+    const fullN = noteEntries.filter((n) => n?.full || (n?.chars || 0) > 900).length;
+    const bodyN = meta.episodesWithBodyText != null ? meta.episodesWithBodyText : notesN;
     $("#themeCoverage").textContent =
       (scoped
         ? `${fmt(scoped.episodeCount)} episodes in ${chartPeriodLabel()}`
@@ -1724,8 +1742,10 @@
         ? ` · ${fmt(meta.parentCount)} parents / ${fmt(meta.childCount)} child themes`
         : "") +
       yearBit +
-      (notesN ? ` · ${fmt(notesN)} with show notes or published transcripts` : "") +
-      `. Child themes are inferred from episode content.`;
+      (bodyN
+        ? ` · ${fmt(bodyN)} with body text (${fmt(txN)} transcript/STT, ${fmt(fullN)} longer than snippet)`
+        : "") +
+      `. Themes prefer transcript-backed matches when full text is stored.`;
   }
 
   function themeChartItems() {
@@ -1876,8 +1896,16 @@
     const n = themeMetricInYears(t);
     const yearSuffix = state.themeYears.length ? ` in ${themeYearLabel()}` : "";
     const unit = metricIsHours() ? "hours" : "episodes";
+    const ev = t.evidence || {};
+    const evBits = [
+      ev.transcript ? `${fmt(ev.transcript)} transcript-backed` : "",
+      ev.notes ? `${fmt(ev.notes)} notes-backed` : "",
+      ev.title ? `${fmt(ev.title)} title-only` : "",
+    ].filter(Boolean);
     title.textContent = t.name;
-    blurb.textContent = `${kind}. ${t.blurb} · ${fmtMetric(n)} ${unit}${yearSuffix}.`;
+    blurb.textContent = `${kind}. ${t.blurb} · ${fmtMetric(n)} ${unit}${yearSuffix}.${
+      evBits.length ? ` Evidence: ${evBits.join(", ")}.` : ""
+    }`;
     const samplesList = (t.samples || []).filter(sampleInThemeYears);
     samples.innerHTML = samplesList
       .map(

@@ -548,30 +548,62 @@ def matches(pats: list[re.Pattern], text: str) -> bool:
     return any(p.search(text) for p in pats)
 
 
-def tag_all(episodes: list[dict], notes: dict) -> tuple[list[list[str]], dict]:
+def body_for_episode(i: int, notes: dict, full_texts: dict[str, str]) -> tuple[str, str]:
+    """Return (body_text, evidence_src) preferring full store over slim notes."""
+    if str(i) in full_texts and full_texts[str(i)]:
+        note = notes.get(str(i)) or {}
+        src = note.get("src") or "transcript"
+        return full_texts[str(i)], src
+    note = notes.get(str(i)) or {}
+    return note.get("text") or "", note.get("src") or ""
+
+
+def tag_all(
+    episodes: list[dict],
+    notes: dict,
+    full_texts: dict[str, str] | None = None,
+) -> tuple[list[list[str]], dict]:
     compiled = [compile_parent(p) for p in PARENTS]
     counts: Counter = Counter()
     child_of: dict[str, str] = {}
     samples: dict[str, list] = defaultdict(list)
     by_year: dict[str, Counter] = defaultdict(Counter)
+    evidence: dict[str, Counter] = defaultdict(Counter)
     tagged: list[list[str]] = []
+    full_texts = full_texts or {}
 
     for i, ep in enumerate(episodes):
         title = ep.get("e") or ""
-        note = (notes.get(str(i)) or {}).get("text") or ""
-        hay = f"{title}\n{note}"
+        body, src = body_for_episode(i, notes, full_texts)
+        hay = f"{title}\n{body}"
+        title_only = title
         hits: list[str] = []
         for parent in compiled:
             child_hits = []
             for ch in parent["children"]:
+                # Prefer child hits supported by body/transcript text; title still counts.
                 if matches(ch["re"], hay):
                     child_hits.append(ch["id"])
                     child_of[ch["id"]] = parent["id"]
+                    if body and matches(ch["re"], body):
+                        if src in ("transcript", "stt"):
+                            evidence[ch["id"]]["transcript"] += 1
+                        else:
+                            evidence[ch["id"]]["notes"] += 1
+                    else:
+                        evidence[ch["id"]]["title"] += 1
             parent_hit = bool(child_hits) or matches(parent["re"], hay)
             if not parent_hit:
                 continue
             hits.append(parent["id"])
             hits.extend(child_hits)
+            if body and matches(parent["re"], body):
+                if src in ("transcript", "stt"):
+                    evidence[parent["id"]]["transcript"] += 1
+                else:
+                    evidence[parent["id"]]["notes"] += 1
+            elif matches(parent["re"], title_only):
+                evidence[parent["id"]]["title"] += 1
             for tid in [parent["id"], *child_hits]:
                 counts[tid] += 1
                 by_year[tid][str(ep.get("y") or "")] += 1
@@ -593,6 +625,7 @@ def tag_all(episodes: list[dict], notes: dict) -> tuple[list[list[str]], dict]:
         pid = parent["id"]
         children = []
         for ch in parent["children"]:
+            ev = dict(evidence.get(ch["id"]) or {})
             children.append(
                 {
                     "id": ch["id"],
@@ -601,10 +634,16 @@ def tag_all(episodes: list[dict], notes: dict) -> tuple[list[list[str]], dict]:
                     "parentId": pid,
                     "count": int(counts.get(ch["id"], 0)),
                     "byYear": dict(sorted(by_year[ch["id"]].items())),
+                    "evidence": {
+                        "title": int(ev.get("title", 0)),
+                        "notes": int(ev.get("notes", 0)),
+                        "transcript": int(ev.get("transcript", 0)),
+                    },
                     "samples": samples[ch["id"]],
                 }
             )
         children.sort(key=lambda t: t["count"], reverse=True)
+        evp = dict(evidence.get(pid) or {})
         catalog.append(
             {
                 "id": pid,
@@ -612,6 +651,11 @@ def tag_all(episodes: list[dict], notes: dict) -> tuple[list[list[str]], dict]:
                 "blurb": parent["blurb"],
                 "count": int(counts.get(pid, 0)),
                 "byYear": dict(sorted(by_year[pid].items())),
+                "evidence": {
+                    "title": int(evp.get("title", 0)),
+                    "notes": int(evp.get("notes", 0)),
+                    "transcript": int(evp.get("transcript", 0)),
+                },
                 "samples": samples[pid],
                 "children": children,
             }
@@ -624,16 +668,28 @@ def tag_all(episodes: list[dict], notes: dict) -> tuple[list[list[str]], dict]:
         for ch in p["children"]:
             flat.append(ch)
 
+    tx_eps = sum(
+        1
+        for i in range(len(episodes))
+        if (notes.get(str(i)) or {}).get("src") in ("transcript", "stt")
+    )
     meta = {
         "totalEpisodes": len(episodes),
         "episodesWithTheme": sum(1 for t in tagged if t),
         "parentCount": len(catalog),
         "childCount": sum(len(p["children"]) for p in catalog),
         "themeCount": len(flat),
-        "method": "title+notes-keyword-hierarchy",
+        "episodesWithBodyText": sum(
+            1
+            for i in range(len(episodes))
+            if body_for_episode(i, notes, full_texts)[0]
+        ),
+        "episodesWithTranscriptEvidence": int(tx_eps),
+        "method": "title+notes+fulltranscript-keyword-hierarchy",
         "note": (
             "Parent themes are broad topics; child themes are content-derived "
-            "subtopics matched on episode titles and available show notes/transcripts."
+            "subtopics. Matching uses titles plus full show notes/transcripts when "
+            "stored; evidence counts show title vs notes vs transcript support."
         ),
     }
     return tagged, {"meta": meta, "themes": catalog, "flat": flat}
@@ -643,7 +699,17 @@ def main() -> None:
     episodes = json.loads((TABLES / "episodes.json").read_text(encoding="utf-8"))
     notes_path = TABLES / "notes.json"
     notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
-    tagged, doc = tag_all(episodes, notes)
+    full_texts: dict[str, str] = {}
+    try:
+        from transcript_store import connect, full_text_map
+
+        conn = connect()
+        full_texts = full_text_map(conn)
+        conn.close()
+        print(f"full_transcripts_loaded={len(full_texts)}")
+    except Exception as exc:  # noqa: BLE001
+        print(f"full store unavailable ({exc}); using slim notes only")
+    tagged, doc = tag_all(episodes, notes, full_texts)
     (TABLES / "episode-themes.json").write_text(
         json.dumps(tagged, separators=(",", ":")), encoding="utf-8"
     )
