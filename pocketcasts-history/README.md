@@ -66,6 +66,16 @@ python3 scripts/fetch_publisher_transcripts.py
 python3 scripts/fetch_omny_transcripts.py
 ```
 
+## Daily sync
+
+Refresh listening history from Pocket Casts (needs `POCKETCAST_EMAIL` / `POCKETCAST_PASSWORD`):
+
+```bash
+python3 scripts/sync_listening_history.py
+```
+
+GitHub Action **Listening Log daily sync** runs this automatically around **00:05 Australia/Sydney** (AEST/AEDT) and on manual `workflow_dispatch`. Repo secrets `POCKETCAST_EMAIL` and `POCKETCAST_PASSWORD` must be set under Settings → Secrets and variables → Actions.
+
 ## Rebuild standalone file
 
 ```bash

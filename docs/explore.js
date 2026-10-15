@@ -273,6 +273,7 @@
     renderFolderStatusCharts();
     renderDurationChart();
     renderThemeChart();
+    renderThemeYearChart();
   }
 
   async function hardRefresh() {
@@ -889,15 +890,11 @@
       refreshThemeViews();
     });
     panel.querySelector("[data-years='none']")?.addEventListener("click", () => {
-      state.themeYears = [];
-      // leave empty checkboxes: treat as all for counts, but keep panel open to pick
-      const boxes = $$("input[type=checkbox]", panel);
-      boxes.forEach((b) => {
+      // Uncheck all so the next click starts a fresh multi-select; counts stay "all" until a year is checked.
+      $$("input[type=checkbox]", panel).forEach((b) => {
         b.checked = false;
       });
-      // Actual filter: no years selected → temporarily zero? Better: empty = all.
-      // For "clear" UX: uncheck all visually then wait for picks — use sentinel?
-      // Use empty array as all; "clear" just unchecks for picking. Don't refresh until a check.
+      state.themeYears = [];
       if (label) label.textContent = "Pick years…";
     });
     $$("input[type=checkbox]", panel).forEach((box) => {
@@ -905,8 +902,17 @@
         const picked = $$("input[type=checkbox]", panel)
           .filter((b) => b.checked)
           .map((b) => b.value);
-        state.themeYears =
-          !picked.length || picked.length === years.length ? [] : picked;
+        if (!picked.length) {
+          state.themeYears = [];
+          if (label) label.textContent = "Pick years…";
+          renderThemeChips();
+          renderThemeChart();
+          renderThemeYearChart();
+          renderThemeDetail(state.activeTheme || state.focusedParentId || "");
+          renderEpisodeList();
+          return;
+        }
+        state.themeYears = picked.length === years.length ? [] : picked;
         refreshThemeViews();
       });
     });

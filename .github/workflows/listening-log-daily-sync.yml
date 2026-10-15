@@ -1,0 +1,77 @@
+name: Listening Log daily sync
+
+# Midnight Australia/Sydney (AEST UTC+10 / AEDT UTC+11).
+# Two UTC crons; the job no-ops unless local Sydney hour is 00.
+on:
+  schedule:
+    - cron: "5 13 * * *" # 00:05 AEDT
+    - cron: "5 14 * * *" # 00:05 AEST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: listening-log-daily-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check Australia/Sydney midnight window
+        id: tz
+        run: |
+          set -euo pipefail
+          TZ=Australia/Sydney
+          export TZ
+          LOCAL_HOUR="$(date +%H)"
+          LOCAL_STAMP="$(date '+%Y-%m-%d %H:%M %Z')"
+          echo "Sydney local time: ${LOCAL_STAMP}"
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            echo "Manual run — skipping midnight gate"
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "${LOCAL_HOUR}" = "00" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Outside midnight hour (hour=${LOCAL_HOUR}) — skipping"
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.tz.outputs.should_run == 'true'
+
+      - name: Set up Python
+        if: steps.tz.outputs.should_run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install deps
+        if: steps.tz.outputs.should_run == 'true'
+        run: pip install -r requirements.txt openpyxl
+
+      - name: Sync Pocket Casts history
+        if: steps.tz.outputs.should_run == 'true'
+        env:
+          POCKETCAST_EMAIL: ${{ secrets.POCKETCAST_EMAIL }}
+          POCKETCAST_PASSWORD: ${{ secrets.POCKETCAST_PASSWORD }}
+        run: python3 pocketcasts-history/scripts/sync_listening_history.py
+
+      - name: Commit and push if changed
+        if: steps.tz.outputs.should_run == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pocketcasts-history/ docs/
+          if git diff --staged --quiet; then
+            echo "No listening-history changes"
+            exit 0
+          fi
+          git commit -m "Daily Listening Log sync ($(TZ=Australia/Sydney date +%Y-%m-%d))"
+          git push origin HEAD:main
