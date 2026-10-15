@@ -27,6 +27,8 @@ from pathlib import Path
 
 from transcript_store import TABLES, connect, get_full, upsert_full, write_slim_notes
 
+EPISODES_CSV = TABLES / "episodes.csv"
+
 UA = "rss-feeds-listening-log/1.1 (+https://github.com/wlad-c/rss-feeds)"
 # Prefer English / AU news shows where Whisper is strong and listen volume is high.
 PRIORITY_SHOWS = [
@@ -157,6 +159,19 @@ def to_wav_16k(src: Path, wav: Path) -> None:
 _whisper_model = None
 
 
+def load_wav_mono_f32(wav: Path) -> "object":
+    """Load 16-bit PCM wav as float32 mono array (avoids broken PyAV builds)."""
+    import wave
+
+    import numpy as np
+
+    with wave.open(str(wav), "rb") as w:
+        assert w.getnchannels() == 1, "expected mono wav"
+        assert w.getsampwidth() == 2, "expected 16-bit wav"
+        frames = w.readframes(w.getnframes())
+    return np.frombuffer(frames, dtype=np.int16).astype(np.float32) / 32768.0
+
+
 def transcribe_faster_whisper(wav: Path, model_size: str = "base") -> str:
     global _whisper_model
     from faster_whisper import WhisperModel
@@ -164,7 +179,9 @@ def transcribe_faster_whisper(wav: Path, model_size: str = "base") -> str:
     if _whisper_model is None:
         print(f"  loading faster-whisper model={model_size}", flush=True)
         _whisper_model = WhisperModel(model_size, device="cpu", compute_type="int8")
-    segments, _info = _whisper_model.transcribe(str(wav), vad_filter=True, language=None)
+    # Pass ndarray — some environments ship PyAV without metadata_errors support.
+    audio = load_wav_mono_f32(wav)
+    segments, _info = _whisper_model.transcribe(audio, vad_filter=True, language=None)
     parts = [seg.text.strip() for seg in segments if seg.text and seg.text.strip()]
     return re.sub(r"\s+", " ", " ".join(parts)).strip()
 
@@ -287,27 +304,47 @@ def pick_candidates(
     return picked
 
 
+def load_episode_audio_urls() -> list[str]:
+    """Pocket Casts export CSV includes direct Episode URL for every row."""
+    import csv
+
+    if not EPISODES_CSV.exists():
+        return []
+    with EPISODES_CSV.open(newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+    return [(r.get("Episode URL") or "").strip() for r in rows]
+
+
 def resolve_audio(episodes: list[dict], idxs: list[int]) -> dict[int, str]:
+    audio_for: dict[int, str] = {}
+    csv_urls = load_episode_audio_urls()
+    if csv_urls:
+        for i in idxs:
+            if i < len(csv_urls) and csv_urls[i].startswith("http"):
+                audio_for[i] = csv_urls[i]
+        print(f"  audio from episodes.csv: {len(audio_for)}/{len(idxs)}", flush=True)
+        if len(audio_for) == len(idxs):
+            return audio_for
+
+    # Fallback: current RSS feed enclosures (recent episodes only)
     by_show: dict[str, list[int]] = defaultdict(list)
     for i in idxs:
+        if i in audio_for:
+            continue
         by_show[episodes[i].get("p") or ""].append(i)
-    audio_for: dict[int, str] = {}
-    feed_cache: dict[str, dict[str, str]] = {}
     for show, show_idxs in by_show.items():
         if not show:
             continue
-        print(f"  resolve audio map: {show}", flush=True)
+        print(f"  resolve audio map via RSS: {show}", flush=True)
         try:
             feed = itunes_feed(show)
             time.sleep(0.2)
             if not feed:
                 continue
             amap = parse_audio_map(http_get(feed).decode("utf-8", errors="replace"))
-            feed_cache[show] = amap
         except Exception as exc:  # noqa: BLE001
             print(f"  feed fail {show}: {exc}", flush=True)
             continue
-        amap = feed_cache[show]
         for i in show_idxs:
             norm = normalize(episodes[i].get("e") or "")
             url = amap.get(norm)

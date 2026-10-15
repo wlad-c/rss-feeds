@@ -1,34 +1,27 @@
 {
   "totalEpisodes": 21979,
-  "withAnyText": 8345,
-  "withPublisherOrSttTranscript": 1360,
-  "withLongText2000plus": 1823,
-  "pctAnyText": 37.97,
-  "pctTranscript": 6.19,
-  "pctLongText": 8.29,
+  "withAnyText": 8359,
+  "withPublisherOrSttTranscript": 1376,
+  "withLongText2000plus": 1839,
+  "pctAnyText": 38.03,
+  "pctTranscript": 6.26,
+  "pctLongText": 8.37,
   "bySrc": {
     "show-notes": {
-      "count": 6985,
-      "chars": 6826651
+      "count": 6983,
+      "chars": 6825245
+    },
+    "stt": {
+      "count": 16,
+      "chars": 268686
     },
     "transcript": {
       "count": 1360,
       "chars": 21987522
     }
   },
-  "notesStored": 8345,
+  "notesStored": 8359,
   "snippetChars": 900,
   "store": "transcripts/full.sqlite",
-  "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/).",
-  "harvest": {
-    "podcastsTried": 45,
-    "feedsResolved": 44,
-    "episodesMatched": 7567,
-    "withDescription": 6523,
-    "withTranscript": 972,
-    "errors": [
-      "no feed: New Naratif's Southeast Asia Dispatches"
-    ],
-    "nprUpFirst": 419
-  }
+  "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/)."
 }
