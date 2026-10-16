@@ -63,24 +63,26 @@
     <p class="boot" id="bootStatus">Loading…</p>
   </header>
 
-  <div class="wrap period-bar" id="periodBar">
-    <div class="period-controls">
-      <span class="period-kicker">Period</span>
-      <label class="period-field">
-        <span>Year</span>
-        <select id="periodYear" aria-label="Filter charts by year"></select>
-      </label>
-      <label class="period-field">
-        <span>Month</span>
-        <select id="periodMonth" aria-label="Filter charts by month" disabled></select>
-      </label>
-      <label class="period-field">
-        <span>Day</span>
-        <select id="periodDay" aria-label="Filter charts by day" disabled></select>
-      </label>
-      <button type="button" class="btn secondary" id="periodClear" title="Clear period filter">All time</button>
+  <div class="period-dock">
+    <div class="wrap period-bar" id="periodBar">
+      <div class="period-controls">
+        <span class="period-kicker">Period</span>
+        <label class="period-field">
+          <span>Year</span>
+          <select id="periodYear" aria-label="Filter charts by year"></select>
+        </label>
+        <label class="period-field">
+          <span>Month</span>
+          <select id="periodMonth" aria-label="Filter charts by month" disabled></select>
+        </label>
+        <label class="period-field">
+          <span>Day</span>
+          <select id="periodDay" aria-label="Filter charts by day" disabled></select>
+        </label>
+        <button type="button" class="btn secondary" id="periodClear" title="Clear period filter">All time</button>
+      </div>
+      <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
     </div>
-    <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
   </div>
 
   <main class="wrap charts-block">
