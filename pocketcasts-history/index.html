@@ -66,7 +66,7 @@
   <div class="period-dock">
     <div class="wrap period-bar" id="periodBar">
       <div class="period-controls">
-        <span class="period-kicker">Period</span>
+        <span class="period-kicker">Filter</span>
         <label class="period-field">
           <span>Year</span>
           <select id="periodYear" aria-label="Filter charts by year"></select>
@@ -79,7 +79,11 @@
           <span>Day</span>
           <select id="periodDay" aria-label="Filter charts by day" disabled></select>
         </label>
-        <button type="button" class="btn secondary" id="periodClear" title="Clear period filter">All time</button>
+        <label class="period-field period-field-country">
+          <span>Country</span>
+          <select id="periodCountry" aria-label="Filter charts by country of origin"></select>
+        </label>
+        <button type="button" class="btn secondary" id="periodClear" title="Clear filters">All</button>
       </div>
       <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
     </div>
