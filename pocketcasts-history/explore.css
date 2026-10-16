@@ -1225,6 +1225,19 @@ body:not(.ready) #topPanel {
   opacity: 0.4;
 }
 
+/* Filter changes: keep controls snappy; charts catch up in the background. */
+body.is-filtering .charts-block,
+body.is-filtering #themes,
+body.is-filtering #topPanel,
+body.is-filtering #explorePanel .ep-list {
+  opacity: 0.72;
+  transition: opacity 120ms var(--ease-out);
+  pointer-events: none;
+}
+body.is-filtering #periodSummary {
+  opacity: 0.85;
+}
+
 @media (prefers-reduced-transparency: reduce) {
   .chrome-bar,
   .period-dock,
