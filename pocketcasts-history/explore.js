@@ -775,6 +775,7 @@
     renderDurationChart();
     renderThemeChart();
     renderThemeYearChart();
+    renderThemePodcastCharts();
   }
 
   async function hardRefresh() {
@@ -1443,8 +1444,147 @@
     renderThemeChips();
     renderThemeChart();
     renderThemeYearChart();
+    renderThemePodcastCharts();
     renderThemeDetail(state.activeTheme || state.focusedParentId || "");
     renderEpisodeList();
+  }
+
+  function activeThemeForPodcasts() {
+    return (
+      state.themeById[state.activeTheme] ||
+      state.themeById[state.focusedParentId] ||
+      null
+    );
+  }
+
+  function episodeMatchesThemeId(thIds, themeId) {
+    if (!themeId) return false;
+    return (thIds || []).includes(themeId);
+  }
+
+  function podcastsForTheme(themeId) {
+    if (!themeId || !state.episodes?.length) return [];
+    const themeYears = selectedThemeYearSet();
+    const byPod = new Map();
+    for (let i = 0; i < state.episodes.length; i++) {
+      const e = state.episodes[i];
+      if (chartPeriodActive()) {
+        if (!episodeMatchesChartPeriod(e)) continue;
+      } else if (themeYears && !episodeMatchesThemeYears(e)) {
+        continue;
+      }
+      const th = themeIdsForIndex(i);
+      if (!episodeMatchesThemeId(th, themeId)) continue;
+      const name = e.p || "Unknown";
+      const cur = byPod.get(name) || { name, count: 0, hours: 0 };
+      cur.count += 1;
+      cur.hours += parseDurHours(e.dur);
+      byPod.set(name, cur);
+    }
+    return [...byPod.values()].map((p) => ({
+      ...p,
+      hours: Math.round(p.hours * 10) / 10,
+    }));
+  }
+
+  function jumpToThemePodcast(podcastName) {
+    if (!podcastName) return;
+    state.filters.podcast = podcastName;
+    if ($("#podcastFilter")) $("#podcastFilter").value = podcastName;
+    state.page = 0;
+    renderEpisodeList();
+    $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function renderThemePodcastCharts() {
+    const theme = activeThemeForPodcasts();
+    const epsTitle = $("#themePodEpsTitle");
+    const hoursTitle = $("#themePodHoursTitle");
+    const epsNote = $("#themePodEpsNote");
+    const hoursNote = $("#themePodHoursNote");
+    const scope = chartPeriodActive()
+      ? chartPeriodLabel()
+      : state.themeYears.length
+        ? themeYearLabel()
+        : "all years";
+
+    if (!theme) {
+      if (epsTitle) epsTitle.textContent = "Shows covering this theme · episodes";
+      if (hoursTitle) hoursTitle.textContent = "Shows covering this theme · hours";
+      if (epsNote) {
+        epsNote.textContent =
+          "Pick a parent or child theme to see which podcasts contribute the most episodes.";
+      }
+      if (hoursNote) {
+        hoursNote.textContent =
+          "Pick a theme to rank the same shows by listening time (episode duration).";
+      }
+      renderExpandableHBar({
+        key: "themePodEps",
+        canvasSel: "#themePodEpsChart",
+        boxSel: "#themePodEpsBox",
+        moreSel: "#themePodEpsMore",
+        items: [],
+        labelOf: (d) => d.name,
+        valueOf: (d) => d.count,
+        colors: CATEGORICAL,
+      });
+      renderExpandableHBar({
+        key: "themePodHours",
+        canvasSel: "#themePodHoursChart",
+        boxSel: "#themePodHoursBox",
+        moreSel: "#themePodHoursMore",
+        items: [],
+        labelOf: (d) => d.name,
+        valueOf: (d) => d.hours,
+        colors: CATEGORICAL,
+      });
+      return;
+    }
+
+    const items = podcastsForTheme(theme.id);
+    const byEps = items.slice().sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+    const byHours = items
+      .slice()
+      .sort((a, b) => b.hours - a.hours || a.name.localeCompare(b.name));
+    const topEps = byEps[0];
+    const topHours = byHours[0];
+
+    if (epsTitle) epsTitle.textContent = `${theme.name} · shows by episodes`;
+    if (hoursTitle) hoursTitle.textContent = `${theme.name} · shows by hours`;
+    if (epsNote) {
+      epsNote.textContent = topEps
+        ? `${fmt(byEps.length)} shows in ${scope}. Most episodes: ${topEps.name} (${fmt(topEps.count)}). Tap a bar to filter Explore.`
+        : `No matching episodes for ${theme.name} in ${scope}.`;
+    }
+    if (hoursNote) {
+      hoursNote.textContent = topHours
+        ? `${fmt(byHours.length)} shows in ${scope}. Most time: ${topHours.name} (${fmtHours(topHours.hours)}h). Tap a bar to filter Explore.`
+        : `No matching listening time for ${theme.name} in ${scope}.`;
+    }
+
+    renderExpandableHBar({
+      key: "themePodEps",
+      canvasSel: "#themePodEpsChart",
+      boxSel: "#themePodEpsBox",
+      moreSel: "#themePodEpsMore",
+      items: byEps,
+      labelOf: (d) => d.name,
+      valueOf: (d) => d.count,
+      colors: CATEGORICAL,
+      onClick: (d) => jumpToThemePodcast(d?.name),
+    });
+    renderExpandableHBar({
+      key: "themePodHours",
+      canvasSel: "#themePodHoursChart",
+      boxSel: "#themePodHoursBox",
+      moreSel: "#themePodHoursMore",
+      items: byHours,
+      labelOf: (d) => d.name,
+      valueOf: (d) => d.hours,
+      colors: CATEGORICAL,
+      onClick: (d) => jumpToThemePodcast(d?.name),
+    });
   }
 
   function displayThemeTags(ids) {
@@ -1650,11 +1790,7 @@
         if (!picked.length) {
           state.themeYears = [];
           if (label) label.textContent = "Pick years…";
-          renderThemeChips();
-          renderThemeChart();
-          renderThemeYearChart();
-          renderThemeDetail(state.activeTheme || state.focusedParentId || "");
-          renderEpisodeList();
+          refreshThemeViews();
           return;
         }
         state.themeYears = picked.length === years.length ? [] : picked;
@@ -1937,6 +2073,7 @@
     renderThemeChips();
     renderThemeChart();
     renderThemeYearChart();
+    renderThemePodcastCharts();
     renderThemeDetail(parentId);
     renderEpisodeList();
   }
@@ -1964,6 +2101,7 @@
     renderThemeChips();
     renderThemeChart();
     renderThemeYearChart();
+    renderThemePodcastCharts();
     renderThemeDetail(themeId);
     renderEpisodeList();
     if (jumpExplore) {
@@ -2093,6 +2231,7 @@
       selectTheme("", false);
       renderThemeYearControls();
       renderThemeYearChart();
+      renderThemePodcastCharts();
     });
     $("#themeYearToggle")?.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -2254,6 +2393,7 @@
       renderThemeChips();
       renderThemeChart();
       renderThemeYearChart();
+      renderThemePodcastCharts();
       renderThemeDetail("");
       renderEpisodeList();
       wire();
