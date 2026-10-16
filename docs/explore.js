@@ -109,6 +109,9 @@
     ["12", "December"],
   ];
   const MONTH_NAME = Object.fromEntries(MONTH_OPTIONS);
+  const MONTH_SHORT = Object.fromEntries(
+    MONTH_OPTIONS.map(([num, name]) => [num, name.slice(0, 3)])
+  );
 
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
@@ -1136,6 +1139,23 @@
     return `${d} ${MONTH_NAME[m] || m} ${y}`;
   }
 
+  /** d MMM yyyy — e.g. 7 Mar 2019 */
+  function formatDateShort(iso) {
+    const s = String(iso || "");
+    if (s.length < 10) return s;
+    const y = s.slice(0, 4);
+    const m = s.slice(5, 7);
+    const d = Number(s.slice(8, 10));
+    return `${d} ${MONTH_SHORT[m] || m} ${y}`;
+  }
+
+  function listeningDateSpan(stats) {
+    const dates = Object.keys(stats.byDateCount || {}).sort();
+    if (!dates.length) return "—";
+    if (dates.length === 1) return formatDateShort(dates[0]);
+    return `${formatDateShort(dates[0])} – ${formatDateShort(dates[dates.length - 1])}`;
+  }
+
   function avgEpisodesPerDay(stats) {
     const dates = Object.keys(stats.byDateCount || {}).sort();
     if (!dates.length || !stats.episodeCount) return null;
@@ -1151,9 +1171,7 @@
     if (!state.agg || !$("#heroStats")) return;
     const stats = ensureChartStats();
     const hours = metricIsHours();
-    const years = Object.keys(stats.byYearCount || {}).sort((a, b) => Number(a) - Number(b));
-    const span =
-      years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0] || "—";
+    const span = listeningDateSpan(stats);
     const monthPeak = peakFromMap(
       hours ? stats.byMonthHours : stats.byMonthCount,
       hours
