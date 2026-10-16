@@ -1061,7 +1061,6 @@
   function renderHeroStats() {
     if (!state.agg || !$("#heroStats")) return;
     const stats = ensureChartStats();
-    const meta = state.agg.meta || {};
     const hours = metricIsHours();
     const years = Object.keys(stats.byYearCount || {}).sort((a, b) => Number(a) - Number(b));
     const span =
@@ -1116,12 +1115,6 @@
       const pct = Math.round((share / total) * 1000) / 10;
       bits.push(
         `<div class="insight"><b>${escapeHtml(String(pct))}%</b><span>Of ${hours ? "hours" : "listens"} from your top 5 shows${scope}</span></div>`
-      );
-    }
-    if (!chartPeriodActive() && meta.accountStartedAt && meta.perEpisodeHistoryFrom) {
-      const started = String(meta.accountStartedAt).slice(0, 10);
-      bits.push(
-        `<div class="insight"><b>${escapeHtml(started)} → ${escapeHtml(meta.perEpisodeHistoryFrom)}</b><span>Account age vs first per-episode history (Pocket Casts has no listen rows for 2010–2018)</span></div>`
       );
     }
     if (bits.length) {
