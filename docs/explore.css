@@ -601,14 +601,27 @@ select:focus {
   border-top: 0.5px solid var(--separator);
 }
 
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+}
+
 .stat b {
   display: block;
   font-family: var(--font-display);
   font-size: 1.375rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.1;
+  line-height: 1.15;
   font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.stat b.stat-value-compact {
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
 }
 
 .stat span {
@@ -620,15 +633,10 @@ select:focus {
   letter-spacing: -0.01em;
 }
 
+/* Kept for compatibility; hero insights now live inside #heroStats. */
 .insights-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0;
-  margin-top: 12px;
-  border-radius: var(--radius-lg);
-  background: var(--grouped-bg-elevated);
-  overflow: hidden;
-  box-shadow: var(--shadow);
+  display: none;
+  margin: 0;
 }
 
 .insight {

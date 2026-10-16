@@ -1119,6 +1119,34 @@
     };
   }
 
+  function formatMonthKey(ym) {
+    const s = String(ym || "");
+    if (s.length < 7) return s;
+    const y = s.slice(0, 4);
+    const m = s.slice(5, 7);
+    return `${MONTH_NAME[m] || m} ${y}`;
+  }
+
+  function formatDateKey(iso) {
+    const s = String(iso || "");
+    if (s.length < 10) return formatMonthKey(s);
+    const y = s.slice(0, 4);
+    const m = s.slice(5, 7);
+    const d = Number(s.slice(8, 10));
+    return `${d} ${MONTH_NAME[m] || m} ${y}`;
+  }
+
+  function avgEpisodesPerDay(stats) {
+    const dates = Object.keys(stats.byDateCount || {}).sort();
+    if (!dates.length || !stats.episodeCount) return null;
+    const first = Date.parse(`${dates[0]}T00:00:00Z`);
+    const last = Date.parse(`${dates[dates.length - 1]}T00:00:00Z`);
+    if (!Number.isFinite(first) || !Number.isFinite(last) || last < first) return null;
+    const days = Math.round((last - first) / 86400000) + 1;
+    if (days < 1) return null;
+    return Math.round((stats.episodeCount / days) * 10) / 10;
+  }
+
   function renderHeroStats() {
     if (!state.agg || !$("#heroStats")) return;
     const stats = ensureChartStats();
@@ -1126,6 +1154,20 @@
     const years = Object.keys(stats.byYearCount || {}).sort((a, b) => Number(a) - Number(b));
     const span =
       years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0] || "—";
+    const monthPeak = peakFromMap(
+      hours ? stats.byMonthHours : stats.byMonthCount,
+      hours
+    );
+    const dayPeak = peakFromMap(hours ? stats.byDateHours : stats.byDateCount, hours);
+    const avgDay = avgEpisodesPerDay(stats);
+    const monthValue = monthPeak
+      ? `${formatMonthKey(monthPeak.key)} · ${fmtMetric(monthPeak.value)}${hours ? "h" : ""}`
+      : "—";
+    const dayValue = dayPeak
+      ? `${formatDateKey(dayPeak.key)} · ${fmtMetric(dayPeak.value)}${hours ? "h" : ""}`
+      : "—";
+
+    // One 3×3 grid (no separate insights strip) so rows share the same card.
     const items = [
       ["Episodes", fmt(stats.episodeCount)],
       ["Podcasts", fmt(stats.podcastCount)],
@@ -1139,49 +1181,19 @@
         stats.avgProgressPct != null ? `${stats.avgProgressPct}%` : "—",
       ],
       ["Span", span],
+      ["Busiest month", monthValue],
+      ["Most active day", dayValue],
+      ["Avg episodes / day", avgDay != null ? String(avgDay) : "—"],
     ];
     $("#heroStats").innerHTML = items
-      .map(
-        ([k, v]) =>
-          `<div class="stat"><b>${escapeHtml(v)}</b><span>${escapeHtml(k)}</span></div>`
-      )
+      .map(([k, v]) => {
+        const compact = String(v).length > 10 ? " stat-value-compact" : "";
+        return `<div class="stat"><b class="${compact.trim()}">${escapeHtml(v)}</b><span>${escapeHtml(k)}</span></div>`;
+      })
       .join("");
 
     const strip = $("#insightStrip");
-    if (!strip) return;
-    const bits = [];
-    const scope = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
-    const monthPeak = peakFromMap(
-      hours ? stats.byMonthHours : stats.byMonthCount,
-      hours
-    );
-    if (monthPeak) {
-      bits.push(
-        `<div class="insight"><b>${escapeHtml(monthPeak.key)} · ${fmtMetric(monthPeak.value)}${hours ? "h" : ""}</b><span>Busiest month${scope}</span></div>`
-      );
-    }
-    const dayPeak = peakFromMap(hours ? stats.byDateHours : stats.byDateCount, hours);
-    if (dayPeak) {
-      bits.push(
-        `<div class="insight"><b>${escapeHtml(dayPeak.key)} · ${fmtMetric(dayPeak.value)}${hours ? "h" : ""}</b><span>Most active day${scope}</span></div>`
-      );
-    }
-    const podMap = hours ? stats.byPodcastHours : stats.byPodcastCount;
-    const topPods = Object.entries(podMap || {})
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .slice(0, 5);
-    const total = hours ? stats.hoursTotal : stats.episodeCount;
-    if (topPods.length && total > 0) {
-      const share = topPods.reduce((acc, [, v]) => acc + Number(v || 0), 0);
-      const pct = Math.round((share / total) * 1000) / 10;
-      bits.push(
-        `<div class="insight"><b>${escapeHtml(String(pct))}%</b><span>Of ${hours ? "hours" : "listens"} from your top 5 shows${scope}</span></div>`
-      );
-    }
-    if (bits.length) {
-      strip.hidden = false;
-      strip.innerHTML = bits.join("");
-    } else {
+    if (strip) {
       strip.hidden = true;
       strip.innerHTML = "";
     }
