@@ -434,7 +434,7 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
 /* Filters / list */
 .filters {
   display: grid;
-  grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr)) auto;
+  grid-template-columns: 1.4fr repeat(5, minmax(0, 1fr)) auto;
   gap: 8px;
   margin-bottom: 10px;
 }
@@ -614,6 +614,12 @@ th { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-
 }
 .ep-themes { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
 .ep-themes .tag { cursor: pointer; border: 0; font: inherit; }
+.ep-meta .tag[data-country-jump] {
+  cursor: pointer;
+  border: 0;
+  font: inherit;
+  color: inherit;
+}
 input[type="search"], select, .btn {
   border: 1px solid var(--line);
   background: var(--input);

@@ -47,7 +47,7 @@
     charts: {},
     barReveal: {},
     tableReveal: { top: 12 },
-    filters: { year: "all", podcast: "", q: "", status: "", theme: "" },
+    filters: { year: "all", podcast: "", q: "", status: "", theme: "", country: "" },
     page: 0,
     pageSize: 40,
     _chartStats: null,
@@ -1249,6 +1249,14 @@
       labelOf: (d) => d.name || "Unknown",
       valueOf: (d) => d.count,
       colors: CATEGORICAL,
+      onClick: (d) => {
+        if (!d?.name) return;
+        state.filters.country = d.name;
+        if ($("#countryFilter")) $("#countryFilter").value = d.name;
+        state.page = 0;
+        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        renderEpisodeList();
+      },
     });
   }
 
@@ -1399,6 +1407,29 @@
         }
       }
       themeSel.innerHTML = opts.join("");
+    }
+
+    const countrySel = $("#countryFilter");
+    if (countrySel) {
+      const counts = Object.create(null);
+      for (const e of state.episodes || []) {
+        const c = countryForEpisode(e);
+        counts[c] = (counts[c] || 0) + 1;
+      }
+      const countries = Object.keys(counts).sort((a, b) => {
+        if (a === "Unknown") return 1;
+        if (b === "Unknown") return -1;
+        return counts[b] - counts[a] || a.localeCompare(b);
+      });
+      countrySel.innerHTML =
+        `<option value="">All countries</option>` +
+        countries
+          .map(
+            (c) =>
+              `<option value="${escapeHtml(c)}">${escapeHtml(c)} (${fmt(counts[c])})</option>`
+          )
+          .join("");
+      if (state.filters.country) countrySel.value = state.filters.country;
     }
   }
 
@@ -1656,7 +1687,7 @@
   }
 
   function filteredEpisodes() {
-    const { year, podcast, q, status, theme } = state.filters;
+    const { year, podcast, q, status, theme, country } = state.filters;
     const qq = q.trim().toLowerCase();
     const themeYears = selectedThemeYearSet();
     const out = [];
@@ -1671,16 +1702,18 @@
       }
       if (podcast && e.p !== podcast) continue;
       if (status && e.st !== status) continue;
+      const epCountry = countryForEpisode(e);
+      if (country && epCountry !== country) continue;
       const th = themeIdsForIndex(i);
       if (theme && !th.includes(theme)) continue;
       if (qq) {
         const themeNames = th
           .map((id) => state.themeById[id]?.name || id)
           .join(" ");
-        const hay = `${e.e} ${e.p} ${e.a} ${e.f} ${themeNames} ${noteTextForIndex(i)}`.toLowerCase();
+        const hay = `${e.e} ${e.p} ${e.a} ${e.f} ${epCountry} ${themeNames} ${noteTextForIndex(i)}`.toLowerCase();
         if (!hay.includes(qq)) continue;
       }
-      out.push({ ...e, _i: i, _th: th });
+      out.push({ ...e, _i: i, _th: th, _country: epCountry });
     }
     return out;
   }
@@ -1724,6 +1757,7 @@
             : note.length > 280
               ? note.slice(0, 280) + "…"
               : note);
+        const country = e._country || countryForEpisode(e);
         return `
       <article class="ep">
         <div class="ep-show">${escapeHtml(e.p || "Podcast")}${e.f ? ` · ${escapeHtml(e.f)}` : ""}</div>
@@ -1731,6 +1765,7 @@
         <div class="ep-meta">
           <span>${escapeHtml(e.d || e.t || "")}</span>
           ${e.dur ? `<span>${escapeHtml(e.dur)}</span>` : ""}
+          ${country && country !== "Unknown" ? `<button type="button" class="tag" data-country-jump="${escapeHtml(country)}">${escapeHtml(country)}</button>` : ""}
           ${e.st ? `<span class="tag ${e.st === "Played" ? "ok" : e.st === "In progress" ? "warn" : ""}">${escapeHtml(e.st)}</span>` : ""}
           ${e.prog !== "" && e.prog != null ? `<span>${escapeHtml(e.prog)}%</span>` : ""}
           ${e.star ? `<span class="tag ok">Starred</span>` : ""}
@@ -1748,6 +1783,16 @@
 
     $$("#episodeList [data-theme-jump]").forEach((btn) => {
       btn.addEventListener("click", () => selectTheme(btn.dataset.themeJump, true));
+    });
+    $$("#episodeList [data-country-jump]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const c = btn.dataset.countryJump;
+        if (!c) return;
+        state.filters.country = c;
+        if ($("#countryFilter")) $("#countryFilter").value = c;
+        state.page = 0;
+        renderEpisodeList();
+      });
     });
 
     // Insights for current filter
@@ -2241,6 +2286,11 @@
       state.page = 0;
       renderEpisodeList();
     });
+    $("#countryFilter")?.addEventListener("change", (e) => {
+      state.filters.country = e.target.value;
+      state.page = 0;
+      renderEpisodeList();
+    });
     let t;
     $("#q").addEventListener("input", (e) => {
       clearTimeout(t);
@@ -2298,7 +2348,7 @@
       $("#episodeList").scrollIntoView({ behavior: "smooth", block: "start" });
     });
     $("#resetFilters").addEventListener("click", () => {
-      state.filters = { year: "all", podcast: "", q: "", status: "", theme: "" };
+      state.filters = { year: "all", podcast: "", q: "", status: "", theme: "", country: "" };
       state.activeTheme = "";
       state.focusedParentId = "";
       state.themeYears = [];
@@ -2308,6 +2358,7 @@
       $("#podcastFilter").value = "";
       $("#statusFilter").value = "";
       if ($("#themeFilter")) $("#themeFilter").value = "";
+      if ($("#countryFilter")) $("#countryFilter").value = "";
       $("#q").value = "";
       if ($("#topicQ")) $("#topicQ").value = "";
       setThemeYearPanelOpen(false);
