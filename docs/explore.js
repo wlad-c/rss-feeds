@@ -994,10 +994,14 @@
   }
 
   function destroyChart(key) {
-    if (state.charts[key]) {
-      state.charts[key].destroy();
-      delete state.charts[key];
+    const chart = state.charts[key];
+    if (!chart) return;
+    if (chart.$hBarClick && chart.canvas) {
+      chart.canvas.removeEventListener("click", chart.$hBarClick);
+      chart.$hBarClick = null;
     }
+    chart.destroy();
+    delete state.charts[key];
   }
 
   function ensureBarReveal(key, total) {
@@ -1104,6 +1108,8 @@
       },
       options: baseChartOptions({
         indexAxis: "y",
+        // Resolve hover/tooltip by row (Y), not nearest bar tip length.
+        interaction: { mode: "nearest", axis: "y", intersect: false },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -1116,14 +1122,25 @@
             },
           },
         },
-        onClick: onClick
-          ? (_evt, elements) => {
-              if (!elements.length) return;
-              onClick(visible[elements[0].index], elements[0].index);
-            }
-          : undefined,
       }),
     });
+    // Bind click on the canvas ourselves: Chart.js often ignores taps on Y-axis
+    // labels and can map horizontal-bar hits to the wrong row on mobile.
+    if (onClick) {
+      const chart = state.charts[key];
+      const handler = (native) => {
+        const ch = state.charts[key];
+        if (!ch?.scales?.y) return;
+        const rect = canvas.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const y = ((native.clientY - rect.top) / rect.height) * canvas.height;
+        const idx = ch.scales.y.getValueForPixel(y);
+        if (!Number.isInteger(idx) || idx < 0 || idx >= visible.length) return;
+        onClick(visible[idx], idx);
+      };
+      chart.$hBarClick = handler;
+      canvas.addEventListener("click", handler);
+    }
     renderMoreControls(moreSel, key, shown, total, () =>
       renderExpandableHBar({
         key,
@@ -3099,6 +3116,17 @@
       document.body.classList.add("ready");
       $("#bootStatus").textContent = "";
       showTab(activeTabId, { scrollTop: false });
+      // Warm search haystacks in idle time so the first typed query stays snappy.
+      const warmSearch = () => {
+        try {
+          ensureSearchIndex();
+        } catch (_) {}
+      };
+      if (typeof requestIdleCallback === "function") {
+        requestIdleCallback(warmSearch, { timeout: 2500 });
+      } else {
+        setTimeout(warmSearch, 600);
+      }
       try {
         if (new URLSearchParams(location.search).get("filters") === "open") {
           setFilterSheetOpen(true);
