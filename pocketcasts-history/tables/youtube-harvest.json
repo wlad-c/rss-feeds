@@ -1,0 +1,47 @@
+{
+  "harvest": {
+    "tried": 90,
+    "fetched": 73,
+    "upserted": 73,
+    "noCaptions": 17,
+    "rateLimited": 0,
+    "pairs": 90,
+    "byBackend": {
+      "transcribe_yt": 73
+    },
+    "byShow": {
+      "The Daily": 24,
+      "The Ezra Klein Show": 23,
+      "ABC News Daily": 10,
+      "7am": 3,
+      "Xadrez Verbal": 6,
+      "Lowy Institute": 7
+    },
+    "errors": []
+  },
+  "coverage": {
+    "withAnyText": 8416,
+    "withPublisherOrSttTranscript": 1449,
+    "withLongText2000plus": 1912,
+    "pctTranscript": 6.59,
+    "pctLongText": 8.7,
+    "bySrc": {
+      "show-notes": {
+        "count": 6967,
+        "chars": 6818399
+      },
+      "stt": {
+        "count": 16,
+        "chars": 268686
+      },
+      "transcript": {
+        "count": 1360,
+        "chars": 21987522
+      },
+      "youtube": {
+        "count": 73,
+        "chars": 3614261
+      }
+    }
+  }
+}

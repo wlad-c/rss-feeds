@@ -71,7 +71,10 @@ def upsert_full(
           text=excluded.text,
           updated_at=datetime('now')
         WHERE excluded.chars >= transcripts.chars
-           OR (excluded.src IN ('transcript','stt') AND transcripts.src = 'show-notes')
+           OR (
+             excluded.src IN ('transcript', 'stt', 'youtube')
+             AND transcripts.src = 'show-notes'
+           )
         """,
         (
             int(episode_idx),
@@ -118,7 +121,7 @@ def coverage_stats(conn: sqlite3.Connection, total_episodes: int) -> dict:
     by_src = {src: {"count": n, "chars": int(chars or 0)} for src, n, chars in rows}
     n_full = conn.execute("SELECT COUNT(*) FROM transcripts").fetchone()[0]
     n_transcriptish = conn.execute(
-        "SELECT COUNT(*) FROM transcripts WHERE src IN ('transcript','stt')"
+        "SELECT COUNT(*) FROM transcripts WHERE src IN ('transcript','stt','youtube')"
     ).fetchone()[0]
     long_n = conn.execute(
         "SELECT COUNT(*) FROM transcripts WHERE chars >= 2000"
