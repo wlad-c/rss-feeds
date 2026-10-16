@@ -235,14 +235,17 @@
         <div class="section-head">
           <div>
             <h2>Themes across episodes</h2>
-            <p>Tap a bar to drill into child themes. The sticky filter above scopes every chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
+            <p>Tap a parent bar to open its child themes, then ‹ Themes to go back. The sticky filter above scopes every chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
           </div>
         </div>
         <div class="grid-2">
           <div class="panel">
             <div class="theme-chart-head">
+              <button class="theme-nav-back" id="themeChartBack" type="button" hidden>
+                <span class="theme-nav-chevron" aria-hidden="true">‹</span>
+                <span class="theme-nav-back-label">Themes</span>
+              </button>
               <h3 id="themeChartTitle">Parent themes</h3>
-              <button class="btn secondary" id="themeChartBack" type="button" hidden>All parents</button>
             </div>
             <div class="chart-box tall" id="themeChartBox"><canvas id="themeChart"></canvas></div>
             <div class="chart-more" id="themeChartMore"></div>

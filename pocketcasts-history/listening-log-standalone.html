@@ -852,17 +852,62 @@ tr:last-child td { border-bottom: 0; }
 
 .linkish:hover { text-decoration: underline; }
 
-/* Theme chart */
+/* Theme chart — iOS-style hierarchical nav */
 .theme-chart-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 4px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin-bottom: 8px;
+  min-width: 0;
 }
 
 .theme-chart-head h3 {
   margin: 0;
+  max-width: 100%;
+  line-height: 1.25;
+}
+
+.theme-nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  margin: 0 0 2px -4px;
+  padding: 2px 6px 2px 2px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--system-blue);
+  font-family: inherit;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-spring);
+}
+
+.theme-nav-back[hidden] {
+  display: none !important;
+}
+
+.theme-nav-back:hover {
+  opacity: 0.85;
+}
+
+.theme-nav-back:active {
+  opacity: 0.55;
+  transform: scale(0.98);
+}
+
+.theme-nav-chevron {
+  display: inline-block;
+  font-size: 1.55rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-top: -0.06em;
+  margin-right: 1px;
 }
 
 .chart-more {
@@ -1763,8 +1808,11 @@ body:not(.ready) #topPanel {
         <div class="grid-2">
           <div class="panel">
             <div class="theme-chart-head">
+              <button class="theme-nav-back" id="themeChartBack" type="button" hidden>
+                <span class="theme-nav-chevron" aria-hidden="true">‹</span>
+                <span class="theme-nav-back-label">Themes</span>
+              </button>
               <h3 id="themeChartTitle">Parent themes</h3>
-              <button class="btn secondary" id="themeChartBack" type="button" hidden>All parents</button>
             </div>
             <div class="chart-box tall" id="themeChartBox"><canvas id="themeChart"></canvas></div>
             <div class="chart-more" id="themeChartMore"></div>
@@ -4077,28 +4125,57 @@ body:not(.ready) #topPanel {
     return themesPresentInFilter(parentThemes());
   }
 
+  function leaveThemeDrill() {
+    state.focusedParentId = "";
+    state.barReveal.theme = BAR_PAGE;
+    selectTheme("", false);
+  }
+
   function renderThemeChart() {
     if (!state.themesDoc?.themes) return;
     const items = themeChartItems();
     const title = $("#themeChartTitle");
     const back = $("#themeChartBack");
     const drilled = !!state.focusedParentId;
+    const parent = drilled ? state.themeById[state.focusedParentId] : null;
+    const child = state.themeById[state.activeTheme];
+    const viewingChild = !!(child?.parentId && child.parentId === state.focusedParentId);
     const periodLabel = chartPeriodActive()
       ? chartPeriodLabel({ omitTheme: drilled })
       : "";
     const yearSuffix = periodLabel && periodLabel !== "All time" ? ` · ${periodLabel}` : "";
     if (title) {
-      title.textContent = drilled
-        ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes${yearSuffix}`
-        : `Parent themes${yearSuffix}`;
+      if (drilled) {
+        // Hierarchy: parent name as screen title; child name when one is selected.
+        title.textContent = viewingChild
+          ? `${child.name}${yearSuffix}`
+          : `${parent?.name || "Theme"}${yearSuffix}`;
+      } else {
+        title.textContent = `Parent themes${yearSuffix}`;
+      }
     }
     if (back) {
+      const label = back.querySelector(".theme-nav-back-label");
       back.hidden = !drilled;
+      if (label) {
+        // One level up: child → parent children, or children → all parents.
+        label.textContent = viewingChild ? parent?.name || "Themes" : "Themes";
+      }
+      back.setAttribute(
+        "aria-label",
+        viewingChild
+          ? `Back to ${parent?.name || "parent theme"}`
+          : "Back to parent themes"
+      );
       back.onclick = drilled
         ? () => {
-            state.focusedParentId = "";
-            state.barReveal.theme = BAR_PAGE;
-            selectTheme("", false);
+            if (viewingChild) {
+              // Step up to the parent’s child list (keep parent filter).
+              state.barReveal.theme = BAR_PAGE;
+              focusParentTheme(state.focusedParentId);
+              return;
+            }
+            leaveThemeDrill();
           }
         : null;
     }
