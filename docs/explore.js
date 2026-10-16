@@ -41,6 +41,10 @@
     themeById: {},
     activeTheme: "",
     focusedParentId: "",
+    themeMatchView: "podcasts", // "podcasts" | "episodes"
+    themeMatchPage: 0,
+    themeMatchPageSize: 25,
+    _themeMatchThemeId: "",
     metric: "episodes", // "episodes" | "hours"
     chartPeriod: {
       year: "",
@@ -1063,7 +1067,7 @@
       const share = topPods.reduce((acc, [, v]) => acc + Number(v || 0), 0);
       const pct = Math.round((share / total) * 1000) / 10;
       bits.push(
-        `<div class="insight"><b>${escapeHtml(String(pct))}%</b><span>Of ${hours ? "hours" : "listens"}${scope || " all-time"} from your top 5 shows</span></div>`
+        `<div class="insight"><b>${escapeHtml(String(pct))}%</b><span>Of ${hours ? "hours" : "listens"} from your top 5 shows${scope}</span></div>`
       );
     }
     if (!chartPeriodActive() && meta.accountStartedAt && meta.perEpisodeHistoryFrom) {
@@ -1642,9 +1646,10 @@
     renderEpisodeList();
   }
 
-  function activeThemeForPodcasts() {
+  function selectedTheme() {
     return (
       state.themeById[state.activeTheme] ||
+      state.themeById[state.chartPeriod.theme] ||
       state.themeById[state.focusedParentId] ||
       null
     );
@@ -1655,12 +1660,34 @@
     return (thIds || []).includes(themeId);
   }
 
+  function episodesForTheme(themeId) {
+    if (!themeId || !state.episodes?.length) return [];
+    const qq = String(state.chartPeriod.q || "").trim().toLowerCase();
+    const out = [];
+    for (let i = 0; i < state.episodes.length; i++) {
+      const e = state.episodes[i];
+      // Sticky filters apply, but theme comes from the selected theme chip/dropdown.
+      if (!episodeMatchesChartPeriod(e, i, { theme: "" })) continue;
+      const th = themeIdsForIndex(i);
+      if (!episodeMatchesThemeId(th, themeId)) continue;
+      const epCountry = countryForEpisode(e);
+      if (qq) {
+        const themeNames = th
+          .map((id) => state.themeById[id]?.name || id)
+          .join(" ");
+        const hay = `${e.e} ${e.p} ${e.a} ${e.f} ${epCountry} ${themeNames} ${noteTextForIndex(i)}`.toLowerCase();
+        if (!hay.includes(qq)) continue;
+      }
+      out.push({ ...e, _i: i, _th: th, _country: epCountry });
+    }
+    return out;
+  }
+
   function podcastsForTheme(themeId) {
     if (!themeId || !state.episodes?.length) return [];
     const byPod = new Map();
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
-      // Ignore sticky theme here so the picked theme's show rankings stay useful.
       if (!episodeMatchesChartPeriod(e, i, { theme: "" })) continue;
       const th = themeIdsForIndex(i);
       if (!episodeMatchesThemeId(th, themeId)) continue;
@@ -1682,91 +1709,198 @@
     $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function renderThemePodcastCharts() {
-    const theme = activeThemeForPodcasts();
-    const epsTitle = $("#themePodEpsTitle");
-    const hoursTitle = $("#themePodHoursTitle");
-    const epsNote = $("#themePodEpsNote");
-    const hoursNote = $("#themePodHoursNote");
+  function syncThemeMatchToggle() {
+    $$("[data-theme-match]").forEach((btn) => {
+      btn.setAttribute(
+        "aria-pressed",
+        btn.dataset.themeMatch === state.themeMatchView ? "true" : "false"
+      );
+    });
+    const podHost = $("#themeMatchPodcasts");
+    const epHost = $("#themeMatchEpisodes");
+    if (podHost) podHost.hidden = state.themeMatchView !== "podcasts";
+    if (epHost) epHost.hidden = state.themeMatchView !== "episodes";
+  }
+
+  function applyThemeMatchView(view) {
+    const next = view === "episodes" ? "episodes" : "podcasts";
+    if (state.themeMatchView === next) return;
+    state.themeMatchView = next;
+    state.themeMatchPage = 0;
+    renderThemeMatchPanel();
+  }
+
+  function episodeCardHtml(e) {
+    const note = noteTextForIndex(e._i);
+    const noteMeta = state.notes?.[String(e._i)];
+    const noteSrc = noteMeta?.src;
+    const noteFull = noteMeta?.full || (noteMeta?.chars || 0) > 900;
+    const noteLabel =
+      noteSrc === "stt"
+        ? noteFull
+          ? "full STT"
+          : "STT"
+        : noteSrc === "transcript"
+          ? noteFull
+            ? "full transcript"
+            : "transcript"
+          : noteSrc === "show-notes"
+            ? "show notes"
+            : noteSrc;
+    const themeTags = displayThemeTags(e._th || [])
+      .map((id) => {
+        const name = state.themeById[id]?.name || id;
+        return `<button type="button" class="tag ok" data-theme-jump="${escapeHtml(id)}">${escapeHtml(name)}</button>`;
+      })
+      .join("");
+    const snippet =
+      note &&
+      (String(state.chartPeriod.q || "").trim()
+        ? note
+        : note.length > 280
+          ? note.slice(0, 280) + "…"
+          : note);
+    const country = e._country || countryForEpisode(e);
+    return `
+      <article class="ep">
+        <div class="ep-show">${escapeHtml(e.p || "Podcast")}${e.f ? ` · ${escapeHtml(e.f)}` : ""}</div>
+        <h3>${escapeHtml(e.e || "(untitled)")}</h3>
+        <div class="ep-meta">
+          <span>${escapeHtml(e.d || e.t || "")}</span>
+          ${e.dur ? `<span>${escapeHtml(e.dur)}</span>` : ""}
+          ${country && country !== "Unknown" ? `<button type="button" class="tag" data-country-jump="${escapeHtml(country)}">${escapeHtml(country)}</button>` : ""}
+          ${e.st ? `<span class="tag ${e.st === "Played" ? "ok" : e.st === "In progress" ? "warn" : ""}">${escapeHtml(e.st)}</span>` : ""}
+          ${e.prog !== "" && e.prog != null ? `<span>${escapeHtml(e.prog)}%</span>` : ""}
+          ${e.star ? `<span class="tag ok">Starred</span>` : ""}
+          ${noteLabel ? `<span class="tag ${noteFull ? "ok" : ""}">${escapeHtml(noteLabel)}</span>` : ""}
+        </div>
+        ${themeTags ? `<div class="ep-themes">${themeTags}</div>` : ""}
+        ${snippet ? `<div class="ep-note">${escapeHtml(snippet)}</div>` : ""}
+      </article>`;
+  }
+
+  function wireEpisodeCardJumps(rootSel, { jumpExplore = false } = {}) {
+    const root = $(rootSel);
+    if (!root) return;
+    $$("[data-theme-jump]", root).forEach((btn) => {
+      btn.addEventListener("click", () => selectTheme(btn.dataset.themeJump, jumpExplore));
+    });
+    $$("[data-country-jump]", root).forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const c = btn.dataset.countryJump;
+        if (!c) return;
+        patchChartPeriod({ country: c });
+      });
+    });
+  }
+
+  function renderThemeMatchPanel() {
+    const theme = selectedTheme();
+    const title = $("#themeMatchTitle");
+    const note = $("#themeMatchNote");
     const scope = chartPeriodLabel();
+    const hours = metricIsHours();
+    syncThemeMatchToggle();
+
+    const themeId = theme?.id || "";
+    if (themeId !== state._themeMatchThemeId) {
+      state._themeMatchThemeId = themeId;
+      state.themeMatchPage = 0;
+    }
 
     if (!theme) {
-      if (epsTitle) epsTitle.textContent = "Shows covering this theme · episodes";
-      if (hoursTitle) hoursTitle.textContent = "Shows covering this theme · hours";
-      if (epsNote) {
-        epsNote.textContent =
-          "Pick a parent or child theme to see which podcasts contribute the most episodes.";
-      }
-      if (hoursNote) {
-        hoursNote.textContent =
-          "Pick a theme to rank the same shows by listening time (episode duration).";
+      if (title) title.textContent = "Matching this theme";
+      if (note) {
+        note.textContent =
+          "Pick a parent or child theme to list matching podcasts or episodes under the sticky filter.";
       }
       renderExpandableHBar({
-        key: "themePodEps",
-        canvasSel: "#themePodEpsChart",
-        boxSel: "#themePodEpsBox",
-        moreSel: "#themePodEpsMore",
+        key: "themePod",
+        canvasSel: "#themePodChart",
+        boxSel: "#themePodBox",
+        moreSel: "#themePodMore",
         items: [],
         labelOf: (d) => d.name,
-        valueOf: (d) => d.count,
+        valueOf: (d) => (hours ? d.hours : d.count),
         colors: CATEGORICAL,
       });
-      renderExpandableHBar({
-        key: "themePodHours",
-        canvasSel: "#themePodHoursChart",
-        boxSel: "#themePodHoursBox",
-        moreSel: "#themePodHoursMore",
-        items: [],
-        labelOf: (d) => d.name,
-        valueOf: (d) => d.hours,
-        colors: CATEGORICAL,
-      });
+      const list = $("#themeEpisodeList");
+      if (list) list.innerHTML = `<div class="empty">Pick a theme to see matching episodes.</div>`;
+      if ($("#themePageInfo")) $("#themePageInfo").textContent = "";
+      if ($("#themePrevPage")) $("#themePrevPage").disabled = true;
+      if ($("#themeNextPage")) $("#themeNextPage").disabled = true;
       return;
     }
 
-    const items = podcastsForTheme(theme.id);
-    const byEps = items.slice().sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
-    const byHours = items
+    if (state.themeMatchView === "episodes") {
+      const rows = episodesForTheme(theme.id);
+      const totalPages = Math.max(1, Math.ceil(rows.length / state.themeMatchPageSize));
+      if (state.themeMatchPage >= totalPages) state.themeMatchPage = totalPages - 1;
+      if (state.themeMatchPage < 0) state.themeMatchPage = 0;
+      const start = state.themeMatchPage * state.themeMatchPageSize;
+      const slice = rows.slice(start, start + state.themeMatchPageSize);
+      if (title) title.textContent = `${theme.name} · episodes`;
+      if (note) {
+        note.textContent = rows.length
+          ? `${fmt(rows.length)} episodes tagged ${theme.name} in ${scope}.`
+          : `No episodes tagged ${theme.name} in ${scope}.`;
+      }
+      const list = $("#themeEpisodeList");
+      if (list) {
+        list.innerHTML =
+          slice.map(episodeCardHtml).join("") ||
+          `<div class="empty">No episodes match this theme under the current filter.</div>`;
+      }
+      if ($("#themePageInfo")) {
+        $("#themePageInfo").textContent = rows.length
+          ? `Page ${state.themeMatchPage + 1} / ${totalPages}`
+          : "No pages";
+      }
+      if ($("#themePrevPage")) $("#themePrevPage").disabled = state.themeMatchPage <= 0;
+      if ($("#themeNextPage")) {
+        $("#themeNextPage").disabled = state.themeMatchPage >= totalPages - 1 || !rows.length;
+      }
+      wireEpisodeCardJumps("#themeEpisodeList");
+      // Keep podcast chart in sync when toggling back.
+      return;
+    }
+
+    const items = podcastsForTheme(theme.id)
       .slice()
-      .sort((a, b) => b.hours - a.hours || a.name.localeCompare(b.name));
-    const topEps = byEps[0];
-    const topHours = byHours[0];
-
-    if (epsTitle) epsTitle.textContent = `${theme.name} · shows by episodes`;
-    if (hoursTitle) hoursTitle.textContent = `${theme.name} · shows by hours`;
-    if (epsNote) {
-      epsNote.textContent = topEps
-        ? `${fmt(byEps.length)} shows in ${scope}. Most episodes: ${topEps.name} (${fmt(topEps.count)}). Tap a bar to filter Explore.`
-        : `No matching episodes for ${theme.name} in ${scope}.`;
+      .sort((a, b) =>
+        hours
+          ? b.hours - a.hours || a.name.localeCompare(b.name)
+          : b.count - a.count || a.name.localeCompare(b.name)
+      );
+    const top = items[0];
+    if (title) {
+      title.textContent = hours
+        ? `${theme.name} · podcasts by hours`
+        : `${theme.name} · podcasts by episodes`;
     }
-    if (hoursNote) {
-      hoursNote.textContent = topHours
-        ? `${fmt(byHours.length)} shows in ${scope}. Most time: ${topHours.name} (${fmtHours(topHours.hours)}h). Tap a bar to filter Explore.`
-        : `No matching listening time for ${theme.name} in ${scope}.`;
+    if (note) {
+      note.textContent = top
+        ? `${fmt(items.length)} shows in ${scope}. Top: ${top.name} (${
+            hours ? `${fmtHours(top.hours)}h` : fmt(top.count)
+          }). Tap a bar to filter Explore.`
+        : `No matching shows for ${theme.name} in ${scope}.`;
     }
-
     renderExpandableHBar({
-      key: "themePodEps",
-      canvasSel: "#themePodEpsChart",
-      boxSel: "#themePodEpsBox",
-      moreSel: "#themePodEpsMore",
-      items: byEps,
+      key: "themePod",
+      canvasSel: "#themePodChart",
+      boxSel: "#themePodBox",
+      moreSel: "#themePodMore",
+      items,
       labelOf: (d) => d.name,
-      valueOf: (d) => d.count,
+      valueOf: (d) => (hours ? d.hours : d.count),
       colors: CATEGORICAL,
       onClick: (d) => jumpToThemePodcast(d?.name),
     });
-    renderExpandableHBar({
-      key: "themePodHours",
-      canvasSel: "#themePodHoursChart",
-      boxSel: "#themePodHoursBox",
-      moreSel: "#themePodHoursMore",
-      items: byHours,
-      labelOf: (d) => d.name,
-      valueOf: (d) => d.hours,
-      colors: CATEGORICAL,
-      onClick: (d) => jumpToThemePodcast(d?.name),
-    });
+  }
+
+  /** @deprecated name kept as alias while call sites migrate */
+  function renderThemePodcastCharts() {
+    renderThemeMatchPanel();
   }
 
   function displayThemeTags(ids) {
@@ -1824,71 +1958,15 @@
     const slice = rows.slice(start, start + state.pageSize);
 
     $("#listMeta").textContent = `${fmt(rows.length)} matching episodes`;
-    $("#episodeList").innerHTML = slice
-      .map((e) => {
-        const note = noteTextForIndex(e._i);
-        const noteMeta = state.notes?.[String(e._i)];
-        const noteSrc = noteMeta?.src;
-        const noteFull = noteMeta?.full || (noteMeta?.chars || 0) > 900;
-        const noteLabel =
-          noteSrc === "stt"
-            ? noteFull
-              ? "full STT"
-              : "STT"
-            : noteSrc === "transcript"
-              ? noteFull
-                ? "full transcript"
-                : "transcript"
-              : noteSrc === "show-notes"
-                ? "show notes"
-                : noteSrc;
-        const themeTags = displayThemeTags(e._th || [])
-          .map((id) => {
-            const name = state.themeById[id]?.name || id;
-            return `<button type="button" class="tag ok" data-theme-jump="${escapeHtml(id)}">${escapeHtml(name)}</button>`;
-          })
-          .join("");
-        const snippet =
-          note &&
-          (String(state.chartPeriod.q || "").trim()
-            ? note
-            : note.length > 280
-              ? note.slice(0, 280) + "…"
-              : note);
-        const country = e._country || countryForEpisode(e);
-        return `
-      <article class="ep">
-        <div class="ep-show">${escapeHtml(e.p || "Podcast")}${e.f ? ` · ${escapeHtml(e.f)}` : ""}</div>
-        <h3>${escapeHtml(e.e || "(untitled)")}</h3>
-        <div class="ep-meta">
-          <span>${escapeHtml(e.d || e.t || "")}</span>
-          ${e.dur ? `<span>${escapeHtml(e.dur)}</span>` : ""}
-          ${country && country !== "Unknown" ? `<button type="button" class="tag" data-country-jump="${escapeHtml(country)}">${escapeHtml(country)}</button>` : ""}
-          ${e.st ? `<span class="tag ${e.st === "Played" ? "ok" : e.st === "In progress" ? "warn" : ""}">${escapeHtml(e.st)}</span>` : ""}
-          ${e.prog !== "" && e.prog != null ? `<span>${escapeHtml(e.prog)}%</span>` : ""}
-          ${e.star ? `<span class="tag ok">Starred</span>` : ""}
-          ${noteLabel ? `<span class="tag ${noteFull ? "ok" : ""}">${escapeHtml(noteLabel)}</span>` : ""}
-        </div>
-        ${themeTags ? `<div class="ep-themes">${themeTags}</div>` : ""}
-        ${snippet ? `<div class="ep-note">${escapeHtml(snippet)}</div>` : ""}
-      </article>`;
-      })
-      .join("") || `<div class="empty">No episodes match these filters.</div>`;
+    $("#episodeList").innerHTML =
+      slice.map(episodeCardHtml).join("") ||
+      `<div class="empty">No episodes match these filters.</div>`;
 
     $("#pageInfo").textContent = `Page ${state.page + 1} / ${totalPages}`;
     $("#prevPage").disabled = state.page <= 0;
     $("#nextPage").disabled = state.page >= totalPages - 1;
 
-    $$("#episodeList [data-theme-jump]").forEach((btn) => {
-      btn.addEventListener("click", () => selectTheme(btn.dataset.themeJump, true));
-    });
-    $$("#episodeList [data-country-jump]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const c = btn.dataset.countryJump;
-        if (!c) return;
-        patchChartPeriod({ country: c });
-      });
-    });
+    wireEpisodeCardJumps("#episodeList", { jumpExplore: true });
 
     // Insights for current filter
     const byPod = {};
@@ -2319,6 +2397,19 @@
       renderEpisodeList();
       $("#episodeList").scrollIntoView({ behavior: "smooth", block: "start" });
     });
+    $$("[data-theme-match]").forEach((btn) => {
+      btn.addEventListener("click", () => applyThemeMatchView(btn.dataset.themeMatch));
+    });
+    $("#themePrevPage")?.addEventListener("click", () => {
+      state.themeMatchPage -= 1;
+      renderThemeMatchPanel();
+      $("#themeEpisodeList")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+    $("#themeNextPage")?.addEventListener("click", () => {
+      state.themeMatchPage += 1;
+      renderThemeMatchPanel();
+      $("#themeEpisodeList")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
 
     // Nav smooth scroll
     $$("[data-jump]").forEach((a) => {
@@ -2364,10 +2455,12 @@
     $("#periodQ")?.addEventListener("input", (e) => {
       clearTimeout(qTimer);
       qTimer = setTimeout(() => {
-        // Search only refreshes the explorer list — not every chart.
+        // Search refreshes episode lists — not every chart.
         state.chartPeriod.q = e.target.value;
         state.page = 0;
+        state.themeMatchPage = 0;
         renderEpisodeList();
+        if (state.themeMatchView === "episodes") renderThemeMatchPanel();
         updatePeriodSummary();
       }, 160);
     });

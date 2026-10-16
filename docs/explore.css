@@ -195,6 +195,23 @@ button, input, select { font: inherit; }
   background: var(--sea-fill);
   color: var(--on-sea);
 }
+.theme-match-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 8px;
+}
+.theme-match-head h3 {
+  margin: 0 0 4px;
+}
+.theme-match-head .panel-note {
+  margin: 0;
+}
+.theme-match-toggle {
+  flex-shrink: 0;
+}
 .tool-btn {
   border: 1px solid var(--line);
   background: var(--input);
@@ -228,12 +245,8 @@ button, input, select { font: inherit; }
   top: 58px;
   z-index: 30;
   padding: 10px 0 4px;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--paper) 92%, transparent) 0%,
-    color-mix(in srgb, var(--paper) 78%, transparent) 70%,
-    transparent 100%
-  );
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
 }
 .period-bar {
   margin: 0 auto;
