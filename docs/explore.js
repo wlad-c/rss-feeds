@@ -43,7 +43,7 @@
     focusedParentId: "",
     themeYears: [], // empty = all years; multi-select from themes panel
     metric: "episodes", // "episodes" | "hours"
-    chartPeriod: { year: "", month: "", day: "" },
+    chartPeriod: { year: "", month: "", day: "", country: "" },
     charts: {},
     barReveal: {},
     tableReveal: { top: 12 },
@@ -149,31 +149,37 @@
   }
 
   function chartPeriodActive() {
-    const { year, month, day } = state.chartPeriod;
-    return !!(year || month || day);
+    const { year, month, day, country } = state.chartPeriod;
+    return !!(year || month || day || country);
   }
 
   function chartPeriodKey() {
-    const { year, month, day } = state.chartPeriod;
-    return `${year || "all"}|${month || "all"}|${day || "all"}`;
+    const { year, month, day, country } = state.chartPeriod;
+    return `${year || "all"}|${month || "all"}|${day || "all"}|${country || "all"}`;
   }
 
   function chartPeriodLabel() {
-    const { year, month, day } = state.chartPeriod;
-    if (!year) return "All time";
-    if (!month) return String(year);
-    const monthLabel = MONTH_NAME[month] || month;
-    if (!day) return `${monthLabel} ${year}`;
-    return `${Number(day)} ${monthLabel} ${year}`;
+    const { year, month, day, country } = state.chartPeriod;
+    const bits = [];
+    if (year) {
+      if (!month) bits.push(String(year));
+      else {
+        const monthLabel = MONTH_NAME[month] || month;
+        bits.push(day ? `${Number(day)} ${monthLabel} ${year}` : `${monthLabel} ${year}`);
+      }
+    }
+    if (country) bits.push(country);
+    return bits.length ? bits.join(" · ") : "All time";
   }
 
   function episodeMatchesChartPeriod(e) {
-    const { year, month, day } = state.chartPeriod;
-    if (!year && !month && !day) return true;
+    const { year, month, day, country } = state.chartPeriod;
+    if (!year && !month && !day && !country) return true;
     const d = String(e.d || "");
     if (year && String(e.y) !== String(year)) return false;
     if (month && d.slice(5, 7) !== month) return false;
     if (day && d.slice(8, 10) !== day) return false;
+    if (country && countryForEpisode(e) !== country) return false;
     return true;
   }
 
@@ -215,7 +221,10 @@
     const year = next.year ? String(next.year) : "";
     const month = year && next.month ? String(next.month).padStart(2, "0") : "";
     const day = year && month && next.day ? String(next.day).padStart(2, "0") : "";
-    state.chartPeriod = { year, month, day };
+    const country = Object.prototype.hasOwnProperty.call(next, "country")
+      ? String(next.country || "")
+      : String(state.chartPeriod.country || "");
+    state.chartPeriod = { year, month, day, country };
     invalidateChartStats();
     syncPeriodControls();
     updateMetricLabels();
@@ -228,9 +237,12 @@
       state.filters.year = "all";
       if ($("#yearFilter")) $("#yearFilter").value = "all";
     }
+    state.filters.country = country;
+    if ($("#countryFilter")) $("#countryFilter").value = country;
     state.page = 0;
     state.barReveal.top = BAR_PAGE;
     state.tableReveal.top = BAR_PAGE;
+    state.barReveal.country = BAR_PAGE;
     rerenderCharts();
     renderHeatmap();
     renderTopTable();
@@ -238,13 +250,29 @@
     renderEpisodeList();
   }
 
+  function availableCountries() {
+    const counts = Object.create(null);
+    for (const e of state.episodes || []) {
+      const c = countryForEpisode(e);
+      counts[c] = (counts[c] || 0) + 1;
+    }
+    return Object.keys(counts)
+      .sort((a, b) => {
+        if (a === "Unknown") return 1;
+        if (b === "Unknown") return -1;
+        return counts[b] - counts[a] || a.localeCompare(b);
+      })
+      .map((c) => ({ name: c, count: counts[c] }));
+  }
+
   function syncPeriodControls() {
     const yearSel = $("#periodYear");
     const monthSel = $("#periodMonth");
     const daySel = $("#periodDay");
+    const countrySel = $("#periodCountry");
     if (!yearSel || !monthSel || !daySel) return;
     const idx = ensurePeriodIndex();
-    const { year, month, day } = state.chartPeriod;
+    const { year, month, day, country } = state.chartPeriod;
     yearSel.innerHTML =
       `<option value="">All years</option>` +
       idx.years.map((y) => `<option value="${escapeHtml(y)}">${escapeHtml(y)}</option>`).join("");
@@ -270,6 +298,19 @@
     if (state.chartPeriod.month !== monthSel.value || state.chartPeriod.day !== daySel.value) {
       state.chartPeriod.month = monthSel.value || "";
       state.chartPeriod.day = daySel.value || "";
+    }
+
+    if (countrySel && state.episodes) {
+      const countries = availableCountries();
+      countrySel.innerHTML =
+        `<option value="">All countries</option>` +
+        countries
+          .map(
+            (c) =>
+              `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)} (${fmt(c.count)})</option>`
+          )
+          .join("");
+      countrySel.value = country || "";
     }
   }
 
@@ -1251,11 +1292,13 @@
       colors: CATEGORICAL,
       onClick: (d) => {
         if (!d?.name) return;
-        state.filters.country = d.name;
-        if ($("#countryFilter")) $("#countryFilter").value = d.name;
-        state.page = 0;
+        applyChartPeriod({
+          year: state.chartPeriod.year,
+          month: state.chartPeriod.month,
+          day: state.chartPeriod.day,
+          country: d.name,
+        });
         $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
-        renderEpisodeList();
       },
     });
   }
@@ -1411,25 +1454,17 @@
 
     const countrySel = $("#countryFilter");
     if (countrySel) {
-      const counts = Object.create(null);
-      for (const e of state.episodes || []) {
-        const c = countryForEpisode(e);
-        counts[c] = (counts[c] || 0) + 1;
-      }
-      const countries = Object.keys(counts).sort((a, b) => {
-        if (a === "Unknown") return 1;
-        if (b === "Unknown") return -1;
-        return counts[b] - counts[a] || a.localeCompare(b);
-      });
+      const countries = availableCountries();
       countrySel.innerHTML =
         `<option value="">All countries</option>` +
         countries
           .map(
             (c) =>
-              `<option value="${escapeHtml(c)}">${escapeHtml(c)} (${fmt(counts[c])})</option>`
+              `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)} (${fmt(c.count)})</option>`
           )
           .join("");
-      if (state.filters.country) countrySel.value = state.filters.country;
+      const selected = state.chartPeriod.country || state.filters.country || "";
+      if (selected) countrySel.value = selected;
     }
   }
 
@@ -1788,10 +1823,12 @@
       btn.addEventListener("click", () => {
         const c = btn.dataset.countryJump;
         if (!c) return;
-        state.filters.country = c;
-        if ($("#countryFilter")) $("#countryFilter").value = c;
-        state.page = 0;
-        renderEpisodeList();
+        applyChartPeriod({
+          year: state.chartPeriod.year,
+          month: state.chartPeriod.month,
+          day: state.chartPeriod.day,
+          country: c,
+        });
       });
     });
 
@@ -2287,9 +2324,12 @@
       renderEpisodeList();
     });
     $("#countryFilter")?.addEventListener("change", (e) => {
-      state.filters.country = e.target.value;
-      state.page = 0;
-      renderEpisodeList();
+      applyChartPeriod({
+        year: state.chartPeriod.year,
+        month: state.chartPeriod.month,
+        day: state.chartPeriod.day,
+        country: e.target.value,
+      });
     });
     let t;
     $("#q").addEventListener("input", (e) => {
@@ -2362,14 +2402,7 @@
       $("#q").value = "";
       if ($("#topicQ")) $("#topicQ").value = "";
       setThemeYearPanelOpen(false);
-      applyChartPeriod({ year: "", month: "", day: "" }, { rerender: false });
-      invalidateChartStats();
-      rerenderCharts();
-      renderHeatmap();
-      renderTopTable();
-      refreshThemeViews();
-      renderEpisodeList();
-      updatePeriodSummary();
+      applyChartPeriod({ year: "", month: "", day: "", country: "" });
     });
 
     // Nav smooth scroll
@@ -2392,13 +2425,19 @@
       });
     });
     $("#periodYear")?.addEventListener("change", (e) => {
-      applyChartPeriod({ year: e.target.value, month: "", day: "" });
+      applyChartPeriod({
+        year: e.target.value,
+        month: "",
+        day: "",
+        country: state.chartPeriod.country,
+      });
     });
     $("#periodMonth")?.addEventListener("change", (e) => {
       applyChartPeriod({
         year: state.chartPeriod.year,
         month: e.target.value,
         day: "",
+        country: state.chartPeriod.country,
       });
     });
     $("#periodDay")?.addEventListener("change", (e) => {
@@ -2406,10 +2445,19 @@
         year: state.chartPeriod.year,
         month: state.chartPeriod.month,
         day: e.target.value,
+        country: state.chartPeriod.country,
+      });
+    });
+    $("#periodCountry")?.addEventListener("change", (e) => {
+      applyChartPeriod({
+        year: state.chartPeriod.year,
+        month: state.chartPeriod.month,
+        day: state.chartPeriod.day,
+        country: e.target.value,
       });
     });
     $("#periodClear")?.addEventListener("click", () => {
-      applyChartPeriod({ year: "", month: "", day: "" });
+      applyChartPeriod({ year: "", month: "", day: "", country: "" });
     });
     $("#hardRefresh")?.addEventListener("click", () => {
       hardRefresh();

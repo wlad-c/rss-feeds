@@ -258,6 +258,9 @@ button, input, select { font: inherit; }
   gap: 3px;
   min-width: 7.5rem;
 }
+.period-field-country {
+  min-width: 9.5rem;
+}
 .period-field span {
   font-size: 0.72rem;
   font-weight: 700;
@@ -272,6 +275,9 @@ button, input, select { font: inherit; }
   font: inherit;
   font-weight: 600;
   min-width: 8.5rem;
+}
+.period-field-country select {
+  min-width: 10.5rem;
 }
 .period-field select:disabled {
   opacity: 0.45;
