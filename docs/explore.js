@@ -2048,6 +2048,11 @@
     });
   }
 
+  function setThemeMatchPanelVisible(visible) {
+    const panel = $("#themeMatchPanel");
+    if (panel) panel.hidden = !visible;
+  }
+
   function renderThemeMatchPanel() {
     const theme = selectedTheme();
     const title = $("#themeMatchTitle");
@@ -2062,32 +2067,19 @@
       state.themeMatchPage = 0;
     }
 
+    // Hide until a theme is selected and there are matching shows/episodes.
     if (!theme) {
-      if (title) title.textContent = "Matching this theme";
-      if (note) {
-        note.textContent =
-          "Pick a parent or child theme to list matching podcasts or episodes under the sticky filter.";
-      }
-      renderExpandableHBar({
-        key: "themePod",
-        canvasSel: "#themePodChart",
-        boxSel: "#themePodBox",
-        moreSel: "#themePodMore",
-        items: [],
-        labelOf: (d) => d.name,
-        valueOf: (d) => (hours ? d.hours : d.count),
-        colors: categorical(),
-      });
-      const list = $("#themeEpisodeList");
-      if (list) list.innerHTML = `<div class="empty">Pick a theme to see matching episodes.</div>`;
-      if ($("#themePageInfo")) $("#themePageInfo").textContent = "";
-      if ($("#themePrevPage")) $("#themePrevPage").disabled = true;
-      if ($("#themeNextPage")) $("#themeNextPage").disabled = true;
+      setThemeMatchPanelVisible(false);
       return;
     }
 
     if (state.themeMatchView === "episodes") {
       const rows = episodesForTheme(theme.id);
+      if (!rows.length) {
+        setThemeMatchPanelVisible(false);
+        return;
+      }
+      setThemeMatchPanelVisible(true);
       const totalPages = Math.max(1, Math.ceil(rows.length / state.themeMatchPageSize));
       if (state.themeMatchPage >= totalPages) state.themeMatchPage = totalPages - 1;
       if (state.themeMatchPage < 0) state.themeMatchPage = 0;
@@ -2095,27 +2087,18 @@
       const slice = rows.slice(start, start + state.themeMatchPageSize);
       if (title) title.textContent = `${theme.name} · episodes`;
       if (note) {
-        note.textContent = rows.length
-          ? `${fmt(rows.length)} episodes tagged ${theme.name} in ${scope}.`
-          : `No episodes tagged ${theme.name} in ${scope}.`;
+        note.textContent = `${fmt(rows.length)} episodes tagged ${theme.name} in ${scope}.`;
       }
       const list = $("#themeEpisodeList");
-      if (list) {
-        list.innerHTML =
-          slice.map(episodeCardHtml).join("") ||
-          `<div class="empty">No episodes match this theme under the current filter.</div>`;
-      }
+      if (list) list.innerHTML = slice.map(episodeCardHtml).join("");
       if ($("#themePageInfo")) {
-        $("#themePageInfo").textContent = rows.length
-          ? `Page ${state.themeMatchPage + 1} / ${totalPages}`
-          : "No pages";
+        $("#themePageInfo").textContent = `Page ${state.themeMatchPage + 1} / ${totalPages}`;
       }
       if ($("#themePrevPage")) $("#themePrevPage").disabled = state.themeMatchPage <= 0;
       if ($("#themeNextPage")) {
-        $("#themeNextPage").disabled = state.themeMatchPage >= totalPages - 1 || !rows.length;
+        $("#themeNextPage").disabled = state.themeMatchPage >= totalPages - 1;
       }
       wireEpisodeCardJumps("#themeEpisodeList");
-      // Keep podcast chart in sync when toggling back.
       return;
     }
 
@@ -2126,6 +2109,11 @@
           ? b.hours - a.hours || a.name.localeCompare(b.name)
           : b.count - a.count || a.name.localeCompare(b.name)
       );
+    if (!items.length) {
+      setThemeMatchPanelVisible(false);
+      return;
+    }
+    setThemeMatchPanelVisible(true);
     const top = items[0];
     if (title) {
       title.textContent = hours
@@ -2133,11 +2121,9 @@
         : `${theme.name} · podcasts by episodes`;
     }
     if (note) {
-      note.textContent = top
-        ? `${fmt(items.length)} shows in ${scope}. Top: ${top.name} (${
-            hours ? `${fmtHours(top.hours)}h` : fmt(top.count)
-          }). Tap a bar to filter Explore.`
-        : `No matching shows for ${theme.name} in ${scope}.`;
+      note.textContent = `${fmt(items.length)} shows in ${scope}. Top: ${top.name} (${
+        hours ? `${fmtHours(top.hours)}h` : fmt(top.count)
+      }). Tap a bar to filter Explore.`;
     }
     renderExpandableHBar({
       key: "themePod",
