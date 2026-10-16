@@ -20,6 +20,7 @@ COPY = [
     "notes.json",
     "notes-meta.json",
     "podcasts.json",
+    "podcast-countries.json",
     "themes.json",
 ]
 
