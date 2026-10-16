@@ -819,99 +819,18 @@ tr:last-child td { border-bottom: 0; }
 
 .linkish:hover { text-decoration: underline; }
 
-/* Theme browser */
-.theme-search-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 8px;
-  margin-bottom: 12px;
-  align-items: center;
-}
-
-.theme-search-row input[type="search"] {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-}
-
-.theme-chips {
+/* Theme chart */
+.theme-chart-head {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.theme-chips-child {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 0.5px solid var(--separator);
-}
-
-.theme-chip {
-  border: 0;
-  background: var(--fill);
-  color: var(--label);
-  border-radius: var(--radius-control);
-  padding: 8px 12px;
-  font-size: 0.875rem;
-  font-weight: 550;
-  letter-spacing: -0.015em;
-  cursor: pointer;
-  transition: background 160ms var(--ease-out), color 160ms var(--ease-out),
-    transform 180ms var(--ease-spring);
-}
-
-.theme-chip:hover { background: var(--fill-secondary); }
-.theme-chip:active { transform: scale(0.97); }
-
-.theme-chip.active {
-  background: var(--system-blue-fill);
-  color: var(--on-accent);
-}
-
-.theme-chip.child {
-  font-size: 0.8125rem;
-  padding: 6px 11px;
-  background: var(--green-soft);
-  color: var(--label);
-}
-
-.theme-chip.child.active {
-  background: var(--system-teal);
-  color: var(--on-accent);
-}
-
-.theme-chip small {
-  margin-left: 6px;
-  color: var(--secondary-label);
-  font-weight: 550;
-  font-variant-numeric: tabular-nums;
-}
-
-.theme-chip.active small {
-  color: var(--on-accent);
-  opacity: 0.85;
-}
-
-.theme-breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
   align-items: center;
-  margin: 0 0 12px;
-  font-size: 0.875rem;
-  color: var(--secondary-label);
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
 }
 
-.theme-breadcrumb button {
-  border: 0;
-  background: none;
-  color: var(--system-blue);
-  font-weight: 550;
-  cursor: pointer;
-  padding: 0;
+.theme-chart-head h3 {
+  margin: 0;
 }
-
-.theme-breadcrumb button:hover { text-decoration: underline; }
 
 .chart-more {
   display: flex;
@@ -1546,7 +1465,6 @@ body:not(.ready) #topPanel {
   .grid-2,
   .grid-2.equal { grid-template-columns: 1fr; }
 
-  .theme-search-row { grid-template-columns: 1fr auto; }
   .chart-box,
   .chart-box.tall,
   .chart-box.mid { height: 260px; }

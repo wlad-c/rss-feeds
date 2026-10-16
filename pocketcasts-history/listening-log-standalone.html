@@ -852,99 +852,18 @@ tr:last-child td { border-bottom: 0; }
 
 .linkish:hover { text-decoration: underline; }
 
-/* Theme browser */
-.theme-search-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 8px;
-  margin-bottom: 12px;
-  align-items: center;
-}
-
-.theme-search-row input[type="search"] {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-}
-
-.theme-chips {
+/* Theme chart */
+.theme-chart-head {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.theme-chips-child {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 0.5px solid var(--separator);
-}
-
-.theme-chip {
-  border: 0;
-  background: var(--fill);
-  color: var(--label);
-  border-radius: var(--radius-control);
-  padding: 8px 12px;
-  font-size: 0.875rem;
-  font-weight: 550;
-  letter-spacing: -0.015em;
-  cursor: pointer;
-  transition: background 160ms var(--ease-out), color 160ms var(--ease-out),
-    transform 180ms var(--ease-spring);
-}
-
-.theme-chip:hover { background: var(--fill-secondary); }
-.theme-chip:active { transform: scale(0.97); }
-
-.theme-chip.active {
-  background: var(--system-blue-fill);
-  color: var(--on-accent);
-}
-
-.theme-chip.child {
-  font-size: 0.8125rem;
-  padding: 6px 11px;
-  background: var(--green-soft);
-  color: var(--label);
-}
-
-.theme-chip.child.active {
-  background: var(--system-teal);
-  color: var(--on-accent);
-}
-
-.theme-chip small {
-  margin-left: 6px;
-  color: var(--secondary-label);
-  font-weight: 550;
-  font-variant-numeric: tabular-nums;
-}
-
-.theme-chip.active small {
-  color: var(--on-accent);
-  opacity: 0.85;
-}
-
-.theme-breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
   align-items: center;
-  margin: 0 0 12px;
-  font-size: 0.875rem;
-  color: var(--secondary-label);
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
 }
 
-.theme-breadcrumb button {
-  border: 0;
-  background: none;
-  color: var(--system-blue);
-  font-weight: 550;
-  cursor: pointer;
-  padding: 0;
+.theme-chart-head h3 {
+  margin: 0;
 }
-
-.theme-breadcrumb button:hover { text-decoration: underline; }
 
 .chart-more {
   display: flex;
@@ -1579,7 +1498,6 @@ body:not(.ready) #topPanel {
   .grid-2,
   .grid-2.equal { grid-template-columns: 1fr; }
 
-  .theme-search-row { grid-template-columns: 1fr auto; }
   .chart-box,
   .chart-box.tall,
   .chart-box.mid { height: 260px; }
@@ -1839,22 +1757,15 @@ body:not(.ready) #topPanel {
         <div class="section-head">
           <div>
             <h2>Themes across episodes</h2>
-            <p>Parent themes with content-derived child topics — tap a parent to drill in. The sticky filter above scopes every theme chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
+            <p>Tap a bar to drill into child themes. The sticky filter above scopes every chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
           </div>
         </div>
-        <div class="panel">
-          <div class="theme-search-row">
-            <input id="topicQ" type="search" placeholder="Search a topic — e.g. Gaza, Lula, AUKUS, inflation…" />
-            <button class="btn secondary" id="clearTopic" type="button">Clear</button>
-          </div>
-          <p class="panel-note" id="themeCoverage"></p>
-          <div class="theme-breadcrumb" id="themeBreadcrumb" hidden></div>
-          <div class="theme-chips" id="themeChips" aria-label="Parent themes"></div>
-          <div class="theme-chips theme-chips-child" id="themeChildChips" aria-label="Child themes" hidden></div>
-        </div>
-        <div class="grid-2 stack-gap">
+        <div class="grid-2">
           <div class="panel">
-            <h3 id="themeChartTitle">Parent themes</h3>
+            <div class="theme-chart-head">
+              <h3 id="themeChartTitle">Parent themes</h3>
+              <button class="btn secondary" id="themeChartBack" type="button" hidden>All parents</button>
+            </div>
             <div class="chart-box tall" id="themeChartBox"><canvas id="themeChart"></canvas></div>
             <div class="chart-more" id="themeChartMore"></div>
           </div>
@@ -3813,8 +3724,26 @@ body:not(.ready) #topPanel {
     );
   }
 
+  function pruneInvisibleThemeSelection() {
+    if (!state.themesDoc?.themes) return;
+    const focused = state.themeById[state.focusedParentId];
+    const active = state.themeById[state.activeTheme];
+    const focusGone = !!(focused && themeMetricInYears(focused) <= 0);
+    const activeGone = !!(active && themeMetricInYears(active) <= 0);
+    if (!focusGone && !activeGone) return;
+    state.focusedParentId = focusGone ? "" : state.focusedParentId;
+    if (activeGone || (focusGone && state.chartPeriod.theme)) {
+      state.chartPeriod.theme = "";
+      state.activeTheme = "";
+      state.focusedParentId = "";
+      const themeSel = $("#periodTheme");
+      if (themeSel) themeSel.value = "";
+      updatePeriodSummary();
+    }
+  }
+
   function refreshThemeViews() {
-    renderThemeChips();
+    pruneInvisibleThemeSelection();
     renderThemeChart();
     renderThemeYearChart();
     renderThemePodcastCharts();
@@ -4142,123 +4071,6 @@ body:not(.ready) #topPanel {
       : "";
   }
 
-  function renderThemeBreadcrumb() {
-    const host = $("#themeBreadcrumb");
-    if (!host) return;
-    const parent = state.themeById[state.focusedParentId];
-    if (!parent) {
-      host.hidden = true;
-      host.innerHTML = "";
-      return;
-    }
-    host.hidden = false;
-    host.innerHTML = `
-      <button type="button" data-crumb="all">All themes</button>
-      <span>›</span>
-      <strong>${escapeHtml(parent.name)}</strong>`;
-    host.querySelector("[data-crumb='all']")?.addEventListener("click", () => {
-      state.focusedParentId = "";
-      state.barReveal.theme = BAR_PAGE;
-      selectTheme("", false);
-    });
-  }
-
-  function renderThemeChips() {
-    const host = $("#themeChips");
-    const childHost = $("#themeChildChips");
-    if (!host || !state.themesDoc?.themes) return;
-
-    // Drop focus/selection when the active theme no longer appears under filters.
-    const focused = state.themeById[state.focusedParentId];
-    const active = state.themeById[state.activeTheme];
-    const focusGone = !!(focused && themeMetricInYears(focused) <= 0);
-    const activeGone = !!(active && themeMetricInYears(active) <= 0);
-    if (focusGone || activeGone) {
-      state.focusedParentId = focusGone ? "" : state.focusedParentId;
-      if (activeGone || (focusGone && state.chartPeriod.theme)) {
-        state.chartPeriod.theme = "";
-        state.activeTheme = "";
-        state.focusedParentId = "";
-        const themeSel = $("#periodTheme");
-        if (themeSel) themeSel.value = "";
-        updatePeriodSummary();
-      }
-    }
-
-    const parents = themesPresentInFilter(parentThemes())
-      .slice()
-      .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
-    if (!parents.length) {
-      host.innerHTML = `<div class="empty">No themes match the current filters.</div>`;
-    } else {
-      host.innerHTML = parents
-        .map(
-          (t) => `
-      <button type="button" class="theme-chip${
-        state.focusedParentId === t.id || state.activeTheme === t.id ? " active" : ""
-      }" data-theme="${escapeHtml(t.id)}">
-        ${escapeHtml(t.name)}<small>${escapeHtml(themeMetricLabel(themeMetricInYears(t)))}</small>
-      </button>`
-        )
-        .join("");
-      $$(".theme-chip", host).forEach((btn) => {
-        btn.addEventListener("click", () => focusParentTheme(btn.dataset.theme));
-      });
-    }
-
-    const parent = state.themeById[state.focusedParentId];
-    if (childHost) {
-      const kids = parent?.children?.length
-        ? themesPresentInFilter(parent.children)
-            .slice()
-            .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
-        : [];
-      if (kids.length) {
-        childHost.hidden = false;
-        childHost.innerHTML = kids
-          .map(
-            (t) => `
-          <button type="button" class="theme-chip child${
-            state.activeTheme === t.id ? " active" : ""
-          }" data-theme="${escapeHtml(t.id)}">
-            ${escapeHtml(t.name)}<small>${escapeHtml(themeMetricLabel(themeMetricInYears(t)))}</small>
-          </button>`
-          )
-          .join("");
-        $$(".theme-chip", childHost).forEach((btn) => {
-          btn.addEventListener("click", () => selectTheme(btn.dataset.theme, false));
-        });
-      } else {
-        childHost.hidden = true;
-        childHost.innerHTML = "";
-      }
-    }
-
-    renderThemeBreadcrumb();
-    const meta = state.themesDoc.meta || {};
-    const notesN = state.notes ? Object.keys(state.notes).length : 0;
-    const scoped = ensureChartStats();
-    const noteEntries = Object.values(state.notes || {});
-    const txN = noteEntries.filter((n) => n?.src === "transcript" || n?.src === "stt").length;
-    const fullN = noteEntries.filter((n) => n?.full || (n?.chars || 0) > 900).length;
-    const bodyN = meta.episodesWithBodyText != null ? meta.episodesWithBodyText : notesN;
-    const periodBit = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
-    const childVisible = parents.reduce(
-      (n, p) => n + themesPresentInFilter(p.children || []).length,
-      0
-    );
-    $("#themeCoverage").textContent =
-      `${fmt(scoped.episodeCount)} episodes${periodBit}` +
-      ` · ${fmt(parents.length)} parents / ${fmt(childVisible)} child themes` +
-      (chartPeriodActive() && meta.parentCount != null
-        ? ` (of ${fmt(meta.parentCount)} / ${fmt(meta.childCount)} overall)`
-        : "") +
-      (bodyN
-        ? ` · ${fmt(bodyN)} with body text (${fmt(txN)} transcript/STT, ${fmt(fullN)} longer than snippet)`
-        : "") +
-      `. Themes prefer transcript-backed matches when full text is stored.`;
-  }
-
   function themeChartItems() {
     const parent = state.themeById[state.focusedParentId];
     if (parent?.children?.length) return themesPresentInFilter(parent.children);
@@ -4269,11 +4081,26 @@ body:not(.ready) #topPanel {
     if (!state.themesDoc?.themes) return;
     const items = themeChartItems();
     const title = $("#themeChartTitle");
-    const yearSuffix = chartPeriodActive() ? ` · ${chartPeriodLabel()}` : "";
+    const back = $("#themeChartBack");
+    const drilled = !!state.focusedParentId;
+    const periodLabel = chartPeriodActive()
+      ? chartPeriodLabel({ omitTheme: drilled })
+      : "";
+    const yearSuffix = periodLabel && periodLabel !== "All time" ? ` · ${periodLabel}` : "";
     if (title) {
-      title.textContent = state.focusedParentId
+      title.textContent = drilled
         ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes${yearSuffix}`
         : `Parent themes${yearSuffix}`;
+    }
+    if (back) {
+      back.hidden = !drilled;
+      back.onclick = drilled
+        ? () => {
+            state.focusedParentId = "";
+            state.barReveal.theme = BAR_PAGE;
+            selectTheme("", false);
+          }
+        : null;
     }
     renderExpandableHBar({
       key: "theme",
@@ -4464,10 +4291,7 @@ body:not(.ready) #topPanel {
   function focusParentTheme(parentId) {
     state.barReveal.theme = BAR_PAGE;
     const patch = { theme: parentId || "" };
-    if (parentId) {
-      patch.q = "";
-      if ($("#topicQ")) $("#topicQ").value = "";
-    }
+    if (parentId) patch.q = "";
     patchChartPeriod(patch);
   }
 
@@ -4481,26 +4305,9 @@ body:not(.ready) #topPanel {
       return;
     }
     const patch = { theme: themeId || "" };
-    if (themeId) {
-      patch.q = "";
-      if ($("#topicQ")) $("#topicQ").value = "";
-    }
+    if (themeId) patch.q = "";
     patchChartPeriod(patch);
     if (jumpExplore) {
-      $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
-  function runTopicSearch(raw) {
-    const q = (raw || "").trim();
-    const ql = q.toLowerCase();
-    const hit = flatThemes().find(
-      (t) => t.name.toLowerCase() === ql || t.id === ql
-    );
-    if (hit) {
-      selectTheme(hit.id, true);
-    } else {
-      patchChartPeriod({ q });
       $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
@@ -4558,22 +4365,6 @@ body:not(.ready) #topPanel {
   }
 
   function wire() {
-    let topicT;
-    $("#topicQ")?.addEventListener("input", (e) => {
-      clearTimeout(topicT);
-      topicT = setTimeout(() => runTopicSearch(e.target.value), 220);
-    });
-    $("#topicQ")?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        runTopicSearch(e.target.value);
-      }
-    });
-    $("#clearTopic")?.addEventListener("click", () => {
-      if ($("#topicQ")) $("#topicQ").value = "";
-      state.barReveal.theme = BAR_PAGE;
-      patchChartPeriod({ theme: "", q: "" });
-    });
     $("#prevPage").addEventListener("click", () => {
       state.page -= 1;
       renderEpisodeList();
@@ -4684,7 +4475,6 @@ body:not(.ready) #topPanel {
     });
 
     const clearAllFilters = () => {
-      if ($("#topicQ")) $("#topicQ").value = "";
       applyChartPeriod({
         year: "",
         month: "",
@@ -4793,7 +4583,6 @@ body:not(.ready) #topPanel {
       renderDurationChart();
       renderHeatmap();
       renderTopTable();
-      renderThemeChips();
       renderThemeChart();
       renderThemeYearChart();
       renderThemePodcastCharts();
