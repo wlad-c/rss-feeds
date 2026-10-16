@@ -1803,8 +1803,26 @@
     );
   }
 
+  function pruneInvisibleThemeSelection() {
+    if (!state.themesDoc?.themes) return;
+    const focused = state.themeById[state.focusedParentId];
+    const active = state.themeById[state.activeTheme];
+    const focusGone = !!(focused && themeMetricInYears(focused) <= 0);
+    const activeGone = !!(active && themeMetricInYears(active) <= 0);
+    if (!focusGone && !activeGone) return;
+    state.focusedParentId = focusGone ? "" : state.focusedParentId;
+    if (activeGone || (focusGone && state.chartPeriod.theme)) {
+      state.chartPeriod.theme = "";
+      state.activeTheme = "";
+      state.focusedParentId = "";
+      const themeSel = $("#periodTheme");
+      if (themeSel) themeSel.value = "";
+      updatePeriodSummary();
+    }
+  }
+
   function refreshThemeViews() {
-    renderThemeChips();
+    pruneInvisibleThemeSelection();
     renderThemeChart();
     renderThemeYearChart();
     renderThemePodcastCharts();
@@ -2132,123 +2150,6 @@
       : "";
   }
 
-  function renderThemeBreadcrumb() {
-    const host = $("#themeBreadcrumb");
-    if (!host) return;
-    const parent = state.themeById[state.focusedParentId];
-    if (!parent) {
-      host.hidden = true;
-      host.innerHTML = "";
-      return;
-    }
-    host.hidden = false;
-    host.innerHTML = `
-      <button type="button" data-crumb="all">All themes</button>
-      <span>›</span>
-      <strong>${escapeHtml(parent.name)}</strong>`;
-    host.querySelector("[data-crumb='all']")?.addEventListener("click", () => {
-      state.focusedParentId = "";
-      state.barReveal.theme = BAR_PAGE;
-      selectTheme("", false);
-    });
-  }
-
-  function renderThemeChips() {
-    const host = $("#themeChips");
-    const childHost = $("#themeChildChips");
-    if (!host || !state.themesDoc?.themes) return;
-
-    // Drop focus/selection when the active theme no longer appears under filters.
-    const focused = state.themeById[state.focusedParentId];
-    const active = state.themeById[state.activeTheme];
-    const focusGone = !!(focused && themeMetricInYears(focused) <= 0);
-    const activeGone = !!(active && themeMetricInYears(active) <= 0);
-    if (focusGone || activeGone) {
-      state.focusedParentId = focusGone ? "" : state.focusedParentId;
-      if (activeGone || (focusGone && state.chartPeriod.theme)) {
-        state.chartPeriod.theme = "";
-        state.activeTheme = "";
-        state.focusedParentId = "";
-        const themeSel = $("#periodTheme");
-        if (themeSel) themeSel.value = "";
-        updatePeriodSummary();
-      }
-    }
-
-    const parents = themesPresentInFilter(parentThemes())
-      .slice()
-      .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
-    if (!parents.length) {
-      host.innerHTML = `<div class="empty">No themes match the current filters.</div>`;
-    } else {
-      host.innerHTML = parents
-        .map(
-          (t) => `
-      <button type="button" class="theme-chip${
-        state.focusedParentId === t.id || state.activeTheme === t.id ? " active" : ""
-      }" data-theme="${escapeHtml(t.id)}">
-        ${escapeHtml(t.name)}<small>${escapeHtml(themeMetricLabel(themeMetricInYears(t)))}</small>
-      </button>`
-        )
-        .join("");
-      $$(".theme-chip", host).forEach((btn) => {
-        btn.addEventListener("click", () => focusParentTheme(btn.dataset.theme));
-      });
-    }
-
-    const parent = state.themeById[state.focusedParentId];
-    if (childHost) {
-      const kids = parent?.children?.length
-        ? themesPresentInFilter(parent.children)
-            .slice()
-            .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
-        : [];
-      if (kids.length) {
-        childHost.hidden = false;
-        childHost.innerHTML = kids
-          .map(
-            (t) => `
-          <button type="button" class="theme-chip child${
-            state.activeTheme === t.id ? " active" : ""
-          }" data-theme="${escapeHtml(t.id)}">
-            ${escapeHtml(t.name)}<small>${escapeHtml(themeMetricLabel(themeMetricInYears(t)))}</small>
-          </button>`
-          )
-          .join("");
-        $$(".theme-chip", childHost).forEach((btn) => {
-          btn.addEventListener("click", () => selectTheme(btn.dataset.theme, false));
-        });
-      } else {
-        childHost.hidden = true;
-        childHost.innerHTML = "";
-      }
-    }
-
-    renderThemeBreadcrumb();
-    const meta = state.themesDoc.meta || {};
-    const notesN = state.notes ? Object.keys(state.notes).length : 0;
-    const scoped = ensureChartStats();
-    const noteEntries = Object.values(state.notes || {});
-    const txN = noteEntries.filter((n) => n?.src === "transcript" || n?.src === "stt").length;
-    const fullN = noteEntries.filter((n) => n?.full || (n?.chars || 0) > 900).length;
-    const bodyN = meta.episodesWithBodyText != null ? meta.episodesWithBodyText : notesN;
-    const periodBit = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
-    const childVisible = parents.reduce(
-      (n, p) => n + themesPresentInFilter(p.children || []).length,
-      0
-    );
-    $("#themeCoverage").textContent =
-      `${fmt(scoped.episodeCount)} episodes${periodBit}` +
-      ` · ${fmt(parents.length)} parents / ${fmt(childVisible)} child themes` +
-      (chartPeriodActive() && meta.parentCount != null
-        ? ` (of ${fmt(meta.parentCount)} / ${fmt(meta.childCount)} overall)`
-        : "") +
-      (bodyN
-        ? ` · ${fmt(bodyN)} with body text (${fmt(txN)} transcript/STT, ${fmt(fullN)} longer than snippet)`
-        : "") +
-      `. Themes prefer transcript-backed matches when full text is stored.`;
-  }
-
   function themeChartItems() {
     const parent = state.themeById[state.focusedParentId];
     if (parent?.children?.length) return themesPresentInFilter(parent.children);
@@ -2259,11 +2160,23 @@
     if (!state.themesDoc?.themes) return;
     const items = themeChartItems();
     const title = $("#themeChartTitle");
+    const back = $("#themeChartBack");
     const yearSuffix = chartPeriodActive() ? ` · ${chartPeriodLabel()}` : "";
+    const drilled = !!state.focusedParentId;
     if (title) {
-      title.textContent = state.focusedParentId
+      title.textContent = drilled
         ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes${yearSuffix}`
         : `Parent themes${yearSuffix}`;
+    }
+    if (back) {
+      back.hidden = !drilled;
+      back.onclick = drilled
+        ? () => {
+            state.focusedParentId = "";
+            state.barReveal.theme = BAR_PAGE;
+            selectTheme("", false);
+          }
+        : null;
     }
     renderExpandableHBar({
       key: "theme",
@@ -2454,10 +2367,7 @@
   function focusParentTheme(parentId) {
     state.barReveal.theme = BAR_PAGE;
     const patch = { theme: parentId || "" };
-    if (parentId) {
-      patch.q = "";
-      if ($("#topicQ")) $("#topicQ").value = "";
-    }
+    if (parentId) patch.q = "";
     patchChartPeriod(patch);
   }
 
@@ -2471,26 +2381,9 @@
       return;
     }
     const patch = { theme: themeId || "" };
-    if (themeId) {
-      patch.q = "";
-      if ($("#topicQ")) $("#topicQ").value = "";
-    }
+    if (themeId) patch.q = "";
     patchChartPeriod(patch);
     if (jumpExplore) {
-      $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-
-  function runTopicSearch(raw) {
-    const q = (raw || "").trim();
-    const ql = q.toLowerCase();
-    const hit = flatThemes().find(
-      (t) => t.name.toLowerCase() === ql || t.id === ql
-    );
-    if (hit) {
-      selectTheme(hit.id, true);
-    } else {
-      patchChartPeriod({ q });
       $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
@@ -2548,22 +2441,6 @@
   }
 
   function wire() {
-    let topicT;
-    $("#topicQ")?.addEventListener("input", (e) => {
-      clearTimeout(topicT);
-      topicT = setTimeout(() => runTopicSearch(e.target.value), 220);
-    });
-    $("#topicQ")?.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        runTopicSearch(e.target.value);
-      }
-    });
-    $("#clearTopic")?.addEventListener("click", () => {
-      if ($("#topicQ")) $("#topicQ").value = "";
-      state.barReveal.theme = BAR_PAGE;
-      patchChartPeriod({ theme: "", q: "" });
-    });
     $("#prevPage").addEventListener("click", () => {
       state.page -= 1;
       renderEpisodeList();
@@ -2674,7 +2551,6 @@
     });
 
     const clearAllFilters = () => {
-      if ($("#topicQ")) $("#topicQ").value = "";
       applyChartPeriod({
         year: "",
         month: "",
@@ -2783,7 +2659,6 @@
       renderDurationChart();
       renderHeatmap();
       renderTopTable();
-      renderThemeChips();
       renderThemeChart();
       renderThemeYearChart();
       renderThemePodcastCharts();

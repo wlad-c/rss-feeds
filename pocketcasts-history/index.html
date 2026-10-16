@@ -235,22 +235,15 @@
         <div class="section-head">
           <div>
             <h2>Themes across episodes</h2>
-            <p>Parent themes with content-derived child topics — tap a parent to drill in. The sticky filter above scopes every theme chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
+            <p>Tap a bar to drill into child themes. The sticky filter above scopes every chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
           </div>
         </div>
-        <div class="panel">
-          <div class="theme-search-row">
-            <input id="topicQ" type="search" placeholder="Search a topic — e.g. Gaza, Lula, AUKUS, inflation…" />
-            <button class="btn secondary" id="clearTopic" type="button">Clear</button>
-          </div>
-          <p class="panel-note" id="themeCoverage"></p>
-          <div class="theme-breadcrumb" id="themeBreadcrumb" hidden></div>
-          <div class="theme-chips" id="themeChips" aria-label="Parent themes"></div>
-          <div class="theme-chips theme-chips-child" id="themeChildChips" aria-label="Child themes" hidden></div>
-        </div>
-        <div class="grid-2 stack-gap">
+        <div class="grid-2">
           <div class="panel">
-            <h3 id="themeChartTitle">Parent themes</h3>
+            <div class="theme-chart-head">
+              <h3 id="themeChartTitle">Parent themes</h3>
+              <button class="btn secondary" id="themeChartBack" type="button" hidden>All parents</button>
+            </div>
             <div class="chart-box tall" id="themeChartBox"><canvas id="themeChart"></canvas></div>
             <div class="chart-more" id="themeChartMore"></div>
           </div>
