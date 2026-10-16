@@ -59,49 +59,84 @@
 
   <div class="period-dock">
     <div class="wrap period-bar glass-surface" id="periodBar">
-      <div class="period-controls">
-        <span class="period-kicker">Filter</span>
-        <label class="period-field">
-          <span>Year</span>
-          <select id="periodYear" aria-label="Filter by year"></select>
+      <!-- Always-visible compact toolbar (search + Filters on small screens) -->
+      <div class="period-toolbar">
+        <label class="period-search">
+          <span class="period-search-label">Search</span>
+          <input id="periodQ" type="search" placeholder="Search episode, show, author, notes…" aria-label="Search episodes" />
         </label>
-        <label class="period-field">
-          <span>Month</span>
-          <select id="periodMonth" aria-label="Filter by month" disabled></select>
-        </label>
-        <label class="period-field">
-          <span>Day</span>
-          <select id="periodDay" aria-label="Filter by day" disabled></select>
-        </label>
-        <label class="period-field period-field-country">
-          <span>Country</span>
-          <select id="periodCountry" aria-label="Filter by country of origin"></select>
-        </label>
-        <label class="period-field period-field-podcast">
-          <span>Show</span>
-          <select id="periodPodcast" aria-label="Filter by podcast"></select>
-        </label>
-        <label class="period-field period-field-theme">
-          <span>Theme</span>
-          <select id="periodTheme" aria-label="Filter by theme"></select>
-        </label>
-        <label class="period-field">
-          <span>Status</span>
-          <select id="periodStatus" aria-label="Filter by play status">
-            <option value="">All statuses</option>
-            <option value="Played">Played</option>
-            <option value="In progress">In progress</option>
-            <option value="Unplayed">Unplayed</option>
-          </select>
-        </label>
-        <button type="button" class="btn secondary" id="periodClear" title="Clear filters">All</button>
+        <button
+          type="button"
+          class="filter-toggle"
+          id="filterSheetToggle"
+          aria-expanded="false"
+          aria-controls="filterSheetPanel"
+          title="Open filters"
+        >
+          <svg class="filter-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M7 12h10M10 18h4" />
+          </svg>
+          <span class="filter-toggle-label">Filters</span>
+          <span class="filter-badge" id="filterBadge" hidden>0</span>
+        </button>
+        <button type="button" class="btn secondary period-clear-inline" id="periodClear" title="Clear filters">Clear</button>
       </div>
-      <label class="period-search">
-        <span class="period-search-label">Search</span>
-        <input id="periodQ" type="search" placeholder="Search episode, show, author, notes…" aria-label="Search episodes" />
-      </label>
-      <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
+
+      <!-- Desktop inline filters live here; on small screens JS moves this node into the sheet -->
+      <div class="filter-panel" id="filterPanel">
+        <div class="period-controls">
+          <span class="period-kicker">Refine</span>
+          <label class="period-field">
+            <span>Year</span>
+            <select id="periodYear" aria-label="Filter by year"></select>
+          </label>
+          <label class="period-field">
+            <span>Month</span>
+            <select id="periodMonth" aria-label="Filter by month" disabled></select>
+          </label>
+          <label class="period-field">
+            <span>Day</span>
+            <select id="periodDay" aria-label="Filter by day" disabled></select>
+          </label>
+          <label class="period-field period-field-country">
+            <span>Country</span>
+            <select id="periodCountry" aria-label="Filter by country of origin"></select>
+          </label>
+          <label class="period-field period-field-podcast">
+            <span>Show</span>
+            <select id="periodPodcast" aria-label="Filter by podcast"></select>
+          </label>
+          <label class="period-field period-field-theme">
+            <span>Theme</span>
+            <select id="periodTheme" aria-label="Filter by theme"></select>
+          </label>
+          <label class="period-field">
+            <span>Status</span>
+            <select id="periodStatus" aria-label="Filter by play status">
+              <option value="">All statuses</option>
+              <option value="Played">Played</option>
+              <option value="In progress">In progress</option>
+              <option value="Unplayed">Unplayed</option>
+            </select>
+          </label>
+        </div>
+        <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
+      </div>
     </div>
+  </div>
+
+  <!-- Bottom sheet lives at root so fixed positioning isn't trapped by glass blur -->
+  <div class="filter-sheet-backdrop" id="filterSheetBackdrop" hidden></div>
+  <div class="filter-sheet" id="filterSheetPanel" role="dialog" aria-modal="true" aria-labelledby="filterSheetTitle" hidden>
+    <div class="filter-sheet-chrome">
+      <div class="filter-sheet-grabber" aria-hidden="true"></div>
+      <div class="filter-sheet-header">
+        <button type="button" class="sheet-text-btn" id="filterSheetClear" title="Clear all filters">Clear</button>
+        <h2 id="filterSheetTitle">Filters</h2>
+        <button type="button" class="sheet-text-btn sheet-done" id="filterSheetDone">Done</button>
+      </div>
+    </div>
+    <div class="filter-sheet-body" id="filterSheetBody"></div>
   </div>
 
   <!-- Content layer -->
