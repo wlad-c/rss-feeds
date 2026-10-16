@@ -591,6 +591,10 @@ select:focus {
 }
 
 .stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
   padding: 14px 16px 12px;
   border-right: 0.5px solid var(--separator);
   background: transparent;
@@ -610,6 +614,11 @@ select:focus {
   line-height: 1.15;
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
+}
+
+.stat b.stat-value-compact {
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
 }
 
 .stat span {

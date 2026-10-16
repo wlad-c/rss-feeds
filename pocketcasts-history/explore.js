@@ -1186,10 +1186,10 @@
       ["Avg episodes / day", avgDay != null ? String(avgDay) : "—"],
     ];
     $("#heroStats").innerHTML = items
-      .map(
-        ([k, v]) =>
-          `<div class="stat"><b>${escapeHtml(v)}</b><span>${escapeHtml(k)}</span></div>`
-      )
+      .map(([k, v]) => {
+        const compact = String(v).length > 10 ? " stat-value-compact" : "";
+        return `<div class="stat"><b class="${compact.trim()}">${escapeHtml(v)}</b><span>${escapeHtml(k)}</span></div>`;
+      })
       .join("");
 
     const strip = $("#insightStrip");

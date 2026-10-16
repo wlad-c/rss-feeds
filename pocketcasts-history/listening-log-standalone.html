@@ -634,6 +634,13 @@ select:focus {
   border-top: 0.5px solid var(--separator);
 }
 
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+}
+
 .stat b {
   display: block;
   font-family: var(--font-display);
@@ -643,6 +650,11 @@ select:focus {
   line-height: 1.15;
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
+}
+
+.stat b.stat-value-compact {
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
 }
 
 .stat span {
@@ -3160,10 +3172,10 @@ body:not(.ready) #topPanel {
       ["Avg episodes / day", avgDay != null ? String(avgDay) : "—"],
     ];
     $("#heroStats").innerHTML = items
-      .map(
-        ([k, v]) =>
-          `<div class="stat"><b>${escapeHtml(v)}</b><span>${escapeHtml(k)}</span></div>`
-      )
+      .map(([k, v]) => {
+        const compact = String(v).length > 10 ? " stat-value-compact" : "";
+        return `<div class="stat"><b class="${compact.trim()}">${escapeHtml(v)}</b><span>${escapeHtml(k)}</span></div>`;
+      })
       .join("");
 
     const strip = $("#insightStrip");
