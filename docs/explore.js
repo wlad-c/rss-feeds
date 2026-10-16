@@ -749,8 +749,17 @@
   }
 
   function ensureBarReveal(key, total) {
-    if (state.barReveal[key] == null) state.barReveal[key] = Math.min(BAR_PAGE, total);
-    state.barReveal[key] = Math.min(Math.max(state.barReveal[key], 1), total);
+    if (total <= 0) {
+      state.barReveal[key] = 0;
+      return 0;
+    }
+    // Always fill at least the first page (or the whole list when it fits).
+    // Otherwise a prior 1-item render can leave reveal stuck at 1 after filters grow.
+    const page = Math.min(BAR_PAGE, total);
+    if (state.barReveal[key] == null || state.barReveal[key] < page) {
+      state.barReveal[key] = page;
+    }
+    state.barReveal[key] = Math.min(Math.max(state.barReveal[key], page), total);
     return state.barReveal[key];
   }
 
@@ -2065,6 +2074,7 @@
     if (themeId !== state._themeMatchThemeId) {
       state._themeMatchThemeId = themeId;
       state.themeMatchPage = 0;
+      state.barReveal.themePod = null;
     }
 
     // Hide until a theme is selected and there are matching shows/episodes.
