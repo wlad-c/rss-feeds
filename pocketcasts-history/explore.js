@@ -2161,8 +2161,11 @@
     const items = themeChartItems();
     const title = $("#themeChartTitle");
     const back = $("#themeChartBack");
-    const yearSuffix = chartPeriodActive() ? ` · ${chartPeriodLabel()}` : "";
     const drilled = !!state.focusedParentId;
+    const periodLabel = chartPeriodActive()
+      ? chartPeriodLabel({ omitTheme: drilled })
+      : "";
+    const yearSuffix = periodLabel && periodLabel !== "All time" ? ` · ${periodLabel}` : "";
     if (title) {
       title.textContent = drilled
         ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes${yearSuffix}`
