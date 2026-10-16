@@ -41,7 +41,6 @@
     themeById: {},
     activeTheme: "",
     focusedParentId: "",
-    themeYears: [], // empty = all years; multi-select from themes panel
     metric: "episodes", // "episodes" | "hours"
     chartPeriod: { year: "", month: "", day: "", country: "" },
     charts: {},
@@ -625,6 +624,10 @@
     const byThemeCount = Object.create(null);
     const byThemeYearHours = Object.create(null);
     const byThemeYearCount = Object.create(null);
+    const byThemeMonthHours = Object.create(null);
+    const byThemeMonthCount = Object.create(null);
+    const byThemeDateHours = Object.create(null);
+    const byThemeDateCount = Object.create(null);
     const hourHours = Array.from({ length: 24 }, () => 0);
     const weekdayHours = Array.from({ length: 7 }, () => 0);
     const hourCounts = Array.from({ length: 24 }, () => 0);
@@ -691,11 +694,24 @@
       for (const tid of themes) {
         bump(byThemeHours, tid, h);
         bump(byThemeCount, tid, 1);
-        if (!year) continue;
-        if (!byThemeYearHours[tid]) byThemeYearHours[tid] = Object.create(null);
-        if (!byThemeYearCount[tid]) byThemeYearCount[tid] = Object.create(null);
-        bump(byThemeYearHours[tid], year, h);
-        bump(byThemeYearCount[tid], year, 1);
+        if (year) {
+          if (!byThemeYearHours[tid]) byThemeYearHours[tid] = Object.create(null);
+          if (!byThemeYearCount[tid]) byThemeYearCount[tid] = Object.create(null);
+          bump(byThemeYearHours[tid], year, h);
+          bump(byThemeYearCount[tid], year, 1);
+        }
+        if (month.length === 7) {
+          if (!byThemeMonthHours[tid]) byThemeMonthHours[tid] = Object.create(null);
+          if (!byThemeMonthCount[tid]) byThemeMonthCount[tid] = Object.create(null);
+          bump(byThemeMonthHours[tid], month, h);
+          bump(byThemeMonthCount[tid], month, 1);
+        }
+        if (date) {
+          if (!byThemeDateHours[tid]) byThemeDateHours[tid] = Object.create(null);
+          if (!byThemeDateCount[tid]) byThemeDateCount[tid] = Object.create(null);
+          bump(byThemeDateHours[tid], date, h);
+          bump(byThemeDateCount[tid], date, 1);
+        }
       }
     }
 
@@ -729,6 +745,10 @@
       byThemeCount,
       byThemeYearHours,
       byThemeYearCount,
+      byThemeMonthHours,
+      byThemeMonthCount,
+      byThemeDateHours,
+      byThemeDateCount,
       hourHours,
       weekdayHours,
       hourCounts,
@@ -1476,78 +1496,31 @@
     return state.themesDoc?.flat || parentThemes();
   }
 
-  function availableThemeYears() {
-    const fromAgg = state.agg?.meta?.years || [];
-    if (fromAgg.length) return fromAgg.map(String);
-    const years = new Set();
-    for (const t of flatThemes()) {
-      Object.keys(t.byYear || {}).forEach((y) => years.add(String(y)));
-    }
-    return [...years].sort((a, b) => Number(b) - Number(a));
-  }
-
-  function selectedThemeYearSet() {
-    if (!state.themeYears?.length) return null;
-    return new Set(state.themeYears.map(String));
-  }
-
-  function themeCountInYears(t) {
-    if (!t) return 0;
-    if (chartPeriodActive()) {
-      return ensureChartStats().byThemeCount[t.id] || 0;
-    }
-    const years = selectedThemeYearSet();
-    if (!years) return t.count || 0;
-    let n = 0;
-    for (const y of years) n += Number(t.byYear?.[y] || 0);
-    return n;
-  }
-
-  function themeHoursInYears(t) {
+  function themeMetricInYears(t) {
     if (!t) return 0;
     const stats = ensureChartStats();
-    if (chartPeriodActive()) return stats.byThemeHours[t.id] || 0;
-    const years = selectedThemeYearSet();
-    if (!years) return stats.byThemeHours[t.id] || 0;
-    let n = 0;
-    const byYear = stats.byThemeYearHours[t.id] || {};
-    for (const y of years) n += Number(byYear[y] || 0);
-    return n;
-  }
-
-  function themeMetricInYears(t) {
-    return metricIsHours() ? themeHoursInYears(t) : themeCountInYears(t);
+    return metricIsHours()
+      ? stats.byThemeHours[t.id] || 0
+      : stats.byThemeCount[t.id] || 0;
   }
 
   function themeMetricLabel(n) {
     return metricIsHours() ? `${fmtHours(n)}h` : fmt(n);
   }
 
-  function themeYearLabel() {
-    const years = availableThemeYears();
-    if (!state.themeYears.length || state.themeYears.length === years.length) {
-      return "All years";
-    }
-    const sorted = state.themeYears.slice().sort((a, b) => Number(a) - Number(b));
-    if (sorted.length <= 2) return sorted.join(", ");
-    return `${sorted[0]}–${sorted[sorted.length - 1]} · ${sorted.length}`;
-  }
-
-  function episodeMatchesThemeYears(ep) {
-    const years = selectedThemeYearSet();
-    if (!years) return true;
-    return years.has(String(ep.y));
-  }
-
-  function sampleInThemeYears(s) {
-    const years = selectedThemeYearSet();
-    if (!years) return true;
-    const y = String(s?.d || "").slice(0, 4);
-    return years.has(y);
+  function sampleMatchesChartPeriod(s) {
+    if (!s) return false;
+    if (!chartPeriodActive()) return true;
+    const d = String(s.d || "");
+    return episodeMatchesChartPeriod({
+      d,
+      y: d.slice(0, 4),
+      p: s.p || "",
+      a: "",
+    });
   }
 
   function refreshThemeViews() {
-    renderThemeYearControls();
     renderThemeChips();
     renderThemeChart();
     renderThemeYearChart();
@@ -1571,15 +1544,10 @@
 
   function podcastsForTheme(themeId) {
     if (!themeId || !state.episodes?.length) return [];
-    const themeYears = selectedThemeYearSet();
     const byPod = new Map();
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
-      if (chartPeriodActive()) {
-        if (!episodeMatchesChartPeriod(e)) continue;
-      } else if (themeYears && !episodeMatchesThemeYears(e)) {
-        continue;
-      }
+      if (!episodeMatchesChartPeriod(e)) continue;
       const th = themeIdsForIndex(i);
       if (!episodeMatchesThemeId(th, themeId)) continue;
       const name = e.p || "Unknown";
@@ -1609,11 +1577,7 @@
     const hoursTitle = $("#themePodHoursTitle");
     const epsNote = $("#themePodEpsNote");
     const hoursNote = $("#themePodHoursNote");
-    const scope = chartPeriodActive()
-      ? chartPeriodLabel()
-      : state.themeYears.length
-        ? themeYearLabel()
-        : "all years";
+    const scope = chartPeriodLabel();
 
     if (!theme) {
       if (epsTitle) epsTitle.textContent = "Shows covering this theme · episodes";
@@ -1724,14 +1688,11 @@
   function filteredEpisodes() {
     const { year, podcast, q, status, theme, country } = state.filters;
     const qq = q.trim().toLowerCase();
-    const themeYears = selectedThemeYearSet();
     const out = [];
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
       if (chartPeriodActive()) {
         if (!episodeMatchesChartPeriod(e)) continue;
-      } else if (themeYears) {
-        if (!episodeMatchesThemeYears(e)) continue;
       } else if (year !== "all" && String(e.y) !== String(year)) {
         continue;
       }
@@ -1869,67 +1830,6 @@
     });
   }
 
-  function renderThemeYearControls() {
-    const panel = $("#themeYearPanel");
-    const label = $("#themeYearLabel");
-    if (label) label.textContent = themeYearLabel();
-    if (!panel) return;
-    const years = availableThemeYears();
-    const selected = new Set(state.themeYears.map(String));
-    const allSelected = !state.themeYears.length || state.themeYears.length === years.length;
-    panel.innerHTML = `
-      <div class="year-multi-actions">
-        <button type="button" data-years="all">All years</button>
-        <button type="button" data-years="none">Clear</button>
-      </div>
-      ${years
-        .map((y) => {
-          const checked = allSelected || selected.has(String(y));
-          const n = state.agg?.meta?.yearCounts?.[y];
-          return `<label class="year-multi-option">
-            <input type="checkbox" value="${escapeHtml(y)}" ${checked ? "checked" : ""} />
-            <span>${escapeHtml(y)}</span>
-            ${n != null ? `<small>${fmt(n)}</small>` : ""}
-          </label>`;
-        })
-        .join("")}`;
-    panel.querySelector("[data-years='all']")?.addEventListener("click", () => {
-      state.themeYears = [];
-      refreshThemeViews();
-    });
-    panel.querySelector("[data-years='none']")?.addEventListener("click", () => {
-      // Uncheck all so the next click starts a fresh multi-select; counts stay "all" until a year is checked.
-      $$("input[type=checkbox]", panel).forEach((b) => {
-        b.checked = false;
-      });
-      state.themeYears = [];
-      if (label) label.textContent = "Pick years…";
-    });
-    $$("input[type=checkbox]", panel).forEach((box) => {
-      box.addEventListener("change", () => {
-        const picked = $$("input[type=checkbox]", panel)
-          .filter((b) => b.checked)
-          .map((b) => b.value);
-        if (!picked.length) {
-          state.themeYears = [];
-          if (label) label.textContent = "Pick years…";
-          refreshThemeViews();
-          return;
-        }
-        state.themeYears = picked.length === years.length ? [] : picked;
-        refreshThemeViews();
-      });
-    });
-  }
-
-  function setThemeYearPanelOpen(open) {
-    const panel = $("#themeYearPanel");
-    const toggle = $("#themeYearToggle");
-    if (!panel || !toggle) return;
-    panel.hidden = !open;
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-  }
-
   function renderThemeChips() {
     const host = $("#themeChips");
     const childHost = $("#themeChildChips");
@@ -1980,27 +1880,17 @@
     renderThemeBreadcrumb();
     const meta = state.themesDoc.meta || {};
     const notesN = state.notes ? Object.keys(state.notes).length : 0;
-    const yearBit = chartPeriodActive()
-      ? ` · ${chartPeriodLabel()}`
-      : state.themeYears.length
-        ? ` · years ${state.themeYears
-            .slice()
-            .sort((a, b) => Number(a) - Number(b))
-            .join(", ")}`
-        : "";
-    const scoped = chartPeriodActive() ? ensureChartStats() : null;
+    const scoped = ensureChartStats();
     const noteEntries = Object.values(state.notes || {});
     const txN = noteEntries.filter((n) => n?.src === "transcript" || n?.src === "stt").length;
     const fullN = noteEntries.filter((n) => n?.full || (n?.chars || 0) > 900).length;
     const bodyN = meta.episodesWithBodyText != null ? meta.episodesWithBodyText : notesN;
+    const periodBit = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
     $("#themeCoverage").textContent =
-      (scoped
-        ? `${fmt(scoped.episodeCount)} episodes in ${chartPeriodLabel()}`
-        : `${fmt(meta.episodesWithTheme || 0)} / ${fmt(meta.totalEpisodes || 0)} episodes carry at least one theme`) +
+      `${fmt(scoped.episodeCount)} episodes${periodBit}` +
       (meta.childCount != null
         ? ` · ${fmt(meta.parentCount)} parents / ${fmt(meta.childCount)} child themes`
         : "") +
-      yearBit +
       (bodyN
         ? ` · ${fmt(bodyN)} with body text (${fmt(txN)} transcript/STT, ${fmt(fullN)} longer than snippet)`
         : "") +
@@ -2017,11 +1907,7 @@
     if (!state.themesDoc?.themes) return;
     const items = themeChartItems();
     const title = $("#themeChartTitle");
-    const yearSuffix = chartPeriodActive()
-      ? ` · ${chartPeriodLabel()}`
-      : state.themeYears.length
-        ? ` · ${themeYearLabel()}`
-        : "";
+    const yearSuffix = chartPeriodActive() ? ` · ${chartPeriodLabel()}` : "";
     if (title) {
       title.textContent = state.focusedParentId
         ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes${yearSuffix}`
@@ -2046,7 +1932,7 @@
 
   function themeYearSeriesThemes() {
     const active = state.themeById[state.activeTheme];
-    if (active?.byYear || (metricIsHours() && active)) return [active];
+    if (active) return [active];
     const parent = state.themeById[state.focusedParentId];
     if (parent?.children?.length) {
       return parent.children
@@ -2060,25 +1946,60 @@
       .slice(0, 6);
   }
 
-  function themeYearValue(t, y) {
-    if (metricIsHours()) {
-      return Number(ensureChartStats().byThemeYearHours[t.id]?.[y] || 0);
+  function themeTrendGrain() {
+    const { year, month } = state.chartPeriod;
+    if (year && month) return "day";
+    if (year) return "month";
+    return "year";
+  }
+
+  function themeTrendBuckets() {
+    const stats = ensureChartStats();
+    const grain = themeTrendGrain();
+    const { year, month } = state.chartPeriod;
+    if (grain === "day") {
+      const prefix = `${year}-${month}-`;
+      return Object.keys(stats.byDateCount || {})
+        .filter((d) => d.startsWith(prefix))
+        .sort();
     }
-    if (chartPeriodActive()) {
-      return Number(ensureChartStats().byThemeYearCount[t.id]?.[y] || 0);
+    if (grain === "month") {
+      const prefix = `${year}-`;
+      return Object.keys(stats.byMonthCount || {})
+        .filter((m) => m.startsWith(prefix))
+        .sort();
     }
-    return Number(t.byYear?.[y] || 0);
+    return Object.keys(stats.byYearCount || {}).sort((a, b) => Number(a) - Number(b));
+  }
+
+  function themeTrendValue(t, bucket) {
+    const stats = ensureChartStats();
+    const grain = themeTrendGrain();
+    const hours = metricIsHours();
+    if (grain === "day") {
+      return Number((hours ? stats.byThemeDateHours : stats.byThemeDateCount)[t.id]?.[bucket] || 0);
+    }
+    if (grain === "month") {
+      return Number((hours ? stats.byThemeMonthHours : stats.byThemeMonthCount)[t.id]?.[bucket] || 0);
+    }
+    return Number((hours ? stats.byThemeYearHours : stats.byThemeYearCount)[t.id]?.[bucket] || 0);
+  }
+
+  function themeTrendLabel(bucket) {
+    const grain = themeTrendGrain();
+    if (grain === "day") return String(Number(String(bucket).slice(8, 10)));
+    if (grain === "month") {
+      const mo = String(bucket).slice(5, 7);
+      return MONTH_NAME[mo] || mo;
+    }
+    return String(bucket);
   }
 
   function renderThemeYearChart() {
     if (!state.themesDoc?.themes) return;
     const canvas = $("#themeYearChart");
     if (!canvas) return;
-    const allYears = availableThemeYears()
-      .slice()
-      .sort((a, b) => Number(a) - Number(b));
-    const yearSet = selectedThemeYearSet();
-    const years = yearSet ? allYears.filter((y) => yearSet.has(y)) : allYears;
+    const buckets = themeTrendBuckets();
     const series = themeYearSeriesThemes();
     const title = $("#themeYearChartTitle");
     const note = $("#themeYearChartNote");
@@ -2086,31 +2007,29 @@
       state.themeById[state.activeTheme]?.name ||
       state.themeById[state.focusedParentId]?.name;
     const hours = metricIsHours();
+    const grain = themeTrendGrain();
+    const grainWord = grain === "day" ? "days" : grain === "month" ? "months" : "years";
     if (title) {
       title.textContent = focusName
-        ? `${focusName} across years`
-        : "Themes across years";
+        ? `${focusName} over ${grainWord}`
+        : `Themes over ${grainWord}`;
     }
     if (note) {
-      const scope = chartPeriodActive()
-        ? ` in ${chartPeriodLabel()}`
-        : state.themeYears.length
-          ? ` in ${themeYearLabel()}`
-          : "";
+      const scope = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
       note.textContent = focusName
         ? `${hours ? "Hours" : "Episode counts"} for ${focusName}${scope}.`
         : hours
-          ? "Top themes by hours over time — use Period above or years here to focus the lines."
-          : "Top themes over time — use Period above or years here to focus the lines.";
+          ? `Top themes by hours across ${grainWord} — scoped by the filter bar above.`
+          : `Top themes across ${grainWord} — scoped by the filter bar above.`;
     }
     destroyChart("themeYear");
     state.charts.themeYear = new Chart(canvas, {
       type: "line",
       data: {
-        labels: years,
+        labels: buckets.map(themeTrendLabel),
         datasets: series.map((t, i) => ({
           label: t.name,
-          data: years.map((y) => themeYearValue(t, y)),
+          data: buckets.map((b) => themeTrendValue(t, b)),
           borderColor: CATEGORICAL[i % CATEGORICAL.length],
           backgroundColor: "transparent",
           tension: 0.28,
@@ -2146,14 +2065,14 @@
     if (!t) {
       title.textContent = "Pick a theme";
       blurb.textContent =
-        "Tap a parent to open child themes derived from episode content, pick years to compare eras, then filter the explorer.";
+        "Tap a parent to open child themes derived from episode content, then filter the explorer. The sticky filter bar scopes counts and samples.";
       samples.innerHTML = "";
       btn.hidden = true;
       return;
     }
     const kind = t.parentId ? "Child theme" : "Parent theme";
     const n = themeMetricInYears(t);
-    const yearSuffix = state.themeYears.length ? ` in ${themeYearLabel()}` : "";
+    const periodSuffix = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
     const unit = metricIsHours() ? "hours" : "episodes";
     const ev = t.evidence || {};
     const evBits = [
@@ -2162,10 +2081,10 @@
       ev.title ? `${fmt(ev.title)} title-only` : "",
     ].filter(Boolean);
     title.textContent = t.name;
-    blurb.textContent = `${kind}. ${t.blurb} · ${fmtMetric(n)} ${unit}${yearSuffix}.${
+    blurb.textContent = `${kind}. ${t.blurb} · ${fmtMetric(n)} ${unit}${periodSuffix}.${
       evBits.length ? ` Evidence: ${evBits.join(", ")}.` : ""
     }`;
-    const samplesList = (t.samples || []).filter(sampleInThemeYears);
+    const samplesList = (t.samples || []).filter(sampleMatchesChartPeriod);
     samples.innerHTML = samplesList
       .map(
         (s) => `
@@ -2175,7 +2094,7 @@
       </div>`
       )
       .join("") ||
-      `<div class="empty">No samples${yearSuffix || " yet"}.</div>`;
+      `<div class="empty">No samples${periodSuffix || " yet"}.</div>`;
     btn.hidden = false;
     btn.onclick = () => selectTheme(t.id, true);
   }
@@ -2356,26 +2275,10 @@
       $("#q").value = "";
       state.filters.q = "";
       state.focusedParentId = "";
-      state.themeYears = [];
       state.barReveal.theme = BAR_PAGE;
-      setThemeYearPanelOpen(false);
       selectTheme("", false);
-      renderThemeYearControls();
       renderThemeYearChart();
       renderThemePodcastCharts();
-    });
-    $("#themeYearToggle")?.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const panel = $("#themeYearPanel");
-      setThemeYearPanelOpen(!!panel?.hidden);
-    });
-    document.addEventListener("click", (e) => {
-      const root = $("#themeYearMulti");
-      if (!root || root.contains(e.target)) return;
-      setThemeYearPanelOpen(false);
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setThemeYearPanelOpen(false);
     });
     $("#prevPage").addEventListener("click", () => {
       state.page -= 1;
@@ -2391,7 +2294,6 @@
       state.filters = { year: "all", podcast: "", q: "", status: "", theme: "", country: "" };
       state.activeTheme = "";
       state.focusedParentId = "";
-      state.themeYears = [];
       state.barReveal.theme = BAR_PAGE;
       state.page = 0;
       $("#yearFilter").value = "all";
@@ -2401,7 +2303,6 @@
       if ($("#countryFilter")) $("#countryFilter").value = "";
       $("#q").value = "";
       if ($("#topicQ")) $("#topicQ").value = "";
-      setThemeYearPanelOpen(false);
       applyChartPeriod({ year: "", month: "", day: "", country: "" });
     });
 
@@ -2533,7 +2434,6 @@
       renderDurationChart();
       renderHeatmap();
       renderTopTable();
-      renderThemeYearControls();
       renderThemeChips();
       renderThemeChart();
       renderThemeYearChart();
