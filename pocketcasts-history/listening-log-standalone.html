@@ -355,12 +355,6 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   transform: scale(0.97);
 }
 
-.glass-btn[aria-pressed="true"],
-.tool-btn[aria-pressed="true"] {
-  background: var(--system-blue-fill);
-  color: var(--on-accent);
-}
-
 .glass-btn:disabled,
 .tool-btn:disabled {
   opacity: 0.45;
@@ -2250,7 +2244,8 @@ body:not(.ready) #topPanel {
     });
   }
 
-  /** Horizontal bar chart: largest at top, progressive disclosure. */
+  /** Horizontal bar chart with progressive disclosure.
+   * Default: largest value at top. Pass preserveOrder for chronological axes. */
   function renderExpandableHBar({
     key,
     canvasSel,
@@ -2263,13 +2258,20 @@ body:not(.ready) #topPanel {
     color,
     colors,
     onClick,
+    preserveOrder = false,
   }) {
-    const sorted = items
-      .slice()
-      .sort((a, b) => valueOf(b) - valueOf(a) || String(labelOf(a)).localeCompare(String(labelOf(b))));
-    const total = sorted.length;
+    const ordered = preserveOrder
+      ? items.slice()
+      : items
+          .slice()
+          .sort(
+            (a, b) =>
+              valueOf(b) - valueOf(a) ||
+              String(labelOf(a)).localeCompare(String(labelOf(b)))
+          );
+    const total = ordered.length;
     const shown = ensureBarReveal(key, total || 1);
-    const visible = sorted.slice(0, shown);
+    const visible = ordered.slice(0, shown);
     setChartBoxHeight($(boxSel), visible.length || 1);
     destroyChart(key);
     const canvas = $(canvasSel);
@@ -2329,6 +2331,7 @@ body:not(.ready) #topPanel {
         color,
         colors,
         onClick,
+        preserveOrder,
       })
     );
   }
@@ -2911,6 +2914,7 @@ body:not(.ready) #topPanel {
       labelOf: (d) => d.label || String(d.year),
       valueOf: (d) => d.count,
       color: palette().blue,
+      preserveOrder: true,
     });
   }
 
@@ -3006,6 +3010,7 @@ body:not(.ready) #topPanel {
       labelOf: (d) => d.day,
       valueOf: (d) => d.count,
       color: palette().vermillion,
+      preserveOrder: true,
     });
 
     destroyChart("hour");
@@ -3164,6 +3169,7 @@ body:not(.ready) #topPanel {
       valueOf: (d) => d.avgMinutes,
       valueLabel: "Avg minutes",
       color: palette().amber,
+      preserveOrder: true,
     });
   }
 

@@ -622,7 +622,8 @@
     });
   }
 
-  /** Horizontal bar chart: largest at top, progressive disclosure. */
+  /** Horizontal bar chart with progressive disclosure.
+   * Default: largest value at top. Pass preserveOrder for chronological axes. */
   function renderExpandableHBar({
     key,
     canvasSel,
@@ -635,13 +636,20 @@
     color,
     colors,
     onClick,
+    preserveOrder = false,
   }) {
-    const sorted = items
-      .slice()
-      .sort((a, b) => valueOf(b) - valueOf(a) || String(labelOf(a)).localeCompare(String(labelOf(b))));
-    const total = sorted.length;
+    const ordered = preserveOrder
+      ? items.slice()
+      : items
+          .slice()
+          .sort(
+            (a, b) =>
+              valueOf(b) - valueOf(a) ||
+              String(labelOf(a)).localeCompare(String(labelOf(b)))
+          );
+    const total = ordered.length;
     const shown = ensureBarReveal(key, total || 1);
-    const visible = sorted.slice(0, shown);
+    const visible = ordered.slice(0, shown);
     setChartBoxHeight($(boxSel), visible.length || 1);
     destroyChart(key);
     const canvas = $(canvasSel);
@@ -701,6 +709,7 @@
         color,
         colors,
         onClick,
+        preserveOrder,
       })
     );
   }
@@ -1283,6 +1292,7 @@
       labelOf: (d) => d.label || String(d.year),
       valueOf: (d) => d.count,
       color: palette().blue,
+      preserveOrder: true,
     });
   }
 
@@ -1378,6 +1388,7 @@
       labelOf: (d) => d.day,
       valueOf: (d) => d.count,
       color: palette().vermillion,
+      preserveOrder: true,
     });
 
     destroyChart("hour");
@@ -1536,6 +1547,7 @@
       valueOf: (d) => d.avgMinutes,
       valueLabel: "Avg minutes",
       color: palette().amber,
+      preserveOrder: true,
     });
   }
 
