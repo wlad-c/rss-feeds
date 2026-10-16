@@ -37,6 +37,7 @@ def main() -> None:
         json.loads(countries_path.read_text(encoding="utf-8")) if countries_path.exists() else None
     )
 
+    # Optional local webfonts (Apple redesign uses system SF stack; keep for any leftovers).
     fonts = {
         "./vendor/fonts/fraunces-latin-500-normal.woff2": "vendor/fonts/fraunces-latin-500-normal.woff2",
         "./vendor/fonts/fraunces-latin-700-normal.woff2": "vendor/fonts/fraunces-latin-700-normal.woff2",
@@ -46,7 +47,10 @@ def main() -> None:
         "./vendor/fonts/figtree-latin-700-normal.woff2": "vendor/fonts/figtree-latin-700-normal.woff2",
     }
     for ref, rel in fonts.items():
-        b64 = base64.b64encode((ROOT / rel).read_bytes()).decode("ascii")
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        b64 = base64.b64encode(path.read_bytes()).decode("ascii")
         css = css.replace(f'url("{ref}")', f'url("data:font/woff2;base64,{b64}")')
 
     html = html.replace(
