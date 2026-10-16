@@ -440,8 +440,69 @@
     if (qInput && qInput.value !== (q || "")) qInput.value = q || "";
   }
 
+  function activeFacetCount() {
+    const p = state.chartPeriod;
+    let n = 0;
+    if (p.year) n += 1;
+    if (p.month) n += 1;
+    if (p.day) n += 1;
+    if (p.country) n += 1;
+    if (p.podcast) n += 1;
+    if (p.theme) n += 1;
+    if (p.status) n += 1;
+    return n;
+  }
+
+  function syncFilterBadge() {
+    const badge = $("#filterBadge");
+    const toggle = $("#filterSheetToggle");
+    const clearBtn = $("#periodClear");
+    const n = activeFacetCount();
+    if (badge) {
+      if (n > 0) {
+        badge.hidden = false;
+        badge.textContent = String(n);
+      } else {
+        badge.hidden = true;
+      }
+    }
+    toggle?.classList.toggle("has-filters", n > 0);
+    if (clearBtn) clearBtn.hidden = n === 0 && !String(state.chartPeriod.q || "").trim();
+  }
+
+  function placeFilterPanel(inSheet) {
+    const panel = $("#filterPanel");
+    const sheetBody = $("#filterSheetBody");
+    const periodBar = $("#periodBar");
+    if (!panel || !sheetBody || !periodBar) return;
+    if (inSheet) {
+      if (panel.parentElement !== sheetBody) sheetBody.appendChild(panel);
+    } else if (panel.parentElement !== periodBar) {
+      periodBar.appendChild(panel);
+    }
+  }
+
+  function setFilterSheetOpen(open) {
+    const mobile = window.matchMedia("(max-width: 860px)").matches;
+    const on = !!open && mobile;
+    document.body.classList.toggle("filter-sheet-open", on);
+    const toggle = $("#filterSheetToggle");
+    const backdrop = $("#filterSheetBackdrop");
+    const sheet = $("#filterSheetPanel");
+    if (toggle) toggle.setAttribute("aria-expanded", on ? "true" : "false");
+    if (backdrop) backdrop.hidden = !on;
+    if (sheet) sheet.hidden = !on;
+    placeFilterPanel(on);
+    if (on) {
+      requestAnimationFrame(() => {
+        $("#periodYear")?.focus({ preventScroll: true });
+      });
+    }
+  }
+
   function updatePeriodSummary() {
     const el = $("#periodSummary");
+    syncFilterBadge();
     if (!el) return;
     const label = chartPeriodLabel();
     if (!chartPeriodActive()) {
@@ -2521,7 +2582,8 @@
         patchChartPeriod({ q: e.target.value });
       }, 180);
     });
-    $("#periodClear")?.addEventListener("click", () => {
+
+    const clearAllFilters = () => {
       if ($("#topicQ")) $("#topicQ").value = "";
       applyChartPeriod({
         year: "",
@@ -2533,7 +2595,30 @@
         status: "",
         q: "",
       });
+      if ($("#periodQ")) $("#periodQ").value = "";
+      syncFilterBadge();
+    };
+
+    $("#filterSheetToggle")?.addEventListener("click", () => {
+      const open = !document.body.classList.contains("filter-sheet-open");
+      setFilterSheetOpen(open);
     });
+    $("#filterSheetDone")?.addEventListener("click", () => setFilterSheetOpen(false));
+    $("#filterSheetBackdrop")?.addEventListener("click", () => setFilterSheetOpen(false));
+    $("#filterSheetClear")?.addEventListener("click", () => {
+      clearAllFilters();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && document.body.classList.contains("filter-sheet-open")) {
+        setFilterSheetOpen(false);
+      }
+    });
+    window.matchMedia("(max-width: 860px)").addEventListener("change", (e) => {
+      if (!e.matches) setFilterSheetOpen(false);
+      else placeFilterPanel(false);
+    });
+
+    $("#periodClear")?.addEventListener("click", () => clearAllFilters());
     $("#hardRefresh")?.addEventListener("click", () => {
       hardRefresh();
     });
@@ -2617,6 +2702,11 @@
       wire();
       document.body.classList.add("ready");
       $("#bootStatus").textContent = "";
+      try {
+        if (new URLSearchParams(location.search).get("filters") === "open") {
+          setFilterSheetOpen(true);
+        }
+      } catch (_) {}
     } catch (err) {
       $("#bootStatus").textContent = `Failed to load: ${err.message}`;
       console.error(err);
