@@ -2393,11 +2393,19 @@ body:not(.ready) #topPanel {
     }
 
     if (podcastSel && state.podcasts) {
+      const isUuidTitle = (name) =>
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(name || ""));
       const names = state.podcasts
         .slice()
-        .sort((a, b) =>
-          String(a.p || "").localeCompare(String(b.p || ""), undefined, { sensitivity: "base" })
-        )
+        .sort((a, b) => {
+          const an = String(a.p || "");
+          const bn = String(b.p || "");
+          const aUuid = isUuidTitle(an);
+          const bUuid = isUuidTitle(bn);
+          // Keep anonymous UUID titles after named shows so A–Z is usable.
+          if (aUuid !== bUuid) return aUuid ? 1 : -1;
+          return an.localeCompare(bn, undefined, { sensitivity: "base" });
+        })
         .map((p) => p.p)
         .filter(Boolean);
       podcastSel.innerHTML =
