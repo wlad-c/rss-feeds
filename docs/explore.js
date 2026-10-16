@@ -162,12 +162,12 @@
   }
 
   function chartPeriodActive() {
-    const { year, month, day, country, podcast, theme, status } = state.chartPeriod;
-    return !!(year || month || day || country || podcast || theme || status);
+    const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
+    return !!(year || month || day || country || podcast || theme || status || String(q || "").trim());
   }
 
   function chartPeriodKey() {
-    const { year, month, day, country, podcast, theme, status } = state.chartPeriod;
+    const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
     return [
       year || "all",
       month || "all",
@@ -176,6 +176,7 @@
       podcast || "all",
       theme || "all",
       status || "all",
+      String(q || "").trim().toLowerCase() || "all",
     ].join("|");
   }
 
@@ -198,10 +199,19 @@
     return bits.length ? bits.join(" · ") : "All time";
   }
 
+  function episodeSearchHaystack(e, i = null) {
+    const epCountry = countryForEpisode(e);
+    const th = i == null ? [] : themeIdsForIndex(i);
+    const themeNames = th.map((id) => state.themeById[id]?.name || id).join(" ");
+    const note = i == null ? "" : noteTextForIndex(i);
+    return `${e.e || ""} ${e.p || ""} ${e.a || ""} ${e.f || ""} ${epCountry} ${themeNames} ${note}`.toLowerCase();
+  }
+
   function episodeMatchesChartPeriod(e, i = null, overrides = null) {
     const period = overrides ? { ...state.chartPeriod, ...overrides } : state.chartPeriod;
-    const { year, month, day, country, podcast, theme, status } = period;
-    if (!year && !month && !day && !country && !podcast && !theme && !status) return true;
+    const { year, month, day, country, podcast, theme, status, q } = period;
+    const qq = String(q || "").trim().toLowerCase();
+    if (!year && !month && !day && !country && !podcast && !theme && !status && !qq) return true;
     const d = String(e.d || "");
     if (year && String(e.y) !== String(year)) return false;
     if (month && d.slice(5, 7) !== month) return false;
@@ -213,6 +223,7 @@
       if (i == null) return false;
       if (!themeIdsForIndex(i).includes(theme)) return false;
     }
+    if (qq && !episodeSearchHaystack(e, i).includes(qq)) return false;
     return true;
   }
 
@@ -407,14 +418,8 @@
     const el = $("#periodSummary");
     if (!el) return;
     const label = chartPeriodLabel();
-    const hasSearch = !!String(state.chartPeriod.q || "").trim();
-    if (!chartPeriodActive() && !hasSearch) {
+    if (!chartPeriodActive()) {
       el.innerHTML = `<strong>All time</strong> — charts use the full history.`;
-      return;
-    }
-    if (!chartPeriodActive() && hasSearch) {
-      const n = filteredEpisodes().length;
-      el.innerHTML = `<strong>${escapeHtml(label)}</strong> — ${fmt(n)} matching episodes in the explorer.`;
       return;
     }
     const stats = ensureChartStats();
@@ -1629,9 +1634,9 @@
   function sampleMatchesChartPeriod(s) {
     if (!s) return false;
     const d = String(s.d || "");
-    // Samples lack status/theme indices; match date/country/show only.
+    // Samples lack theme indices / notes; match date/country/show/title/search text.
     return episodeMatchesChartPeriod(
-      { d, y: d.slice(0, 4), p: s.p || "", a: "", st: "" },
+      { d, y: d.slice(0, 4), p: s.p || "", a: "", st: "", e: s.e || "" },
       null,
       { theme: "", status: "" }
     );
@@ -1662,23 +1667,14 @@
 
   function episodesForTheme(themeId) {
     if (!themeId || !state.episodes?.length) return [];
-    const qq = String(state.chartPeriod.q || "").trim().toLowerCase();
     const out = [];
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
-      // Sticky filters apply, but theme comes from the selected theme chip/dropdown.
+      // Sticky filters (incl. search) apply; theme comes from the selected chip/dropdown.
       if (!episodeMatchesChartPeriod(e, i, { theme: "" })) continue;
       const th = themeIdsForIndex(i);
       if (!episodeMatchesThemeId(th, themeId)) continue;
-      const epCountry = countryForEpisode(e);
-      if (qq) {
-        const themeNames = th
-          .map((id) => state.themeById[id]?.name || id)
-          .join(" ");
-        const hay = `${e.e} ${e.p} ${e.a} ${e.f} ${epCountry} ${themeNames} ${noteTextForIndex(i)}`.toLowerCase();
-        if (!hay.includes(qq)) continue;
-      }
-      out.push({ ...e, _i: i, _th: th, _country: epCountry });
+      out.push({ ...e, _i: i, _th: th, _country: countryForEpisode(e) });
     }
     return out;
   }
@@ -1931,21 +1927,12 @@
   }
 
   function filteredEpisodes() {
-    const qq = String(state.chartPeriod.q || "").trim().toLowerCase();
     const out = [];
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
       if (!episodeMatchesChartPeriod(e, i)) continue;
       const th = themeIdsForIndex(i);
-      const epCountry = countryForEpisode(e);
-      if (qq) {
-        const themeNames = th
-          .map((id) => state.themeById[id]?.name || id)
-          .join(" ");
-        const hay = `${e.e} ${e.p} ${e.a} ${e.f} ${epCountry} ${themeNames} ${noteTextForIndex(i)}`.toLowerCase();
-        if (!hay.includes(qq)) continue;
-      }
-      out.push({ ...e, _i: i, _th: th, _country: epCountry });
+      out.push({ ...e, _i: i, _th: th, _country: countryForEpisode(e) });
     }
     return out;
   }
@@ -2455,14 +2442,9 @@
     $("#periodQ")?.addEventListener("input", (e) => {
       clearTimeout(qTimer);
       qTimer = setTimeout(() => {
-        // Search refreshes episode lists — not every chart.
-        state.chartPeriod.q = e.target.value;
-        state.page = 0;
         state.themeMatchPage = 0;
-        renderEpisodeList();
-        if (state.themeMatchView === "episodes") renderThemeMatchPanel();
-        updatePeriodSummary();
-      }, 160);
+        patchChartPeriod({ q: e.target.value });
+      }, 180);
     });
     $("#periodClear")?.addEventListener("click", () => {
       if ($("#topicQ")) $("#topicQ").value = "";
