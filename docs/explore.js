@@ -179,7 +179,7 @@
     ].join("|");
   }
 
-  function chartPeriodLabel() {
+  function chartPeriodLabel(opts = {}) {
     const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
     const bits = [];
     if (year) {
@@ -191,7 +191,7 @@
     }
     if (country) bits.push(country);
     if (podcast) bits.push(podcast);
-    if (theme) bits.push(state.themeById[theme]?.name || theme);
+    if (theme && !opts.omitTheme) bits.push(state.themeById[theme]?.name || theme);
     if (status) bits.push(status);
     const qq = String(q || "").trim();
     if (qq) bits.push(`search “${qq}”`);
@@ -1798,7 +1798,7 @@
     const theme = selectedTheme();
     const title = $("#themeMatchTitle");
     const note = $("#themeMatchNote");
-    const scope = chartPeriodLabel();
+    const scope = chartPeriodLabel({ omitTheme: true });
     const hours = metricIsHours();
     syncThemeMatchToggle();
 
