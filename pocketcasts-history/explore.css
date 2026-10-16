@@ -195,6 +195,23 @@ button, input, select { font: inherit; }
   background: var(--sea-fill);
   color: var(--on-sea);
 }
+.theme-match-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-bottom: 8px;
+}
+.theme-match-head h3 {
+  margin: 0 0 4px;
+}
+.theme-match-head .panel-note {
+  margin: 0;
+}
+.theme-match-toggle {
+  flex-shrink: 0;
+}
 .tool-btn {
   border: 1px solid var(--line);
   background: var(--input);
