@@ -249,6 +249,19 @@ html[data-theme="dark"] .chrome-tab.is-active {
   align-items: center;
   gap: 8px;
   margin-left: auto;
+  flex-shrink: 0;
+}
+
+.refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.refresh-icon {
+  display: none;
+  flex-shrink: 0;
 }
 
 /* Segmented control (UISegmentedControl) */
@@ -591,6 +604,10 @@ select:focus {
 }
 
 .stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
   padding: 14px 16px 12px;
   border-right: 0.5px solid var(--separator);
   background: transparent;
@@ -599,13 +616,6 @@ select:focus {
 .stat:nth-child(3n) { border-right: 0; }
 .stat:nth-child(n + 4) {
   border-top: 0.5px solid var(--separator);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  min-height: 0;
 }
 
 .stat b {
@@ -1571,9 +1581,18 @@ body:not(.ready) #topPanel {
 
 @media (max-width: 520px) {
   .chrome-inner { gap: 6px; }
-  .brand { font-size: 1rem; max-width: 7.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .brand { font-size: 1rem; max-width: 6.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .chrome-tools { gap: 4px; }
   .glass-btn,
   .tool-btn { padding: 7px 9px; font-size: 0.75rem; }
+  /* Icon-only Refresh so it isn't clipped off the right edge on iPhone */
+  #hardRefresh {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 8px;
+  }
+  #hardRefresh .refresh-label { display: none; }
+  #hardRefresh .refresh-icon { display: block; }
   .hero { padding-top: 12px; }
   .hero-lead { display: none; }
   .large-title,

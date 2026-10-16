@@ -52,7 +52,13 @@
           <button type="button" class="segmented-btn metric-btn" data-metric="hours" aria-pressed="false" title="Rank by hours of episode duration">Hours</button>
         </div>
         <button type="button" class="glass-btn" id="themeToggle" aria-pressed="false" aria-label="Toggle appearance">Dark</button>
-        <button type="button" class="glass-btn" id="hardRefresh" title="Hard refresh — bypass cache and reload">Refresh</button>
+        <button type="button" class="glass-btn refresh-btn" id="hardRefresh" title="Hard refresh — bypass cache and reload" aria-label="Hard refresh">
+          <svg class="refresh-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 1 1-2.6-6.3" />
+            <path d="M21 3v6h-6" />
+          </svg>
+          <span class="refresh-label">Refresh</span>
+        </button>
       </div>
     </div>
   </header>
