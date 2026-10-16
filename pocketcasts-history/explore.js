@@ -435,18 +435,32 @@
 
     if (themeSel && state.themesDoc?.themes) {
       const opts = ['<option value="">All themes</option>'];
+      const selected = theme || "";
       for (const p of state.themesDoc.themes) {
-        opts.push(
-          `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`
+        const parentHit = themeMetricInYears(p) > 0 || p.id === selected;
+        const kids = (p.children || []).filter(
+          (c) => themeMetricInYears(c) > 0 || c.id === selected
         );
-        for (const c of p.children || []) {
+        if (!parentHit && !kids.length) continue;
+        if (parentHit) {
+          opts.push(
+            `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`
+          );
+        }
+        for (const c of kids) {
           opts.push(
             `<option value="${escapeHtml(c.id)}">↳ ${escapeHtml(c.name)}</option>`
           );
         }
       }
       themeSel.innerHTML = opts.join("");
-      themeSel.value = theme || "";
+      themeSel.value = selected;
+      // Drop a theme facet that no longer intersects the other filters.
+      if (selected && themeSel.value !== selected) {
+        state.chartPeriod.theme = "";
+        syncThemeUiFromPeriod();
+        themeSel.value = "";
+      }
     }
 
     if (statusSel) statusSel.value = status || "";
@@ -1769,6 +1783,11 @@
       : stats.byThemeCount[t.id] || 0;
   }
 
+  /** Themes with at least one matching episode under the sticky filters (theme facet ignored). */
+  function themesPresentInFilter(themes) {
+    return (themes || []).filter((t) => themeMetricInYears(t) > 0);
+  }
+
   function themeMetricLabel(n) {
     return metricIsHours() ? `${fmtHours(n)}h` : fmt(n);
   }
@@ -2138,29 +2157,53 @@
     const host = $("#themeChips");
     const childHost = $("#themeChildChips");
     if (!host || !state.themesDoc?.themes) return;
-    const parents = parentThemes()
+
+    // Drop focus/selection when the active theme no longer appears under filters.
+    const focused = state.themeById[state.focusedParentId];
+    const active = state.themeById[state.activeTheme];
+    const focusGone = !!(focused && themeMetricInYears(focused) <= 0);
+    const activeGone = !!(active && themeMetricInYears(active) <= 0);
+    if (focusGone || activeGone) {
+      state.focusedParentId = focusGone ? "" : state.focusedParentId;
+      if (activeGone || (focusGone && state.chartPeriod.theme)) {
+        state.chartPeriod.theme = "";
+        state.activeTheme = "";
+        state.focusedParentId = "";
+        const themeSel = $("#periodTheme");
+        if (themeSel) themeSel.value = "";
+        updatePeriodSummary();
+      }
+    }
+
+    const parents = themesPresentInFilter(parentThemes())
       .slice()
       .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
-    host.innerHTML = parents
-      .map(
-        (t) => `
+    if (!parents.length) {
+      host.innerHTML = `<div class="empty">No themes match the current filters.</div>`;
+    } else {
+      host.innerHTML = parents
+        .map(
+          (t) => `
       <button type="button" class="theme-chip${
         state.focusedParentId === t.id || state.activeTheme === t.id ? " active" : ""
       }" data-theme="${escapeHtml(t.id)}">
         ${escapeHtml(t.name)}<small>${escapeHtml(themeMetricLabel(themeMetricInYears(t)))}</small>
       </button>`
-      )
-      .join("");
-    $$(".theme-chip", host).forEach((btn) => {
-      btn.addEventListener("click", () => focusParentTheme(btn.dataset.theme));
-    });
+        )
+        .join("");
+      $$(".theme-chip", host).forEach((btn) => {
+        btn.addEventListener("click", () => focusParentTheme(btn.dataset.theme));
+      });
+    }
 
     const parent = state.themeById[state.focusedParentId];
     if (childHost) {
-      if (parent?.children?.length) {
-        const kids = parent.children
-          .slice()
-          .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
+      const kids = parent?.children?.length
+        ? themesPresentInFilter(parent.children)
+            .slice()
+            .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
+        : [];
+      if (kids.length) {
         childHost.hidden = false;
         childHost.innerHTML = kids
           .map(
@@ -2190,10 +2233,15 @@
     const fullN = noteEntries.filter((n) => n?.full || (n?.chars || 0) > 900).length;
     const bodyN = meta.episodesWithBodyText != null ? meta.episodesWithBodyText : notesN;
     const periodBit = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
+    const childVisible = parents.reduce(
+      (n, p) => n + themesPresentInFilter(p.children || []).length,
+      0
+    );
     $("#themeCoverage").textContent =
       `${fmt(scoped.episodeCount)} episodes${periodBit}` +
-      (meta.childCount != null
-        ? ` · ${fmt(meta.parentCount)} parents / ${fmt(meta.childCount)} child themes`
+      ` · ${fmt(parents.length)} parents / ${fmt(childVisible)} child themes` +
+      (chartPeriodActive() && meta.parentCount != null
+        ? ` (of ${fmt(meta.parentCount)} / ${fmt(meta.childCount)} overall)`
         : "") +
       (bodyN
         ? ` · ${fmt(bodyN)} with body text (${fmt(txN)} transcript/STT, ${fmt(fullN)} longer than snippet)`
@@ -2203,8 +2251,8 @@
 
   function themeChartItems() {
     const parent = state.themeById[state.focusedParentId];
-    if (parent?.children?.length) return parent.children;
-    return parentThemes();
+    if (parent?.children?.length) return themesPresentInFilter(parent.children);
+    return themesPresentInFilter(parentThemes());
   }
 
   function renderThemeChart() {
@@ -2236,15 +2284,15 @@
 
   function themeYearSeriesThemes() {
     const active = state.themeById[state.activeTheme];
-    if (active) return [active];
+    if (active && themeMetricInYears(active) > 0) return [active];
     const parent = state.themeById[state.focusedParentId];
     if (parent?.children?.length) {
-      return parent.children
+      return themesPresentInFilter(parent.children)
         .slice()
         .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
         .slice(0, 6);
     }
-    return parentThemes()
+    return themesPresentInFilter(parentThemes())
       .slice()
       .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
       .slice(0, 6);
