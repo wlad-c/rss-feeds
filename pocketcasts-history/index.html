@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
   <title>Listening Log · Pocket Casts</title>
   <script>
     (() => {
@@ -32,29 +35,30 @@
   <script src="explore.js" defer></script>
 </head>
 <body>
-  <div class="nav">
-    <div class="wrap nav-inner">
-      <div class="brand">Listening Log</div>
-      <div class="nav-links">
-        <a href="#trends" data-jump="trends">Trends</a>
-        <a href="#shows" data-jump="shows">Shows</a>
-        <a href="#themes" data-jump="themes">Themes</a>
-        <a href="#patterns" data-jump="patterns">Patterns</a>
-        <a href="#explorePanel" data-jump="explorePanel">Explore</a>
-      </div>
-      <div class="nav-tools">
-        <div class="metric-toggle" role="group" aria-label="Rank charts by episodes or hours">
-          <button type="button" class="tool-btn metric-btn" data-metric="episodes" aria-pressed="true" title="Rank by episode count">Eps</button>
-          <button type="button" class="tool-btn metric-btn" data-metric="hours" aria-pressed="false" title="Rank by hours of episode duration">Hours</button>
+  <!-- UI chrome layer (Liquid Glass) -->
+  <header class="chrome-bar" role="banner">
+    <div class="wrap chrome-inner">
+      <div class="brand" aria-label="Listening Log">Listening Log</div>
+      <nav class="chrome-tabs" aria-label="Sections">
+        <a href="#trends" data-jump="trends" class="chrome-tab">Trends</a>
+        <a href="#shows" data-jump="shows" class="chrome-tab">Shows</a>
+        <a href="#themes" data-jump="themes" class="chrome-tab">Themes</a>
+        <a href="#patterns" data-jump="patterns" class="chrome-tab">Patterns</a>
+        <a href="#explorePanel" data-jump="explorePanel" class="chrome-tab">Explore</a>
+      </nav>
+      <div class="chrome-tools">
+        <div class="segmented" role="group" aria-label="Rank charts by episodes or hours">
+          <button type="button" class="segmented-btn metric-btn" data-metric="episodes" aria-pressed="true" title="Rank by episode count">Eps</button>
+          <button type="button" class="segmented-btn metric-btn" data-metric="hours" aria-pressed="false" title="Rank by hours of episode duration">Hours</button>
         </div>
-        <button type="button" class="tool-btn" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">Dark</button>
-        <button type="button" class="tool-btn" id="hardRefresh" title="Hard refresh — bypass cache and reload">Refresh</button>
+        <button type="button" class="glass-btn" id="themeToggle" aria-pressed="false" aria-label="Toggle appearance">Dark</button>
+        <button type="button" class="glass-btn" id="hardRefresh" title="Hard refresh — bypass cache and reload">Refresh</button>
       </div>
     </div>
-  </div>
+  </header>
 
   <div class="period-dock">
-    <div class="wrap period-bar" id="periodBar">
+    <div class="wrap period-bar glass-surface" id="periodBar">
       <div class="period-controls">
         <span class="period-kicker">Filter</span>
         <label class="period-field">
@@ -100,205 +104,242 @@
     </div>
   </div>
 
-  <header class="wrap hero">
-    <p class="hero-kicker">Pocket Casts</p>
-    <h1>Listening Log</h1>
-    <p class="hero-lead">Stats, charts, themes, and the episode list all follow the filter above.</p>
-    <p class="hero-meta" id="exportedAt"></p>
-    <div class="stats" id="heroStats"></div>
-    <div class="insights-strip" id="insightStrip" hidden></div>
-    <p class="boot" id="bootStatus">Loading…</p>
-  </header>
+  <!-- Content layer -->
+  <div class="content-layer">
+    <header class="wrap hero">
+      <p class="hero-eyebrow">Pocket Casts</p>
+      <h1 class="large-title">Listening Log</h1>
+      <p class="hero-lead">Stats, charts, themes, and the episode list all follow the filter above.</p>
+      <p class="hero-meta" id="exportedAt"></p>
+      <div class="stats" id="heroStats"></div>
+      <div class="insights-strip" id="insightStrip" hidden></div>
+      <p class="boot" id="bootStatus">Loading…</p>
+    </header>
 
-  <main class="wrap charts-block">
-    <section id="trends" class="ready-delay">
-      <div class="section-head">
-        <div>
-          <h2>Listening over time</h2>
-          <p id="trendLead">Monthly episode volume with a 3-month average.</p>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="chart-box tall"><canvas id="trendChart"></canvas></div>
-      </div>
-      <div class="grid-2" style="margin-top:12px">
-        <div class="panel">
-          <h3 id="cumChartTitle">Cumulative episodes</h3>
-          <div class="chart-box short"><canvas id="cumChart"></canvas></div>
-        </div>
-        <div class="panel">
-          <h3 id="yearChartTitle">Episodes by year</h3>
-          <div class="chart-box short" id="yearChartBox"><canvas id="yearChart"></canvas></div>
-          <div class="chart-more" id="yearChartMore"></div>
-        </div>
-      </div>
-      <div class="panel" style="margin-top:12px">
-        <h3>Same month, different years</h3>
-        <p class="panel-note" id="yoyChartNote">Compare January–December volume across years.</p>
-        <div class="chart-box"><canvas id="yoyChart"></canvas></div>
-      </div>
-    </section>
-
-    <section id="shows">
-      <div class="section-head">
-        <div>
-          <h2>Shows &amp; catalogues</h2>
-          <p>Where your attention went — tap a show name to filter the explorer.</p>
-        </div>
-      </div>
-      <div class="grid-2">
-        <div class="panel">
-          <h3 id="topChartTitle">Podcasts by listens</h3>
-          <div class="chart-box tall" id="topChartBox"><canvas id="topChart"></canvas></div>
-          <div class="chart-more" id="topChartMore"></div>
-        </div>
-        <div class="panel" id="topPanel">
-          <h3>Leaderboard</h3>
-          <div style="max-height:360px; overflow:auto">
-            <table id="topTable">
-              <thead>
-                <tr><th>#</th><th>Podcast</th><th id="topTableMetricHead">Eps</th><th></th></tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <div class="chart-more" id="topTableMore"></div>
-        </div>
-      </div>
-      <div class="grid-2 equal" style="margin-top:12px">
-        <div class="panel">
-          <h3 id="folderChartTitle">Folders</h3>
-          <div class="chart-box" id="folderChartBox"><canvas id="folderChart"></canvas></div>
-          <div class="chart-more" id="folderChartMore"></div>
-        </div>
-        <div class="panel">
-          <h3>Play status</h3>
-          <div class="chart-box"><canvas id="statusChart"></canvas></div>
-        </div>
-      </div>
-      <div class="panel" style="margin-top:12px">
-        <h3 id="countryChartTitle">Countries of origin</h3>
-        <p class="panel-note" id="countryChartNote">Publisher country for each show — e.g. NPR → United States, O Assunto → Brazil.</p>
-        <div class="chart-box" id="countryChartBox"><canvas id="countryChart"></canvas></div>
-        <div class="chart-more" id="countryChartMore"></div>
-      </div>
-    </section>
-
-    <section id="themes">
-      <div class="section-head">
-        <div>
-          <h2>Themes across episodes</h2>
-          <p>Parent themes with content-derived child topics — tap a parent to drill in. The sticky filter above scopes every theme chart, sample, and ranking.</p>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="theme-search-row">
-          <input id="topicQ" type="search" placeholder="Search a topic — e.g. Gaza, Lula, AUKUS, inflation…" />
-          <button class="btn secondary" id="clearTopic" type="button">Clear</button>
-        </div>
-        <p class="panel-note" id="themeCoverage"></p>
-        <div class="theme-breadcrumb" id="themeBreadcrumb" hidden></div>
-        <div class="theme-chips" id="themeChips" aria-label="Parent themes"></div>
-        <div class="theme-chips theme-chips-child" id="themeChildChips" aria-label="Child themes" hidden></div>
-      </div>
-      <div class="grid-2" style="margin-top:12px">
-        <div class="panel">
-          <h3 id="themeChartTitle">Parent themes</h3>
-          <div class="chart-box tall" id="themeChartBox"><canvas id="themeChart"></canvas></div>
-          <div class="chart-more" id="themeChartMore"></div>
-        </div>
-        <div class="panel">
-          <h3 id="themeDetailTitle">Pick a theme</h3>
-          <p class="panel-note" id="themeDetailBlurb">Tap a parent to see child themes from episode content, or jump into matching episodes.</p>
-          <div id="themeSamples" class="theme-samples"></div>
-          <button class="btn" id="filterByTheme" type="button" hidden>Show matching episodes</button>
-        </div>
-      </div>
-      <div class="panel" style="margin-top:12px">
-        <h3 id="themeYearChartTitle">Themes over time</h3>
-        <p class="panel-note" id="themeYearChartNote">Follow a theme’s share of listens over the period selected in the filter bar.</p>
-        <div class="chart-box mid" id="themeYearChartBox"><canvas id="themeYearChart"></canvas></div>
-      </div>
-      <div class="panel" style="margin-top:12px" id="themeMatchPanel">
-        <div class="theme-match-head">
+    <main class="wrap charts-block">
+      <section id="trends" class="ready-delay">
+        <div class="section-head">
           <div>
-            <h3 id="themeMatchTitle">Matching this theme</h3>
-            <p class="panel-note" id="themeMatchNote">Pick a theme to see matching shows or episodes.</p>
-          </div>
-          <div class="metric-toggle theme-match-toggle" role="group" aria-label="Show podcasts or episodes for the selected theme">
-            <button type="button" class="tool-btn metric-btn" data-theme-match="podcasts" aria-pressed="true">Podcasts</button>
-            <button type="button" class="tool-btn metric-btn" data-theme-match="episodes" aria-pressed="false">Episodes</button>
+            <h2>Listening over time</h2>
+            <p id="trendLead">Monthly episode volume with a 3-month average.</p>
           </div>
         </div>
-        <div id="themeMatchPodcasts">
-          <div class="chart-box tall" id="themePodBox"><canvas id="themePodChart"></canvas></div>
-          <div class="chart-more" id="themePodMore"></div>
+        <div class="panel">
+          <div class="chart-box tall"><canvas id="trendChart"></canvas></div>
         </div>
-        <div id="themeMatchEpisodes" hidden>
-          <div class="list" id="themeEpisodeList"></div>
+        <div class="grid-2 stack-gap">
+          <div class="panel">
+            <h3 id="cumChartTitle">Cumulative episodes</h3>
+            <div class="chart-box short"><canvas id="cumChart"></canvas></div>
+          </div>
+          <div class="panel">
+            <h3 id="yearChartTitle">Episodes by year</h3>
+            <div class="chart-box short" id="yearChartBox"><canvas id="yearChart"></canvas></div>
+            <div class="chart-more" id="yearChartMore"></div>
+          </div>
+        </div>
+        <div class="panel stack-gap">
+          <h3>Same month, different years</h3>
+          <p class="panel-note" id="yoyChartNote">Compare January–December volume across years.</p>
+          <div class="chart-box"><canvas id="yoyChart"></canvas></div>
+        </div>
+      </section>
+
+      <section id="shows">
+        <div class="section-head">
+          <div>
+            <h2>Shows &amp; catalogues</h2>
+            <p>Where your attention went — tap a show name to filter the explorer.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="panel">
+            <h3 id="topChartTitle">Podcasts by listens</h3>
+            <div class="chart-box tall" id="topChartBox"><canvas id="topChart"></canvas></div>
+            <div class="chart-more" id="topChartMore"></div>
+          </div>
+          <div class="panel" id="topPanel">
+            <h3>Leaderboard</h3>
+            <div class="table-scroll">
+              <table id="topTable">
+                <thead>
+                  <tr><th>#</th><th>Podcast</th><th id="topTableMetricHead">Eps</th><th></th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="chart-more" id="topTableMore"></div>
+          </div>
+        </div>
+        <div class="grid-2 equal stack-gap">
+          <div class="panel">
+            <h3 id="folderChartTitle">Folders</h3>
+            <div class="chart-box" id="folderChartBox"><canvas id="folderChart"></canvas></div>
+            <div class="chart-more" id="folderChartMore"></div>
+          </div>
+          <div class="panel">
+            <h3>Play status</h3>
+            <div class="chart-box"><canvas id="statusChart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel stack-gap">
+          <h3 id="countryChartTitle">Countries of origin</h3>
+          <p class="panel-note" id="countryChartNote">Publisher country for each show — e.g. NPR → United States, O Assunto → Brazil.</p>
+          <div class="chart-box" id="countryChartBox"><canvas id="countryChart"></canvas></div>
+          <div class="chart-more" id="countryChartMore"></div>
+        </div>
+      </section>
+
+      <section id="themes">
+        <div class="section-head">
+          <div>
+            <h2>Themes across episodes</h2>
+            <p>Parent themes with content-derived child topics — tap a parent to drill in. The sticky filter above scopes every theme chart, sample, and ranking.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="theme-search-row">
+            <input id="topicQ" type="search" placeholder="Search a topic — e.g. Gaza, Lula, AUKUS, inflation…" />
+            <button class="btn secondary" id="clearTopic" type="button">Clear</button>
+          </div>
+          <p class="panel-note" id="themeCoverage"></p>
+          <div class="theme-breadcrumb" id="themeBreadcrumb" hidden></div>
+          <div class="theme-chips" id="themeChips" aria-label="Parent themes"></div>
+          <div class="theme-chips theme-chips-child" id="themeChildChips" aria-label="Child themes" hidden></div>
+        </div>
+        <div class="grid-2 stack-gap">
+          <div class="panel">
+            <h3 id="themeChartTitle">Parent themes</h3>
+            <div class="chart-box tall" id="themeChartBox"><canvas id="themeChart"></canvas></div>
+            <div class="chart-more" id="themeChartMore"></div>
+          </div>
+          <div class="panel">
+            <h3 id="themeDetailTitle">Pick a theme</h3>
+            <p class="panel-note" id="themeDetailBlurb">Tap a parent to see child themes from episode content, or jump into matching episodes.</p>
+            <div id="themeSamples" class="theme-samples"></div>
+            <button class="btn" id="filterByTheme" type="button" hidden>Show matching episodes</button>
+          </div>
+        </div>
+        <div class="panel stack-gap">
+          <h3 id="themeYearChartTitle">Themes over time</h3>
+          <p class="panel-note" id="themeYearChartNote">Follow a theme’s share of listens over the period selected in the filter bar.</p>
+          <div class="chart-box mid" id="themeYearChartBox"><canvas id="themeYearChart"></canvas></div>
+        </div>
+        <div class="panel stack-gap" id="themeMatchPanel">
+          <div class="theme-match-head">
+            <div>
+              <h3 id="themeMatchTitle">Matching this theme</h3>
+              <p class="panel-note" id="themeMatchNote">Pick a theme to see matching shows or episodes.</p>
+            </div>
+            <div class="segmented theme-match-toggle" role="group" aria-label="Show podcasts or episodes for the selected theme">
+              <button type="button" class="segmented-btn metric-btn" data-theme-match="podcasts" aria-pressed="true">Podcasts</button>
+              <button type="button" class="segmented-btn metric-btn" data-theme-match="episodes" aria-pressed="false">Episodes</button>
+            </div>
+          </div>
+          <div id="themeMatchPodcasts">
+            <div class="chart-box tall" id="themePodBox"><canvas id="themePodChart"></canvas></div>
+            <div class="chart-more" id="themePodMore"></div>
+          </div>
+          <div id="themeMatchEpisodes" hidden>
+            <div class="list inset-list" id="themeEpisodeList"></div>
+            <div class="pager">
+              <button class="btn secondary" id="themePrevPage" type="button">Previous</button>
+              <div class="info" id="themePageInfo"></div>
+              <button class="btn secondary" id="themeNextPage" type="button">Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="patterns">
+        <div class="section-head">
+          <div>
+            <h2>Habits &amp; patterns</h2>
+            <p>When you listen in Australian Eastern time (AEST or AEDT for that listen) and how episode length changed.</p>
+          </div>
+        </div>
+        <div class="grid-2 equal">
+          <div class="panel">
+            <h3 id="weekdayChartTitle">Day of week (AEST/AEDT)</h3>
+            <div class="chart-box short" id="weekdayChartBox"><canvas id="weekdayChart"></canvas></div>
+            <div class="chart-more" id="weekdayChartMore"></div>
+          </div>
+          <div class="panel">
+            <h3 id="hourChartTitle">Hour of day (AEST/AEDT)</h3>
+            <div class="chart-box short"><canvas id="hourChart"></canvas></div>
+          </div>
+        </div>
+        <div class="panel stack-gap">
+          <h3>Average episode length by year</h3>
+          <div class="chart-box short" id="durChartBox"><canvas id="durChart"></canvas></div>
+          <div class="chart-more" id="durChartMore"></div>
+        </div>
+        <div class="panel stack-gap">
+          <h3>Listening calendar</h3>
+          <p class="panel-note" id="heatmapNote">Daily episode count for the last ~12 months. Darker = more listens.</p>
+          <div id="heatmap" class="heatmap" aria-label="Listening activity heatmap"></div>
+          <div class="heat-legend"><span>Less</span><i></i><i></i><i></i><i></i><i></i><span>More</span></div>
+        </div>
+      </section>
+
+      <section id="explorePanel">
+        <div class="section-head">
+          <div>
+            <h2>Episode explorer</h2>
+            <p id="listMeta">Browse episodes scoped by the filter bar above.</p>
+          </div>
+        </div>
+        <div class="panel panel-flush">
+          <p class="insights" id="filterInsights"></p>
+          <div class="list inset-list" id="episodeList"></div>
           <div class="pager">
-            <button class="btn secondary" id="themePrevPage" type="button">Previous</button>
-            <div class="info" id="themePageInfo"></div>
-            <button class="btn secondary" id="themeNextPage" type="button">Next</button>
+            <button class="btn secondary" id="prevPage" type="button">Previous</button>
+            <div class="info" id="pageInfo"></div>
+            <button class="btn secondary" id="nextPage" type="button">Next</button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <section id="patterns">
-      <div class="section-head">
-        <div>
-          <h2>Habits &amp; patterns</h2>
-          <p>When you listen in Australian Eastern time (AEST or AEDT for that listen) and how episode length changed.</p>
-        </div>
-      </div>
-      <div class="grid-2 equal">
-        <div class="panel">
-          <h3 id="weekdayChartTitle">Day of week (AEST/AEDT)</h3>
-          <div class="chart-box short" id="weekdayChartBox"><canvas id="weekdayChart"></canvas></div>
-          <div class="chart-more" id="weekdayChartMore"></div>
-        </div>
-        <div class="panel">
-          <h3 id="hourChartTitle">Hour of day (AEST/AEDT)</h3>
-          <div class="chart-box short"><canvas id="hourChart"></canvas></div>
-        </div>
-      </div>
-      <div class="panel" style="margin-top:12px">
-        <h3>Average episode length by year</h3>
-        <div class="chart-box short" id="durChartBox"><canvas id="durChart"></canvas></div>
-        <div class="chart-more" id="durChartMore"></div>
-      </div>
-      <div class="panel" style="margin-top:12px">
-        <h3>Listening calendar</h3>
-        <p class="panel-note" id="heatmapNote">Daily episode count for the last ~12 months. Darker = more listens.</p>
-        <div id="heatmap" class="heatmap" aria-label="Listening activity heatmap"></div>
-        <div class="heat-legend"><span>Less</span><i></i><i></i><i></i><i></i><i></i><span>More</span></div>
-      </div>
-    </section>
+    <footer class="wrap site-footer">
+      Built from your Pocket Casts export in this repo.
+      Raw tables live in <a href="./tables/">tables/</a>
+      · Excel workbook <a href="./PocketCasts_Listening_History.xlsx">download</a>.
+    </footer>
+  </div>
 
-    <section id="explorePanel">
-      <div class="section-head">
-        <div>
-          <h2>Episode explorer</h2>
-          <p id="listMeta">Browse episodes scoped by the filter bar above.</p>
-        </div>
-      </div>
-      <div class="panel">
-        <p class="insights" id="filterInsights"></p>
-        <div class="list" id="episodeList"></div>
-        <div class="pager">
-          <button class="btn secondary" id="prevPage" type="button">Previous</button>
-          <div class="info" id="pageInfo"></div>
-          <button class="btn secondary" id="nextPage" type="button">Next</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="wrap">
-    Built from your Pocket Casts export in this repo.
-    Raw tables live in <a href="./tables/">tables/</a>
-    · Excel workbook <a href="./PocketCasts_Listening_History.xlsx">download</a>.
-  </footer>
+  <!-- Mobile tab bar (Liquid Glass) -->
+  <nav class="tab-bar" aria-label="Primary">
+    <a href="#trends" data-jump="trends" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9"/><path d="M10 19V5"/><path d="M16 19v-7"/><path d="M22 19V8"/></svg>
+      </span>
+      <span>Trends</span>
+    </a>
+    <a href="#shows" data-jump="shows" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6v2l-2 3h16l-2-3V9a6 6 0 0 0-6-6z"/><path d="M9 20h6"/></svg>
+      </span>
+      <span>Shows</span>
+    </a>
+    <a href="#themes" data-jump="themes" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M3 12h2M19 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </span>
+      <span>Themes</span>
+    </a>
+    <a href="#patterns" data-jump="patterns" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      </span>
+      <span>Patterns</span>
+    </a>
+    <a href="#explorePanel" data-jump="explorePanel" class="tab-item">
+      <span class="tab-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </span>
+      <span>Explore</span>
+    </a>
+  </nav>
 </body>
 </html>

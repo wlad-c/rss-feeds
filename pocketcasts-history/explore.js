@@ -1,22 +1,36 @@
 /* Pocket Casts listening explore app */
 (() => {
   const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  /* High-contrast categorical palette (Okabe–Ito + extras); hues stay far apart */
+  /* Apple system / SF chart palette — categorical hues stay distinct */
   const THEME_KEY = "listening-log-theme";
   const METRIC_KEY = "listening-log-metric";
   const COLORS = {
-    ink: "#243447",
-    muted: "#5b6b7c",
-    blue: "#0072B2",
-    amber: "#E69F00",
-    teal: "#009E73",
-    vermillion: "#D55E00",
-    sky: "#56B4E9",
-    olive: "#6A8F00",
-    rose: "#CC79A7",
-    rust: "#A15C00",
-    slate: "#4A5568",
-    navy: "#0B3D6E",
+    ink: "#1C1C1E",
+    muted: "#8E8E93",
+    blue: "#007AFF",
+    amber: "#FF9500",
+    teal: "#30B0C7",
+    vermillion: "#FF3B30",
+    sky: "#64D2FF",
+    olive: "#34C759",
+    rose: "#FF2D55",
+    rust: "#FF9F0A",
+    slate: "#8E8E93",
+    navy: "#5856D6",
+  };
+  const COLORS_DARK = {
+    ink: "#F5F5F7",
+    muted: "#98989D",
+    blue: "#0A84FF",
+    amber: "#FF9F0A",
+    teal: "#40CBE0",
+    vermillion: "#FF453A",
+    sky: "#64D2FF",
+    olive: "#30D158",
+    rose: "#FF375F",
+    rust: "#FFD60A",
+    slate: "#8E8E93",
+    navy: "#5E5CE6",
   };
   const CATEGORICAL = [
     COLORS.blue,
@@ -29,6 +43,18 @@
     COLORS.rust,
     COLORS.navy,
     COLORS.slate,
+  ];
+  const CATEGORICAL_DARK = [
+    COLORS_DARK.blue,
+    COLORS_DARK.amber,
+    COLORS_DARK.teal,
+    COLORS_DARK.vermillion,
+    COLORS_DARK.sky,
+    COLORS_DARK.olive,
+    COLORS_DARK.rose,
+    COLORS_DARK.rust,
+    COLORS_DARK.navy,
+    COLORS_DARK.slate,
   ];
   const state = {
     agg: null,
@@ -503,22 +529,30 @@
     return document.documentElement.getAttribute("data-theme") === "dark";
   }
 
+  function palette() {
+    return isDark() ? COLORS_DARK : COLORS;
+  }
+
+  function categorical() {
+    return isDark() ? CATEGORICAL_DARK : CATEGORICAL;
+  }
+
   function chartChrome() {
     if (isDark()) {
       return {
-        label: "#f3f7fc",
-        muted: "#c2d0de",
-        grid: "rgba(243,247,252,.12)",
-        tooltipBg: "#0b1220",
-        doughnutBorder: "#1c2838",
+        label: "rgba(255,255,255,0.92)",
+        muted: "rgba(235,235,245,0.6)",
+        grid: "rgba(84,84,88,0.45)",
+        tooltipBg: "rgba(44,44,46,0.96)",
+        doughnutBorder: "#1C1C1E",
       };
     }
     return {
-      label: "#243447",
-      muted: "#5b6b7c",
-      grid: "rgba(20,32,51,.08)",
-      tooltipBg: "#142033",
-      doughnutBorder: "#ffffff",
+      label: "rgba(0,0,0,0.88)",
+      muted: "rgba(60,60,67,0.6)",
+      grid: "rgba(60,60,67,0.12)",
+      tooltipBg: "rgba(28,28,30,0.94)",
+      doughnutBorder: "#FFFFFF",
     };
   }
 
@@ -626,7 +660,7 @@
             data: visible.map(valueOf),
             backgroundColor: colors
               ? visible.map((_, i) => colors[i % colors.length])
-              : color || COLORS.teal,
+              : color || palette().teal,
             borderRadius: 5,
             maxBarThickness: 22,
           },
@@ -1123,8 +1157,8 @@
             ? "Episodes / day"
             : "Episodes / month",
         data: points.map((m) => m.count),
-        borderColor: COLORS.blue,
-        backgroundColor: "rgba(0,114,178,.14)",
+        borderColor: palette().blue,
+        backgroundColor: "rgba(0,122,255,.14)",
         fill: true,
         tension: 0.28,
         pointRadius: daily ? 2 : 0,
@@ -1135,7 +1169,7 @@
       datasets.push({
         label: "3-month average",
         data: rolling,
-        borderColor: COLORS.amber,
+        borderColor: palette().amber,
         backgroundColor: "transparent",
         tension: 0.28,
         pointRadius: 0,
@@ -1176,8 +1210,8 @@
           {
             label: hours ? "Cumulative hours" : "Cumulative episodes",
             data: cumulative.map((d) => d.total),
-            borderColor: COLORS.navy,
-            backgroundColor: "rgba(11,61,110,.12)",
+            borderColor: palette().navy,
+            backgroundColor: "rgba(88,86,214,.12)",
             fill: true,
             tension: 0.2,
             pointRadius: 0,
@@ -1248,7 +1282,7 @@
       items: yearChartItems(),
       labelOf: (d) => d.label || String(d.year),
       valueOf: (d) => d.count,
-      color: COLORS.blue,
+      color: palette().blue,
     });
   }
 
@@ -1271,7 +1305,7 @@
       items: topPodcastItems(),
       labelOf: (d) => d.name,
       valueOf: (d) => (hours ? d.hours : d.count),
-      colors: CATEGORICAL,
+      colors: categorical(),
       onClick: (d) => {
         if (!d?.name) return;
         patchChartPeriod({ podcast: d.name });
@@ -1343,7 +1377,7 @@
       items: weekday || [],
       labelOf: (d) => d.day,
       valueOf: (d) => d.count,
-      color: COLORS.vermillion,
+      color: palette().vermillion,
     });
 
     destroyChart("hour");
@@ -1355,8 +1389,8 @@
           {
             label: hours ? "Hours by hour (AEST/AEDT)" : "Episodes by hour (AEST/AEDT)",
             data: hour.map((d) => d.count),
-            borderColor: COLORS.teal,
-            backgroundColor: "rgba(0,158,115,.14)",
+            borderColor: palette().teal,
+            backgroundColor: "rgba(48,176,199,.14)",
             fill: true,
             tension: 0.3,
             pointRadius: 0,
@@ -1412,7 +1446,7 @@
       items: folderChartItems(),
       labelOf: (d) => d.name || "Ungrouped",
       valueOf: (d) => d.count,
-      colors: CATEGORICAL,
+      colors: categorical(),
     });
 
     destroyChart("status");
@@ -1423,7 +1457,7 @@
         datasets: [
           {
             data: statusItems.map((d) => d.count),
-            backgroundColor: [COLORS.teal, COLORS.amber, COLORS.slate, COLORS.blue],
+            backgroundColor: [palette().teal, palette().amber, palette().slate, palette().blue],
             borderWidth: 2,
             borderColor: chrome.doughnutBorder,
           },
@@ -1473,7 +1507,7 @@
       items: countryChartItems(),
       labelOf: (d) => d.name || "Unknown",
       valueOf: (d) => d.count,
-      colors: CATEGORICAL,
+      colors: categorical(),
       onClick: (d) => {
         if (!d?.name) return;
         applyChartPeriod({
@@ -1501,7 +1535,7 @@
       labelOf: (d) => String(d.year),
       valueOf: (d) => d.avgMinutes,
       valueLabel: "Avg minutes",
-      color: COLORS.amber,
+      color: palette().amber,
     });
   }
 
@@ -1539,7 +1573,7 @@
         datasets: years.map((y, i) => ({
           label: String(y),
           data: months.map((m) => (yoy[m] && yoy[m][String(y)]) || 0),
-          borderColor: CATEGORICAL[i % CATEGORICAL.length],
+          borderColor: categorical()[i % categorical().length],
           backgroundColor: "transparent",
           tension: 0.25,
           pointRadius: 2,
@@ -1818,7 +1852,7 @@
         items: [],
         labelOf: (d) => d.name,
         valueOf: (d) => (hours ? d.hours : d.count),
-        colors: CATEGORICAL,
+        colors: categorical(),
       });
       const list = $("#themeEpisodeList");
       if (list) list.innerHTML = `<div class="empty">Pick a theme to see matching episodes.</div>`;
@@ -1889,7 +1923,7 @@
       items,
       labelOf: (d) => d.name,
       valueOf: (d) => (hours ? d.hours : d.count),
-      colors: CATEGORICAL,
+      colors: categorical(),
       onClick: (d) => jumpToThemePodcast(d?.name),
     });
   }
@@ -2083,7 +2117,7 @@
       items,
       labelOf: (d) => d.name,
       valueOf: (d) => themeMetricInYears(d),
-      color: COLORS.teal,
+      color: palette().teal,
       onClick: (d) => {
         if (!d?.id) return;
         if (!d.parentId) focusParentTheme(d.id);
@@ -2192,7 +2226,7 @@
         datasets: series.map((t, i) => ({
           label: t.name,
           data: buckets.map((b) => themeTrendValue(t, b)),
-          borderColor: CATEGORICAL[i % CATEGORICAL.length],
+          borderColor: categorical()[i % categorical().length],
           backgroundColor: "transparent",
           tension: 0.28,
           pointRadius: 3,
@@ -2398,14 +2432,50 @@
       $("#themeEpisodeList")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
 
-    // Nav smooth scroll
+    // Nav / tab bar smooth scroll + active section highlighting
+    const jumpTargets = ["trends", "shows", "themes", "patterns", "explorePanel"];
+    const setActiveJump = (id) => {
+      $$("[data-jump]").forEach((a) => {
+        const on = a.getAttribute("data-jump") === id;
+        a.classList.toggle("is-active", on);
+        if (on) a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      });
+    };
     $$("[data-jump]").forEach((a) => {
       a.addEventListener("click", (ev) => {
         ev.preventDefault();
         const id = a.getAttribute("data-jump");
+        setActiveJump(id);
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       });
     });
+    if ("IntersectionObserver" in window) {
+      const seen = new Map();
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            seen.set(entry.target.id, entry.intersectionRatio);
+          }
+          let best = jumpTargets[0];
+          let bestRatio = -1;
+          for (const id of jumpTargets) {
+            const r = seen.get(id) || 0;
+            if (r > bestRatio) {
+              bestRatio = r;
+              best = id;
+            }
+          }
+          if (bestRatio > 0) setActiveJump(best);
+        },
+        { rootMargin: "-28% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
+      );
+      jumpTargets.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) io.observe(el);
+      });
+    }
+    setActiveJump("trends");
 
     $("#themeToggle")?.addEventListener("click", () => {
       applyTheme(isDark() ? "light" : "dark");
