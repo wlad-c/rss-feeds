@@ -1098,7 +1098,9 @@
     const btn = $("#hardRefresh");
     if (btn) {
       btn.disabled = true;
-      btn.textContent = "Refreshing…";
+      const label = btn.querySelector(".refresh-label");
+      if (label) label.textContent = "Refreshing…";
+      else btn.setAttribute("aria-label", "Refreshing…");
     }
     try {
       if ("serviceWorker" in navigator) {
