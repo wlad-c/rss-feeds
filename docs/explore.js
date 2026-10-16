@@ -2499,23 +2499,6 @@
     }
   }
 
-<<<<<<< HEAD
-=======
-  function runTopicSearch(raw) {
-    const q = (raw || "").trim();
-    const ql = q.toLowerCase();
-    const hit = flatThemes().find(
-      (t) => t.name.toLowerCase() === ql || t.id === ql
-    );
-    if (hit) {
-      selectTheme(hit.id, true);
-    } else {
-      patchChartPeriod({ q });
-      goToSection("explorePanel");
-    }
-  }
-
->>>>>>> 9eaba63 (Use bottom tabs as real panels on small screens)
   function renderTopTable() {
     const hours = metricIsHours();
     const all = topPodcastItems()
