@@ -25,6 +25,7 @@ def main() -> None:
     themes_path = ROOT / "tables/themes.json"
     episode_themes_path = ROOT / "tables/episode-themes.json"
     notes_path = ROOT / "tables/notes.json"
+    countries_path = ROOT / "tables/podcast-countries.json"
     themes = json.loads(themes_path.read_text(encoding="utf-8")) if themes_path.exists() else None
     episode_themes = (
         json.loads(episode_themes_path.read_text(encoding="utf-8"))
@@ -32,6 +33,9 @@ def main() -> None:
         else None
     )
     notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
+    countries = (
+        json.loads(countries_path.read_text(encoding="utf-8")) if countries_path.exists() else None
+    )
 
     fonts = {
         "./vendor/fonts/fraunces-latin-500-normal.woff2": "vendor/fonts/fraunces-latin-500-normal.woff2",
@@ -66,6 +70,7 @@ def main() -> None:
             "themes": themes,
             "episodeThemes": episode_themes,
             "notes": notes,
+            "countries": countries,
         },
         separators=(",", ":"),
     )

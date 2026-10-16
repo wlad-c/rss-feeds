@@ -34,6 +34,7 @@
     agg: null,
     episodes: null,
     podcasts: null,
+    countriesDoc: null,
     themesDoc: null,
     episodeThemes: null,
     notes: null,
@@ -333,6 +334,7 @@
     const metricHead = $("#topTableMetricHead");
     if (metricHead) metricHead.textContent = hours ? "Hours" : "Eps";
     setText("#folderChartTitle", "Folders", "Folders by hours");
+    setText("#countryChartTitle", "Countries of origin", "Countries by hours");
     setText("#weekdayChartTitle", "Day of week (AEST/AEDT)", "Day of week by hours (AEST/AEDT)");
     setText("#hourChartTitle", "Hour of day (AEST/AEDT)", "Hour of day by hours (AEST/AEDT)");
     const heat = $("#heatmapNote");
@@ -528,6 +530,14 @@
     );
   }
 
+  function countryForEpisode(e) {
+    const name = e?.p || "Unknown";
+    const author = e?.a || "";
+    const byPod = state.countriesDoc?.byPodcast || {};
+    const byAuthor = state.countriesDoc?.byAuthor || {};
+    return byPod[name] || byAuthor[author] || "Unknown";
+  }
+
   function bump(map, key, amount) {
     map[key] = (map[key] || 0) + amount;
   }
@@ -566,6 +576,8 @@
     const byDateCount = Object.create(null);
     const byFolderHours = Object.create(null);
     const byFolderCount = Object.create(null);
+    const byCountryHours = Object.create(null);
+    const byCountryCount = Object.create(null);
     const byStatusHours = Object.create(null);
     const byStatusCount = Object.create(null);
     const byThemeHours = Object.create(null);
@@ -607,6 +619,9 @@
       }
       bump(byFolderHours, folder, h);
       bump(byFolderCount, folder, 1);
+      const country = countryForEpisode(e);
+      bump(byCountryHours, country, h);
+      bump(byCountryCount, country, 1);
       if (month.length === 7) {
         bump(byMonthHours, month, h);
         bump(byMonthCount, month, 1);
@@ -665,6 +680,8 @@
       byDateCount,
       byFolderHours,
       byFolderCount,
+      byCountryHours,
+      byCountryCount,
       byStatusHours,
       byStatusCount,
       byThemeHours,
@@ -772,6 +789,7 @@
     renderTopPodcastsChart();
     renderWeekdayHourCharts();
     renderFolderStatusCharts();
+    renderCountryChart();
     renderDurationChart();
     renderThemeChart();
     renderThemeYearChart();
@@ -1208,6 +1226,29 @@
           },
         },
       },
+    });
+  }
+
+  function countryChartItems() {
+    const stats = ensureChartStats();
+    const src = metricIsHours() ? stats.byCountryHours : stats.byCountryCount;
+    return Object.keys(src).map((name) => ({
+      name,
+      count: metricIsHours() ? Math.round(src[name] * 10) / 10 : src[name],
+    }));
+  }
+
+  function renderCountryChart() {
+    if (!$("#countryChart")) return;
+    renderExpandableHBar({
+      key: "country",
+      canvasSel: "#countryChart",
+      boxSel: "#countryChartBox",
+      moreSel: "#countryChartMore",
+      items: countryChartItems(),
+      labelOf: (d) => d.name || "Unknown",
+      valueOf: (d) => d.count,
+      colors: CATEGORICAL,
     });
   }
 
@@ -2334,6 +2375,7 @@
         d.themes || null,
         d.episodeThemes || null,
         d.notes || null,
+        d.countries || null,
       ];
     }
     return Promise.all([
@@ -2343,6 +2385,7 @@
       loadJSON("tables/themes.json").catch(() => null),
       loadJSON("tables/episode-themes.json").catch(() => null),
       loadJSON("tables/notes.json").catch(() => null),
+      loadJSON("tables/podcast-countries.json").catch(() => null),
     ]);
   }
 
@@ -2353,7 +2396,7 @@
     updateMetricLabels();
     $("#bootStatus").textContent = "Loading listening history…";
     try {
-      const [agg, episodes, podcasts, themesDoc, episodeThemes, notes] =
+      const [agg, episodes, podcasts, themesDoc, episodeThemes, notes, countriesDoc] =
         await loadAll();
       state.agg = agg;
       state.episodes = episodes;
@@ -2361,6 +2404,7 @@
       state.themesDoc = themesDoc;
       state.episodeThemes = episodeThemes;
       state.notes = notes || {};
+      state.countriesDoc = countriesDoc || { byPodcast: {}, byAuthor: {} };
       state._periodIndex = null;
       invalidateChartStats();
       const flat = themesDoc?.flat || [];
@@ -2386,6 +2430,7 @@
       renderTopPodcastsChart();
       renderWeekdayHourCharts();
       renderFolderStatusCharts();
+      renderCountryChart();
       renderDurationChart();
       renderHeatmap();
       renderTopTable();
