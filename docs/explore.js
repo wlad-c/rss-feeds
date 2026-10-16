@@ -2156,28 +2156,57 @@
     return themesPresentInFilter(parentThemes());
   }
 
+  function leaveThemeDrill() {
+    state.focusedParentId = "";
+    state.barReveal.theme = BAR_PAGE;
+    selectTheme("", false);
+  }
+
   function renderThemeChart() {
     if (!state.themesDoc?.themes) return;
     const items = themeChartItems();
     const title = $("#themeChartTitle");
     const back = $("#themeChartBack");
     const drilled = !!state.focusedParentId;
+    const parent = drilled ? state.themeById[state.focusedParentId] : null;
+    const child = state.themeById[state.activeTheme];
+    const viewingChild = !!(child?.parentId && child.parentId === state.focusedParentId);
     const periodLabel = chartPeriodActive()
       ? chartPeriodLabel({ omitTheme: drilled })
       : "";
     const yearSuffix = periodLabel && periodLabel !== "All time" ? ` · ${periodLabel}` : "";
     if (title) {
-      title.textContent = drilled
-        ? `${state.themeById[state.focusedParentId]?.name || "Theme"} · child themes${yearSuffix}`
-        : `Parent themes${yearSuffix}`;
+      if (drilled) {
+        // Hierarchy: parent name as screen title; child name when one is selected.
+        title.textContent = viewingChild
+          ? `${child.name}${yearSuffix}`
+          : `${parent?.name || "Theme"}${yearSuffix}`;
+      } else {
+        title.textContent = `Parent themes${yearSuffix}`;
+      }
     }
     if (back) {
+      const label = back.querySelector(".theme-nav-back-label");
       back.hidden = !drilled;
+      if (label) {
+        // One level up: child → parent children, or children → all parents.
+        label.textContent = viewingChild ? parent?.name || "Themes" : "Themes";
+      }
+      back.setAttribute(
+        "aria-label",
+        viewingChild
+          ? `Back to ${parent?.name || "parent theme"}`
+          : "Back to parent themes"
+      );
       back.onclick = drilled
         ? () => {
-            state.focusedParentId = "";
-            state.barReveal.theme = BAR_PAGE;
-            selectTheme("", false);
+            if (viewingChild) {
+              // Step up to the parent’s child list (keep parent filter).
+              state.barReveal.theme = BAR_PAGE;
+              focusParentTheme(state.focusedParentId);
+              return;
+            }
+            leaveThemeDrill();
           }
         : null;
     }
