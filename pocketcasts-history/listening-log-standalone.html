@@ -266,6 +266,17 @@ button, input, select { font: inherit; color: inherit; }
   outline-offset: 2px;
 }
 
+.chrome-tab.is-active {
+  color: var(--label);
+  background: var(--grouped-bg-elevated);
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="dark"] .chrome-tab.is-active {
+  background: rgba(120, 120, 128, 0.42);
+  box-shadow: none;
+}
+
 .chrome-tools {
   display: flex;
   align-items: center;
@@ -576,7 +587,7 @@ select:focus {
 
 .insights-strip {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 0;
   margin-top: 12px;
   border-radius: var(--radius-lg);
@@ -588,6 +599,7 @@ select:focus {
 .insight {
   padding: 14px 16px;
   border-right: 0.5px solid var(--separator);
+  border-bottom: 0.5px solid var(--separator);
   background: transparent;
 }
 
@@ -1165,6 +1177,10 @@ footer {
   color: var(--system-blue);
   text-decoration: none;
   background: var(--blue-soft);
+}
+
+.tab-item.is-active {
+  color: var(--system-blue);
 }
 
 .tab-item:active { transform: scale(0.96); }
