@@ -412,7 +412,9 @@
     if (podcastSel && state.podcasts) {
       const names = state.podcasts
         .slice()
-        .sort((a, b) => (b.n || 0) - (a.n || 0) || String(a.p || "").localeCompare(String(b.p || "")))
+        .sort((a, b) =>
+          String(a.p || "").localeCompare(String(b.p || ""), undefined, { sensitivity: "base" })
+        )
         .map((p) => p.p)
         .filter(Boolean);
       podcastSel.innerHTML =
