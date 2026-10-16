@@ -624,6 +624,10 @@ select:focus {
 }
 
 .stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
   padding: 14px 16px 12px;
   border-right: 0.5px solid var(--separator);
   background: transparent;
@@ -632,13 +636,6 @@ select:focus {
 .stat:nth-child(3n) { border-right: 0; }
 .stat:nth-child(n + 4) {
   border-top: 0.5px solid var(--separator);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  min-height: 0;
 }
 
 .stat b {
@@ -2095,6 +2092,9 @@ body:not(.ready) #topPanel {
     ["12", "December"],
   ];
   const MONTH_NAME = Object.fromEntries(MONTH_OPTIONS);
+  const MONTH_SHORT = Object.fromEntries(
+    MONTH_OPTIONS.map(([num, name]) => [num, name.slice(0, 3)])
+  );
 
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
@@ -3122,6 +3122,23 @@ body:not(.ready) #topPanel {
     return `${d} ${MONTH_NAME[m] || m} ${y}`;
   }
 
+  /** d MMM yyyy — e.g. 7 Mar 2019 */
+  function formatDateShort(iso) {
+    const s = String(iso || "");
+    if (s.length < 10) return s;
+    const y = s.slice(0, 4);
+    const m = s.slice(5, 7);
+    const d = Number(s.slice(8, 10));
+    return `${d} ${MONTH_SHORT[m] || m} ${y}`;
+  }
+
+  function listeningDateSpan(stats) {
+    const dates = Object.keys(stats.byDateCount || {}).sort();
+    if (!dates.length) return "—";
+    if (dates.length === 1) return formatDateShort(dates[0]);
+    return `${formatDateShort(dates[0])} – ${formatDateShort(dates[dates.length - 1])}`;
+  }
+
   function avgEpisodesPerDay(stats) {
     const dates = Object.keys(stats.byDateCount || {}).sort();
     if (!dates.length || !stats.episodeCount) return null;
@@ -3137,9 +3154,7 @@ body:not(.ready) #topPanel {
     if (!state.agg || !$("#heroStats")) return;
     const stats = ensureChartStats();
     const hours = metricIsHours();
-    const years = Object.keys(stats.byYearCount || {}).sort((a, b) => Number(a) - Number(b));
-    const span =
-      years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0] || "—";
+    const span = listeningDateSpan(stats);
     const monthPeak = peakFromMap(
       hours ? stats.byMonthHours : stats.byMonthCount,
       hours
