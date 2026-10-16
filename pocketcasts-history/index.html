@@ -69,22 +69,43 @@
         <span class="period-kicker">Filter</span>
         <label class="period-field">
           <span>Year</span>
-          <select id="periodYear" aria-label="Filter charts by year"></select>
+          <select id="periodYear" aria-label="Filter by year"></select>
         </label>
         <label class="period-field">
           <span>Month</span>
-          <select id="periodMonth" aria-label="Filter charts by month" disabled></select>
+          <select id="periodMonth" aria-label="Filter by month" disabled></select>
         </label>
         <label class="period-field">
           <span>Day</span>
-          <select id="periodDay" aria-label="Filter charts by day" disabled></select>
+          <select id="periodDay" aria-label="Filter by day" disabled></select>
         </label>
         <label class="period-field period-field-country">
           <span>Country</span>
-          <select id="periodCountry" aria-label="Filter charts by country of origin"></select>
+          <select id="periodCountry" aria-label="Filter by country of origin"></select>
+        </label>
+        <label class="period-field period-field-podcast">
+          <span>Show</span>
+          <select id="periodPodcast" aria-label="Filter by podcast"></select>
+        </label>
+        <label class="period-field period-field-theme">
+          <span>Theme</span>
+          <select id="periodTheme" aria-label="Filter by theme"></select>
+        </label>
+        <label class="period-field">
+          <span>Status</span>
+          <select id="periodStatus" aria-label="Filter by play status">
+            <option value="">All statuses</option>
+            <option value="Played">Played</option>
+            <option value="In progress">In progress</option>
+            <option value="Unplayed">Unplayed</option>
+          </select>
         </label>
         <button type="button" class="btn secondary" id="periodClear" title="Clear filters">All</button>
       </div>
+      <label class="period-search">
+        <span class="period-search-label">Search</span>
+        <input id="periodQ" type="search" placeholder="Search episode, show, author, notes…" aria-label="Search episodes" />
+      </label>
       <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
     </div>
   </div>
@@ -249,28 +270,10 @@
       <div class="section-head">
         <div>
           <h2>Episode explorer</h2>
-          <p id="listMeta">Filter the full history.</p>
+          <p id="listMeta">Browse episodes scoped by the filter bar above.</p>
         </div>
       </div>
       <div class="panel">
-        <div class="filters">
-          <input id="q" type="search" placeholder="Search episode, show, author, notes…" />
-          <select id="yearFilter"></select>
-          <select id="podcastFilter"></select>
-          <select id="themeFilter">
-            <option value="">All themes</option>
-          </select>
-          <select id="countryFilter" aria-label="Filter by country of origin">
-            <option value="">All countries</option>
-          </select>
-          <select id="statusFilter">
-            <option value="">All statuses</option>
-            <option value="Played">Played</option>
-            <option value="In progress">In progress</option>
-            <option value="Unplayed">Unplayed</option>
-          </select>
-          <button class="btn secondary" id="resetFilters" type="button">Reset</button>
-        </div>
         <p class="insights" id="filterInsights"></p>
         <div class="list" id="episodeList"></div>
         <div class="pager">

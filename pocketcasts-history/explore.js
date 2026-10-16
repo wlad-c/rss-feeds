@@ -42,15 +42,24 @@
     activeTheme: "",
     focusedParentId: "",
     metric: "episodes", // "episodes" | "hours"
-    chartPeriod: { year: "", month: "", day: "", country: "" },
+    chartPeriod: {
+      year: "",
+      month: "",
+      day: "",
+      country: "",
+      podcast: "",
+      theme: "",
+      status: "",
+      q: "",
+    },
     charts: {},
     barReveal: {},
     tableReveal: { top: 12 },
-    filters: { year: "all", podcast: "", q: "", status: "", theme: "", country: "" },
     page: 0,
     pageSize: 40,
     _chartStats: null,
     _chartStatsKey: "",
+    _chartStatsCache: null,
     _localStats: null,
     _periodIndex: null,
   };
@@ -148,17 +157,25 @@
   }
 
   function chartPeriodActive() {
-    const { year, month, day, country } = state.chartPeriod;
-    return !!(year || month || day || country);
+    const { year, month, day, country, podcast, theme, status } = state.chartPeriod;
+    return !!(year || month || day || country || podcast || theme || status);
   }
 
   function chartPeriodKey() {
-    const { year, month, day, country } = state.chartPeriod;
-    return `${year || "all"}|${month || "all"}|${day || "all"}|${country || "all"}`;
+    const { year, month, day, country, podcast, theme, status } = state.chartPeriod;
+    return [
+      year || "all",
+      month || "all",
+      day || "all",
+      country || "all",
+      podcast || "all",
+      theme || "all",
+      status || "all",
+    ].join("|");
   }
 
   function chartPeriodLabel() {
-    const { year, month, day, country } = state.chartPeriod;
+    const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
     const bits = [];
     if (year) {
       if (!month) bits.push(String(year));
@@ -168,18 +185,46 @@
       }
     }
     if (country) bits.push(country);
+    if (podcast) bits.push(podcast);
+    if (theme) bits.push(state.themeById[theme]?.name || theme);
+    if (status) bits.push(status);
+    const qq = String(q || "").trim();
+    if (qq) bits.push(`search “${qq}”`);
     return bits.length ? bits.join(" · ") : "All time";
   }
 
-  function episodeMatchesChartPeriod(e) {
-    const { year, month, day, country } = state.chartPeriod;
-    if (!year && !month && !day && !country) return true;
+  function episodeMatchesChartPeriod(e, i = null, overrides = null) {
+    const period = overrides ? { ...state.chartPeriod, ...overrides } : state.chartPeriod;
+    const { year, month, day, country, podcast, theme, status } = period;
+    if (!year && !month && !day && !country && !podcast && !theme && !status) return true;
     const d = String(e.d || "");
     if (year && String(e.y) !== String(year)) return false;
     if (month && d.slice(5, 7) !== month) return false;
     if (day && d.slice(8, 10) !== day) return false;
     if (country && countryForEpisode(e) !== country) return false;
+    if (podcast && (e.p || "") !== podcast) return false;
+    if (status && (e.st || "") !== status) return false;
+    if (theme) {
+      if (i == null) return false;
+      if (!themeIdsForIndex(i).includes(theme)) return false;
+    }
     return true;
+  }
+
+  function patchChartPeriod(patch, opts) {
+    applyChartPeriod({ ...state.chartPeriod, ...patch }, opts);
+  }
+
+  function syncThemeUiFromPeriod() {
+    const themeId = state.chartPeriod.theme || "";
+    const t = state.themeById[themeId];
+    state.activeTheme = themeId;
+    if (!themeId) {
+      state.focusedParentId = "";
+      return;
+    }
+    if (t?.parentId) state.focusedParentId = t.parentId;
+    else state.focusedParentId = themeId;
   }
 
   function ensurePeriodIndex() {
@@ -213,6 +258,7 @@
   function invalidateChartStats() {
     state._chartStats = null;
     state._chartStatsKey = "";
+    state._chartStatsCache = null;
     state._localStats = null;
   }
 
@@ -220,28 +266,29 @@
     const year = next.year ? String(next.year) : "";
     const month = year && next.month ? String(next.month).padStart(2, "0") : "";
     const day = year && month && next.day ? String(next.day).padStart(2, "0") : "";
-    const country = Object.prototype.hasOwnProperty.call(next, "country")
-      ? String(next.country || "")
-      : String(state.chartPeriod.country || "");
-    state.chartPeriod = { year, month, day, country };
+    const pick = (key) =>
+      Object.prototype.hasOwnProperty.call(next, key)
+        ? String(next[key] || "")
+        : String(state.chartPeriod[key] || "");
+    const country = pick("country");
+    const podcast = pick("podcast");
+    const theme = pick("theme");
+    const status = pick("status");
+    const q = Object.prototype.hasOwnProperty.call(next, "q")
+      ? String(next.q || "")
+      : String(state.chartPeriod.q || "");
+    state.chartPeriod = { year, month, day, country, podcast, theme, status, q };
+    syncThemeUiFromPeriod();
     invalidateChartStats();
     syncPeriodControls();
     updateMetricLabels();
     updatePeriodSummary();
     if (!rerender || !state.agg) return;
-    if (year) {
-      state.filters.year = year;
-      if ($("#yearFilter")) $("#yearFilter").value = year;
-    } else {
-      state.filters.year = "all";
-      if ($("#yearFilter")) $("#yearFilter").value = "all";
-    }
-    state.filters.country = country;
-    if ($("#countryFilter")) $("#countryFilter").value = country;
     state.page = 0;
     state.barReveal.top = BAR_PAGE;
     state.tableReveal.top = BAR_PAGE;
     state.barReveal.country = BAR_PAGE;
+    state.barReveal.theme = BAR_PAGE;
     rerenderCharts();
     renderHeatmap();
     renderTopTable();
@@ -269,9 +316,13 @@
     const monthSel = $("#periodMonth");
     const daySel = $("#periodDay");
     const countrySel = $("#periodCountry");
+    const podcastSel = $("#periodPodcast");
+    const themeSel = $("#periodTheme");
+    const statusSel = $("#periodStatus");
+    const qInput = $("#periodQ");
     if (!yearSel || !monthSel || !daySel) return;
     const idx = ensurePeriodIndex();
-    const { year, month, day, country } = state.chartPeriod;
+    const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
     yearSel.innerHTML =
       `<option value="">All years</option>` +
       idx.years.map((y) => `<option value="${escapeHtml(y)}">${escapeHtml(y)}</option>`).join("");
@@ -311,14 +362,53 @@
           .join("");
       countrySel.value = country || "";
     }
+
+    if (podcastSel && state.podcasts) {
+      const names = state.podcasts
+        .slice()
+        .sort((a, b) => (b.n || 0) - (a.n || 0) || String(a.p || "").localeCompare(String(b.p || "")))
+        .map((p) => p.p)
+        .filter(Boolean);
+      podcastSel.innerHTML =
+        `<option value="">All shows</option>` +
+        names
+          .map((n) => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`)
+          .join("");
+      podcastSel.value = podcast || "";
+    }
+
+    if (themeSel && state.themesDoc?.themes) {
+      const opts = ['<option value="">All themes</option>'];
+      for (const p of state.themesDoc.themes) {
+        opts.push(
+          `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`
+        );
+        for (const c of p.children || []) {
+          opts.push(
+            `<option value="${escapeHtml(c.id)}">↳ ${escapeHtml(c.name)}</option>`
+          );
+        }
+      }
+      themeSel.innerHTML = opts.join("");
+      themeSel.value = theme || "";
+    }
+
+    if (statusSel) statusSel.value = status || "";
+    if (qInput && qInput.value !== (q || "")) qInput.value = q || "";
   }
 
   function updatePeriodSummary() {
     const el = $("#periodSummary");
     if (!el) return;
     const label = chartPeriodLabel();
-    if (!chartPeriodActive()) {
+    const hasSearch = !!String(state.chartPeriod.q || "").trim();
+    if (!chartPeriodActive() && !hasSearch) {
       el.innerHTML = `<strong>All time</strong> — charts use the full history.`;
+      return;
+    }
+    if (!chartPeriodActive() && hasSearch) {
+      const n = filteredEpisodes().length;
+      el.innerHTML = `<strong>${escapeHtml(label)}</strong> — ${fmt(n)} matching episodes in the explorer.`;
       return;
     }
     const stats = ensureChartStats();
@@ -602,9 +692,15 @@
     return { points, rolling, cumulative };
   }
 
-  function ensureChartStats() {
-    const key = chartPeriodKey();
-    if (state._chartStats && state._chartStatsKey === key) return state._chartStats;
+  function ensureChartStats(opts = {}) {
+    const ignoreTheme = !!opts.ignoreTheme;
+    const key = `${chartPeriodKey()}|theme:${ignoreTheme ? "any" : "on"}`;
+    if (!state._chartStatsCache) state._chartStatsCache = Object.create(null);
+    if (state._chartStatsCache[key]) {
+      state._chartStats = state._chartStatsCache[key];
+      state._chartStatsKey = key;
+      return state._chartStats;
+    }
 
     const byPodcastHours = Object.create(null);
     const byPodcastCount = Object.create(null);
@@ -638,9 +734,10 @@
     let episodeCount = 0;
     let hoursTotal = 0;
     const eps = state.episodes || [];
+    const matchOpts = ignoreTheme ? { theme: "" } : null;
     for (let i = 0; i < eps.length; i++) {
       const e = eps[i];
-      if (!episodeMatchesChartPeriod(e)) continue;
+      if (!episodeMatchesChartPeriod(e, i, matchOpts)) continue;
       episodeCount += 1;
       const h = parseDurHours(e.dur);
       hoursTotal += h;
@@ -756,6 +853,7 @@
       avgDurationByYear,
     };
     state._chartStatsKey = key;
+    state._chartStatsCache[key] = state._chartStats;
     return state._chartStats;
   }
 
@@ -1107,11 +1205,8 @@
       colors: CATEGORICAL,
       onClick: (d) => {
         if (!d?.name) return;
-        state.filters.podcast = d.name;
-        $("#podcastFilter").value = d.name;
-        state.page = 0;
+        patchChartPeriod({ podcast: d.name });
         $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
-        renderEpisodeList();
       },
     });
   }
@@ -1443,49 +1538,7 @@
   }
 
   function populateFilters() {
-    const yearSel = $("#yearFilter");
-    yearSel.innerHTML =
-      `<option value="all">All years</option>` +
-      state.agg.meta.years
-        .map((y) => `<option value="${y}">${y} (${fmt(state.agg.meta.yearCounts[y])})</option>`)
-        .join("");
-
-    const podSel = $("#podcastFilter");
-    const names = state.agg.topPodcasts.map((p) => p.name);
-    podSel.innerHTML =
-      `<option value="">All podcasts</option>` +
-      names.map((n) => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
-
-    const themeSel = $("#themeFilter");
-    if (themeSel && state.themesDoc?.themes) {
-      const opts = ['<option value="">All themes</option>'];
-      for (const p of state.themesDoc.themes) {
-        opts.push(
-          `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)} (${fmt(p.count)})</option>`
-        );
-        for (const c of p.children || []) {
-          opts.push(
-            `<option value="${escapeHtml(c.id)}">↳ ${escapeHtml(c.name)} (${fmt(c.count)})</option>`
-          );
-        }
-      }
-      themeSel.innerHTML = opts.join("");
-    }
-
-    const countrySel = $("#countryFilter");
-    if (countrySel) {
-      const countries = availableCountries();
-      countrySel.innerHTML =
-        `<option value="">All countries</option>` +
-        countries
-          .map(
-            (c) =>
-              `<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)} (${fmt(c.count)})</option>`
-          )
-          .join("");
-      const selected = state.chartPeriod.country || state.filters.country || "";
-      if (selected) countrySel.value = selected;
-    }
+    syncPeriodControls();
   }
 
   function parentThemes() {
@@ -1498,7 +1551,8 @@
 
   function themeMetricInYears(t) {
     if (!t) return 0;
-    const stats = ensureChartStats();
+    // Theme browser stays navigable even when a theme is selected in the sticky bar.
+    const stats = ensureChartStats({ ignoreTheme: true });
     return metricIsHours()
       ? stats.byThemeHours[t.id] || 0
       : stats.byThemeCount[t.id] || 0;
@@ -1510,14 +1564,13 @@
 
   function sampleMatchesChartPeriod(s) {
     if (!s) return false;
-    if (!chartPeriodActive()) return true;
     const d = String(s.d || "");
-    return episodeMatchesChartPeriod({
-      d,
-      y: d.slice(0, 4),
-      p: s.p || "",
-      a: "",
-    });
+    // Samples lack status/theme indices; match date/country/show only.
+    return episodeMatchesChartPeriod(
+      { d, y: d.slice(0, 4), p: s.p || "", a: "", st: "" },
+      null,
+      { theme: "", status: "" }
+    );
   }
 
   function refreshThemeViews() {
@@ -1547,7 +1600,8 @@
     const byPod = new Map();
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
-      if (!episodeMatchesChartPeriod(e)) continue;
+      // Ignore sticky theme here so the picked theme's show rankings stay useful.
+      if (!episodeMatchesChartPeriod(e, i, { theme: "" })) continue;
       const th = themeIdsForIndex(i);
       if (!episodeMatchesThemeId(th, themeId)) continue;
       const name = e.p || "Unknown";
@@ -1564,10 +1618,7 @@
 
   function jumpToThemePodcast(podcastName) {
     if (!podcastName) return;
-    state.filters.podcast = podcastName;
-    if ($("#podcastFilter")) $("#podcastFilter").value = podcastName;
-    state.page = 0;
-    renderEpisodeList();
+    patchChartPeriod({ podcast: podcastName });
     $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -1686,22 +1737,13 @@
   }
 
   function filteredEpisodes() {
-    const { year, podcast, q, status, theme, country } = state.filters;
-    const qq = q.trim().toLowerCase();
+    const qq = String(state.chartPeriod.q || "").trim().toLowerCase();
     const out = [];
     for (let i = 0; i < state.episodes.length; i++) {
       const e = state.episodes[i];
-      if (chartPeriodActive()) {
-        if (!episodeMatchesChartPeriod(e)) continue;
-      } else if (year !== "all" && String(e.y) !== String(year)) {
-        continue;
-      }
-      if (podcast && e.p !== podcast) continue;
-      if (status && e.st !== status) continue;
-      const epCountry = countryForEpisode(e);
-      if (country && epCountry !== country) continue;
+      if (!episodeMatchesChartPeriod(e, i)) continue;
       const th = themeIdsForIndex(i);
-      if (theme && !th.includes(theme)) continue;
+      const epCountry = countryForEpisode(e);
       if (qq) {
         const themeNames = th
           .map((id) => state.themeById[id]?.name || id)
@@ -1748,7 +1790,7 @@
           .join("");
         const snippet =
           note &&
-          (state.filters.q.trim()
+          (String(state.chartPeriod.q || "").trim()
             ? note
             : note.length > 280
               ? note.slice(0, 280) + "…"
@@ -1784,12 +1826,7 @@
       btn.addEventListener("click", () => {
         const c = btn.dataset.countryJump;
         if (!c) return;
-        applyChartPeriod({
-          year: state.chartPeriod.year,
-          month: state.chartPeriod.month,
-          day: state.chartPeriod.day,
-          country: c,
-        });
+        patchChartPeriod({ country: c });
       });
     });
 
@@ -1954,7 +1991,7 @@
   }
 
   function themeTrendBuckets() {
-    const stats = ensureChartStats();
+    const stats = ensureChartStats({ ignoreTheme: true });
     const grain = themeTrendGrain();
     const { year, month } = state.chartPeriod;
     if (grain === "day") {
@@ -1973,7 +2010,7 @@
   }
 
   function themeTrendValue(t, bucket) {
-    const stats = ensureChartStats();
+    const stats = ensureChartStats({ ignoreTheme: true });
     const grain = themeTrendGrain();
     const hours = metricIsHours();
     if (grain === "day") {
@@ -2100,24 +2137,13 @@
   }
 
   function focusParentTheme(parentId) {
-    state.focusedParentId = parentId || "";
     state.barReveal.theme = BAR_PAGE;
-    state.activeTheme = parentId || "";
-    state.filters.theme = parentId || "";
+    const patch = { theme: parentId || "" };
     if (parentId) {
-      state.filters.q = "";
-      if ($("#q")) $("#q").value = "";
+      patch.q = "";
       if ($("#topicQ")) $("#topicQ").value = "";
     }
-    const sel = $("#themeFilter");
-    if (sel) sel.value = parentId || "";
-    state.page = 0;
-    renderThemeChips();
-    renderThemeChart();
-    renderThemeYearChart();
-    renderThemePodcastCharts();
-    renderThemeDetail(parentId);
-    renderEpisodeList();
+    patchChartPeriod(patch);
   }
 
   function selectTheme(themeId, jumpExplore) {
@@ -2129,23 +2155,12 @@
       }
       return;
     }
-    if (t?.parentId) state.focusedParentId = t.parentId;
-    state.activeTheme = themeId || "";
-    state.filters.theme = themeId || "";
+    const patch = { theme: themeId || "" };
     if (themeId) {
-      state.filters.q = "";
-      if ($("#q")) $("#q").value = "";
+      patch.q = "";
       if ($("#topicQ")) $("#topicQ").value = "";
     }
-    const sel = $("#themeFilter");
-    if (sel) sel.value = themeId || "";
-    state.page = 0;
-    renderThemeChips();
-    renderThemeChart();
-    renderThemeYearChart();
-    renderThemePodcastCharts();
-    renderThemeDetail(themeId);
-    renderEpisodeList();
+    patchChartPeriod(patch);
     if (jumpExplore) {
       $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -2153,8 +2168,6 @@
 
   function runTopicSearch(raw) {
     const q = (raw || "").trim();
-    $("#q").value = q;
-    state.filters.q = q;
     const ql = q.toLowerCase();
     const hit = flatThemes().find(
       (t) => t.name.toLowerCase() === ql || t.id === ql
@@ -2162,8 +2175,7 @@
     if (hit) {
       selectTheme(hit.id, true);
     } else {
-      state.page = 0;
-      renderEpisodeList();
+      patchChartPeriod({ q });
       $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
@@ -2192,11 +2204,8 @@
     $("#topTable tbody").innerHTML = body;
     $$("#topTable [data-podcast]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        state.filters.podcast = btn.dataset.podcast;
-        $("#podcastFilter").value = state.filters.podcast;
-        state.page = 0;
+        patchChartPeriod({ podcast: btn.dataset.podcast });
         $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
-        renderEpisodeList();
       });
     });
     const more = $("#topTableMore");
@@ -2224,41 +2233,6 @@
   }
 
   function wire() {
-    $("#yearFilter").addEventListener("change", (e) => {
-      state.filters.year = e.target.value;
-      state.page = 0;
-      renderEpisodeList();
-    });
-    $("#podcastFilter").addEventListener("change", (e) => {
-      state.filters.podcast = e.target.value;
-      state.page = 0;
-      renderEpisodeList();
-    });
-    $("#themeFilter")?.addEventListener("change", (e) => {
-      selectTheme(e.target.value || "", false);
-    });
-    $("#statusFilter").addEventListener("change", (e) => {
-      state.filters.status = e.target.value;
-      state.page = 0;
-      renderEpisodeList();
-    });
-    $("#countryFilter")?.addEventListener("change", (e) => {
-      applyChartPeriod({
-        year: state.chartPeriod.year,
-        month: state.chartPeriod.month,
-        day: state.chartPeriod.day,
-        country: e.target.value,
-      });
-    });
-    let t;
-    $("#q").addEventListener("input", (e) => {
-      clearTimeout(t);
-      t = setTimeout(() => {
-        state.filters.q = e.target.value;
-        state.page = 0;
-        renderEpisodeList();
-      }, 160);
-    });
     let topicT;
     $("#topicQ")?.addEventListener("input", (e) => {
       clearTimeout(topicT);
@@ -2271,14 +2245,9 @@
       }
     });
     $("#clearTopic")?.addEventListener("click", () => {
-      $("#topicQ").value = "";
-      $("#q").value = "";
-      state.filters.q = "";
-      state.focusedParentId = "";
+      if ($("#topicQ")) $("#topicQ").value = "";
       state.barReveal.theme = BAR_PAGE;
-      selectTheme("", false);
-      renderThemeYearChart();
-      renderThemePodcastCharts();
+      patchChartPeriod({ theme: "", q: "" });
     });
     $("#prevPage").addEventListener("click", () => {
       state.page -= 1;
@@ -2289,21 +2258,6 @@
       state.page += 1;
       renderEpisodeList();
       $("#episodeList").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-    $("#resetFilters").addEventListener("click", () => {
-      state.filters = { year: "all", podcast: "", q: "", status: "", theme: "", country: "" };
-      state.activeTheme = "";
-      state.focusedParentId = "";
-      state.barReveal.theme = BAR_PAGE;
-      state.page = 0;
-      $("#yearFilter").value = "all";
-      $("#podcastFilter").value = "";
-      $("#statusFilter").value = "";
-      if ($("#themeFilter")) $("#themeFilter").value = "";
-      if ($("#countryFilter")) $("#countryFilter").value = "";
-      $("#q").value = "";
-      if ($("#topicQ")) $("#topicQ").value = "";
-      applyChartPeriod({ year: "", month: "", day: "", country: "" });
     });
 
     // Nav smooth scroll
@@ -2326,39 +2280,49 @@
       });
     });
     $("#periodYear")?.addEventListener("change", (e) => {
-      applyChartPeriod({
-        year: e.target.value,
-        month: "",
-        day: "",
-        country: state.chartPeriod.country,
-      });
+      patchChartPeriod({ year: e.target.value, month: "", day: "" });
     });
     $("#periodMonth")?.addEventListener("change", (e) => {
-      applyChartPeriod({
-        year: state.chartPeriod.year,
-        month: e.target.value,
-        day: "",
-        country: state.chartPeriod.country,
-      });
+      patchChartPeriod({ month: e.target.value, day: "" });
     });
     $("#periodDay")?.addEventListener("change", (e) => {
-      applyChartPeriod({
-        year: state.chartPeriod.year,
-        month: state.chartPeriod.month,
-        day: e.target.value,
-        country: state.chartPeriod.country,
-      });
+      patchChartPeriod({ day: e.target.value });
     });
     $("#periodCountry")?.addEventListener("change", (e) => {
-      applyChartPeriod({
-        year: state.chartPeriod.year,
-        month: state.chartPeriod.month,
-        day: state.chartPeriod.day,
-        country: e.target.value,
-      });
+      patchChartPeriod({ country: e.target.value });
+    });
+    $("#periodPodcast")?.addEventListener("change", (e) => {
+      patchChartPeriod({ podcast: e.target.value });
+    });
+    $("#periodTheme")?.addEventListener("change", (e) => {
+      selectTheme(e.target.value || "", false);
+    });
+    $("#periodStatus")?.addEventListener("change", (e) => {
+      patchChartPeriod({ status: e.target.value });
+    });
+    let qTimer;
+    $("#periodQ")?.addEventListener("input", (e) => {
+      clearTimeout(qTimer);
+      qTimer = setTimeout(() => {
+        // Search only refreshes the explorer list — not every chart.
+        state.chartPeriod.q = e.target.value;
+        state.page = 0;
+        renderEpisodeList();
+        updatePeriodSummary();
+      }, 160);
     });
     $("#periodClear")?.addEventListener("click", () => {
-      applyChartPeriod({ year: "", month: "", day: "", country: "" });
+      if ($("#topicQ")) $("#topicQ").value = "";
+      applyChartPeriod({
+        year: "",
+        month: "",
+        day: "",
+        country: "",
+        podcast: "",
+        theme: "",
+        status: "",
+        q: "",
+      });
     });
     $("#hardRefresh")?.addEventListener("click", () => {
       hardRefresh();
