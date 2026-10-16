@@ -145,6 +145,7 @@
       renderHeatmap();
       renderTopTable();
       refreshThemeViews();
+      renderHeroStats();
       updatePeriodSummary();
     }
   }
@@ -289,6 +290,7 @@
     state.tableReveal.top = BAR_PAGE;
     state.barReveal.country = BAR_PAGE;
     state.barReveal.theme = BAR_PAGE;
+    renderHeroStats();
     rerenderCharts();
     renderHeatmap();
     renderTopTable();
@@ -733,6 +735,8 @@
 
     let episodeCount = 0;
     let hoursTotal = 0;
+    let progressSum = 0;
+    let progressN = 0;
     const eps = state.episodes || [];
     const matchOpts = ignoreTheme ? { theme: "" } : null;
     for (let i = 0; i < eps.length; i++) {
@@ -741,6 +745,10 @@
       episodeCount += 1;
       const h = parseDurHours(e.dur);
       hoursTotal += h;
+      if (e.prog !== "" && e.prog != null && !Number.isNaN(Number(e.prog))) {
+        progressSum += Number(e.prog);
+        progressN += 1;
+      }
       const name = e.p || "Unknown";
       const year = e.y != null && e.y !== "" ? String(e.y) : String(e.d || "").slice(0, 4);
       const folder = e.f || "Ungrouped";
@@ -820,10 +828,15 @@
           Math.round(((yearMinutes[year] || 0) / (yearMinuteSamples[year] || 1)) * 10) / 10,
       }));
 
+    const hoursRounded = Math.round(hoursTotal * 10) / 10;
     state._chartStats = {
       episodeCount,
-      hoursTotal: Math.round(hoursTotal * 10) / 10,
+      hoursTotal: hoursRounded,
       podcastCount: Object.keys(byPodcastCount).length,
+      avgEpisodeMinutes:
+        episodeCount > 0 ? Math.round(((hoursTotal * 60) / episodeCount) * 10) / 10 : null,
+      avgProgressPct:
+        progressN > 0 ? Math.round((progressSum / progressN) * 10) / 10 : null,
       byPodcastHours,
       byPodcastCount,
       byYearHours,
@@ -976,14 +989,44 @@
     location.replace(url.toString());
   }
 
-  function renderHeroStats(meta) {
+  function peakFromMap(map, useHours) {
+    let bestKey = "";
+    let bestVal = -1;
+    for (const [k, v] of Object.entries(map || {})) {
+      const n = Number(v) || 0;
+      if (n > bestVal) {
+        bestVal = n;
+        bestKey = k;
+      }
+    }
+    if (!bestKey || bestVal < 0) return null;
+    return {
+      key: bestKey,
+      value: useHours ? Math.round(bestVal * 10) / 10 : bestVal,
+    };
+  }
+
+  function renderHeroStats() {
+    if (!state.agg || !$("#heroStats")) return;
+    const stats = ensureChartStats();
+    const meta = state.agg.meta || {};
+    const hours = metricIsHours();
+    const years = Object.keys(stats.byYearCount || {}).sort((a, b) => Number(a) - Number(b));
+    const span =
+      years.length > 1 ? `${years[0]}–${years[years.length - 1]}` : years[0] || "—";
     const items = [
-      ["Episodes", fmt(meta.totalEpisodes)],
-      ["Podcasts", fmt(meta.totalPodcasts)],
-      ["Hours", fmt(Math.round(meta.totalDurationHours || 0))],
-      ["Avg length", `${meta.avgEpisodeMinutes ?? "—"}m`],
-      ["Finish rate", meta.avgProgressPct != null ? `${meta.avgProgressPct}%` : "—"],
-      ["Span", `${meta.years?.[meta.years.length - 1] ?? ""}–${meta.years?.[0] ?? ""}`],
+      ["Episodes", fmt(stats.episodeCount)],
+      ["Podcasts", fmt(stats.podcastCount)],
+      ["Hours", fmtHours(stats.hoursTotal)],
+      [
+        "Avg length",
+        stats.avgEpisodeMinutes != null ? `${stats.avgEpisodeMinutes}m` : "—",
+      ],
+      [
+        "Finish rate",
+        stats.avgProgressPct != null ? `${stats.avgProgressPct}%` : "—",
+      ],
+      ["Span", span],
     ];
     $("#heroStats").innerHTML = items
       .map(
@@ -993,23 +1036,37 @@
       .join("");
 
     const strip = $("#insightStrip");
+    if (!strip) return;
     const bits = [];
-    if (meta.busiestMonth) {
+    const scope = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
+    const monthPeak = peakFromMap(
+      hours ? stats.byMonthHours : stats.byMonthCount,
+      hours
+    );
+    if (monthPeak) {
       bits.push(
-        `<div class="insight"><b>${escapeHtml(meta.busiestMonth.month)} · ${fmt(meta.busiestMonth.count)}</b><span>Busiest month by episodes played</span></div>`
+        `<div class="insight"><b>${escapeHtml(monthPeak.key)} · ${fmtMetric(monthPeak.value)}${hours ? "h" : ""}</b><span>Busiest month${scope}</span></div>`
       );
     }
-    if (meta.busiestDay) {
+    const dayPeak = peakFromMap(hours ? stats.byDateHours : stats.byDateCount, hours);
+    if (dayPeak) {
       bits.push(
-        `<div class="insight"><b>${escapeHtml(meta.busiestDay.date)} · ${fmt(meta.busiestDay.count)}</b><span>Most active single day</span></div>`
+        `<div class="insight"><b>${escapeHtml(dayPeak.key)} · ${fmtMetric(dayPeak.value)}${hours ? "h" : ""}</b><span>Most active day${scope}</span></div>`
       );
     }
-    if (meta.top5SharePct != null) {
+    const podMap = hours ? stats.byPodcastHours : stats.byPodcastCount;
+    const topPods = Object.entries(podMap || {})
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 5);
+    const total = hours ? stats.hoursTotal : stats.episodeCount;
+    if (topPods.length && total > 0) {
+      const share = topPods.reduce((acc, [, v]) => acc + Number(v || 0), 0);
+      const pct = Math.round((share / total) * 1000) / 10;
       bits.push(
-        `<div class="insight"><b>${escapeHtml(String(meta.top5SharePct))}%</b><span>Of all listens come from your top 5 shows</span></div>`
+        `<div class="insight"><b>${escapeHtml(String(pct))}%</b><span>Of ${hours ? "hours" : "listens"} from your top 5 shows${scope}</span></div>`
       );
     }
-    if (meta.accountStartedAt && meta.perEpisodeHistoryFrom) {
+    if (!chartPeriodActive() && meta.accountStartedAt && meta.perEpisodeHistoryFrom) {
       const started = String(meta.accountStartedAt).slice(0, 10);
       bits.push(
         `<div class="insight"><b>${escapeHtml(started)} → ${escapeHtml(meta.perEpisodeHistoryFrom)}</b><span>Account age vs first per-episode history (Pocket Casts has no listen rows for 2010–2018)</span></div>`
@@ -1018,6 +1075,9 @@
     if (bits.length) {
       strip.hidden = false;
       strip.innerHTML = bits.join("");
+    } else {
+      strip.hidden = true;
+      strip.innerHTML = "";
     }
   }
 
@@ -2382,7 +2442,7 @@
       state.themeById = byId;
 
       $("#exportedAt").textContent = `Snapshot ${agg.meta.exportedAt?.slice(0, 10) || ""}`;
-      renderHeroStats(agg.meta);
+      renderHeroStats();
       populateFilters();
       syncPeriodControls();
       updatePeriodSummary();

@@ -227,9 +227,12 @@ button, input, select { font: inherit; }
   position: sticky;
   top: 58px;
   z-index: 30;
+  padding: 10px 0 4px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
 }
 .period-bar {
-  margin: 0 auto 8px;
+  margin: 0 auto;
   padding: 10px 14px;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -324,9 +327,9 @@ button, input, select { font: inherit; }
   font-weight: 700;
 }
 
-/* Hero */
+/* Hero sits below the sticky filter and reflects its scope */
 .hero {
-  padding: 36px 0 18px;
+  padding: 18px 0 14px;
   animation: rise 700ms ease both;
 }
 .hero-kicker {
