@@ -1303,6 +1303,25 @@ body:not(.ready) #topPanel {
   .chrome-tools { margin-left: auto; }
   .tab-bar { display: flex; }
 
+  /* Tab panels: only the active bottom-nav section is on screen */
+  body.tab-mode main.charts-block > .tab-panel:not(.is-tab-active) {
+    display: none !important;
+  }
+
+  body.tab-mode:not([data-active-tab="trends"]) .hero {
+    display: none;
+  }
+
+  body.tab-mode main.charts-block > .tab-panel.is-tab-active {
+    display: block;
+    padding-top: 12px;
+    animation: tab-fade 220ms var(--ease-out) both;
+  }
+
+  body.tab-mode .site-footer {
+    padding-bottom: calc(28px + var(--tab-bar-h) + var(--safe-bottom));
+  }
+
   /* Compact sticky filter: search + Filters only (Apple Music / Photos pattern) */
   .period-dock {
     padding: 0;
@@ -1575,6 +1594,11 @@ body:not(.ready) #topPanel {
   }
 }
 
+@keyframes tab-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 520px) {
   .chrome-inner { gap: 6px; }
   .brand { font-size: 1rem; max-width: 6.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1714,7 +1738,7 @@ body:not(.ready) #topPanel {
 
   <!-- Content layer -->
   <div class="content-layer">
-    <header class="wrap hero">
+    <header class="wrap hero" data-tab-shared="trends">
       <p class="hero-eyebrow">Pocket Casts</p>
       <h1 class="large-title">Listening Log</h1>
       <p class="hero-lead">Stats, charts, themes, and the episode list all follow the filter above.</p>
@@ -1725,7 +1749,7 @@ body:not(.ready) #topPanel {
     </header>
 
     <main class="wrap charts-block">
-      <section id="trends" class="ready-delay">
+      <section id="trends" class="ready-delay tab-panel is-tab-active" role="tabpanel" aria-labelledby="tab-trends">
         <div class="section-head">
           <div>
             <h2>Listening over time</h2>
@@ -1753,7 +1777,7 @@ body:not(.ready) #topPanel {
         </div>
       </section>
 
-      <section id="shows">
+      <section id="shows" class="tab-panel" role="tabpanel" aria-labelledby="tab-shows">
         <div class="section-head">
           <div>
             <h2>Shows &amp; catalogues</h2>
@@ -1798,11 +1822,11 @@ body:not(.ready) #topPanel {
         </div>
       </section>
 
-      <section id="themes">
+      <section id="themes" class="tab-panel" role="tabpanel" aria-labelledby="tab-themes">
         <div class="section-head">
           <div>
             <h2>Themes across episodes</h2>
-            <p>Tap a bar to drill into child themes. The sticky filter above scopes every chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
+            <p>Tap a parent bar to open its child themes, then ‹ Themes to go back. The sticky filter above scopes every chart, sample, and ranking; themes with no matches under the current filters are hidden.</p>
           </div>
         </div>
         <div class="grid-2">
@@ -1855,7 +1879,7 @@ body:not(.ready) #topPanel {
         </div>
       </section>
 
-      <section id="patterns">
+      <section id="patterns" class="tab-panel" role="tabpanel" aria-labelledby="tab-patterns">
         <div class="section-head">
           <div>
             <h2>Habits &amp; patterns</h2>
@@ -1886,7 +1910,7 @@ body:not(.ready) #topPanel {
         </div>
       </section>
 
-      <section id="explorePanel">
+      <section id="explorePanel" class="tab-panel" role="tabpanel" aria-labelledby="tab-explorePanel">
         <div class="section-head">
           <div>
             <h2>Episode explorer</h2>
@@ -1913,32 +1937,32 @@ body:not(.ready) #topPanel {
   </div>
 
   <!-- Mobile tab bar (Liquid Glass) -->
-  <nav class="tab-bar" aria-label="Primary">
-    <a href="#trends" data-jump="trends" class="tab-item">
+  <nav class="tab-bar" aria-label="Primary" role="tablist">
+    <a href="#trends" id="tab-trends" data-jump="trends" class="tab-item is-active" role="tab" aria-selected="true" aria-controls="trends">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9"/><path d="M10 19V5"/><path d="M16 19v-7"/><path d="M22 19V8"/></svg>
       </span>
       <span>Trends</span>
     </a>
-    <a href="#shows" data-jump="shows" class="tab-item">
+    <a href="#shows" id="tab-shows" data-jump="shows" class="tab-item" role="tab" aria-selected="false" aria-controls="shows">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6v2l-2 3h16l-2-3V9a6 6 0 0 0-6-6z"/><path d="M9 20h6"/></svg>
       </span>
       <span>Shows</span>
     </a>
-    <a href="#themes" data-jump="themes" class="tab-item">
+    <a href="#themes" id="tab-themes" data-jump="themes" class="tab-item" role="tab" aria-selected="false" aria-controls="themes">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v2M12 19v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M3 12h2M19 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </span>
       <span>Themes</span>
     </a>
-    <a href="#patterns" data-jump="patterns" class="tab-item">
+    <a href="#patterns" id="tab-patterns" data-jump="patterns" class="tab-item" role="tab" aria-selected="false" aria-controls="patterns">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       </span>
       <span>Patterns</span>
     </a>
-    <a href="#explorePanel" data-jump="explorePanel" class="tab-item">
+    <a href="#explorePanel" id="tab-explorePanel" data-jump="explorePanel" class="tab-item" role="tab" aria-selected="false" aria-controls="explorePanel">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       </span>
@@ -2084,6 +2108,85 @@ body:not(.ready) #topPanel {
 
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
+  const JUMP_TARGETS = ["trends", "shows", "themes", "patterns", "explorePanel"];
+  const TAB_MQ = window.matchMedia("(max-width: 860px)");
+  let activeTabId = "trends";
+  let sectionScrollSpy = null;
+
+  function isTabMode() {
+    return TAB_MQ.matches;
+  }
+
+  function setActiveJump(id) {
+    $$("[data-jump]").forEach((a) => {
+      const on = a.getAttribute("data-jump") === id;
+      a.classList.toggle("is-active", on);
+      if (a.getAttribute("role") === "tab") {
+        a.setAttribute("aria-selected", on ? "true" : "false");
+      }
+      if (on) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  }
+
+  function resizeAllCharts() {
+    Object.values(state.charts).forEach((chart) => {
+      try {
+        chart?.resize?.();
+      } catch (_) {}
+    });
+  }
+
+  function showTab(id, { scrollTop = true } = {}) {
+    if (!JUMP_TARGETS.includes(id)) id = "trends";
+    activeTabId = id;
+    document.body.classList.toggle("tab-mode", isTabMode());
+    document.body.dataset.activeTab = id;
+    JUMP_TARGETS.forEach((tid) => {
+      const panel = document.getElementById(tid);
+      if (!panel) return;
+      const on = tid === id;
+      panel.classList.toggle("is-tab-active", on);
+      panel.setAttribute("aria-hidden", isTabMode() && !on ? "true" : "false");
+    });
+    setActiveJump(id);
+    if (isTabMode() && scrollTop) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+    requestAnimationFrame(() => {
+      resizeAllCharts();
+      requestAnimationFrame(resizeAllCharts);
+    });
+  }
+
+  function goToSection(id) {
+    if (isTabMode()) {
+      showTab(id);
+      return;
+    }
+    setActiveJump(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function syncTabMode() {
+    const on = isTabMode();
+    document.body.classList.toggle("tab-mode", on);
+    if (on) {
+      sectionScrollSpy?.disconnect?.();
+      sectionScrollSpy = null;
+      showTab(activeTabId, { scrollTop: false });
+      return;
+    }
+    JUMP_TARGETS.forEach((tid) => {
+      const panel = document.getElementById(tid);
+      if (!panel) return;
+      panel.classList.add("is-tab-active");
+      panel.setAttribute("aria-hidden", "false");
+    });
+    delete document.body.dataset.activeTab;
+    setActiveJump(activeTabId);
+    requestAnimationFrame(resizeAllCharts);
+  }
 
   const fmt = (n) => Number(n || 0).toLocaleString();
   const fmtHours = (h) => {
@@ -3398,7 +3501,7 @@ body:not(.ready) #topPanel {
       onClick: (d) => {
         if (!d?.name) return;
         patchChartPeriod({ podcast: d.name });
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       },
     });
   }
@@ -3606,7 +3709,7 @@ body:not(.ready) #topPanel {
           day: state.chartPeriod.day,
           country: d.name,
         });
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       },
     });
   }
@@ -3850,7 +3953,7 @@ body:not(.ready) #topPanel {
   function jumpToThemePodcast(podcastName) {
     if (!podcastName) return;
     patchChartPeriod({ podcast: podcastName });
-    $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    goToSection("explorePanel");
   }
 
   function syncThemeMatchToggle() {
@@ -4377,7 +4480,7 @@ body:not(.ready) #topPanel {
     if (t && !t.parentId && (t.children || []).length) {
       focusParentTheme(themeId);
       if (jumpExplore) {
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       }
       return;
     }
@@ -4385,10 +4488,27 @@ body:not(.ready) #topPanel {
     if (themeId) patch.q = "";
     patchChartPeriod(patch);
     if (jumpExplore) {
-      $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      goToSection("explorePanel");
     }
   }
 
+<<<<<<< HEAD
+=======
+  function runTopicSearch(raw) {
+    const q = (raw || "").trim();
+    const ql = q.toLowerCase();
+    const hit = flatThemes().find(
+      (t) => t.name.toLowerCase() === ql || t.id === ql
+    );
+    if (hit) {
+      selectTheme(hit.id, true);
+    } else {
+      patchChartPeriod({ q });
+      goToSection("explorePanel");
+    }
+  }
+
+>>>>>>> 9eaba63 (Use bottom tabs as real panels on small screens)
   function renderTopTable() {
     const hours = metricIsHours();
     const all = topPodcastItems()
@@ -4414,7 +4534,7 @@ body:not(.ready) #topPanel {
     $$("#topTable [data-podcast]").forEach((btn) => {
       btn.addEventListener("click", () => {
         patchChartPeriod({ podcast: btn.dataset.podcast });
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       });
     });
     const more = $("#topTableMore");
@@ -4466,50 +4586,61 @@ body:not(.ready) #topPanel {
       $("#themeEpisodeList")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
 
-    // Nav / tab bar smooth scroll + active section highlighting
-    const jumpTargets = ["trends", "shows", "themes", "patterns", "explorePanel"];
-    const setActiveJump = (id) => {
-      $$("[data-jump]").forEach((a) => {
-        const on = a.getAttribute("data-jump") === id;
-        a.classList.toggle("is-active", on);
-        if (on) a.setAttribute("aria-current", "page");
-        else a.removeAttribute("aria-current");
-      });
-    };
-    $$("[data-jump]").forEach((a) => {
-      a.addEventListener("click", (ev) => {
-        ev.preventDefault();
-        const id = a.getAttribute("data-jump");
-        setActiveJump(id);
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      });
-    });
-    if ("IntersectionObserver" in window) {
+    // Desktop: scroll-spy. Mobile: bottom tabs swap panels (no long scroll).
+    const enableScrollSpy = () => {
+      if (!("IntersectionObserver" in window) || isTabMode()) return;
+      sectionScrollSpy?.disconnect?.();
       const seen = new Map();
-      const io = new IntersectionObserver(
+      sectionScrollSpy = new IntersectionObserver(
         (entries) => {
+          if (isTabMode()) return;
           for (const entry of entries) {
             seen.set(entry.target.id, entry.intersectionRatio);
           }
-          let best = jumpTargets[0];
+          let best = JUMP_TARGETS[0];
           let bestRatio = -1;
-          for (const id of jumpTargets) {
+          for (const id of JUMP_TARGETS) {
             const r = seen.get(id) || 0;
             if (r > bestRatio) {
               bestRatio = r;
               best = id;
             }
           }
-          if (bestRatio > 0) setActiveJump(best);
+          if (bestRatio > 0) {
+            activeTabId = best;
+            setActiveJump(best);
+          }
         },
         { rootMargin: "-28% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
       );
-      jumpTargets.forEach((id) => {
+      JUMP_TARGETS.forEach((id) => {
         const el = document.getElementById(id);
-        if (el) io.observe(el);
+        if (el) sectionScrollSpy.observe(el);
       });
-    }
-    setActiveJump("trends");
+    };
+
+    $$("[data-jump]").forEach((a) => {
+      a.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        const id = a.getAttribute("data-jump");
+        goToSection(id);
+        try {
+          history.replaceState(null, "", `#${id}`);
+        } catch (_) {}
+      });
+    });
+
+    const hashTab = () => {
+      const raw = (location.hash || "").replace(/^#/, "");
+      return JUMP_TARGETS.includes(raw) ? raw : "trends";
+    };
+    activeTabId = hashTab();
+    syncTabMode();
+    enableScrollSpy();
+    TAB_MQ.addEventListener("change", () => {
+      syncTabMode();
+      enableScrollSpy();
+    });
 
     $("#themeToggle")?.addEventListener("click", () => {
       applyTheme(isDark() ? "light" : "dark");
@@ -4620,6 +4751,12 @@ body:not(.ready) #topPanel {
     state.metric = readStoredMetric();
     syncMetricToggle();
     updateMetricLabels();
+    // Enter mobile tab panels before charts paint so inactive canvases aren't laid out in a long scroll.
+    try {
+      const raw = (location.hash || "").replace(/^#/, "");
+      if (JUMP_TARGETS.includes(raw)) activeTabId = raw;
+    } catch (_) {}
+    syncTabMode();
     $("#bootStatus").textContent = "Loading listening history…";
     try {
       const [agg, episodes, podcasts, themesDoc, episodeThemes, notes, countriesDoc] =
@@ -4668,6 +4805,7 @@ body:not(.ready) #topPanel {
       wire();
       document.body.classList.add("ready");
       $("#bootStatus").textContent = "";
+      showTab(activeTabId, { scrollTop: false });
       try {
         if (new URLSearchParams(location.search).get("filters") === "open") {
           setFilterSheetOpen(true);

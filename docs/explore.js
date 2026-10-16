@@ -115,6 +115,85 @@
 
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
+  const JUMP_TARGETS = ["trends", "shows", "themes", "patterns", "explorePanel"];
+  const TAB_MQ = window.matchMedia("(max-width: 860px)");
+  let activeTabId = "trends";
+  let sectionScrollSpy = null;
+
+  function isTabMode() {
+    return TAB_MQ.matches;
+  }
+
+  function setActiveJump(id) {
+    $$("[data-jump]").forEach((a) => {
+      const on = a.getAttribute("data-jump") === id;
+      a.classList.toggle("is-active", on);
+      if (a.getAttribute("role") === "tab") {
+        a.setAttribute("aria-selected", on ? "true" : "false");
+      }
+      if (on) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  }
+
+  function resizeAllCharts() {
+    Object.values(state.charts).forEach((chart) => {
+      try {
+        chart?.resize?.();
+      } catch (_) {}
+    });
+  }
+
+  function showTab(id, { scrollTop = true } = {}) {
+    if (!JUMP_TARGETS.includes(id)) id = "trends";
+    activeTabId = id;
+    document.body.classList.toggle("tab-mode", isTabMode());
+    document.body.dataset.activeTab = id;
+    JUMP_TARGETS.forEach((tid) => {
+      const panel = document.getElementById(tid);
+      if (!panel) return;
+      const on = tid === id;
+      panel.classList.toggle("is-tab-active", on);
+      panel.setAttribute("aria-hidden", isTabMode() && !on ? "true" : "false");
+    });
+    setActiveJump(id);
+    if (isTabMode() && scrollTop) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+    requestAnimationFrame(() => {
+      resizeAllCharts();
+      requestAnimationFrame(resizeAllCharts);
+    });
+  }
+
+  function goToSection(id) {
+    if (isTabMode()) {
+      showTab(id);
+      return;
+    }
+    setActiveJump(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function syncTabMode() {
+    const on = isTabMode();
+    document.body.classList.toggle("tab-mode", on);
+    if (on) {
+      sectionScrollSpy?.disconnect?.();
+      sectionScrollSpy = null;
+      showTab(activeTabId, { scrollTop: false });
+      return;
+    }
+    JUMP_TARGETS.forEach((tid) => {
+      const panel = document.getElementById(tid);
+      if (!panel) return;
+      panel.classList.add("is-tab-active");
+      panel.setAttribute("aria-hidden", "false");
+    });
+    delete document.body.dataset.activeTab;
+    setActiveJump(activeTabId);
+    requestAnimationFrame(resizeAllCharts);
+  }
 
   const fmt = (n) => Number(n || 0).toLocaleString();
   const fmtHours = (h) => {
@@ -1429,7 +1508,7 @@
       onClick: (d) => {
         if (!d?.name) return;
         patchChartPeriod({ podcast: d.name });
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       },
     });
   }
@@ -1637,7 +1716,7 @@
           day: state.chartPeriod.day,
           country: d.name,
         });
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       },
     });
   }
@@ -1881,7 +1960,7 @@
   function jumpToThemePodcast(podcastName) {
     if (!podcastName) return;
     patchChartPeriod({ podcast: podcastName });
-    $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    goToSection("explorePanel");
   }
 
   function syncThemeMatchToggle() {
@@ -2408,7 +2487,7 @@
     if (t && !t.parentId && (t.children || []).length) {
       focusParentTheme(themeId);
       if (jumpExplore) {
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       }
       return;
     }
@@ -2416,10 +2495,27 @@
     if (themeId) patch.q = "";
     patchChartPeriod(patch);
     if (jumpExplore) {
-      $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      goToSection("explorePanel");
     }
   }
 
+<<<<<<< HEAD
+=======
+  function runTopicSearch(raw) {
+    const q = (raw || "").trim();
+    const ql = q.toLowerCase();
+    const hit = flatThemes().find(
+      (t) => t.name.toLowerCase() === ql || t.id === ql
+    );
+    if (hit) {
+      selectTheme(hit.id, true);
+    } else {
+      patchChartPeriod({ q });
+      goToSection("explorePanel");
+    }
+  }
+
+>>>>>>> 9eaba63 (Use bottom tabs as real panels on small screens)
   function renderTopTable() {
     const hours = metricIsHours();
     const all = topPodcastItems()
@@ -2445,7 +2541,7 @@
     $$("#topTable [data-podcast]").forEach((btn) => {
       btn.addEventListener("click", () => {
         patchChartPeriod({ podcast: btn.dataset.podcast });
-        $("#explorePanel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        goToSection("explorePanel");
       });
     });
     const more = $("#topTableMore");
@@ -2497,50 +2593,61 @@
       $("#themeEpisodeList")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
 
-    // Nav / tab bar smooth scroll + active section highlighting
-    const jumpTargets = ["trends", "shows", "themes", "patterns", "explorePanel"];
-    const setActiveJump = (id) => {
-      $$("[data-jump]").forEach((a) => {
-        const on = a.getAttribute("data-jump") === id;
-        a.classList.toggle("is-active", on);
-        if (on) a.setAttribute("aria-current", "page");
-        else a.removeAttribute("aria-current");
-      });
-    };
-    $$("[data-jump]").forEach((a) => {
-      a.addEventListener("click", (ev) => {
-        ev.preventDefault();
-        const id = a.getAttribute("data-jump");
-        setActiveJump(id);
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      });
-    });
-    if ("IntersectionObserver" in window) {
+    // Desktop: scroll-spy. Mobile: bottom tabs swap panels (no long scroll).
+    const enableScrollSpy = () => {
+      if (!("IntersectionObserver" in window) || isTabMode()) return;
+      sectionScrollSpy?.disconnect?.();
       const seen = new Map();
-      const io = new IntersectionObserver(
+      sectionScrollSpy = new IntersectionObserver(
         (entries) => {
+          if (isTabMode()) return;
           for (const entry of entries) {
             seen.set(entry.target.id, entry.intersectionRatio);
           }
-          let best = jumpTargets[0];
+          let best = JUMP_TARGETS[0];
           let bestRatio = -1;
-          for (const id of jumpTargets) {
+          for (const id of JUMP_TARGETS) {
             const r = seen.get(id) || 0;
             if (r > bestRatio) {
               bestRatio = r;
               best = id;
             }
           }
-          if (bestRatio > 0) setActiveJump(best);
+          if (bestRatio > 0) {
+            activeTabId = best;
+            setActiveJump(best);
+          }
         },
         { rootMargin: "-28% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75] }
       );
-      jumpTargets.forEach((id) => {
+      JUMP_TARGETS.forEach((id) => {
         const el = document.getElementById(id);
-        if (el) io.observe(el);
+        if (el) sectionScrollSpy.observe(el);
       });
-    }
-    setActiveJump("trends");
+    };
+
+    $$("[data-jump]").forEach((a) => {
+      a.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        const id = a.getAttribute("data-jump");
+        goToSection(id);
+        try {
+          history.replaceState(null, "", `#${id}`);
+        } catch (_) {}
+      });
+    });
+
+    const hashTab = () => {
+      const raw = (location.hash || "").replace(/^#/, "");
+      return JUMP_TARGETS.includes(raw) ? raw : "trends";
+    };
+    activeTabId = hashTab();
+    syncTabMode();
+    enableScrollSpy();
+    TAB_MQ.addEventListener("change", () => {
+      syncTabMode();
+      enableScrollSpy();
+    });
 
     $("#themeToggle")?.addEventListener("click", () => {
       applyTheme(isDark() ? "light" : "dark");
@@ -2651,6 +2758,12 @@
     state.metric = readStoredMetric();
     syncMetricToggle();
     updateMetricLabels();
+    // Enter mobile tab panels before charts paint so inactive canvases aren't laid out in a long scroll.
+    try {
+      const raw = (location.hash || "").replace(/^#/, "");
+      if (JUMP_TARGETS.includes(raw)) activeTabId = raw;
+    } catch (_) {}
+    syncTabMode();
     $("#bootStatus").textContent = "Loading listening history…";
     try {
       const [agg, episodes, podcasts, themesDoc, episodeThemes, notes, countriesDoc] =
@@ -2699,6 +2812,7 @@
       wire();
       document.body.classList.add("ready");
       $("#bootStatus").textContent = "";
+      showTab(activeTabId, { scrollTop: false });
       try {
         if (new URLSearchParams(location.search).get("filters") === "open") {
           setFilterSheetOpen(true);

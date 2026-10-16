@@ -1270,6 +1270,25 @@ body:not(.ready) #topPanel {
   .chrome-tools { margin-left: auto; }
   .tab-bar { display: flex; }
 
+  /* Tab panels: only the active bottom-nav section is on screen */
+  body.tab-mode main.charts-block > .tab-panel:not(.is-tab-active) {
+    display: none !important;
+  }
+
+  body.tab-mode:not([data-active-tab="trends"]) .hero {
+    display: none;
+  }
+
+  body.tab-mode main.charts-block > .tab-panel.is-tab-active {
+    display: block;
+    padding-top: 12px;
+    animation: tab-fade 220ms var(--ease-out) both;
+  }
+
+  body.tab-mode .site-footer {
+    padding-bottom: calc(28px + var(--tab-bar-h) + var(--safe-bottom));
+  }
+
   /* Compact sticky filter: search + Filters only (Apple Music / Photos pattern) */
   .period-dock {
     padding: 0;
@@ -1540,6 +1559,11 @@ body:not(.ready) #topPanel {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes tab-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 520px) {
