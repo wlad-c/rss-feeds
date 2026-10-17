@@ -2414,10 +2414,8 @@ body.is-filtering #periodSummary {
     const bits = [];
     if (year) {
       if (!month) bits.push(String(year));
-      else {
-        const monthLabel = MONTH_NAME[month] || month;
-        bits.push(day ? `${Number(day)} ${monthLabel} ${year}` : `${monthLabel} ${year}`);
-      }
+      else if (day) bits.push(formatDateKey(`${year}-${month}-${String(day).padStart(2, "0")}`));
+      else bits.push(formatMonthKey(`${year}-${month}`));
     }
     if (country) bits.push(country);
     if (podcast) bits.push(podcast);
@@ -3820,31 +3818,37 @@ body.is-filtering #periodSummary {
     };
   }
 
+  /** MMM YYYY — e.g. Jun 2025 (month buckets have no day). */
   function formatMonthKey(ym) {
     const s = String(ym || "");
     if (s.length < 7) return s;
     const y = s.slice(0, 4);
     const m = s.slice(5, 7);
-    return `${MONTH_NAME[m] || m} ${y}`;
+    return `${MONTH_SHORT[m] || m} ${y}`;
   }
 
+  /** DD MMM YYYY — e.g. 07 Mar 2019. Month-only keys fall back to MMM YYYY. */
   function formatDateKey(iso) {
-    const s = String(iso || "");
+    const s = String(iso || "").trim();
     if (s.length < 10) return formatMonthKey(s);
     const y = s.slice(0, 4);
     const m = s.slice(5, 7);
-    const d = Number(s.slice(8, 10));
-    return `${d} ${MONTH_NAME[m] || m} ${y}`;
+    const d = s.slice(8, 10).padStart(2, "0");
+    return `${d} ${MONTH_SHORT[m] || m} ${y}`;
   }
 
-  /** d MMM yyyy — e.g. 7 Mar 2019 */
+  /** Alias — same DD MMM YYYY standard as formatDateKey. */
   function formatDateShort(iso) {
-    const s = String(iso || "");
-    if (s.length < 10) return s;
-    const y = s.slice(0, 4);
-    const m = s.slice(5, 7);
-    const d = Number(s.slice(8, 10));
-    return `${d} ${MONTH_SHORT[m] || m} ${y}`;
+    return formatDateKey(iso);
+  }
+
+  /** Format any ISO date / YYYY-MM / raw timestamp for UI display. */
+  function formatUiDate(value) {
+    const s = String(value || "").trim();
+    if (!s) return "";
+    if (/^\d{4}-\d{2}-\d{2}/.test(s)) return formatDateKey(s.slice(0, 10));
+    if (/^\d{4}-\d{2}$/.test(s)) return formatMonthKey(s);
+    return s;
   }
 
   function listeningDateSpan(stats) {
@@ -3971,7 +3975,7 @@ body.is-filtering #periodSummary {
     state.charts.trend = new Chart(ctx, {
       type: "line",
       data: {
-        labels: points.map((m) => m.month),
+        labels: points.map((m) => formatUiDate(m.month)),
         datasets,
       },
       options: baseChartOptions({
@@ -3996,7 +4000,7 @@ body.is-filtering #periodSummary {
     state.charts.cum = new Chart($("#cumChart"), {
       type: "line",
       data: {
-        labels: cumulative.map((d) => d.month),
+        labels: cumulative.map((d) => formatUiDate(d.month)),
         datasets: [
           {
             label: hours ? "Cumulative hours" : "Cumulative episodes",
@@ -4031,21 +4035,27 @@ body.is-filtering #periodSummary {
       const src = hours ? stats.byDateHours : stats.byDateCount;
       return Object.keys(src)
         .sort()
-        .map((date) => ({
-          year: date.slice(8, 10),
-          label: date.slice(8, 10),
-          count: hours ? Math.round(src[date] * 10) / 10 : src[date],
-        }));
+        .map((date) => {
+          const label = formatDateKey(date);
+          return {
+            year: label,
+            label,
+            count: hours ? Math.round(src[date] * 10) / 10 : src[date],
+          };
+        });
     }
     if (state.chartPeriod.year) {
       const src = hours ? stats.byMonthHours : stats.byMonthCount;
       return Object.keys(src)
         .sort()
-        .map((ym) => ({
-          year: MONTH_NAME[ym.slice(5, 7)] || ym.slice(5, 7),
-          label: MONTH_NAME[ym.slice(5, 7)] || ym.slice(5, 7),
-          count: hours ? Math.round(src[ym] * 10) / 10 : src[ym],
-        }));
+        .map((ym) => {
+          const label = formatMonthKey(ym);
+          return {
+            year: label,
+            label,
+            count: hours ? Math.round(src[ym] * 10) / 10 : src[ym],
+          };
+        });
     }
     if (!hours && !chartPeriodActive()) {
       return (state.agg.yearly || []).map((d) => ({
@@ -4429,7 +4439,7 @@ body.is-filtering #periodSummary {
         const unit = hours
           ? `${fmtHours(c.count)} hour${c.count === 1 ? "" : "s"}`
           : `${c.count} episode${c.count === 1 ? "" : "s"}`;
-        return `<div class="heat-cell" data-level="${level}" title="${escapeHtml(c.date)}: ${escapeHtml(unit)}"></div>`;
+        return `<div class="heat-cell" data-level="${level}" title="${escapeHtml(formatUiDate(c.date))}: ${escapeHtml(unit)}"></div>`;
       })
       .join("");
   }
@@ -4617,7 +4627,7 @@ body.is-filtering #periodSummary {
         <div class="ep-show">${escapeHtml(e.p || "Podcast")}${e.f ? ` · ${escapeHtml(e.f)}` : ""}</div>
         <h3>${escapeHtml(e.e || "(untitled)")}</h3>
         <div class="ep-meta">
-          <span>${escapeHtml(e.d || e.t || "")}</span>
+          <span>${escapeHtml(formatUiDate(e.d || e.t || ""))}</span>
           ${e.dur ? `<span>${escapeHtml(e.dur)}</span>` : ""}
           ${country && country !== "Unknown" ? `<button type="button" class="tag" data-country-jump="${escapeHtml(country)}">${escapeHtml(country)}</button>` : ""}
           ${e.st ? `<span class="tag ${e.st === "Played" ? "ok" : e.st === "In progress" ? "warn" : ""}">${escapeHtml(e.st)}</span>` : ""}
@@ -4975,11 +4985,8 @@ body.is-filtering #periodSummary {
 
   function themeTrendLabel(bucket) {
     const grain = themeTrendGrain();
-    if (grain === "day") return String(Number(String(bucket).slice(8, 10)));
-    if (grain === "month") {
-      const mo = String(bucket).slice(5, 7);
-      return MONTH_NAME[mo] || mo;
-    }
+    if (grain === "day") return formatDateKey(bucket);
+    if (grain === "month") return formatMonthKey(bucket);
     return String(bucket);
   }
 
@@ -5078,7 +5085,7 @@ body.is-filtering #periodSummary {
         (s) => `
       <div class="theme-sample">
         <strong>${escapeHtml(s.e || "")}</strong>
-        <span>${escapeHtml(s.p || "Podcast")} · ${escapeHtml(s.d || "")}</span>
+        <span>${escapeHtml(s.p || "Podcast")} · ${escapeHtml(formatUiDate(s.d || ""))}</span>
       </div>`
       )
       .join("") ||
@@ -5390,7 +5397,7 @@ body.is-filtering #periodSummary {
       $("#bootStatus").textContent = "Indexing listening history…";
       prepareEpisodeIndex();
 
-      $("#exportedAt").textContent = `Snapshot ${agg.meta.exportedAt?.slice(0, 10) || ""}`;
+      $("#exportedAt").textContent = `Snapshot ${formatUiDate(agg.meta.exportedAt?.slice(0, 10) || "")}`;
       renderHeroStats();
       populateFilters();
       syncPeriodControls();
