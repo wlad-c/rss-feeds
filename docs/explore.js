@@ -790,6 +790,7 @@
     if (statusSel) statusSel.value = status || "";
     if (qInput && qInput.value !== (q || "")) qInput.value = q || "";
     refreshSearchableSelects();
+    requestAnimationFrame(() => layoutDesktopFilterOverflow());
   }
 
   function refreshSearchableSelects() {
@@ -1125,16 +1126,17 @@
     paintClosed();
   }
 
-  function activeFacetCount() {
+  function activeFacetCount({ includePodcast = true } = {}) {
     const p = state.chartPeriod;
     let n = 0;
     if (p.year) n += 1;
     if (p.month) n += 1;
     if (p.day) n += 1;
     if (p.country) n += 1;
-    if (p.podcast) n += 1;
+    if (includePodcast && p.podcast) n += 1;
     if (p.theme) n += 1;
     if (p.status) n += 1;
+    if (String(p.q || "").trim()) n += 1;
     return n;
   }
 
@@ -1142,7 +1144,11 @@
     const badge = $("#filterBadge");
     const toggle = $("#filterSheetToggle");
     const clearBtn = $("#periodClear");
-    const n = activeFacetCount();
+    // Show lives on its own control; badge counts the Filters sheet facets.
+    const n = activeFacetCount({ includePodcast: false });
+    const any =
+      activeFacetCount({ includePodcast: true }) > 0 ||
+      !!String(state.chartPeriod.q || "").trim();
     if (badge) {
       if (n > 0) {
         badge.hidden = false;
@@ -1152,24 +1158,92 @@
       }
     }
     toggle?.classList.toggle("has-filters", n > 0);
-    if (clearBtn) clearBtn.hidden = n === 0 && !String(state.chartPeriod.q || "").trim();
+    if (clearBtn) clearBtn.hidden = !any;
+  }
+
+  function clearFilterOverflowHidden() {
+    $$("#periodControls .period-field").forEach((el) => {
+      el.classList.remove("is-overflow-hidden");
+    });
+    $("#periodControls")?.classList.remove("is-measuring");
+  }
+
+  function placeFilterToggle() {
+    const toggle = $("#filterSheetToggle");
+    const toolbar = $("#periodToolbar");
+    const secondary = $("#periodSecondary");
+    const clearBtn = $("#periodClear");
+    if (!toggle || !toolbar || !secondary) return;
+    if (isCompactFilterUi()) {
+      if (clearBtn && clearBtn.parentElement === toolbar) {
+        toolbar.insertBefore(toggle, clearBtn);
+      } else if (toggle.parentElement !== toolbar) {
+        toolbar.appendChild(toggle);
+      }
+    } else if (toggle.parentElement !== secondary) {
+      secondary.appendChild(toggle);
+    }
+  }
+
+  function layoutDesktopFilterOverflow() {
+    const controls = $("#periodControls");
+    const secondary = $("#periodSecondary");
+    const toggle = $("#filterSheetToggle");
+    if (!controls || !secondary || !toggle) return;
+    if (isCompactFilterUi() || document.body.classList.contains("filter-sheet-open")) {
+      clearFilterOverflowHidden();
+      return;
+    }
+    placeFilterToggle();
+    const fields = $$(":scope > .period-field", controls);
+    clearFilterOverflowHidden();
+    // Measure natural widths on one line, then hide what doesn't fit beside the toggle.
+    controls.classList.add("is-measuring");
+    const gap = 10;
+    const toggleW = toggle.getBoundingClientRect().width || 44;
+    const avail = Math.max(0, controls.getBoundingClientRect().width - 0);
+    // controls already sits in a flex row with the toggle as a sibling of filter-panel,
+    // so available width for fields is the controls box itself.
+    let used = 0;
+    let hidden = 0;
+    for (const field of fields) {
+      const w = field.getBoundingClientRect().width;
+      const next = used === 0 ? w : used + gap + w;
+      if (next > avail + 0.5 && used > 0) {
+        field.classList.add("is-overflow-hidden");
+        hidden += 1;
+      } else {
+        used = next;
+      }
+    }
+    controls.classList.remove("is-measuring");
+    // Always keep the Filters control on desktop — it reveals overflow (and all facets).
+    toggle.hidden = false;
+    toggle.title = hidden > 0 ? `Open filters (${hidden} more)` : "Open filters";
+    toggle.classList.toggle("has-overflow", hidden > 0);
   }
 
   function placeFilterPanel(inSheet) {
     const panel = $("#filterPanel");
     const sheetBody = $("#filterSheetBody");
-    const periodBar = $("#periodBar");
-    if (!panel || !sheetBody || !periodBar) return;
+    const secondary = $("#periodSecondary");
+    if (!panel || !sheetBody || !secondary) return;
     if (inSheet) {
+      clearFilterOverflowHidden();
       if (panel.parentElement !== sheetBody) sheetBody.appendChild(panel);
-    } else if (panel.parentElement !== periodBar) {
-      periodBar.appendChild(panel);
+    } else if (panel.parentElement !== secondary) {
+      // Keep Filters toggle as the last child of the secondary row.
+      const toggle = $("#filterSheetToggle");
+      if (toggle && toggle.parentElement === secondary) {
+        secondary.insertBefore(panel, toggle);
+      } else {
+        secondary.appendChild(panel);
+      }
     }
   }
 
   function setFilterSheetOpen(open) {
-    const mobile = window.matchMedia("(max-width: 860px)").matches;
-    const on = !!open && mobile;
+    const on = !!open;
     if (!on) closeComboPicker(false);
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
@@ -1179,10 +1253,13 @@
     if (backdrop) backdrop.hidden = !on;
     if (sheet) sheet.hidden = !on;
     placeFilterPanel(on);
+    placeFilterToggle();
     if (on) {
       requestAnimationFrame(() => {
-        $("#periodYear")?.focus({ preventScroll: true });
+        ($("#periodQ") || $("#periodYear"))?.focus?.({ preventScroll: true });
       });
+    } else {
+      requestAnimationFrame(() => layoutDesktopFilterOverflow());
     }
   }
 
@@ -3412,10 +3489,17 @@
     };
     window.visualViewport?.addEventListener("resize", onViewport);
     window.visualViewport?.addEventListener("scroll", onViewport);
-    window.matchMedia("(max-width: 860px)").addEventListener("change", (e) => {
+    window.matchMedia("(max-width: 860px)").addEventListener("change", () => {
       closeComboPicker(false);
-      if (!e.matches) setFilterSheetOpen(false);
-      else placeFilterPanel(false);
+      setFilterSheetOpen(false);
+      placeFilterToggle();
+      placeFilterPanel(false);
+      layoutDesktopFilterOverflow();
+    });
+    let filterLayoutTimer = 0;
+    window.addEventListener("resize", () => {
+      clearTimeout(filterLayoutTimer);
+      filterLayoutTimer = window.setTimeout(() => layoutDesktopFilterOverflow(), 80);
     });
 
     $("#periodClear")?.addEventListener("click", () => clearAllFilters());
@@ -3507,9 +3591,12 @@
       renderThemeDetail("");
       renderEpisodeList();
       wire();
+      placeFilterToggle();
+      layoutDesktopFilterOverflow();
       document.body.classList.add("ready");
       $("#bootStatus").textContent = "";
       showTab(activeTabId, { scrollTop: false });
+      requestAnimationFrame(() => layoutDesktopFilterOverflow());
       // Warm search haystacks in idle time so the first typed query stays snappy.
       const warmSearch = () => {
         try {
