@@ -304,17 +304,20 @@ PARENTS: list[dict] = [
     {
         "id": "economy-markets",
         "name": "Economy & markets",
-        "blurb": "Inflation, rates, trade, budgets, markets, and business.",
+        "blurb": "Inflation, rates, trade, budgets, markets, housing, and business.",
         "patterns": [
-            r"\beconomy\b", r"\beconomic\b", r"\binflation\b", r"\binterest rate",
-            r"\brecession\b", r"\btariff", r"\bbudget\b", r"\beconomia\b", r"\bmercado\b",
+            r"\beconomy\b", r"\beconomic\b", r"\binflation\b", r"\binfla[cç][aã]o\b",
+            r"\binterest rate", r"\brecession\b", r"\btariff", r"\bbudget\b",
+            r"\beconomia\b", r"\bmercado\b", r"\bhousing\b", r"\bmortgage\b",
+            r"\bprivate equity\b", r"\bbanking\b", r"\bconsumer debt\b",
+            r"\bbuy now.?pay later\b", r"\bsuperannuation\b", r"\bsuper fund\b",
         ],
         "children": [
             {
                 "id": "econ-inflation-rates",
                 "name": "Inflation & rates",
                 "blurb": "Prices, central banks, and interest rates.",
-                "patterns": [r"\binflation\b", r"\binterest rate", r"\bjuro", r"\bfed\b", r"\brba\b"],
+                "patterns": [r"\binflation\b", r"\binfla[cç][aã]o\b", r"\binterest rate", r"\bjuro", r"\bfed\b", r"\brba\b"],
             },
             {
                 "id": "econ-trade-tariffs",
@@ -326,13 +329,19 @@ PARENTS: list[dict] = [
                 "id": "econ-markets-business",
                 "name": "Markets & business",
                 "blurb": "Markets, stocks, IPO, and corporate stories.",
-                "patterns": [r"\bmarket", r"\bstock", r"\bip[eo]\b", r"\bmercado\b"],
+                "patterns": [r"\bmarket", r"\bstock", r"\bip[eo]\b", r"\bmercado\b", r"\bprivate equity\b", r"\bbanking\b"],
             },
             {
                 "id": "econ-budget-fiscal",
                 "name": "Budgets & fiscal policy",
                 "blurb": "Budgets, spending, and fiscal politics.",
-                "patterns": [r"\bbudget\b", r"\bfiscal\b", r"\bsubsidy\b", r"\bor[cç]amento\b"],
+                "patterns": [r"\bbudget\b", r"\bfiscal\b", r"\bsubsidy\b", r"\bor[cç]amento\b", r"\bsuperannuation\b"],
+            },
+            {
+                "id": "econ-housing-debt",
+                "name": "Housing & household debt",
+                "blurb": "Housing markets, mortgages, and consumer debt.",
+                "patterns": [r"\bhousing\b", r"\bmortgage\b", r"\brent\b", r"\bconsumer debt\b", r"\bbuy now.?pay later\b"],
             },
         ],
     },
@@ -372,7 +381,9 @@ PARENTS: list[dict] = [
         "patterns": [
             r"(?<![a-z])ai(?![a-z])", r"\bartificial intelligence\b", r"\bchatgpt\b",
             r"\bopenai\b", r"\btechnology\b", r"\bsocial media\b", r"\btiktok\b",
-            r"\bintellig[eê]ncia artificial\b",
+            r"\bintellig[eê]ncia artificial\b", r"\belon musk\b", r"\btesla\b",
+            r"\bsemiconductor", r"\bchip\b", r"\bmeta\b", r"\bapple\b",
+            r"\bdata centre", r"\bdata center",
         ],
         "children": [
             {
@@ -385,7 +396,13 @@ PARENTS: list[dict] = [
                 "id": "tech-platforms",
                 "name": "Platforms & social media",
                 "blurb": "Big Tech platforms and social media politics.",
-                "patterns": [r"\bsocial media\b", r"\btiktok\b", r"\bgoogle\b", r"\balgorithm", r"\bredes sociais\b"],
+                "patterns": [r"\bsocial media\b", r"\btiktok\b", r"\bgoogle\b", r"\balgorithm", r"\bredes sociais\b", r"\bmeta\b", r"\bfacebook\b"],
+            },
+            {
+                "id": "tech-hardware-infra",
+                "name": "Chips, cloud & hardware",
+                "blurb": "Semiconductors, data centres, and tech infrastructure.",
+                "patterns": [r"\bsemiconductor", r"\bchip\b", r"\bdata centre", r"\bdata center", r"\belon musk\b", r"\btesla\b"],
             },
         ],
     },
@@ -417,21 +434,26 @@ PARENTS: list[dict] = [
         "name": "Health & science",
         "blurb": "Public health, medicine, pandemics, and research.",
         "patterns": [
-            r"\bcovid\b", r"\bpandemic\b", r"\bvaccine\b", r"\bhealth\b",
-            r"\bcancer\b", r"\bdementia\b", r"\bscience\b", r"\bsa[uú]de\b",
+            r"\bcovid\b", r"\bcoronav[ií]rus\b", r"\bpandemic\b", r"\bpandemia\b",
+            r"\bvaccine\b", r"\bhealth\b", r"\bcancer\b", r"\bdementia\b",
+            r"\bscience\b", r"\bsa[uú]de\b", r"\bquarentena\b", r"\babortion\b",
+            r"\babort[eo]\b",
         ],
         "children": [
             {
                 "id": "health-pandemic",
                 "name": "Pandemics & vaccines",
                 "blurb": "Covid, pandemics, and vaccination.",
-                "patterns": [r"\bcovid\b", r"\bpandemic\b", r"\bvaccine\b", r"\bvacin", r"\bpandemia\b"],
+                "patterns": [
+                    r"\bcovid\b", r"\bcoronav[ií]rus\b", r"\bpandemic\b", r"\bvaccine\b",
+                    r"\bvacin", r"\bpandemia\b", r"\bquarentena\b",
+                ],
             },
             {
                 "id": "health-public",
                 "name": "Public health & medicine",
                 "blurb": "Hospitals, disease, and health systems.",
-                "patterns": [r"\bhealth\b", r"\bhospital\b", r"\bcancer\b", r"\bdementia\b", r"\bsa[uú]de\b"],
+                "patterns": [r"\bhealth\b", r"\bhospital\b", r"\bcancer\b", r"\bdementia\b", r"\bsa[uú]de\b", r"\babortion\b", r"\babort[eo]\b"],
             },
         ],
     },
@@ -510,7 +532,7 @@ PARENTS: list[dict] = [
         "blurb": "Hurricanes, floods, fires, and extreme weather.",
         "patterns": [
             r"\bhurricane\b", r"\bflood", r"\bwildfire\b", r"\bearthquake\b",
-            r"\bstorm\b", r"\bcyclone\b", r"\benchente",
+            r"\bstorm\b", r"\bcyclone\b", r"\benchente", r"\bel ni[nñ]o\b",
         ],
         "children": [
             {
@@ -523,7 +545,345 @@ PARENTS: list[dict] = [
                 "id": "wx-flood-fire",
                 "name": "Floods & fires",
                 "blurb": "Flooding and wildfire disasters.",
-                "patterns": [r"\bflood", r"\bwildfire\b", r"\benchente", r"\binc[eê]ndio"],
+                "patterns": [r"\bflood", r"\bwildfire\b", r"\benchente", r"\binc[eê]ndio", r"\bel ni[nñ]o\b"],
+            },
+        ],
+    },
+    {
+        "id": "culture-entertainment",
+        "name": "Culture, film & entertainment",
+        "blurb": "Movies, TV, books, music, games, and pop culture.",
+        "patterns": [
+            r"\bmovie\b", r"\bfilm\b", r"\bcinema\b", r"\bfilme\b", r"\bs[eé]ries?\b",
+            r"\btv show\b", r"\bnetflix\b", r"\bhbo\b", r"\bgame of thrones\b",
+            r"\bstranger things\b", r"\boscar\b", r"\bnerdcast\b", r"\bghibli",
+            r"\banime\b", r"\bmusic\b", r"\bm[uú]sica\b", r"\bpodcast de cine",
+            r"\bcinem[aá]tico\b", r"\bcultura pop\b", r"\bbook review\b",
+            r"\blivro\b", r"\bjoker\b", r"\bcoringa\b", r"\brapaduracast\b",
+            r"\bmilkshake chamado wanda\b", r"\bbraincast\b",
+            r"\bentertaining\b",
+        ],
+        "children": [
+            {
+                "id": "cult-film-tv",
+                "name": "Film & TV",
+                "blurb": "Movies, series, streaming, and screen culture.",
+                "patterns": [
+                    r"\bmovie\b", r"\bfilm\b", r"\bcinema\b", r"\bfilme\b", r"\bs[eé]ries?\b",
+                    r"\bnetflix\b", r"\bhbo\b", r"\bgame of thrones\b",
+                    r"\bstranger things\b", r"\boscar\b", r"\bcinem[aá]tico\b",
+                    r"\bjoker\b", r"\bcoringa\b", r"\bghibli", r"\banime\b",
+                    r"\brapaduracast\b",
+                ],
+            },
+            {
+                "id": "cult-music-games",
+                "name": "Music, games & fandom",
+                "blurb": "Music, games, comics, and fan culture.",
+                "patterns": [
+                    r"\bmusic\b", r"\bm[uú]sica\b", r"\bgaming\b", r"\bvideo ?game",
+                    r"\bnerdcast\b", r"\bcultura pop\b", r"\bcomic\b", r"\bquadrinhos\b",
+                    r"\bmilkshake chamado wanda\b",
+                ],
+            },
+            {
+                "id": "cult-books-arts",
+                "name": "Books & arts",
+                "blurb": "Books, theatre, and the arts.",
+                "patterns": [
+                    r"\bbook review\b", r"\blivro\b", r"\bnovel\b",
+                    r"\btheatre\b", r"\btheater\b", r"\bexhibition\b",
+                ],
+            },
+        ],
+    },
+    {
+        "id": "sport",
+        "name": "Sport",
+        "blurb": "Football, Olympics, World Cup, and sporting culture.",
+        "patterns": [
+            r"\bsport\b", r"\besporte\b", r"\bfootball\b", r"\bsoccer\b",
+            r"\bfutebol\b", r"\bcopa\b", r"\bworld cup\b", r"\bmundial\b",
+            r"\bolympic", r"\bol[ií]mpiad", r"\bpremier league\b",
+            r"\bnba\b", r"\bnfl\b", r"\btenis\b", r"\btennis\b",
+            r"\bcricket\b", r"\brugby\b", r"\bswans\b", r"\bafl\b",
+        ],
+        "children": [
+            {
+                "id": "sport-football",
+                "name": "Football / soccer",
+                "blurb": "Football clubs, leagues, and match culture.",
+                "patterns": [r"\bfootball\b", r"\bsoccer\b", r"\bfutebol\b", r"\bpremier league\b", r"\bafl\b", r"\bswans\b"],
+            },
+            {
+                "id": "sport-mega-events",
+                "name": "World Cup & Olympics",
+                "blurb": "World Cups, Olympics, and mega sporting events.",
+                "patterns": [r"\bcopa\b", r"\bworld cup\b", r"\bmundial\b", r"\bolympic", r"\bol[ií]mpiad"],
+            },
+        ],
+    },
+    {
+        "id": "ideas-society",
+        "name": "Ideas, mind & society",
+        "blurb": "Philosophy, psychology, relationships, identity, and how we live.",
+        "patterns": [
+            r"\bphilosoph", r"\bfilosofi", r"\bpsycholog", r"\bpsicolog",
+            r"\bmental health\b", r"\brelationship", r"\bidentit",
+            r"\bethics?\b", r"\bmoral\b", r"\bhappiness\b",
+            r"\bcognitiv", r"\bbehavio", r"\bbetter to know\b", r"\bhidden brain\b", r"\bgood to know\b",
+            r"\bmaking sense\b", r"\bsam harris\b", r"\bsociety\b", r"\bsociedade\b",
+            r"\bideolog", r"\bobsess[aã]o chatgpt\b",
+        ],
+        "children": [
+            {
+                "id": "ideas-philosophy",
+                "name": "Philosophy & ethics",
+                "blurb": "Moral questions, philosophy, and big ideas.",
+                "patterns": [r"\bphilosoph", r"\bfilosofi", r"\bethics?\b", r"\bmoral\b", r"\bideolog", r"\bmarxism"],
+            },
+            {
+                "id": "ideas-psychology",
+                "name": "Psychology & behaviour",
+                "blurb": "Mind, cognition, mental health, and behaviour.",
+                "patterns": [
+                    r"\bpsycholog", r"\bpsicolog", r"\bmental health\b",
+                    r"\bcognitiv", r"\bbehavio", r"\bhidden brain\b", r"\bbetter to know\b",
+                    r"\bobsess[aã]o chatgpt\b",
+                ],
+            },
+            {
+                "id": "ideas-relationships",
+                "name": "Relationships & everyday life",
+                "blurb": "Relationships, belonging, and how people live together.",
+                "patterns": [r"\brelationship", r"\bfamily\b", r"\bfam[ií]lia\b", r"\bfriendship\b", r"\blove\b", r"\bmarriage\b"],
+            },
+        ],
+    },
+    {
+        "id": "history-memory",
+        "name": "History & memory",
+        "blurb": "Historical episodes, archives, and how the past is told.",
+        "patterns": [
+            r"\bhistory\b", r"\bhist[oó]ria\b", r"\bhistorian\b", r"\bhistorical\b",
+            r"\barchive\b", r"\bthroughline\b", r"\bhistory, geography & culture\b", r"\bsegunda guerra\b",
+            r"\bfascis", r"\bnazis", r"\bcold war\b", r"\brevolução\b", r"\brevolution\b",
+            r"\bempire\b", r"\bimp[eé]rio\b", r"\bcolonial",
+        ],
+        "children": [
+            {
+                "id": "hist-modern",
+                "name": "Modern & 20th-century history",
+                "blurb": "World wars, fascism, Cold War, and modern upheavals.",
+                "patterns": [
+                    r"\bsegunda guerra\b", r"\bworld war\b", r"\bfascis", r"\bnazis",
+                    r"\bcold war\b", r"\brevolução\b", r"\brevolution\b",
+                ],
+            },
+            {
+                "id": "hist-empires-colonial",
+                "name": "Empires & colonialism",
+                "blurb": "Empire, colonialism, and decolonisation.",
+                "patterns": [r"\bempire\b", r"\bimp[eé]rio\b", r"\bcolonial", r"\bdecolon"],
+            },
+            {
+                "id": "hist-storytelling",
+                "name": "Archives & storytelling",
+                "blurb": "How history is researched, archived, and narrated.",
+                "patterns": [r"\bhistory\b", r"\bhist[oó]ria\b", r"\bhistorian\b", r"\barchive\b", r"\bthroughline\b"],
+            },
+        ],
+    },
+    {
+        "id": "gender-identity",
+        "name": "Gender, race & identity",
+        "blurb": "Gender, feminism, racism, LGBTQ+, and identity politics.",
+        "patterns": [
+            r"\bwomen\b", r"\bwoman\b", r"\bfeminist", r"\bfeminismo\b",
+            r"\bmisogyn", r"\bgender\b", r"\blgbt", r"\bqueer\b", r"\btrans\b",
+            r"\bracis", r"\brace\b", r"\bcoloris", r"\bfirst nations\b",
+            r"\bindigenous\b", r"\bpatriarch", r"\bmulher", r"\bmachismo\b",
+        ],
+        "children": [
+            {
+                "id": "gid-gender-feminism",
+                "name": "Gender & feminism",
+                "blurb": "Women's rights, feminism, and gender politics.",
+                "patterns": [r"\bwomen\b", r"\bwoman\b", r"\bfeminist", r"\bfeminismo\b", r"\bmisogyn", r"\bgender\b", r"\bmulher", r"\bpatriarch"],
+            },
+            {
+                "id": "gid-lgbtq",
+                "name": "LGBTQ+",
+                "blurb": "Queer, trans, and LGBTQ+ stories.",
+                "patterns": [r"\blgbt", r"\bqueer\b", r"\btrans\b"],
+            },
+            {
+                "id": "gid-race-indigenous",
+                "name": "Race & Indigenous",
+                "blurb": "Racism, colourism, and Indigenous politics.",
+                "patterns": [r"\bracis", r"\brace\b", r"\bcoloris", r"\bfirst nations\b", r"\bindigenous\b"],
+            },
+        ],
+    },
+    {
+        "id": "latin-america",
+        "name": "Latin America & Caribbean",
+        "blurb": "Venezuela, Mexico, Argentina, Colombia, and regional politics beyond Brazil.",
+        "patterns": [
+            r"\bvenezuela\b", r"\bmaduro\b", r"\bm[eé]xico\b", r"\bmexico\b",
+            r"\bargentina\b", r"\bcol[oô]mbia\b", r"\bchile\b", r"\bper[uú]\b",
+            r"\bcuba\b", r"\bhaiti\b", r"\blatin america\b", r"\bam[eé]rica latina\b",
+            r"\bbukele\b", r"\bel salvador\b",
+        ],
+        "children": [
+            {
+                "id": "latam-venezuela",
+                "name": "Venezuela",
+                "blurb": "Venezuela, Maduro, and related crises.",
+                "patterns": [r"\bvenezuela\b", r"\bmaduro\b"],
+            },
+            {
+                "id": "latam-southern-cone",
+                "name": "Southern Cone & Andes",
+                "blurb": "Argentina, Chile, Peru, Colombia, and neighbours.",
+                "patterns": [r"\bargentina\b", r"\bchile\b", r"\bper[uú]\b", r"\bcol[oô]mbia\b"],
+            },
+            {
+                "id": "latam-mexico-central",
+                "name": "Mexico & Central America",
+                "blurb": "Mexico, El Salvador, and Central American politics.",
+                "patterns": [r"\bm[eé]xico\b", r"\bmexico\b", r"\bbukele\b", r"\bel salvador\b", r"\bcuba\b", r"\bhaiti\b"],
+            },
+        ],
+    },
+    {
+        "id": "europe-affairs",
+        "name": "Europe",
+        "blurb": "EU politics, European governments, and continental crises.",
+        "patterns": [
+            r"\beurope\b", r"\beuropean\b", r"\beuropean union\b", r"\beu parliament\b",
+            r"\bfran[cç]a\b", r"\bfrance\b", r"\bgermany\b", r"\balemanha\b",
+            r"\bbritain\b", r"\bbrexit\b", r"\bmacron\b", r"\bscholz\b",
+            r"\bstarmer\b", r"\bafd\b", r"\bitalia\b", r"\bitaly\b",
+            r"\bspain\b", r"\bespanha\b", r"\bceuta\b", r"\bunited kingdom\b",
+        ],
+        "children": [
+            {
+                "id": "eu-western",
+                "name": "Western Europe",
+                "blurb": "France, Germany, UK, Italy, Spain, and neighbours.",
+                "patterns": [
+                    r"\bfran[cç]a\b", r"\bfrance\b", r"\bgermany\b", r"\balemanha\b",
+                    r"\bbritain\b", r"\bbrexit\b", r"\bmacron\b", r"\bscholz\b",
+                    r"\bstarmer\b", r"\bitalia\b", r"\bitaly\b", r"\bspain\b",
+                    r"\bespanha\b", r"\bunited kingdom\b",
+                ],
+            },
+            {
+                "id": "eu-institutions",
+                "name": "EU & far right",
+                "blurb": "European Union politics and far-right parties.",
+                "patterns": [
+                    r"\beuropean union\b", r"\beu parliament\b", r"\bafd\b",
+                    r"\bfar.?right\b", r"\bextrema direita\b",
+                ],
+            },
+        ],
+    },
+    {
+        "id": "africa-affairs",
+        "name": "Africa",
+        "blurb": "African politics, conflict, and regional diplomacy.",
+        "patterns": [
+            r"\bafrica\b", r"\bafrican\b", r"\bnigeria\b", r"\bsouth africa\b",
+            r"\bethiopia\b", r"\bsudan\b", r"\bsahel\b", r"\bmali\b",
+            r"\bniger\b", r"\brwanda\b", r"\bcongo\b", r"\bkeny",
+        ],
+        "children": [
+            {
+                "id": "af-west-sahel",
+                "name": "West Africa & Sahel",
+                "blurb": "Sahel, coups, and West African politics.",
+                "patterns": [r"\bsahel\b", r"\bmali\b", r"\bniger\b", r"\bnigeria\b"],
+            },
+            {
+                "id": "af-broader",
+                "name": "Southern & East Africa",
+                "blurb": "South Africa, Horn of Africa, and East Africa.",
+                "patterns": [r"\bsouth africa\b", r"\bethiopia\b", r"\bsudan\b", r"\brwanda\b", r"\bcongo\b", r"\bkeny"],
+            },
+        ],
+    },
+    {
+        "id": "south-asia",
+        "name": "India & South Asia",
+        "blurb": "India, Pakistan, Bangladesh, and South Asian politics.",
+        "patterns": [
+            r"\bindia\b", r"\bindian\b", r"\bmodi\b", r"\bpakistan\b",
+            r"\bbangladesh\b", r"\bsri lanka\b", r"\bsouth asia\b",
+        ],
+        "children": [
+            {
+                "id": "sa-india",
+                "name": "India",
+                "blurb": "Indian politics, Modi, and domestic debates.",
+                "patterns": [r"\bindia\b", r"\bindian\b", r"\bmodi\b"],
+            },
+            {
+                "id": "sa-neighbours",
+                "name": "Pakistan & neighbours",
+                "blurb": "Pakistan, Bangladesh, Sri Lanka, and neighbours.",
+                "patterns": [r"\bpakistan\b", r"\bbangladesh\b", r"\bsri lanka\b"],
+            },
+        ],
+    },
+    {
+        "id": "education-work",
+        "name": "Education, work & daily life",
+        "blurb": "Schools, universities, workplaces, and everyday practical life.",
+        "patterns": [
+            r"\beducation\b", r"\beduca[cç]", r"\buniversity\b", r"\buniversidade\b",
+            r"\bschool\b", r"\bescola\b", r"\bworkplace\b", r"\btrabalho\b",
+            r"\bjob\b", r"\bcarr[eé]er\b", r"\bcarrera\b", r"\bremote work\b",
+            r"\begg freez", r"\bfertility\b",
+        ],
+        "children": [
+            {
+                "id": "edu-schools",
+                "name": "Schools & universities",
+                "blurb": "Education systems, campuses, and learning.",
+                "patterns": [r"\beducation\b", r"\beduca[cç]", r"\buniversity\b", r"\buniversidade\b", r"\bschool\b", r"\bescola\b"],
+            },
+            {
+                "id": "edu-work-life",
+                "name": "Work & life logistics",
+                "blurb": "Jobs, careers, and everyday life decisions.",
+                "patterns": [r"\bworkplace\b", r"\btrabalho\b", r"\bjob\b", r"\bcarr[eé]er\b", r"\bremote work\b", r"\begg freez", r"\bfertility\b"],
+            },
+        ],
+    },
+    {
+        "id": "religion-belief",
+        "name": "Religion & belief",
+        "blurb": "Faith, churches, Islam, Christianity, and religious politics.",
+        "patterns": [
+            r"\breligion\b", r"\breligi[aã]o\b", r"\bchurch\b", r"\bigreja\b",
+            r"\bislam\b", r"\bmuslim\b", r"\bcrist", r"\bchristian",
+            r"\bjewish\b", r"\bjudaism\b", r"\bevangelical", r"\bfaith\b",
+            r"\bprotestant", r"\bcatholic", r"\bcat[oó]lic",
+        ],
+        "children": [
+            {
+                "id": "rel-christianity",
+                "name": "Christianity",
+                "blurb": "Churches, Catholicism, Protestantism, and evangelicals.",
+                "patterns": [r"\bchurch\b", r"\bigreja\b", r"\bcrist", r"\bchristian", r"\bevangelical", r"\bprotestant", r"\bcatholic", r"\bcat[oó]lic"],
+            },
+            {
+                "id": "rel-islam-judaism",
+                "name": "Islam & Judaism",
+                "blurb": "Islam, Muslim communities, and Judaism.",
+                "patterns": [r"\bislam\b", r"\bmuslim\b", r"\bjewish\b", r"\bjudaism\b"],
             },
         ],
     },
@@ -574,14 +934,29 @@ def tag_all(
 
     for i, ep in enumerate(episodes):
         title = ep.get("e") or ""
+        show = ep.get("p") or ""
+        folder = (ep.get("f") or "").strip()
         body, src = body_for_episode(i, notes, full_texts)
-        hay = f"{title}\n{body}"
-        title_only = title
+        # Include show name so entertainment/ideas podcasts are contemplated even
+        # when a title is terse. Only a few safe folders are appended — news
+        # folders like "Policy, Defence & Diplomacy" would over-tag.
+        safe_folder = ""
+        fl = folder.lower()
+        if fl in {
+            "entertaining",
+            "history, geography & culture",
+            "good to know",
+            "health & science",
+            "rights, diversity & inclusion",
+        }:
+            safe_folder = folder
+        hay = f"{title}\n{show}\n{safe_folder}\n{body}"
+        title_show = f"{title}\n{show}\n{safe_folder}"
         hits: list[str] = []
         for parent in compiled:
             child_hits = []
             for ch in parent["children"]:
-                # Prefer child hits supported by body/transcript text; title still counts.
+                # Prefer child hits supported by body/transcript text; title/show still counts.
                 if matches(ch["re"], hay):
                     child_hits.append(ch["id"])
                     child_of[ch["id"]] = parent["id"]
@@ -602,7 +977,7 @@ def tag_all(
                     evidence[parent["id"]]["transcript"] += 1
                 else:
                     evidence[parent["id"]]["notes"] += 1
-            elif matches(parent["re"], title_only):
+            elif matches(parent["re"], title_show):
                 evidence[parent["id"]]["title"] += 1
             for tid in [parent["id"], *child_hits]:
                 counts[tid] += 1
