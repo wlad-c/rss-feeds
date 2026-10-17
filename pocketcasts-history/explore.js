@@ -1789,11 +1789,17 @@
 
   function baseChartOptions(extra = {}) {
     const chrome = chartChrome();
+    const compact = isCompactFilterUi();
     return {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
       interaction: { mode: "index", intersect: false },
+      layout: {
+        padding: compact
+          ? { top: 4, right: 6, bottom: 2, left: 2 }
+          : { top: 0, right: 0, bottom: 0, left: 0 },
+      },
       plugins: {
         legend: {
           labels: {
@@ -1810,12 +1816,17 @@
       },
       scales: {
         x: {
-          ticks: { color: chrome.muted, maxRotation: 0, autoSkipPadding: 12 },
+          ticks: {
+            color: chrome.muted,
+            maxRotation: 0,
+            autoSkipPadding: 12,
+            padding: compact ? 4 : 0,
+          },
           grid: { color: chrome.grid },
         },
         y: {
           beginAtZero: true,
-          ticks: { color: chrome.muted },
+          ticks: { color: chrome.muted, padding: compact ? 4 : 0 },
           grid: { color: chrome.grid },
         },
       },

@@ -108,6 +108,8 @@
   --radius: var(--radius-lg);
 
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
   --tab-bar-h: 0px;
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -167,11 +169,15 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 7.5rem;
   scroll-padding-bottom: calc(var(--tab-bar-h) + 1rem);
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
   color: var(--label);
   font-family: var(--font);
   font-size: 17px;
@@ -184,6 +190,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-bottom: calc(var(--tab-bar-h) + var(--safe-bottom));
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
   transition: background-color 240ms var(--ease-out), color 200ms var(--ease-out);
 }
 
@@ -202,7 +210,9 @@ button, input, select { font: inherit; color: inherit; }
   position: relative;
   z-index: 1;
   width: min(980px, calc(100% - 32px));
+  max-width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ——— Chrome bar (Liquid Glass) ——— */
@@ -973,6 +983,9 @@ section.ready-delay { animation-delay: 100ms; }
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   padding: 16px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .panel-flush { padding: 12px 0 16px; }
@@ -995,7 +1008,13 @@ section.ready-delay { animation-delay: 100ms; }
   line-height: 1.4;
 }
 
-.chart-box { position: relative; height: 280px; }
+.chart-box {
+  position: relative;
+  height: 280px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
 .chart-box.tall { height: 360px; }
 .chart-box.short { height: 240px; }
 .chart-box.mid { height: 280px; }
@@ -1346,15 +1365,21 @@ html[data-theme="dark"] .tag.warn {
   font-variant-numeric: tabular-nums;
 }
 
-/* Heatmap */
+/* Heatmap — scroll inside the panel; never widen the page */
 .heatmap {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(7, 11px);
   grid-auto-columns: 11px;
   gap: 3px;
+  max-width: 100%;
+  width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
   padding-bottom: 6px;
+  touch-action: pan-x;
 }
 
 .heat-cell {
@@ -1406,12 +1431,14 @@ footer {
 .tab-bar {
   display: none;
   position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: calc(8px + var(--safe-bottom));
+  left: max(10px, var(--safe-left));
+  right: max(10px, var(--safe-right));
+  bottom: max(8px, var(--safe-bottom));
   z-index: 50;
   height: 58px;
-  padding: 4px 6px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 4px 4px;
   border-radius: 22px;
   background: var(--glass);
   border: 0.5px solid var(--glass-border);
@@ -1420,11 +1447,13 @@ footer {
   -webkit-backdrop-filter: saturate(180%) blur(28px);
   align-items: stretch;
   justify-content: space-around;
-  gap: 2px;
+  gap: 0;
+  overflow: hidden;
 }
 
 .tab-item {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1436,6 +1465,7 @@ footer {
   font-weight: 550;
   letter-spacing: -0.01em;
   border-radius: 16px;
+  overflow: hidden;
   transition: color 160ms var(--ease-out), background 160ms var(--ease-out),
     transform 160ms var(--ease-spring);
 }
@@ -1526,7 +1556,8 @@ body.is-filtering #periodSummary {
 }
 
 @media (max-width: 860px) {
-  :root { --tab-bar-h: 74px; }
+  /* Floating tab (58) + bottom gap (8) + breathing room above charts */
+  :root { --tab-bar-h: 88px; }
 
   .wrap { width: min(980px, calc(100% - 24px)); }
 
@@ -1546,6 +1577,7 @@ body.is-filtering #periodSummary {
   body.tab-mode main.charts-block > .tab-panel.is-tab-active {
     display: block;
     padding-top: 12px;
+    padding-bottom: 12px;
     animation: tab-fade 220ms var(--ease-out) both;
   }
 
@@ -1629,8 +1661,11 @@ body.is-filtering #periodSummary {
     right: 0;
     bottom: 0;
     z-index: 90;
-    max-height: min(68vh, 560px);
-    padding: 0 0 calc(10px + var(--safe-bottom));
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    max-height: min(78dvh, 640px);
+    padding: 0 max(var(--safe-right), 0px) max(14px, var(--safe-bottom)) max(var(--safe-left), 0px);
     border-radius: 14px 14px 0 0;
     background: var(--grouped-bg);
     border: 0.5px solid var(--separator);
@@ -1783,9 +1818,12 @@ body.is-filtering #periodSummary {
 
   .filter-sheet-body .period-summary {
     flex-shrink: 0;
-    padding: 4px 20px 8px;
+    margin: 0;
+    padding: 8px 20px 4px;
     border-top: 0;
     font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--secondary-label);
   }
 
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -4023,11 +4061,17 @@ body.is-filtering #periodSummary {
 
   function baseChartOptions(extra = {}) {
     const chrome = chartChrome();
+    const compact = isCompactFilterUi();
     return {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
       interaction: { mode: "index", intersect: false },
+      layout: {
+        padding: compact
+          ? { top: 4, right: 6, bottom: 2, left: 2 }
+          : { top: 0, right: 0, bottom: 0, left: 0 },
+      },
       plugins: {
         legend: {
           labels: {
@@ -4044,12 +4088,17 @@ body.is-filtering #periodSummary {
       },
       scales: {
         x: {
-          ticks: { color: chrome.muted, maxRotation: 0, autoSkipPadding: 12 },
+          ticks: {
+            color: chrome.muted,
+            maxRotation: 0,
+            autoSkipPadding: 12,
+            padding: compact ? 4 : 0,
+          },
           grid: { color: chrome.grid },
         },
         y: {
           beginAtZero: true,
-          ticks: { color: chrome.muted },
+          ticks: { color: chrome.muted, padding: compact ? 4 : 0 },
           grid: { color: chrome.grid },
         },
       },
