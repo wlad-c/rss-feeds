@@ -549,14 +549,8 @@
 
   function syncThemeUiFromPeriod() {
     const themeId = state.chartPeriod.theme || "";
-    const t = state.themeById[themeId];
     state.activeTheme = themeId;
-    if (!themeId) {
-      state.focusedParentId = "";
-      return;
-    }
-    if (t?.parentId) state.focusedParentId = t.parentId;
-    else state.focusedParentId = themeId;
+    state.focusedParentId = themeId;
   }
 
   function ensurePeriodIndex() {
@@ -704,20 +698,13 @@
     if (!themeSel || !state.themesDoc?.themes) return;
     const selected = state.chartPeriod.theme || "";
     const opts = ['<option value="">All themes</option>'];
-    for (const p of state.themesDoc.themes) {
-      const parentHit = themeMetricInYears(p) > 0 || p.id === selected;
-      const kids = (p.children || []).filter(
-        (c) => themeMetricInYears(c) > 0 || c.id === selected
-      );
-      if (!parentHit && !kids.length) continue;
-      if (parentHit) {
-        opts.push(`<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`);
-      }
-      for (const c of kids) {
-        opts.push(
-          `<option value="${escapeHtml(c.id)}">↳ ${escapeHtml(c.name)}</option>`
-        );
-      }
+    for (const t of themesPresentInFilter(flatThemes())) {
+      opts.push(`<option value="${escapeHtml(t.id)}">${escapeHtml(t.name)}</option>`);
+    }
+    // Keep a selected theme visible even if the current filter set hides it.
+    if (selected && !opts.some((o) => o.includes(`value="${selected}"`))) {
+      const t = state.themeById[selected];
+      if (t) opts.push(`<option value="${escapeHtml(t.id)}">${escapeHtml(t.name)}</option>`);
     }
     themeSel.innerHTML = opts.join("");
     themeSel.value = selected;
@@ -2942,21 +2929,8 @@
   }
 
   function displayThemeTags(ids) {
-    // Prefer child tags; keep parent only when no child of that parent is present.
-    const set = new Set(ids || []);
-    const keep = [];
-    for (const id of ids || []) {
-      const t = state.themeById[id];
-      if (!t) continue;
-      if (t.parentId) {
-        keep.push(id);
-        continue;
-      }
-      const kids = (t.children || []).map((c) => c.id);
-      if (!kids.some((k) => set.has(k))) keep.push(id);
-    }
-    // If hierarchy not loaded yet, fall back
-    return keep.length ? keep : ids || [];
+    // Flat taxonomy: show every assigned theme id that still exists in the catalog.
+    return (ids || []).filter((id) => state.themeById[id]);
   }
 
   function themeIdsForIndex(i) {
@@ -3042,9 +3016,9 @@
   }
 
   function themeChartItems() {
-    const parent = state.themeById[state.focusedParentId];
-    if (parent?.children?.length) return themesPresentInFilter(parent.children);
-    return themesPresentInFilter(parentThemes());
+    return themesPresentInFilter(flatThemes())
+      .slice()
+      .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
   }
 
   function leaveThemeDrill() {
@@ -3058,48 +3032,22 @@
     const items = themeChartItems();
     const title = $("#themeChartTitle");
     const back = $("#themeChartBack");
-    const drilled = !!state.focusedParentId;
-    const parent = drilled ? state.themeById[state.focusedParentId] : null;
-    const child = state.themeById[state.activeTheme];
-    const viewingChild = !!(child?.parentId && child.parentId === state.focusedParentId);
+    const active = state.themeById[state.activeTheme];
     const periodLabel = chartPeriodActive()
-      ? chartPeriodLabel({ omitTheme: drilled })
+      ? chartPeriodLabel({ omitTheme: !!active })
       : "";
     const yearSuffix = periodLabel && periodLabel !== "All time" ? ` · ${periodLabel}` : "";
     if (title) {
-      if (drilled) {
-        // Hierarchy: parent name as screen title; child name when one is selected.
-        title.textContent = viewingChild
-          ? `${child.name}${yearSuffix}`
-          : `${parent?.name || "Theme"}${yearSuffix}`;
-      } else {
-        title.textContent = `Parent themes${yearSuffix}`;
-      }
+      title.textContent = active
+        ? `${active.name}${yearSuffix}`
+        : `Themes${yearSuffix}`;
     }
     if (back) {
       const label = back.querySelector(".theme-nav-back-label");
-      back.hidden = !drilled;
-      if (label) {
-        // One level up: child → parent children, or children → all parents.
-        label.textContent = viewingChild ? parent?.name || "Themes" : "Themes";
-      }
-      back.setAttribute(
-        "aria-label",
-        viewingChild
-          ? `Back to ${parent?.name || "parent theme"}`
-          : "Back to parent themes"
-      );
-      back.onclick = drilled
-        ? () => {
-            if (viewingChild) {
-              // Step up to the parent’s child list (keep parent filter).
-              state.barReveal.theme = BAR_PAGE;
-              focusParentTheme(state.focusedParentId);
-              return;
-            }
-            leaveThemeDrill();
-          }
-        : null;
+      back.hidden = !active;
+      if (label) label.textContent = "Themes";
+      back.setAttribute("aria-label", "Clear theme selection");
+      back.onclick = active ? () => leaveThemeDrill() : null;
     }
     renderExpandableHBar({
       key: "theme",
@@ -3112,8 +3060,7 @@
       color: palette().teal,
       onClick: (d) => {
         if (!d?.id) return;
-        if (!d.parentId) focusParentTheme(d.id);
-        else selectTheme(d.id, false);
+        selectTheme(d.id, false);
       },
     });
   }
@@ -3121,14 +3068,7 @@
   function themeYearSeriesThemes() {
     const active = state.themeById[state.activeTheme];
     if (active && themeMetricInYears(active) > 0) return [active];
-    const parent = state.themeById[state.focusedParentId];
-    if (parent?.children?.length) {
-      return themesPresentInFilter(parent.children)
-        .slice()
-        .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
-        .slice(0, 6);
-    }
-    return themesPresentInFilter(parentThemes())
+    return themesPresentInFilter(flatThemes())
       .slice()
       .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a))
       .slice(0, 6);
@@ -3242,7 +3182,7 @@
   }
 
   function renderThemeDetail(themeId) {
-    const t = state.themeById[themeId] || state.themeById[state.focusedParentId];
+    const t = state.themeById[themeId] || state.themeById[state.activeTheme];
     const title = $("#themeDetailTitle");
     const blurb = $("#themeDetailBlurb");
     const samples = $("#themeSamples");
@@ -3250,12 +3190,11 @@
     if (!t) {
       title.textContent = "Pick a theme";
       blurb.textContent =
-        "Tap a parent to open child themes derived from episode content, then filter the explorer. The sticky filter bar scopes counts and samples.";
+        "Tap a theme to see matching episodes. Local themes are specific (e.g. Brazilian elections); the sticky filter bar scopes counts and samples.";
       samples.innerHTML = "";
       btn.hidden = true;
       return;
     }
-    const kind = t.parentId ? "Child theme" : "Parent theme";
     const n = themeMetricInYears(t);
     const periodSuffix = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
     const unit = metricIsHours() ? "hours" : "episodes";
@@ -3266,7 +3205,7 @@
       ev.title ? `${fmt(ev.title)} title-only` : "",
     ].filter(Boolean);
     title.textContent = t.name;
-    blurb.textContent = `${kind}. ${t.blurb} · ${fmtMetric(n)} ${unit}${periodSuffix}.${
+    blurb.textContent = `${t.blurb} · ${fmtMetric(n)} ${unit}${periodSuffix}.${
       evBits.length ? ` Evidence: ${evBits.join(", ")}.` : ""
     }`;
     const samplesList = (t.samples || []).filter(sampleMatchesChartPeriod);
@@ -3285,21 +3224,11 @@
   }
 
   function focusParentTheme(parentId) {
-    state.barReveal.theme = BAR_PAGE;
-    const patch = { theme: parentId || "" };
-    if (parentId) patch.q = "";
-    patchChartPeriod(patch);
+    // Flat taxonomy: same as selecting a theme.
+    selectTheme(parentId || "", false);
   }
 
   function selectTheme(themeId, jumpExplore) {
-    const t = state.themeById[themeId];
-    if (t && !t.parentId && (t.children || []).length) {
-      focusParentTheme(themeId);
-      if (jumpExplore) {
-        goToSection("explorePanel");
-      }
-      return;
-    }
     const patch = { theme: themeId || "" };
     if (themeId) patch.q = "";
     patchChartPeriod(patch);
