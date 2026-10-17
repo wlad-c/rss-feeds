@@ -1438,6 +1438,89 @@
     delete state.charts[key];
   }
 
+  /** Format the number painted at the tip of a bar (not axis ticks). */
+  function formatBarEndValue(value, valueLabel) {
+    if (valueLabel === "Avg minutes") {
+      const n = Number(value) || 0;
+      return (Math.round(n * 10) / 10).toLocaleString(undefined, {
+        maximumFractionDigits: 1,
+      });
+    }
+    return fmtMetric(value);
+  }
+
+  /**
+   * Draw the metric next to every bar so readers need not scan the value axis.
+   * Works for horizontal (indexAxis: "y") and vertical bars.
+   */
+  const barValueLabelsPlugin = {
+    id: "barValueLabels",
+    afterDatasetsDraw(chart) {
+      // Opt out via chart.$barEndLabels === false. Formatter is stored on the
+      // chart instance (not options.plugins) so Chart.js scriptable-option
+      // resolution cannot call it with a context object.
+      if (chart.$barEndLabels === false) return;
+      const chrome = chartChrome();
+      const fmtFn =
+        typeof chart.$formatBarEnd === "function"
+          ? chart.$formatBarEnd
+          : typeof chart.canvas?.__formatBarEnd === "function"
+            ? chart.canvas.__formatBarEnd
+            : (v) => fmtMetric(v);
+      const horizontal = chart.options.indexAxis === "y";
+      const { ctx, chartArea } = chart;
+      if (!chartArea) return;
+      const fontSize = isCompactFilterUi() ? 11 : 12;
+      ctx.save();
+      ctx.font = `600 ${fontSize}px Figtree, system-ui, sans-serif`;
+      ctx.textBaseline = "middle";
+      for (let di = 0; di < chart.data.datasets.length; di++) {
+        const meta = chart.getDatasetMeta(di);
+        if (!meta || meta.type !== "bar" || meta.hidden) continue;
+        const ds = chart.data.datasets[di];
+        for (let i = 0; i < meta.data.length; i++) {
+          const el = meta.data[i];
+          if (!el) continue;
+          const raw = ds.data[i];
+          const v =
+            typeof raw === "object" && raw != null
+              ? Number(raw.x ?? raw.y ?? raw)
+              : Number(raw);
+          if (!Number.isFinite(v)) continue;
+          const text = String(fmtFn(v));
+          const props = el.getProps(["x", "y", "base"], true);
+          const textW = ctx.measureText(text).width;
+          const gap = 6;
+          if (horizontal) {
+            let tx = props.x + gap;
+            ctx.textAlign = "left";
+            let color = chrome.label;
+            if (tx + textW > chartArea.right - 1) {
+              tx = props.x - gap;
+              ctx.textAlign = "right";
+              color = isDark() ? "rgba(0,0,0,0.82)" : "rgba(255,255,255,0.96)";
+            }
+            ctx.fillStyle = color;
+            ctx.fillText(text, tx, props.y);
+          } else {
+            ctx.textAlign = "center";
+            let ty = props.y - gap;
+            let color = chrome.label;
+            ctx.textBaseline = "bottom";
+            if (ty - fontSize < chartArea.top) {
+              ty = props.y + gap;
+              ctx.textBaseline = "top";
+              color = isDark() ? "rgba(0,0,0,0.82)" : "rgba(255,255,255,0.96)";
+            }
+            ctx.fillStyle = color;
+            ctx.fillText(text, props.x, ty);
+          }
+        }
+      }
+      ctx.restore();
+    },
+  };
+
   function ensureBarReveal(key, total) {
     if (total <= 0) {
       state.barReveal[key] = 0;
@@ -1524,8 +1607,13 @@
     const canvas = $(canvasSel);
     if (!canvas) return;
     const label = valueLabel || metricValueLabel();
+    const compact = isCompactFilterUi();
+    const chrome = chartChrome();
+    // Attach before new Chart so the first afterDatasetsDraw can format values.
+    canvas.__formatBarEnd = (v) => formatBarEndValue(v, label);
     state.charts[key] = new Chart(canvas, {
       type: "bar",
+      plugins: [barValueLabelsPlugin],
       data: {
         labels: visible.map((d) => {
           const lab = String(labelOf(d) || "");
@@ -1550,6 +1638,15 @@
         // Clicks/taps are handled on the canvas below — keep Chart.js off the
         // click path so it cannot race or steal the gesture.
         events: ["mousemove", "mouseout", "touchstart", "touchmove"],
+        // Room for end-of-bar value labels (grids + value-axis ticks removed).
+        layout: {
+          padding: {
+            top: compact ? 4 : 2,
+            right: compact ? 40 : 48,
+            bottom: compact ? 2 : 2,
+            left: compact ? 2 : 0,
+          },
+        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -1557,26 +1654,35 @@
             callbacks: {
               label: (ctx) => {
                 const v = ctx.parsed.x ?? ctx.parsed.y ?? ctx.raw;
-                return `${label}: ${fmtMetric(v)}`;
+                return `${label}: ${formatBarEndValue(v, label)}`;
               },
             },
           },
         },
         scales: {
-          ...baseChartOptions().scales,
-          // Category axis: never drop theme/podcast names when "Show more"
-          // packs denser rows (autoSkip hid every other label on phones).
+          // Value axis: numbers live on the bars — hide ticks + grid.
+          x: {
+            beginAtZero: true,
+            grace: "14%",
+            ticks: { display: false },
+            grid: { display: false },
+            border: { display: false },
+          },
+          // Category axis: keep names; no grid lines.
           y: {
-            ...baseChartOptions().scales.y,
+            grid: { display: false },
+            border: { display: false },
             ticks: {
-              ...baseChartOptions().scales.y.ticks,
+              color: chrome.muted,
+              padding: compact ? 4 : 0,
               autoSkip: false,
-              font: { family: "Figtree, sans-serif", size: isCompactFilterUi() ? 11 : 12 },
+              font: { family: "Figtree, sans-serif", size: compact ? 11 : 12 },
             },
           },
         },
       }),
     });
+    state.charts[key].$formatBarEnd = (v) => formatBarEndValue(v, label);
     // Bind taps ourselves: map by category Y so label taps and short bars hit
     // the row under the finger, not the nearest long bar tip.
     if (onClick) {
