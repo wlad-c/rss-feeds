@@ -490,6 +490,17 @@
     renderHeroStats();
     renderEpisodeList();
     if (gen !== state._renderGen) return;
+
+    // Theme drill-down must paint before other charts. Otherwise the parent
+    // bars stay tappable for hundreds of ms while state already moved, and a
+    // second tap opens a different parent than the one on screen after paint.
+    pruneInvisibleThemeSelection();
+    renderThemeChart();
+    renderThemeDetail(state.activeTheme || state.focusedParentId || "");
+    renderThemeMatchPanel();
+    renderThemeYearChart();
+    syncThemeSelectOptions();
+    if (gen !== state._renderGen) return;
     await yieldToPaint();
     if (gen !== state._renderGen) return;
 
@@ -512,22 +523,6 @@
     renderCountryChart();
     renderDurationChart();
     renderHeatmap();
-    if (gen !== state._renderGen) return;
-    await yieldToPaint();
-    if (gen !== state._renderGen) return;
-
-    // Theme views (includes match panel; episode list already updated above).
-    pruneInvisibleThemeSelection();
-    renderThemeChart();
-    if (gen !== state._renderGen) return;
-    await yieldToPaint();
-    if (gen !== state._renderGen) return;
-
-    renderThemeYearChart();
-    renderThemeMatchPanel();
-    renderThemeDetail(state.activeTheme || state.focusedParentId || "");
-    // Theme dropdown options depend on scoped theme counts — refresh after stats exist.
-    syncThemeSelectOptions();
     if (gen === state._renderGen) setFilteringUi(false);
   }
 
@@ -998,6 +993,7 @@
     if (!chart) return;
     if (chart.$hBarClick && chart.canvas) {
       chart.canvas.removeEventListener("click", chart.$hBarClick);
+      chart.canvas.removeEventListener("pointerup", chart.$hBarClick);
       chart.$hBarClick = null;
     }
     chart.destroy();
@@ -1110,6 +1106,9 @@
         indexAxis: "y",
         // Resolve hover/tooltip by row (Y), not nearest bar tip length.
         interaction: { mode: "nearest", axis: "y", intersect: false },
+        // Clicks/taps are handled on the canvas below — keep Chart.js off the
+        // click path so it cannot race or steal the gesture.
+        events: ["mousemove", "mouseout", "touchstart", "touchmove"],
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -1124,22 +1123,35 @@
         },
       }),
     });
-    // Bind click on the canvas ourselves: Chart.js often ignores taps on Y-axis
-    // labels and can map horizontal-bar hits to the wrong row on mobile.
+    // Bind taps ourselves: map by category Y so label taps and short bars hit
+    // the row under the finger, not the nearest long bar tip.
     if (onClick) {
       const chart = state.charts[key];
+      let lastTs = 0;
       const handler = (native) => {
-        const ch = state.charts[key];
-        if (!ch?.scales?.y) return;
+        // Ignore superseded charts and taps while a newer filter render owns UI.
+        if (state.charts[key] !== chart) return;
+        if (document.body.classList.contains("is-filtering") && state._renderGen !== chart.$bindGen) {
+          return;
+        }
+        if (!chart?.scales?.y) return;
         const rect = canvas.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
-        const y = ((native.clientY - rect.top) / rect.height) * canvas.height;
-        const idx = ch.scales.y.getValueForPixel(y);
-        if (!Number.isInteger(idx) || idx < 0 || idx >= visible.length) return;
+        const clientY = native.clientY ?? native.changedTouches?.[0]?.clientY;
+        if (clientY == null) return;
+        const y = ((clientY - rect.top) / rect.height) * canvas.height;
+        const idx = Math.round(chart.scales.y.getValueForPixel(y));
+        if (!Number.isFinite(idx) || idx < 0 || idx >= visible.length) return;
+        const now = performance.now();
+        // pointerup + click can both fire; accept one gesture.
+        if (now - lastTs < 350) return;
+        lastTs = now;
         onClick(visible[idx], idx);
       };
       chart.$hBarClick = handler;
+      chart.$bindGen = state._renderGen;
       canvas.addEventListener("click", handler);
+      canvas.addEventListener("pointerup", handler);
     }
     renderMoreControls(moreSel, key, shown, total, () =>
       renderExpandableHBar({
