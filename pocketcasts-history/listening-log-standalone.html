@@ -682,6 +682,12 @@ body.combo-picker-open {
   background: var(--blue-soft);
 }
 
+.filter-toggle-caption { display: none; }
+
+.filter-toggle-face {
+  display: contents;
+}
+
 .filter-toggle-icon { display: block; flex-shrink: 0; }
 
 .filter-badge {
@@ -737,9 +743,94 @@ body.combo-picker-open {
 
 /* Desktop: second filter line is a single non-wrapping row; overflow is measured in JS. */
 @media (min-width: 861px) {
+  /*
+   * Put Filters on the same grid row as the facet controls (not beside the
+   * summary). Match select padding / type / radius so the control faces align.
+   */
+  .period-secondary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "controls toggle"
+      "summary summary";
+    column-gap: 10px;
+    row-gap: 8px;
+    align-items: start;
+  }
+
+  .period-secondary > .filter-panel {
+    display: contents;
+  }
+
+  .period-controls {
+    grid-area: controls;
+  }
+
+  .period-summary {
+    grid-area: summary;
+  }
+
   .period-secondary > .filter-toggle {
+    grid-area: toggle;
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 4px;
+    align-self: start;
+    box-sizing: border-box;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    color: var(--system-blue);
+  }
+
+  .period-secondary > .filter-toggle .filter-toggle-caption {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: transparent;
+    user-select: none;
+  }
+
+  .period-secondary > .filter-toggle .filter-toggle-face {
     display: inline-flex;
-    align-self: end;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+    min-height: 0;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--fill-tertiary);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    /* Match native <select> line-height (normal ≈ 20.25px at 15px). */
+    line-height: normal;
+  }
+
+  .period-secondary > .filter-toggle .filter-toggle-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .period-secondary > .filter-toggle:hover .filter-toggle-face {
+    background: var(--fill-secondary);
+  }
+
+  .period-secondary > .filter-toggle[aria-expanded="true"] .filter-toggle-face,
+  .period-secondary > .filter-toggle.has-filters .filter-toggle-face {
+    background: var(--blue-soft);
+  }
+
+  /* Keep field captions on the same metrics so the spacer matches. */
+  .period-field > span,
+  .period-search-label {
+    line-height: 1.2;
   }
 
   .period-controls {
@@ -2186,11 +2277,14 @@ body.is-filtering #periodSummary {
           aria-controls="filterSheetPanel"
           title="Open filters"
         >
-          <svg class="filter-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 6h16M7 12h10M10 18h4" />
-          </svg>
-          <span class="filter-toggle-label">Filters</span>
-          <span class="filter-badge" id="filterBadge" hidden>0</span>
+          <span class="filter-toggle-caption" aria-hidden="true">Filters</span>
+          <span class="filter-toggle-face">
+            <svg class="filter-toggle-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M7 12h10M10 18h4" />
+            </svg>
+            <span class="filter-toggle-label">Filters</span>
+            <span class="filter-badge" id="filterBadge" hidden>0</span>
+          </span>
         </button>
       </div>
     </div>
