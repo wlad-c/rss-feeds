@@ -400,8 +400,16 @@ def fetch_captions(video_id: str, backends: list[str]) -> tuple[str | None, str 
     return None, None
 
 
-def needs_youtube(conn, idx: int, min_chars: int = 2000) -> bool:
-    row = get_full(conn, idx)
+def needs_youtube(
+    conn, idx: int, episodes: list[dict], min_chars: int = 2000
+) -> bool:
+    ep = episodes[idx] if 0 <= idx < len(episodes) else {}
+    row = get_full(
+        conn,
+        idx,
+        expect_podcast=ep.get("p"),
+        expect_episode=ep.get("e"),
+    )
     if not row:
         return True
     if row["src"] in ("transcript", "stt", "youtube") and row["chars"] >= min_chars:
@@ -515,7 +523,7 @@ def build_pairs(
         mins = parse_minutes(ep.get("dur"))
         if max_minutes and mins > max_minutes:
             continue
-        if not needs_youtube(conn, i):
+        if not needs_youtube(conn, i, episodes):
             continue
         by_show[name].append((i, ep))
 

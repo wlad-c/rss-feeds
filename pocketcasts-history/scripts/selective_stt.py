@@ -114,8 +114,16 @@ def dur_minutes(ep: dict) -> float:
     return 25.0
 
 
-def already_good(conn, idx: int, min_chars: int = 2000) -> bool:
-    row = get_full(conn, idx)
+def already_good(
+    conn, idx: int, episodes: list[dict], min_chars: int = 2000
+) -> bool:
+    ep = episodes[idx] if 0 <= idx < len(episodes) else {}
+    row = get_full(
+        conn,
+        idx,
+        expect_podcast=ep.get("p"),
+        expect_episode=ep.get("e"),
+    )
     if not row:
         return False
     if row["src"] in ("transcript", "stt") and row["chars"] >= min_chars:
@@ -275,13 +283,15 @@ def pick_candidates(
         y = int(ep.get("y") or 0)
         if years and y not in years:
             continue
-        if already_good(conn, i):
+        if already_good(conn, i, episodes):
             continue
         pod = ep.get("p") or ""
         if pod not in show_rank and counts[pod] < 200:
             continue
         # skip if we already have any long-ish publisher text
-        existing = get_full(conn, i)
+        existing = get_full(
+            conn, i, expect_podcast=pod, expect_episode=ep.get("e")
+        )
         if existing and existing["src"] == "transcript" and existing["chars"] >= 1500:
             continue
         mins = dur_minutes(ep)

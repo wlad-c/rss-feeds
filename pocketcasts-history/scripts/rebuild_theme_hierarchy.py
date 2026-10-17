@@ -600,22 +600,50 @@ def matches(pats: list[re.Pattern], text: str, *, min_hits: int = 1, long_text: 
     return match_count(pats, text) >= need
 
 
+def _norm_label(s: str | None) -> str:
+    return " ".join((s or "").casefold().split())
+
+
+def _note_matches_episode(note: dict, ep_p: str, ep_e: str) -> bool:
+    """Reject notes that drifted to the wrong episode_idx."""
+    if not isinstance(note, dict):
+        return False
+    np_, ne = note.get("p"), note.get("e")
+    if not (np_ or "").strip() and not (ne or "").strip():
+        return True  # legacy notes without labels
+    return _norm_label(np_) == _norm_label(ep_p) and _norm_label(ne) == _norm_label(ep_e)
+
+
 def primary_evidence(
     i: int,
     notes: dict,
     full_texts: dict[str, str],
     title_show: str,
+    *,
+    ep_p: str = "",
+    ep_e: str = "",
 ) -> tuple[str, str, bool]:
-    """Return (text, src, is_long) with priority: transcript → notes → title/show."""
+    """Return (text, src, is_long) with priority: transcript → notes → title/show.
+
+    ``full_texts`` must already be alignment-safe (podcast+title matched).
+    Notes are rejected when embedded p/e labels disagree with the episode.
+    """
     tx = full_texts.get(str(i)) or ""
     if tx.strip():
         note = notes.get(str(i)) or {}
-        src = note.get("src") if note.get("src") in ("transcript", "stt", "youtube") else "transcript"
+        src = (
+            note.get("src")
+            if isinstance(note, dict)
+            and note.get("src") in ("transcript", "stt", "youtube")
+            and _note_matches_episode(note, ep_p, ep_e)
+            else "transcript"
+        )
         return tx, src or "transcript", len(tx) > 800
     note = notes.get(str(i)) or {}
-    nt = (note.get("text") or "").strip()
-    if nt:
-        return nt, note.get("src") or "notes", len(nt) > 800
+    if isinstance(note, dict) and _note_matches_episode(note, ep_p, ep_e):
+        nt = (note.get("text") or "").strip()
+        if nt:
+            return nt, note.get("src") or "notes", len(nt) > 800
     return title_show, "title", False
 
 
@@ -765,7 +793,14 @@ def tag_all(
         }:
             safe_folder = folder
         title_show = f"{title}\n{show}\n{safe_folder}"
-        primary, src, primary_long = primary_evidence(i, notes, full_texts, title_show)
+        primary, src, primary_long = primary_evidence(
+            i,
+            notes,
+            full_texts,
+            title_show,
+            ep_p=show,
+            ep_e=title,
+        )
         src_counts[src] += 1
         geo_hit = {k: matches(rs, title_show) for k, rs in GEO_RE.items()}
         hits = tag_episode(
@@ -848,14 +883,48 @@ def main() -> None:
     notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
     full_texts: dict[str, str] = {}
     try:
-        from transcript_store import connect, full_text_map
+        from transcript_store import (
+            assert_aligned,
+            connect,
+            full_text_map,
+            repair_episode_indices,
+            write_slim_notes,
+        )
 
         conn = connect()
-        full_texts = full_text_map(conn)
+        repair = repair_episode_indices(conn, episodes)
+        print(
+            "transcript_index_repair "
+            f"kept={repair['kept']} orphans_deleted={repair['orphansDeleted']} "
+            f"collisions={repair['collisionsResolved']}"
+        )
+        align = assert_aligned(conn, episodes)
+        print(f"transcript_align_ok exact={align['exact']}")
+        write_slim_notes(
+            conn,
+            TABLES / "notes.json",
+            TABLES / "notes-meta.json",
+            total_episodes=len(episodes),
+        )
+        full_texts = full_text_map(conn, episodes)
         conn.close()
-        print(f"full_transcripts_loaded={len(full_texts)}")
+        print(f"full_transcripts_loaded={len(full_texts)} (aligned)")
+    except RuntimeError as exc:
+        # Index poison is fatal — tagging with misaligned text contaminates every theme.
+        raise SystemExit(f"FATAL transcript alignment: {exc}") from exc
     except Exception as exc:  # noqa: BLE001
         print(f"full store unavailable ({exc}); using slim notes only")
+    # Guard notes.json the same way (in case we fell back or store was empty).
+    poison_notes = 0
+    for i, ep in enumerate(episodes):
+        note = notes.get(str(i))
+        if not isinstance(note, dict):
+            continue
+        if not _note_matches_episode(note, ep.get("p") or "", ep.get("e") or ""):
+            poison_notes += 1
+            notes.pop(str(i), None)
+    if poison_notes:
+        print(f"dropped_poisoned_notes={poison_notes}")
     tagged, doc = tag_all(episodes, notes, full_texts)
     (TABLES / "episode-themes.json").write_text(
         json.dumps(tagged, separators=(",", ":")), encoding="utf-8"
