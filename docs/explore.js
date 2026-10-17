@@ -1455,7 +1455,10 @@
 
   function setChartBoxHeight(boxEl, n) {
     if (!boxEl) return;
-    const px = Math.max(180, Math.min(640, 36 + n * 28));
+    // Grow with row count so Chart.js does not autoSkip category labels.
+    // Page scroll handles tall lists — do not clamp to a short fixed height.
+    const row = isCompactFilterUi() ? 26 : 28;
+    const px = Math.max(180, 40 + Math.max(1, n) * row);
     boxEl.style.height = `${px}px`;
     boxEl.classList.add("expandable");
   }
@@ -1556,6 +1559,19 @@
                 const v = ctx.parsed.x ?? ctx.parsed.y ?? ctx.raw;
                 return `${label}: ${fmtMetric(v)}`;
               },
+            },
+          },
+        },
+        scales: {
+          ...baseChartOptions().scales,
+          // Category axis: never drop theme/podcast names when "Show more"
+          // packs denser rows (autoSkip hid every other label on phones).
+          y: {
+            ...baseChartOptions().scales.y,
+            ticks: {
+              ...baseChartOptions().scales.y.ticks,
+              autoSkip: false,
+              font: { family: "Figtree, sans-serif", size: isCompactFilterUi() ? 11 : 12 },
             },
           },
         },

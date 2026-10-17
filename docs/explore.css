@@ -1990,10 +1990,11 @@ body.is-filtering #periodSummary {
   .grid-2,
   .grid-2.equal { grid-template-columns: 1fr; }
 
-  .chart-box,
-  .chart-box.tall,
-  .chart-box.mid { height: 260px; }
-  .chart-box.short { height: 200px; }
+  /* Expandable h-bars set height inline from row count — do not clamp them. */
+  .chart-box:not(.expandable),
+  .chart-box.tall:not(.expandable),
+  .chart-box.mid:not(.expandable) { height: 260px; }
+  .chart-box.short:not(.expandable) { height: 200px; }
 
   /* Content-first: shorter hero chrome on phones */
   .hero {
