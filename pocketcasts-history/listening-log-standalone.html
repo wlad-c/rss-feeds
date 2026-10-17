@@ -657,7 +657,7 @@ body.combo-picker-open {
 }
 
 .filter-toggle {
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
@@ -714,9 +714,18 @@ body.combo-picker-open {
   display: none;
 }
 
+.period-secondary {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
 .filter-panel {
   display: grid;
   gap: 8px;
+  flex: 1;
+  min-width: 0;
 }
 
 .period-controls {
@@ -726,13 +735,176 @@ body.combo-picker-open {
   gap: 8px 10px;
 }
 
-.period-kicker {
-  font-size: 0.6875rem;
-  font-weight: 650;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--secondary-label);
-  margin-bottom: 6px;
+/* Desktop: second filter line is a single non-wrapping row; overflow is measured in JS. */
+@media (min-width: 861px) {
+  .period-secondary > .filter-toggle {
+    display: inline-flex;
+    align-self: end;
+  }
+
+  .period-controls {
+    flex-wrap: nowrap;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .period-controls.is-measuring .period-field {
+    display: grid !important;
+  }
+
+  .period-field.is-overflow-hidden {
+    display: none !important;
+  }
+
+  /* Sheet works on large screens too (overflow filters). */
+  .filter-sheet-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    background: rgba(0, 0, 0, 0.28);
+  }
+
+  body.filter-sheet-open {
+    overflow: hidden;
+  }
+
+  .filter-sheet:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 50%;
+    right: auto;
+    bottom: max(24px, var(--safe-bottom));
+    top: auto;
+    z-index: 90;
+    width: min(420px, calc(100vw - 48px));
+    max-height: min(72vh, 640px);
+    transform: translateX(-50%);
+    padding: 0;
+    border-radius: 14px;
+    background: var(--grouped-bg);
+    border: 0.5px solid var(--separator);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+  }
+
+  .filter-sheet-chrome {
+    display: block;
+    flex-shrink: 0;
+    padding: 10px 16px 4px;
+    border-bottom: 0.5px solid var(--separator);
+    background: var(--grouped-bg);
+  }
+
+  .filter-sheet-grabber {
+    display: none;
+  }
+
+  .filter-sheet-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 36px;
+    margin-bottom: 4px;
+  }
+
+  .filter-sheet-header h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  .sheet-text-btn {
+    border: 0;
+    background: none;
+    color: var(--system-blue);
+    font: inherit;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+    padding: 6px 0;
+    justify-self: start;
+  }
+
+  .sheet-text-btn.sheet-done {
+    font-weight: 650;
+    justify-self: end;
+  }
+
+  .filter-sheet-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .filter-sheet-body .filter-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .filter-sheet-body .period-controls {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    align-items: stretch;
+    margin: 12px 16px;
+    overflow: auto;
+    flex: 1;
+    border-radius: var(--radius-lg);
+    background: var(--grouped-bg-elevated);
+  }
+
+  .filter-sheet-body .period-field,
+  .filter-sheet-body .period-field-country,
+  .filter-sheet-body .period-field-theme,
+  .filter-sheet-body .period-field-search {
+    min-width: 0;
+    display: grid !important;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 4px 14px;
+    min-height: 44px;
+    border-bottom: 0.5px solid var(--separator);
+  }
+
+  .filter-sheet-body .period-field:last-of-type {
+    border-bottom: 0;
+  }
+
+  .filter-sheet-body .period-field span {
+    margin: 0;
+  }
+
+  .filter-sheet-body .period-field select,
+  .filter-sheet-body .period-field-theme select,
+  .filter-sheet-body .period-field-search input,
+  .filter-sheet-body .period-field .combo-input {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .filter-sheet-body .period-summary {
+    margin: 0 16px 14px;
+  }
+
+  /* While the sheet is open, the inline secondary row is empty — collapse it. */
+  body.filter-sheet-open .period-secondary {
+    display: none;
+  }
 }
 
 .period-field {
@@ -1608,15 +1780,34 @@ body.is-filtering #periodSummary {
 
   .period-toolbar {
     align-items: stretch;
+    flex: 1;
+    min-width: 0;
   }
 
-  .period-bar > .filter-panel {
+  /* Promote Show + Filters onto one row; keep the facet panel for the sheet only. */
+  .period-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .period-secondary {
+    display: contents;
+  }
+
+  .period-secondary > .filter-panel {
     display: none;
   }
 
+  .period-secondary > .filter-toggle,
+  .period-toolbar .filter-toggle {
+    display: inline-flex;
+    align-self: stretch;
+  }
+
   .period-search-label,
-  .period-clear-inline,
-  .period-kicker {
+  .period-clear-inline {
     display: none;
   }
 
@@ -1936,12 +2127,57 @@ body.is-filtering #periodSummary {
 
   <div class="period-dock">
     <div class="wrap period-bar glass-surface" id="periodBar">
-      <!-- Hero toolbar: Shows first; other facets live in Filters -->
-      <div class="period-toolbar">
+      <!-- Line 1: Show (+ Clear on desktop). Filters toggle starts on line 2; JS
+           moves it into the toolbar on small screens. -->
+      <div class="period-toolbar" id="periodToolbar">
         <label class="period-hero-show period-field period-field-podcast">
           <span class="period-search-label">Show</span>
           <select id="periodPodcast" aria-label="Filter by podcast"></select>
         </label>
+        <button type="button" class="btn secondary period-clear-inline" id="periodClear" title="Clear filters">Clear</button>
+      </div>
+
+      <!-- Line 2 (desktop): other filters that fit; overflow opens the Filters sheet.
+           On small screens this row is hidden and the panel moves into the sheet. -->
+      <div class="period-secondary" id="periodSecondary">
+        <div class="filter-panel" id="filterPanel">
+          <div class="period-controls" id="periodControls">
+            <label class="period-field period-field-search">
+              <span>Search</span>
+              <input id="periodQ" type="search" placeholder="Episode, author, notes…" aria-label="Search episodes" />
+            </label>
+            <label class="period-field">
+              <span>Year</span>
+              <select id="periodYear" aria-label="Filter by year"></select>
+            </label>
+            <label class="period-field">
+              <span>Month</span>
+              <select id="periodMonth" aria-label="Filter by month" disabled></select>
+            </label>
+            <label class="period-field">
+              <span>Day</span>
+              <select id="periodDay" aria-label="Filter by day" disabled></select>
+            </label>
+            <label class="period-field period-field-country">
+              <span>Country</span>
+              <select id="periodCountry" aria-label="Filter by country of origin"></select>
+            </label>
+            <label class="period-field period-field-theme">
+              <span>Theme</span>
+              <select id="periodTheme" aria-label="Filter by theme"></select>
+            </label>
+            <label class="period-field">
+              <span>Status</span>
+              <select id="periodStatus" aria-label="Filter by play status">
+                <option value="">All statuses</option>
+                <option value="Played">Played</option>
+                <option value="In progress">In progress</option>
+                <option value="Unplayed">Unplayed</option>
+              </select>
+            </label>
+          </div>
+          <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
+        </div>
         <button
           type="button"
           class="filter-toggle"
@@ -1956,48 +2192,6 @@ body.is-filtering #periodSummary {
           <span class="filter-toggle-label">Filters</span>
           <span class="filter-badge" id="filterBadge" hidden>0</span>
         </button>
-        <button type="button" class="btn secondary period-clear-inline" id="periodClear" title="Clear filters">Clear</button>
-      </div>
-
-      <!-- Desktop inline filters live here; on small screens JS moves this node into the sheet -->
-      <div class="filter-panel" id="filterPanel">
-        <div class="period-controls">
-          <span class="period-kicker">Refine</span>
-          <label class="period-field period-field-search">
-            <span>Search</span>
-            <input id="periodQ" type="search" placeholder="Episode, author, notes…" aria-label="Search episodes" />
-          </label>
-          <label class="period-field">
-            <span>Year</span>
-            <select id="periodYear" aria-label="Filter by year"></select>
-          </label>
-          <label class="period-field">
-            <span>Month</span>
-            <select id="periodMonth" aria-label="Filter by month" disabled></select>
-          </label>
-          <label class="period-field">
-            <span>Day</span>
-            <select id="periodDay" aria-label="Filter by day" disabled></select>
-          </label>
-          <label class="period-field period-field-country">
-            <span>Country</span>
-            <select id="periodCountry" aria-label="Filter by country of origin"></select>
-          </label>
-          <label class="period-field period-field-theme">
-            <span>Theme</span>
-            <select id="periodTheme" aria-label="Filter by theme"></select>
-          </label>
-          <label class="period-field">
-            <span>Status</span>
-            <select id="periodStatus" aria-label="Filter by play status">
-              <option value="">All statuses</option>
-              <option value="Played">Played</option>
-              <option value="In progress">In progress</option>
-              <option value="Unplayed">Unplayed</option>
-            </select>
-          </label>
-        </div>
-        <p class="period-summary" id="periodSummary">All time — charts use the full history.</p>
       </div>
     </div>
   </div>
@@ -3063,6 +3257,7 @@ body.is-filtering #periodSummary {
     if (statusSel) statusSel.value = status || "";
     if (qInput && qInput.value !== (q || "")) qInput.value = q || "";
     refreshSearchableSelects();
+    requestAnimationFrame(() => layoutDesktopFilterOverflow());
   }
 
   function refreshSearchableSelects() {
@@ -3398,16 +3593,17 @@ body.is-filtering #periodSummary {
     paintClosed();
   }
 
-  function activeFacetCount() {
+  function activeFacetCount({ includePodcast = true } = {}) {
     const p = state.chartPeriod;
     let n = 0;
     if (p.year) n += 1;
     if (p.month) n += 1;
     if (p.day) n += 1;
     if (p.country) n += 1;
-    if (p.podcast) n += 1;
+    if (includePodcast && p.podcast) n += 1;
     if (p.theme) n += 1;
     if (p.status) n += 1;
+    if (String(p.q || "").trim()) n += 1;
     return n;
   }
 
@@ -3415,7 +3611,11 @@ body.is-filtering #periodSummary {
     const badge = $("#filterBadge");
     const toggle = $("#filterSheetToggle");
     const clearBtn = $("#periodClear");
-    const n = activeFacetCount();
+    // Show lives on its own control; badge counts the Filters sheet facets.
+    const n = activeFacetCount({ includePodcast: false });
+    const any =
+      activeFacetCount({ includePodcast: true }) > 0 ||
+      !!String(state.chartPeriod.q || "").trim();
     if (badge) {
       if (n > 0) {
         badge.hidden = false;
@@ -3425,24 +3625,92 @@ body.is-filtering #periodSummary {
       }
     }
     toggle?.classList.toggle("has-filters", n > 0);
-    if (clearBtn) clearBtn.hidden = n === 0 && !String(state.chartPeriod.q || "").trim();
+    if (clearBtn) clearBtn.hidden = !any;
+  }
+
+  function clearFilterOverflowHidden() {
+    $$("#periodControls .period-field").forEach((el) => {
+      el.classList.remove("is-overflow-hidden");
+    });
+    $("#periodControls")?.classList.remove("is-measuring");
+  }
+
+  function placeFilterToggle() {
+    const toggle = $("#filterSheetToggle");
+    const toolbar = $("#periodToolbar");
+    const secondary = $("#periodSecondary");
+    const clearBtn = $("#periodClear");
+    if (!toggle || !toolbar || !secondary) return;
+    if (isCompactFilterUi()) {
+      if (clearBtn && clearBtn.parentElement === toolbar) {
+        toolbar.insertBefore(toggle, clearBtn);
+      } else if (toggle.parentElement !== toolbar) {
+        toolbar.appendChild(toggle);
+      }
+    } else if (toggle.parentElement !== secondary) {
+      secondary.appendChild(toggle);
+    }
+  }
+
+  function layoutDesktopFilterOverflow() {
+    const controls = $("#periodControls");
+    const secondary = $("#periodSecondary");
+    const toggle = $("#filterSheetToggle");
+    if (!controls || !secondary || !toggle) return;
+    if (isCompactFilterUi() || document.body.classList.contains("filter-sheet-open")) {
+      clearFilterOverflowHidden();
+      return;
+    }
+    placeFilterToggle();
+    const fields = $$(":scope > .period-field", controls);
+    clearFilterOverflowHidden();
+    // Measure natural widths on one line, then hide what doesn't fit beside the toggle.
+    controls.classList.add("is-measuring");
+    const gap = 10;
+    const toggleW = toggle.getBoundingClientRect().width || 44;
+    const avail = Math.max(0, controls.getBoundingClientRect().width - 0);
+    // controls already sits in a flex row with the toggle as a sibling of filter-panel,
+    // so available width for fields is the controls box itself.
+    let used = 0;
+    let hidden = 0;
+    for (const field of fields) {
+      const w = field.getBoundingClientRect().width;
+      const next = used === 0 ? w : used + gap + w;
+      if (next > avail + 0.5 && used > 0) {
+        field.classList.add("is-overflow-hidden");
+        hidden += 1;
+      } else {
+        used = next;
+      }
+    }
+    controls.classList.remove("is-measuring");
+    // Always keep the Filters control on desktop — it reveals overflow (and all facets).
+    toggle.hidden = false;
+    toggle.title = hidden > 0 ? `Open filters (${hidden} more)` : "Open filters";
+    toggle.classList.toggle("has-overflow", hidden > 0);
   }
 
   function placeFilterPanel(inSheet) {
     const panel = $("#filterPanel");
     const sheetBody = $("#filterSheetBody");
-    const periodBar = $("#periodBar");
-    if (!panel || !sheetBody || !periodBar) return;
+    const secondary = $("#periodSecondary");
+    if (!panel || !sheetBody || !secondary) return;
     if (inSheet) {
+      clearFilterOverflowHidden();
       if (panel.parentElement !== sheetBody) sheetBody.appendChild(panel);
-    } else if (panel.parentElement !== periodBar) {
-      periodBar.appendChild(panel);
+    } else if (panel.parentElement !== secondary) {
+      // Keep Filters toggle as the last child of the secondary row.
+      const toggle = $("#filterSheetToggle");
+      if (toggle && toggle.parentElement === secondary) {
+        secondary.insertBefore(panel, toggle);
+      } else {
+        secondary.appendChild(panel);
+      }
     }
   }
 
   function setFilterSheetOpen(open) {
-    const mobile = window.matchMedia("(max-width: 860px)").matches;
-    const on = !!open && mobile;
+    const on = !!open;
     if (!on) closeComboPicker(false);
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
@@ -3452,10 +3720,13 @@ body.is-filtering #periodSummary {
     if (backdrop) backdrop.hidden = !on;
     if (sheet) sheet.hidden = !on;
     placeFilterPanel(on);
+    placeFilterToggle();
     if (on) {
       requestAnimationFrame(() => {
-        $("#periodYear")?.focus({ preventScroll: true });
+        ($("#periodQ") || $("#periodYear"))?.focus?.({ preventScroll: true });
       });
+    } else {
+      requestAnimationFrame(() => layoutDesktopFilterOverflow());
     }
   }
 
@@ -5685,10 +5956,17 @@ body.is-filtering #periodSummary {
     };
     window.visualViewport?.addEventListener("resize", onViewport);
     window.visualViewport?.addEventListener("scroll", onViewport);
-    window.matchMedia("(max-width: 860px)").addEventListener("change", (e) => {
+    window.matchMedia("(max-width: 860px)").addEventListener("change", () => {
       closeComboPicker(false);
-      if (!e.matches) setFilterSheetOpen(false);
-      else placeFilterPanel(false);
+      setFilterSheetOpen(false);
+      placeFilterToggle();
+      placeFilterPanel(false);
+      layoutDesktopFilterOverflow();
+    });
+    let filterLayoutTimer = 0;
+    window.addEventListener("resize", () => {
+      clearTimeout(filterLayoutTimer);
+      filterLayoutTimer = window.setTimeout(() => layoutDesktopFilterOverflow(), 80);
     });
 
     $("#periodClear")?.addEventListener("click", () => clearAllFilters());
@@ -5780,9 +6058,12 @@ body.is-filtering #periodSummary {
       renderThemeDetail("");
       renderEpisodeList();
       wire();
+      placeFilterToggle();
+      layoutDesktopFilterOverflow();
       document.body.classList.add("ready");
       $("#bootStatus").textContent = "";
       showTab(activeTabId, { scrollTop: false });
+      requestAnimationFrame(() => layoutDesktopFilterOverflow());
       // Warm search haystacks in idle time so the first typed query stays snappy.
       const warmSearch = () => {
         try {
