@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import base64
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -53,14 +54,23 @@ def main() -> None:
         b64 = base64.b64encode(path.read_bytes()).decode("ascii")
         css = css.replace(f'url("{ref}")', f'url("data:font/woff2;base64,{b64}")')
 
-    html = html.replace(
-        '<link rel="stylesheet" href="explore.css" />',
+    html, css_n = re.subn(
+        r'<link rel="stylesheet" href="explore\.css(?:\?[^"]*)?" />',
         f"<style>\n{css}\n</style>",
+        html,
+        count=1,
     )
-    html = html.replace(
-        '<script src="vendor/chart.umd.min.js" defer></script>\n  <script src="explore.js" defer></script>',
+    if css_n != 1:
+        raise SystemExit("could not inline explore.css link from index.html")
+    html, js_n = re.subn(
+        r'<script src="vendor/chart\.umd\.min\.js" defer></script>\s*'
+        r'<script src="explore\.js(?:\?[^"]*)?" defer></script>',
         "",
+        html,
+        count=1,
     )
+    if js_n != 1:
+        raise SystemExit("could not strip chart/explore script tags from index.html")
     html = html.replace(
         "Built from your Pocket Casts export in this repo.",
         "Standalone offline build from your GitHub Pocket Casts export. No external network requests.",

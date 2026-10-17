@@ -1137,9 +1137,17 @@
         if (!chart?.scales?.y) return;
         const rect = canvas.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
-        const clientY = native.clientY ?? native.changedTouches?.[0]?.clientY;
-        if (clientY == null) return;
-        const y = ((clientY - rect.top) / rect.height) * canvas.height;
+        // Chart.js layout / getValueForPixel use CSS pixels (chart.height),
+        // NOT the canvas backing-store size (canvas.height = css * dpr).
+        // Using canvas.height on a 3× phone mapped China → Middle East (+2).
+        let y;
+        if (native.target === canvas && typeof native.offsetY === "number") {
+          y = native.offsetY * (chart.height / rect.height);
+        } else {
+          const clientY = native.clientY ?? native.changedTouches?.[0]?.clientY;
+          if (clientY == null) return;
+          y = ((clientY - rect.top) / rect.height) * chart.height;
+        }
         const idx = Math.round(chart.scales.y.getValueForPixel(y));
         if (!Number.isFinite(idx) || idx < 0 || idx >= visible.length) return;
         const now = performance.now();
