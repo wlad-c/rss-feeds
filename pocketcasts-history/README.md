@@ -69,7 +69,7 @@ python3 scripts/harvest_youtube_transcripts.py --max-episodes 90 --min-year 2022
 #    auto = NoteTakers free 10/day, then local faster-whisper
 python3 scripts/selective_stt.py --engine auto --max-episodes 40 --max-minutes 480 --model base
 
-# 4) Rebuild parent/child themes using full text when available
+# 4) Rebuild flat themes using full text when available
 python3 scripts/rebuild_theme_hierarchy.py
 
 # 5) Sync slim tables into docs/ for Pages
