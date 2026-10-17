@@ -865,15 +865,7 @@
     const { select, emptyLabel } = comboPickerState;
     const list = $("#comboPickerList");
     if (!list) return;
-    const q = String(query || "").trim().toLowerCase();
-    const opts = [...select.options];
-    const allOpt = opts.find((o) => !o.value);
-    let matches = opts.filter((o) => {
-      if (!o.value) return !q;
-      return !q || o.textContent.toLowerCase().includes(q);
-    });
-    if (q && allOpt) matches = [allOpt, ...matches.filter((o) => o.value)];
-    else if (!q) matches = opts;
+    const matches = filterSelectOptions(select, query);
     comboPickerState.filtered = matches;
     list.innerHTML = matches.length
       ? matches
@@ -947,14 +939,9 @@
   function filterSelectOptions(select, query) {
     const q = String(query || "").trim().toLowerCase();
     const opts = [...select.options];
-    const allOpt = opts.find((o) => !o.value);
-    let matches = opts.filter((o) => {
-      if (!o.value) return !q;
-      return !q || o.textContent.toLowerCase().includes(q);
-    });
-    if (q && allOpt) matches = [allOpt, ...matches.filter((o) => o.value)];
-    else if (!q) matches = opts;
-    return matches;
+    if (!q) return opts;
+    // While searching, only show real matches — keep "All …" for the empty query.
+    return opts.filter((o) => o.value && o.textContent.toLowerCase().includes(q));
   }
 
   function upgradeSearchableSelect(select, { emptyLabel = "All", title = "" } = {}) {
