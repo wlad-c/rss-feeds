@@ -65,11 +65,11 @@
 
   <div class="period-dock">
     <div class="wrap period-bar glass-surface" id="periodBar">
-      <!-- Always-visible compact toolbar (search + Filters on small screens) -->
+      <!-- Hero toolbar: Shows first; other facets live in Filters -->
       <div class="period-toolbar">
-        <label class="period-search">
-          <span class="period-search-label">Search</span>
-          <input id="periodQ" type="search" placeholder="Search episode, show, author, notes…" aria-label="Search episodes" />
+        <label class="period-hero-show period-field period-field-podcast">
+          <span class="period-search-label">Show</span>
+          <select id="periodPodcast" aria-label="Filter by podcast"></select>
         </label>
         <button
           type="button"
@@ -92,6 +92,10 @@
       <div class="filter-panel" id="filterPanel">
         <div class="period-controls">
           <span class="period-kicker">Refine</span>
+          <label class="period-field period-field-search">
+            <span>Search</span>
+            <input id="periodQ" type="search" placeholder="Episode, author, notes…" aria-label="Search episodes" />
+          </label>
           <label class="period-field">
             <span>Year</span>
             <select id="periodYear" aria-label="Filter by year"></select>
@@ -107,10 +111,6 @@
           <label class="period-field period-field-country">
             <span>Country</span>
             <select id="periodCountry" aria-label="Filter by country of origin"></select>
-          </label>
-          <label class="period-field period-field-podcast">
-            <span>Show</span>
-            <select id="periodPodcast" aria-label="Filter by podcast"></select>
           </label>
           <label class="period-field period-field-theme">
             <span>Theme</span>

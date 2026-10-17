@@ -390,9 +390,105 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   gap: 8px;
 }
 
-.period-toolbar .period-search {
+.period-toolbar .period-hero-show {
   flex: 1;
   min-width: 0;
+}
+
+.period-toolbar .period-hero-show select,
+.period-toolbar .period-hero-show .combo-input {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+.period-field-search {
+  min-width: 12rem;
+  flex: 1 1 14rem;
+}
+
+.period-field-search input {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+/* Typeahead combobox for long filter lists */
+.combo {
+  position: relative;
+  min-width: 0;
+}
+
+.combo-native {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+.combo-input {
+  width: 100%;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+
+.combo-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 80;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  max-height: min(280px, 50vh);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-md);
+  background: var(--grouped-bg-elevated);
+  border: 0.5px solid var(--separator);
+  box-shadow: var(--shadow);
+}
+
+.combo-list[hidden] { display: none !important; }
+
+.combo-option {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--label);
+  cursor: pointer;
+}
+
+.combo-option:hover,
+.combo-option.is-active {
+  background: var(--blue-soft);
+  color: var(--system-blue);
+}
+
+.combo-option.is-selected {
+  font-weight: 650;
+}
+
+.combo-empty {
+  padding: 12px;
+  color: var(--secondary-label);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.filter-sheet-body .combo-list {
+  z-index: 95;
 }
 
 .filter-toggle {
@@ -1337,11 +1433,12 @@ body.is-filtering #periodSummary {
     display: none;
   }
 
-  .period-search {
+  .period-hero-show {
     gap: 0;
   }
 
-  .period-search input {
+  .period-hero-show .combo-input,
+  .period-hero-show select {
     min-height: 36px;
     border-radius: 10px;
     font-size: 1rem;
@@ -1475,7 +1572,8 @@ body.is-filtering #periodSummary {
   .filter-sheet-body .period-field,
   .filter-sheet-body .period-field-country,
   .filter-sheet-body .period-field-podcast,
-  .filter-sheet-body .period-field-theme {
+  .filter-sheet-body .period-field-theme,
+  .filter-sheet-body .period-field-search {
     min-width: 0;
     display: grid;
     grid-template-columns: 6.5rem minmax(0, 1fr);
@@ -1501,7 +1599,9 @@ body.is-filtering #periodSummary {
 
   .filter-sheet-body .period-field select,
   .filter-sheet-body .period-field-podcast select,
-  .filter-sheet-body .period-field-theme select {
+  .filter-sheet-body .period-field-theme select,
+  .filter-sheet-body .period-field-search input,
+  .filter-sheet-body .combo-input {
     max-width: none;
     width: 100%;
     min-width: 0;
@@ -1514,10 +1614,16 @@ body.is-filtering #periodSummary {
     color: var(--secondary-label);
   }
 
-  .filter-sheet-body .period-field select:focus {
+  .filter-sheet-body .period-field select:focus,
+  .filter-sheet-body .period-field-search input:focus,
+  .filter-sheet-body .combo-input:focus {
     box-shadow: none;
     background: transparent;
     color: var(--system-blue);
+  }
+
+  .filter-sheet-body .combo-list {
+    text-align: left;
   }
 
   .filter-sheet-body .period-summary {

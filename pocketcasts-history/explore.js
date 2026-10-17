@@ -791,6 +791,168 @@
 
     if (statusSel) statusSel.value = status || "";
     if (qInput && qInput.value !== (q || "")) qInput.value = q || "";
+    refreshSearchableSelects();
+  }
+
+  function refreshSearchableSelects() {
+    ["periodPodcast", "periodCountry", "periodTheme"].forEach((id) => {
+      const el = document.getElementById(id);
+      el?._comboPaint?.();
+    });
+  }
+
+  function upgradeSearchableSelect(select, { emptyLabel = "All" } = {}) {
+    if (!select || select.dataset.combo === "1") return;
+    select.dataset.combo = "1";
+    const wrap = document.createElement("div");
+    wrap.className = "combo";
+    select.parentNode.insertBefore(wrap, select);
+    wrap.appendChild(select);
+    select.classList.add("combo-native");
+    select.tabIndex = -1;
+
+    const input = document.createElement("input");
+    input.type = "search";
+    input.className = "combo-input";
+    input.setAttribute("role", "combobox");
+    input.setAttribute("aria-autocomplete", "list");
+    input.setAttribute("aria-expanded", "false");
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    const listId = `${select.id}-list`;
+    input.id = `${select.id}Input`;
+    input.setAttribute("aria-controls", listId);
+    input.setAttribute(
+      "aria-label",
+      select.getAttribute("aria-label") || emptyLabel
+    );
+
+    const list = document.createElement("ul");
+    list.id = listId;
+    list.className = "combo-list";
+    list.hidden = true;
+    list.setAttribute("role", "listbox");
+
+    wrap.appendChild(input);
+    wrap.appendChild(list);
+
+    let highlight = -1;
+    let filtered = [];
+
+    const selectedLabel = () => {
+      const opt = select.options[select.selectedIndex];
+      return opt ? opt.textContent : emptyLabel;
+    };
+
+    const paintClosed = () => {
+      input.value = select.value ? selectedLabel() : "";
+      input.placeholder = emptyLabel;
+      highlight = -1;
+    };
+
+    const close = () => {
+      list.hidden = true;
+      input.setAttribute("aria-expanded", "false");
+      highlight = -1;
+      paintClosed();
+    };
+
+    const syncHighlight = () => {
+      $$(".combo-option", list).forEach((li, i) => {
+        li.classList.toggle("is-active", i === highlight);
+      });
+      const active = list.querySelector(".combo-option.is-active");
+      active?.scrollIntoView({ block: "nearest" });
+    };
+
+    const renderList = (query) => {
+      const q = String(query || "").trim().toLowerCase();
+      const opts = [...select.options];
+      const allOpt = opts.find((o) => !o.value);
+      let matches = opts.filter((o) => {
+        if (!o.value) return !q;
+        return !q || o.textContent.toLowerCase().includes(q);
+      });
+      if (q && allOpt) {
+        matches = [allOpt, ...matches.filter((o) => o.value)];
+      } else if (!q) {
+        matches = opts;
+      }
+      filtered = matches;
+      highlight = matches.length ? 0 : -1;
+      list.innerHTML = matches.length
+        ? matches
+            .map((o, i) => {
+              const selected = o.value === select.value;
+              return `<li role="option" class="combo-option${selected ? " is-selected" : ""}${
+                i === highlight ? " is-active" : ""
+              }" data-value="${escapeHtml(o.value)}" data-i="${i}" aria-selected="${
+                selected ? "true" : "false"
+              }">${escapeHtml(o.textContent)}</li>`;
+            })
+            .join("")
+        : `<li class="combo-empty">No matches</li>`;
+      list.hidden = false;
+      input.setAttribute("aria-expanded", "true");
+    };
+
+    const pick = (value) => {
+      const next = String(value ?? "");
+      if (select.value !== next) {
+        select.value = next;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+      } else {
+        paintClosed();
+      }
+      close();
+      input.blur();
+    };
+
+    input.addEventListener("focus", () => {
+      input.value = "";
+      renderList("");
+    });
+    input.addEventListener("input", () => renderList(input.value));
+    input.addEventListener("keydown", (e) => {
+      if (list.hidden && (e.key === "ArrowDown" || e.key === "Enter")) {
+        renderList(input.value);
+        return;
+      }
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        if (!filtered.length) return;
+        highlight = (highlight + 1) % filtered.length;
+        syncHighlight();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        if (!filtered.length) return;
+        highlight = (highlight - 1 + filtered.length) % filtered.length;
+        syncHighlight();
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (highlight >= 0 && filtered[highlight]) pick(filtered[highlight].value);
+        else if (filtered[0]) pick(filtered[0].value);
+      } else if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+        input.blur();
+      }
+    });
+    list.addEventListener("mousedown", (e) => {
+      const li = e.target.closest("[data-value]");
+      if (!li) return;
+      e.preventDefault();
+      pick(li.getAttribute("data-value"));
+    });
+    input.addEventListener("blur", () => {
+      window.setTimeout(() => {
+        if (!wrap.contains(document.activeElement)) close();
+      }, 140);
+    });
+
+    select._comboPaint = paintClosed;
+    select._comboInput = input;
+    paintClosed();
   }
 
   function activeFacetCount() {
@@ -3010,6 +3172,11 @@
       }, 260);
     });
 
+    upgradeSearchableSelect($("#periodPodcast"), { emptyLabel: "All shows" });
+    upgradeSearchableSelect($("#periodCountry"), { emptyLabel: "All countries" });
+    upgradeSearchableSelect($("#periodTheme"), { emptyLabel: "All themes" });
+    refreshSearchableSelects();
+
     const clearAllFilters = () => {
       applyChartPeriod({
         year: "",
@@ -3022,6 +3189,7 @@
         q: "",
       });
       if ($("#periodQ")) $("#periodQ").value = "";
+      refreshSearchableSelects();
       syncFilterBadge();
     };
 
