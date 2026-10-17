@@ -649,12 +649,6 @@ body.combo-picker-open {
   background: var(--blue-soft);
 }
 
-.filter-toggle-caption { display: none; }
-
-.filter-toggle-face {
-  display: contents;
-}
-
 .filter-toggle-icon { display: block; flex-shrink: 0; }
 
 .filter-badge {
@@ -689,7 +683,7 @@ body.combo-picker-open {
 
 .period-secondary {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   gap: 8px;
   min-width: 0;
 }
@@ -697,7 +691,13 @@ body.combo-picker-open {
 .filter-panel {
   display: grid;
   gap: 8px;
-  flex: 1;
+  min-width: 0;
+}
+
+.period-filter-line {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
   min-width: 0;
 }
 
@@ -710,108 +710,117 @@ body.combo-picker-open {
 
 /* Desktop: second filter line is a single non-wrapping row; overflow is measured in JS. */
 @media (min-width: 861px) {
-  /*
-   * Put Filters on the same grid row as the facet controls (not beside the
-   * summary). Match select padding / type / radius so the control faces align.
-   */
   .period-secondary {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-areas:
-      "controls toggle"
-      "summary summary";
-    column-gap: 10px;
-    row-gap: 8px;
-    align-items: start;
-  }
-
-  .period-secondary > .filter-panel {
-    display: contents;
-  }
-
-  .period-controls {
-    grid-area: controls;
-  }
-
-  .period-summary {
-    grid-area: summary;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .period-secondary > .filter-toggle {
-    grid-area: toggle;
-    display: grid;
-    grid-template-rows: auto auto;
-    gap: 4px;
-    align-self: start;
+    /* Parked here only while the sheet is open; normally lives in .period-filter-line */
+    display: none;
+  }
+
+  body.filter-sheet-open .period-secondary > .filter-toggle {
+    display: none;
+  }
+
+  .period-filter-line {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .period-filter-line > .filter-toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
+    gap: 6px;
     min-height: 0;
     height: auto;
     margin: 0;
-    padding: 0;
-    background: transparent;
-    border-radius: 0;
-    color: var(--system-blue);
-  }
-
-  .period-secondary > .filter-toggle .filter-toggle-caption {
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    color: transparent;
-    user-select: none;
-  }
-
-  .period-secondary > .filter-toggle .filter-toggle-face {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    box-sizing: border-box;
-    min-height: 0;
     padding: 9px 12px;
-    border-radius: var(--radius-sm);
-    background: var(--fill-tertiary);
     font-size: 0.9375rem;
     font-weight: 500;
     letter-spacing: -0.01em;
-    /* Match native <select> line-height (normal ≈ 20.25px at 15px). */
     line-height: normal;
+    border-radius: var(--radius-sm);
+    background: var(--fill-tertiary);
+    color: var(--system-blue);
   }
 
-  .period-secondary > .filter-toggle .filter-toggle-icon {
+  .period-filter-line > .filter-toggle:hover {
+    background: var(--fill-secondary);
+  }
+
+  .period-filter-line > .filter-toggle[aria-expanded="true"],
+  .period-filter-line > .filter-toggle.has-filters {
+    background: var(--blue-soft);
+  }
+
+  .period-filter-line > .filter-toggle .filter-toggle-icon {
     width: 16px;
     height: 16px;
   }
 
-  .period-secondary > .filter-toggle:hover .filter-toggle-face {
-    background: var(--fill-secondary);
-  }
-
-  .period-secondary > .filter-toggle[aria-expanded="true"] .filter-toggle-face,
-  .period-secondary > .filter-toggle.has-filters .filter-toggle-face {
-    background: var(--blue-soft);
-  }
-
-  /* Keep field captions on the same metrics so the spacer matches. */
-  .period-field > span,
-  .period-search-label {
-    line-height: 1.2;
-  }
-
   .period-controls {
+    flex: 1 1 auto;
     flex-wrap: nowrap;
     overflow: hidden;
     min-width: 0;
+    gap: 10px;
   }
 
-  .period-controls.is-measuring .period-field {
+  .period-controls > .period-field {
+    flex: 0 1 auto;
+    min-width: 6.5rem;
+    max-width: 14rem;
+    overflow: hidden;
+  }
+
+  .period-controls > .period-field-search {
+    flex: 1 1 9rem;
+    min-width: 8rem;
+    max-width: none;
+  }
+
+  .period-controls > .period-field-country,
+  .period-controls > .period-field-theme {
+    min-width: 7.5rem;
+    max-width: 12rem;
+  }
+
+  /* Prevent native/combo controls from painting over neighbors. */
+  .period-controls .period-field select,
+  .period-controls .period-field .combo,
+  .period-controls .period-field .combo-input,
+  .period-controls .period-field-search input {
+    width: 100%;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-sizing: border-box;
+  }
+
+  /* Natural widths while measuring — avoid flex-shrink making everything "fit". */
+  .period-controls.is-measuring > .period-field {
     display: grid !important;
+    flex: 0 0 auto !important;
+    width: max-content;
+    max-width: none !important;
+    min-width: max-content !important;
   }
 
   .period-field.is-overflow-hidden {
     display: none !important;
+  }
+
+  .period-filter-line > .filter-toggle {
+    min-height: 38px;
   }
 
   /* Sheet works on large screens too (overflow filters). */
@@ -1855,11 +1864,21 @@ body.is-filtering #periodSummary {
   }
 
   .period-secondary > .filter-panel {
+    display: contents;
+  }
+
+  .period-filter-line {
+    display: contents;
+  }
+
+  .period-controls,
+  .period-summary {
     display: none;
   }
 
-  .period-secondary > .filter-toggle,
-  .period-toolbar .filter-toggle {
+  .period-filter-line > .filter-toggle,
+  .period-toolbar .filter-toggle,
+  .period-secondary > .filter-toggle {
     display: inline-flex;
     align-self: stretch;
   }

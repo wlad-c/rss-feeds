@@ -1171,25 +1171,32 @@
   function placeFilterToggle() {
     const toggle = $("#filterSheetToggle");
     const toolbar = $("#periodToolbar");
+    const line = $("#periodFilterLine");
     const secondary = $("#periodSecondary");
     const clearBtn = $("#periodClear");
-    if (!toggle || !toolbar || !secondary) return;
+    if (!toggle) return;
     if (isCompactFilterUi()) {
+      if (!toolbar) return;
       if (clearBtn && clearBtn.parentElement === toolbar) {
         toolbar.insertBefore(toggle, clearBtn);
       } else if (toggle.parentElement !== toolbar) {
         toolbar.appendChild(toggle);
       }
-    } else if (toggle.parentElement !== secondary) {
-      secondary.appendChild(toggle);
+      return;
     }
+    // Desktop: Filters sits at the end of the facet row (not beside the summary).
+    if (document.body.classList.contains("filter-sheet-open")) {
+      if (secondary && toggle.parentElement !== secondary) secondary.appendChild(toggle);
+      return;
+    }
+    if (line && toggle.parentElement !== line) line.appendChild(toggle);
   }
 
   function layoutDesktopFilterOverflow() {
     const controls = $("#periodControls");
-    const secondary = $("#periodSecondary");
+    const line = $("#periodFilterLine");
     const toggle = $("#filterSheetToggle");
-    if (!controls || !secondary || !toggle) return;
+    if (!controls || !toggle) return;
     if (isCompactFilterUi() || document.body.classList.contains("filter-sheet-open")) {
       clearFilterOverflowHidden();
       return;
@@ -1197,13 +1204,10 @@
     placeFilterToggle();
     const fields = $$(":scope > .period-field", controls);
     clearFilterOverflowHidden();
-    // Measure natural widths on one line, then hide what doesn't fit beside the toggle.
+    // Measure natural widths on one line, then hide what does not fit.
     controls.classList.add("is-measuring");
     const gap = 10;
-    const toggleW = toggle.getBoundingClientRect().width || 44;
-    const avail = Math.max(0, controls.getBoundingClientRect().width - 0);
-    // controls already sits in a flex row with the toggle as a sibling of filter-panel,
-    // so available width for fields is the controls box itself.
+    const avail = Math.max(0, controls.getBoundingClientRect().width);
     let used = 0;
     let hidden = 0;
     for (const field of fields) {
@@ -1217,28 +1221,27 @@
       }
     }
     controls.classList.remove("is-measuring");
-    // Always keep the Filters control on desktop — it reveals overflow (and all facets).
     toggle.hidden = false;
     toggle.title = hidden > 0 ? `Open filters (${hidden} more)` : "Open filters";
     toggle.classList.toggle("has-overflow", hidden > 0);
+    if (line) line.dataset.overflowCount = String(hidden);
   }
 
   function placeFilterPanel(inSheet) {
     const panel = $("#filterPanel");
     const sheetBody = $("#filterSheetBody");
     const secondary = $("#periodSecondary");
+    const line = $("#periodFilterLine");
+    const toggle = $("#filterSheetToggle");
     if (!panel || !sheetBody || !secondary) return;
     if (inSheet) {
       clearFilterOverflowHidden();
+      // Keep Filters outside the panel so it does not disappear into the sheet.
+      if (toggle && secondary) secondary.appendChild(toggle);
       if (panel.parentElement !== sheetBody) sheetBody.appendChild(panel);
-    } else if (panel.parentElement !== secondary) {
-      // Keep Filters toggle as the last child of the secondary row.
-      const toggle = $("#filterSheetToggle");
-      if (toggle && toggle.parentElement === secondary) {
-        secondary.insertBefore(panel, toggle);
-      } else {
-        secondary.appendChild(panel);
-      }
+    } else {
+      if (panel.parentElement !== secondary) secondary.appendChild(panel);
+      if (toggle && line && !isCompactFilterUi()) line.appendChild(toggle);
     }
   }
 
