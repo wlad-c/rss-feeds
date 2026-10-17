@@ -799,7 +799,152 @@
     });
   }
 
-  function upgradeSearchableSelect(select, { emptyLabel = "All" } = {}) {
+  function isCompactFilterUi() {
+    return window.matchMedia("(max-width: 860px)").matches;
+  }
+
+  function syncVisualViewportVars() {
+    const vv = window.visualViewport;
+    const top = vv ? vv.offsetTop : 0;
+    const height = vv ? vv.height : window.innerHeight;
+    document.documentElement.style.setProperty("--vv-top", `${Math.round(top)}px`);
+    document.documentElement.style.setProperty("--vv-height", `${Math.round(height)}px`);
+  }
+
+  let comboPickerState = null;
+
+  function ensureComboPickerHost() {
+    let host = $("#comboPickerHost");
+    if (host) return host;
+    host = document.createElement("div");
+    host.id = "comboPickerHost";
+    host.className = "combo-picker-host";
+    host.hidden = true;
+    host.innerHTML = `
+      <div class="combo-picker" role="dialog" aria-modal="true" aria-labelledby="comboPickerTitle">
+        <div class="combo-picker-chrome">
+          <button type="button" class="sheet-text-btn" data-combo-cancel>Cancel</button>
+          <h2 id="comboPickerTitle" class="combo-picker-title">Choose</h2>
+          <button type="button" class="sheet-text-btn sheet-done" data-combo-done>Done</button>
+        </div>
+        <div class="combo-picker-search">
+          <input type="search" class="combo-picker-input" id="comboPickerInput" autocomplete="off" spellcheck="false" />
+        </div>
+        <ul class="combo-picker-list" id="comboPickerList" role="listbox"></ul>
+      </div>`;
+    document.body.appendChild(host);
+    host.querySelector("[data-combo-cancel]")?.addEventListener("click", () => closeComboPicker(false));
+    host.querySelector("[data-combo-done]")?.addEventListener("click", () => closeComboPicker(false));
+    host.addEventListener("click", (e) => {
+      if (e.target === host) closeComboPicker(false);
+    });
+    $("#comboPickerInput")?.addEventListener("input", () => {
+      if (comboPickerState) renderComboPickerList(comboPickerState.queryFromInput());
+    });
+    $("#comboPickerList")?.addEventListener("click", (e) => {
+      const li = e.target.closest("[data-value]");
+      if (!li || !comboPickerState) return;
+      comboPickerState.pick(li.getAttribute("data-value"));
+    });
+    $("#comboPickerInput")?.addEventListener("keydown", (e) => {
+      if (!comboPickerState) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeComboPicker(false);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        const first = $("#comboPickerList .combo-option");
+        if (first) comboPickerState.pick(first.getAttribute("data-value"));
+      }
+    });
+    return host;
+  }
+
+  function renderComboPickerList(query) {
+    if (!comboPickerState) return;
+    const { select, emptyLabel } = comboPickerState;
+    const list = $("#comboPickerList");
+    if (!list) return;
+    const matches = filterSelectOptions(select, query);
+    comboPickerState.filtered = matches;
+    list.innerHTML = matches.length
+      ? matches
+          .map((o) => {
+            const selected = o.value === select.value;
+            const label = o.value ? o.textContent : emptyLabel;
+            return `<li role="option" class="combo-option${selected ? " is-selected" : ""}" data-value="${escapeHtml(
+              o.value
+            )}" aria-selected="${selected ? "true" : "false"}">${escapeHtml(label)}</li>`;
+          })
+          .join("")
+      : `<li class="combo-empty">No matches</li>`;
+    const selectedEl = list.querySelector(".combo-option.is-selected");
+    if (selectedEl) selectedEl.scrollIntoView({ block: "nearest" });
+  }
+
+  function closeComboPicker(restoreFocus) {
+    const host = $("#comboPickerHost");
+    if (!host || host.hidden) {
+      comboPickerState = null;
+      document.body.classList.remove("combo-picker-open");
+      return;
+    }
+    const originInput = comboPickerState?.originInput;
+    host.hidden = true;
+    document.body.classList.remove("combo-picker-open");
+    comboPickerState = null;
+    if (restoreFocus && originInput) {
+      requestAnimationFrame(() => originInput.focus({ preventScroll: true }));
+    } else {
+      originInput?.blur();
+    }
+  }
+
+  function openComboPicker(select, { emptyLabel, title, originInput }) {
+    syncVisualViewportVars();
+    const host = ensureComboPickerHost();
+    const pickerInput = $("#comboPickerInput");
+    const titleEl = $("#comboPickerTitle");
+    if (titleEl) titleEl.textContent = title || emptyLabel || "Choose";
+    if (pickerInput) {
+      pickerInput.value = "";
+      pickerInput.placeholder = `Search ${String(emptyLabel || "options")
+        .replace(/^All\s+/i, "")
+        .toLowerCase()}…`;
+    }
+    comboPickerState = {
+      select,
+      emptyLabel,
+      originInput,
+      filtered: [],
+      queryFromInput: () => pickerInput?.value || "",
+      pick: (value) => {
+        const next = String(value ?? "");
+        if (select.value !== next) {
+          select.value = next;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+        select._comboPaint?.();
+        closeComboPicker(false);
+      },
+    };
+    renderComboPickerList("");
+    host.hidden = false;
+    document.body.classList.add("combo-picker-open");
+    requestAnimationFrame(() => {
+      pickerInput?.focus({ preventScroll: true });
+    });
+  }
+
+  function filterSelectOptions(select, query) {
+    const q = String(query || "").trim().toLowerCase();
+    const opts = [...select.options];
+    if (!q) return opts;
+    // While searching, only show real matches — keep "All …" for the empty query.
+    return opts.filter((o) => o.value && o.textContent.toLowerCase().includes(q));
+  }
+
+  function upgradeSearchableSelect(select, { emptyLabel = "All", title = "" } = {}) {
     if (!select || select.dataset.combo === "1") return;
     select.dataset.combo = "1";
     const wrap = document.createElement("div");
@@ -809,6 +954,10 @@
     select.classList.add("combo-native");
     select.tabIndex = -1;
 
+    const pickerTitle =
+      title ||
+      (select.getAttribute("aria-label") || emptyLabel).replace(/^Filter by\s+/i, "");
+
     const input = document.createElement("input");
     input.type = "search";
     input.className = "combo-input";
@@ -817,6 +966,7 @@
     input.setAttribute("aria-expanded", "false");
     input.autocomplete = "off";
     input.spellcheck = false;
+    input.readOnly = false;
     const listId = `${select.id}-list`;
     input.id = `${select.id}Input`;
     input.setAttribute("aria-controls", listId);
@@ -848,7 +998,7 @@
       highlight = -1;
     };
 
-    const close = () => {
+    const closeDesktop = () => {
       list.hidden = true;
       input.setAttribute("aria-expanded", "false");
       highlight = -1;
@@ -863,30 +1013,19 @@
       active?.scrollIntoView({ block: "nearest" });
     };
 
-    const renderList = (query) => {
-      const q = String(query || "").trim().toLowerCase();
-      const opts = [...select.options];
-      const allOpt = opts.find((o) => !o.value);
-      let matches = opts.filter((o) => {
-        if (!o.value) return !q;
-        return !q || o.textContent.toLowerCase().includes(q);
-      });
-      if (q && allOpt) {
-        matches = [allOpt, ...matches.filter((o) => o.value)];
-      } else if (!q) {
-        matches = opts;
-      }
-      filtered = matches;
-      highlight = matches.length ? 0 : -1;
-      list.innerHTML = matches.length
-        ? matches
+    const renderDesktopList = (query) => {
+      filtered = filterSelectOptions(select, query);
+      highlight = filtered.length ? 0 : -1;
+      list.innerHTML = filtered.length
+        ? filtered
             .map((o, i) => {
               const selected = o.value === select.value;
+              const label = o.value ? o.textContent : emptyLabel;
               return `<li role="option" class="combo-option${selected ? " is-selected" : ""}${
                 i === highlight ? " is-active" : ""
               }" data-value="${escapeHtml(o.value)}" data-i="${i}" aria-selected="${
                 selected ? "true" : "false"
-              }">${escapeHtml(o.textContent)}</li>`;
+              }">${escapeHtml(label)}</li>`;
             })
             .join("")
         : `<li class="combo-empty">No matches</li>`;
@@ -894,7 +1033,7 @@
       input.setAttribute("aria-expanded", "true");
     };
 
-    const pick = (value) => {
+    const pickDesktop = (value) => {
       const next = String(value ?? "");
       if (select.value !== next) {
         select.value = next;
@@ -902,18 +1041,49 @@
       } else {
         paintClosed();
       }
-      close();
+      closeDesktop();
       input.blur();
     };
 
-    input.addEventListener("focus", () => {
-      input.value = "";
-      renderList("");
+    const openMobile = () => {
+      closeDesktop();
+      input.setAttribute("aria-expanded", "true");
+      openComboPicker(select, {
+        emptyLabel,
+        title: pickerTitle,
+        originInput: input,
+      });
+    };
+
+    input.addEventListener("pointerdown", (e) => {
+      if (!isCompactFilterUi()) return;
+      // Open the full-screen picker instead of the clipped inline list.
+      e.preventDefault();
+      openMobile();
     });
-    input.addEventListener("input", () => renderList(input.value));
+    input.addEventListener("focus", () => {
+      if (isCompactFilterUi()) {
+        // Keyboard focus (e.g. VoiceOver) — still use the mobile picker.
+        if (!document.body.classList.contains("combo-picker-open")) openMobile();
+        return;
+      }
+      input.value = "";
+      renderDesktopList("");
+    });
+    input.addEventListener("input", () => {
+      if (isCompactFilterUi()) return;
+      renderDesktopList(input.value);
+    });
     input.addEventListener("keydown", (e) => {
+      if (isCompactFilterUi()) {
+        if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+          e.preventDefault();
+          openMobile();
+        }
+        return;
+      }
       if (list.hidden && (e.key === "ArrowDown" || e.key === "Enter")) {
-        renderList(input.value);
+        renderDesktopList(input.value);
         return;
       }
       if (e.key === "ArrowDown") {
@@ -928,11 +1098,11 @@
         syncHighlight();
       } else if (e.key === "Enter") {
         e.preventDefault();
-        if (highlight >= 0 && filtered[highlight]) pick(filtered[highlight].value);
-        else if (filtered[0]) pick(filtered[0].value);
+        if (highlight >= 0 && filtered[highlight]) pickDesktop(filtered[highlight].value);
+        else if (filtered[0]) pickDesktop(filtered[0].value);
       } else if (e.key === "Escape") {
         e.preventDefault();
-        close();
+        closeDesktop();
         input.blur();
       }
     });
@@ -940,16 +1110,18 @@
       const li = e.target.closest("[data-value]");
       if (!li) return;
       e.preventDefault();
-      pick(li.getAttribute("data-value"));
+      pickDesktop(li.getAttribute("data-value"));
     });
     input.addEventListener("blur", () => {
+      if (isCompactFilterUi()) return;
       window.setTimeout(() => {
-        if (!wrap.contains(document.activeElement)) close();
+        if (!wrap.contains(document.activeElement)) closeDesktop();
       }, 140);
     });
 
     select._comboPaint = paintClosed;
     select._comboInput = input;
+    select._comboOpenMobile = openMobile;
     paintClosed();
   }
 
@@ -998,6 +1170,7 @@
   function setFilterSheetOpen(open) {
     const mobile = window.matchMedia("(max-width: 860px)").matches;
     const on = !!open && mobile;
+    if (!on) closeComboPicker(false);
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
     const backdrop = $("#filterSheetBackdrop");
@@ -1616,11 +1789,17 @@
 
   function baseChartOptions(extra = {}) {
     const chrome = chartChrome();
+    const compact = isCompactFilterUi();
     return {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
       interaction: { mode: "index", intersect: false },
+      layout: {
+        padding: compact
+          ? { top: 4, right: 6, bottom: 2, left: 2 }
+          : { top: 0, right: 0, bottom: 0, left: 0 },
+      },
       plugins: {
         legend: {
           labels: {
@@ -1637,12 +1816,17 @@
       },
       scales: {
         x: {
-          ticks: { color: chrome.muted, maxRotation: 0, autoSkipPadding: 12 },
+          ticks: {
+            color: chrome.muted,
+            maxRotation: 0,
+            autoSkipPadding: 12,
+            padding: compact ? 4 : 0,
+          },
           grid: { color: chrome.grid },
         },
         y: {
           beginAtZero: true,
-          ticks: { color: chrome.muted },
+          ticks: { color: chrome.muted, padding: compact ? 4 : 0 },
           grid: { color: chrome.grid },
         },
       },
@@ -3179,9 +3363,12 @@
       }, 260);
     });
 
-    upgradeSearchableSelect($("#periodPodcast"), { emptyLabel: "All shows" });
-    upgradeSearchableSelect($("#periodCountry"), { emptyLabel: "All countries" });
-    upgradeSearchableSelect($("#periodTheme"), { emptyLabel: "All themes" });
+    upgradeSearchableSelect($("#periodPodcast"), { emptyLabel: "All shows", title: "Shows" });
+    upgradeSearchableSelect($("#periodCountry"), {
+      emptyLabel: "All countries",
+      title: "Country",
+    });
+    upgradeSearchableSelect($("#periodTheme"), { emptyLabel: "All themes", title: "Theme" });
     refreshSearchableSelects();
 
     const clearAllFilters = () => {
@@ -3210,11 +3397,23 @@
       clearAllFilters();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && document.body.classList.contains("filter-sheet-open")) {
+      if (e.key !== "Escape") return;
+      if (document.body.classList.contains("combo-picker-open")) {
+        e.preventDefault();
+        closeComboPicker(false);
+        return;
+      }
+      if (document.body.classList.contains("filter-sheet-open")) {
         setFilterSheetOpen(false);
       }
     });
+    const onViewport = () => {
+      if (document.body.classList.contains("combo-picker-open")) syncVisualViewportVars();
+    };
+    window.visualViewport?.addEventListener("resize", onViewport);
+    window.visualViewport?.addEventListener("scroll", onViewport);
     window.matchMedia("(max-width: 860px)").addEventListener("change", (e) => {
+      closeComboPicker(false);
       if (!e.matches) setFilterSheetOpen(false);
       else placeFilterPanel(false);
     });

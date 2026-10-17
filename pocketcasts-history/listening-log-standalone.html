@@ -108,6 +108,8 @@
   --radius: var(--radius-lg);
 
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
   --tab-bar-h: 0px;
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -167,11 +169,15 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 7.5rem;
   scroll-padding-bottom: calc(var(--tab-bar-h) + 1rem);
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
   color: var(--label);
   font-family: var(--font);
   font-size: 17px;
@@ -184,6 +190,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-bottom: calc(var(--tab-bar-h) + var(--safe-bottom));
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
   transition: background-color 240ms var(--ease-out), color 200ms var(--ease-out);
 }
 
@@ -202,7 +210,9 @@ button, input, select { font: inherit; color: inherit; }
   position: relative;
   z-index: 1;
   width: min(980px, calc(100% - 32px));
+  max-width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ——— Chrome bar (Liquid Glass) ——— */
@@ -522,6 +532,128 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 
 .filter-sheet-body .combo-list {
   z-index: 95;
+}
+
+/* Mobile: full visual-viewport picker so lists stay above the keyboard */
+.combo-picker-host {
+  display: none;
+}
+
+.combo-picker-host:not([hidden]) {
+  display: flex;
+  position: fixed;
+  top: var(--vv-top, 0px);
+  left: 0;
+  right: 0;
+  height: var(--vv-height, 100dvh);
+  z-index: 220;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.28);
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.combo-picker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  background: var(--grouped-bg);
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.combo-picker-chrome {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 48px;
+  padding: 6px 16px;
+  border-bottom: 0.5px solid var(--separator);
+  background: var(--grouped-bg-elevated);
+}
+
+.combo-picker-title {
+  margin: 0;
+  text-align: center;
+  font-size: 1.0625rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--label);
+}
+
+.combo-picker-chrome .sheet-text-btn {
+  justify-self: start;
+}
+
+.combo-picker-chrome .sheet-done {
+  justify-self: end;
+}
+
+.combo-picker-search {
+  flex-shrink: 0;
+  padding: 10px 16px 8px;
+  background: var(--grouped-bg);
+}
+
+.combo-picker-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--fill);
+  color: var(--label);
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.combo-picker-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+
+.combo-picker-list {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 4px 8px calc(12px + var(--safe-bottom));
+  list-style: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background: var(--grouped-bg);
+}
+
+.combo-picker-list .combo-option {
+  padding: 14px 12px;
+  font-size: 1.0625rem;
+  border-radius: 10px;
+}
+
+.combo-picker-list .combo-option.is-selected {
+  color: var(--system-blue);
+}
+
+.combo-picker-list .combo-empty {
+  padding: 24px 12px;
+}
+
+body.combo-picker-open {
+  overflow: hidden;
+}
+
+@media (min-width: 861px) {
+  .combo-picker-host {
+    display: none !important;
+  }
 }
 
 .filter-toggle {
@@ -851,6 +983,9 @@ section.ready-delay { animation-delay: 100ms; }
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   padding: 16px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .panel-flush { padding: 12px 0 16px; }
@@ -873,7 +1008,13 @@ section.ready-delay { animation-delay: 100ms; }
   line-height: 1.4;
 }
 
-.chart-box { position: relative; height: 280px; }
+.chart-box {
+  position: relative;
+  height: 280px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
 .chart-box.tall { height: 360px; }
 .chart-box.short { height: 240px; }
 .chart-box.mid { height: 280px; }
@@ -1224,15 +1365,21 @@ html[data-theme="dark"] .tag.warn {
   font-variant-numeric: tabular-nums;
 }
 
-/* Heatmap */
+/* Heatmap — scroll inside the panel; never widen the page */
 .heatmap {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(7, 11px);
   grid-auto-columns: 11px;
   gap: 3px;
+  max-width: 100%;
+  width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
   padding-bottom: 6px;
+  touch-action: pan-x;
 }
 
 .heat-cell {
@@ -1284,12 +1431,14 @@ footer {
 .tab-bar {
   display: none;
   position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: calc(8px + var(--safe-bottom));
+  left: max(10px, var(--safe-left));
+  right: max(10px, var(--safe-right));
+  bottom: max(8px, var(--safe-bottom));
   z-index: 50;
   height: 58px;
-  padding: 4px 6px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 4px 4px;
   border-radius: 22px;
   background: var(--glass);
   border: 0.5px solid var(--glass-border);
@@ -1298,11 +1447,13 @@ footer {
   -webkit-backdrop-filter: saturate(180%) blur(28px);
   align-items: stretch;
   justify-content: space-around;
-  gap: 2px;
+  gap: 0;
+  overflow: hidden;
 }
 
 .tab-item {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1314,6 +1465,7 @@ footer {
   font-weight: 550;
   letter-spacing: -0.01em;
   border-radius: 16px;
+  overflow: hidden;
   transition: color 160ms var(--ease-out), background 160ms var(--ease-out),
     transform 160ms var(--ease-spring);
 }
@@ -1404,7 +1556,8 @@ body.is-filtering #periodSummary {
 }
 
 @media (max-width: 860px) {
-  :root { --tab-bar-h: 74px; }
+  /* Floating tab (58) + bottom gap (8) + breathing room above charts */
+  :root { --tab-bar-h: 88px; }
 
   .wrap { width: min(980px, calc(100% - 24px)); }
 
@@ -1424,6 +1577,7 @@ body.is-filtering #periodSummary {
   body.tab-mode main.charts-block > .tab-panel.is-tab-active {
     display: block;
     padding-top: 12px;
+    padding-bottom: 12px;
     animation: tab-fade 220ms var(--ease-out) both;
   }
 
@@ -1507,8 +1661,11 @@ body.is-filtering #periodSummary {
     right: 0;
     bottom: 0;
     z-index: 90;
-    max-height: min(68vh, 560px);
-    padding: 0 0 calc(10px + var(--safe-bottom));
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    max-height: min(78dvh, 640px);
+    padding: 0 max(var(--safe-right), 0px) max(14px, var(--safe-bottom)) max(var(--safe-left), 0px);
     border-radius: 14px 14px 0 0;
     background: var(--grouped-bg);
     border: 0.5px solid var(--separator);
@@ -1661,9 +1818,12 @@ body.is-filtering #periodSummary {
 
   .filter-sheet-body .period-summary {
     flex-shrink: 0;
-    padding: 4px 20px 8px;
+    margin: 0;
+    padding: 8px 20px 4px;
     border-top: 0;
     font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--secondary-label);
   }
 
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1684,6 +1844,7 @@ body.is-filtering #periodSummary {
   .chart-box,
   .chart-box.tall,
   .chart-box.mid { height: 260px; }
+  .chart-box.short { height: 200px; }
 
   /* Content-first: shorter hero chrome on phones */
   .hero {
@@ -2911,7 +3072,152 @@ body.is-filtering #periodSummary {
     });
   }
 
-  function upgradeSearchableSelect(select, { emptyLabel = "All" } = {}) {
+  function isCompactFilterUi() {
+    return window.matchMedia("(max-width: 860px)").matches;
+  }
+
+  function syncVisualViewportVars() {
+    const vv = window.visualViewport;
+    const top = vv ? vv.offsetTop : 0;
+    const height = vv ? vv.height : window.innerHeight;
+    document.documentElement.style.setProperty("--vv-top", `${Math.round(top)}px`);
+    document.documentElement.style.setProperty("--vv-height", `${Math.round(height)}px`);
+  }
+
+  let comboPickerState = null;
+
+  function ensureComboPickerHost() {
+    let host = $("#comboPickerHost");
+    if (host) return host;
+    host = document.createElement("div");
+    host.id = "comboPickerHost";
+    host.className = "combo-picker-host";
+    host.hidden = true;
+    host.innerHTML = `
+      <div class="combo-picker" role="dialog" aria-modal="true" aria-labelledby="comboPickerTitle">
+        <div class="combo-picker-chrome">
+          <button type="button" class="sheet-text-btn" data-combo-cancel>Cancel</button>
+          <h2 id="comboPickerTitle" class="combo-picker-title">Choose</h2>
+          <button type="button" class="sheet-text-btn sheet-done" data-combo-done>Done</button>
+        </div>
+        <div class="combo-picker-search">
+          <input type="search" class="combo-picker-input" id="comboPickerInput" autocomplete="off" spellcheck="false" />
+        </div>
+        <ul class="combo-picker-list" id="comboPickerList" role="listbox"></ul>
+      </div>`;
+    document.body.appendChild(host);
+    host.querySelector("[data-combo-cancel]")?.addEventListener("click", () => closeComboPicker(false));
+    host.querySelector("[data-combo-done]")?.addEventListener("click", () => closeComboPicker(false));
+    host.addEventListener("click", (e) => {
+      if (e.target === host) closeComboPicker(false);
+    });
+    $("#comboPickerInput")?.addEventListener("input", () => {
+      if (comboPickerState) renderComboPickerList(comboPickerState.queryFromInput());
+    });
+    $("#comboPickerList")?.addEventListener("click", (e) => {
+      const li = e.target.closest("[data-value]");
+      if (!li || !comboPickerState) return;
+      comboPickerState.pick(li.getAttribute("data-value"));
+    });
+    $("#comboPickerInput")?.addEventListener("keydown", (e) => {
+      if (!comboPickerState) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeComboPicker(false);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        const first = $("#comboPickerList .combo-option");
+        if (first) comboPickerState.pick(first.getAttribute("data-value"));
+      }
+    });
+    return host;
+  }
+
+  function renderComboPickerList(query) {
+    if (!comboPickerState) return;
+    const { select, emptyLabel } = comboPickerState;
+    const list = $("#comboPickerList");
+    if (!list) return;
+    const matches = filterSelectOptions(select, query);
+    comboPickerState.filtered = matches;
+    list.innerHTML = matches.length
+      ? matches
+          .map((o) => {
+            const selected = o.value === select.value;
+            const label = o.value ? o.textContent : emptyLabel;
+            return `<li role="option" class="combo-option${selected ? " is-selected" : ""}" data-value="${escapeHtml(
+              o.value
+            )}" aria-selected="${selected ? "true" : "false"}">${escapeHtml(label)}</li>`;
+          })
+          .join("")
+      : `<li class="combo-empty">No matches</li>`;
+    const selectedEl = list.querySelector(".combo-option.is-selected");
+    if (selectedEl) selectedEl.scrollIntoView({ block: "nearest" });
+  }
+
+  function closeComboPicker(restoreFocus) {
+    const host = $("#comboPickerHost");
+    if (!host || host.hidden) {
+      comboPickerState = null;
+      document.body.classList.remove("combo-picker-open");
+      return;
+    }
+    const originInput = comboPickerState?.originInput;
+    host.hidden = true;
+    document.body.classList.remove("combo-picker-open");
+    comboPickerState = null;
+    if (restoreFocus && originInput) {
+      requestAnimationFrame(() => originInput.focus({ preventScroll: true }));
+    } else {
+      originInput?.blur();
+    }
+  }
+
+  function openComboPicker(select, { emptyLabel, title, originInput }) {
+    syncVisualViewportVars();
+    const host = ensureComboPickerHost();
+    const pickerInput = $("#comboPickerInput");
+    const titleEl = $("#comboPickerTitle");
+    if (titleEl) titleEl.textContent = title || emptyLabel || "Choose";
+    if (pickerInput) {
+      pickerInput.value = "";
+      pickerInput.placeholder = `Search ${String(emptyLabel || "options")
+        .replace(/^All\s+/i, "")
+        .toLowerCase()}…`;
+    }
+    comboPickerState = {
+      select,
+      emptyLabel,
+      originInput,
+      filtered: [],
+      queryFromInput: () => pickerInput?.value || "",
+      pick: (value) => {
+        const next = String(value ?? "");
+        if (select.value !== next) {
+          select.value = next;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+        select._comboPaint?.();
+        closeComboPicker(false);
+      },
+    };
+    renderComboPickerList("");
+    host.hidden = false;
+    document.body.classList.add("combo-picker-open");
+    requestAnimationFrame(() => {
+      pickerInput?.focus({ preventScroll: true });
+    });
+  }
+
+  function filterSelectOptions(select, query) {
+    const q = String(query || "").trim().toLowerCase();
+    const opts = [...select.options];
+    if (!q) return opts;
+    // While searching, only show real matches — keep "All …" for the empty query.
+    return opts.filter((o) => o.value && o.textContent.toLowerCase().includes(q));
+  }
+
+  function upgradeSearchableSelect(select, { emptyLabel = "All", title = "" } = {}) {
     if (!select || select.dataset.combo === "1") return;
     select.dataset.combo = "1";
     const wrap = document.createElement("div");
@@ -2921,6 +3227,10 @@ body.is-filtering #periodSummary {
     select.classList.add("combo-native");
     select.tabIndex = -1;
 
+    const pickerTitle =
+      title ||
+      (select.getAttribute("aria-label") || emptyLabel).replace(/^Filter by\s+/i, "");
+
     const input = document.createElement("input");
     input.type = "search";
     input.className = "combo-input";
@@ -2929,6 +3239,7 @@ body.is-filtering #periodSummary {
     input.setAttribute("aria-expanded", "false");
     input.autocomplete = "off";
     input.spellcheck = false;
+    input.readOnly = false;
     const listId = `${select.id}-list`;
     input.id = `${select.id}Input`;
     input.setAttribute("aria-controls", listId);
@@ -2960,7 +3271,7 @@ body.is-filtering #periodSummary {
       highlight = -1;
     };
 
-    const close = () => {
+    const closeDesktop = () => {
       list.hidden = true;
       input.setAttribute("aria-expanded", "false");
       highlight = -1;
@@ -2975,30 +3286,19 @@ body.is-filtering #periodSummary {
       active?.scrollIntoView({ block: "nearest" });
     };
 
-    const renderList = (query) => {
-      const q = String(query || "").trim().toLowerCase();
-      const opts = [...select.options];
-      const allOpt = opts.find((o) => !o.value);
-      let matches = opts.filter((o) => {
-        if (!o.value) return !q;
-        return !q || o.textContent.toLowerCase().includes(q);
-      });
-      if (q && allOpt) {
-        matches = [allOpt, ...matches.filter((o) => o.value)];
-      } else if (!q) {
-        matches = opts;
-      }
-      filtered = matches;
-      highlight = matches.length ? 0 : -1;
-      list.innerHTML = matches.length
-        ? matches
+    const renderDesktopList = (query) => {
+      filtered = filterSelectOptions(select, query);
+      highlight = filtered.length ? 0 : -1;
+      list.innerHTML = filtered.length
+        ? filtered
             .map((o, i) => {
               const selected = o.value === select.value;
+              const label = o.value ? o.textContent : emptyLabel;
               return `<li role="option" class="combo-option${selected ? " is-selected" : ""}${
                 i === highlight ? " is-active" : ""
               }" data-value="${escapeHtml(o.value)}" data-i="${i}" aria-selected="${
                 selected ? "true" : "false"
-              }">${escapeHtml(o.textContent)}</li>`;
+              }">${escapeHtml(label)}</li>`;
             })
             .join("")
         : `<li class="combo-empty">No matches</li>`;
@@ -3006,7 +3306,7 @@ body.is-filtering #periodSummary {
       input.setAttribute("aria-expanded", "true");
     };
 
-    const pick = (value) => {
+    const pickDesktop = (value) => {
       const next = String(value ?? "");
       if (select.value !== next) {
         select.value = next;
@@ -3014,18 +3314,49 @@ body.is-filtering #periodSummary {
       } else {
         paintClosed();
       }
-      close();
+      closeDesktop();
       input.blur();
     };
 
-    input.addEventListener("focus", () => {
-      input.value = "";
-      renderList("");
+    const openMobile = () => {
+      closeDesktop();
+      input.setAttribute("aria-expanded", "true");
+      openComboPicker(select, {
+        emptyLabel,
+        title: pickerTitle,
+        originInput: input,
+      });
+    };
+
+    input.addEventListener("pointerdown", (e) => {
+      if (!isCompactFilterUi()) return;
+      // Open the full-screen picker instead of the clipped inline list.
+      e.preventDefault();
+      openMobile();
     });
-    input.addEventListener("input", () => renderList(input.value));
+    input.addEventListener("focus", () => {
+      if (isCompactFilterUi()) {
+        // Keyboard focus (e.g. VoiceOver) — still use the mobile picker.
+        if (!document.body.classList.contains("combo-picker-open")) openMobile();
+        return;
+      }
+      input.value = "";
+      renderDesktopList("");
+    });
+    input.addEventListener("input", () => {
+      if (isCompactFilterUi()) return;
+      renderDesktopList(input.value);
+    });
     input.addEventListener("keydown", (e) => {
+      if (isCompactFilterUi()) {
+        if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+          e.preventDefault();
+          openMobile();
+        }
+        return;
+      }
       if (list.hidden && (e.key === "ArrowDown" || e.key === "Enter")) {
-        renderList(input.value);
+        renderDesktopList(input.value);
         return;
       }
       if (e.key === "ArrowDown") {
@@ -3040,11 +3371,11 @@ body.is-filtering #periodSummary {
         syncHighlight();
       } else if (e.key === "Enter") {
         e.preventDefault();
-        if (highlight >= 0 && filtered[highlight]) pick(filtered[highlight].value);
-        else if (filtered[0]) pick(filtered[0].value);
+        if (highlight >= 0 && filtered[highlight]) pickDesktop(filtered[highlight].value);
+        else if (filtered[0]) pickDesktop(filtered[0].value);
       } else if (e.key === "Escape") {
         e.preventDefault();
-        close();
+        closeDesktop();
         input.blur();
       }
     });
@@ -3052,16 +3383,18 @@ body.is-filtering #periodSummary {
       const li = e.target.closest("[data-value]");
       if (!li) return;
       e.preventDefault();
-      pick(li.getAttribute("data-value"));
+      pickDesktop(li.getAttribute("data-value"));
     });
     input.addEventListener("blur", () => {
+      if (isCompactFilterUi()) return;
       window.setTimeout(() => {
-        if (!wrap.contains(document.activeElement)) close();
+        if (!wrap.contains(document.activeElement)) closeDesktop();
       }, 140);
     });
 
     select._comboPaint = paintClosed;
     select._comboInput = input;
+    select._comboOpenMobile = openMobile;
     paintClosed();
   }
 
@@ -3110,6 +3443,7 @@ body.is-filtering #periodSummary {
   function setFilterSheetOpen(open) {
     const mobile = window.matchMedia("(max-width: 860px)").matches;
     const on = !!open && mobile;
+    if (!on) closeComboPicker(false);
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
     const backdrop = $("#filterSheetBackdrop");
@@ -3728,11 +4062,17 @@ body.is-filtering #periodSummary {
 
   function baseChartOptions(extra = {}) {
     const chrome = chartChrome();
+    const compact = isCompactFilterUi();
     return {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
       interaction: { mode: "index", intersect: false },
+      layout: {
+        padding: compact
+          ? { top: 4, right: 6, bottom: 2, left: 2 }
+          : { top: 0, right: 0, bottom: 0, left: 0 },
+      },
       plugins: {
         legend: {
           labels: {
@@ -3749,12 +4089,17 @@ body.is-filtering #periodSummary {
       },
       scales: {
         x: {
-          ticks: { color: chrome.muted, maxRotation: 0, autoSkipPadding: 12 },
+          ticks: {
+            color: chrome.muted,
+            maxRotation: 0,
+            autoSkipPadding: 12,
+            padding: compact ? 4 : 0,
+          },
           grid: { color: chrome.grid },
         },
         y: {
           beginAtZero: true,
-          ticks: { color: chrome.muted },
+          ticks: { color: chrome.muted, padding: compact ? 4 : 0 },
           grid: { color: chrome.grid },
         },
       },
@@ -5291,9 +5636,12 @@ body.is-filtering #periodSummary {
       }, 260);
     });
 
-    upgradeSearchableSelect($("#periodPodcast"), { emptyLabel: "All shows" });
-    upgradeSearchableSelect($("#periodCountry"), { emptyLabel: "All countries" });
-    upgradeSearchableSelect($("#periodTheme"), { emptyLabel: "All themes" });
+    upgradeSearchableSelect($("#periodPodcast"), { emptyLabel: "All shows", title: "Shows" });
+    upgradeSearchableSelect($("#periodCountry"), {
+      emptyLabel: "All countries",
+      title: "Country",
+    });
+    upgradeSearchableSelect($("#periodTheme"), { emptyLabel: "All themes", title: "Theme" });
     refreshSearchableSelects();
 
     const clearAllFilters = () => {
@@ -5322,11 +5670,23 @@ body.is-filtering #periodSummary {
       clearAllFilters();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && document.body.classList.contains("filter-sheet-open")) {
+      if (e.key !== "Escape") return;
+      if (document.body.classList.contains("combo-picker-open")) {
+        e.preventDefault();
+        closeComboPicker(false);
+        return;
+      }
+      if (document.body.classList.contains("filter-sheet-open")) {
         setFilterSheetOpen(false);
       }
     });
+    const onViewport = () => {
+      if (document.body.classList.contains("combo-picker-open")) syncVisualViewportVars();
+    };
+    window.visualViewport?.addEventListener("resize", onViewport);
+    window.visualViewport?.addEventListener("scroll", onViewport);
     window.matchMedia("(max-width: 860px)").addEventListener("change", (e) => {
+      closeComboPicker(false);
       if (!e.matches) setFilterSheetOpen(false);
       else placeFilterPanel(false);
     });
