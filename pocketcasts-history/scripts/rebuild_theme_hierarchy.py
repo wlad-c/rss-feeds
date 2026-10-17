@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
-"""Rebuild themes.json + episode-themes.json with parent → child hierarchy.
+"""Rebuild themes.json + episode-themes.json with orthogonal place × topic facets.
 
-Parents are broad listening themes. Children are content-derived subtopics
-matched against episode titles plus show notes / transcript snippets when present.
+Design (confirmed):
+  1A — Place parents and topic parents are separate. Episodes can carry both.
+  2  — Place facets for major regions/countries in the listening library.
+  3B — Ambiguous language-global keywords (e.g. eleições, election, congresso)
+       attach to the *topic* facet only. A *place* tag is added only when a
+       clear geo cue also appears (title / show / safe folder / body).
+
+Place children are actors & institutions of that place (Lula, Bolsonaro, Trump),
+never generic topics like “elections”.
 """
 
 from __future__ import annotations
@@ -15,109 +22,108 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TABLES = ROOT / "tables"
 
-# Parent themes with content-based children. Parent patterns catch the broad set;
-# child patterns carve specific subtopics. An episode gets the parent if any child
-# matches or if parent patterns match.
-PARENTS: list[dict] = [
+# ---------------------------------------------------------------------------
+# PLACE FACET — geo-gated. Parent fires only when geo patterns match.
+# ---------------------------------------------------------------------------
+PLACE_PARENTS: list[dict] = [
     {
-        "id": "us-politics",
-        "name": "US politics & elections",
-        "blurb": "White House, Congress, midterms, parties, and US domestic politics.",
+        "id": "place-us",
+        "name": "United States",
+        "facet": "place",
+        "blurb": "US domestic politics, institutions, and actors.",
         "patterns": [
-            r"\btrump\b", r"\bbiden\b", r"\bkamala\b", r"\bharris\b", r"\bmaga\b",
-            r"\bcongress\b", r"\bsenate\b", r"\bwhite house\b", r"\bmidterm",
-            r"\bdemocrat", r"\brepublican", r"\bgop\b", r"\belection day\b",
-            r"\bsupreme court\b", r"\bscotus\b", r"\bimpeach", r"\bfbi\b",
-            r"\bice\b", r"\bmamdani\b", r"\bobama\b", r"\bhegseth\b",
+            r"\bunited states\b", r"\bu\.s\.a\.\b", r"\bu\.s\.\b",
+            r"\bamerican\b", r"\bwashington\b", r"\bwhite house\b",
+            r"\btrump\b", r"\bbiden\b", r"\bkamala\b", r"\bharris\b", r"\bobama\b",
+            r"\bmaga\b", r"\bscotus\b", r"\bsupreme court\b", r"\bcapitol\b",
+            r"\bcapit[oó]lio\b", r"\bfbi\b", r"\bpentagon\b",
+            r"\bhegseth\b", r"\bvance\b", r"\bmamdani\b",
         ],
         "children": [
             {
                 "id": "us-trump-maga",
                 "name": "Trump & MAGA",
                 "blurb": "Trump, MAGA politics, and allied figures.",
-                "patterns": [r"\btrump\b", r"\bmaga\b", r"\bhegseth\b", r"\btucker carlson\b"],
-            },
-            {
-                "id": "us-elections-midterms",
-                "name": "Elections & midterms",
-                "blurb": "Midterms, polls, campaigns, and election races.",
-                "patterns": [r"\bmidterm", r"\bpoll\b", r"\bcampaign", r"\bblue wave\b", r"\belection"],
-            },
-            {
-                "id": "us-congress-courts",
-                "name": "Congress, courts & SCOTUS",
-                "blurb": "Congress, Senate, Supreme Court, and legal fights.",
-                "patterns": [r"\bcongress\b", r"\bsenate\b", r"\bscotus\b", r"\bsupreme court\b", r"\bimpeach"],
-            },
-            {
-                "id": "us-immigration-ice",
-                "name": "Immigration & ICE",
-                "blurb": "Borders, ICE, deportation, and immigration politics.",
-                "patterns": [r"\bice\b", r"\bdeport", r"\bimmigration\b", r"\bborder\b", r"\basylum\b"],
+                "patterns": [r"\btrump\b", r"\bmaga\b", r"\bhegseth\b", r"\bvance\b", r"\btucker carlson\b"],
             },
             {
                 "id": "us-democrats-left",
                 "name": "Democrats & the left",
-                "blurb": "Biden, Harris, Democrats, and progressive politics.",
+                "blurb": "Biden, Harris, Democrats, and progressive US politics.",
                 "patterns": [r"\bbiden\b", r"\bharris\b", r"\bkamala\b", r"\bdemocrat", r"\bmamdani\b", r"\bobama\b"],
             },
             {
-                "id": "us-media-culture-war",
-                "name": "Media & culture wars",
-                "blurb": "Press fights, free speech, and culture-war flashpoints.",
-                "patterns": [r"\bmedia ban\b", r"\bpress corps\b", r"\bfake news\b", r"\bcultur"],
+                "id": "us-institutions",
+                "name": "Congress, courts & agencies",
+                "blurb": "US Congress, SCOTUS, FBI, and federal agencies.",
+                "patterns": [
+                    r"\bcongress\b", r"\bsenate\b", r"\bscotus\b", r"\bsupreme court\b",
+                    r"\bfbi\b", r"\bpentagon\b", r"\bwhite house\b", r"\bimpeach",
+                ],
+            },
+            {
+                "id": "us-immigration-ice",
+                "name": "ICE & US borders",
+                "blurb": "US immigration enforcement and ICE.",
+                "patterns": [r"\bice\b", r"\bdeport", r"\bborder patrol\b"],
             },
         ],
     },
     {
-        "id": "brazil-politics",
-        "name": "Brazil politics & elections",
-        "blurb": "Lula, Bolsonaro, TSE, Congresso, eleições e política doméstica.",
+        "id": "place-brazil",
+        "name": "Brazil",
+        "facet": "place",
+        "blurb": "Brazilian politics, institutions, and actors.",
         "patterns": [
-            r"\blula\b", r"\bbolsonar", r"\bplanalto\b", r"\btse\b", r"\bstf\b",
-            r"\beleiç", r"\beleic", r"\bdatafolha\b", r"\bbrasil\b", r"\bmoraes\b",
+            r"\bbrasil\b", r"\bbrazil\b", r"\bbrasileir", r"\blula\b",
+            r"\bbolsonar", r"\bplanalto\b", r"\btse\b", r"\bstf\b",
+            r"\bdatafolha\b", r"\bmoraes\b", r"\bxand[aã]o\b",
+            r"\bantipetismo\b", r"\bpetismo\b", r"\bplanalto\b",
+            r"\bpol[ií]tica externa brasileira\b", r"\bcongresso nacional\b",
+            r"\bc[aâ]mara dos deputados\b", r"\bsenado federal\b",
+            r"\bs[aã]o paulo\b", r"\brio de janeiro\b", r"\bbras[ií]lia\b",
         ],
         "children": [
             {
                 "id": "br-lula-pt",
                 "name": "Lula & PT",
-                "blurb": "Lula, PT, and allied campaign messaging.",
-                "patterns": [r"\blula\b", r"\bantipetismo\b", r"\bpt\b"],
+                "blurb": "Lula, PT, and allied Brazilian campaign messaging.",
+                "patterns": [r"\blula\b", r"\bantipetismo\b", r"\bpetismo\b", r"(?<![a-z])pt(?![a-z])"],
             },
             {
                 "id": "br-bolsonaro",
                 "name": "Bolsonaro family",
                 "blurb": "Bolsonaro, Flávio, and bolsonarista politics.",
-                "patterns": [r"\bbolsonar", r"\bflavio\b", r"\bflávio\b", r"\bantibolsonar"],
-            },
-            {
-                "id": "br-elections-polls",
-                "name": "Elections & polls",
-                "blurb": "Turnos, Datafolha, and campaign horse-race coverage.",
-                "patterns": [r"\beleiç", r"\beleic", r"\bturno\b", r"\bdatafolha\b", r"\bvotos?\b"],
+                "patterns": [r"\bbolsonar", r"\bfl[aá]vio bolsonar", r"\bantibolsonar"],
             },
             {
                 "id": "br-courts-tse-stf",
-                "name": "TSE, STF & courts",
-                "blurb": "Electoral court, Supremo, and judicial politics.",
-                "patterns": [r"\btse\b", r"\bstf\b", r"\bmoraes\b", r"\bxandão\b", r"\bjudici"],
+                "name": "TSE, STF & Brazilian courts",
+                "blurb": "Electoral court, Supremo, and Brazilian judicial politics.",
+                "patterns": [r"\btse\b", r"\bstf\b", r"\bmoraes\b", r"\bxand[aã]o\b"],
             },
             {
-                "id": "br-congress-budget",
-                "name": "Congress & budget",
-                "blurb": "Congresso, Orçamento, and legislative fights.",
-                "patterns": [r"\bcongresso\b", r"\bor[cç]amento\b", r"\bc[aâ]mara\b", r"\bsenado\b"],
+                "id": "br-congress",
+                "name": "Congresso & Orçamento",
+                "blurb": "Brazilian legislature and budget politics.",
+                "patterns": [
+                    r"\bcongresso nacional\b", r"\bc[aâ]mara dos deputados\b",
+                    r"\bsenado federal\b", r"\bor[cç]amento\b",
+                ],
             },
         ],
     },
     {
-        "id": "australia-politics",
-        "name": "Australian politics",
-        "blurb": "Albanese, Coalition, Labor, Parliament House, and domestic policy.",
+        "id": "place-australia",
+        "name": "Australia",
+        "facet": "place",
+        "blurb": "Australian politics, parties, and institutions.",
         "patterns": [
-            r"\balbanese\b", r"\balbo\b", r"\bcoalition\b", r"\blabor\b", r"\blabour\b",
-            r"\bdutton\b", r"\bcanberra\b", r"\bgreens\b", r"\bone nation\b",
-            r"\baustralia\b", r"\baustralian\b",
+            r"\baustralia\b", r"\baustralian\b", r"\bcanberra\b",
+            r"\balbanese\b", r"\balbo\b", r"\bdutton\b", r"\bone nation\b",
+            r"\bparliament house\b", r"\bnacc\b", r"\brobodebt\b",
+            r"\brba\b", r"\babc news\b", r"\bpolitics now\b",
+            r"\baustralian politics\b",
         ],
         "children": [
             {
@@ -136,79 +142,116 @@ PARENTS: list[dict] = [
                 "id": "au-greens",
                 "name": "Greens & crossbench",
                 "blurb": "Greens strategy and crossbench politics.",
-                "patterns": [r"\bgreens\b", r"\bcrossbench\b", r"\bindependent"],
-            },
-            {
-                "id": "au-migration",
-                "name": "Migration politics",
-                "blurb": "Immigration policy and political contests over migration.",
-                "patterns": [r"\bmigration\b", r"\bimmigration\b", r"\bvisa\b", r"\basylum\b"],
+                "patterns": [r"\bgreens\b", r"\bcrossbench\b"],
             },
             {
                 "id": "au-accountability",
-                "name": "Robodebt & accountability",
-                "blurb": "Robodebt and integrity / accountability stories.",
-                "patterns": [r"\brobodebt\b", r"\bnacc\b", r"\bintegrity\b"],
+                "name": "Robodebt & integrity",
+                "blurb": "Robodebt, NACC, and integrity stories.",
+                "patterns": [r"\brobodebt\b", r"\bnacc\b", r"\bintegrity commission\b"],
             },
         ],
     },
     {
-        "id": "ukraine-russia",
-        "name": "Ukraine & Russia",
-        "blurb": "War, diplomacy, sanctions, and Moscow–Kyiv dynamics.",
+        "id": "place-europe",
+        "name": "Europe",
+        "facet": "place",
+        "blurb": "European governments, EU politics, and continental crises.",
         "patterns": [
-            r"\bukraine\b", r"\bukrainian\b", r"\brussia\b", r"\brussian\b",
-            r"\bputin\b", r"\bzelensky", r"\bkyiv\b", r"\bnato\b",
-            r"\búcr[aá]nia\b", r"\br[uú]ssia\b",
+            r"\beurope\b", r"\beuropean\b", r"\beuropean union\b", r"\beu parliament\b",
+            r"\bfran[cç]a\b", r"\bfrance\b", r"\bgermany\b", r"\balemanha\b",
+            r"\bbritain\b", r"\bbrexit\b", r"\bunited kingdom\b", r"\bmacron\b",
+            r"\bscholz\b", r"\bstarmer\b", r"\bafd\b", r"\bitalia\b", r"\bitaly\b",
+            r"\bspain\b", r"\bespanha\b", r"\bceuta\b", r"\bhungria\b", r"\bhungary\b",
+            r"\bpol[oô]nia\b", r"\bpoland\b", r"\bnepal\b",  # keep nepal out - mistake
         ],
         "children": [
             {
-                "id": "ua-war-fighting",
-                "name": "War & battlefield",
-                "blurb": "Fighting, drones, offensives, and military developments.",
-                "patterns": [r"\bdrone\b", r"\boffensive\b", r"\bbattle", r"\bmissile\b", r"\brefiner"],
+                "id": "eu-western",
+                "name": "Western Europe",
+                "blurb": "France, Germany, UK, Italy, Spain, and neighbours.",
+                "patterns": [
+                    r"\bfran[cç]a\b", r"\bfrance\b", r"\bgermany\b", r"\balemanha\b",
+                    r"\bbritain\b", r"\bbrexit\b", r"\bmacron\b", r"\bscholz\b",
+                    r"\bstarmer\b", r"\bitalia\b", r"\bitaly\b", r"\bspain\b",
+                    r"\bespanha\b", r"\bunited kingdom\b", r"\bceuta\b",
+                ],
             },
             {
-                "id": "ua-diplomacy-peace",
-                "name": "Diplomacy & peace talks",
-                "blurb": "Negotiations, ceasefires, and diplomatic pressure.",
-                "patterns": [r"\bpeace\b", r"\bceasefire\b", r"\bnegotiat", r"\bdeal\b", r"\bdiplom"],
-            },
-            {
-                "id": "ua-putin-moscow",
-                "name": "Putin & Moscow",
-                "blurb": "Putin, Kremlin, and Russian strategy.",
-                "patterns": [r"\bputin\b", r"\bkremlin\b", r"\bmoscow\b", r"\brussia"],
-            },
-            {
-                "id": "ua-zelensky-kyiv",
-                "name": "Zelenskyy & Kyiv",
-                "blurb": "Zelenskyy, Ukrainian politics, and Kyiv's position.",
-                "patterns": [r"\bzelensky", r"\bkyiv\b", r"\bukrain"],
-            },
-            {
-                "id": "ua-nato-west",
-                "name": "NATO & Western support",
-                "blurb": "NATO, sanctions, and Western military aid.",
-                "patterns": [r"\bnato\b", r"\bsanction", r"\bweapons?\b", r"\baid\b"],
+                "id": "eu-institutions-farright",
+                "name": "EU & far right",
+                "blurb": "European Union politics and far-right parties.",
+                "patterns": [
+                    r"\beuropean union\b", r"\beu parliament\b", r"\bafd\b",
+                    r"\bfar.?right\b", r"\bextrema-?direita\b", r"\bhungria\b", r"\bhungary\b",
+                ],
             },
         ],
     },
     {
-        "id": "middle-east",
+        "id": "place-china-indo-pacific",
+        "name": "China & Indo-Pacific",
+        "facet": "place",
+        "blurb": "China, Taiwan, ASEAN, AUKUS, and regional security.",
+        "patterns": [
+            r"\bchina\b", r"\bchinese\b", r"\bbeijing\b", r"\bxi jinping\b",
+            r"\btaiwan\b", r"\baukus\b", r"\bquad\b", r"\basean\b",
+            r"\bsingapore\b", r"\bindo-?pacific\b", r"\bnorth korea\b",
+            r"\bmalaysia\b", r"\bphilippines\b", r"\bvietnam\b", r"\bjapan\b",
+        ],
+        "children": [
+            {
+                "id": "cip-china-beijing",
+                "name": "China & Beijing",
+                "blurb": "China domestic politics and Beijing's foreign policy.",
+                "patterns": [r"\bchina\b", r"\bchinese\b", r"\bbeijing\b", r"\bxi jinping\b"],
+            },
+            {
+                "id": "cip-taiwan",
+                "name": "Taiwan",
+                "blurb": "Taiwan Strait and cross-strait tensions.",
+                "patterns": [r"\btaiwan\b"],
+            },
+            {
+                "id": "cip-aukus-alliances",
+                "name": "AUKUS & alliances",
+                "blurb": "AUKUS, Quad, and Indo-Pacific alliance politics.",
+                "patterns": [r"\baukus\b", r"\bquad\b"],
+            },
+            {
+                "id": "cip-asean-sea",
+                "name": "ASEAN & Southeast Asia",
+                "blurb": "ASEAN states and Southeast Asian geopolitics.",
+                "patterns": [
+                    r"\basean\b", r"\bsingapore\b", r"\bmalaysia\b",
+                    r"\bindonesia\b", r"\bphilippines\b", r"\bvietnam\b",
+                ],
+            },
+            {
+                "id": "cip-korea-japan",
+                "name": "Korea & Japan",
+                "blurb": "Korean peninsula and Japan security issues.",
+                "patterns": [r"\bnorth korea\b", r"\bsouth korea\b", r"\bkorea\b", r"\bjapan\b", r"\bkim jong\b"],
+            },
+        ],
+    },
+    {
+        "id": "place-middle-east",
         "name": "Middle East",
+        "facet": "place",
         "blurb": "Israel, Gaza, Iran, Gulf states, and regional diplomacy.",
         "patterns": [
             r"\bisrael\b", r"\bisraeli\b", r"\bgaza\b", r"\bhamas\b", r"\bhezbollah\b",
             r"\biran\b", r"\biranian\b", r"\btehran\b", r"\bsaudi\b", r"\bhouthi",
-            r"\bnetanyahu\b", r"\bpalestin", r"\bir[aã]n\b",
+            r"\bnetanyahu\b", r"\bpalestin", r"\bir[aã]n\b", r"\blebanon\b",
+            r"\byemen\b", r"\bqatar\b", r"\boccupied palestine\b",
         ],
         "children": [
             {
                 "id": "me-israel-gaza",
                 "name": "Israel–Gaza",
                 "blurb": "Israel, Gaza, Hamas, and the war's aftermath.",
-                "patterns": [r"\bgaza\b", r"\bhamas\b", r"\bisrael", r"\bnetanyahu\b", r"\boctober 7\b"],
+                "patterns": [r"\bgaza\b", r"\bhamas\b", r"\bisrael", r"\bnetanyahu\b", r"\boctober 7\b", r"\bpalestin"],
             },
             {
                 "id": "me-iran",
@@ -231,54 +274,254 @@ PARENTS: list[dict] = [
         ],
     },
     {
-        "id": "china-indo-pacific",
-        "name": "China & Indo-Pacific",
-        "blurb": "China, Taiwan, ASEAN, AUKUS, and regional security.",
+        "id": "place-ukraine-russia",
+        "name": "Ukraine & Russia",
+        "facet": "place",
+        "blurb": "War, diplomacy, and Moscow–Kyiv dynamics.",
         "patterns": [
-            r"\bchina\b", r"\bchinese\b", r"\bbeijing\b", r"\bxi jinping\b",
-            r"\btaiwan\b", r"\baukus\b", r"\bquad\b", r"\basean\b",
-            r"\bsingapore\b", r"\bindo-?pacific\b", r"\bnorth korea\b",
+            r"\bukraine\b", r"\bukrainian\b", r"\brussia\b", r"\brussian\b",
+            r"\bputin\b", r"\bzelensky", r"\bkyiv\b", r"\bkremlin\b", r"\bmoscow\b",
+            r"\búcr[aá]nia\b", r"\br[uú]ssia\b",
         ],
         "children": [
             {
-                "id": "cip-china-beijing",
-                "name": "China & Beijing",
-                "blurb": "China domestic politics and Beijing's foreign policy.",
-                "patterns": [r"\bchina\b", r"\bchinese\b", r"\bbeijing\b", r"\bxi jinping\b"],
+                "id": "ua-war-fighting",
+                "name": "War & battlefield",
+                "blurb": "Fighting, drones, offensives, and military developments.",
+                "patterns": [r"\bdrone\b", r"\boffensive\b", r"\bbattle", r"\bmissile\b", r"\brefiner"],
             },
             {
-                "id": "cip-taiwan",
-                "name": "Taiwan",
-                "blurb": "Taiwan Strait and cross-strait tensions.",
-                "patterns": [r"\btaiwan\b"],
+                "id": "ua-putin-moscow",
+                "name": "Putin & Moscow",
+                "blurb": "Putin, Kremlin, and Russian strategy.",
+                "patterns": [r"\bputin\b", r"\bkremlin\b", r"\bmoscow\b"],
             },
             {
-                "id": "cip-aukus-alliances",
-                "name": "AUKUS & alliances",
-                "blurb": "AUKUS, Quad, and Indo-Pacific alliance politics.",
-                "patterns": [r"\baukus\b", r"\bquad\b", r"\balliance"],
+                "id": "ua-zelensky-kyiv",
+                "name": "Zelenskyy & Kyiv",
+                "blurb": "Zelenskyy, Ukrainian politics, and Kyiv's position.",
+                "patterns": [r"\bzelensky", r"\bkyiv\b"],
             },
             {
-                "id": "cip-asean-sea",
-                "name": "ASEAN & Southeast Asia",
-                "blurb": "ASEAN states and Southeast Asian geopolitics.",
-                "patterns": [r"\basean\b", r"\bsingapore\b", r"\bmalaysia\b", r"\bindonesia\b", r"\bphilippines\b", r"\bvietnam\b"],
-            },
-            {
-                "id": "cip-korea-japan",
-                "name": "Korea & Japan",
-                "blurb": "Korean peninsula and Japan security issues.",
-                "patterns": [r"\bnorth korea\b", r"\bkorea\b", r"\bjapan\b", r"\bkim jong\b"],
+                "id": "ua-nato-west",
+                "name": "NATO & Western support",
+                "blurb": "NATO, sanctions, and Western military aid.",
+                "patterns": [r"\bnato\b", r"\bsanction"],
             },
         ],
     },
     {
-        "id": "defence-security",
-        "name": "Defence & national security",
+        "id": "place-latin-america",
+        "name": "Latin America & Caribbean",
+        "facet": "place",
+        "blurb": "Venezuela, Mexico, Argentina, Colombia, and the region beyond Brazil.",
+        "patterns": [
+            r"\bvenezuela\b", r"\bmaduro\b", r"\bm[eé]xico\b", r"\bmexico\b",
+            r"\bargentina\b", r"\bcol[oô]mbia\b", r"\bchile\b", r"\bper[uú]\b",
+            r"\bcuba\b", r"\bhaiti\b", r"\blatin america\b", r"\bam[eé]rica latina\b",
+            r"\bbukele\b", r"\bel salvador\b", r"\bbol[ií]via\b", r"\bhonduras\b",
+            r"\bam[eé]rica latina\b",
+        ],
+        "children": [
+            {
+                "id": "latam-venezuela",
+                "name": "Venezuela",
+                "blurb": "Venezuela, Maduro, and related crises.",
+                "patterns": [r"\bvenezuela\b", r"\bmaduro\b"],
+            },
+            {
+                "id": "latam-southern-cone",
+                "name": "Southern Cone & Andes",
+                "blurb": "Argentina, Chile, Peru, Colombia, Bolivia.",
+                "patterns": [r"\bargentina\b", r"\bchile\b", r"\bper[uú]\b", r"\bcol[oô]mbia\b", r"\bbol[ií]via\b"],
+            },
+            {
+                "id": "latam-mexico-central",
+                "name": "Mexico & Central America",
+                "blurb": "Mexico, El Salvador, Honduras, and Central America.",
+                "patterns": [
+                    r"\bm[eé]xico\b", r"\bmexico\b", r"\bbukele\b", r"\bel salvador\b",
+                    r"\bcuba\b", r"\bhaiti\b", r"\bhonduras\b",
+                ],
+            },
+        ],
+    },
+    {
+        "id": "place-africa",
+        "name": "Africa",
+        "facet": "place",
+        "blurb": "African politics, conflict, and regional diplomacy.",
+        "patterns": [
+            r"\bafrica\b", r"\bafrican\b", r"\bnigeria\b", r"\bsouth africa\b",
+            r"\bethiopia\b", r"\bsudan\b", r"\bsahel\b", r"\bmali\b",
+            r"\bniger\b", r"\brwanda\b", r"\bcongo\b", r"\bkeny",
+        ],
+        "children": [
+            {
+                "id": "af-west-sahel",
+                "name": "West Africa & Sahel",
+                "blurb": "Sahel, coups, and West African politics.",
+                "patterns": [r"\bsahel\b", r"\bmali\b", r"\bniger\b", r"\bnigeria\b"],
+            },
+            {
+                "id": "af-broader",
+                "name": "Southern & East Africa",
+                "blurb": "South Africa, Horn of Africa, and East Africa.",
+                "patterns": [r"\bsouth africa\b", r"\bethiopia\b", r"\bsudan\b", r"\brwanda\b", r"\bcongo\b", r"\bkeny"],
+            },
+        ],
+    },
+    {
+        "id": "place-south-asia",
+        "name": "India & South Asia",
+        "facet": "place",
+        "blurb": "India, Pakistan, Bangladesh, and South Asian politics.",
+        "patterns": [
+            r"\bindia\b", r"\bindian\b", r"\bmodi\b", r"\bpakistan\b",
+            r"\bbangladesh\b", r"\bsri lanka\b", r"\bsouth asia\b", r"\bnepal\b",
+            r"\barm[eê]nia\b", r"\barmenia\b",  # keep armenia under... actually Caucasus - skip
+        ],
+        "children": [
+            {
+                "id": "sa-india",
+                "name": "India",
+                "blurb": "Indian politics, Modi, and domestic debates.",
+                "patterns": [r"\bindia\b", r"\bindian\b", r"\bmodi\b"],
+            },
+            {
+                "id": "sa-neighbours",
+                "name": "Pakistan & neighbours",
+                "blurb": "Pakistan, Bangladesh, Sri Lanka, Nepal.",
+                "patterns": [r"\bpakistan\b", r"\bbangladesh\b", r"\bsri lanka\b", r"\bnepal\b"],
+            },
+        ],
+    },
+]
+
+# Fix accidental nepal in Europe patterns - remove it
+for _p in PLACE_PARENTS:
+    if _p["id"] == "place-europe":
+        _p["patterns"] = [p for p in _p["patterns"] if "nepal" not in p]
+    if _p["id"] == "place-south-asia":
+        _p["patterns"] = [p for p in _p["patterns"] if "arm" not in p.lower() or "armenia" in p or "armênia" in p or "arménia" in p]
+        # remove armenia from south asia - wrong region
+        _p["patterns"] = [p for p in _p["patterns"] if "armen" not in p.lower() and "armên" not in p.lower()]
+
+# ---------------------------------------------------------------------------
+# TOPIC FACET — content themes. Ambiguous keywords live HERE, not under place.
+# ---------------------------------------------------------------------------
+TOPIC_PARENTS: list[dict] = [
+    {
+        "id": "topic-elections",
+        "name": "Elections & democracy",
+        "facet": "topic",
+        "blurb": "Elections, polls, campaigns, and democratic contests — any country.",
+        "patterns": [
+            r"\belection", r"\bmidterm", r"\belei[cç]", r"\bpoll\b", r"\bcampaign",
+            r"\bblue wave\b", r"\bturno\b", r"\bvoto\b", r"\bvoting\b", r"\bvotes?\b",
+            r"\bballot\b", r"\bprimar(y|ies)\b", r"\breferend", r"\bplebiscito\b",
+            r"\bdemocrac",
+        ],
+        "children": [
+            {
+                "id": "elec-polls-campaigns",
+                "name": "Polls & campaigns",
+                "blurb": "Horse-race coverage, polls, and campaign strategy.",
+                "patterns": [r"\bpoll\b", r"\bcampaign", r"\bdatafolha\b", r"\bblue wave\b", r"\bturno\b"],
+            },
+            {
+                "id": "elec-voting-rights",
+                "name": "Voting & ballots",
+                "blurb": "Voting mechanics, ballots, and electoral participation.",
+                "patterns": [r"\bvoto\b", r"\bvoting\b", r"\bvotes?\b", r"\bballot\b", r"\babsten"],
+            },
+            {
+                "id": "elec-contests",
+                "name": "Election contests",
+                "blurb": "Named elections, midterms, and runoff contests.",
+                "patterns": [r"\belection", r"\bmidterm", r"\belei[cç]", r"\bprimar(y|ies)\b", r"\breferend"],
+            },
+        ],
+    },
+    {
+        "id": "topic-institutions",
+        "name": "Institutions & governance",
+        "facet": "topic",
+        "blurb": "Legislatures, courts, budgets, and state power — not tied to one country.",
+        "patterns": [
+            r"\bcongresso\b", r"\bparliament\b", r"\blegislat", r"\bjudici",
+            r"\bgovernment\b", r"\bgoverno\b", r"\bbudget\b", r"\bor[cç]amento\b",
+            r"\bfiscal\b", r"\bimpeach", r"\bcabinet\b",
+        ],
+        "children": [
+            {
+                "id": "inst-legislature",
+                "name": "Legislatures",
+                "blurb": "Parliaments, congresses, and law-making.",
+                "patterns": [r"\bcongresso\b", r"\bparliament\b", r"\blegislat", r"\bc[aâ]mara\b", r"\bsenado\b"],
+            },
+            {
+                "id": "inst-courts",
+                "name": "Courts & judiciary",
+                "blurb": "Courts and judicial power as governance.",
+                "patterns": [r"\bjudici", r"\bcourt\b", r"\btribunal\b"],
+            },
+            {
+                "id": "inst-budget",
+                "name": "Budgets & fiscal policy",
+                "blurb": "Budgets, spending, and fiscal politics.",
+                "patterns": [r"\bbudget\b", r"\bfiscal\b", r"\bor[cç]amento\b", r"\bsubsidy\b"],
+            },
+        ],
+    },
+    {
+        "id": "topic-economy",
+        "name": "Economy & markets",
+        "facet": "topic",
+        "blurb": "Inflation, rates, trade, markets, housing, and business.",
+        "patterns": [
+            r"\beconomy\b", r"\beconomic\b", r"\binflation\b", r"\binfla[cç][aã]o\b",
+            r"\binterest rate", r"\brecession\b", r"\btariff", r"\beconomia\b",
+            r"\bmercado\b", r"\bhousing\b", r"\bmortgage\b", r"\bprivate equity\b",
+            r"\bbanking\b", r"\bconsumer debt\b", r"\bbuy now.?pay later\b",
+            r"\bsuperannuation\b", r"\bsuper fund\b",
+        ],
+        "children": [
+            {
+                "id": "econ-inflation-rates",
+                "name": "Inflation & rates",
+                "blurb": "Prices, central banks, and interest rates.",
+                "patterns": [r"\binflation\b", r"\binfla[cç][aã]o\b", r"\binterest rate", r"\bjuro", r"\bfed\b", r"\brba\b"],
+            },
+            {
+                "id": "econ-trade-tariffs",
+                "name": "Trade & tariffs",
+                "blurb": "Trade wars, tariffs, and supply chains.",
+                "patterns": [r"\btariff", r"\btrade war\b", r"\btrade\b"],
+            },
+            {
+                "id": "econ-markets-business",
+                "name": "Markets & business",
+                "blurb": "Markets, stocks, and corporate stories.",
+                "patterns": [r"\bmarket", r"\bstock", r"\bip[eo]\b", r"\bmercado\b", r"\bprivate equity\b", r"\bbanking\b"],
+            },
+            {
+                "id": "econ-housing-debt",
+                "name": "Housing & household debt",
+                "blurb": "Housing markets, mortgages, and consumer debt.",
+                "patterns": [r"\bhousing\b", r"\bmortgage\b", r"\brent\b", r"\bconsumer debt\b", r"\bbuy now.?pay later\b"],
+            },
+        ],
+    },
+    {
+        "id": "topic-defence",
+        "name": "Defence & security",
+        "facet": "topic",
         "blurb": "Military, intelligence, cyber, and strategic policy.",
         "patterns": [
             r"\bdefence\b", r"\bdefense\b", r"\bmilitary\b", r"\bnuclear\b",
             r"\bmissile\b", r"\bcyber\b", r"\bnational security\b", r"\bhack",
+            r"\bnato\b",
         ],
         "children": [
             {
@@ -302,52 +545,9 @@ PARENTS: list[dict] = [
         ],
     },
     {
-        "id": "economy-markets",
-        "name": "Economy & markets",
-        "blurb": "Inflation, rates, trade, budgets, markets, housing, and business.",
-        "patterns": [
-            r"\beconomy\b", r"\beconomic\b", r"\binflation\b", r"\binfla[cç][aã]o\b",
-            r"\binterest rate", r"\brecession\b", r"\btariff", r"\bbudget\b",
-            r"\beconomia\b", r"\bmercado\b", r"\bhousing\b", r"\bmortgage\b",
-            r"\bprivate equity\b", r"\bbanking\b", r"\bconsumer debt\b",
-            r"\bbuy now.?pay later\b", r"\bsuperannuation\b", r"\bsuper fund\b",
-        ],
-        "children": [
-            {
-                "id": "econ-inflation-rates",
-                "name": "Inflation & rates",
-                "blurb": "Prices, central banks, and interest rates.",
-                "patterns": [r"\binflation\b", r"\binfla[cç][aã]o\b", r"\binterest rate", r"\bjuro", r"\bfed\b", r"\brba\b"],
-            },
-            {
-                "id": "econ-trade-tariffs",
-                "name": "Trade & tariffs",
-                "blurb": "Trade wars, tariffs, and supply chains.",
-                "patterns": [r"\btariff", r"\btrade war\b", r"\btrade\b"],
-            },
-            {
-                "id": "econ-markets-business",
-                "name": "Markets & business",
-                "blurb": "Markets, stocks, IPO, and corporate stories.",
-                "patterns": [r"\bmarket", r"\bstock", r"\bip[eo]\b", r"\bmercado\b", r"\bprivate equity\b", r"\bbanking\b"],
-            },
-            {
-                "id": "econ-budget-fiscal",
-                "name": "Budgets & fiscal policy",
-                "blurb": "Budgets, spending, and fiscal politics.",
-                "patterns": [r"\bbudget\b", r"\bfiscal\b", r"\bsubsidy\b", r"\bor[cç]amento\b", r"\bsuperannuation\b"],
-            },
-            {
-                "id": "econ-housing-debt",
-                "name": "Housing & household debt",
-                "blurb": "Housing markets, mortgages, and consumer debt.",
-                "patterns": [r"\bhousing\b", r"\bmortgage\b", r"\brent\b", r"\bconsumer debt\b", r"\bbuy now.?pay later\b"],
-            },
-        ],
-    },
-    {
-        "id": "climate-energy",
+        "id": "topic-climate",
         "name": "Climate & energy",
+        "facet": "topic",
         "blurb": "Climate policy, renewables, fossils, and the energy transition.",
         "patterns": [
             r"\bclimate\b", r"\bemissions?\b", r"\brenewable", r"\bcoal\b",
@@ -375,28 +575,34 @@ PARENTS: list[dict] = [
         ],
     },
     {
-        "id": "ai-tech",
+        "id": "topic-ai-tech",
         "name": "AI & technology",
+        "facet": "topic",
         "blurb": "Artificial intelligence, platforms, and digital policy.",
         "patterns": [
             r"(?<![a-z])ai(?![a-z])", r"\bartificial intelligence\b", r"\bchatgpt\b",
             r"\bopenai\b", r"\btechnology\b", r"\bsocial media\b", r"\btiktok\b",
             r"\bintellig[eê]ncia artificial\b", r"\belon musk\b", r"\btesla\b",
-            r"\bsemiconductor", r"\bchip\b", r"\bmeta\b", r"\bapple\b",
-            r"\bdata centre", r"\bdata center",
+            r"\bsemiconductor", r"\bchip\b", r"\bdata centre", r"\bdata center",
         ],
         "children": [
             {
                 "id": "tech-ai",
                 "name": "Artificial intelligence",
                 "blurb": "AI models, labs, and AI policy.",
-                "patterns": [r"(?<![a-z])ai(?![a-z])", r"\bartificial intelligence\b", r"\bchatgpt\b", r"\bopenai\b", r"\bintellig[eê]ncia artificial\b"],
+                "patterns": [
+                    r"(?<![a-z])ai(?![a-z])", r"\bartificial intelligence\b",
+                    r"\bchatgpt\b", r"\bopenai\b", r"\bintellig[eê]ncia artificial\b",
+                ],
             },
             {
                 "id": "tech-platforms",
                 "name": "Platforms & social media",
                 "blurb": "Big Tech platforms and social media politics.",
-                "patterns": [r"\bsocial media\b", r"\btiktok\b", r"\bgoogle\b", r"\balgorithm", r"\bredes sociais\b", r"\bmeta\b", r"\bfacebook\b"],
+                "patterns": [
+                    r"\bsocial media\b", r"\btiktok\b", r"\bgoogle\b", r"\balgorithm",
+                    r"\bredes sociais\b", r"\bmeta\b", r"\bfacebook\b",
+                ],
             },
             {
                 "id": "tech-hardware-infra",
@@ -407,31 +613,9 @@ PARENTS: list[dict] = [
         ],
     },
     {
-        "id": "migration-borders",
-        "name": "Migration & borders",
-        "blurb": "Immigration, asylum, borders, and demographic politics.",
-        "patterns": [
-            r"\bmigration\b", r"\bimmigration\b", r"\basylum\b", r"\brefugee",
-            r"\bborder\b", r"\bmigrant", r"\bimigra",
-        ],
-        "children": [
-            {
-                "id": "mig-asylum-refugees",
-                "name": "Asylum & refugees",
-                "blurb": "Asylum claims and refugee policy.",
-                "patterns": [r"\basylum\b", r"\brefugee", r"\brefugiad"],
-            },
-            {
-                "id": "mig-borders-deportation",
-                "name": "Borders & deportation",
-                "blurb": "Border enforcement and deportations.",
-                "patterns": [r"\bborder\b", r"\bdeport", r"\bvisa\b"],
-            },
-        ],
-    },
-    {
-        "id": "health-science",
+        "id": "topic-health",
         "name": "Health & science",
+        "facet": "topic",
         "blurb": "Public health, medicine, pandemics, and research.",
         "patterns": [
             r"\bcovid\b", r"\bcoronav[ií]rus\b", r"\bpandemic\b", r"\bpandemia\b",
@@ -453,115 +637,26 @@ PARENTS: list[dict] = [
                 "id": "health-public",
                 "name": "Public health & medicine",
                 "blurb": "Hospitals, disease, and health systems.",
-                "patterns": [r"\bhealth\b", r"\bhospital\b", r"\bcancer\b", r"\bdementia\b", r"\bsa[uú]de\b", r"\babortion\b", r"\babort[eo]\b"],
+                "patterns": [
+                    r"\bhealth\b", r"\bhospital\b", r"\bcancer\b", r"\bdementia\b",
+                    r"\bsa[uú]de\b", r"\babortion\b", r"\babort[eo]\b",
+                ],
             },
         ],
     },
     {
-        "id": "media-democracy",
-        "name": "Media, rights & democracy",
-        "blurb": "Press freedom, disinformation, courts, and democratic norms.",
-        "patterns": [
-            r"\bdemocrac", r"\bdisinfo", r"\bmisinfo", r"\bfake news\b",
-            r"\bcensur", r"\bpress freedom\b", r"\bextrem[ae]",
-        ],
-        "children": [
-            {
-                "id": "dem-disinfo",
-                "name": "Disinformation",
-                "blurb": "Fake news, propaganda, and information warfare.",
-                "patterns": [r"\bdisinfo", r"\bmisinfo", r"\bfake news\b", r"\bnot[ií]cia falsa"],
-            },
-            {
-                "id": "dem-rights-vote",
-                "name": "Rights & voting",
-                "blurb": "Voting rights, abstention, and democratic norms.",
-                "patterns": [r"\bvoto\b", r"\bvoting\b", r"\babsten", r"\bdireitos?\b", r"\bdemocrac"],
-            },
-        ],
-    },
-    {
-        "id": "diplomacy-global",
-        "name": "Diplomacy & global affairs",
-        "blurb": "Summits, alliances, foreign policy, and multilateral forums.",
-        "patterns": [
-            r"\bdiplomacy\b", r"\bforeign policy\b", r"\bunited nations\b",
-            r"\bg20\b", r"\bg7\b", r"\bgeopolitic", r"\bdiplomacia\b",
-        ],
-        "children": [
-            {
-                "id": "dip-summits",
-                "name": "Summits & forums",
-                "blurb": "G20, G7, UN, and multilateral meetings.",
-                "patterns": [r"\bg20\b", r"\bg7\b", r"\bunited nations\b", r"\bsummit\b"],
-            },
-            {
-                "id": "dip-foreign-policy",
-                "name": "Foreign policy",
-                "blurb": "Bilateral diplomacy and foreign-policy strategy.",
-                "patterns": [r"\bforeign policy\b", r"\bdiplomacy\b", r"\bambassador\b", r"\bdiplomacia\b"],
-            },
-        ],
-    },
-    {
-        "id": "crime-justice",
-        "name": "Crime & justice",
-        "blurb": "Courts, policing, corruption, and criminal law.",
-        "patterns": [
-            r"\bcrime\b", r"\bpolice\b", r"\bcorrup", r"\bmurder\b",
-            r"\bviol[eê]ncia\b", r"\bpol[ií]cia\b",
-        ],
-        "children": [
-            {
-                "id": "crime-policing",
-                "name": "Policing & violence",
-                "blurb": "Police, violence, and public safety.",
-                "patterns": [r"\bpolice\b", r"\bmurder\b", r"\bassault\b", r"\bviol[eê]ncia\b", r"\bpol[ií]cia\b"],
-            },
-            {
-                "id": "crime-corruption-courts",
-                "name": "Corruption & courts",
-                "blurb": "Corruption cases, trials, and criminal courts.",
-                "patterns": [r"\bcorrup", r"\btrial\b", r"\bprosecut", r"\bverdict\b"],
-            },
-        ],
-    },
-    {
-        "id": "weather-disasters",
-        "name": "Weather & disasters",
-        "blurb": "Hurricanes, floods, fires, and extreme weather.",
-        "patterns": [
-            r"\bhurricane\b", r"\bflood", r"\bwildfire\b", r"\bearthquake\b",
-            r"\bstorm\b", r"\bcyclone\b", r"\benchente", r"\bel ni[nñ]o\b",
-        ],
-        "children": [
-            {
-                "id": "wx-storms",
-                "name": "Storms & hurricanes",
-                "blurb": "Hurricanes, cyclones, and major storms.",
-                "patterns": [r"\bhurricane\b", r"\bstorm\b", r"\bcyclone\b", r"\btyphoon\b"],
-            },
-            {
-                "id": "wx-flood-fire",
-                "name": "Floods & fires",
-                "blurb": "Flooding and wildfire disasters.",
-                "patterns": [r"\bflood", r"\bwildfire\b", r"\benchente", r"\binc[eê]ndio", r"\bel ni[nñ]o\b"],
-            },
-        ],
-    },
-    {
-        "id": "culture-entertainment",
+        "id": "topic-culture",
         "name": "Culture, film & entertainment",
+        "facet": "topic",
         "blurb": "Movies, TV, books, music, games, and pop culture.",
         "patterns": [
             r"\bmovie\b", r"\bfilm\b", r"\bcinema\b", r"\bfilme\b", r"\bs[eé]ries?\b",
             r"\btv show\b", r"\bnetflix\b", r"\bhbo\b", r"\bgame of thrones\b",
             r"\bstranger things\b", r"\boscar\b", r"\bnerdcast\b", r"\bghibli",
-            r"\banime\b", r"\bmusic\b", r"\bm[uú]sica\b", r"\bpodcast de cine",
-            r"\bcinem[aá]tico\b", r"\bcultura pop\b", r"\bbook review\b",
-            r"\blivro\b", r"\bjoker\b", r"\bcoringa\b", r"\brapaduracast\b",
-            r"\bmilkshake chamado wanda\b", r"\bbraincast\b",
-            r"\bentertaining\b",
+            r"\banime\b", r"\bmusic\b", r"\bm[uú]sica\b", r"\bcinem[aá]tico\b",
+            r"\bcultura pop\b", r"\bbook review\b", r"\blivro\b", r"\bjoker\b",
+            r"\bcoringa\b", r"\brapaduracast\b", r"\bmilkshake chamado wanda\b",
+            r"\bbraincast\b", r"\bentertaining\b",
         ],
         "children": [
             {
@@ -570,10 +665,9 @@ PARENTS: list[dict] = [
                 "blurb": "Movies, series, streaming, and screen culture.",
                 "patterns": [
                     r"\bmovie\b", r"\bfilm\b", r"\bcinema\b", r"\bfilme\b", r"\bs[eé]ries?\b",
-                    r"\bnetflix\b", r"\bhbo\b", r"\bgame of thrones\b",
-                    r"\bstranger things\b", r"\boscar\b", r"\bcinem[aá]tico\b",
-                    r"\bjoker\b", r"\bcoringa\b", r"\bghibli", r"\banime\b",
-                    r"\brapaduracast\b",
+                    r"\bnetflix\b", r"\bhbo\b", r"\bgame of thrones\b", r"\bstranger things\b",
+                    r"\boscar\b", r"\bcinem[aá]tico\b", r"\bjoker\b", r"\bcoringa\b",
+                    r"\bghibli", r"\banime\b", r"\brapaduracast\b",
                 ],
             },
             {
@@ -590,23 +684,21 @@ PARENTS: list[dict] = [
                 "id": "cult-books-arts",
                 "name": "Books & arts",
                 "blurb": "Books, theatre, and the arts.",
-                "patterns": [
-                    r"\bbook review\b", r"\blivro\b", r"\bnovel\b",
-                    r"\btheatre\b", r"\btheater\b", r"\bexhibition\b",
-                ],
+                "patterns": [r"\bbook review\b", r"\blivro\b", r"\bnovel\b", r"\btheatre\b", r"\btheater\b", r"\bexhibition\b"],
             },
         ],
     },
     {
-        "id": "sport",
+        "id": "topic-sport",
         "name": "Sport",
+        "facet": "topic",
         "blurb": "Football, Olympics, World Cup, and sporting culture.",
         "patterns": [
             r"\bsport\b", r"\besporte\b", r"\bfootball\b", r"\bsoccer\b",
             r"\bfutebol\b", r"\bcopa\b", r"\bworld cup\b", r"\bmundial\b",
             r"\bolympic", r"\bol[ií]mpiad", r"\bpremier league\b",
-            r"\bnba\b", r"\bnfl\b", r"\btenis\b", r"\btennis\b",
-            r"\bcricket\b", r"\brugby\b", r"\bswans\b", r"\bafl\b",
+            r"\bnba\b", r"\bnfl\b", r"\btennis\b", r"\bcricket\b", r"\brugby\b",
+            r"\bswans\b", r"\bafl\b",
         ],
         "children": [
             {
@@ -624,16 +716,17 @@ PARENTS: list[dict] = [
         ],
     },
     {
-        "id": "ideas-society",
+        "id": "topic-ideas",
         "name": "Ideas, mind & society",
+        "facet": "topic",
         "blurb": "Philosophy, psychology, relationships, identity, and how we live.",
         "patterns": [
             r"\bphilosoph", r"\bfilosofi", r"\bpsycholog", r"\bpsicolog",
             r"\bmental health\b", r"\brelationship", r"\bidentit",
-            r"\bethics?\b", r"\bmoral\b", r"\bhappiness\b",
-            r"\bcognitiv", r"\bbehavio", r"\bbetter to know\b", r"\bhidden brain\b", r"\bgood to know\b",
+            r"\bethics?\b", r"\bmoral\b", r"\bhappiness\b", r"\bcognitiv",
+            r"\bbehavio", r"\bbetter to know\b", r"\bhidden brain\b",
             r"\bmaking sense\b", r"\bsam harris\b", r"\bsociety\b", r"\bsociedade\b",
-            r"\bideolog", r"\bobsess[aã]o chatgpt\b",
+            r"\bideolog", r"\bobsess[aã]o chatgpt\b", r"\bgood to know\b",
         ],
         "children": [
             {
@@ -647,8 +740,8 @@ PARENTS: list[dict] = [
                 "name": "Psychology & behaviour",
                 "blurb": "Mind, cognition, mental health, and behaviour.",
                 "patterns": [
-                    r"\bpsycholog", r"\bpsicolog", r"\bmental health\b",
-                    r"\bcognitiv", r"\bbehavio", r"\bhidden brain\b", r"\bbetter to know\b",
+                    r"\bpsycholog", r"\bpsicolog", r"\bmental health\b", r"\bcognitiv",
+                    r"\bbehavio", r"\bhidden brain\b", r"\bbetter to know\b",
                     r"\bobsess[aã]o chatgpt\b",
                 ],
             },
@@ -661,13 +754,15 @@ PARENTS: list[dict] = [
         ],
     },
     {
-        "id": "history-memory",
+        "id": "topic-history",
         "name": "History & memory",
+        "facet": "topic",
         "blurb": "Historical episodes, archives, and how the past is told.",
         "patterns": [
             r"\bhistory\b", r"\bhist[oó]ria\b", r"\bhistorian\b", r"\bhistorical\b",
-            r"\barchive\b", r"\bthroughline\b", r"\bhistory, geography & culture\b", r"\bsegunda guerra\b",
-            r"\bfascis", r"\bnazis", r"\bcold war\b", r"\brevolução\b", r"\brevolution\b",
+            r"\barchive\b", r"\bthroughline\b", r"\bhistory, geography & culture\b",
+            r"\bsegunda guerra\b", r"\bworld war\b", r"\bfascis", r"\bnazis",
+            r"\bcold war\b", r"\brevolução\b", r"\brevolution\b",
             r"\bempire\b", r"\bimp[eé]rio\b", r"\bcolonial",
         ],
         "children": [
@@ -695,21 +790,25 @@ PARENTS: list[dict] = [
         ],
     },
     {
-        "id": "gender-identity",
+        "id": "topic-gender",
         "name": "Gender, race & identity",
+        "facet": "topic",
         "blurb": "Gender, feminism, racism, LGBTQ+, and identity politics.",
         "patterns": [
             r"\bwomen\b", r"\bwoman\b", r"\bfeminist", r"\bfeminismo\b",
             r"\bmisogyn", r"\bgender\b", r"\blgbt", r"\bqueer\b", r"\btrans\b",
-            r"\bracis", r"\brace\b", r"\bcoloris", r"\bfirst nations\b",
-            r"\bindigenous\b", r"\bpatriarch", r"\bmulher", r"\bmachismo\b",
+            r"\bracis", r"\bcoloris", r"\bfirst nations\b", r"\bindigenous\b",
+            r"\bpatriarch", r"\bmulher", r"\bmachismo\b",
         ],
         "children": [
             {
                 "id": "gid-gender-feminism",
                 "name": "Gender & feminism",
                 "blurb": "Women's rights, feminism, and gender politics.",
-                "patterns": [r"\bwomen\b", r"\bwoman\b", r"\bfeminist", r"\bfeminismo\b", r"\bmisogyn", r"\bgender\b", r"\bmulher", r"\bpatriarch"],
+                "patterns": [
+                    r"\bwomen\b", r"\bwoman\b", r"\bfeminist", r"\bfeminismo\b",
+                    r"\bmisogyn", r"\bgender\b", r"\bmulher", r"\bpatriarch",
+                ],
             },
             {
                 "id": "gid-lgbtq",
@@ -721,150 +820,144 @@ PARENTS: list[dict] = [
                 "id": "gid-race-indigenous",
                 "name": "Race & Indigenous",
                 "blurb": "Racism, colourism, and Indigenous politics.",
-                "patterns": [r"\bracis", r"\brace\b", r"\bcoloris", r"\bfirst nations\b", r"\bindigenous\b"],
+                "patterns": [r"\bracis", r"\bcoloris", r"\bfirst nations\b", r"\bindigenous\b"],
             },
         ],
     },
     {
-        "id": "latin-america",
-        "name": "Latin America & Caribbean",
-        "blurb": "Venezuela, Mexico, Argentina, Colombia, and regional politics beyond Brazil.",
+        "id": "topic-media",
+        "name": "Media & information",
+        "facet": "topic",
+        "blurb": "Press freedom, disinformation, and the information environment.",
         "patterns": [
-            r"\bvenezuela\b", r"\bmaduro\b", r"\bm[eé]xico\b", r"\bmexico\b",
-            r"\bargentina\b", r"\bcol[oô]mbia\b", r"\bchile\b", r"\bper[uú]\b",
-            r"\bcuba\b", r"\bhaiti\b", r"\blatin america\b", r"\bam[eé]rica latina\b",
-            r"\bbukele\b", r"\bel salvador\b",
+            r"\bdisinfo", r"\bmisinfo", r"\bfake news\b", r"\bcensur",
+            r"\bpress freedom\b", r"\bnot[ií]cia falsa", r"\bmedia ban\b",
+            r"\bfake news\b",
         ],
         "children": [
             {
-                "id": "latam-venezuela",
-                "name": "Venezuela",
-                "blurb": "Venezuela, Maduro, and related crises.",
-                "patterns": [r"\bvenezuela\b", r"\bmaduro\b"],
+                "id": "media-disinfo",
+                "name": "Disinformation",
+                "blurb": "Fake news, propaganda, and information warfare.",
+                "patterns": [r"\bdisinfo", r"\bmisinfo", r"\bfake news\b", r"\bnot[ií]cia falsa"],
             },
             {
-                "id": "latam-southern-cone",
-                "name": "Southern Cone & Andes",
-                "blurb": "Argentina, Chile, Peru, Colombia, and neighbours.",
-                "patterns": [r"\bargentina\b", r"\bchile\b", r"\bper[uú]\b", r"\bcol[oô]mbia\b"],
-            },
-            {
-                "id": "latam-mexico-central",
-                "name": "Mexico & Central America",
-                "blurb": "Mexico, El Salvador, and Central American politics.",
-                "patterns": [r"\bm[eé]xico\b", r"\bmexico\b", r"\bbukele\b", r"\bel salvador\b", r"\bcuba\b", r"\bhaiti\b"],
+                "id": "media-press",
+                "name": "Press & speech",
+                "blurb": "Press freedom, censorship, and media fights.",
+                "patterns": [r"\bcensur", r"\bpress freedom\b", r"\bmedia ban\b", r"\bpress corps\b"],
             },
         ],
     },
     {
-        "id": "europe-affairs",
-        "name": "Europe",
-        "blurb": "EU politics, European governments, and continental crises.",
+        "id": "topic-crime",
+        "name": "Crime & justice",
+        "facet": "topic",
+        "blurb": "Policing, corruption, and criminal law.",
         "patterns": [
-            r"\beurope\b", r"\beuropean\b", r"\beuropean union\b", r"\beu parliament\b",
-            r"\bfran[cç]a\b", r"\bfrance\b", r"\bgermany\b", r"\balemanha\b",
-            r"\bbritain\b", r"\bbrexit\b", r"\bmacron\b", r"\bscholz\b",
-            r"\bstarmer\b", r"\bafd\b", r"\bitalia\b", r"\bitaly\b",
-            r"\bspain\b", r"\bespanha\b", r"\bceuta\b", r"\bunited kingdom\b",
+            r"\bcrime\b", r"\bpolice\b", r"\bcorrup", r"\bmurder\b",
+            r"\bviol[eê]ncia\b", r"\bpol[ií]cia\b",
         ],
         "children": [
             {
-                "id": "eu-western",
-                "name": "Western Europe",
-                "blurb": "France, Germany, UK, Italy, Spain, and neighbours.",
-                "patterns": [
-                    r"\bfran[cç]a\b", r"\bfrance\b", r"\bgermany\b", r"\balemanha\b",
-                    r"\bbritain\b", r"\bbrexit\b", r"\bmacron\b", r"\bscholz\b",
-                    r"\bstarmer\b", r"\bitalia\b", r"\bitaly\b", r"\bspain\b",
-                    r"\bespanha\b", r"\bunited kingdom\b",
-                ],
+                "id": "crime-policing",
+                "name": "Policing & violence",
+                "blurb": "Police, violence, and public safety.",
+                "patterns": [r"\bpolice\b", r"\bmurder\b", r"\bassault\b", r"\bviol[eê]ncia\b", r"\bpol[ií]cia\b"],
             },
             {
-                "id": "eu-institutions",
-                "name": "EU & far right",
-                "blurb": "European Union politics and far-right parties.",
-                "patterns": [
-                    r"\beuropean union\b", r"\beu parliament\b", r"\bafd\b",
-                    r"\bfar.?right\b", r"\bextrema direita\b",
-                ],
+                "id": "crime-corruption-courts",
+                "name": "Corruption & criminal courts",
+                "blurb": "Corruption cases, trials, and criminal courts.",
+                "patterns": [r"\bcorrup", r"\btrial\b", r"\bprosecut", r"\bverdict\b"],
             },
         ],
     },
     {
-        "id": "africa-affairs",
-        "name": "Africa",
-        "blurb": "African politics, conflict, and regional diplomacy.",
+        "id": "topic-migration",
+        "name": "Migration & borders",
+        "facet": "topic",
+        "blurb": "Immigration, asylum, borders, and demographic politics.",
         "patterns": [
-            r"\bafrica\b", r"\bafrican\b", r"\bnigeria\b", r"\bsouth africa\b",
-            r"\bethiopia\b", r"\bsudan\b", r"\bsahel\b", r"\bmali\b",
-            r"\bniger\b", r"\brwanda\b", r"\bcongo\b", r"\bkeny",
+            r"\bmigration\b", r"\bimmigration\b", r"\basylum\b", r"\brefugee",
+            r"\bborder\b", r"\bmigrant", r"\bimigra",
         ],
         "children": [
             {
-                "id": "af-west-sahel",
-                "name": "West Africa & Sahel",
-                "blurb": "Sahel, coups, and West African politics.",
-                "patterns": [r"\bsahel\b", r"\bmali\b", r"\bniger\b", r"\bnigeria\b"],
+                "id": "mig-asylum-refugees",
+                "name": "Asylum & refugees",
+                "blurb": "Asylum claims and refugee policy.",
+                "patterns": [r"\basylum\b", r"\brefugee", r"\brefugiad"],
             },
             {
-                "id": "af-broader",
-                "name": "Southern & East Africa",
-                "blurb": "South Africa, Horn of Africa, and East Africa.",
-                "patterns": [r"\bsouth africa\b", r"\bethiopia\b", r"\bsudan\b", r"\brwanda\b", r"\bcongo\b", r"\bkeny"],
+                "id": "mig-borders-deportation",
+                "name": "Borders & deportation",
+                "blurb": "Border enforcement and deportations.",
+                "patterns": [r"\bborder\b", r"\bdeport", r"\bvisa\b"],
             },
         ],
     },
     {
-        "id": "south-asia",
-        "name": "India & South Asia",
-        "blurb": "India, Pakistan, Bangladesh, and South Asian politics.",
+        "id": "topic-diplomacy",
+        "name": "Diplomacy & global order",
+        "facet": "topic",
+        "blurb": "Summits, alliances, foreign policy, and multilateral forums.",
         "patterns": [
-            r"\bindia\b", r"\bindian\b", r"\bmodi\b", r"\bpakistan\b",
-            r"\bbangladesh\b", r"\bsri lanka\b", r"\bsouth asia\b",
+            r"\bdiplomacy\b", r"\bforeign policy\b", r"\bunited nations\b",
+            r"\bg20\b", r"\bg7\b", r"\bgeopolitic", r"\bdiplomacia\b",
+            r"\bambassador\b", r"\bsummit\b", r"\bopep\b", r"\bopec\b",
         ],
         "children": [
             {
-                "id": "sa-india",
-                "name": "India",
-                "blurb": "Indian politics, Modi, and domestic debates.",
-                "patterns": [r"\bindia\b", r"\bindian\b", r"\bmodi\b"],
+                "id": "dip-summits",
+                "name": "Summits & forums",
+                "blurb": "G20, G7, UN, and multilateral meetings.",
+                "patterns": [r"\bg20\b", r"\bg7\b", r"\bunited nations\b", r"\bsummit\b", r"\bopep\b", r"\bopec\b"],
             },
             {
-                "id": "sa-neighbours",
-                "name": "Pakistan & neighbours",
-                "blurb": "Pakistan, Bangladesh, Sri Lanka, and neighbours.",
-                "patterns": [r"\bpakistan\b", r"\bbangladesh\b", r"\bsri lanka\b"],
+                "id": "dip-foreign-policy",
+                "name": "Foreign policy",
+                "blurb": "Bilateral diplomacy and foreign-policy strategy.",
+                "patterns": [r"\bforeign policy\b", r"\bdiplomacy\b", r"\bambassador\b", r"\bdiplomacia\b", r"\bgeopolitic"],
             },
         ],
     },
     {
-        "id": "education-work",
+        "id": "topic-education",
         "name": "Education, work & daily life",
+        "facet": "topic",
         "blurb": "Schools, universities, workplaces, and everyday practical life.",
         "patterns": [
             r"\beducation\b", r"\beduca[cç]", r"\buniversity\b", r"\buniversidade\b",
             r"\bschool\b", r"\bescola\b", r"\bworkplace\b", r"\btrabalho\b",
-            r"\bjob\b", r"\bcarr[eé]er\b", r"\bcarrera\b", r"\bremote work\b",
-            r"\begg freez", r"\bfertility\b",
+            r"\bjob\b", r"\bcarr[eé]er\b", r"\bremote work\b", r"\begg freez",
+            r"\bfertility\b",
         ],
         "children": [
             {
                 "id": "edu-schools",
                 "name": "Schools & universities",
                 "blurb": "Education systems, campuses, and learning.",
-                "patterns": [r"\beducation\b", r"\beduca[cç]", r"\buniversity\b", r"\buniversidade\b", r"\bschool\b", r"\bescola\b"],
+                "patterns": [
+                    r"\beducation\b", r"\beduca[cç]", r"\buniversity\b",
+                    r"\buniversidade\b", r"\bschool\b", r"\bescola\b",
+                ],
             },
             {
                 "id": "edu-work-life",
                 "name": "Work & life logistics",
                 "blurb": "Jobs, careers, and everyday life decisions.",
-                "patterns": [r"\bworkplace\b", r"\btrabalho\b", r"\bjob\b", r"\bcarr[eé]er\b", r"\bremote work\b", r"\begg freez", r"\bfertility\b"],
+                "patterns": [
+                    r"\bworkplace\b", r"\btrabalho\b", r"\bjob\b", r"\bcarr[eé]er\b",
+                    r"\bremote work\b", r"\begg freez", r"\bfertility\b",
+                ],
             },
         ],
     },
     {
-        "id": "religion-belief",
+        "id": "topic-religion",
         "name": "Religion & belief",
+        "facet": "topic",
         "blurb": "Faith, churches, Islam, Christianity, and religious politics.",
         "patterns": [
             r"\breligion\b", r"\breligi[aã]o\b", r"\bchurch\b", r"\bigreja\b",
@@ -877,7 +970,10 @@ PARENTS: list[dict] = [
                 "id": "rel-christianity",
                 "name": "Christianity",
                 "blurb": "Churches, Catholicism, Protestantism, and evangelicals.",
-                "patterns": [r"\bchurch\b", r"\bigreja\b", r"\bcrist", r"\bchristian", r"\bevangelical", r"\bprotestant", r"\bcatholic", r"\bcat[oó]lic"],
+                "patterns": [
+                    r"\bchurch\b", r"\bigreja\b", r"\bcrist", r"\bchristian",
+                    r"\bevangelical", r"\bprotestant", r"\bcatholic", r"\bcat[oó]lic",
+                ],
             },
             {
                 "id": "rel-islam-judaism",
@@ -887,7 +983,33 @@ PARENTS: list[dict] = [
             },
         ],
     },
+    {
+        "id": "topic-weather",
+        "name": "Weather & disasters",
+        "facet": "topic",
+        "blurb": "Hurricanes, floods, fires, and extreme weather.",
+        "patterns": [
+            r"\bhurricane\b", r"\bflood", r"\bwildfire\b", r"\bearthquake\b",
+            r"\bstorm\b", r"\bcyclone\b", r"\benchente", r"\bel ni[nñ]o\b",
+        ],
+        "children": [
+            {
+                "id": "wx-storms",
+                "name": "Storms & hurricanes",
+                "blurb": "Hurricanes, cyclones, and major storms.",
+                "patterns": [r"\bhurricane\b", r"\bstorm\b", r"\bcyclone\b", r"\btyphoon\b"],
+            },
+            {
+                "id": "wx-flood-fire",
+                "name": "Floods & fires",
+                "blurb": "Flooding and wildfire disasters.",
+                "patterns": [r"\bflood", r"\bwildfire\b", r"\benchente", r"\binc[eê]ndio", r"\bel ni[nñ]o\b"],
+            },
+        ],
+    },
 ]
+
+PARENTS: list[dict] = PLACE_PARENTS + TOPIC_PARENTS
 
 
 def compile_parent(parent: dict) -> dict:
@@ -918,6 +1040,24 @@ def body_for_episode(i: int, notes: dict, full_texts: dict[str, str]) -> tuple[s
     return note.get("text") or "", note.get("src") or ""
 
 
+def record_evidence(
+    evidence: dict[str, Counter],
+    tid: str,
+    *,
+    body: str,
+    src: str,
+    title_show: str,
+    pats: list[re.Pattern],
+) -> None:
+    if body and matches(pats, body):
+        if src in ("transcript", "stt"):
+            evidence[tid]["transcript"] += 1
+        else:
+            evidence[tid]["notes"] += 1
+    elif matches(pats, title_show):
+        evidence[tid]["title"] += 1
+
+
 def tag_all(
     episodes: list[dict],
     notes: dict,
@@ -925,7 +1065,6 @@ def tag_all(
 ) -> tuple[list[list[str]], dict]:
     compiled = [compile_parent(p) for p in PARENTS]
     counts: Counter = Counter()
-    child_of: dict[str, str] = {}
     samples: dict[str, list] = defaultdict(list)
     by_year: dict[str, Counter] = defaultdict(Counter)
     evidence: dict[str, Counter] = defaultdict(Counter)
@@ -937,9 +1076,6 @@ def tag_all(
         show = ep.get("p") or ""
         folder = (ep.get("f") or "").strip()
         body, src = body_for_episode(i, notes, full_texts)
-        # Include show name so entertainment/ideas podcasts are contemplated even
-        # when a title is terse. Only a few safe folders are appended — news
-        # folders like "Policy, Defence & Diplomacy" would over-tag.
         safe_folder = ""
         fl = folder.lower()
         if fl in {
@@ -953,32 +1089,48 @@ def tag_all(
         hay = f"{title}\n{show}\n{safe_folder}\n{body}"
         title_show = f"{title}\n{show}\n{safe_folder}"
         hits: list[str] = []
+
         for parent in compiled:
-            child_hits = []
-            for ch in parent["children"]:
-                # Prefer child hits supported by body/transcript text; title/show still counts.
-                if matches(ch["re"], hay):
-                    child_hits.append(ch["id"])
-                    child_of[ch["id"]] = parent["id"]
-                    if body and matches(ch["re"], body):
-                        if src in ("transcript", "stt"):
-                            evidence[ch["id"]]["transcript"] += 1
-                        else:
-                            evidence[ch["id"]]["notes"] += 1
-                    else:
-                        evidence[ch["id"]]["title"] += 1
-            parent_hit = bool(child_hits) or matches(parent["re"], hay)
-            if not parent_hit:
-                continue
-            hits.append(parent["id"])
-            hits.extend(child_hits)
-            if body and matches(parent["re"], body):
-                if src in ("transcript", "stt"):
-                    evidence[parent["id"]]["transcript"] += 1
-                else:
-                    evidence[parent["id"]]["notes"] += 1
-            elif matches(parent["re"], title_show):
-                evidence[parent["id"]]["title"] += 1
+            facet = parent.get("facet") or "topic"
+            child_hits: list[str] = []
+
+            if facet == "place":
+                # 3B: place parent only when a clear geo cue appears in
+                # title / show / safe folder — not solely from body text.
+                if not matches(parent["re"], title_show):
+                    continue
+                for ch in parent["children"]:
+                    if matches(ch["re"], hay):
+                        child_hits.append(ch["id"])
+                        record_evidence(
+                            evidence, ch["id"], body=body, src=src,
+                            title_show=title_show, pats=ch["re"],
+                        )
+                hits.append(parent["id"])
+                hits.extend(child_hits)
+                record_evidence(
+                    evidence, parent["id"], body=body, src=src,
+                    title_show=title_show, pats=parent["re"],
+                )
+            else:
+                # Topic: parent if own patterns or any child matches.
+                for ch in parent["children"]:
+                    if matches(ch["re"], hay):
+                        child_hits.append(ch["id"])
+                        record_evidence(
+                            evidence, ch["id"], body=body, src=src,
+                            title_show=title_show, pats=ch["re"],
+                        )
+                parent_hit = bool(child_hits) or matches(parent["re"], hay)
+                if not parent_hit:
+                    continue
+                hits.append(parent["id"])
+                hits.extend(child_hits)
+                record_evidence(
+                    evidence, parent["id"], body=body, src=src,
+                    title_show=title_show, pats=parent["re"],
+                )
+
             for tid in [parent["id"], *child_hits]:
                 counts[tid] += 1
                 by_year[tid][str(ep.get("y") or "")] += 1
@@ -986,9 +1138,9 @@ def tag_all(
                     samples[tid].append(
                         {"i": i, "e": title, "p": ep.get("p"), "d": ep.get("d")}
                     )
-        # unique preserve order
-        seen = set()
-        uniq = []
+
+        seen: set[str] = set()
+        uniq: list[str] = []
         for h in hits:
             if h not in seen:
                 seen.add(h)
@@ -1006,6 +1158,7 @@ def tag_all(
                     "id": ch["id"],
                     "name": ch["name"],
                     "blurb": ch["blurb"],
+                    "facet": parent.get("facet") or "topic",
                     "parentId": pid,
                     "count": int(counts.get(ch["id"], 0)),
                     "byYear": dict(sorted(by_year[ch["id"]].items())),
@@ -1024,6 +1177,7 @@ def tag_all(
                 "id": pid,
                 "name": parent["name"],
                 "blurb": parent["blurb"],
+                "facet": parent.get("facet") or "topic",
                 "count": int(counts.get(pid, 0)),
                 "byYear": dict(sorted(by_year[pid].items())),
                 "evidence": {
@@ -1048,10 +1202,14 @@ def tag_all(
         for i in range(len(episodes))
         if (notes.get(str(i)) or {}).get("src") in ("transcript", "stt")
     )
+    place_n = sum(1 for p in catalog if p.get("facet") == "place")
+    topic_n = sum(1 for p in catalog if p.get("facet") == "topic")
     meta = {
         "totalEpisodes": len(episodes),
         "episodesWithTheme": sum(1 for t in tagged if t),
         "parentCount": len(catalog),
+        "placeParentCount": place_n,
+        "topicParentCount": topic_n,
         "childCount": sum(len(p["children"]) for p in catalog),
         "themeCount": len(flat),
         "episodesWithBodyText": sum(
@@ -1060,11 +1218,12 @@ def tag_all(
             if body_for_episode(i, notes, full_texts)[0]
         ),
         "episodesWithTranscriptEvidence": int(tx_eps),
-        "method": "title+notes+fulltranscript-keyword-hierarchy",
+        "method": "orthogonal-place-topic-keyword-hierarchy",
         "note": (
-            "Parent themes are broad topics; child themes are content-derived "
-            "subtopics. Matching uses titles plus full show notes/transcripts when "
-            "stored; evidence counts show title vs notes vs transcript support."
+            "Orthogonal facets: place parents (geo-gated) and topic parents "
+            "(content). Ambiguous keywords like eleições/election attach to "
+            "topics only; a place tag requires a clear geo cue. Episodes may "
+            "carry both facets."
         ),
     }
     return tagged, {"meta": meta, "themes": catalog, "flat": flat}
@@ -1092,10 +1251,21 @@ def main() -> None:
         json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     print(
-        f"parents={doc['meta']['parentCount']} children={doc['meta']['childCount']} "
+        f"parents={doc['meta']['parentCount']} "
+        f"(place={doc['meta']['placeParentCount']} topic={doc['meta']['topicParentCount']}) "
+        f"children={doc['meta']['childCount']} "
         f"tagged={doc['meta']['episodesWithTheme']}/{doc['meta']['totalEpisodes']}"
     )
-    for p in doc["themes"][:5]:
+    print("\nPlace parents:")
+    for p in doc["themes"]:
+        if p.get("facet") != "place":
+            continue
+        kids = ", ".join(f"{c['name']}({c['count']})" for c in p["children"][:4])
+        print(f"  {p['name']}: {p['count']} | {kids}")
+    print("\nTopic parents:")
+    for p in doc["themes"]:
+        if p.get("facet") != "topic":
+            continue
         kids = ", ".join(f"{c['name']}({c['count']})" for c in p["children"][:4])
         print(f"  {p['name']}: {p['count']} | {kids}")
 
