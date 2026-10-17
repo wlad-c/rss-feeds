@@ -1172,7 +1172,6 @@
     const toggle = $("#filterSheetToggle");
     const toolbar = $("#periodToolbar");
     const line = $("#periodFilterLine");
-    const secondary = $("#periodSecondary");
     const clearBtn = $("#periodClear");
     if (!toggle) return;
     if (isCompactFilterUi()) {
@@ -1184,11 +1183,7 @@
       }
       return;
     }
-    // Desktop: Filters sits at the end of the facet row (not beside the summary).
-    if (document.body.classList.contains("filter-sheet-open")) {
-      if (secondary && toggle.parentElement !== secondary) secondary.appendChild(toggle);
-      return;
-    }
+    // Desktop: Filters stays at the end of the facet row.
     if (line && toggle.parentElement !== line) line.appendChild(toggle);
   }
 
@@ -1197,11 +1192,19 @@
     const line = $("#periodFilterLine");
     const toggle = $("#filterSheetToggle");
     if (!controls || !toggle) return;
-    if (isCompactFilterUi() || document.body.classList.contains("filter-sheet-open")) {
+    if (isCompactFilterUi()) {
       clearFilterOverflowHidden();
       return;
     }
     placeFilterToggle();
+    // Expanded: keep every facet visible in the same bar (wrapped).
+    if (document.body.classList.contains("filters-expanded")) {
+      clearFilterOverflowHidden();
+      toggle.hidden = false;
+      toggle.title = "Hide extra filters";
+      toggle.classList.add("has-overflow");
+      return;
+    }
     const fields = $$(":scope > .period-field", controls);
     clearFilterOverflowHidden();
     // Measure natural widths on one line, then hide what does not fit.
@@ -1222,7 +1225,7 @@
     }
     controls.classList.remove("is-measuring");
     toggle.hidden = false;
-    toggle.title = hidden > 0 ? `Open filters (${hidden} more)` : "Open filters";
+    toggle.title = hidden > 0 ? `More filters (${hidden})` : "More filters";
     toggle.classList.toggle("has-overflow", hidden > 0);
     if (line) line.dataset.overflowCount = String(hidden);
   }
@@ -1234,20 +1237,55 @@
     const line = $("#periodFilterLine");
     const toggle = $("#filterSheetToggle");
     if (!panel || !sheetBody || !secondary) return;
+    // Desktop never uses the bottom sheet — facets stay in the glass bar.
+    if (!isCompactFilterUi()) {
+      if (panel.parentElement !== secondary) secondary.appendChild(panel);
+      if (toggle && line) line.appendChild(toggle);
+      return;
+    }
     if (inSheet) {
       clearFilterOverflowHidden();
-      // Keep Filters outside the panel so it does not disappear into the sheet.
       if (toggle && secondary) secondary.appendChild(toggle);
       if (panel.parentElement !== sheetBody) sheetBody.appendChild(panel);
     } else {
       if (panel.parentElement !== secondary) secondary.appendChild(panel);
-      if (toggle && line && !isCompactFilterUi()) line.appendChild(toggle);
+      placeFilterToggle();
     }
   }
 
+  function setDesktopFiltersExpanded(open) {
+    const on = !!open;
+    closeComboPicker(false);
+    document.body.classList.toggle("filters-expanded", on);
+    document.body.classList.remove("filter-sheet-open");
+    const toggle = $("#filterSheetToggle");
+    const backdrop = $("#filterSheetBackdrop");
+    const sheet = $("#filterSheetPanel");
+    if (toggle) toggle.setAttribute("aria-expanded", on ? "true" : "false");
+    if (backdrop) backdrop.hidden = true;
+    if (sheet) sheet.hidden = true;
+    placeFilterPanel(false);
+    placeFilterToggle();
+    if (on) {
+      clearFilterOverflowHidden();
+      requestAnimationFrame(() => {
+        ($("#periodStatus") || $("#periodTheme") || $("#periodQ"))?.focus?.({
+          preventScroll: true,
+        });
+      });
+    }
+    layoutDesktopFilterOverflow();
+  }
+
   function setFilterSheetOpen(open) {
+    // Desktop: expand overflow facets in the same filter bar (no foreign sheet).
+    if (!isCompactFilterUi()) {
+      setDesktopFiltersExpanded(open);
+      return;
+    }
     const on = !!open;
     if (!on) closeComboPicker(false);
+    document.body.classList.remove("filters-expanded");
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
     const backdrop = $("#filterSheetBackdrop");
@@ -3468,7 +3506,9 @@
     };
 
     $("#filterSheetToggle")?.addEventListener("click", () => {
-      const open = !document.body.classList.contains("filter-sheet-open");
+      const open = isCompactFilterUi()
+        ? !document.body.classList.contains("filter-sheet-open")
+        : !document.body.classList.contains("filters-expanded");
       setFilterSheetOpen(open);
     });
     $("#filterSheetDone")?.addEventListener("click", () => setFilterSheetOpen(false));
@@ -3483,9 +3523,20 @@
         closeComboPicker(false);
         return;
       }
-      if (document.body.classList.contains("filter-sheet-open")) {
+      if (
+        document.body.classList.contains("filter-sheet-open") ||
+        document.body.classList.contains("filters-expanded")
+      ) {
         setFilterSheetOpen(false);
       }
+    });
+    document.addEventListener("pointerdown", (e) => {
+      if (!document.body.classList.contains("filters-expanded")) return;
+      if (isCompactFilterUi()) return;
+      const bar = $("#periodBar");
+      const t = e.target;
+      if (bar && t instanceof Node && bar.contains(t)) return;
+      setFilterSheetOpen(false);
     });
     const onViewport = () => {
       if (document.body.classList.contains("combo-picker-open")) syncVisualViewportVars();
@@ -3494,6 +3545,7 @@
     window.visualViewport?.addEventListener("scroll", onViewport);
     window.matchMedia("(max-width: 860px)").addEventListener("change", () => {
       closeComboPicker(false);
+      document.body.classList.remove("filters-expanded");
       setFilterSheetOpen(false);
       placeFilterToggle();
       placeFilterPanel(false);

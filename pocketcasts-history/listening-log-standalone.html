@@ -856,154 +856,35 @@ body.combo-picker-open {
     min-height: 38px;
   }
 
-  /* Sheet works on large screens too (overflow filters). */
-  .filter-sheet-backdrop:not([hidden]) {
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: 80;
-    background: rgba(0, 0, 0, 0.28);
+  /*
+   * Desktop “more filters”: expand overflow facets in the same glass bar —
+   * same field chrome as the visible row. No bottom sheet / foreign modal.
+   */
+  body.filters-expanded .period-filter-line {
+    align-items: flex-start;
   }
 
-  body.filter-sheet-open {
-    overflow: hidden;
+  body.filters-expanded .period-controls {
+    flex-wrap: wrap;
+    overflow: visible;
+    row-gap: 10px;
   }
 
-  .filter-sheet:not([hidden]) {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 50%;
-    right: auto;
-    bottom: max(24px, var(--safe-bottom));
-    top: auto;
-    z-index: 90;
-    width: min(420px, calc(100vw - 48px));
-    max-height: min(72vh, 640px);
-    transform: translateX(-50%);
-    padding: 0;
-    border-radius: 14px;
-    background: var(--grouped-bg);
-    border: 0.5px solid var(--separator);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
-    overflow: hidden;
-  }
-
-  .filter-sheet-chrome {
-    display: block;
-    flex-shrink: 0;
-    padding: 10px 16px 4px;
-    border-bottom: 0.5px solid var(--separator);
-    background: var(--grouped-bg);
-  }
-
-  .filter-sheet-grabber {
-    display: none;
-  }
-
-  .filter-sheet-header {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    min-height: 36px;
-    margin-bottom: 4px;
-  }
-
-  .filter-sheet-header h2 {
-    margin: 0;
-    text-align: center;
-    font-size: 1.0625rem;
-    font-weight: 650;
-    letter-spacing: -0.02em;
-  }
-
-  .sheet-text-btn {
-    border: 0;
-    background: none;
-    color: var(--system-blue);
-    font: inherit;
-    font-size: 1.0625rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    cursor: pointer;
-    padding: 6px 0;
-    justify-self: start;
-  }
-
-  .sheet-text-btn.sheet-done {
-    font-weight: 650;
-    justify-self: end;
-  }
-
-  .filter-sheet-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .filter-sheet-body .filter-panel {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .filter-sheet-body .period-controls {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 0;
-    align-items: stretch;
-    margin: 12px 16px;
-    overflow: auto;
-    flex: 1;
-    border-radius: var(--radius-lg);
-    background: var(--grouped-bg-elevated);
-  }
-
-  .filter-sheet-body .period-field,
-  .filter-sheet-body .period-field-country,
-  .filter-sheet-body .period-field-theme,
-  .filter-sheet-body .period-field-search {
-    min-width: 0;
+  body.filters-expanded .period-field.is-overflow-hidden {
     display: grid !important;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
-    align-items: center;
-    gap: 8px;
-    margin: 0;
-    padding: 4px 14px;
-    min-height: 44px;
-    border-bottom: 0.5px solid var(--separator);
   }
 
-  .filter-sheet-body .period-field:last-of-type {
-    border-bottom: 0;
+  body.filters-expanded .period-filter-line > .filter-toggle {
+    /* Keep the button on the first control row while facets wrap underneath. */
+    align-self: flex-start;
+    margin-top: calc(0.6875rem * 1.2 + 4px);
+    background: var(--blue-soft);
   }
 
-  .filter-sheet-body .period-field span {
-    margin: 0;
-  }
-
-  .filter-sheet-body .period-field select,
-  .filter-sheet-body .period-field-theme select,
-  .filter-sheet-body .period-field-search input,
-  .filter-sheet-body .period-field .combo-input {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-  }
-
-  .filter-sheet-body .period-summary {
-    margin: 0 16px 14px;
-  }
-
-  /* While the sheet is open, the inline secondary row is empty — collapse it. */
-  body.filter-sheet-open .period-secondary {
-    display: none;
+  /* Desktop never uses the mobile bottom sheet. */
+  .filter-sheet,
+  .filter-sheet-backdrop {
+    display: none !important;
   }
 }
 
@@ -2247,7 +2128,7 @@ body.is-filtering #periodSummary {
         <button type="button" class="btn secondary period-clear-inline" id="periodClear" title="Clear filters">Clear</button>
       </div>
 
-      <!-- Line 2 (desktop): facet row + Filters; overflow opens the sheet.
+      <!-- Line 2 (desktop): facet row + Filters; overflow expands in this same bar.
            On small screens the panel is sheet-only; Filters sits in the toolbar. -->
       <div class="period-secondary" id="periodSecondary">
         <div class="filter-panel" id="filterPanel">
@@ -3751,7 +3632,6 @@ body.is-filtering #periodSummary {
     const toggle = $("#filterSheetToggle");
     const toolbar = $("#periodToolbar");
     const line = $("#periodFilterLine");
-    const secondary = $("#periodSecondary");
     const clearBtn = $("#periodClear");
     if (!toggle) return;
     if (isCompactFilterUi()) {
@@ -3763,11 +3643,7 @@ body.is-filtering #periodSummary {
       }
       return;
     }
-    // Desktop: Filters sits at the end of the facet row (not beside the summary).
-    if (document.body.classList.contains("filter-sheet-open")) {
-      if (secondary && toggle.parentElement !== secondary) secondary.appendChild(toggle);
-      return;
-    }
+    // Desktop: Filters stays at the end of the facet row.
     if (line && toggle.parentElement !== line) line.appendChild(toggle);
   }
 
@@ -3776,11 +3652,19 @@ body.is-filtering #periodSummary {
     const line = $("#periodFilterLine");
     const toggle = $("#filterSheetToggle");
     if (!controls || !toggle) return;
-    if (isCompactFilterUi() || document.body.classList.contains("filter-sheet-open")) {
+    if (isCompactFilterUi()) {
       clearFilterOverflowHidden();
       return;
     }
     placeFilterToggle();
+    // Expanded: keep every facet visible in the same bar (wrapped).
+    if (document.body.classList.contains("filters-expanded")) {
+      clearFilterOverflowHidden();
+      toggle.hidden = false;
+      toggle.title = "Hide extra filters";
+      toggle.classList.add("has-overflow");
+      return;
+    }
     const fields = $$(":scope > .period-field", controls);
     clearFilterOverflowHidden();
     // Measure natural widths on one line, then hide what does not fit.
@@ -3801,7 +3685,7 @@ body.is-filtering #periodSummary {
     }
     controls.classList.remove("is-measuring");
     toggle.hidden = false;
-    toggle.title = hidden > 0 ? `Open filters (${hidden} more)` : "Open filters";
+    toggle.title = hidden > 0 ? `More filters (${hidden})` : "More filters";
     toggle.classList.toggle("has-overflow", hidden > 0);
     if (line) line.dataset.overflowCount = String(hidden);
   }
@@ -3813,20 +3697,55 @@ body.is-filtering #periodSummary {
     const line = $("#periodFilterLine");
     const toggle = $("#filterSheetToggle");
     if (!panel || !sheetBody || !secondary) return;
+    // Desktop never uses the bottom sheet — facets stay in the glass bar.
+    if (!isCompactFilterUi()) {
+      if (panel.parentElement !== secondary) secondary.appendChild(panel);
+      if (toggle && line) line.appendChild(toggle);
+      return;
+    }
     if (inSheet) {
       clearFilterOverflowHidden();
-      // Keep Filters outside the panel so it does not disappear into the sheet.
       if (toggle && secondary) secondary.appendChild(toggle);
       if (panel.parentElement !== sheetBody) sheetBody.appendChild(panel);
     } else {
       if (panel.parentElement !== secondary) secondary.appendChild(panel);
-      if (toggle && line && !isCompactFilterUi()) line.appendChild(toggle);
+      placeFilterToggle();
     }
   }
 
+  function setDesktopFiltersExpanded(open) {
+    const on = !!open;
+    closeComboPicker(false);
+    document.body.classList.toggle("filters-expanded", on);
+    document.body.classList.remove("filter-sheet-open");
+    const toggle = $("#filterSheetToggle");
+    const backdrop = $("#filterSheetBackdrop");
+    const sheet = $("#filterSheetPanel");
+    if (toggle) toggle.setAttribute("aria-expanded", on ? "true" : "false");
+    if (backdrop) backdrop.hidden = true;
+    if (sheet) sheet.hidden = true;
+    placeFilterPanel(false);
+    placeFilterToggle();
+    if (on) {
+      clearFilterOverflowHidden();
+      requestAnimationFrame(() => {
+        ($("#periodStatus") || $("#periodTheme") || $("#periodQ"))?.focus?.({
+          preventScroll: true,
+        });
+      });
+    }
+    layoutDesktopFilterOverflow();
+  }
+
   function setFilterSheetOpen(open) {
+    // Desktop: expand overflow facets in the same filter bar (no foreign sheet).
+    if (!isCompactFilterUi()) {
+      setDesktopFiltersExpanded(open);
+      return;
+    }
     const on = !!open;
     if (!on) closeComboPicker(false);
+    document.body.classList.remove("filters-expanded");
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
     const backdrop = $("#filterSheetBackdrop");
@@ -6047,7 +5966,9 @@ body.is-filtering #periodSummary {
     };
 
     $("#filterSheetToggle")?.addEventListener("click", () => {
-      const open = !document.body.classList.contains("filter-sheet-open");
+      const open = isCompactFilterUi()
+        ? !document.body.classList.contains("filter-sheet-open")
+        : !document.body.classList.contains("filters-expanded");
       setFilterSheetOpen(open);
     });
     $("#filterSheetDone")?.addEventListener("click", () => setFilterSheetOpen(false));
@@ -6062,9 +5983,20 @@ body.is-filtering #periodSummary {
         closeComboPicker(false);
         return;
       }
-      if (document.body.classList.contains("filter-sheet-open")) {
+      if (
+        document.body.classList.contains("filter-sheet-open") ||
+        document.body.classList.contains("filters-expanded")
+      ) {
         setFilterSheetOpen(false);
       }
+    });
+    document.addEventListener("pointerdown", (e) => {
+      if (!document.body.classList.contains("filters-expanded")) return;
+      if (isCompactFilterUi()) return;
+      const bar = $("#periodBar");
+      const t = e.target;
+      if (bar && t instanceof Node && bar.contains(t)) return;
+      setFilterSheetOpen(false);
     });
     const onViewport = () => {
       if (document.body.classList.contains("combo-picker-open")) syncVisualViewportVars();
@@ -6073,6 +6005,7 @@ body.is-filtering #periodSummary {
     window.visualViewport?.addEventListener("scroll", onViewport);
     window.matchMedia("(max-width: 860px)").addEventListener("change", () => {
       closeComboPicker(false);
+      document.body.classList.remove("filters-expanded");
       setFilterSheetOpen(false);
       placeFilterToggle();
       placeFilterPanel(false);

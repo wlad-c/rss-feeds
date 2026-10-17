@@ -806,162 +806,52 @@ body.combo-picker-open {
     box-sizing: border-box;
   }
 
-  .period-controls.is-measuring .period-field {
+  /* Natural widths while measuring — avoid flex-shrink making everything "fit". */
+  .period-controls.is-measuring > .period-field {
     display: grid !important;
+    flex: 0 0 auto !important;
+    width: max-content;
+    max-width: none !important;
+    min-width: max-content !important;
   }
 
   .period-field.is-overflow-hidden {
     display: none !important;
   }
 
-  /* Sheet works on large screens too (overflow filters). */
-  .filter-sheet-backdrop:not([hidden]) {
-    display: block;
-    position: fixed;
-    inset: 0;
-    z-index: 80;
-    background: rgba(0, 0, 0, 0.28);
+  .period-filter-line > .filter-toggle {
+    min-height: 38px;
   }
 
-  body.filter-sheet-open {
-    overflow: hidden;
+  /*
+   * Desktop “more filters”: expand overflow facets in the same glass bar —
+   * same field chrome as the visible row. No bottom sheet / foreign modal.
+   */
+  body.filters-expanded .period-filter-line {
+    align-items: flex-start;
   }
 
-  .filter-sheet:not([hidden]) {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 50%;
-    right: auto;
-    bottom: max(24px, var(--safe-bottom));
-    top: auto;
-    z-index: 90;
-    width: min(420px, calc(100vw - 48px));
-    max-height: min(72vh, 640px);
-    transform: translateX(-50%);
-    padding: 0;
-    border-radius: 14px;
-    background: var(--grouped-bg);
-    border: 0.5px solid var(--separator);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
-    overflow: hidden;
+  body.filters-expanded .period-controls {
+    flex-wrap: wrap;
+    overflow: visible;
+    row-gap: 10px;
   }
 
-  .filter-sheet-chrome {
-    display: block;
-    flex-shrink: 0;
-    padding: 10px 16px 4px;
-    border-bottom: 0.5px solid var(--separator);
-    background: var(--grouped-bg);
-  }
-
-  .filter-sheet-grabber {
-    display: none;
-  }
-
-  .filter-sheet-header {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    min-height: 36px;
-    margin-bottom: 4px;
-  }
-
-  .filter-sheet-header h2 {
-    margin: 0;
-    text-align: center;
-    font-size: 1.0625rem;
-    font-weight: 650;
-    letter-spacing: -0.02em;
-  }
-
-  .sheet-text-btn {
-    border: 0;
-    background: none;
-    color: var(--system-blue);
-    font: inherit;
-    font-size: 1.0625rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    cursor: pointer;
-    padding: 6px 0;
-    justify-self: start;
-  }
-
-  .sheet-text-btn.sheet-done {
-    font-weight: 650;
-    justify-self: end;
-  }
-
-  .filter-sheet-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .filter-sheet-body .filter-panel {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-width: 0;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .filter-sheet-body .period-controls {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 0;
-    align-items: stretch;
-    margin: 12px 16px;
-    overflow: auto;
-    flex: 1;
-    border-radius: var(--radius-lg);
-    background: var(--grouped-bg-elevated);
-  }
-
-  .filter-sheet-body .period-field,
-  .filter-sheet-body .period-field-country,
-  .filter-sheet-body .period-field-theme,
-  .filter-sheet-body .period-field-search {
-    min-width: 0;
+  body.filters-expanded .period-field.is-overflow-hidden {
     display: grid !important;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
-    align-items: center;
-    gap: 8px;
-    margin: 0;
-    padding: 4px 14px;
-    min-height: 44px;
-    border-bottom: 0.5px solid var(--separator);
   }
 
-  .filter-sheet-body .period-field:last-of-type {
-    border-bottom: 0;
+  body.filters-expanded .period-filter-line > .filter-toggle {
+    /* Keep the button on the first control row while facets wrap underneath. */
+    align-self: flex-start;
+    margin-top: calc(0.6875rem * 1.2 + 4px);
+    background: var(--blue-soft);
   }
 
-  .filter-sheet-body .period-field span {
-    margin: 0;
-  }
-
-  .filter-sheet-body .period-field select,
-  .filter-sheet-body .period-field-theme select,
-  .filter-sheet-body .period-field-search input,
-  .filter-sheet-body .period-field .combo-input {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-  }
-
-  .filter-sheet-body .period-summary {
-    margin: 0 16px 14px;
-  }
-
-  /* While the sheet is open, the inline secondary row is empty — collapse it. */
-  body.filter-sheet-open .period-secondary {
-    display: none;
+  /* Desktop never uses the mobile bottom sheet. */
+  .filter-sheet,
+  .filter-sheet-backdrop {
+    display: none !important;
   }
 }
 
