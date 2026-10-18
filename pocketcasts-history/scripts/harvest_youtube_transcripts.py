@@ -146,11 +146,19 @@ YT_CHANNELS: dict[str, dict] = {
         "cross_lang": True,
     },
     # Weekly politics show; full episodes uploaded on @uol (often as live VODs).
+    # Prefer titles with Toledo/Bilenky; reject the unrelated "A Hora e a Vez" series.
     "A Hora": {
         "handle": "@uol",
+        "channel_search": "A Hora Toledo Bilenky",
         "title_must": ["a hora"],
-        "reject_title": ["cortes", "shorts"],
+        "reject_title": [
+            "cortes",
+            "shorts",
+            "a hora e a vez",
+            "a hora e a vez de",
+        ],
         "search_fallback": True,
+        "min_score": 0.45,
     },
     "Xadrez Verbal": {
         "handle": "@XadrezVerbal",
@@ -971,7 +979,7 @@ def fetch_gemini(
         return None
     # Prefer flash-lite: free-tier RPD is per-model; 3.8-flash burns out
     # quickly (20 RPD) while lite handles long chunked XV harvests.
-    model = model or os.environ.get("GEMINI_YT_MODEL", "gemini-3.5-flash-lite")
+    model = model or os.environ.get("GEMINI_YT_MODEL", "gemini-3.1-flash-lite")
     chunk_secs = int(os.environ.get("GEMINI_YT_CHUNK_SECS", "600"))
     chunk_secs = max(120, min(chunk_secs, 1800))
     chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "2"))
@@ -1478,7 +1486,7 @@ def main() -> None:
     )
     print(
         f"pairs={len(pairs)} backends={backends} dry_run={args.dry_run} "
-        f"gemini_model={args.gemini_model or os.environ.get('GEMINI_YT_MODEL', 'gemini-3.5-flash-lite')} "
+        f"gemini_model={args.gemini_model or os.environ.get('GEMINI_YT_MODEL', 'gemini-3.1-flash-lite')} "
         f"gemini_parallel={args.gemini_parallel or os.environ.get('GEMINI_YT_PARALLEL', '4')}",
         flush=True,
     )
