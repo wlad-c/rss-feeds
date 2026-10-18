@@ -110,6 +110,14 @@ def probe_model(model: str, key: str) -> tuple[bool, float | None]:
         return True, None
     except urllib.error.HTTPError as exc:
         msg = exc.read().decode("utf-8", errors="replace")
+        if exc.code == 402 or "prepayment credits are depleted" in msg.lower():
+            # Paid project, but prepaid balance is $0 — not a free-tier choice.
+            print(
+                f"  probe {model}: PREPAY CREDITS DEPLETED (402) — top up at "
+                f"https://ai.studio/projects",
+                flush=True,
+            )
+            return False, 1800.0
         if exc.code != 429:
             print(f"  probe {model}: HTTP {exc.code} {msg[:160]}", flush=True)
             return False, None
@@ -132,7 +140,7 @@ def probe_model(model: str, key: str) -> tuple[bool, float | None]:
             or "free_tier" in msg.lower()
             or "FreeTier" in msg
         ):
-            print(f"  probe {model}: quota blocked ~{retry:.0f}s", flush=True)
+            print(f"  probe {model}: FreeTier quota blocked ~{retry:.0f}s", flush=True)
             return False, retry or 3600
         print(f"  probe {model}: soft 429 ~{retry:.0f}s — treating as usable", flush=True)
         return True, retry
