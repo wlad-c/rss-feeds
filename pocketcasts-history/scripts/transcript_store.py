@@ -80,11 +80,25 @@ def upsert_full(
           chars=excluded.chars,
           text=excluded.text,
           updated_at=datetime('now')
-        WHERE excluded.chars >= transcripts.chars
-           OR (
-             excluded.src IN ('transcript', 'stt', 'youtube')
-             AND transcripts.src = 'show-notes'
-           )
+        WHERE
+          -- Trust order: publisher transcript / YouTube captions > STT > show-notes.
+          -- Always allow transcript|youtube to replace stt|show-notes regardless of length.
+          -- Never let STT clobber transcript|youtube (Whisper can be longer but lower-trust).
+          (
+            excluded.src IN ('transcript', 'youtube')
+            AND transcripts.src IN ('stt', 'show-notes')
+          )
+          OR (
+            excluded.src IN ('transcript', 'stt', 'youtube')
+            AND transcripts.src = 'show-notes'
+          )
+          OR (
+            excluded.chars >= transcripts.chars
+            AND NOT (
+              excluded.src = 'stt'
+              AND transcripts.src IN ('transcript', 'youtube')
+            )
+          )
         """,
         (
             int(episode_idx),
