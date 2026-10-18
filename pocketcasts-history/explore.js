@@ -694,14 +694,20 @@
     const themeSel = $("#periodTheme");
     if (!themeSel || !state.themesDoc?.themes) return;
     const selected = state.chartPeriod.theme || "";
-    const opts = ['<option value="">All themes</option>'];
-    for (const t of themesPresentInFilter(flatThemes())) {
-      opts.push(`<option value="${escapeHtml(t.id)}">${escapeHtml(t.name)}</option>`);
-    }
+    const themes = themesPresentInFilter(flatThemes()).slice();
     // Keep a selected theme visible even if the current filter set hides it.
-    if (selected && !opts.some((o) => o.includes(`value="${selected}"`))) {
+    if (selected && !themes.some((t) => t.id === selected)) {
       const t = state.themeById[selected];
-      if (t) opts.push(`<option value="${escapeHtml(t.id)}">${escapeHtml(t.name)}</option>`);
+      if (t) themes.push(t);
+    }
+    themes.sort((a, b) =>
+      String(a.name || "").localeCompare(String(b.name || ""), undefined, {
+        sensitivity: "base",
+      })
+    );
+    const opts = ['<option value="">All themes</option>'];
+    for (const t of themes) {
+      opts.push(`<option value="${escapeHtml(t.id)}">${escapeHtml(t.name)}</option>`);
     }
     themeSel.innerHTML = opts.join("");
     themeSel.value = selected;
