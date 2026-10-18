@@ -37,8 +37,9 @@ Before merging or deploying any change that touches Listening Log layout, filter
 Horizontal inset is owned by CSS tokens, not one-off margins:
 
 - `--page-inline` (min 16px) + `--safe-left/right` → `--inset-left` / `--inset-right`
-- `.wrap` uses **`padding-inline: var(--inset-*)`** and `width: min(980px, 100%)` — **not** `width: calc(100% - Npx)` with zero padding (overflowing children paint into the gutter and off-screen)
-- Elements that also use `.wrap` (`.chrome-inner`, `.period-bar`) must set **`padding-block` only** — never `padding: Npx 0` / shorthand that resets inline inset to 0 (this was the recurring root cause)
+- `.wrap` gutters are **`border-left/right: max(16px, env(safe-area-inset-*)) solid transparent`** + `overflow-x: hidden` + `box-sizing: border-box`. **Never use padding for the page gutter** — overflowing flex children paint into padding and still reach the screen edge (`overflow` clips at the padding edge, not outside it).
+- Elements that also use `.wrap` (`.chrome-inner`, `.period-bar`) must not reset those transparent borders (no `border: 0` / `border: 0.5px solid …` shorthand that wipes the gutter).
+- Show field on mobile: `flex: 1 1 0; width: 0; overflow: hidden` so iOS search inputs cannot expand the row past Filters.
 - Fixed UI (tab bar, filter sheet, combo picker chrome) must use the same `--inset-*` tokens
 - Never combine `left` + `right` + `width: 100%` / `max-width: 100%` on fixed elements (over-constrains and clips Cancel/Done)
 - Body does **not** carry horizontal safe padding (fixed layers ignore it)
@@ -64,4 +65,4 @@ With a long show title selected:
 
 ### Deploy note
 
-GitHub Pages serves **`main:/docs`**. Also update **`gh-pages`** for the jsDelivr mirror, bump `?v=` cache-bust on CSS/JS, and purge jsDelivr — stale CDN HTML has repeatedly made “fixed” builds look broken on device.
+GitHub Pages serves **`main:/docs`** (this is what users should open). Also force-update **`gh-pages/pocketcasts-history/`** from `docs/`, bump `?v=` **and** the footer `build-stamp`, and purge jsDelivr `index.html` + CSS/JS. **Verify** `cdn.jsdelivr.net/.../index.html` actually shows the new `?v=` — branch CDN can keep serving old HTML for hours; tell users to use **github.io** if edges still clip. Never diagnose layout bugs from a stale CDN tab.
