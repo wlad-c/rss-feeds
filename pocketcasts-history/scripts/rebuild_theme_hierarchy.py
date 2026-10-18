@@ -294,7 +294,10 @@ MUSIC_SUBSTANCE = [
     r"\bcantor\b", r"\bcantora\b", r"\bconcert\b", r"\bshow musical\b",
     r"\bdiscografia\b", r"\bdiscography\b", r"\bhip-?hop\b", r"\brapper\b",
     r"\borchestra\b", r"\bsinf[oô]nica\b", r"\bplaylist\b",
-    r"\bgrammys?\b", r"\bbillboard\b", r"\bchart[- ]topping\b",
+    r"\bgrammys?\b",
+    # "billboard" alone matches political ad boards; require chart/magazine cue.
+    r"\bbillboard (?:charts?|hot ?100|200|magazine|music)\b",
+    r"\bchart[- ]topping\b",
     r"\bsingle (?:release|chart)\b", r"\bstudio album\b",
 ]
 MUSIC = [
