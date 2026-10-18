@@ -82,16 +82,18 @@ YT_CHANNELS: dict[str, dict] = {
         "min_score": 0.85,
         "reject_title": [],
     },
-    # Daily Politics Now audio (~30 min) is not on YouTube — only short promo
-    # clips. Episodes tagged "| Insiders On Background" in the feed DO match
-    # the Insiders On Background playlist on @ABCNewsIndepth (~25 min).
+    # VERDICT: full daily Politics Now (~30–50 min) is NOT on YouTube.
+    # Only the Insiders On Background subset (~63 feed eps) publishes as a
+    # dedicated playlist on @ABCNewsIndepth. Do not search @abcnewsaustralia
+    # (Insiders interview clips / no full-show audio). playlist_only keeps
+    # harvest scoped to that subset; ordinary Politics Now titles stay unmatched.
     "Politics Now": {
         "handle": "@ABCNewsIndepth",
         "playlist": "PLDTPrMoGHssDd3-ICckOsBZwpp3IEDxYs",
         "playlist_only": True,
         # Playlist is already scoped; some uploads omit the Insiders suffix.
         "title_must": None,
-        "min_score": 0.72,
+        "min_score": 0.85,
         "reject_title": [
             "abc news daily",
             "news breakfast",
@@ -351,6 +353,10 @@ def episode_video_score(
     # noun/acronym + near-equal duration is enough for EN g1 titles.
     if len(shared) >= 1 and dscore >= 0.8:
         return min(1.0, 0.40 * tscore + 0.45 * dscore + 0.15)
+    # Dedicated show playlist: near-equal duration + weak lexical overlap can
+    # still be trusted (pure PT↔EN with no shared proper nouns).
+    if conf.get("playlist_only") and dscore >= 0.9 and tscore >= 0.12:
+        return min(1.0, 0.35 * tscore + 0.55 * dscore + 0.10)
     return tscore
 
 

@@ -250,15 +250,23 @@ def assign_show_model_pairs(
     shows: list[str],
     models: list[str],
     min_year: int,
+    wave: int = 0,
 ) -> list[tuple[str, str]]:
-    """Pair each usable model with the show that still has the largest gap."""
+    """Pair each usable model with a show that still has a gap.
+
+    Shows are ranked by remaining gap, then rotated by wave so the same
+    top show does not monopolize model[0] every wave (important when that
+    model is YouTube-hour capped).
+    """
     by = remaining_by_show(shows, min_year)
-    # Sort shows by remaining desc so biggest gaps get models first
     ranked = sorted(shows, key=lambda s: by[s][0], reverse=True)
     ranked = [s for s in ranked if by[s][0] > 0]
     if not ranked:
         return []
+    offset = wave % len(ranked)
+    ranked = ranked[offset:] + ranked[:offset]
     pairs: list[tuple[str, str]] = []
+    # Prefer unique show per model when possible
     for i, model in enumerate(models):
         show = ranked[i % len(ranked)]
         pairs.append((show, model))
@@ -351,7 +359,7 @@ def main() -> None:
             time.sleep(wait)
             continue
 
-        pairs = assign_show_model_pairs(args.shows, usable, args.min_year)
+        pairs = assign_show_model_pairs(args.shows, usable, args.min_year, wave=wave)
         if not pairs:
             print("no remaining shows to assign", flush=True)
             return
