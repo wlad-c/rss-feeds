@@ -1,42 +1,68 @@
 {
   "harvest": {
-    "tried": 3,
-    "fetched": 1,
-    "upserted": 1,
-    "noCaptions": 1,
+    "tried": 1,
+    "fetched": 0,
+    "upserted": 0,
+    "noCaptions": 0,
     "rateLimited": 1,
-    "pairs": 25,
-    "byBackend": {
-      "transcribe_yt": 1
-    },
-    "byShow": {
-      "The Daily": 1
-    },
+    "pairs": 4,
+    "byBackend": {},
+    "byShow": {},
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8417,
-    "withPublisherOrSttTranscript": 1450,
-    "withLongText2000plus": 1913,
-    "pctTranscript": 6.6,
-    "pctLongText": 8.7,
+    "withAnyText": 8402,
+    "withPublisherOrSttTranscript": 1497,
+    "withLongText2000plus": 1960,
+    "pctTranscript": 6.8,
+    "pctLongText": 8.91,
     "bySrc": {
       "show-notes": {
-        "count": 6967,
-        "chars": 6818399
+        "count": 6905,
+        "chars": 6747520
       },
       "stt": {
         "count": 16,
         "chars": 268686
       },
       "transcript": {
-        "count": 1360,
-        "chars": 21987522
+        "count": 1347,
+        "chars": 21800239
       },
       "youtube": {
-        "count": 74,
-        "chars": 3638135
+        "count": 134,
+        "chars": 8586985
       }
     }
+  },
+  "abcNewsDaily": {
+    "matchCountNeed": 284,
+    "matchCountInclCovered": 302,
+    "haveYoutube": 24,
+    "channelSearch": "ABC News Daily",
+    "handle": "@abcnewsaustralia",
+    "channelLimit": 1600,
+    "minScore": 0.85,
+    "note": "Podcasts-tab playlist PLn2RjxYNpcazZe2QhC7vAjasGOYFNifcT is not enumerable via yt-dlp; channel search returns the series. min_score 0.85 blocks Trump/AI token false positives.",
+    "harvestWaves": [
+      {
+        "model": "gemini-flash-lite-latest",
+        "upserted": 3,
+        "rateLimited": true
+      },
+      {
+        "model": "gemini-3.1-flash-lite-preview",
+        "upserted": 5,
+        "rateLimited": true
+      }
+    ]
+  },
+  "politicsNow": {
+    "verdict": "skip_daily_full_show; harvest_iob_subset_only",
+    "detail": "Full daily Politics Now episodes (~30\u201350 min) are not published on YouTube. Only the Insiders On Background subset (~63 feed titles) matches playlist PLDTPrMoGHssDd3-ICckOsBZwpp3IEDxYs on @ABCNewsIndepth (~50\u201358 high-score matches). Do not force matches against @abcnewsaustralia Insiders interview clips.",
+    "insidersOnBackgroundPlaylist": "PLDTPrMoGHssDd3-ICckOsBZwpp3IEDxYs",
+    "channel": "@ABCNewsIndepth",
+    "minScore": 0.85,
+    "playlistOnly": true
   }
 }
