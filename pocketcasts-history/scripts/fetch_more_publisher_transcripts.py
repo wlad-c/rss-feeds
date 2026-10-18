@@ -24,7 +24,12 @@ from pathlib import Path
 
 from transcript_store import TABLES, connect, upsert_full, write_slim_notes
 
-UA = "rss-feeds-listening-log/1.3 (+https://github.com/wlad-c/rss-feeds)"
+# Browser-like UA: piaui.co Bitly short links reject bot UAs (landing page)
+# and only redirect to archive slug pages with a normal Chrome UA.
+UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+)
 REQUEST_TIMEOUT = 30
 
 FORO_SHOW = "Foro de Teresina"
