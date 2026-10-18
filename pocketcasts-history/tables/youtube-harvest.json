@@ -1,46 +1,46 @@
 {
   "harvest": {
-    "tried": 19,
-    "fetched": 11,
-    "upserted": 11,
-    "noCaptions": 8,
+    "tried": 197,
+    "fetched": 196,
+    "upserted": 196,
+    "noCaptions": 1,
     "rateLimited": 0,
-    "pairs": 19,
+    "pairs": 197,
     "byBackend": {
-      "yt_transcript_net": 11
+      "yt_transcript_net": 196
     },
     "byShow": {
-      "ABC News Daily": 9,
-      "Lowy Institute": 2
+      "The Daily": 196
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 9621,
-    "withPublisherOrSttTranscript": 3031,
-    "withLongText2000plus": 3481,
-    "pctTranscript": 13.77,
-    "pctLongText": 15.82,
+    "withAnyText": 9817,
+    "withPublisherOrSttTranscript": 3230,
+    "withLongText2000plus": 3680,
+    "pctTranscript": 14.68,
+    "pctLongText": 16.72,
     "bySrc": {
       "show-notes": {
-        "count": 6590,
-        "chars": 6423135
+        "count": 6587,
+        "chars": 6420511
       },
       "stt": {
-        "count": 42,
-        "chars": 564727
+        "count": 45,
+        "chars": 613005
       },
       "transcript": {
         "count": 1702,
         "chars": 32049141
       },
       "youtube": {
-        "count": 1287,
-        "chars": 39225479
+        "count": 1483,
+        "chars": 44256253
       }
     }
   },
-  "lastCheckpoint": "2026-10-18T14:09Z",
-  "youtubeCount": 1280,
-  "note": "Remapped episode_idx to episodes.json by (podcast,episode); upsert refuses identity mismatch"
+  "lastCheckpoint": "2026-10-18T14:24Z",
+  "youtubeCount": 1483,
+  "sttCount": 52,
+  "misaligned": 0
 }
