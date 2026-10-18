@@ -10,6 +10,9 @@ YouTube blocks most cloud/datacenter IPs for direct caption fetches
   4. gemini                  — GEMINI_API_KEY; full audio transcription via Gemini
                                video understanding (YouTube URL). Use after free
                                caption backends are exhausted / rate-limited.
+                               Long episodes are chunked (default 10 min) via
+                               generateContent videoMetadata offsets — whole
+                               multi-hour videos exceed the 1M token cap.
                                Free Gemini tier ≈8h YouTube/day; paid key has no
                                daily length cap.
 
@@ -218,9 +221,26 @@ def parse_minutes(dur: str | None) -> float:
     return 0.0
 
 
+def _yt_dlp_bin() -> str:
+    """Resolve yt-dlp even when ~/.local/bin is not on PATH."""
+    for candidate in (
+        os.environ.get("YT_DLP_BIN"),
+        "yt-dlp",
+        str(Path.home() / ".local/bin/yt-dlp"),
+        "/usr/local/bin/yt-dlp",
+    ):
+        if not candidate:
+            continue
+        if candidate == "yt-dlp":
+            return candidate
+        if Path(candidate).is_file():
+            return candidate
+    return "yt-dlp"
+
+
 def yt_dump(url_or_query: str, limit: int = 50) -> list[dict]:
     cmd = [
-        "yt-dlp",
+        _yt_dlp_bin(),
         "--flat-playlist",
         "--dump-json",
         "--no-warnings",
@@ -388,106 +408,230 @@ def fetch_transcribe_yt(video_id: str) -> str | None:
     return text if len(text) >= 80 else None
 
 
-GEMINI_TRANSCRIBE_PROMPT = (
-    "Transcribe the FULL spoken audio of this YouTube video verbatim in the "
-    "original language. Output plain text only — no commentary, no title, no "
-    "markdown fences. Preserve natural paragraph breaks. Do not summarize or "
-    "omit segments. If the video is very long, continue until the audio ends."
+GEMINI_CHUNK_PROMPT = (
+    "Transcribe this clip verbatim in the original language. Output plain text "
+    "only — no commentary, no title, no markdown fences. Preserve natural "
+    "paragraph breaks. Do not summarize or omit segments."
 )
 
 
-def fetch_gemini(video_id: str) -> str | None:
-    """Full transcript via Gemini YouTube URL video understanding."""
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    if not key:
-        return None
-    model = os.environ.get("GEMINI_YT_MODEL", "gemini-3.8-flash")
-    yt_url = f"https://www.youtube.com/watch?v={video_id}"
-    body = {
-        "model": model,
-        "input": [
-            {"type": "text", "text": GEMINI_TRANSCRIBE_PROMPT},
-            {"type": "video", "uri": yt_url},
-        ],
-    }
-    req = urllib.request.Request(
-        "https://generativelanguage.googleapis.com/v1beta/interactions",
-        data=json.dumps(body).encode(),
-        method="POST",
-        headers={
-            "User-Agent": UA,
-            "Content-Type": "application/json",
-            "x-goog-api-key": key,
-            "Accept": "application/json",
-        },
-    )
+def yt_duration_seconds(video_id: str) -> int | None:
+    """Wall-clock duration via yt-dlp (needed to chunk long Gemini jobs)."""
+    cmd = [
+        _yt_dlp_bin(),
+        "--print",
+        "%(duration)s",
+        "--no-warnings",
+        f"https://www.youtube.com/watch?v={video_id}",
+    ]
     try:
-        with urllib.request.urlopen(req, timeout=900) as resp:
-            data = json.loads(resp.read().decode())
-    except urllib.error.HTTPError as exc:
-        payload = b""
-        try:
-            payload = exc.read()
-        except Exception:  # noqa: BLE001
-            pass
-        msg = payload.decode("utf-8", errors="replace")[:400]
-        if exc.code == 429:
-            raise RateLimited()
-        print(f"  gemini HTTP {exc.code}: {msg}", flush=True)
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+    except (subprocess.TimeoutExpired, FileNotFoundError):
         return None
-    except Exception as exc:  # noqa: BLE001
-        print(f"  gemini error: {exc}", flush=True)
+    line = (proc.stdout or "").strip().splitlines()
+    if not line:
+        return None
+    try:
+        return int(float(line[0]))
+    except ValueError:
         return None
 
-    text = ""
-    if isinstance(data, dict):
-        text = (
-            data.get("output_text")
-            or data.get("outputText")
-            or ""
-        )
-        if not text:
-            # interactions response shapes vary; walk for text parts
-            for key_name in ("outputs", "output", "candidates", "response"):
-                blob = data.get(key_name)
-                if isinstance(blob, str) and len(blob) > 80:
-                    text = blob
-                    break
-                if isinstance(blob, list):
-                    parts = []
-                    for item in blob:
-                        if isinstance(item, str):
-                            parts.append(item)
-                        elif isinstance(item, dict):
-                            parts.append(
-                                item.get("text")
-                                or item.get("output_text")
-                                or ""
-                            )
-                            content = item.get("content")
-                            if isinstance(content, list):
-                                for c in content:
-                                    if isinstance(c, dict) and c.get("text"):
-                                        parts.append(c["text"])
-                                    elif isinstance(c, str):
-                                        parts.append(c)
-                    joined = "\n".join(p for p in parts if p).strip()
-                    if len(joined) >= 80:
-                        text = joined
-                        break
+
+def _gemini_strip_preamble(text: str) -> str:
     text = (text or "").strip()
-    # Drop accidental model preambles
     for prefix in (
         "Here is the full transcript",
         "Here's the full transcript",
+        "Here is the transcript",
+        "Here's the transcript",
         "Transcript:",
         "Full transcript:",
     ):
         if text.lower().startswith(prefix.lower()):
             text = text[len(prefix) :].lstrip(" \n:")
             break
-    text = re.sub(r"\n{3,}", "\n\n", text).strip()
-    return text if len(text) >= 80 else None
+    return re.sub(r"\n{3,}", "\n\n", text).strip()
+
+
+def _gemini_generate_chunk(
+    *,
+    key: str,
+    model: str,
+    video_id: str,
+    start_s: int,
+    end_s: int,
+    retries: int = 5,
+) -> str | None:
+    """Transcribe [start_s, end_s) via generateContent + videoMetadata offsets."""
+    yt_url = f"https://www.youtube.com/watch?v={video_id}"
+    body = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": GEMINI_CHUNK_PROMPT},
+                    {
+                        "file_data": {"file_uri": yt_url},
+                        "video_metadata": {
+                            "start_offset": f"{start_s}s",
+                            "end_offset": f"{end_s}s",
+                        },
+                    },
+                ]
+            }
+        ],
+        "generationConfig": {
+            # LOW keeps ~3h of video under the 1M context; we chunk further.
+            "mediaResolution": "MEDIA_RESOLUTION_LOW",
+            "maxOutputTokens": 8192,
+        },
+    }
+    url = (
+        f"https://generativelanguage.googleapis.com/v1beta/models/"
+        f"{model}:generateContent"
+    )
+    last_err = ""
+    for attempt in range(retries):
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(body).encode(),
+            method="POST",
+            headers={
+                "User-Agent": UA,
+                "Content-Type": "application/json",
+                "x-goog-api-key": key,
+                "Accept": "application/json",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                data = json.loads(resp.read().decode())
+        except urllib.error.HTTPError as exc:
+            payload = b""
+            try:
+                payload = exc.read()
+            except Exception:  # noqa: BLE001
+                pass
+            msg = payload.decode("utf-8", errors="replace")
+            last_err = f"HTTP {exc.code}: {msg[:240]}"
+            if exc.code == 429:
+                # Daily YouTube quota / rate limit — stop the whole harvest.
+                raise RateLimited()
+            if exc.code in (503, 500, 502, 504) and attempt + 1 < retries:
+                wait = min(60, 4 * (2**attempt))
+                print(
+                    f"  gemini {start_s}-{end_s}s {exc.code}; retry in {wait}s",
+                    flush=True,
+                )
+                time.sleep(wait)
+                continue
+            print(f"  gemini {start_s}-{end_s}s {last_err}", flush=True)
+            return None
+        except Exception as exc:  # noqa: BLE001
+            last_err = str(exc)
+            if attempt + 1 < retries:
+                wait = min(60, 4 * (2**attempt))
+                print(
+                    f"  gemini {start_s}-{end_s}s error {exc}; retry in {wait}s",
+                    flush=True,
+                )
+                time.sleep(wait)
+                continue
+            print(f"  gemini {start_s}-{end_s}s error: {exc}", flush=True)
+            return None
+
+        cands = (data or {}).get("candidates") or []
+        if not cands:
+            last_err = f"no candidates: {json.dumps(data)[:240]}"
+            if attempt + 1 < retries:
+                time.sleep(min(30, 3 * (attempt + 1)))
+                continue
+            print(f"  gemini {start_s}-{end_s}s {last_err}", flush=True)
+            return None
+        parts = (cands[0].get("content") or {}).get("parts") or []
+        text = "".join(
+            p.get("text") or ""
+            for p in parts
+            if isinstance(p, dict) and p.get("text") and not p.get("thought")
+        )
+        text = _gemini_strip_preamble(text)
+        finish = cands[0].get("finishReason") or cands[0].get("finish_reason")
+        usage = (data or {}).get("usageMetadata") or {}
+        print(
+            f"  gemini chunk {start_s}-{end_s}s chars={len(text)} "
+            f"finish={finish} promptTok={usage.get('promptTokenCount')}",
+            flush=True,
+        )
+        return text if len(text) >= 40 else None
+    print(f"  gemini {start_s}-{end_s}s failed: {last_err}", flush=True)
+    return None
+
+
+def fetch_gemini(video_id: str) -> str | None:
+    """Full transcript via Gemini YouTube video understanding (chunked).
+
+    Whole multi-hour episodes exceed the 1M input-token cap under static
+    frame sampling. We clip with videoMetadata start/end offsets and
+    concatenate. Chunk length defaults to 10 minutes (GEMINI_YT_CHUNK_SECS).
+    """
+    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    if not key:
+        return None
+    model = os.environ.get("GEMINI_YT_MODEL", "gemini-3.8-flash")
+    chunk_secs = int(os.environ.get("GEMINI_YT_CHUNK_SECS", "600"))
+    chunk_secs = max(120, min(chunk_secs, 1800))
+    chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "3"))
+
+    duration = yt_duration_seconds(video_id)
+    if not duration or duration <= 0:
+        print("  gemini: could not resolve video duration", flush=True)
+        return None
+
+    pieces: list[str] = []
+    failed = 0
+    n_chunks = (duration + chunk_secs - 1) // chunk_secs
+    print(
+        f"  gemini chunking duration={duration}s → {n_chunks}×{chunk_secs}s "
+        f"model={model}",
+        flush=True,
+    )
+    for i, start in enumerate(range(0, duration, chunk_secs)):
+        end = min(start + chunk_secs, duration)
+        # Skip tiny trailing slivers (outro logos)
+        if end - start < 15 and pieces:
+            break
+        text = _gemini_generate_chunk(
+            key=key,
+            model=model,
+            video_id=video_id,
+            start_s=start,
+            end_s=end,
+        )
+        if text:
+            pieces.append(text)
+            failed = 0
+        else:
+            failed += 1
+            # Allow a couple of bad chunks (music-only outros) but abort if
+            # several consecutive windows fail — likely quota / model outage.
+            if failed >= 3:
+                print("  gemini: aborting after 3 consecutive chunk failures", flush=True)
+                break
+        if i + 1 < n_chunks and chunk_sleep > 0:
+            time.sleep(chunk_sleep)
+
+    if not pieces:
+        return None
+    joined = _gemini_strip_preamble("\n\n".join(pieces))
+    # Require a plausible fraction of the episode (very short → incomplete).
+    min_chars = max(500, min(8000, duration // 2))
+    if len(joined) < min_chars:
+        print(
+            f"  gemini: joined transcript too short "
+            f"({len(joined)} chars for {duration}s; need ≥{min_chars})",
+            flush=True,
+        )
+        return None
+    return joined
 
 
 def fetch_captions(video_id: str, backends: list[str]) -> tuple[str | None, str | None]:
