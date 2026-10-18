@@ -125,8 +125,14 @@ def probe_model(model: str, key: str) -> tuple[bool, float | None]:
                 + int(m.group(2) or 0) * 60
                 + float(m.group(3) or 0)
             )
-        if retry >= 3600 or "PerDay" in msg:
-            print(f"  probe {model}: daily blocked ~{retry:.0f}s", flush=True)
+        # Any FreeTier / PerDay signal → not usable, even if retry is short.
+        if (
+            retry >= 600
+            or "PerDay" in msg
+            or "free_tier" in msg.lower()
+            or "FreeTier" in msg
+        ):
+            print(f"  probe {model}: quota blocked ~{retry:.0f}s", flush=True)
             return False, retry or 3600
         print(f"  probe {model}: soft 429 ~{retry:.0f}s — treating as usable", flush=True)
         return True, retry
@@ -301,11 +307,12 @@ def main() -> None:
         if args.once:
             return
         if need2 >= need:
-            # no progress — respect daily waits if we have them, else 15min
-            wait = min(daily_waits) if daily_waits else 900
-            wait = max(600.0, min(wait, 6 * 3600))
+            # no progress (often mid-wave FreeTier exhaust) — re-probe soon
+            # so a Paid-tier flip is picked up quickly.
+            wait = float(os.environ.get("GEMINI_QUOTA_REPROBE_SECS", "900"))
+            wait = max(120.0, min(wait, 1800.0))
             print(
-                f"  no progress this wave; sleeping {wait:.0f}s before re-probe",
+                f"  no progress this wave; re-probing in {wait:.0f}s",
                 flush=True,
             )
             time.sleep(wait)
