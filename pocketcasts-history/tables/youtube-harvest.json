@@ -1,48 +1,48 @@
 {
   "harvest": {
-    "tried": 120,
-    "fetched": 120,
-    "upserted": 120,
-    "noCaptions": 0,
+    "tried": 49,
+    "fetched": 32,
+    "upserted": 32,
+    "noCaptions": 17,
     "rateLimited": 0,
-    "pairs": 120,
+    "pairs": 49,
     "byBackend": {
-      "yt_transcript_net": 120
+      "yt_transcript_net": 32
     },
     "byShow": {
-      "ABC News Daily": 120
+      "The Daily": 32
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 10282,
-    "withPublisherOrSttTranscript": 3750,
-    "withLongText2000plus": 4182,
-    "pctTranscript": 17.04,
-    "pctLongText": 19.0,
+    "withAnyText": 10308,
+    "withPublisherOrSttTranscript": 3776,
+    "withLongText2000plus": 4208,
+    "pctTranscript": 17.16,
+    "pctLongText": 19.12,
     "bySrc": {
       "show-notes": {
         "count": 6532,
         "chars": 6374670
       },
       "stt": {
-        "count": 90,
-        "chars": 1335907
+        "count": 96,
+        "chars": 1430604
       },
       "transcript": {
         "count": 1702,
         "chars": 32049141
       },
       "youtube": {
-        "count": 1958,
-        "chars": 51995567
+        "count": 1978,
+        "chars": 52313068
       }
     }
   },
-  "lastCheckpoint": "2026-10-18T16:14Z",
-  "youtubeCount": 1958,
-  "sttCount": 92,
+  "lastCheckpoint": "2026-10-18T16:29Z",
+  "youtubeCount": 1978,
+  "sttCount": 100,
+  "dailyYoutube": 1016,
   "abcYoutube": 537,
-  "dailyYoutube": 996,
   "misaligned": 0
 }
