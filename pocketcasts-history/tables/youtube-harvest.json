@@ -1,25 +1,29 @@
 {
   "harvest": {
-    "tried": 2,
-    "fetched": 0,
-    "upserted": 0,
+    "tried": 6,
+    "fetched": 5,
+    "upserted": 5,
     "noCaptions": 0,
-    "rateLimited": 1,
-    "pairs": 4,
-    "byBackend": {},
-    "byShow": {},
+    "rateLimited": 0,
+    "pairs": 6,
+    "byBackend": {
+      "gemini": 5
+    },
+    "byShow": {
+      "O Assunto": 5
+    },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8395,
-    "withPublisherOrSttTranscript": 1483,
-    "withLongText2000plus": 1946,
-    "pctTranscript": 6.74,
-    "pctLongText": 8.84,
+    "withAnyText": 8396,
+    "withPublisherOrSttTranscript": 1485,
+    "withLongText2000plus": 1948,
+    "pctTranscript": 6.75,
+    "pctLongText": 8.85,
     "bySrc": {
       "show-notes": {
-        "count": 6912,
-        "chars": 6756028
+        "count": 6911,
+        "chars": 6754486
       },
       "stt": {
         "count": 16,
@@ -30,8 +34,8 @@
         "chars": 21800239
       },
       "youtube": {
-        "count": 120,
-        "chars": 8238489
+        "count": 122,
+        "chars": 8295069
       }
     }
   }
