@@ -135,7 +135,15 @@ def probe_model(model: str, key: str) -> tuple[bool, float | None]:
         return False, None
 
 
-def run_worker(model: str, max_eps: int, parallel: int, min_year: int) -> subprocess.Popen:
+def run_worker(
+    model: str,
+    max_eps: int,
+    parallel: int,
+    min_year: int,
+    *,
+    channel_limit: int = 2000,
+    search_fallback: bool = True,
+) -> subprocess.Popen:
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     log = LOG_DIR / f"w-{model.replace('.', '_')}.log"
     cmd = [
@@ -153,12 +161,17 @@ def run_worker(model: str, max_eps: int, parallel: int, min_year: int) -> subpro
         "0",
         "--sleep",
         "2",
-        "--no-search-fallback",
+        "--channel-limit",
+        str(channel_limit),
         "--gemini-model",
         model,
         "--gemini-parallel",
         str(parallel),
     ]
+    # Search fallback needed for episodes older than the uploads window /
+    # imperfect title matches — required to drain the full backlog.
+    if not search_fallback:
+        cmd.append("--no-search-fallback")
     env = os.environ.copy()
     env["PATH"] = f"{Path.home() / '.local/bin'}:{env.get('PATH', '')}"
     fh = open(log, "a", encoding="utf-8")
@@ -246,13 +259,15 @@ def main() -> None:
 
         if not usable:
             wait = min(daily_waits) if daily_waits else 1800
-            wait = max(120.0, min(wait, 6 * 3600))
+            # Cap at 6h so we re-probe; floor 10min to avoid thrash.
+            wait = max(600.0, min(wait, 6 * 3600))
             print(f"all models daily-blocked; sleeping {wait:.0f}s", flush=True)
             if args.once:
                 return
             time.sleep(wait)
             continue
 
+        print(f"  usable models ({len(usable)}): {', '.join(usable)}", flush=True)
         procs = [
             run_worker(m, args.max_episodes_per_wave, args.parallel, args.min_year)
             for m in usable
@@ -279,9 +294,14 @@ def main() -> None:
         if args.once:
             return
         if need2 >= need:
-            # no progress — likely quota; cool down
-            print("  no progress this wave; cooling 180s", flush=True)
-            time.sleep(180)
+            # no progress — respect daily waits if we have them, else 15min
+            wait = min(daily_waits) if daily_waits else 900
+            wait = max(600.0, min(wait, 6 * 3600))
+            print(
+                f"  no progress this wave; sleeping {wait:.0f}s before re-probe",
+                flush=True,
+            )
+            time.sleep(wait)
         else:
             time.sleep(15)
 
