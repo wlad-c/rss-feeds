@@ -1,40 +1,29 @@
 {
   "harvest": {
-<<<<<<< HEAD
-    "tried": 3,
-    "fetched": 1,
-    "upserted": 1,
+    "tried": 6,
+    "fetched": 6,
+    "upserted": 6,
     "noCaptions": 0,
-    "rateLimited": 1,
-    "pairs": 4,
+    "rateLimited": 0,
+    "pairs": 6,
     "byBackend": {
-      "gemini": 1
+      "gemini": 6
     },
     "byShow": {
-      "Foro de Teresina": 1
+      "Foro de Teresina": 6
     },
-=======
-    "tried": 1,
-    "fetched": 0,
-    "upserted": 0,
-    "noCaptions": 0,
-    "rateLimited": 1,
-    "pairs": 13,
-    "byBackend": {},
-    "byShow": {},
->>>>>>> origin/main
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8642,
-    "withPublisherOrSttTranscript": 1894,
-    "withLongText2000plus": 2356,
-    "pctTranscript": 8.61,
-    "pctLongText": 10.71,
+    "withAnyText": 8689,
+    "withPublisherOrSttTranscript": 1977,
+    "withLongText2000plus": 2439,
+    "pctTranscript": 8.98,
+    "pctLongText": 11.08,
     "bySrc": {
       "show-notes": {
-        "count": 6748,
-        "chars": 6557571
+        "count": 6712,
+        "chars": 6522635
       },
       "stt": {
         "count": 15,
@@ -45,8 +34,8 @@
         "chars": 31872197
       },
       "youtube": {
-        "count": 189,
-        "chars": 10025032
+        "count": 272,
+        "chars": 12398519
       }
     }
   }
