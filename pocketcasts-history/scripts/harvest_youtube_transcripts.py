@@ -102,9 +102,20 @@ YT_CHANNELS: dict[str, dict] = {
             "lateline",
         ],
     },
+    # VERDICT: daily Up First full episodes are NOT on YouTube.
+    # @nprpodcasts has ~2400 uploads (Throughline, Wait Wait, Code Switch, …)
+    # but only 2 titles contain "up first" (Black Stories specials, not dailies).
+    # No dedicated @UpFirst channel/playlist; ytsearch only hits fan reuploads
+    # (2017–18) or unrelated NPR Morning Edition clips. Prefer NPR publisher
+    # transcripts (fetch_publisher_transcripts.py / text.npr.org) for coverage.
     "Up First from NPR": {
         "handle": "@nprpodcasts",
         "title_must": "up first",
+        "skip_youtube": True,
+        "skip_reason": (
+            "Daily Up First episodes are not published as full YouTube videos "
+            "(@nprpodcasts has only 2 'Up First' specials, not the daily show)."
+        ),
         "reject_title": [],
     },
     "7am": {
@@ -144,14 +155,20 @@ YT_CHANNELS: dict[str, dict] = {
         "title_must": None,
         "reject_title": [],
     },
-    # Full Sinica episodes are not published on YouTube. @SinicaPodcast only
-    # has "China Talking Points"; @TheChinaProject has trailers/anniversaries.
+    # VERDICT: full Sinica episodes are NOT on YouTube.
+    # Probed 2026-10-18: @SinicaPodcast = 5 uploads (China Talking Points +
+    # one Ukraine panel); playlists are Panels/Webinars + China Talking Points
+    # only. @KaiserKuo is ancient Baidu clips; @TheChinaProject is conference
+    # trailers/anniversaries; ytsearch hits third-party interviews (UC Berkeley
+    # one-off, Novara, etc.) — not the listened catalog. No usable alternate
+    # channel/playlist; leave skip_youtube so harvest does not false-match.
     "Sinica Podcast": {
         "handle": "@SinicaPodcast",
         "skip_youtube": True,
         "skip_reason": (
             "Full Sinica Podcast episodes are not on YouTube "
-            "(@SinicaPodcast is China Talking Points only)."
+            "(@SinicaPodcast is China Talking Points only; no alternate "
+            "channel/playlist of full episodes found)."
         ),
         "title_must": None,
         "reject_title": [],
