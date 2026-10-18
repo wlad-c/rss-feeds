@@ -30,18 +30,24 @@ from transcript_store import TABLES, connect, get_full, upsert_full, write_slim_
 EPISODES_CSV = TABLES / "episodes.csv"
 
 UA = "rss-feeds-listening-log/1.1 (+https://github.com/wlad-c/rss-feeds)"
-# Prefer English / AU news shows where Whisper is strong and listen volume is high.
+# Prefer shows that lack reliable YouTube captions / publisher transcripts.
+# Caption-rich shows (The Daily, ABC News Daily, Ezra) are harvested via
+# yt_transcript_net — do not burn STT quota on them first.
 PRIORITY_SHOWS = [
-    "The Daily",
-    "ABC News Daily",
-    "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-    "Politics Now",
     "The Morning Edition",
     "Up First from NPR",
-    "7am",
-    "Democracy Sausage with Mark Kenny",
+    "Politics Now",  # only Insiders On Background subset is on YT
+    "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+    "Morning Brief",
     "Australian Politics",
+    "Democracy Sausage with Mark Kenny",
     "The National Security Podcast",
+    "Asia Geopolitics",
+    "Sources & Methods",
+    "The Run-Up",
+    "7am",
+    "ABC News Daily",
+    "The Daily",
 ]
 
 
@@ -117,6 +123,11 @@ def dur_minutes(ep: dict) -> float:
 def already_good(
     conn, idx: int, episodes: list[dict], min_chars: int = 2000
 ) -> bool:
+    """Skip episodes that already have a reliable full transcript.
+
+    Treat publisher transcripts and YouTube captions as authoritative —
+    never burn STT quota (or risk a weaker Whisper pass) overwriting them.
+    """
     ep = episodes[idx] if 0 <= idx < len(episodes) else {}
     row = get_full(
         conn,
@@ -126,9 +137,12 @@ def already_good(
     )
     if not row:
         return False
-    if row["src"] in ("transcript", "stt") and row["chars"] >= min_chars:
+    src = row["src"]
+    chars = int(row["chars"] or 0)
+    # Publisher / YouTube captions are highest-trust free sources.
+    if src in ("transcript", "youtube") and chars >= 1200:
         return True
-    if row["src"] == "transcript" and row["chars"] >= 1200:
+    if src == "stt" and chars >= min_chars:
         return True
     return False
 
