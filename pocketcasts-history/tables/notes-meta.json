@@ -27,31 +27,5 @@
   "notesStored": 10531,
   "snippetChars": 900,
   "store": "transcripts/full.sqlite",
-  "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/).",
-  "morePublisherHarvest": {
-    "errors": [],
-    "foro": {
-      "candidates": 319,
-      "resolvedUnique": 123,
-      "matched": 74,
-      "upgraded": 0,
-      "skipped": 74,
-      "failed": 196
-    },
-    "nsc": {
-      "candidates": 63,
-      "matched": 48,
-      "upgraded": 0,
-      "skipped": 48,
-      "failed": 0
-    },
-    "grattan": {
-      "targets": 76,
-      "matchedWithTranscript": 3,
-      "upgraded": 0,
-      "skipped": 3,
-      "noTranscriptOnPage": 73,
-      "failed": 0
-    }
-  }
+  "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/)."
 }
