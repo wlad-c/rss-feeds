@@ -264,14 +264,23 @@ def episode_video_score(
 ) -> float:
     """Composite match score; duration-aware for cross-language shows."""
     conf = YT_CHANNELS.get(podcast) or {}
-    tscore = title_score(ep.get("e") or "", yt_title)
+    ep_title = ep.get("e") or ""
+    tscore = title_score(ep_title, yt_title)
     if not conf.get("cross_lang"):
         return tscore
     dscore = duration_score(ep.get("dur"), yt_duration)
-    # When show-tagged on a mixed channel, trust duration + light title signal.
-    if dscore >= 0.8 and tscore >= 0.18:
-        return max(tscore, 0.55 * tscore + 0.45 * dscore)
-    if dscore >= 0.5 and tscore >= 0.28:
+    ta = token_set(ep_title)
+    tb = token_set(_strip_show_suffix(yt_title))
+    shared = {
+        t for t in (ta & tb) if len(t) >= 4 or any(ch.isdigit() for ch in t)
+    }
+    # Duration alone is dangerous on a ~30min daily show — require lexical anchors.
+    if len(shared) >= 2 and dscore >= 0.5:
+        return min(
+            1.0,
+            0.50 * tscore + 0.35 * dscore + 0.15 * min(1.0, len(shared) / 3.0),
+        )
+    if len(shared) >= 1 and dscore >= 0.8 and tscore >= 0.30:
         return 0.55 * tscore + 0.45 * dscore
     return tscore
 
@@ -996,8 +1005,8 @@ def match_from_channel(
 ) -> list[tuple[int, dict, dict]]:
     """Greedy one-to-one match: highest scoring (episode, video) pairs."""
     conf = YT_CHANNELS.get(podcast) or {}
-    # Cross-lang shows need a lower bar; duration blend lifts true pairs.
-    thr = 0.42 if conf.get("cross_lang") else min_score
+    # Cross-lang: allow slightly below default once duration+shared tokens lift.
+    thr = 0.48 if conf.get("cross_lang") else min_score
     scored: list[tuple[float, int, int, dict]] = []
     for ei, (idx, ep) in enumerate(episodes):
         for vi, vid in enumerate(uploads):
@@ -1117,6 +1126,7 @@ def build_pairs(
 
     pairs: list[tuple[int, dict, dict]] = []
     matched_idxs: set[int] = set()
+    matched_vids: set[str] = set()
     per_show: dict[str, list[tuple[int, dict, dict]]] = {}
 
     # 1) Channel-first (collect per show, then interleave so one show can't eat quota)
@@ -1148,9 +1158,12 @@ def build_pairs(
                 continue
             idx, ep, vid = per_show[s][p]
             pointers[s] = p + 1
-            if idx in matched_idxs:
+            vid_id = vid.get("id") or ""
+            if idx in matched_idxs or (vid_id and vid_id in matched_vids):
                 continue
             matched_idxs.add(idx)
+            if vid_id:
+                matched_vids.add(vid_id)
             pairs.append((idx, ep, vid))
 
     # 2) Search fallback for remaining high-priority eps
@@ -1165,7 +1178,12 @@ def build_pairs(
                 hit = match_via_search(podcast, ep.get("e") or "", ep=ep)
                 if not hit:
                     continue
+                vid_id = hit.get("id") or ""
+                if vid_id and vid_id in matched_vids:
+                    continue
                 matched_idxs.add(idx)
+                if vid_id:
+                    matched_vids.add(vid_id)
                 pairs.append((idx, ep, hit))
                 print(
                     f"  search hit {podcast[:30]} ← {hit['id']} "
