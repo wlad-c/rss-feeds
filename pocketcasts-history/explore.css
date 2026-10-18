@@ -136,14 +136,19 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 7.5rem;
   scroll-padding-bottom: calc(var(--tab-bar-h) + 1rem);
+  /* hidden before clip: older iOS ignores clip and then rubber-bands sideways */
+  overflow-x: hidden;
   overflow-x: clip;
   max-width: 100%;
+  width: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
   overflow-x: clip;
   color: var(--label);
   font-family: var(--font);
@@ -178,6 +183,7 @@ button, input, select { font: inherit; color: inherit; }
   z-index: 1;
   width: min(980px, calc(100% - 32px));
   max-width: 100%;
+  min-width: 0;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -192,6 +198,8 @@ button, input, select { font: inherit; color: inherit; }
   -webkit-backdrop-filter: saturate(180%) blur(24px);
   border-bottom: 0.5px solid var(--separator);
   box-shadow: var(--glass-highlight);
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .chrome-inner {
@@ -199,7 +207,10 @@ button, input, select { font: inherit; color: inherit; }
   align-items: center;
   gap: 14px;
   min-height: 52px;
+  min-width: 0;
+  max-width: 100%;
   padding: 8px 0;
+  overflow: hidden;
 }
 
 .brand {
@@ -259,7 +270,10 @@ html[data-theme="dark"] .chrome-tab.is-active {
   align-items: center;
   gap: 8px;
   margin-left: auto;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .refresh-btn {
@@ -370,6 +384,8 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   top: 52px;
   z-index: 35;
   padding: 8px 0 6px;
+  max-width: 100%;
+  overflow-x: hidden;
   background: linear-gradient(
     180deg,
     var(--chrome) 0%,
@@ -408,7 +424,7 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 .period-toolbar .period-hero-show select,
 .period-toolbar .period-hero-show .combo-input {
   width: 100%;
-  max-width: none;
+  max-width: 100%;
   min-width: 0;
 }
 
@@ -445,9 +461,11 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 
 .combo-input {
   width: 100%;
-  max-width: none !important;
+  max-width: 100% !important;
   min-width: 0 !important;
   box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .combo-list {
@@ -509,9 +527,10 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 .combo-picker-host:not([hidden]) {
   display: flex;
   position: fixed;
+  /* Pin to the visual viewport so zoom / sideways overscroll cannot clip Cancel/Done */
   top: var(--vv-top, 0px);
-  left: 0;
-  right: 0;
+  left: var(--vv-left, 0px);
+  width: var(--vv-width, 100%);
   height: var(--vv-height, 100dvh);
   z-index: 220;
   padding: 0;
@@ -519,14 +538,17 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   background: rgba(0, 0, 0, 0.28);
   align-items: stretch;
   justify-content: stretch;
+  overflow: hidden;
 }
 
 .combo-picker {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 100%;
   height: 100%;
   max-height: 100%;
+  min-width: 0;
   min-height: 0;
   background: var(--grouped-bg);
   border-radius: 14px 14px 0 0;
@@ -540,7 +562,7 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   align-items: center;
   flex-shrink: 0;
   min-height: 48px;
-  padding: 6px 16px;
+  padding: 6px max(16px, var(--safe-right)) 6px max(16px, var(--safe-left));
   border-bottom: 0.5px solid var(--separator);
   background: var(--grouped-bg-elevated);
 }
@@ -564,7 +586,7 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 
 .combo-picker-search {
   flex-shrink: 0;
-  padding: 10px 16px 8px;
+  padding: 10px max(16px, var(--safe-right)) 8px max(16px, var(--safe-left));
   background: var(--grouped-bg);
 }
 
@@ -590,8 +612,9 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 .combo-picker-list {
   flex: 1;
   min-height: 0;
+  min-width: 0;
   margin: 0;
-  padding: 4px 8px calc(12px + var(--safe-bottom));
+  padding: 4px max(12px, var(--safe-right)) calc(12px + var(--safe-bottom)) max(12px, var(--safe-left));
   list-style: none;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -1679,7 +1702,11 @@ body.is-filtering #periodSummary {
   /* Floating tab (58) + bottom gap (8) + breathing room above charts */
   :root { --tab-bar-h: 88px; }
 
-  .wrap { width: min(980px, calc(100% - 24px)); }
+  .wrap {
+    width: min(980px, calc(100% - 32px));
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .chrome-tabs { display: none; }
   .chrome-tools { margin-left: auto; }
@@ -1724,12 +1751,17 @@ body.is-filtering #periodSummary {
     box-shadow: none;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .period-toolbar {
     align-items: stretch;
-    flex: 1;
+    flex: 1 1 0;
     min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   /* Promote Show + Filters onto one row; keep the facet panel for the sheet only. */
@@ -1738,6 +1770,28 @@ body.is-filtering #periodSummary {
     flex-wrap: nowrap;
     align-items: stretch;
     gap: 8px;
+  }
+
+  /*
+   * iOS Safari: search inputs ignore min-width:0 for flex min-content sizing, so a
+   * long show title expands the row and clips Filters / chrome tools. Force shrink.
+   */
+  .period-toolbar .period-hero-show {
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .period-toolbar .period-hero-show .combo,
+  .period-toolbar .period-hero-show .combo-input,
+  .period-toolbar .period-hero-show select {
+    width: 100%;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .period-secondary {
@@ -1762,6 +1816,7 @@ body.is-filtering #periodSummary {
   .period-secondary > .filter-toggle {
     display: inline-flex;
     align-self: stretch;
+    flex-shrink: 0;
   }
 
   .period-search-label,
@@ -1771,6 +1826,10 @@ body.is-filtering #periodSummary {
 
   .period-hero-show {
     gap: 0;
+  }
+
+  .period-field-podcast {
+    min-width: 0;
   }
 
   .period-hero-show .combo-input,
@@ -2031,8 +2090,18 @@ body.is-filtering #periodSummary {
 
 @media (max-width: 520px) {
   .chrome-inner { gap: 6px; }
-  .brand { font-size: 1rem; max-width: 6.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .chrome-tools { gap: 4px; }
+  .brand {
+    font-size: 1rem;
+    max-width: 6.5rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 1;
+  }
+  .chrome-tools { gap: 4px; flex-shrink: 0; }
+  .segmented-btn,
+  .metric-toggle .metric-btn { padding: 5px 8px; }
   .glass-btn,
   .tool-btn { padding: 7px 9px; font-size: 0.75rem; }
   /* Icon-only Refresh so it isn't clipped off the right edge on iPhone */
