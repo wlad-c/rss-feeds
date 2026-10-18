@@ -1,29 +1,25 @@
 {
   "harvest": {
-    "tried": 4,
-    "fetched": 4,
-    "upserted": 4,
+    "tried": 2,
+    "fetched": 0,
+    "upserted": 0,
     "noCaptions": 0,
-    "rateLimited": 0,
+    "rateLimited": 1,
     "pairs": 4,
-    "byBackend": {
-      "gemini": 4
-    },
-    "byShow": {
-      "Lowy Institute": 4
-    },
+    "byBackend": {},
+    "byShow": {},
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8388,
-    "withPublisherOrSttTranscript": 1473,
-    "withLongText2000plus": 1936,
-    "pctTranscript": 6.69,
-    "pctLongText": 8.8,
+    "withAnyText": 8395,
+    "withPublisherOrSttTranscript": 1483,
+    "withLongText2000plus": 1946,
+    "pctTranscript": 6.74,
+    "pctLongText": 8.84,
     "bySrc": {
       "show-notes": {
-        "count": 6915,
-        "chars": 6760566
+        "count": 6912,
+        "chars": 6756028
       },
       "stt": {
         "count": 16,
@@ -34,8 +30,8 @@
         "chars": 21800239
       },
       "youtube": {
-        "count": 110,
-        "chars": 8021456
+        "count": 120,
+        "chars": 8238489
       }
     }
   }
