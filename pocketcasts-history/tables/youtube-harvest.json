@@ -1,24 +1,24 @@
 {
   "harvest": {
-    "tried": 5,
-    "fetched": 5,
-    "upserted": 5,
-    "noCaptions": 0,
+    "tried": 34,
+    "fetched": 18,
+    "upserted": 18,
+    "noCaptions": 16,
     "rateLimited": 0,
-    "pairs": 5,
+    "pairs": 34,
     "byBackend": {
-      "yt_transcript_net": 5
+      "yt_transcript_net": 18
     },
     "byShow": {
-      "ABC News Daily": 5
+      "The Daily": 18
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 10458,
-    "withPublisherOrSttTranscript": 3927,
-    "withLongText2000plus": 4357,
-    "pctTranscript": 17.84,
+    "withAnyText": 10464,
+    "withPublisherOrSttTranscript": 3933,
+    "withLongText2000plus": 4359,
+    "pctTranscript": 17.87,
     "pctLongText": 19.8,
     "bySrc": {
       "show-notes": {
@@ -34,14 +34,14 @@
         "chars": 32049141
       },
       "youtube": {
-        "count": 2076,
-        "chars": 53414269
+        "count": 2082,
+        "chars": 53429840
       }
     }
   },
-  "lastCheckpoint": "2026-10-18T18:20Z",
-  "youtubeCount": 2076,
-  "sttCount": 149,
-  "abcYoutube": 635,
+  "lastCheckpoint": "2026-10-18T18:52Z",
+  "youtubeCount": 2082,
+  "sttCount": 157,
+  "note": "merged deleted-inode ghost harvest with live STT",
   "misaligned": 0
 }
