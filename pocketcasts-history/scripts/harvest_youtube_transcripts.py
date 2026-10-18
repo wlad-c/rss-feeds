@@ -588,8 +588,26 @@ def _gemini_generate_chunk(
             msg = payload.decode("utf-8", errors="replace")
             last_err = f"HTTP {exc.code}: {msg[:240]}"
             if exc.code == 429:
-                if _gemini_quota_exhausted(msg):
-                    print(f"  gemini quota exhausted: {msg[:200]}", flush=True)
+                # Surface retry hint when Google returns "Please retry in Nh…"
+                retry_hint = None
+                m = re.search(
+                    r"retry in ([0-9]+h)?([0-9]+m)?([0-9]+(?:\.[0-9]+)?s)?",
+                    msg,
+                    re.I,
+                )
+                if m:
+                    retry_hint = "".join(g for g in m.groups() if g)
+                if _gemini_quota_exhausted(msg) or (
+                    "perday" in msg.lower()
+                    or "per_day" in msg.lower()
+                    or "free_tier_requests" in msg.lower()
+                ):
+                    print(
+                        f"  gemini daily quota exhausted"
+                        + (f" (retry in {retry_hint})" if retry_hint else "")
+                        + f": {msg[:220]}",
+                        flush=True,
+                    )
                     raise RateLimited()
                 # Soft RPM throttle — wait and retry; raise only after many tries.
                 wait = min(180, 30 * (attempt + 1))
@@ -670,10 +688,12 @@ def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
     key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if not key:
         return None
-    model = os.environ.get("GEMINI_YT_MODEL", "gemini-3.8-flash")
+    # Prefer flash-lite: free-tier RPD is per-model; 3.8-flash burns out
+    # quickly (20 RPD) while lite handles long chunked XV harvests.
+    model = os.environ.get("GEMINI_YT_MODEL", "gemini-3.5-flash-lite")
     chunk_secs = int(os.environ.get("GEMINI_YT_CHUNK_SECS", "600"))
     chunk_secs = max(120, min(chunk_secs, 1800))
-    chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "12"))
+    chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "8"))
 
     if not duration or duration <= 0:
         duration = yt_duration_seconds(video_id)
