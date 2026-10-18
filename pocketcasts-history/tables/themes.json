@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 11573,
-      "youtube": 2038,
+      "title": 11526,
+      "youtube": 2070,
       "transcript": 1712,
       "show-notes": 6551,
-      "stt": 136
+      "stt": 151
     },
-    "episodesWithTranscriptEvidence": 3886,
+    "episodesWithTranscriptEvidence": 3933,
     "episodesWithNotesEvidence": 6551,
-    "episodesWithTitleOnlyEvidence": 11573,
+    "episodesWithTitleOnlyEvidence": 11526,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6128,
-      "hours": 1140.77,
+      "hours": 1140.7,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 901
       },
       "evidence": {
-        "title": 3752,
+        "title": 3748,
         "notes": 503,
-        "transcript": 1873
+        "transcript": 1877
       },
       "samples": [
         {
@@ -102,8 +102,8 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4116,
-      "hours": 979.11,
+      "count": 4117,
+      "hours": 979.02,
       "byYear": {
         "2019": 264,
         "2020": 446,
@@ -111,13 +111,13 @@
         "2022": 487,
         "2023": 443,
         "2024": 586,
-        "2025": 817,
+        "2025": 818,
         "2026": 618
       },
       "evidence": {
-        "title": 1099,
+        "title": 1098,
         "notes": 2589,
-        "transcript": 428
+        "transcript": 430
       },
       "samples": [
         {
@@ -178,7 +178,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 874.46,
+      "hours": 870.32,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -190,9 +190,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2676,
+        "title": 2629,
         "notes": 1069,
-        "transcript": 1896
+        "transcript": 1943
       },
       "samples": [
         {
@@ -402,22 +402,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2267,
-      "hours": 358.12,
+      "count": 2274,
+      "hours": 358.41,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
-        "2022": 206,
-        "2023": 242,
+        "2022": 207,
+        "2023": 245,
         "2024": 341,
-        "2025": 557,
-        "2026": 516
+        "2025": 559,
+        "2026": 517
       },
       "evidence": {
-        "title": 967,
+        "title": 964,
         "notes": 769,
-        "transcript": 531
+        "transcript": 541
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2455,
-      "hours": 251.51,
+      "hours": 251.42,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -490,9 +490,9 @@
         "2026": 555
       },
       "evidence": {
-        "title": 982,
+        "title": 978,
         "notes": 455,
-        "transcript": 1018
+        "transcript": 1022
       },
       "samples": [
         {
@@ -552,22 +552,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2720,
-      "hours": 233.63,
+      "count": 2729,
+      "hours": 233.8,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
-        "2022": 274,
-        "2023": 429,
+        "2022": 278,
+        "2023": 431,
         "2024": 451,
-        "2025": 571,
-        "2026": 564
+        "2025": 573,
+        "2026": 565
       },
       "evidence": {
-        "title": 512,
+        "title": 510,
         "notes": 1200,
-        "transcript": 1008
+        "transcript": 1019
       },
       "samples": [
         {
@@ -702,22 +702,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1998,
-      "hours": 178.14,
+      "count": 2010,
+      "hours": 178.62,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
-        "2022": 206,
-        "2023": 237,
+        "2022": 211,
+        "2023": 241,
         "2024": 281,
-        "2025": 472,
-        "2026": 619
+        "2025": 474,
+        "2026": 620
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1430
+        "transcript": 1442
       },
       "samples": [
         {
@@ -852,22 +852,22 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1195,
-      "hours": 127.03,
+      "count": 1203,
+      "hours": 127.4,
       "byYear": {
         "2019": 2,
         "2020": 114,
         "2021": 116,
-        "2022": 93,
-        "2023": 189,
+        "2022": 99,
+        "2023": 190,
         "2024": 257,
-        "2025": 219,
+        "2025": 220,
         "2026": 205
       },
       "evidence": {
         "title": 48,
         "notes": 724,
-        "transcript": 423
+        "transcript": 431
       },
       "samples": [
         {
@@ -927,20 +927,20 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1277,
-      "hours": 120.88,
+      "count": 1276,
+      "hours": 120.78,
       "byYear": {
         "2019": 1,
         "2020": 420,
         "2021": 461,
-        "2022": 159,
+        "2022": 158,
         "2023": 84,
         "2024": 44,
         "2025": 72,
         "2026": 36
       },
       "evidence": {
-        "title": 448,
+        "title": 447,
         "notes": 678,
         "transcript": 151
       },
@@ -1077,22 +1077,22 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1167,
-      "hours": 108.65,
+      "count": 1170,
+      "hours": 108.68,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
-        "2022": 152,
+        "2022": 154,
         "2023": 181,
         "2024": 160,
-        "2025": 203,
+        "2025": 204,
         "2026": 250
       },
       "evidence": {
         "title": 195,
         "notes": 552,
-        "transcript": 420
+        "transcript": 423
       },
       "samples": [
         {
@@ -1152,13 +1152,13 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1067,
-      "hours": 103.43,
+      "count": 1069,
+      "hours": 103.44,
       "byYear": {
         "2019": 1,
         "2020": 15,
         "2021": 46,
-        "2022": 80,
+        "2022": 82,
         "2023": 138,
         "2024": 148,
         "2025": 335,
@@ -1167,7 +1167,7 @@
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 857
+        "transcript": 859
       },
       "samples": [
         {
@@ -1228,7 +1228,7 @@
       "kind": "local",
       "facet": "local",
       "count": 1115,
-      "hours": 101.83,
+      "hours": 101.82,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -1240,9 +1240,9 @@
         "2026": 431
       },
       "evidence": {
-        "title": 161,
+        "title": 160,
         "notes": 116,
-        "transcript": 838
+        "transcript": 839
       },
       "samples": [
         {
@@ -1302,8 +1302,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 877,
-      "hours": 100.35,
+      "count": 878,
+      "hours": 100.42,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -1311,13 +1311,13 @@
         "2022": 92,
         "2023": 119,
         "2024": 132,
-        "2025": 188,
+        "2025": 189,
         "2026": 106
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 312
+        "transcript": 313
       },
       "samples": [
         {
@@ -1452,22 +1452,22 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 722,
-      "hours": 87.78,
+      "count": 725,
+      "hours": 87.84,
       "byYear": {
         "2019": 5,
         "2020": 25,
         "2021": 39,
-        "2022": 40,
-        "2023": 127,
+        "2022": 41,
+        "2023": 128,
         "2024": 152,
-        "2025": 150,
+        "2025": 151,
         "2026": 184
       },
       "evidence": {
         "title": 5,
         "notes": 419,
-        "transcript": 298
+        "transcript": 301
       },
       "samples": [
         {
@@ -1527,22 +1527,22 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 964,
-      "hours": 86.11,
+      "count": 971,
+      "hours": 86.34,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
-        "2022": 86,
-        "2023": 143,
+        "2022": 89,
+        "2023": 147,
         "2024": 140,
         "2025": 205,
         "2026": 286
       },
       "evidence": {
-        "title": 151,
+        "title": 146,
         "notes": 300,
-        "transcript": 513
+        "transcript": 525
       },
       "samples": [
         {
@@ -1753,7 +1753,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 436,
-      "hours": 63.08,
+      "hours": 63.13,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1765,9 +1765,9 @@
         "2026": 191
       },
       "evidence": {
-        "title": 54,
+        "title": 53,
         "notes": 140,
-        "transcript": 242
+        "transcript": 243
       },
       "samples": [
         {
@@ -1827,22 +1827,22 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 730,
-      "hours": 62.22,
+      "count": 739,
+      "hours": 62.65,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
-        "2022": 61,
-        "2023": 91,
+        "2022": 65,
+        "2023": 93,
         "2024": 91,
-        "2025": 139,
-        "2026": 219
+        "2025": 141,
+        "2026": 220
       },
       "evidence": {
-        "title": 145,
+        "title": 143,
         "notes": 194,
-        "transcript": 391
+        "transcript": 402
       },
       "samples": [
         {
@@ -2052,14 +2052,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 728,
-      "hours": 55.65,
+      "count": 732,
+      "hours": 55.75,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
-        "2022": 30,
-        "2023": 86,
+        "2022": 33,
+        "2023": 87,
         "2024": 150,
         "2025": 210,
         "2026": 234
@@ -2067,7 +2067,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 557
+        "transcript": 561
       },
       "samples": [
         {
@@ -2202,21 +2202,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 593,
-      "hours": 52.02,
+      "count": 602,
+      "hours": 52.62,
       "byYear": {
         "2020": 42,
         "2021": 36,
-        "2022": 31,
-        "2023": 79,
+        "2022": 33,
+        "2023": 81,
         "2024": 104,
-        "2025": 162,
-        "2026": 139
+        "2025": 165,
+        "2026": 141
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 431
+        "transcript": 440
       },
       "samples": [
         {
@@ -2351,8 +2351,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 638,
-      "hours": 50.92,
+      "count": 639,
+      "hours": 50.97,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -2360,13 +2360,13 @@
         "2022": 36,
         "2023": 62,
         "2024": 98,
-        "2025": 231,
+        "2025": 232,
         "2026": 183
       },
       "evidence": {
-        "title": 91,
+        "title": 90,
         "notes": 102,
-        "transcript": 445
+        "transcript": 447
       },
       "samples": [
         {
@@ -2426,13 +2426,13 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 519,
-      "hours": 49.52,
+      "count": 520,
+      "hours": 49.58,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
-        "2022": 34,
+        "2022": 35,
         "2023": 56,
         "2024": 83,
         "2025": 159,
@@ -2441,7 +2441,7 @@
       "evidence": {
         "title": 42,
         "notes": 82,
-        "transcript": 395
+        "transcript": 396
       },
       "samples": [
         {
@@ -2651,7 +2651,7 @@
       "kind": "story",
       "facet": "story",
       "count": 350,
-      "hours": 46.94,
+      "hours": 46.85,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -2662,9 +2662,9 @@
         "2026": 35
       },
       "evidence": {
-        "title": 185,
+        "title": 184,
         "notes": 89,
-        "transcript": 76
+        "transcript": 77
       },
       "samples": [
         {
@@ -2874,21 +2874,21 @@
       "blurb": "History and memory.",
       "kind": "domain",
       "facet": "domain",
-      "count": 432,
-      "hours": 44.67,
+      "count": 435,
+      "hours": 44.78,
       "byYear": {
         "2020": 11,
         "2021": 25,
-        "2022": 33,
-        "2023": 47,
+        "2022": 34,
+        "2023": 48,
         "2024": 62,
-        "2025": 121,
+        "2025": 122,
         "2026": 133
       },
       "evidence": {
         "title": 17,
         "notes": 91,
-        "transcript": 324
+        "transcript": 327
       },
       "samples": [
         {
@@ -3018,6 +3018,81 @@
       "children": []
     },
     {
+      "id": "china-taiwan",
+      "name": "China–Taiwan tensions",
+      "blurb": "China–Taiwan cross-strait tensions.",
+      "kind": "story",
+      "facet": "story",
+      "count": 273,
+      "hours": 39.33,
+      "byYear": {
+        "2019": 11,
+        "2020": 10,
+        "2021": 21,
+        "2022": 60,
+        "2023": 41,
+        "2024": 36,
+        "2025": 57,
+        "2026": 37
+      },
+      "evidence": {
+        "title": 59,
+        "notes": 140,
+        "transcript": 74
+      },
+      "samples": [
+        {
+          "i": 127,
+          "e": "Xi Jinping is going after China's tycoons to save the economy",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 172,
+          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
+          "p": "The Morning Edition",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 244,
+          "e": "Is China's rare earth monopoly already unbreakable?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-24"
+        },
+        {
+          "i": 420,
+          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 581,
+          "e": "The China Shock 2.0",
+          "p": "The Ezra Klein Show",
+          "d": "2026-08-23"
+        },
+        {
+          "i": 619,
+          "e": "Surveillance, fear, and exile: The price of speaking out against China",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-19"
+        },
+        {
+          "i": 981,
+          "e": "Can rugby league keep China out of the pacific?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-07-15"
+        },
+        {
+          "i": 1046,
+          "e": "‘The world has changed’: Peter Hartcher on China’s extraordinary missile test",
+          "p": "The Morning Edition",
+          "d": "2026-07-09"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "br-health",
       "name": "Brazilian health policy",
       "blurb": "Public health and SUS politics in Brazil.",
@@ -3093,93 +3168,18 @@
       "children": []
     },
     {
-      "id": "china-taiwan",
-      "name": "China–Taiwan tensions",
-      "blurb": "China–Taiwan cross-strait tensions.",
-      "kind": "story",
-      "facet": "story",
-      "count": 272,
-      "hours": 39.08,
-      "byYear": {
-        "2019": 11,
-        "2020": 10,
-        "2021": 21,
-        "2022": 59,
-        "2023": 41,
-        "2024": 36,
-        "2025": 57,
-        "2026": 37
-      },
-      "evidence": {
-        "title": 60,
-        "notes": 140,
-        "transcript": 72
-      },
-      "samples": [
-        {
-          "i": 127,
-          "e": "Xi Jinping is going after China's tycoons to save the economy",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 172,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 244,
-          "e": "Is China's rare earth monopoly already unbreakable?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-24"
-        },
-        {
-          "i": 420,
-          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-07"
-        },
-        {
-          "i": 581,
-          "e": "The China Shock 2.0",
-          "p": "The Ezra Klein Show",
-          "d": "2026-08-23"
-        },
-        {
-          "i": 619,
-          "e": "Surveillance, fear, and exile: The price of speaking out against China",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-19"
-        },
-        {
-          "i": 981,
-          "e": "Can rugby league keep China out of the pacific?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-07-15"
-        },
-        {
-          "i": 1046,
-          "e": "‘The world has changed’: Peter Hartcher on China’s extraordinary missile test",
-          "p": "The Morning Edition",
-          "d": "2026-07-09"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "us-congress",
       "name": "US Congress",
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 437,
-      "hours": 38.77,
+      "count": 438,
+      "hours": 38.83,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
-        "2022": 29,
+        "2022": 30,
         "2023": 47,
         "2024": 65,
         "2025": 124,
@@ -3188,7 +3188,7 @@
       "evidence": {
         "title": 62,
         "notes": 32,
-        "transcript": 343
+        "transcript": 344
       },
       "samples": [
         {
@@ -3248,22 +3248,22 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 423,
-      "hours": 37.19,
+      "count": 426,
+      "hours": 37.28,
       "byYear": {
         "2019": 9,
         "2020": 37,
         "2021": 45,
-        "2022": 46,
+        "2022": 48,
         "2023": 46,
         "2024": 54,
-        "2025": 92,
+        "2025": 93,
         "2026": 94
       },
       "evidence": {
         "title": 74,
         "notes": 139,
-        "transcript": 210
+        "transcript": 213
       },
       "samples": [
         {
@@ -3323,8 +3323,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 327,
-      "hours": 32.56,
+      "count": 328,
+      "hours": 32.59,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -3332,13 +3332,13 @@
         "2022": 27,
         "2023": 45,
         "2024": 51,
-        "2025": 75,
+        "2025": 76,
         "2026": 86
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 218
+        "transcript": 219
       },
       "samples": [
         {
@@ -3398,22 +3398,22 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 323,
-      "hours": 32.38,
+      "count": 325,
+      "hours": 32.46,
       "byYear": {
         "2019": 1,
         "2020": 52,
         "2021": 32,
         "2022": 39,
-        "2023": 34,
+        "2023": 35,
         "2024": 49,
-        "2025": 65,
+        "2025": 66,
         "2026": 51
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 138
+        "transcript": 140
       },
       "samples": [
         {
@@ -3473,14 +3473,14 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 233,
-      "hours": 30.04,
+      "count": 236,
+      "hours": 30.33,
       "byYear": {
         "2019": 3,
         "2020": 19,
         "2021": 28,
-        "2022": 28,
-        "2023": 39,
+        "2022": 30,
+        "2023": 40,
         "2024": 37,
         "2025": 57,
         "2026": 22
@@ -3488,7 +3488,7 @@
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 97
+        "transcript": 100
       },
       "samples": [
         {
@@ -3549,7 +3549,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 29.59,
+      "hours": 29.52,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3560,9 +3560,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 104,
+        "title": 103,
         "notes": 55,
-        "transcript": 200
+        "transcript": 201
       },
       "samples": [
         {
@@ -3622,8 +3622,8 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 317,
-      "hours": 28.45,
+      "count": 318,
+      "hours": 28.47,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -3631,13 +3631,13 @@
         "2022": 7,
         "2023": 35,
         "2024": 60,
-        "2025": 111,
+        "2025": 112,
         "2026": 95
       },
       "evidence": {
         "title": 62,
         "notes": 27,
-        "transcript": 228
+        "transcript": 229
       },
       "samples": [
         {
@@ -3698,7 +3698,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 223,
-      "hours": 27.18,
+      "hours": 27.21,
       "byYear": {
         "2019": 5,
         "2020": 5,
@@ -3710,9 +3710,9 @@
         "2026": 85
       },
       "evidence": {
-        "title": 65,
+        "title": 64,
         "notes": 57,
-        "transcript": 101
+        "transcript": 102
       },
       "samples": [
         {
@@ -3772,21 +3772,21 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 271,
-      "hours": 26.93,
+      "count": 272,
+      "hours": 26.97,
       "byYear": {
         "2020": 9,
         "2021": 13,
         "2022": 23,
         "2023": 44,
         "2024": 49,
-        "2025": 66,
+        "2025": 67,
         "2026": 67
       },
       "evidence": {
         "title": 25,
         "notes": 147,
-        "transcript": 99
+        "transcript": 100
       },
       "samples": [
         {
@@ -3846,14 +3846,14 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 368,
-      "hours": 26.3,
+      "count": 370,
+      "hours": 26.32,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
-        "2022": 23,
-        "2023": 27,
+        "2022": 24,
+        "2023": 28,
         "2024": 46,
         "2025": 88,
         "2026": 100
@@ -3861,7 +3861,7 @@
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 202
+        "transcript": 204
       },
       "samples": [
         {
@@ -3996,21 +3996,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 443,
-      "hours": 23.75,
+      "count": 444,
+      "hours": 23.76,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 34,
         "2024": 74,
-        "2025": 135,
+        "2025": 136,
         "2026": 180
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 389
+        "transcript": 390
       },
       "samples": [
         {
@@ -4070,8 +4070,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 248,
-      "hours": 23.19,
+      "count": 249,
+      "hours": 23.22,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -4079,13 +4079,13 @@
         "2022": 26,
         "2023": 34,
         "2024": 30,
-        "2025": 71,
+        "2025": 72,
         "2026": 39
       },
       "evidence": {
         "title": 79,
         "notes": 15,
-        "transcript": 154
+        "transcript": 155
       },
       "samples": [
         {
@@ -4220,13 +4220,13 @@
       "blurb": "Human rights and civil liberties.",
       "kind": "frame",
       "facet": "frame",
-      "count": 182,
-      "hours": 21.92,
+      "count": 183,
+      "hours": 21.94,
       "byYear": {
         "2019": 7,
         "2020": 12,
         "2021": 22,
-        "2022": 17,
+        "2022": 18,
         "2023": 33,
         "2024": 31,
         "2025": 33,
@@ -4235,7 +4235,7 @@
       "evidence": {
         "title": 14,
         "notes": 130,
-        "transcript": 38
+        "transcript": 39
       },
       "samples": [
         {
@@ -4295,8 +4295,8 @@
       "blurb": "Film, TV, and streaming.",
       "kind": "domain",
       "facet": "domain",
-      "count": 159,
-      "hours": 21.76,
+      "count": 160,
+      "hours": 21.79,
       "byYear": {
         "2019": 1,
         "2020": 2,
@@ -4304,13 +4304,13 @@
         "2022": 12,
         "2023": 15,
         "2024": 19,
-        "2025": 40,
+        "2025": 41,
         "2026": 66
       },
       "evidence": {
         "title": 23,
         "notes": 36,
-        "transcript": 100
+        "transcript": 101
       },
       "samples": [
         {
@@ -4517,8 +4517,8 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 240,
-      "hours": 18.84,
+      "count": 241,
+      "hours": 18.86,
       "byYear": {
         "2019": 1,
         "2020": 5,
@@ -4526,13 +4526,13 @@
         "2022": 19,
         "2023": 27,
         "2024": 29,
-        "2025": 33,
+        "2025": 34,
         "2026": 113
       },
       "evidence": {
         "title": 41,
         "notes": 40,
-        "transcript": 159
+        "transcript": 160
       },
       "samples": [
         {
@@ -4592,14 +4592,14 @@
       "blurb": "Indigenous and First Nations rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 165,
-      "hours": 16.4,
+      "count": 167,
+      "hours": 16.46,
       "byYear": {
         "2019": 2,
         "2020": 15,
         "2021": 14,
         "2022": 10,
-        "2023": 71,
+        "2023": 73,
         "2024": 24,
         "2025": 17,
         "2026": 12
@@ -4607,7 +4607,7 @@
       "evidence": {
         "title": 22,
         "notes": 93,
-        "transcript": 50
+        "transcript": 52
       },
       "samples": [
         {
@@ -4742,8 +4742,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 183,
-      "hours": 15.73,
+      "count": 184,
+      "hours": 15.74,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -4751,13 +4751,13 @@
         "2022": 10,
         "2023": 13,
         "2024": 47,
-        "2025": 28,
+        "2025": 29,
         "2026": 65
       },
       "evidence": {
         "title": 24,
         "notes": 46,
-        "transcript": 113
+        "transcript": 114
       },
       "samples": [
         {
@@ -4892,20 +4892,20 @@
       "blurb": "UK politics, Brexit, Westminster.",
       "kind": "local",
       "facet": "local",
-      "count": 117,
-      "hours": 15.16,
+      "count": 116,
+      "hours": 15.06,
       "byYear": {
         "2019": 20,
         "2020": 24,
         "2021": 8,
-        "2022": 14,
+        "2022": 13,
         "2023": 5,
         "2024": 15,
         "2025": 10,
         "2026": 21
       },
       "evidence": {
-        "title": 60,
+        "title": 59,
         "notes": 44,
         "transcript": 13
       },
@@ -5042,20 +5042,20 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 125,
-      "hours": 14.1,
+      "count": 126,
+      "hours": 14.14,
       "byYear": {
         "2021": 4,
         "2022": 10,
         "2023": 13,
         "2024": 20,
-        "2025": 31,
+        "2025": 32,
         "2026": 47
       },
       "evidence": {
         "title": 3,
         "notes": 32,
-        "transcript": 90
+        "transcript": 91
       },
       "samples": [
         {
@@ -5115,21 +5115,21 @@
       "blurb": "Nuclear weapons and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 231,
-      "hours": 13.88,
+      "count": 232,
+      "hours": 13.89,
       "byYear": {
         "2019": 1,
         "2021": 9,
         "2022": 20,
         "2023": 15,
         "2024": 31,
-        "2025": 67,
+        "2025": 68,
         "2026": 88
       },
       "evidence": {
         "title": 2,
         "notes": 37,
-        "transcript": 192
+        "transcript": 193
       },
       "samples": [
         {
@@ -5189,21 +5189,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 227,
-      "hours": 12.46,
+      "count": 230,
+      "hours": 12.53,
       "byYear": {
         "2020": 1,
         "2021": 2,
-        "2022": 5,
-        "2023": 41,
+        "2022": 6,
+        "2023": 42,
         "2024": 37,
         "2025": 61,
-        "2026": 80
+        "2026": 81
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 196
+        "transcript": 199
       },
       "samples": [
         {
@@ -5711,14 +5711,14 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 82,
-      "hours": 9.87,
+      "count": 83,
+      "hours": 9.89,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 2,
         "2022": 7,
-        "2023": 10,
+        "2023": 11,
         "2024": 20,
         "2025": 22,
         "2026": 18
@@ -5726,7 +5726,7 @@
       "evidence": {
         "title": 11,
         "notes": 8,
-        "transcript": 63
+        "transcript": 64
       },
       "samples": [
         {
@@ -5935,13 +5935,13 @@
       "blurb": "Cybersecurity and espionage.",
       "kind": "domain",
       "facet": "domain",
-      "count": 85,
-      "hours": 8.41,
+      "count": 86,
+      "hours": 8.44,
       "byYear": {
         "2019": 3,
         "2020": 4,
         "2021": 8,
-        "2022": 19,
+        "2022": 20,
         "2023": 19,
         "2024": 15,
         "2025": 6,
@@ -5950,7 +5950,7 @@
       "evidence": {
         "title": 0,
         "notes": 49,
-        "transcript": 36
+        "transcript": 37
       },
       "samples": [
         {
@@ -6010,19 +6010,19 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 65,
-      "hours": 8.01,
+      "count": 67,
+      "hours": 8.15,
       "byYear": {
         "2022": 10,
-        "2023": 13,
+        "2023": 14,
         "2024": 7,
-        "2025": 19,
+        "2025": 20,
         "2026": 16
       },
       "evidence": {
         "title": 2,
         "notes": 21,
-        "transcript": 42
+        "transcript": 44
       },
       "samples": [
         {
@@ -6082,12 +6082,12 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 87,
-      "hours": 7.81,
+      "count": 88,
+      "hours": 7.9,
       "byYear": {
         "2020": 1,
         "2021": 2,
-        "2022": 6,
+        "2022": 7,
         "2023": 16,
         "2024": 19,
         "2025": 24,
@@ -6096,7 +6096,7 @@
       "evidence": {
         "title": 0,
         "notes": 18,
-        "transcript": 69
+        "transcript": 70
       },
       "samples": [
         {
@@ -6305,14 +6305,14 @@
       "blurb": "LGBTQ+ rights and culture.",
       "kind": "frame",
       "facet": "frame",
-      "count": 54,
-      "hours": 6.98,
+      "count": 55,
+      "hours": 6.99,
       "byYear": {
         "2019": 1,
         "2020": 3,
         "2021": 6,
         "2022": 5,
-        "2023": 12,
+        "2023": 13,
         "2024": 7,
         "2025": 10,
         "2026": 10
@@ -6320,7 +6320,7 @@
       "evidence": {
         "title": 17,
         "notes": 20,
-        "transcript": 17
+        "transcript": 18
       },
       "samples": [
         {
@@ -6380,13 +6380,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 195,
-      "hours": 6.79,
+      "count": 196,
+      "hours": 6.84,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 41,
+        "2023": 42,
         "2024": 44,
         "2025": 31,
         "2026": 58
@@ -6394,7 +6394,7 @@
       "evidence": {
         "title": 20,
         "notes": 64,
-        "transcript": 111
+        "transcript": 112
       },
       "samples": [
         {
@@ -6826,8 +6826,8 @@
       "blurb": "Psychology and behaviour.",
       "kind": "domain",
       "facet": "domain",
-      "count": 70,
-      "hours": 5.3,
+      "count": 71,
+      "hours": 5.38,
       "byYear": {
         "2020": 4,
         "2021": 2,
@@ -6835,12 +6835,12 @@
         "2023": 13,
         "2024": 17,
         "2025": 10,
-        "2026": 17
+        "2026": 18
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 46
+        "transcript": 47
       },
       "samples": [
         {
@@ -7407,20 +7407,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 91,
-      "hours": 3.46,
+      "count": 92,
+      "hours": 3.47,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 5,
         "2024": 7,
-        "2025": 59,
+        "2025": 60,
         "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 70
+        "transcript": 71
       },
       "samples": [
         {
@@ -8327,7 +8327,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6128,
-      "hours": 1140.77,
+      "hours": 1140.7,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8339,9 +8339,9 @@
         "2026": 901
       },
       "evidence": {
-        "title": 3752,
+        "title": 3748,
         "notes": 503,
-        "transcript": 1873
+        "transcript": 1877
       },
       "samples": [
         {
@@ -8400,8 +8400,8 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4116,
-      "hours": 979.11,
+      "count": 4117,
+      "hours": 979.02,
       "byYear": {
         "2019": 264,
         "2020": 446,
@@ -8409,13 +8409,13 @@
         "2022": 487,
         "2023": 443,
         "2024": 586,
-        "2025": 817,
+        "2025": 818,
         "2026": 618
       },
       "evidence": {
-        "title": 1099,
+        "title": 1098,
         "notes": 2589,
-        "transcript": 428
+        "transcript": 430
       },
       "samples": [
         {
@@ -8475,7 +8475,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 874.46,
+      "hours": 870.32,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8487,9 +8487,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2676,
+        "title": 2629,
         "notes": 1069,
-        "transcript": 1896
+        "transcript": 1943
       },
       "samples": [
         {
@@ -8696,22 +8696,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2267,
-      "hours": 358.12,
+      "count": 2274,
+      "hours": 358.41,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
-        "2022": 206,
-        "2023": 242,
+        "2022": 207,
+        "2023": 245,
         "2024": 341,
-        "2025": 557,
-        "2026": 516
+        "2025": 559,
+        "2026": 517
       },
       "evidence": {
-        "title": 967,
+        "title": 964,
         "notes": 769,
-        "transcript": 531
+        "transcript": 541
       },
       "samples": [
         {
@@ -8771,7 +8771,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2455,
-      "hours": 251.51,
+      "hours": 251.42,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8783,9 +8783,9 @@
         "2026": 555
       },
       "evidence": {
-        "title": 982,
+        "title": 978,
         "notes": 455,
-        "transcript": 1018
+        "transcript": 1022
       },
       "samples": [
         {
@@ -8844,22 +8844,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2720,
-      "hours": 233.63,
+      "count": 2729,
+      "hours": 233.8,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
-        "2022": 274,
-        "2023": 429,
+        "2022": 278,
+        "2023": 431,
         "2024": 451,
-        "2025": 571,
-        "2026": 564
+        "2025": 573,
+        "2026": 565
       },
       "evidence": {
-        "title": 512,
+        "title": 510,
         "notes": 1200,
-        "transcript": 1008
+        "transcript": 1019
       },
       "samples": [
         {
@@ -8992,22 +8992,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1998,
-      "hours": 178.14,
+      "count": 2010,
+      "hours": 178.62,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
-        "2022": 206,
-        "2023": 237,
+        "2022": 211,
+        "2023": 241,
         "2024": 281,
-        "2025": 472,
-        "2026": 619
+        "2025": 474,
+        "2026": 620
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1430
+        "transcript": 1442
       },
       "samples": [
         {
@@ -9140,22 +9140,22 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1195,
-      "hours": 127.03,
+      "count": 1203,
+      "hours": 127.4,
       "byYear": {
         "2019": 2,
         "2020": 114,
         "2021": 116,
-        "2022": 93,
-        "2023": 189,
+        "2022": 99,
+        "2023": 190,
         "2024": 257,
-        "2025": 219,
+        "2025": 220,
         "2026": 205
       },
       "evidence": {
         "title": 48,
         "notes": 724,
-        "transcript": 423
+        "transcript": 431
       },
       "samples": [
         {
@@ -9214,20 +9214,20 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1277,
-      "hours": 120.88,
+      "count": 1276,
+      "hours": 120.78,
       "byYear": {
         "2019": 1,
         "2020": 420,
         "2021": 461,
-        "2022": 159,
+        "2022": 158,
         "2023": 84,
         "2024": 44,
         "2025": 72,
         "2026": 36
       },
       "evidence": {
-        "title": 448,
+        "title": 447,
         "notes": 678,
         "transcript": 151
       },
@@ -9362,22 +9362,22 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1167,
-      "hours": 108.65,
+      "count": 1170,
+      "hours": 108.68,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
-        "2022": 152,
+        "2022": 154,
         "2023": 181,
         "2024": 160,
-        "2025": 203,
+        "2025": 204,
         "2026": 250
       },
       "evidence": {
         "title": 195,
         "notes": 552,
-        "transcript": 420
+        "transcript": 423
       },
       "samples": [
         {
@@ -9436,13 +9436,13 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1067,
-      "hours": 103.43,
+      "count": 1069,
+      "hours": 103.44,
       "byYear": {
         "2019": 1,
         "2020": 15,
         "2021": 46,
-        "2022": 80,
+        "2022": 82,
         "2023": 138,
         "2024": 148,
         "2025": 335,
@@ -9451,7 +9451,7 @@
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 857
+        "transcript": 859
       },
       "samples": [
         {
@@ -9511,7 +9511,7 @@
       "kind": "local",
       "facet": "local",
       "count": 1115,
-      "hours": 101.83,
+      "hours": 101.82,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -9523,9 +9523,9 @@
         "2026": 431
       },
       "evidence": {
-        "title": 161,
+        "title": 160,
         "notes": 116,
-        "transcript": 838
+        "transcript": 839
       },
       "samples": [
         {
@@ -9584,8 +9584,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 877,
-      "hours": 100.35,
+      "count": 878,
+      "hours": 100.42,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -9593,13 +9593,13 @@
         "2022": 92,
         "2023": 119,
         "2024": 132,
-        "2025": 188,
+        "2025": 189,
         "2026": 106
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 312
+        "transcript": 313
       },
       "samples": [
         {
@@ -9732,22 +9732,22 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 722,
-      "hours": 87.78,
+      "count": 725,
+      "hours": 87.84,
       "byYear": {
         "2019": 5,
         "2020": 25,
         "2021": 39,
-        "2022": 40,
-        "2023": 127,
+        "2022": 41,
+        "2023": 128,
         "2024": 152,
-        "2025": 150,
+        "2025": 151,
         "2026": 184
       },
       "evidence": {
         "title": 5,
         "notes": 419,
-        "transcript": 298
+        "transcript": 301
       },
       "samples": [
         {
@@ -9806,22 +9806,22 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 964,
-      "hours": 86.11,
+      "count": 971,
+      "hours": 86.34,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
-        "2022": 86,
-        "2023": 143,
+        "2022": 89,
+        "2023": 147,
         "2024": 140,
         "2025": 205,
         "2026": 286
       },
       "evidence": {
-        "title": 151,
+        "title": 146,
         "notes": 300,
-        "transcript": 513
+        "transcript": 525
       },
       "samples": [
         {
@@ -10029,7 +10029,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 436,
-      "hours": 63.08,
+      "hours": 63.13,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10041,9 +10041,9 @@
         "2026": 191
       },
       "evidence": {
-        "title": 54,
+        "title": 53,
         "notes": 140,
-        "transcript": 242
+        "transcript": 243
       },
       "samples": [
         {
@@ -10102,22 +10102,22 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 730,
-      "hours": 62.22,
+      "count": 739,
+      "hours": 62.65,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
-        "2022": 61,
-        "2023": 91,
+        "2022": 65,
+        "2023": 93,
         "2024": 91,
-        "2025": 139,
-        "2026": 219
+        "2025": 141,
+        "2026": 220
       },
       "evidence": {
-        "title": 145,
+        "title": 143,
         "notes": 194,
-        "transcript": 391
+        "transcript": 402
       },
       "samples": [
         {
@@ -10324,14 +10324,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 728,
-      "hours": 55.65,
+      "count": 732,
+      "hours": 55.75,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
-        "2022": 30,
-        "2023": 86,
+        "2022": 33,
+        "2023": 87,
         "2024": 150,
         "2025": 210,
         "2026": 234
@@ -10339,7 +10339,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 557
+        "transcript": 561
       },
       "samples": [
         {
@@ -10472,21 +10472,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 593,
-      "hours": 52.02,
+      "count": 602,
+      "hours": 52.62,
       "byYear": {
         "2020": 42,
         "2021": 36,
-        "2022": 31,
-        "2023": 79,
+        "2022": 33,
+        "2023": 81,
         "2024": 104,
-        "2025": 162,
-        "2026": 139
+        "2025": 165,
+        "2026": 141
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 431
+        "transcript": 440
       },
       "samples": [
         {
@@ -10619,8 +10619,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 638,
-      "hours": 50.92,
+      "count": 639,
+      "hours": 50.97,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -10628,13 +10628,13 @@
         "2022": 36,
         "2023": 62,
         "2024": 98,
-        "2025": 231,
+        "2025": 232,
         "2026": 183
       },
       "evidence": {
-        "title": 91,
+        "title": 90,
         "notes": 102,
-        "transcript": 445
+        "transcript": 447
       },
       "samples": [
         {
@@ -10693,13 +10693,13 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 519,
-      "hours": 49.52,
+      "count": 520,
+      "hours": 49.58,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
-        "2022": 34,
+        "2022": 35,
         "2023": 56,
         "2024": 83,
         "2025": 159,
@@ -10708,7 +10708,7 @@
       "evidence": {
         "title": 42,
         "notes": 82,
-        "transcript": 395
+        "transcript": 396
       },
       "samples": [
         {
@@ -10915,7 +10915,7 @@
       "kind": "story",
       "facet": "story",
       "count": 350,
-      "hours": 46.94,
+      "hours": 46.85,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -10926,9 +10926,9 @@
         "2026": 35
       },
       "evidence": {
-        "title": 185,
+        "title": 184,
         "notes": 89,
-        "transcript": 76
+        "transcript": 77
       },
       "samples": [
         {
@@ -11135,21 +11135,21 @@
       "blurb": "History and memory.",
       "kind": "domain",
       "facet": "domain",
-      "count": 432,
-      "hours": 44.67,
+      "count": 435,
+      "hours": 44.78,
       "byYear": {
         "2020": 11,
         "2021": 25,
-        "2022": 33,
-        "2023": 47,
+        "2022": 34,
+        "2023": 48,
         "2024": 62,
-        "2025": 121,
+        "2025": 122,
         "2026": 133
       },
       "evidence": {
         "title": 17,
         "notes": 91,
-        "transcript": 324
+        "transcript": 327
       },
       "samples": [
         {
@@ -11277,6 +11277,80 @@
       ]
     },
     {
+      "id": "china-taiwan",
+      "name": "China–Taiwan tensions",
+      "blurb": "China–Taiwan cross-strait tensions.",
+      "kind": "story",
+      "facet": "story",
+      "count": 273,
+      "hours": 39.33,
+      "byYear": {
+        "2019": 11,
+        "2020": 10,
+        "2021": 21,
+        "2022": 60,
+        "2023": 41,
+        "2024": 36,
+        "2025": 57,
+        "2026": 37
+      },
+      "evidence": {
+        "title": 59,
+        "notes": 140,
+        "transcript": 74
+      },
+      "samples": [
+        {
+          "i": 127,
+          "e": "Xi Jinping is going after China's tycoons to save the economy",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 172,
+          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
+          "p": "The Morning Edition",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 244,
+          "e": "Is China's rare earth monopoly already unbreakable?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-24"
+        },
+        {
+          "i": 420,
+          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 581,
+          "e": "The China Shock 2.0",
+          "p": "The Ezra Klein Show",
+          "d": "2026-08-23"
+        },
+        {
+          "i": 619,
+          "e": "Surveillance, fear, and exile: The price of speaking out against China",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-19"
+        },
+        {
+          "i": 981,
+          "e": "Can rugby league keep China out of the pacific?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-07-15"
+        },
+        {
+          "i": 1046,
+          "e": "‘The world has changed’: Peter Hartcher on China’s extraordinary missile test",
+          "p": "The Morning Edition",
+          "d": "2026-07-09"
+        }
+      ]
+    },
+    {
       "id": "br-health",
       "name": "Brazilian health policy",
       "blurb": "Public health and SUS politics in Brazil.",
@@ -11351,92 +11425,18 @@
       ]
     },
     {
-      "id": "china-taiwan",
-      "name": "China–Taiwan tensions",
-      "blurb": "China–Taiwan cross-strait tensions.",
-      "kind": "story",
-      "facet": "story",
-      "count": 272,
-      "hours": 39.08,
-      "byYear": {
-        "2019": 11,
-        "2020": 10,
-        "2021": 21,
-        "2022": 59,
-        "2023": 41,
-        "2024": 36,
-        "2025": 57,
-        "2026": 37
-      },
-      "evidence": {
-        "title": 60,
-        "notes": 140,
-        "transcript": 72
-      },
-      "samples": [
-        {
-          "i": 127,
-          "e": "Xi Jinping is going after China's tycoons to save the economy",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 172,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 244,
-          "e": "Is China's rare earth monopoly already unbreakable?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-24"
-        },
-        {
-          "i": 420,
-          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-07"
-        },
-        {
-          "i": 581,
-          "e": "The China Shock 2.0",
-          "p": "The Ezra Klein Show",
-          "d": "2026-08-23"
-        },
-        {
-          "i": 619,
-          "e": "Surveillance, fear, and exile: The price of speaking out against China",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-19"
-        },
-        {
-          "i": 981,
-          "e": "Can rugby league keep China out of the pacific?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-07-15"
-        },
-        {
-          "i": 1046,
-          "e": "‘The world has changed’: Peter Hartcher on China’s extraordinary missile test",
-          "p": "The Morning Edition",
-          "d": "2026-07-09"
-        }
-      ]
-    },
-    {
       "id": "us-congress",
       "name": "US Congress",
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 437,
-      "hours": 38.77,
+      "count": 438,
+      "hours": 38.83,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
-        "2022": 29,
+        "2022": 30,
         "2023": 47,
         "2024": 65,
         "2025": 124,
@@ -11445,7 +11445,7 @@
       "evidence": {
         "title": 62,
         "notes": 32,
-        "transcript": 343
+        "transcript": 344
       },
       "samples": [
         {
@@ -11504,22 +11504,22 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 423,
-      "hours": 37.19,
+      "count": 426,
+      "hours": 37.28,
       "byYear": {
         "2019": 9,
         "2020": 37,
         "2021": 45,
-        "2022": 46,
+        "2022": 48,
         "2023": 46,
         "2024": 54,
-        "2025": 92,
+        "2025": 93,
         "2026": 94
       },
       "evidence": {
         "title": 74,
         "notes": 139,
-        "transcript": 210
+        "transcript": 213
       },
       "samples": [
         {
@@ -11578,8 +11578,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 327,
-      "hours": 32.56,
+      "count": 328,
+      "hours": 32.59,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -11587,13 +11587,13 @@
         "2022": 27,
         "2023": 45,
         "2024": 51,
-        "2025": 75,
+        "2025": 76,
         "2026": 86
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 218
+        "transcript": 219
       },
       "samples": [
         {
@@ -11652,22 +11652,22 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 323,
-      "hours": 32.38,
+      "count": 325,
+      "hours": 32.46,
       "byYear": {
         "2019": 1,
         "2020": 52,
         "2021": 32,
         "2022": 39,
-        "2023": 34,
+        "2023": 35,
         "2024": 49,
-        "2025": 65,
+        "2025": 66,
         "2026": 51
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 138
+        "transcript": 140
       },
       "samples": [
         {
@@ -11726,14 +11726,14 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 233,
-      "hours": 30.04,
+      "count": 236,
+      "hours": 30.33,
       "byYear": {
         "2019": 3,
         "2020": 19,
         "2021": 28,
-        "2022": 28,
-        "2023": 39,
+        "2022": 30,
+        "2023": 40,
         "2024": 37,
         "2025": 57,
         "2026": 22
@@ -11741,7 +11741,7 @@
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 97
+        "transcript": 100
       },
       "samples": [
         {
@@ -11801,7 +11801,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 29.59,
+      "hours": 29.52,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -11812,9 +11812,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 104,
+        "title": 103,
         "notes": 55,
-        "transcript": 200
+        "transcript": 201
       },
       "samples": [
         {
@@ -11873,8 +11873,8 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 317,
-      "hours": 28.45,
+      "count": 318,
+      "hours": 28.47,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -11882,13 +11882,13 @@
         "2022": 7,
         "2023": 35,
         "2024": 60,
-        "2025": 111,
+        "2025": 112,
         "2026": 95
       },
       "evidence": {
         "title": 62,
         "notes": 27,
-        "transcript": 228
+        "transcript": 229
       },
       "samples": [
         {
@@ -11948,7 +11948,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 223,
-      "hours": 27.18,
+      "hours": 27.21,
       "byYear": {
         "2019": 5,
         "2020": 5,
@@ -11960,9 +11960,9 @@
         "2026": 85
       },
       "evidence": {
-        "title": 65,
+        "title": 64,
         "notes": 57,
-        "transcript": 101
+        "transcript": 102
       },
       "samples": [
         {
@@ -12021,21 +12021,21 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 271,
-      "hours": 26.93,
+      "count": 272,
+      "hours": 26.97,
       "byYear": {
         "2020": 9,
         "2021": 13,
         "2022": 23,
         "2023": 44,
         "2024": 49,
-        "2025": 66,
+        "2025": 67,
         "2026": 67
       },
       "evidence": {
         "title": 25,
         "notes": 147,
-        "transcript": 99
+        "transcript": 100
       },
       "samples": [
         {
@@ -12094,14 +12094,14 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 368,
-      "hours": 26.3,
+      "count": 370,
+      "hours": 26.32,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
-        "2022": 23,
-        "2023": 27,
+        "2022": 24,
+        "2023": 28,
         "2024": 46,
         "2025": 88,
         "2026": 100
@@ -12109,7 +12109,7 @@
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 202
+        "transcript": 204
       },
       "samples": [
         {
@@ -12242,21 +12242,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 443,
-      "hours": 23.75,
+      "count": 444,
+      "hours": 23.76,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 34,
         "2024": 74,
-        "2025": 135,
+        "2025": 136,
         "2026": 180
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 389
+        "transcript": 390
       },
       "samples": [
         {
@@ -12315,8 +12315,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 248,
-      "hours": 23.19,
+      "count": 249,
+      "hours": 23.22,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -12324,13 +12324,13 @@
         "2022": 26,
         "2023": 34,
         "2024": 30,
-        "2025": 71,
+        "2025": 72,
         "2026": 39
       },
       "evidence": {
         "title": 79,
         "notes": 15,
-        "transcript": 154
+        "transcript": 155
       },
       "samples": [
         {
@@ -12463,13 +12463,13 @@
       "blurb": "Human rights and civil liberties.",
       "kind": "frame",
       "facet": "frame",
-      "count": 182,
-      "hours": 21.92,
+      "count": 183,
+      "hours": 21.94,
       "byYear": {
         "2019": 7,
         "2020": 12,
         "2021": 22,
-        "2022": 17,
+        "2022": 18,
         "2023": 33,
         "2024": 31,
         "2025": 33,
@@ -12478,7 +12478,7 @@
       "evidence": {
         "title": 14,
         "notes": 130,
-        "transcript": 38
+        "transcript": 39
       },
       "samples": [
         {
@@ -12537,8 +12537,8 @@
       "blurb": "Film, TV, and streaming.",
       "kind": "domain",
       "facet": "domain",
-      "count": 159,
-      "hours": 21.76,
+      "count": 160,
+      "hours": 21.79,
       "byYear": {
         "2019": 1,
         "2020": 2,
@@ -12546,13 +12546,13 @@
         "2022": 12,
         "2023": 15,
         "2024": 19,
-        "2025": 40,
+        "2025": 41,
         "2026": 66
       },
       "evidence": {
         "title": 23,
         "notes": 36,
-        "transcript": 100
+        "transcript": 101
       },
       "samples": [
         {
@@ -12756,8 +12756,8 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 240,
-      "hours": 18.84,
+      "count": 241,
+      "hours": 18.86,
       "byYear": {
         "2019": 1,
         "2020": 5,
@@ -12765,13 +12765,13 @@
         "2022": 19,
         "2023": 27,
         "2024": 29,
-        "2025": 33,
+        "2025": 34,
         "2026": 113
       },
       "evidence": {
         "title": 41,
         "notes": 40,
-        "transcript": 159
+        "transcript": 160
       },
       "samples": [
         {
@@ -12830,14 +12830,14 @@
       "blurb": "Indigenous and First Nations rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 165,
-      "hours": 16.4,
+      "count": 167,
+      "hours": 16.46,
       "byYear": {
         "2019": 2,
         "2020": 15,
         "2021": 14,
         "2022": 10,
-        "2023": 71,
+        "2023": 73,
         "2024": 24,
         "2025": 17,
         "2026": 12
@@ -12845,7 +12845,7 @@
       "evidence": {
         "title": 22,
         "notes": 93,
-        "transcript": 50
+        "transcript": 52
       },
       "samples": [
         {
@@ -12978,8 +12978,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 183,
-      "hours": 15.73,
+      "count": 184,
+      "hours": 15.74,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -12987,13 +12987,13 @@
         "2022": 10,
         "2023": 13,
         "2024": 47,
-        "2025": 28,
+        "2025": 29,
         "2026": 65
       },
       "evidence": {
         "title": 24,
         "notes": 46,
-        "transcript": 113
+        "transcript": 114
       },
       "samples": [
         {
@@ -13126,20 +13126,20 @@
       "blurb": "UK politics, Brexit, Westminster.",
       "kind": "local",
       "facet": "local",
-      "count": 117,
-      "hours": 15.16,
+      "count": 116,
+      "hours": 15.06,
       "byYear": {
         "2019": 20,
         "2020": 24,
         "2021": 8,
-        "2022": 14,
+        "2022": 13,
         "2023": 5,
         "2024": 15,
         "2025": 10,
         "2026": 21
       },
       "evidence": {
-        "title": 60,
+        "title": 59,
         "notes": 44,
         "transcript": 13
       },
@@ -13274,20 +13274,20 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 125,
-      "hours": 14.1,
+      "count": 126,
+      "hours": 14.14,
       "byYear": {
         "2021": 4,
         "2022": 10,
         "2023": 13,
         "2024": 20,
-        "2025": 31,
+        "2025": 32,
         "2026": 47
       },
       "evidence": {
         "title": 3,
         "notes": 32,
-        "transcript": 90
+        "transcript": 91
       },
       "samples": [
         {
@@ -13346,21 +13346,21 @@
       "blurb": "Nuclear weapons and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 231,
-      "hours": 13.88,
+      "count": 232,
+      "hours": 13.89,
       "byYear": {
         "2019": 1,
         "2021": 9,
         "2022": 20,
         "2023": 15,
         "2024": 31,
-        "2025": 67,
+        "2025": 68,
         "2026": 88
       },
       "evidence": {
         "title": 2,
         "notes": 37,
-        "transcript": 192
+        "transcript": 193
       },
       "samples": [
         {
@@ -13419,21 +13419,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 227,
-      "hours": 12.46,
+      "count": 230,
+      "hours": 12.53,
       "byYear": {
         "2020": 1,
         "2021": 2,
-        "2022": 5,
-        "2023": 41,
+        "2022": 6,
+        "2023": 42,
         "2024": 37,
         "2025": 61,
-        "2026": 80
+        "2026": 81
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 196
+        "transcript": 199
       },
       "samples": [
         {
@@ -13934,14 +13934,14 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 82,
-      "hours": 9.87,
+      "count": 83,
+      "hours": 9.89,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 2,
         "2022": 7,
-        "2023": 10,
+        "2023": 11,
         "2024": 20,
         "2025": 22,
         "2026": 18
@@ -13949,7 +13949,7 @@
       "evidence": {
         "title": 11,
         "notes": 8,
-        "transcript": 63
+        "transcript": 64
       },
       "samples": [
         {
@@ -14155,13 +14155,13 @@
       "blurb": "Cybersecurity and espionage.",
       "kind": "domain",
       "facet": "domain",
-      "count": 85,
-      "hours": 8.41,
+      "count": 86,
+      "hours": 8.44,
       "byYear": {
         "2019": 3,
         "2020": 4,
         "2021": 8,
-        "2022": 19,
+        "2022": 20,
         "2023": 19,
         "2024": 15,
         "2025": 6,
@@ -14170,7 +14170,7 @@
       "evidence": {
         "title": 0,
         "notes": 49,
-        "transcript": 36
+        "transcript": 37
       },
       "samples": [
         {
@@ -14229,19 +14229,19 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 65,
-      "hours": 8.01,
+      "count": 67,
+      "hours": 8.15,
       "byYear": {
         "2022": 10,
-        "2023": 13,
+        "2023": 14,
         "2024": 7,
-        "2025": 19,
+        "2025": 20,
         "2026": 16
       },
       "evidence": {
         "title": 2,
         "notes": 21,
-        "transcript": 42
+        "transcript": 44
       },
       "samples": [
         {
@@ -14300,12 +14300,12 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 87,
-      "hours": 7.81,
+      "count": 88,
+      "hours": 7.9,
       "byYear": {
         "2020": 1,
         "2021": 2,
-        "2022": 6,
+        "2022": 7,
         "2023": 16,
         "2024": 19,
         "2025": 24,
@@ -14314,7 +14314,7 @@
       "evidence": {
         "title": 0,
         "notes": 18,
-        "transcript": 69
+        "transcript": 70
       },
       "samples": [
         {
@@ -14520,14 +14520,14 @@
       "blurb": "LGBTQ+ rights and culture.",
       "kind": "frame",
       "facet": "frame",
-      "count": 54,
-      "hours": 6.98,
+      "count": 55,
+      "hours": 6.99,
       "byYear": {
         "2019": 1,
         "2020": 3,
         "2021": 6,
         "2022": 5,
-        "2023": 12,
+        "2023": 13,
         "2024": 7,
         "2025": 10,
         "2026": 10
@@ -14535,7 +14535,7 @@
       "evidence": {
         "title": 17,
         "notes": 20,
-        "transcript": 17
+        "transcript": 18
       },
       "samples": [
         {
@@ -14594,13 +14594,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 195,
-      "hours": 6.79,
+      "count": 196,
+      "hours": 6.84,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 41,
+        "2023": 42,
         "2024": 44,
         "2025": 31,
         "2026": 58
@@ -14608,7 +14608,7 @@
       "evidence": {
         "title": 20,
         "notes": 64,
-        "transcript": 111
+        "transcript": 112
       },
       "samples": [
         {
@@ -15034,8 +15034,8 @@
       "blurb": "Psychology and behaviour.",
       "kind": "domain",
       "facet": "domain",
-      "count": 70,
-      "hours": 5.3,
+      "count": 71,
+      "hours": 5.38,
       "byYear": {
         "2020": 4,
         "2021": 2,
@@ -15043,12 +15043,12 @@
         "2023": 13,
         "2024": 17,
         "2025": 10,
-        "2026": 17
+        "2026": 18
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 46
+        "transcript": 47
       },
       "samples": [
         {
@@ -15607,20 +15607,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 91,
-      "hours": 3.46,
+      "count": 92,
+      "hours": 3.47,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 5,
         "2024": 7,
-        "2025": 59,
+        "2025": 60,
         "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 70
+        "transcript": 71
       },
       "samples": [
         {
