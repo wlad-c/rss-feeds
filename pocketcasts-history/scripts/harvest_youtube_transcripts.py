@@ -264,12 +264,18 @@ def yt_dump(url_or_query: str, limit: int = 50) -> list[dict]:
         vid = j.get("id")
         if not vid:
             continue
+        dur = j.get("duration")
+        try:
+            dur_i = int(float(dur)) if dur is not None else None
+        except (TypeError, ValueError):
+            dur_i = None
         out.append(
             {
                 "id": vid,
                 "title": j.get("title") or "",
                 "uploader": j.get("uploader") or j.get("channel") or "",
                 "url": j.get("url") or f"https://www.youtube.com/watch?v={vid}",
+                "duration": dur_i,
             }
         )
     return out
@@ -566,12 +572,15 @@ def _gemini_generate_chunk(
     return None
 
 
-def fetch_gemini(video_id: str) -> str | None:
+def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
     """Full transcript via Gemini YouTube video understanding (chunked).
 
     Whole multi-hour episodes exceed the 1M input-token cap under static
     frame sampling. We clip with videoMetadata start/end offsets and
     concatenate. Chunk length defaults to 10 minutes (GEMINI_YT_CHUNK_SECS).
+
+    Prefer `duration` from the channel flat-playlist (yt-dlp watch pages are
+    often bot-blocked from datacenter IPs).
     """
     key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if not key:
@@ -581,7 +590,8 @@ def fetch_gemini(video_id: str) -> str | None:
     chunk_secs = max(120, min(chunk_secs, 1800))
     chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "3"))
 
-    duration = yt_duration_seconds(video_id)
+    if not duration or duration <= 0:
+        duration = yt_duration_seconds(video_id)
     if not duration or duration <= 0:
         print("  gemini: could not resolve video duration", flush=True)
         return None
@@ -634,10 +644,15 @@ def fetch_gemini(video_id: str) -> str | None:
     return joined
 
 
-def fetch_captions(video_id: str, backends: list[str]) -> tuple[str | None, str | None]:
+def fetch_captions(
+    video_id: str,
+    backends: list[str],
+    *,
+    duration: int | None = None,
+) -> tuple[str | None, str | None]:
     for name in backends:
         if name == "gemini":
-            text = fetch_gemini(video_id)
+            text = fetch_gemini(video_id, duration=duration)
             if text:
                 return text, "gemini"
         elif name == "yta":
@@ -934,7 +949,11 @@ def main() -> None:
             flush=True,
         )
         try:
-            text, backend = fetch_captions(vid["id"], backends)
+            text, backend = fetch_captions(
+                vid["id"],
+                backends,
+                duration=vid.get("duration"),
+            )
         except RateLimited as rl:
             stats["rateLimited"] += 1
             print(
