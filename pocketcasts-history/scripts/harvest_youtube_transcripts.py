@@ -642,12 +642,19 @@ def _gemini_generate_chunk(
                 pass
             msg = payload.decode("utf-8", errors="replace")
             last_err = f"HTTP {exc.code}: {msg[:240]}"
+            if exc.code == 402 or "prepayment credits are depleted" in msg.lower():
+                print(
+                    f"  gemini PREPAY CREDITS DEPLETED (402) — top up at "
+                    f"https://ai.studio/projects : {msg[:180]}",
+                    flush=True,
+                )
+                raise RateLimited(1800.0)
             if exc.code == 429:
                 retry_s = _gemini_parse_retry_seconds(msg)
                 if _gemini_daily_quota(msg):
                     hint = f"{retry_s:.0f}s" if retry_s else "?"
                     print(
-                        f"  gemini daily quota exhausted (retry in ~{hint}): "
+                        f"  gemini FreeTier/daily quota (retry in ~{hint}): "
                         f"{msg[:220]}",
                         flush=True,
                     )
