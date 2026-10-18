@@ -89,7 +89,8 @@ YT_CHANNELS: dict[str, dict] = {
         "handle": "@ABCNewsIndepth",
         "playlist": "PLDTPrMoGHssDd3-ICckOsBZwpp3IEDxYs",
         "playlist_only": True,
-        "title_must": ["insiders", "insiders on background"],
+        # Playlist is already scoped; some uploads omit the Insiders suffix.
+        "title_must": None,
         "min_score": 0.72,
         "reject_title": [
             "abc news daily",
@@ -231,12 +232,43 @@ def token_set(s: str) -> set[str]:
     return {t for t in normalize(s).split() if len(t) > 1 and t not in stop}
 
 
+# Left-side show markers: "Foro de Teresina | episode title"
+_SHOW_PREFIX_MARKERS = (
+    "foro de teresina",
+    "teresina forum",
+    "o assunto",
+)
+# Right-side show markers: "episode title | ABC News Daily podcast"
+_SHOW_SUFFIX_MARKERS = (
+    "o assunto",
+    "the subject",
+    "the topic",
+    "the matter",
+    "abc news daily",
+    "politics now",
+    "insiders on background",
+    "insiders",
+    "up first",
+)
+
+
 def _strip_show_suffix(yt_title: str) -> str:
-    """Remove trailing show markers used on mixed channels (g1, etc.)."""
+    """Remove show markers from mixed-channel YouTube titles.
+
+    Handles both ``Episode | Show`` (g1, ABC) and ``Show | Episode`` (piauí).
+    """
     t = yt_title or ""
-    # "Title | O ASSUNTO" / "Title | THE SUBJECT"
     if " | " in t:
-        t = t.split(" | ", 1)[0]
+        left, right = t.split(" | ", 1)
+        left_l = left.strip().lower()
+        right_l = right.strip().lower()
+        if any(left_l == m or left_l.startswith(m + " ") for m in _SHOW_PREFIX_MARKERS):
+            t = right
+        elif any(m in right_l for m in _SHOW_SUFFIX_MARKERS):
+            t = left
+        else:
+            # Prefer the longer side as the episode title.
+            t = left if len(left) >= len(right) else right
     # Older g1 style: "Title I O ASSUNTO I g1"
     t = re.split(r"\s+[iI]\s+O\s+ASSUNTO\b", t, maxsplit=1)[0]
     t = re.split(r"\s+[iI]\s+THE\s+SUBJECT\b", t, maxsplit=1)[0]
@@ -244,7 +276,9 @@ def _strip_show_suffix(yt_title: str) -> str:
 
 
 def title_score(ep_title: str, yt_title: str) -> float:
-    a, b = normalize(ep_title), normalize(_strip_show_suffix(yt_title))
+    # Strip show markers from both sides (feed titles often keep "| Insiders…").
+    a = normalize(_strip_show_suffix(ep_title))
+    b = normalize(_strip_show_suffix(yt_title))
     if not a or not b:
         return 0.0
     for prefix in (
@@ -257,6 +291,8 @@ def title_score(ep_title: str, yt_title: str) -> float:
     ):
         if b.startswith(prefix):
             b = b[len(prefix) :]
+        if a.startswith(prefix):
+            a = a[len(prefix) :]
     seq = SequenceMatcher(None, a, b).ratio()
     ta, tb = token_set(a), token_set(b)
     jacc = (len(ta & tb) / len(ta | tb)) if ta and tb else 0.0
@@ -295,17 +331,26 @@ def episode_video_score(
     if not conf.get("cross_lang"):
         return tscore
     dscore = duration_score(ep.get("dur"), yt_duration)
-    ta = token_set(ep_title)
+    ta = token_set(_strip_show_suffix(ep_title))
     tb = token_set(_strip_show_suffix(yt_title))
+    # Include 3-letter acronyms (TSE, STF, PCC) as anchors for PT↔EN pairs.
     shared = {
-        t for t in (ta & tb) if len(t) >= 4 or any(ch.isdigit() for ch in t)
+        t
+        for t in (ta & tb)
+        if len(t) >= 4
+        or any(ch.isdigit() for ch in t)
+        or (len(t) == 3 and t.isalpha())
     }
-    # Duration alone is dangerous on a ~30min daily show — require ≥2 anchors.
+    # Duration alone is dangerous on a ~30min daily show — require lexical anchors.
     if len(shared) >= 2 and dscore >= 0.5:
         return min(
             1.0,
             0.50 * tscore + 0.35 * dscore + 0.15 * min(1.0, len(shared) / 3.0),
         )
+    # Show-tagged upload (caller already filtered title_must) + one proper
+    # noun/acronym + near-equal duration is enough for EN g1 titles.
+    if len(shared) >= 1 and dscore >= 0.8:
+        return min(1.0, 0.40 * tscore + 0.45 * dscore + 0.15)
     return tscore
 
 
@@ -405,8 +450,18 @@ def playlist_videos(playlist_id: str, limit: int = 500) -> list[dict]:
     return yt_dump(url, limit=limit)
 
 
+def channel_search_videos(handle: str, query: str, limit: int = 300) -> list[dict]:
+    """Videos from a channel's search tab (often denser than /videos for series)."""
+    handle = handle if str(handle).startswith("@") else f"@{handle}"
+    q = urllib.parse.quote_plus(query)
+    return yt_dump(
+        f"https://www.youtube.com/{handle}/search?query={q}",
+        limit=limit,
+    )
+
+
 def show_video_pool(conf: dict, channel_limit: int) -> list[dict]:
-    """Playlist (if any) merged with channel uploads; uploads win on id clash."""
+    """Playlist / channel-search / uploads pool for a show."""
     limit = int(conf.get("channel_limit") or channel_limit or 300)
     by_id: dict[str, dict] = {}
     pl = conf.get("playlist")
@@ -417,11 +472,24 @@ def show_video_pool(conf: dict, channel_limit: int) -> list[dict]:
             print(f"  playlist listed={len(by_id)}", flush=True)
         else:
             print(
-                f"  playlist {pl} empty/unavailable — using channel uploads",
+                f"  playlist {pl} empty/unavailable — falling back",
                 flush=True,
             )
     handle = conf.get("handle")
-    if handle:
+    search_q = conf.get("channel_search")
+    search_hits = 0
+    if handle and search_q:
+        found = channel_search_videos(handle, str(search_q), limit=max(limit, 300))
+        search_hits = len(found)
+        for v in found:
+            by_id[v["id"]] = v
+        print(f"  channel search listed={search_hits}", flush=True)
+    # Skip broad /videos crawl when playlist_only or channel_search already
+    # filled the pool; still fall back to uploads if those sources were empty.
+    skip_uploads = bool(by_id) and (
+        bool(conf.get("playlist_only")) or bool(search_q and search_hits)
+    )
+    if handle and not skip_uploads:
         for v in channel_uploads(handle, limit=limit):
             by_id[v["id"]] = v
     return list(by_id.values())
