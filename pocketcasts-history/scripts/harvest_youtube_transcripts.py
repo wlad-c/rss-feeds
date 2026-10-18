@@ -36,7 +36,14 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 from pathlib import Path
 
-from transcript_store import TABLES, connect, get_full, upsert_full, write_slim_notes
+from transcript_store import (
+    TABLES,
+    TRANSCRIPTS,
+    connect,
+    get_full,
+    upsert_full,
+    write_slim_notes,
+)
 
 UA = "rss-feeds-listening-log/1.1 (+https://github.com/wlad-c/rss-feeds)"
 TRANSCRIBE_YT_URL = "https://transcribeyoutube.com/api/transcript"
@@ -459,6 +466,59 @@ def _gemini_strip_preamble(text: str) -> str:
     return re.sub(r"\n{3,}", "\n\n", text).strip()
 
 
+def _gemini_chunk_dir(video_id: str) -> Path:
+    d = TRANSCRIPTS / ".gemini_chunks" / video_id
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _gemini_chunk_path(video_id: str, start_s: int, end_s: int) -> Path:
+    return _gemini_chunk_dir(video_id) / f"{start_s:06d}-{end_s:06d}.txt"
+
+
+def _gemini_load_chunk(video_id: str, start_s: int, end_s: int) -> str | None:
+    path = _gemini_chunk_path(video_id, start_s, end_s)
+    if not path.is_file():
+        return None
+    text = path.read_text(encoding="utf-8").strip()
+    return text if len(text) >= 40 else None
+
+
+def _gemini_save_chunk(video_id: str, start_s: int, end_s: int, text: str) -> None:
+    path = _gemini_chunk_path(video_id, start_s, end_s)
+    path.write_text(text, encoding="utf-8")
+
+
+def _gemini_clear_chunks(video_id: str) -> None:
+    d = TRANSCRIPTS / ".gemini_chunks" / video_id
+    if not d.is_dir():
+        return
+    for p in d.glob("*.txt"):
+        try:
+            p.unlink()
+        except OSError:
+            pass
+    try:
+        d.rmdir()
+    except OSError:
+        pass
+
+
+def _gemini_quota_exhausted(msg: str) -> bool:
+    low = (msg or "").lower()
+    return any(
+        s in low
+        for s in (
+            "exceeded your current quota",
+            "daily limit",
+            "quota exceeded",
+            "resource_exhausted",
+            "youtube video length",
+            "8 hours",
+        )
+    )
+
+
 def _gemini_generate_chunk(
     *,
     key: str,
@@ -466,9 +526,17 @@ def _gemini_generate_chunk(
     video_id: str,
     start_s: int,
     end_s: int,
-    retries: int = 5,
+    retries: int = 8,
 ) -> str | None:
     """Transcribe [start_s, end_s) via generateContent + videoMetadata offsets."""
+    cached = _gemini_load_chunk(video_id, start_s, end_s)
+    if cached:
+        print(
+            f"  gemini chunk {start_s}-{end_s}s chars={len(cached)} (cache)",
+            flush=True,
+        )
+        return cached
+
     yt_url = f"https://www.youtube.com/watch?v={video_id}"
     body = {
         "contents": [
@@ -520,10 +588,22 @@ def _gemini_generate_chunk(
             msg = payload.decode("utf-8", errors="replace")
             last_err = f"HTTP {exc.code}: {msg[:240]}"
             if exc.code == 429:
-                # Daily YouTube quota / rate limit — stop the whole harvest.
-                raise RateLimited()
+                if _gemini_quota_exhausted(msg):
+                    print(f"  gemini quota exhausted: {msg[:200]}", flush=True)
+                    raise RateLimited()
+                # Soft RPM throttle — wait and retry; raise only after many tries.
+                wait = min(180, 30 * (attempt + 1))
+                print(
+                    f"  gemini {start_s}-{end_s}s 429; backoff {wait}s "
+                    f"(attempt {attempt + 1}/{retries})",
+                    flush=True,
+                )
+                if attempt + 1 >= retries:
+                    raise RateLimited()
+                time.sleep(wait)
+                continue
             if exc.code in (503, 500, 502, 504) and attempt + 1 < retries:
-                wait = min(60, 4 * (2**attempt))
+                wait = min(90, 4 * (2**attempt))
                 print(
                     f"  gemini {start_s}-{end_s}s {exc.code}; retry in {wait}s",
                     flush=True,
@@ -567,7 +647,10 @@ def _gemini_generate_chunk(
             f"finish={finish} promptTok={usage.get('promptTokenCount')}",
             flush=True,
         )
-        return text if len(text) >= 40 else None
+        if len(text) >= 40:
+            _gemini_save_chunk(video_id, start_s, end_s, text)
+            return text
+        return None
     print(f"  gemini {start_s}-{end_s}s failed: {last_err}", flush=True)
     return None
 
@@ -578,6 +661,8 @@ def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
     Whole multi-hour episodes exceed the 1M input-token cap under static
     frame sampling. We clip with videoMetadata start/end offsets and
     concatenate. Chunk length defaults to 10 minutes (GEMINI_YT_CHUNK_SECS).
+    Completed chunks are cached under transcripts/.gemini_chunks/ so a
+    mid-episode 429 can resume on the next run.
 
     Prefer `duration` from the channel flat-playlist (yt-dlp watch pages are
     often bot-blocked from datacenter IPs).
@@ -588,7 +673,7 @@ def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
     model = os.environ.get("GEMINI_YT_MODEL", "gemini-3.8-flash")
     chunk_secs = int(os.environ.get("GEMINI_YT_CHUNK_SECS", "600"))
     chunk_secs = max(120, min(chunk_secs, 1800))
-    chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "3"))
+    chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "12"))
 
     if not duration or duration <= 0:
         duration = yt_duration_seconds(video_id)
@@ -641,6 +726,8 @@ def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
             flush=True,
         )
         return None
+    # Full episode assembled — drop resume cache.
+    _gemini_clear_chunks(video_id)
     return joined
 
 
@@ -949,10 +1036,16 @@ def main() -> None:
             flush=True,
         )
         try:
+            dur = vid.get("duration")
+            if not dur:
+                # Fall back to Pocket Casts episode length (minutes → seconds)
+                mins = parse_minutes(ep.get("dur"))
+                if mins and mins > 0:
+                    dur = int(mins * 60)
             text, backend = fetch_captions(
                 vid["id"],
                 backends,
-                duration=vid.get("duration"),
+                duration=dur,
             )
         except RateLimited as rl:
             stats["rateLimited"] += 1
