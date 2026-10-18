@@ -11,7 +11,9 @@ Other rules:
   - Flat, one click; no parent/child.
   - Local themes are always specific (never bare countries).
   - Geo cues + title actors still come from title/show (and show priors).
-  - Noisy domains need multiple hits in long transcripts to avoid spray.
+  - Long transcripts require ≥3 pattern hits (higher if theme sets min_hits).
+  - Theme *hours* are time-shares within each episode (transcript hit density;
+    equal split when only title/notes), not full duration × every tag.
   - Show priors baseline known coverage (A Hora → BR politics; Braincast → tech/culture).
 """
 
@@ -105,6 +107,7 @@ GEO: dict[str, list[str]] = {
         r"\basean\b", r"\bsoutheast asia\b", r"\bsouth[- ]east asia\b",
         r"\basia[- ]pacific\b", r"\bbangladesh\b", r"\bcambodia\b",
         r"\blaos\b", r"\bpapua new guinea\b", r"\bnew zealand\b",
+        r"\btimor[- ]?leste\b", r"\beast timor\b",
     ],
     "india": [
         r"\bindia\b", r"\bindian\b", r"\bmodi\b", r"\bdelhi\b", r"\bbjp\b",
@@ -141,8 +144,9 @@ GEO: dict[str, list[str]] = {
         r"\bkremlin\b",
     ],
     "latam": [
-        r"\bargentina\b", r"\bchile\b", r"\bcolombia\b", r"\bvenezuela\b",
-        r"\bmexico\b", r"\bm[eé]xico\b", r"\bperu\b", r"\bbolivia\b",
+        r"\bargentina\b", r"\bchile\b", r"\bcol[oó]mbia\b", r"\bvenezuela\b",
+        r"\bmexico\b", r"\bm[eé]xico\b", r"\bperu\b", r"\bper[uú]\b",
+        r"\bbolivia\b", r"\bbol[ií]via\b",
         r"\becuador\b", r"\buruguay\b", r"\bparaguay\b", r"\bcuba\b",
         r"\bmaduro\b", r"\bmilei\b", r"\bboric\b", r"\bpetro\b",
         r"\bamlo\b", r"\blatin america\b", r"\bam[eé]rica latina\b",
@@ -335,6 +339,38 @@ TITLE_ACTORS: list[tuple[str | None, str, list[str]]] = [
     ("pk", r"\b(imran khan)\b", ["pk-government"]),
     ("jp", r"\b(kishida|ishiba)\b", ["jp-government"]),
     ("kr", r"\b(kim jong|yoon suk|pyongyang)\b", ["kr-government"]),
+    # Portuguese/Spanish title cues common on Xadrez Verbal / Petit Journal
+    (
+        "br",
+        r"\b(pol[ií]tica externa brasileira|elei[cç][oõ]es no brasil|"
+        r"elei[cç][oõ]es.*brasil)\b",
+        ["br-elections", "br-government"],
+    ),
+    (
+        "latam",
+        r"\b(am[eé]rica latina|col[oó]mbia|argentina|venezuela|peru|"
+        r"chile|m[eé]xico|bol[ií]via)\b",
+        ["latam-government"],
+    ),
+    (
+        "latam",
+        r"\b(elei[cç]|turno|urna).{0,40}(col[oó]mbia|argentina|peru|chile|"
+        r"m[eé]xico|venezuela|am[eé]rica latina)|"
+        r"(col[oó]mbia|argentina|peru|chile|m[eé]xico|venezuela).{0,40}"
+        r"(elei[cç]|turno)\b",
+        ["latam-elections", "latam-government"],
+    ),
+    (
+        "eu",
+        r"\b(protestos? na espanha|elei[cç].*espanha|espanha)\b",
+        ["spain-politics", "eu-government"],
+    ),
+    (
+        "sea",
+        r"\b(timor[- ]?leste|east timor).{0,40}(elei[cç]|turno)|"
+        r"(elei[cç]|turno).{0,40}(timor[- ]?leste|east timor)\b",
+        ["sea-elections", "sea-government"],
+    ),
 ]
 
 # Shows that imply a geo even when the title is witty / actor-only
@@ -378,7 +414,7 @@ SHOW_DEFAULTS: dict[str, list[str]] = {
     "the morning edition": ["au-government"],
     "up first from npr": ["us-government"],
     "the daily": ["us-government"],
-    "xadrez verbal": ["diplomacy", "history", "international-affairs"],
+    "xadrez verbal": ["diplomacy", "international-affairs"],
     "petit journal": ["international-affairs", "diplomacy"],
     "lowy institute": ["diplomacy", "indo-pacific-security"],
     "the national security podcast": ["defence-war", "indo-pacific-security"],
@@ -625,6 +661,11 @@ THEMES: list[dict] = [
     T("france-politics", "French politics", "local", "French politics and Macron.", geo="eu", topic=[
         r"\bfrance\b", r"\bfran[cç]a\b", r"\bmacron\b", r"\ble pen\b",
     ]),
+    T("spain-politics", "Spanish politics", "local", "Spanish politics, protests, and parties.", geo="eu", topic=[
+        r"\bspain\b", r"\bespanha\b", r"\bespa[nñ]a\b", r"\bsanchez\b",
+        r"\bs[aá]nchez\b", r"\bvox\b", r"\bcatalunha\b", r"\bcatalonia\b",
+        r"\bprotestos? na espanha\b",
+    ]),
     T("germany-politics", "German politics", "local", "German politics and AfD.", geo="eu", topic=[
         r"\bgermany\b", r"\balemanha\b", r"\bscholz\b", r"\bafd\b", r"\bmerkel\b",
     ]),
@@ -658,7 +699,14 @@ def match_count(pats: list[re.Pattern], text: str) -> int:
 
 
 def matches(pats: list[re.Pattern], text: str, *, min_hits: int = 1, long_text: bool = False) -> bool:
-    need = min_hits if long_text and min_hits > 1 else 1
+    # Short text (title/notes): one hit is enough.
+    # Long transcripts (esp. multi-hour geopolitics shows): scale the floor with
+    # length so digressions don't light up every domain/frame.
+    if long_text:
+        scaled = max(5, len(text) // 15000)  # ~185k chars → 12; ~300k → 20
+        need = max(int(min_hits or 1), scaled)
+    else:
+        need = 1
     return match_count(pats, text) >= need
 
 
@@ -701,7 +749,8 @@ def primary_evidence(
             src = note.get("src")
         else:
             src = "transcript"
-        return tx, src or "transcript", len(tx) > 800
+        # >4k ≈ real episode body; short show-notes stay "short" for priors/hits
+        return tx, src or "transcript", len(tx) > 4000
     note = notes.get(str(i)) or {}
     if isinstance(note, dict) and _note_matches_episode(note, ep_p, ep_e):
         nt = (note.get("text") or "").strip()
@@ -757,14 +806,42 @@ def tag_episode(
     # 1) Show baselines (known coverage). Residual SEA themes are skipped when a
     # specific Asia country geo already fired — otherwise BFM/regional shows
     # would re-inflate the broad bucket on every Malaysia/Japan episode.
+    # When a long transcript is available, ground each default in that text so
+    # multi-hour geopolitics shows (Xadrez Verbal) don't inherit empty priors.
     specific_asia = any(
         geo_hit.get(k)
         for k in ("my", "sg", "id", "th", "ph", "vn", "mm", "pk", "jp", "kr", "cn_tw", "india")
     )
-    for tid in show_defaults(show):
-        if specific_asia and tid in ("sea-government", "sea-elections"):
+    defaults = [
+        tid
+        for tid in show_defaults(show)
+        if not (specific_asia and tid in ("sea-government", "sea-elections"))
+    ]
+    by_id = {c["id"]: c for c in COMPILED}
+    grounded: list[str] = []
+    for tid in defaults:
+        if not primary_long:
+            add(tid)
             continue
-        add(tid)
+        meta = by_id.get(tid)
+        if not meta:
+            continue
+        topic_re = meta.get("topic_re") or []
+        geo_re = meta.get("geo_re") or []
+        if topic_re and matches(topic_re, primary, min_hits=1, long_text=True):
+            grounded.append(tid)
+        elif geo_re and matches(geo_re, primary, min_hits=1, long_text=True):
+            grounded.append(tid)
+        elif not topic_re and not geo_re:
+            grounded.append(tid)
+    if primary_long:
+        if grounded:
+            for tid in grounded:
+                add(tid)
+        else:
+            # transcript didn't support any prior — still keep a soft baseline
+            for tid in defaults:
+                add(tid)
 
     # 2) Title actors → local compounds (geo-gated; titles carry witty politics cues)
     for gk, cre, ids in ACTOR_RE:
@@ -808,6 +885,7 @@ def tag_episode(
             add(t["id"])
 
     # 4) Frames + domains — primary evidence only
+    domain_hits: list[tuple[int, str]] = []
     for t in COMPILED:
         if t["kind"] not in ("frame", "domain"):
             continue
@@ -815,9 +893,50 @@ def tag_episode(
         if not topic_re:
             continue
         if matches(topic_re, primary, min_hits=t["min_hits"], long_text=primary_long):
-            add(t["id"])
+            if t["kind"] == "frame":
+                add(t["id"])
+            else:
+                domain_hits.append((match_count(topic_re, primary), t["id"]))
+
+    # On long transcripts keep the strongest domains only (plus any already added).
+    if primary_long:
+        domain_hits.sort(reverse=True)
+        for _n, tid in domain_hits[:8]:
+            add(tid)
+    else:
+        for _n, tid in domain_hits:
+            add(tid)
 
     return hits
+
+
+def theme_weights(
+    hits: list[str],
+    *,
+    primary: str,
+    primary_long: bool,
+    theme_by_id: dict[str, dict],
+) -> dict[str, float]:
+    """Share of episode duration attributable to each theme (sums to 1.0).
+
+    With a long transcript, weight by topic/geo hit counts so a 5h multi-topic
+    show does not credit 5h to every tag. Without transcript evidence, split
+    equally across assigned themes (still far better than full duration each).
+    """
+    if not hits:
+        return {}
+    if len(hits) == 1:
+        return {hits[0]: 1.0}
+    if not primary_long:
+        w = 1.0 / len(hits)
+        return {tid: w for tid in hits}
+    scores: dict[str, float] = {}
+    for tid in hits:
+        meta = theme_by_id.get(tid) or {}
+        pats = list(meta.get("topic_re") or []) + list(meta.get("geo_re") or [])
+        scores[tid] = float(max(match_count(pats, primary), 1))
+    total = sum(scores.values()) or float(len(hits))
+    return {tid: scores[tid] / total for tid in hits}
 
 
 def record_evidence(
@@ -852,12 +971,14 @@ def tag_all(
     episodes: list[dict],
     notes: dict,
     full_texts: dict[str, str] | None = None,
-) -> tuple[list[list[str]], dict]:
+) -> tuple[list[list[str]], list[dict[str, float]], dict]:
     counts: Counter = Counter()
     samples: dict[str, list] = defaultdict(list)
     by_year: dict[str, Counter] = defaultdict(Counter)
     evidence: dict[str, Counter] = defaultdict(Counter)
+    hours_acc: dict[str, float] = defaultdict(float)
     tagged: list[list[str]] = []
+    weights_out: list[dict[str, float]] = []
     full_texts = full_texts or {}
     theme_by_id = {t["id"]: t for t in COMPILED}
     src_counts: Counter = Counter()
@@ -895,10 +1016,33 @@ def tag_all(
             geo_hit=geo_hit,
         )
 
+        weights = theme_weights(
+            hits,
+            primary=primary,
+            primary_long=primary_long,
+            theme_by_id=theme_by_id,
+        )
+        # Episode duration → theme hours via shares
+        dur = ep.get("dur") or ""
+        ep_hours = 0.0
+        if isinstance(dur, (int, float)):
+            ep_hours = float(dur) / 3600.0
+        elif isinstance(dur, str) and dur.strip():
+            parts = dur.strip().split(":")
+            try:
+                nums = [int(x) for x in parts]
+            except ValueError:
+                nums = []
+            if len(nums) == 3:
+                ep_hours = nums[0] + nums[1] / 60.0 + nums[2] / 3600.0
+            elif len(nums) == 2:
+                ep_hours = nums[0] / 60.0 + nums[1] / 3600.0
+
         for tid in hits:
             t = theme_by_id[tid]
             counts[tid] += 1
             by_year[tid][str(ep.get("y") or "")] += 1
+            hours_acc[tid] += ep_hours * float(weights.get(tid) or 0.0)
             record_evidence(
                 evidence,
                 tid,
@@ -913,6 +1057,10 @@ def tag_all(
                     {"i": i, "e": title, "p": show, "d": ep.get("d")}
                 )
         tagged.append(hits)
+        # Round shares for compact JSON
+        weights_out.append(
+            {tid: round(float(weights[tid]), 4) for tid in hits if tid in weights}
+        )
 
     catalog = []
     for t in COMPILED:
@@ -926,6 +1074,7 @@ def tag_all(
                 "kind": t["kind"],
                 "facet": t["kind"],
                 "count": int(counts.get(tid, 0)),
+                "hours": round(float(hours_acc.get(tid, 0.0)), 2),
                 "byYear": dict(sorted(by_year[tid].items())),
                 "evidence": {
                     "title": int(ev.get("title", 0)),
@@ -936,7 +1085,7 @@ def tag_all(
                 "children": [],
             }
         )
-    catalog.sort(key=lambda x: x["count"], reverse=True)
+    catalog.sort(key=lambda x: (-x["hours"], -x["count"]))
     flat = [{k: v for k, v in p.items() if k != "children"} for p in catalog]
 
     meta = {
@@ -951,14 +1100,14 @@ def tag_all(
         "episodesWithTranscriptEvidence": int(src_counts.get("transcript", 0) + src_counts.get("stt", 0) + src_counts.get("youtube", 0)),
         "episodesWithNotesEvidence": int(src_counts.get("notes", 0) + src_counts.get("show-notes", 0)),
         "episodesWithTitleOnlyEvidence": int(src_counts.get("title", 0)),
-        "method": "flat-transcript-first-show-priors",
+        "method": "flat-transcript-first-time-shares",
         "note": (
-            "Flat themes. Per-episode evidence priority: transcript → notes → "
+            "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → "
             "title/show. Geo + actors from title/show; show priors baseline known "
             "coverage. Noisy domains need multiple hits in long transcripts."
         ),
     }
-    return tagged, {"meta": meta, "themes": catalog, "flat": flat}
+    return tagged, weights_out, {"meta": meta, "themes": catalog, "flat": flat}
 
 
 def main() -> None:
@@ -1012,9 +1161,12 @@ def main() -> None:
             notes.pop(str(i), None)
     if poison_notes:
         print(f"dropped_poisoned_notes={poison_notes}")
-    tagged, doc = tag_all(episodes, notes, full_texts)
+    tagged, weights, doc = tag_all(episodes, notes, full_texts)
     (TABLES / "episode-themes.json").write_text(
         json.dumps(tagged, separators=(",", ":")), encoding="utf-8"
+    )
+    (TABLES / "episode-theme-weights.json").write_text(
+        json.dumps(weights, separators=(",", ":")), encoding="utf-8"
     )
     (TABLES / "themes.json").write_text(
         json.dumps(doc, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -1023,11 +1175,17 @@ def main() -> None:
         f"themes={doc['meta']['themeCount']} "
         f"tagged={doc['meta']['episodesWithTheme']}/{doc['meta']['totalEpisodes']}"
     )
-    for t in doc["themes"][:40]:
-        print(f"  {t['count']:5d}  {t['name']}  [{t['kind']}]")
+    for row in doc["themes"][:40]:
+        print(
+            f"  {row['count']:5d}  {row.get('hours', 0):8.1f}h  "
+            f"{row['name']}  [{row['kind']}]"
+        )
     print("  …")
-    for t in doc["themes"][40:]:
-        print(f"  {t['count']:5d}  {t['name']}  [{t['kind']}]")
+    for row in doc["themes"][40:]:
+        print(
+            f"  {row['count']:5d}  {row.get('hours', 0):8.1f}h  "
+            f"{row['name']}  [{row['kind']}]"
+        )
 
 
 if __name__ == "__main__":

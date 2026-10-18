@@ -63,6 +63,7 @@
     countriesDoc: null,
     themesDoc: null,
     episodeThemes: null,
+    episodeThemeWeights: null,
     notes: null,
     themeById: {},
     activeTheme: "",
@@ -1845,11 +1846,15 @@
     const needThemeYear = trendGrain === "year";
     const needThemeMonth = trendGrain === "month";
     const needThemeDate = trendGrain === "day";
+    const themeFilter = ignoreTheme ? "" : (state.chartPeriod.theme || "");
     for (let n = 0; n < matchedIdxs.length; n++) {
       const i = matchedIdxs[n];
       const e = eps[i];
       episodeCount += 1;
-      const h = epHours ? epHours[i] : parseDurHours(e.dur);
+      const hFull = epHours ? epHours[i] : parseDurHours(e.dur);
+      // When a theme is selected, hours are that theme's share of the episode —
+      // not the full runtime credited to every co-tagged topic.
+      const h = themeFilter ? hFull * themeWeightForIndex(i, themeFilter) : hFull;
       hoursTotal += h;
       if (e.prog !== "" && e.prog != null && !Number.isNaN(Number(e.prog))) {
         progressSum += Number(e.prog);
@@ -1916,22 +1921,23 @@
 
       const themes = (state.episodeThemes && state.episodeThemes[i]) || [];
       for (const tid of themes) {
-        bump(byThemeHours, tid, h);
+        const th = hFull * themeWeightForIndex(i, tid);
+        bump(byThemeHours, tid, th);
         bump(byThemeCount, tid, 1);
         if (needThemeYear && year) {
           if (!byThemeYearHours[tid]) byThemeYearHours[tid] = Object.create(null);
           if (!byThemeYearCount[tid]) byThemeYearCount[tid] = Object.create(null);
-          bump(byThemeYearHours[tid], year, h);
+          bump(byThemeYearHours[tid], year, th);
           bump(byThemeYearCount[tid], year, 1);
         } else if (needThemeMonth && month.length === 7) {
           if (!byThemeMonthHours[tid]) byThemeMonthHours[tid] = Object.create(null);
           if (!byThemeMonthCount[tid]) byThemeMonthCount[tid] = Object.create(null);
-          bump(byThemeMonthHours[tid], month, h);
+          bump(byThemeMonthHours[tid], month, th);
           bump(byThemeMonthCount[tid], month, 1);
         } else if (needThemeDate && date) {
           if (!byThemeDateHours[tid]) byThemeDateHours[tid] = Object.create(null);
           if (!byThemeDateCount[tid]) byThemeDateCount[tid] = Object.create(null);
-          bump(byThemeDateHours[tid], date, h);
+          bump(byThemeDateHours[tid], date, th);
           bump(byThemeDateCount[tid], date, 1);
         }
       }
@@ -3025,7 +3031,7 @@
       const name = e.p || "Unknown";
       const cur = byPod.get(name) || { name, count: 0, hours: 0 };
       cur.count += 1;
-      cur.hours += episodeHours(e, i);
+      cur.hours += themeHoursForIndex(i, themeId);
       byPod.set(name, cur);
     }
     return [...byPod.values()].map((p) => ({
@@ -3229,6 +3235,25 @@
   function themeIdsForIndex(i) {
     return (state.episodeThemes && state.episodeThemes[i]) || [];
   }
+
+  function themeWeightForIndex(i, themeId) {
+    if (i == null || !themeId) return 0;
+    const wmap = state.episodeThemeWeights && state.episodeThemeWeights[i];
+    if (wmap && typeof wmap === "object" && wmap[themeId] != null) {
+      const w = Number(wmap[themeId]);
+      return Number.isFinite(w) && w > 0 ? w : 0;
+    }
+    // Legacy equal split when weights file missing
+    const ids = themeIdsForIndex(i);
+    if (!ids.includes(themeId)) return 0;
+    return ids.length ? 1 / ids.length : 0;
+  }
+
+  function themeHoursForIndex(i, themeId) {
+    const h = episodeHours(state.episodes[i], i);
+    return h * themeWeightForIndex(i, themeId);
+  }
+
 
   function noteTextForIndex(i) {
     const n = state.notes && state.notes[String(i)];
@@ -3435,7 +3460,7 @@
       note.textContent = focusName
         ? `${hours ? "Hours" : "Episode counts"} for ${focusName}${scope}.`
         : hours
-          ? `Top themes by hours across ${grainWord} — scoped by the filter bar above.`
+          ? `Top themes by within-episode hours across ${grainWord} — scoped by the filter bar above.`
           : `Top themes across ${grainWord} — scoped by the filter bar above.`;
     }
     destroyChart("themeYear");
@@ -3747,6 +3772,7 @@
         d.podcasts,
         d.themes || null,
         d.episodeThemes || null,
+        d.episodeThemeWeights || null,
         d.notes || null,
         d.countries || null,
       ];
@@ -3757,6 +3783,7 @@
       loadJSON("tables/podcasts.json"),
       loadJSON("tables/themes.json").catch(() => null),
       loadJSON("tables/episode-themes.json").catch(() => null),
+      loadJSON("tables/episode-theme-weights.json").catch(() => null),
       loadJSON("tables/notes.json").catch(() => null),
       loadJSON("tables/podcast-countries.json").catch(() => null),
     ]);
@@ -3775,13 +3802,14 @@
     syncTabMode();
     $("#bootStatus").textContent = "Loading listening history…";
     try {
-      const [agg, episodes, podcasts, themesDoc, episodeThemes, notes, countriesDoc] =
+      const [agg, episodes, podcasts, themesDoc, episodeThemes, episodeThemeWeights, notes, countriesDoc] =
         await loadAll();
       state.agg = agg;
       state.episodes = episodes;
       state.podcasts = podcasts;
       state.themesDoc = themesDoc;
       state.episodeThemes = episodeThemes;
+      state.episodeThemeWeights = episodeThemeWeights;
       state.notes = notes || {};
       state.countriesDoc = countriesDoc || { byPodcast: {}, byAuthor: {} };
       state._periodIndex = null;
