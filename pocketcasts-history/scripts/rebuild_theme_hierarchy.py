@@ -16,8 +16,10 @@ Other rules:
   - Scrub production/platform boilerplate before matching (NPR
     "(SOUNDBITE OF MUSIC)", STT "[music]" beds, Apple/Spotify distribution
     footers, licensing collective lines).
-  - Hard-news shows cannot inherit entertainment domains from body text;
-    title/show must independently support music/film/sport/etc.
+  - Hard-news shows are NOT banned from Music/Film/etc. Body text can tag
+    them when there is *substance* (album, Grammys, Emmys, musician, …).
+    Bare leftover "music" / weak tokens alone are not enough — so NPR covering
+    the Emmys or a new album still tags, while soundbite beds do not.
   - Theme *hours* are time-shares within each episode (transcript hit density;
     equal split when only title/notes), not full duration × every tag.
   - Show priors baseline known coverage (A Hora → BR politics; Braincast → tech/culture).
@@ -269,19 +271,55 @@ PANDEMIC = [
     r"\bvaccine\b",
 ]
 FILM = [
-    r"\bfilme\b", r"\bfilm\b", r"\bcinema\b", r"\boscar\b", r"\bnetflix\b",
-    r"\bs[eé]rie\b", r"\btv show\b", r"\bgame of thrones\b",
+    r"\bfilme\b", r"\bfilm\b", r"\bcinema\b", r"\boscar\b", r"\boscares\b",
+    r"\bemmys?\b", r"\bacademy awards?\b", r"\bgolden globes?\b",
+    r"\bbaftas?\b", r"\bnetflix\b", r"\bs[eé]rie\b", r"\btv show\b",
+    r"\bgame of thrones\b", r"\bhollywood director\b", r"\bfilm director\b",
+    r"\bawards (?:show|season|night|ceremony)\b",
+]
+# Substance-only film cues for hard-news body text (excludes noisy bare "série").
+FILM_SUBSTANCE = [
+    r"\bfilme\b", r"\bfilm\b", r"\bcinema\b", r"\boscar\b", r"\boscares\b",
+    r"\bemmys?\b", r"\bacademy awards?\b", r"\bgolden globes?\b",
+    r"\bbaftas?\b", r"\bnetflix\b", r"\btv show\b", r"\bgame of thrones\b",
+    r"\bfilm directors?\b", r"\bmovie directors?\b",
+    r"\bawards (?:show|season|night|ceremony)\b",
 ]
 # Intentionally omit bare "spotify" — almost every show-notes footer lists
 # Spotify as a podcast app, which flooded Music with news/politics episodes.
-MUSIC = [
-    r"\bm[uú]sica\b", r"\bmusic industry\b", r"\bmusic scene\b",
+MUSIC_SUBSTANCE = [
+    r"\bmusic industry\b", r"\bmusic scene\b", r"\bpop music\b",
+    r"\blive music\b", r"\bmusic festival\b", r"\bmusic awards?\b",
     r"\bmusician\b", r"\bmusicians\b", r"\balbum\b", r"\bsongwriter\b",
     r"\bcantor\b", r"\bcantora\b", r"\bconcert\b", r"\bshow musical\b",
     r"\bdiscografia\b", r"\bdiscography\b", r"\bhip-?hop\b", r"\brapper\b",
     r"\borchestra\b", r"\bsinf[oô]nica\b", r"\bplaylist\b",
-    # Bare "music"/"música" kept but min_hits + scrub + hard-news deny gate it.
+    r"\bgrammys?\b",
+    # "billboard" alone matches political ad boards; require chart/magazine cue.
+    r"\bbillboard (?:charts?|hot ?100|200|magazine|music)\b",
+    r"\bchart[- ]topping\b",
+    r"\bsingle (?:release|chart)\b", r"\bstudio album\b",
+]
+MUSIC = [
+    r"\bm[uú]sica\b",
+    # Bare "music" kept for culture/music shows; hard-news body matching
+    # requires MUSIC_SUBSTANCE (or a title hit) so soundbites never suffice.
     r"\bmusic\b",
+    *MUSIC_SUBSTANCE,
+]
+# Sport/football substance for hard-news body (avoid "games"/"copa" digressions
+# lighting entertainment without real coverage — title can still unlock).
+FOOTBALL_SUBSTANCE = [
+    r"\bfutebol\b", r"\bfootball\b", r"\bsoccer\b", r"\bpremier league\b",
+    r"\bworld cup\b", r"\bcopa do mundo\b", r"\bfifa\b",
+]
+SPORT_SUBSTANCE = [
+    r"\bolimp[ií]", r"\bolympic", r"\bnba\b", r"\bnfl\b", r"\btennis\b",
+    r"\bformula ?1\b", r"\besporte\b",
+]
+CULTURE_SUBSTANCE = [
+    r"\bentertainment\b", r"\bcelebridade\b", r"\bfandom\b",
+    r"\bvideogame\b", r"\bcultura pop\b", r"\bpop culture\b",
 ]
 FOOTBALL = [
     r"\bfutebol\b", r"\bfootball\b", r"\bsoccer\b", r"\bcopa\b",
@@ -444,8 +482,8 @@ SHOW_DEFAULTS: dict[str, list[str]] = {
     "policy forum pod": ["diplomacy", "au-government"],
 }
 
-# Daily/policy news — entertainment domains must be grounded in the *title*,
-# not in production beds, app-store footers, or a one-word digression.
+# Daily/policy news — entertainment domains need substance (or a title cue),
+# not production beds / app-store footers / a bare leftover "music".
 HARD_NEWS_SHOWS: frozenset[str] = frozenset(
     {
         "a hora",
@@ -513,6 +551,15 @@ _SCRUB_PATTERNS: list[re.Pattern[str]] = [
         r"(?i)(?:spotify|apple podcasts|google podcasts|pocket ?casts)\s*[|/·•,]\s*"
         r"[^\n]{0,100}?(?:spotify|apple podcasts|google podcasts|deezer|outros apps)"
         r"[^\n]{0,40}"
+    ),
+    # NPR / network cross-promos ("Shaboozey talks about his latest album…")
+    re.compile(
+        r"(?i)(?:listen to|coming up on|stay with us for|tomorrow on)\s+"
+        r"(?:the\s+)?(?:sunday story|up first|consider this|morning edition|"
+        r"all things considered|fresh air|throughline|embedded)[^\n.]{0,200}"
+    ),
+    re.compile(
+        r"(?i)story from up first[^\n.]{0,200}"
     ),
 ]
 
@@ -785,6 +832,16 @@ COMPILED = [
 ]
 THEME_IDS = {t["id"] for t in COMPILED}
 
+# Hard-news body evidence for entertainment domains — excludes bare "music" /
+# weak tokens that survive scrub misses. Title cues still use full topic_re.
+ENTERTAINMENT_SUBSTANCE_RE: dict[str, list[re.Pattern]] = {
+    "music": _compile(MUSIC_SUBSTANCE),
+    "film-tv": _compile(FILM_SUBSTANCE),
+    "football": _compile(FOOTBALL_SUBSTANCE),
+    "sport": _compile(SPORT_SUBSTANCE),
+    "culture-entertainment": _compile(CULTURE_SUBSTANCE),
+}
+
 
 def match_count(pats: list[re.Pattern], text: str) -> int:
     if not pats or not text:
@@ -1016,22 +1073,44 @@ def tag_episode(
         for _n, tid in domain_hits:
             add(tid)
 
-    # Hard-news shows: entertainment domains only if the *title/show* itself
-    # supports them. Body hits are dominated by (SOUNDBITE OF MUSIC), [music]
-    # beds, and "available on … Spotify" footers — systemic FPs, not content.
-    # Title gate uses min_hits=1: episode titles are short and intentional.
+    # Hard-news shows: entertainment domains when the episode is *actually*
+    # covering that beat — not banned, but not lit by soundbite beds, metaphors
+    # ("musicians like crickets"), one-off analogies ("like the music industry"),
+    # or network cross-promos. Accept if (a) the title cues it, or (b) scrubbed
+    # body has multiple distinct substance cues (Grammys + album, Emmys + film…).
     if is_hard_news_show(show):
-        title_support: set[str] = set()
-        for tid in ENTERTAINMENT_DOMAIN_IDS:
-            meta = by_id.get(tid)
-            if not meta:
-                continue
+        def entertainment_coverage(tid: str) -> bool:
+            meta = by_id.get(tid) or {}
             topic_re = meta.get("topic_re") or []
             if topic_re and matches(topic_re, title_show, min_hits=1, long_text=False):
-                title_support.add(tid)
-        hits = [tid for tid in hits if tid not in ENTERTAINMENT_DOMAIN_IDS or tid in title_support]
-        for tid in title_support:
-            add(tid)
+                return True
+            substance = ENTERTAINMENT_SUBSTANCE_RE.get(tid) or topic_re
+            if not substance:
+                return False
+            total = 0
+            distinct = 0
+            for pat in substance:
+                n = len(pat.findall(primary))
+                if n:
+                    distinct += 1
+                    total += n
+            # Short news blocks: a couple of distinct cues (Emmys + Netflix).
+            # Multi-hour geopolitics digressions (cantor/rapper name-drops) need
+            # denser evidence so XV/Braincast asides don't become Music news.
+            if primary_long and len(primary) > 80000:
+                min_total = max(5, len(primary) // 40000)
+                min_distinct = 3
+                return (distinct >= min_distinct and total >= min_total) or total >= min_total + 4
+            return (distinct >= 2 and total >= 2) or total >= 4
+
+        hits = [
+            tid
+            for tid in hits
+            if tid not in ENTERTAINMENT_DOMAIN_IDS or entertainment_coverage(tid)
+        ]
+        for tid in ENTERTAINMENT_DOMAIN_IDS:
+            if entertainment_coverage(tid):
+                add(tid)
 
     return hits
 
@@ -1231,7 +1310,8 @@ def tag_all(
             "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → "
             "title/show. Geo + actors from title/show; show priors baseline known "
             "coverage. Scrubs production/platform boilerplate; theme min_hits apply to "
-            "short and long text; hard-news shows need title support for entertainment domains."
+            "short and long text; hard-news entertainment needs title cue or substance "
+            "body terms (not bare leftover music/soundbites)."
         ),
     }
     return tagged, weights_out, {"meta": meta, "themes": catalog, "flat": flat}
