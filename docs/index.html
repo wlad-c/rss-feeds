@@ -31,9 +31,9 @@
     })();
   </script>
   <meta http-equiv="Cache-Control" content="no-cache" />
-  <link rel="stylesheet" href="explore.css?v=publisher-tx-915" />
+  <link rel="stylesheet" href="explore.css?v=theme-shows-916" />
   <script src="vendor/chart.umd.min.js" defer></script>
-  <script src="explore.js?v=publisher-tx-915" defer></script>
+  <script src="explore.js?v=theme-shows-916" defer></script>
 </head>
 <body>
   <!-- UI chrome layer (Liquid Glass) -->
@@ -227,7 +227,7 @@
         <div class="section-head">
           <div>
             <h2>Themes across episodes</h2>
-            <p>One-level themes — tap a bar to filter. Local themes are specific (e.g. Brazilian elections), not bare countries. Themes with no matches under the current filters are hidden.</p>
+            <p>One-level themes — tap a bar to focus it (highlighted and pinned to the top). The panel on the right lists matching shows; tap a show to open episodes for that theme and show. Themes with no matches under the current filters are hidden.</p>
           </div>
         </div>
         <div class="grid-2">
@@ -244,7 +244,11 @@
           </div>
           <div class="panel">
             <h3 id="themeDetailTitle">Pick a theme</h3>
-            <p class="panel-note" id="themeDetailBlurb">Tap a theme to see samples and jump into matching episodes.</p>
+            <p class="panel-note" id="themeDetailBlurb">Tap a theme to see which shows cover it, then tap a show for matching episodes.</p>
+            <div id="themeShowsWrap" hidden>
+              <div class="chart-box tall" id="themeShowsBox"><canvas id="themeShowsChart"></canvas></div>
+              <div class="chart-more" id="themeShowsMore"></div>
+            </div>
             <div id="themeSamples" class="theme-samples"></div>
             <button class="btn" id="filterByTheme" type="button" hidden>Show matching episodes</button>
           </div>
@@ -334,7 +338,7 @@
       Built from your Pocket Casts export in this repo.
       Raw tables live in <a href="./tables/">tables/</a>
       · Excel workbook <a href="./PocketCasts_Listening_History.xlsx">download</a>.
-      <div class="build-stamp" id="buildStamp">build publisher-tx-915</div>
+      <div class="build-stamp" id="buildStamp">build theme-shows-916</div>
     </footer>
   </div>
 
