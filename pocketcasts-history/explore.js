@@ -84,7 +84,6 @@
     },
     charts: {},
     barReveal: {},
-    tableReveal: { top: 12 },
     page: 0,
     pageSize: 40,
     _chartStats: null,
@@ -511,7 +510,6 @@
 
     renderYoYChart();
     renderTopPodcastsChart();
-    renderTopTable();
     if (gen !== state._renderGen) return;
     await yieldToPaint();
     if (gen !== state._renderGen) return;
@@ -620,7 +618,6 @@
     if (!rerender || !state.agg) return;
     state.page = 0;
     state.barReveal.top = BAR_PAGE;
-    state.tableReveal.top = BAR_PAGE;
     state.barReveal.country = BAR_PAGE;
     state.barReveal.theme = BAR_PAGE;
     schedulePeriodRender();
@@ -1355,8 +1352,6 @@
     }
     setText("#yoyChartNote", "Compare January–December volume across years.", "Compare January–December listening hours across years.");
     setText("#topChartTitle", "Podcasts by listens", "Podcasts by hours");
-    const metricHead = $("#topTableMetricHead");
-    if (metricHead) metricHead.textContent = hours ? "Hours" : "Eps";
     setText("#folderChartTitle", "Folders", "Folders by hours");
     setText("#countryChartTitle", "Countries of origin", "Countries by hours");
     setText("#weekdayChartTitle", "Day of week (AEST/AEDT)", "Day of week by hours (AEST/AEDT)");
@@ -3364,58 +3359,6 @@
     }
   }
 
-  function renderTopTable() {
-    const hours = metricIsHours();
-    const all = topPodcastItems()
-      .slice()
-      .sort((a, b) => (hours ? b.hours - a.hours : b.count - a.count) || a.name.localeCompare(b.name));
-    if (state.tableReveal.top == null) state.tableReveal.top = BAR_PAGE;
-    const shown = Math.min(state.tableReveal.top, all.length);
-    const max = (hours ? all[0]?.hours : all[0]?.count) || 1;
-    const body = all
-      .slice(0, shown)
-      .map((p, i) => {
-        const val = hours ? p.hours : p.count;
-        return `
-      <tr>
-        <td>${i + 1}</td>
-        <td><button type="button" class="linkish" data-podcast="${escapeHtml(p.name)}">${escapeHtml(p.name)}</button></td>
-        <td>${fmtMetric(val)}</td>
-        <td><div class="bar"><span style="width:${(val / max) * 100}%"></span></div></td>
-      </tr>`;
-      })
-      .join("");
-    $("#topTable tbody").innerHTML = body;
-    $$("#topTable [data-podcast]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        patchChartPeriod({ podcast: btn.dataset.podcast });
-        goToSection("explorePanel");
-      });
-    });
-    const more = $("#topTableMore");
-    if (more) {
-      const remaining = all.length - shown;
-      const parts = [];
-      if (remaining > 0) {
-        parts.push(
-          `<button type="button" class="btn secondary" data-more="1">Show more (${fmt(remaining)} left)</button>`
-        );
-      }
-      if (shown > BAR_PAGE) {
-        parts.push(`<button type="button" class="btn secondary" data-less="1">Show less</button>`);
-      }
-      more.innerHTML = parts.join("");
-      more.querySelector("[data-more]")?.addEventListener("click", () => {
-        state.tableReveal.top = Math.min(all.length, shown + BAR_PAGE);
-        renderTopTable();
-      });
-      more.querySelector("[data-less]")?.addEventListener("click", () => {
-        state.tableReveal.top = BAR_PAGE;
-        renderTopTable();
-      });
-    }
-  }
-
   function wire() {
     $("#prevPage").addEventListener("click", () => {
       state.page -= 1;
@@ -3695,7 +3638,6 @@
       renderCountryChart();
       renderDurationChart();
       renderHeatmap();
-      renderTopTable();
       renderThemeChart();
       renderThemeYearChart();
       renderThemePodcastCharts();
