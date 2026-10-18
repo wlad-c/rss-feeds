@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 11830,
-      "youtube": 1832,
+      "title": 11673,
+      "youtube": 1972,
       "transcript": 1712,
       "show-notes": 6552,
-      "stt": 84
+      "stt": 101
     },
-    "episodesWithTranscriptEvidence": 3628,
+    "episodesWithTranscriptEvidence": 3785,
     "episodesWithNotesEvidence": 6552,
-    "episodesWithTitleOnlyEvidence": 11830,
+    "episodesWithTitleOnlyEvidence": 11673,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6128,
-      "hours": 1146.97,
+      "hours": 1141.11,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 901
       },
       "evidence": {
-        "title": 3810,
+        "title": 3764,
         "notes": 504,
-        "transcript": 1814
+        "transcript": 1860
       },
       "samples": [
         {
@@ -102,13 +102,13 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4115,
-      "hours": 979.1,
+      "count": 4116,
+      "hours": 979.11,
       "byYear": {
         "2019": 264,
         "2020": 446,
         "2021": 455,
-        "2022": 486,
+        "2022": 487,
         "2023": 443,
         "2024": 586,
         "2025": 817,
@@ -117,7 +117,7 @@
       "evidence": {
         "title": 1099,
         "notes": 2589,
-        "transcript": 427
+        "transcript": 428
       },
       "samples": [
         {
@@ -178,7 +178,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 901.53,
+      "hours": 886.51,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -190,9 +190,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2912,
+        "title": 2775,
         "notes": 1069,
-        "transcript": 1660
+        "transcript": 1797
       },
       "samples": [
         {
@@ -402,22 +402,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2231,
-      "hours": 356.8,
+      "count": 2255,
+      "hours": 357.34,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
         "2022": 206,
-        "2023": 233,
-        "2024": 319,
+        "2023": 234,
+        "2024": 341,
         "2025": 554,
-        "2026": 514
+        "2026": 515
       },
       "evidence": {
-        "title": 978,
+        "title": 970,
         "notes": 769,
-        "transcript": 484
+        "transcript": 516
       },
       "samples": [
         {
@@ -477,22 +477,22 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2451,
-      "hours": 251.59,
+      "count": 2454,
+      "hours": 251.78,
       "byYear": {
         "2019": 34,
         "2020": 101,
         "2021": 76,
-        "2022": 114,
-        "2023": 236,
+        "2022": 116,
+        "2023": 237,
         "2024": 537,
         "2025": 798,
         "2026": 555
       },
       "evidence": {
-        "title": 1021,
+        "title": 993,
         "notes": 455,
-        "transcript": 975
+        "transcript": 1006
       },
       "samples": [
         {
@@ -552,22 +552,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2684,
-      "hours": 232.76,
+      "count": 2702,
+      "hours": 233.05,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 274,
-        "2023": 418,
-        "2024": 439,
-        "2025": 566,
-        "2026": 556
+        "2023": 419,
+        "2024": 451,
+        "2025": 567,
+        "2026": 560
       },
       "evidence": {
-        "title": 523,
+        "title": 517,
         "notes": 1200,
-        "transcript": 961
+        "transcript": 985
       },
       "samples": [
         {
@@ -702,22 +702,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1941,
-      "hours": 175.21,
+      "count": 1973,
+      "hours": 176.91,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
-        "2022": 199,
-        "2023": 222,
-        "2024": 264,
+        "2022": 206,
+        "2023": 226,
+        "2024": 280,
         "2025": 469,
-        "2026": 604
+        "2026": 609
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1373
+        "transcript": 1405
       },
       "samples": [
         {
@@ -852,22 +852,22 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1163,
-      "hours": 124.2,
+      "count": 1186,
+      "hours": 126.3,
       "byYear": {
         "2019": 2,
         "2020": 114,
         "2021": 116,
         "2022": 93,
-        "2023": 182,
-        "2024": 240,
-        "2025": 215,
-        "2026": 201
+        "2023": 185,
+        "2024": 257,
+        "2025": 216,
+        "2026": 203
       },
       "evidence": {
-        "title": 51,
+        "title": 48,
         "notes": 724,
-        "transcript": 388
+        "transcript": 414
       },
       "samples": [
         {
@@ -927,22 +927,22 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1274,
-      "hours": 120.89,
+      "count": 1276,
+      "hours": 120.93,
       "byYear": {
         "2019": 1,
         "2020": 420,
         "2021": 461,
-        "2022": 158,
+        "2022": 159,
         "2023": 83,
-        "2024": 43,
+        "2024": 44,
         "2025": 72,
         "2026": 36
       },
       "evidence": {
-        "title": 451,
+        "title": 449,
         "notes": 678,
-        "transcript": 145
+        "transcript": 149
       },
       "samples": [
         {
@@ -1003,7 +1003,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 109.3,
+      "hours": 109.37,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -1015,9 +1015,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 466,
+        "title": 459,
         "notes": 223,
-        "transcript": 176
+        "transcript": 183
       },
       "samples": [
         {
@@ -1077,22 +1077,22 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1148,
-      "hours": 107.92,
+      "count": 1157,
+      "hours": 108.33,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
-        "2022": 148,
+        "2022": 152,
         "2023": 177,
-        "2024": 156,
+        "2024": 160,
         "2025": 201,
-        "2026": 245
+        "2026": 246
       },
       "evidence": {
-        "title": 197,
+        "title": 196,
         "notes": 552,
-        "transcript": 399
+        "transcript": 409
       },
       "samples": [
         {
@@ -1152,22 +1152,22 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1049,
-      "hours": 102.78,
+      "count": 1063,
+      "hours": 103.27,
       "byYear": {
         "2019": 1,
         "2020": 15,
         "2021": 46,
-        "2022": 76,
+        "2022": 80,
         "2023": 136,
-        "2024": 139,
+        "2024": 148,
         "2025": 334,
-        "2026": 302
+        "2026": 303
       },
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 839
+        "transcript": 853
       },
       "samples": [
         {
@@ -1227,22 +1227,22 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1095,
-      "hours": 99.89,
+      "count": 1108,
+      "hours": 101.36,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
-        "2022": 54,
-        "2023": 130,
-        "2024": 141,
+        "2022": 62,
+        "2023": 131,
+        "2024": 144,
         "2025": 304,
-        "2026": 425
+        "2026": 426
       },
       "evidence": {
-        "title": 163,
+        "title": 161,
         "notes": 116,
-        "transcript": 816
+        "transcript": 831
       },
       "samples": [
         {
@@ -1302,22 +1302,22 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 865,
-      "hours": 99.87,
+      "count": 874,
+      "hours": 100.19,
       "byYear": {
         "2019": 3,
         "2020": 141,
         "2021": 96,
-        "2022": 90,
+        "2022": 92,
         "2023": 117,
-        "2024": 125,
+        "2024": 131,
         "2025": 188,
-        "2026": 105
+        "2026": 106
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 300
+        "transcript": 309
       },
       "samples": [
         {
@@ -1452,22 +1452,22 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 708,
-      "hours": 87.0,
+      "count": 717,
+      "hours": 87.52,
       "byYear": {
         "2019": 5,
         "2020": 25,
         "2021": 39,
-        "2022": 39,
-        "2023": 123,
-        "2024": 144,
+        "2022": 40,
+        "2023": 124,
+        "2024": 151,
         "2025": 149,
         "2026": 184
       },
       "evidence": {
-        "title": 6,
+        "title": 5,
         "notes": 419,
-        "transcript": 283
+        "transcript": 293
       },
       "samples": [
         {
@@ -1527,22 +1527,22 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 928,
-      "hours": 84.14,
+      "count": 944,
+      "hours": 84.69,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
         "2022": 86,
-        "2023": 133,
-        "2024": 128,
+        "2023": 135,
+        "2024": 140,
         "2025": 203,
-        "2026": 274
+        "2026": 276
       },
       "evidence": {
-        "title": 164,
+        "title": 155,
         "notes": 300,
-        "transcript": 464
+        "transcript": 489
       },
       "samples": [
         {
@@ -1753,7 +1753,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 435,
-      "hours": 63.1,
+      "hours": 62.97,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1765,9 +1765,9 @@
         "2026": 190
       },
       "evidence": {
-        "title": 60,
+        "title": 57,
         "notes": 140,
-        "transcript": 235
+        "transcript": 238
       },
       "samples": [
         {
@@ -1827,22 +1827,22 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 694,
-      "hours": 59.68,
+      "count": 712,
+      "hours": 61.14,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
         "2022": 61,
-        "2023": 80,
-        "2024": 79,
-        "2025": 134,
-        "2026": 211
+        "2023": 81,
+        "2024": 91,
+        "2025": 135,
+        "2026": 215
       },
       "evidence": {
-        "title": 153,
+        "title": 150,
         "notes": 194,
-        "transcript": 347
+        "transcript": 368
       },
       "samples": [
         {
@@ -1977,22 +1977,22 @@
       "blurb": "Authoritarian and illiberal politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 402,
-      "hours": 57.43,
+      "count": 404,
+      "hours": 57.46,
       "byYear": {
         "2019": 9,
         "2020": 10,
         "2021": 30,
-        "2022": 28,
+        "2022": 29,
         "2023": 66,
-        "2024": 77,
+        "2024": 78,
         "2025": 129,
         "2026": 53
       },
       "evidence": {
         "title": 51,
         "notes": 258,
-        "transcript": 93
+        "transcript": 95
       },
       "samples": [
         {
@@ -2047,102 +2047,27 @@
       "children": []
     },
     {
-      "id": "us-courts",
-      "name": "US courts",
-      "blurb": "SCOTUS and US courts.",
-      "kind": "local",
-      "facet": "local",
-      "count": 552,
-      "hours": 54.03,
-      "byYear": {
-        "2019": 26,
-        "2020": 17,
-        "2021": 30,
-        "2022": 36,
-        "2023": 76,
-        "2024": 99,
-        "2025": 139,
-        "2026": 129
-      },
-      "evidence": {
-        "title": 158,
-        "notes": 43,
-        "transcript": 351
-      },
-      "samples": [
-        {
-          "i": 99,
-          "e": "Fox News wanted war images in Ukraine - their journalists died",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 111,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 115,
-          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
-          "p": "Up First from NPR",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 129,
-          "e": "Will a midterm 'blue wave' sink Trump?",
-          "p": "ABC News Daily",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 146,
-          "e": "Why Washington Is Trying to Rein In College Sports",
-          "p": "The Daily",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 172,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 176,
-          "e": "Trump AI Summit, US Pulls Out Of Iraq, SCOTUS Third Country Deportations",
-          "p": "Up First from NPR",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 189,
-          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
-          "p": "The Daily",
-          "d": "2026-09-29"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "crime-policing",
       "name": "Crime & policing",
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 702,
-      "hours": 53.64,
+      "count": 722,
+      "hours": 55.11,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 30,
-        "2023": 83,
-        "2024": 137,
-        "2025": 205,
-        "2026": 229
+        "2023": 84,
+        "2024": 150,
+        "2025": 207,
+        "2026": 233
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 531
+        "transcript": 551
       },
       "samples": [
         {
@@ -2197,18 +2122,93 @@
       "children": []
     },
     {
+      "id": "us-courts",
+      "name": "US courts",
+      "blurb": "SCOTUS and US courts.",
+      "kind": "local",
+      "facet": "local",
+      "count": 554,
+      "hours": 54.23,
+      "byYear": {
+        "2019": 26,
+        "2020": 17,
+        "2021": 30,
+        "2022": 36,
+        "2023": 76,
+        "2024": 101,
+        "2025": 139,
+        "2026": 129
+      },
+      "evidence": {
+        "title": 157,
+        "notes": 43,
+        "transcript": 354
+      },
+      "samples": [
+        {
+          "i": 99,
+          "e": "Fox News wanted war images in Ukraine - their journalists died",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 111,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 115,
+          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
+          "p": "Up First from NPR",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 129,
+          "e": "Will a midterm 'blue wave' sink Trump?",
+          "p": "ABC News Daily",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 146,
+          "e": "Why Washington Is Trying to Rein In College Sports",
+          "p": "The Daily",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 172,
+          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
+          "p": "The Morning Edition",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 176,
+          "e": "Trump AI Summit, US Pulls Out Of Iraq, SCOTUS Third Country Deportations",
+          "p": "Up First from NPR",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 189,
+          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
+          "p": "The Daily",
+          "d": "2026-09-29"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "books-literature",
       "name": "Books & literature",
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 350,
-      "hours": 51.35,
+      "count": 351,
+      "hours": 51.42,
       "byYear": {
         "2019": 1,
         "2020": 16,
         "2021": 26,
-        "2022": 34,
+        "2022": 35,
         "2023": 35,
         "2024": 54,
         "2025": 87,
@@ -2217,7 +2217,7 @@
       "evidence": {
         "title": 0,
         "notes": 157,
-        "transcript": 193
+        "transcript": 194
       },
       "samples": [
         {
@@ -2272,101 +2272,26 @@
       "children": []
     },
     {
-      "id": "us-economy",
-      "name": "US economy",
-      "blurb": "US economy, Fed, markets.",
-      "kind": "local",
-      "facet": "local",
-      "count": 633,
-      "hours": 50.82,
-      "byYear": {
-        "2019": 5,
-        "2020": 12,
-        "2021": 11,
-        "2022": 36,
-        "2023": 62,
-        "2024": 96,
-        "2025": 229,
-        "2026": 182
-      },
-      "evidence": {
-        "title": 95,
-        "notes": 102,
-        "transcript": 436
-      },
-      "samples": [
-        {
-          "i": 35,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 45,
-          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 57,
-          "e": "Why Trump's selling out to Putin again",
-          "p": "ABC News Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 111,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 143,
-          "e": "Wages Vs Inflation, Tennessee Failed Execution, Cornell Rape Case Special Prosecutor",
-          "p": "Up First from NPR",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 172,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 178,
-          "e": "'To the Victor Belong the Spoils': Trump's UN speech and the weakest world order in generations",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 189,
-          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
-          "p": "The Daily",
-          "d": "2026-09-29"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "health-medicine",
       "name": "Health & medicine",
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 566,
-      "hours": 50.05,
+      "count": 584,
+      "hours": 51.41,
       "byYear": {
         "2020": 42,
         "2021": 36,
-        "2022": 30,
-        "2023": 73,
-        "2024": 90,
+        "2022": 31,
+        "2023": 74,
+        "2024": 104,
         "2025": 160,
-        "2026": 135
+        "2026": 137
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 404
+        "transcript": 422
       },
       "samples": [
         {
@@ -2421,27 +2346,102 @@
       "children": []
     },
     {
+      "id": "us-economy",
+      "name": "US economy",
+      "blurb": "US economy, Fed, markets.",
+      "kind": "local",
+      "facet": "local",
+      "count": 636,
+      "hours": 50.83,
+      "byYear": {
+        "2019": 5,
+        "2020": 12,
+        "2021": 11,
+        "2022": 36,
+        "2023": 62,
+        "2024": 98,
+        "2025": 230,
+        "2026": 182
+      },
+      "evidence": {
+        "title": 92,
+        "notes": 102,
+        "transcript": 442
+      },
+      "samples": [
+        {
+          "i": 35,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 45,
+          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 57,
+          "e": "Why Trump's selling out to Putin again",
+          "p": "ABC News Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 111,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 143,
+          "e": "Wages Vs Inflation, Tennessee Failed Execution, Cornell Rape Case Special Prosecutor",
+          "p": "Up First from NPR",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 172,
+          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
+          "p": "The Morning Edition",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 178,
+          "e": "'To the Victor Belong the Spoils': Trump's UN speech and the weakest world order in generations",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 189,
+          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
+          "p": "The Daily",
+          "d": "2026-09-29"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "us-media",
       "name": "US media",
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 510,
-      "hours": 48.73,
+      "count": 517,
+      "hours": 49.52,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
-        "2022": 30,
+        "2022": 34,
         "2023": 56,
-        "2024": 80,
+        "2024": 82,
         "2025": 158,
-        "2026": 155
+        "2026": 156
       },
       "evidence": {
         "title": 42,
         "notes": 83,
-        "transcript": 385
+        "transcript": 392
       },
       "samples": [
         {
@@ -2571,80 +2571,6 @@
       "children": []
     },
     {
-      "id": "ukraine-war",
-      "name": "Ukraine war",
-      "blurb": "Russia’s war against Ukraine.",
-      "kind": "story",
-      "facet": "story",
-      "count": 350,
-      "hours": 47.35,
-      "byYear": {
-        "2019": 10,
-        "2021": 2,
-        "2022": 105,
-        "2023": 80,
-        "2024": 53,
-        "2025": 65,
-        "2026": 35
-      },
-      "evidence": {
-        "title": 189,
-        "notes": 89,
-        "transcript": 72
-      },
-      "samples": [
-        {
-          "i": 10,
-          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 12,
-          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 14,
-          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 25,
-          "e": "Key comms cut-off in Ukraine / Zelenskyy sit-down / Russian diesel",
-          "p": "Sources & Methods",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 64,
-          "e": "Trump Pressures Ukraine, Trump's Midterm Priorities, Saudi Arabia Airport Attacks",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 66,
-          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 89,
-          "e": "Russia is stealing and indoctrinating Ukraine's children",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 99,
-          "e": "Fox News wanted war images in Ukraine - their journalists died",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "br-crime",
       "name": "Brazilian crime & security",
       "blurb": "Crime and security in Brazil.",
@@ -2714,6 +2640,80 @@
           "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
           "p": "Foro de Teresina",
           "d": "2026-09-26"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "ukraine-war",
+      "name": "Ukraine war",
+      "blurb": "Russia’s war against Ukraine.",
+      "kind": "story",
+      "facet": "story",
+      "count": 350,
+      "hours": 46.94,
+      "byYear": {
+        "2019": 10,
+        "2021": 2,
+        "2022": 105,
+        "2023": 80,
+        "2024": 53,
+        "2025": 65,
+        "2026": 35
+      },
+      "evidence": {
+        "title": 185,
+        "notes": 89,
+        "transcript": 76
+      },
+      "samples": [
+        {
+          "i": 10,
+          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 12,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 14,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 25,
+          "e": "Key comms cut-off in Ukraine / Zelenskyy sit-down / Russian diesel",
+          "p": "Sources & Methods",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 64,
+          "e": "Trump Pressures Ukraine, Trump's Midterm Priorities, Saudi Arabia Airport Attacks",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 66,
+          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 89,
+          "e": "Russia is stealing and indoctrinating Ukraine's children",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 99,
+          "e": "Fox News wanted war images in Ukraine - their journalists died",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
         }
       ],
       "children": []
@@ -2799,22 +2799,22 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 361,
-      "hours": 44.91,
+      "count": 362,
+      "hours": 44.93,
       "byYear": {
         "2019": 4,
         "2020": 36,
         "2021": 19,
         "2022": 59,
         "2023": 68,
-        "2024": 87,
+        "2024": 88,
         "2025": 43,
         "2026": 45
       },
       "evidence": {
-        "title": 97,
+        "title": 96,
         "notes": 140,
-        "transcript": 124
+        "transcript": 126
       },
       "samples": [
         {
@@ -2874,21 +2874,21 @@
       "blurb": "History and memory.",
       "kind": "domain",
       "facet": "domain",
-      "count": 427,
-      "hours": 44.61,
+      "count": 429,
+      "hours": 44.64,
       "byYear": {
         "2020": 11,
         "2021": 25,
         "2022": 33,
         "2023": 47,
-        "2024": 60,
+        "2024": 62,
         "2025": 121,
         "2026": 130
       },
       "evidence": {
         "title": 17,
         "notes": 91,
-        "transcript": 319
+        "transcript": 321
       },
       "samples": [
         {
@@ -3173,22 +3173,22 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 433,
-      "hours": 38.67,
+      "count": 435,
+      "hours": 38.77,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
-        "2022": 28,
+        "2022": 29,
         "2023": 47,
-        "2024": 63,
+        "2024": 64,
         "2025": 123,
         "2026": 147
       },
       "evidence": {
         "title": 62,
         "notes": 32,
-        "transcript": 339
+        "transcript": 341
       },
       "samples": [
         {
@@ -3248,22 +3248,22 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 408,
-      "hours": 36.2,
+      "count": 413,
+      "hours": 36.58,
       "byYear": {
         "2019": 9,
         "2020": 37,
         "2021": 45,
         "2022": 46,
         "2023": 42,
-        "2024": 50,
+        "2024": 54,
         "2025": 90,
-        "2026": 89
+        "2026": 90
       },
       "evidence": {
-        "title": 76,
+        "title": 75,
         "notes": 139,
-        "transcript": 193
+        "transcript": 199
       },
       "samples": [
         {
@@ -3323,22 +3323,22 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 314,
-      "hours": 32.0,
+      "count": 321,
+      "hours": 32.25,
       "byYear": {
         "2019": 1,
         "2020": 52,
         "2021": 32,
-        "2022": 38,
-        "2023": 31,
-        "2024": 46,
+        "2022": 39,
+        "2023": 32,
+        "2024": 49,
         "2025": 65,
-        "2026": 49
+        "2026": 51
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 129
+        "transcript": 136
       },
       "samples": [
         {
@@ -3398,22 +3398,22 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 317,
-      "hours": 31.94,
+      "count": 322,
+      "hours": 32.19,
       "byYear": {
         "2019": 6,
         "2020": 13,
         "2021": 24,
         "2022": 27,
-        "2023": 40,
-        "2024": 48,
+        "2023": 41,
+        "2024": 51,
         "2025": 74,
-        "2026": 85
+        "2026": 86
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 208
+        "transcript": 213
       },
       "samples": [
         {
@@ -3474,7 +3474,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 30.11,
+      "hours": 29.91,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3485,9 +3485,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 112,
+        "title": 107,
         "notes": 55,
-        "transcript": 192
+        "transcript": 197
       },
       "samples": [
         {
@@ -3547,22 +3547,22 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 227,
-      "hours": 29.38,
+      "count": 231,
+      "hours": 29.82,
       "byYear": {
         "2019": 3,
         "2020": 19,
         "2021": 28,
         "2022": 28,
         "2023": 37,
-        "2024": 33,
+        "2024": 37,
         "2025": 57,
         "2026": 22
       },
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 91
+        "transcript": 95
       },
       "samples": [
         {
@@ -3622,22 +3622,22 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 314,
-      "hours": 28.22,
+      "count": 317,
+      "hours": 28.45,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
-        "2022": 6,
+        "2022": 7,
         "2023": 35,
-        "2024": 58,
+        "2024": 60,
         "2025": 111,
         "2026": 95
       },
       "evidence": {
-        "title": 63,
+        "title": 62,
         "notes": 27,
-        "transcript": 224
+        "transcript": 228
       },
       "samples": [
         {
@@ -3697,21 +3697,21 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 269,
-      "hours": 27.07,
+      "count": 271,
+      "hours": 26.93,
       "byYear": {
         "2020": 9,
         "2021": 13,
-        "2022": 22,
+        "2022": 23,
         "2023": 44,
-        "2024": 48,
+        "2024": 49,
         "2025": 66,
         "2026": 67
       },
       "evidence": {
-        "title": 26,
+        "title": 25,
         "notes": 147,
-        "transcript": 96
+        "transcript": 99
       },
       "samples": [
         {
@@ -3771,13 +3771,13 @@
       "blurb": "Football and World Cup.",
       "kind": "domain",
       "facet": "domain",
-      "count": 219,
-      "hours": 26.82,
+      "count": 220,
+      "hours": 26.83,
       "byYear": {
         "2019": 5,
         "2020": 5,
         "2021": 12,
-        "2022": 54,
+        "2022": 55,
         "2023": 28,
         "2024": 13,
         "2025": 17,
@@ -3786,7 +3786,7 @@
       "evidence": {
         "title": 65,
         "notes": 57,
-        "transcript": 97
+        "transcript": 98
       },
       "samples": [
         {
@@ -3846,22 +3846,22 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 358,
-      "hours": 26.02,
+      "count": 366,
+      "hours": 26.3,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
         "2022": 23,
-        "2023": 26,
-        "2024": 39,
+        "2023": 27,
+        "2024": 46,
         "2025": 86,
         "2026": 100
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 192
+        "transcript": 200
       },
       "samples": [
         {
@@ -3921,13 +3921,13 @@
       "blurb": "Race and racism.",
       "kind": "frame",
       "facet": "frame",
-      "count": 183,
-      "hours": 25.86,
+      "count": 184,
+      "hours": 26.09,
       "byYear": {
         "2019": 2,
         "2020": 18,
         "2021": 13,
-        "2022": 22,
+        "2022": 23,
         "2023": 45,
         "2024": 33,
         "2025": 28,
@@ -3936,7 +3936,7 @@
       "evidence": {
         "title": 33,
         "notes": 98,
-        "transcript": 52
+        "transcript": 53
       },
       "samples": [
         {
@@ -3996,21 +3996,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 433,
-      "hours": 23.54,
+      "count": 441,
+      "hours": 23.71,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 33,
-        "2024": 66,
+        "2024": 74,
         "2025": 134,
         "2026": 180
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 379
+        "transcript": 387
       },
       "samples": [
         {
@@ -4060,6 +4060,81 @@
           "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
           "p": "7am",
           "d": "2026-10-06"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "us-health",
+      "name": "US health policy",
+      "blurb": "US health policy and public health.",
+      "kind": "local",
+      "facet": "local",
+      "count": 247,
+      "hours": 23.19,
+      "byYear": {
+        "2019": 1,
+        "2020": 21,
+        "2021": 26,
+        "2022": 26,
+        "2023": 34,
+        "2024": 30,
+        "2025": 70,
+        "2026": 39
+      },
+      "evidence": {
+        "title": 79,
+        "notes": 15,
+        "transcript": 153
+      },
+      "samples": [
+        {
+          "i": 216,
+          "e": "Can clergy candidates help Democrats win in red states?",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 246,
+          "e": "The Clancy trial and a split over postpartum psychosis",
+          "p": "Up First from NPR",
+          "d": "2026-09-24"
+        },
+        {
+          "i": 256,
+          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
+          "p": "The Daily",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 500,
+          "e": "Super El Niño, Measles, Iran War Stalemate",
+          "p": "Up First from NPR",
+          "d": "2026-08-30"
+        },
+        {
+          "i": 503,
+          "e": "A Historic Settlement Over Social Media Addiction",
+          "p": "The Daily",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 526,
+          "e": "How big tech is creating the next Donald Trump",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-27"
+        },
+        {
+          "i": 549,
+          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 635,
+          "e": "How Trump’s anti-vax agenda is infecting Australia",
+          "p": "7am",
+          "d": "2026-08-17"
         }
       ],
       "children": []
@@ -4140,102 +4215,27 @@
       "children": []
     },
     {
-      "id": "us-health",
-      "name": "US health policy",
-      "blurb": "US health policy and public health.",
-      "kind": "local",
-      "facet": "local",
-      "count": 245,
-      "hours": 23.07,
-      "byYear": {
-        "2019": 1,
-        "2020": 21,
-        "2021": 26,
-        "2022": 25,
-        "2023": 34,
-        "2024": 29,
-        "2025": 70,
-        "2026": 39
-      },
-      "evidence": {
-        "title": 79,
-        "notes": 15,
-        "transcript": 151
-      },
-      "samples": [
-        {
-          "i": 216,
-          "e": "Can clergy candidates help Democrats win in red states?",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 246,
-          "e": "The Clancy trial and a split over postpartum psychosis",
-          "p": "Up First from NPR",
-          "d": "2026-09-24"
-        },
-        {
-          "i": 256,
-          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
-          "p": "The Daily",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 500,
-          "e": "Super El Niño, Measles, Iran War Stalemate",
-          "p": "Up First from NPR",
-          "d": "2026-08-30"
-        },
-        {
-          "i": 503,
-          "e": "A Historic Settlement Over Social Media Addiction",
-          "p": "The Daily",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 526,
-          "e": "How big tech is creating the next Donald Trump",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-27"
-        },
-        {
-          "i": 549,
-          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 635,
-          "e": "How Trump’s anti-vax agenda is infecting Australia",
-          "p": "7am",
-          "d": "2026-08-17"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "human-rights",
       "name": "Human rights",
       "blurb": "Human rights and civil liberties.",
       "kind": "frame",
       "facet": "frame",
-      "count": 180,
-      "hours": 21.8,
+      "count": 182,
+      "hours": 21.92,
       "byYear": {
         "2019": 7,
         "2020": 12,
         "2021": 22,
         "2022": 17,
         "2023": 33,
-        "2024": 29,
+        "2024": 31,
         "2025": 33,
         "2026": 27
       },
       "evidence": {
         "title": 14,
         "notes": 130,
-        "transcript": 36
+        "transcript": 38
       },
       "samples": [
         {
@@ -4369,22 +4369,22 @@
       "blurb": "Film, TV, and streaming.",
       "kind": "domain",
       "facet": "domain",
-      "count": 154,
-      "hours": 21.33,
+      "count": 155,
+      "hours": 21.34,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 4,
         "2022": 12,
         "2023": 12,
-        "2024": 18,
+        "2024": 19,
         "2025": 40,
         "2026": 65
       },
       "evidence": {
         "title": 23,
         "notes": 36,
-        "transcript": 95
+        "transcript": 96
       },
       "samples": [
         {
@@ -4444,20 +4444,20 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 206,
-      "hours": 20.46,
+      "count": 207,
+      "hours": 20.52,
       "byYear": {
         "2021": 1,
         "2022": 9,
         "2023": 28,
-        "2024": 43,
+        "2024": 44,
         "2025": 69,
         "2026": 56
       },
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 201
+        "transcript": 202
       },
       "samples": [
         {
@@ -4517,22 +4517,22 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 233,
-      "hours": 18.27,
+      "count": 238,
+      "hours": 18.71,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
-        "2022": 15,
+        "2022": 19,
         "2023": 27,
         "2024": 29,
         "2025": 33,
-        "2026": 110
+        "2026": 111
       },
       "evidence": {
         "title": 41,
         "notes": 40,
-        "transcript": 152
+        "transcript": 157
       },
       "samples": [
         {
@@ -4667,22 +4667,22 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 129,
-      "hours": 16.16,
+      "count": 130,
+      "hours": 16.21,
       "byYear": {
         "2019": 4,
         "2020": 10,
         "2021": 5,
         "2022": 12,
         "2023": 17,
-        "2024": 25,
+        "2024": 26,
         "2025": 16,
         "2026": 40
       },
       "evidence": {
         "title": 11,
         "notes": 76,
-        "transcript": 42
+        "transcript": 43
       },
       "samples": [
         {
@@ -4732,6 +4732,81 @@
           "e": "Could Australia join the European Union?",
           "p": "The Morning Edition",
           "d": "2026-09-17"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "au-immigration",
+      "name": "Australian immigration",
+      "blurb": "Australian immigration and borders.",
+      "kind": "local",
+      "facet": "local",
+      "count": 182,
+      "hours": 15.77,
+      "byYear": {
+        "2019": 1,
+        "2020": 9,
+        "2021": 10,
+        "2022": 10,
+        "2023": 12,
+        "2024": 47,
+        "2025": 28,
+        "2026": 65
+      },
+      "evidence": {
+        "title": 25,
+        "notes": 46,
+        "transcript": 111
+      },
+      "samples": [
+        {
+          "i": 46,
+          "e": "Curtin's Cast Ep 73 - 13 October 2026 - George Megalogenis on Australia's 3 Great Shocks",
+          "p": "Curtin’s Cast",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 47,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 76,
+          "e": "As the Coalition veers right, should Albo hold the centre?",
+          "p": "7am",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 77,
+          "e": "Migration cuts: what's at stake for Australia's universities?",
+          "p": "Politics Now",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 86,
+          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
+          "p": "The Morning Edition",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 118,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 156,
+          "e": "Guardian Essential report: what do Australians really think about immigration?",
+          "p": "Australian Politics",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 215,
+          "e": "How real is Australia's immigration problem?",
+          "p": "The Morning Edition",
+          "d": "2026-09-28"
         }
       ],
       "children": []
@@ -4807,81 +4882,6 @@
           "e": "The Fallout of Massive Earthquakes for Venezuela — and the U.S.",
           "p": "The Daily",
           "d": "2026-07-05"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "au-immigration",
-      "name": "Australian immigration",
-      "blurb": "Australian immigration and borders.",
-      "kind": "local",
-      "facet": "local",
-      "count": 175,
-      "hours": 15.45,
-      "byYear": {
-        "2019": 1,
-        "2020": 9,
-        "2021": 10,
-        "2022": 10,
-        "2023": 12,
-        "2024": 40,
-        "2025": 28,
-        "2026": 65
-      },
-      "evidence": {
-        "title": 26,
-        "notes": 46,
-        "transcript": 103
-      },
-      "samples": [
-        {
-          "i": 46,
-          "e": "Curtin's Cast Ep 73 - 13 October 2026 - George Megalogenis on Australia's 3 Great Shocks",
-          "p": "Curtin’s Cast",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 47,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 76,
-          "e": "As the Coalition veers right, should Albo hold the centre?",
-          "p": "7am",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 77,
-          "e": "Migration cuts: what's at stake for Australia's universities?",
-          "p": "Politics Now",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 86,
-          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
-          "p": "The Morning Edition",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 118,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 156,
-          "e": "Guardian Essential report: what do Australians really think about immigration?",
-          "p": "Australian Politics",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 215,
-          "e": "How real is Australia's immigration problem?",
-          "p": "The Morning Edition",
-          "d": "2026-09-28"
         }
       ],
       "children": []
@@ -4967,13 +4967,13 @@
       "blurb": "US foreign policy and diplomacy.",
       "kind": "local",
       "facet": "local",
-      "count": 195,
-      "hours": 14.4,
+      "count": 196,
+      "hours": 14.46,
       "byYear": {
         "2019": 5,
         "2020": 7,
         "2021": 13,
-        "2022": 15,
+        "2022": 16,
         "2023": 15,
         "2024": 19,
         "2025": 66,
@@ -4982,7 +4982,7 @@
       "evidence": {
         "title": 26,
         "notes": 75,
-        "transcript": 94
+        "transcript": 95
       },
       "samples": [
         {
@@ -5037,90 +5037,16 @@
       "children": []
     },
     {
-      "id": "nuclear",
-      "name": "Nuclear",
-      "blurb": "Nuclear weapons and energy.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 222,
-      "hours": 13.51,
-      "byYear": {
-        "2019": 1,
-        "2021": 9,
-        "2022": 20,
-        "2023": 13,
-        "2024": 26,
-        "2025": 67,
-        "2026": 86
-      },
-      "evidence": {
-        "title": 2,
-        "notes": 37,
-        "transcript": 183
-      },
-      "samples": [
-        {
-          "i": 59,
-          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 236,
-          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
-          "p": "The Daily",
-          "d": "2026-09-25"
-        },
-        {
-          "i": 283,
-          "e": "The race to put weapons in space",
-          "p": "7am",
-          "d": "2026-09-21"
-        },
-        {
-          "i": 302,
-          "e": "The Alliance | Your questions answered",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-18"
-        },
-        {
-          "i": 314,
-          "e": "Trump vs China and the AI 'hoax'",
-          "p": "ABC News Daily",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 357,
-          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
-          "p": "The Daily",
-          "d": "2026-09-13"
-        },
-        {
-          "i": 364,
-          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-09-12"
-        },
-        {
-          "i": 614,
-          "e": "Ep 188: Missiles, Pacific integration and managed competition",
-          "p": "Australia in the World",
-          "d": "2026-08-19"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "space",
       "name": "Space",
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 120,
-      "hours": 13.15,
+      "count": 121,
+      "hours": 13.87,
       "byYear": {
         "2021": 4,
-        "2022": 9,
+        "2022": 10,
         "2023": 11,
         "2024": 20,
         "2025": 31,
@@ -5129,7 +5055,7 @@
       "evidence": {
         "title": 3,
         "notes": 32,
-        "transcript": 85
+        "transcript": 86
       },
       "samples": [
         {
@@ -5179,6 +5105,80 @@
           "e": "The A.I. Revolt Is Here",
           "p": "The Ezra Klein Show",
           "d": "2026-08-05"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "nuclear",
+      "name": "Nuclear",
+      "blurb": "Nuclear weapons and energy.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 227,
+      "hours": 13.67,
+      "byYear": {
+        "2019": 1,
+        "2021": 9,
+        "2022": 20,
+        "2023": 13,
+        "2024": 31,
+        "2025": 67,
+        "2026": 86
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 37,
+        "transcript": 188
+      },
+      "samples": [
+        {
+          "i": 59,
+          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 236,
+          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
+          "p": "The Daily",
+          "d": "2026-09-25"
+        },
+        {
+          "i": 283,
+          "e": "The race to put weapons in space",
+          "p": "7am",
+          "d": "2026-09-21"
+        },
+        {
+          "i": 302,
+          "e": "The Alliance | Your questions answered",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-18"
+        },
+        {
+          "i": 314,
+          "e": "Trump vs China and the AI 'hoax'",
+          "p": "ABC News Daily",
+          "d": "2026-09-17"
+        },
+        {
+          "i": 357,
+          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
+          "p": "The Daily",
+          "d": "2026-09-13"
+        },
+        {
+          "i": 364,
+          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-09-12"
+        },
+        {
+          "i": 614,
+          "e": "Ep 188: Missiles, Pacific integration and managed competition",
+          "p": "Australia in the World",
+          "d": "2026-08-19"
         }
       ],
       "children": []
@@ -5264,22 +5264,22 @@
       "blurb": "Broader culture and entertainment.",
       "kind": "domain",
       "facet": "domain",
-      "count": 107,
-      "hours": 12.3,
+      "count": 108,
+      "hours": 12.36,
       "byYear": {
         "2019": 5,
         "2020": 16,
         "2021": 13,
         "2022": 9,
         "2023": 17,
-        "2024": 11,
+        "2024": 12,
         "2025": 13,
         "2026": 23
       },
       "evidence": {
         "title": 51,
         "notes": 27,
-        "transcript": 29
+        "transcript": 30
       },
       "samples": [
         {
@@ -5339,21 +5339,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 209,
-      "hours": 11.83,
+      "count": 219,
+      "hours": 12.09,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 5,
-        "2023": 32,
-        "2024": 30,
+        "2023": 33,
+        "2024": 37,
         "2025": 61,
-        "2026": 78
+        "2026": 80
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 178
+        "transcript": 188
       },
       "samples": [
         {
@@ -5413,22 +5413,22 @@
       "blurb": "Sport beyond football.",
       "kind": "domain",
       "facet": "domain",
-      "count": 115,
-      "hours": 11.12,
+      "count": 116,
+      "hours": 11.19,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 15,
         "2022": 10,
         "2023": 10,
-        "2024": 36,
+        "2024": 37,
         "2025": 13,
         "2026": 24
       },
       "evidence": {
-        "title": 46,
+        "title": 45,
         "notes": 18,
-        "transcript": 51
+        "transcript": 53
       },
       "samples": [
         {
@@ -5483,101 +5483,26 @@
       "children": []
     },
     {
-      "id": "france-politics",
-      "name": "French politics",
-      "blurb": "French politics and Macron.",
-      "kind": "local",
-      "facet": "local",
-      "count": 88,
-      "hours": 10.89,
-      "byYear": {
-        "2019": 3,
-        "2020": 6,
-        "2021": 11,
-        "2022": 17,
-        "2023": 10,
-        "2024": 23,
-        "2025": 8,
-        "2026": 10
-      },
-      "evidence": {
-        "title": 43,
-        "notes": 31,
-        "transcript": 14
-      },
-      "samples": [
-        {
-          "i": 65,
-          "e": "Why France Is in Crisis",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 102,
-          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 141,
-          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 345,
-          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-14"
-        },
-        {
-          "i": 407,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 817,
-          "e": "Europe Is Burning",
-          "p": "The Daily",
-          "d": "2026-07-30"
-        },
-        {
-          "i": 831,
-          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-07-29"
-        },
-        {
-          "i": 966,
-          "e": "Marine Le Pen and the French far-right are back",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-07-17"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "religion",
       "name": "Religion & belief",
       "blurb": "Religion and belief.",
       "kind": "domain",
       "facet": "domain",
-      "count": 121,
-      "hours": 10.74,
+      "count": 124,
+      "hours": 10.83,
       "byYear": {
         "2020": 3,
         "2021": 5,
         "2022": 8,
         "2023": 14,
-        "2024": 14,
+        "2024": 17,
         "2025": 43,
         "2026": 34
       },
       "evidence": {
         "title": 0,
         "notes": 21,
-        "transcript": 100
+        "transcript": 103
       },
       "samples": [
         {
@@ -5627,6 +5552,81 @@
           "e": "Is Christopher Nolan’s Odyssey conservative, woke, or something else entirely?",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-07-31"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "france-politics",
+      "name": "French politics",
+      "blurb": "French politics and Macron.",
+      "kind": "local",
+      "facet": "local",
+      "count": 88,
+      "hours": 10.83,
+      "byYear": {
+        "2019": 3,
+        "2020": 6,
+        "2021": 11,
+        "2022": 17,
+        "2023": 10,
+        "2024": 23,
+        "2025": 8,
+        "2026": 10
+      },
+      "evidence": {
+        "title": 42,
+        "notes": 31,
+        "transcript": 15
+      },
+      "samples": [
+        {
+          "i": 65,
+          "e": "Why France Is in Crisis",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 102,
+          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 141,
+          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 345,
+          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-14"
+        },
+        {
+          "i": 407,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 817,
+          "e": "Europe Is Burning",
+          "p": "The Daily",
+          "d": "2026-07-30"
+        },
+        {
+          "i": 831,
+          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-07-29"
+        },
+        {
+          "i": 966,
+          "e": "Marine Le Pen and the French far-right are back",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-07-17"
         }
       ],
       "children": []
@@ -5711,13 +5711,13 @@
       "blurb": "Populist politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 65,
-      "hours": 9.71,
+      "count": 66,
+      "hours": 9.83,
       "byYear": {
         "2019": 2,
         "2020": 3,
         "2021": 2,
-        "2022": 1,
+        "2022": 2,
         "2023": 3,
         "2024": 3,
         "2025": 19,
@@ -5726,7 +5726,7 @@
       "evidence": {
         "title": 4,
         "notes": 37,
-        "transcript": 24
+        "transcript": 25
       },
       "samples": [
         {
@@ -5786,22 +5786,22 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 78,
-      "hours": 9.51,
+      "count": 80,
+      "hours": 9.63,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 2,
         "2022": 7,
         "2023": 9,
-        "2024": 18,
+        "2024": 20,
         "2025": 22,
         "2026": 17
       },
       "evidence": {
-        "title": 13,
+        "title": 11,
         "notes": 8,
-        "transcript": 57
+        "transcript": 61
       },
       "samples": [
         {
@@ -5861,21 +5861,21 @@
       "blurb": "Elections across Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 69,
-      "hours": 8.61,
+      "count": 70,
+      "hours": 8.65,
       "byYear": {
         "2020": 1,
         "2021": 1,
         "2022": 8,
         "2023": 4,
-        "2024": 21,
+        "2024": 22,
         "2025": 8,
         "2026": 26
       },
       "evidence": {
         "title": 19,
         "notes": 33,
-        "transcript": 17
+        "transcript": 18
       },
       "samples": [
         {
@@ -5935,22 +5935,22 @@
       "blurb": "Cybersecurity and espionage.",
       "kind": "domain",
       "facet": "domain",
-      "count": 82,
-      "hours": 8.27,
+      "count": 85,
+      "hours": 8.41,
       "byYear": {
         "2019": 3,
         "2020": 4,
         "2021": 8,
         "2022": 19,
-        "2023": 18,
-        "2024": 13,
+        "2023": 19,
+        "2024": 15,
         "2025": 6,
         "2026": 11
       },
       "evidence": {
         "title": 0,
         "notes": 49,
-        "transcript": 33
+        "transcript": 36
       },
       "samples": [
         {
@@ -6000,6 +6000,152 @@
           "e": "Nick McKenzie on how North Korean spies are infiltrating Australian companies",
           "p": "The Morning Edition",
           "d": "2026-03-31"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "ru-government",
+      "name": "Russian government",
+      "blurb": "Russian government and Kremlin.",
+      "kind": "local",
+      "facet": "local",
+      "count": 63,
+      "hours": 7.85,
+      "byYear": {
+        "2022": 10,
+        "2023": 11,
+        "2024": 7,
+        "2025": 19,
+        "2026": 16
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 21,
+        "transcript": 40
+      },
+      "samples": [
+        {
+          "i": 13,
+          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
+          "p": "Up First from NPR",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 35,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 89,
+          "e": "Russia is stealing and indoctrinating Ukraine's children",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 184,
+          "e": "Europe on edge from threats of Russia's growing escalation. Can NATO defend itself?",
+          "p": "Sources & Methods",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 429,
+          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-09-06"
+        },
+        {
+          "i": 875,
+          "e": "White House Correspondents’ Dinner, Ukraine hits Russian Retailer, India Protests",
+          "p": "Up First from NPR",
+          "d": "2026-07-25"
+        },
+        {
+          "i": 1052,
+          "e": "Iran Ceasefire Over, Platner Replacements Emerge, Olympic Committee Lifts Russia Ban",
+          "p": "Up First from NPR",
+          "d": "2026-07-08"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "weather-disasters",
+      "name": "Weather & disasters",
+      "blurb": "Storms, floods, fires, disasters.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 86,
+      "hours": 7.74,
+      "byYear": {
+        "2020": 1,
+        "2021": 2,
+        "2022": 6,
+        "2023": 16,
+        "2024": 19,
+        "2025": 23,
+        "2026": 19
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 18,
+        "transcript": 68
+      },
+      "samples": [
+        {
+          "i": 62,
+          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 66,
+          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 94,
+          "e": "Hurricane Isaias Prep, Competitive Midterm Races, Trump's Media Ban In Court",
+          "p": "Up First from NPR",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 140,
+          "e": "EP156: Rohingya Repatriation",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 225,
+          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
+          "p": "Up First from NPR",
+          "d": "2026-09-26"
+        },
+        {
+          "i": 429,
+          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-09-06"
+        },
+        {
+          "i": 471,
+          "e": "An avalanche survivor on the melting Himalayas",
+          "p": "ABC News Daily",
+          "d": "2026-09-01"
+        },
+        {
+          "i": 474,
+          "e": "Mud like quicksand: On the ground in Nepal",
+          "p": "The Morning Edition",
+          "d": "2026-09-01"
         }
       ],
       "children": []
@@ -6080,147 +6226,75 @@
       "children": []
     },
     {
-      "id": "ru-government",
-      "name": "Russian government",
-      "blurb": "Russian government and Kremlin.",
-      "kind": "local",
-      "facet": "local",
-      "count": 60,
-      "hours": 7.46,
-      "byYear": {
-        "2022": 8,
-        "2023": 11,
-        "2024": 6,
-        "2025": 19,
-        "2026": 16
-      },
-      "evidence": {
-        "title": 2,
-        "notes": 21,
-        "transcript": 37
-      },
-      "samples": [
-        {
-          "i": 13,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 33,
-          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
-          "p": "Up First from NPR",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 35,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 89,
-          "e": "Russia is stealing and indoctrinating Ukraine's children",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 184,
-          "e": "Europe on edge from threats of Russia's growing escalation. Can NATO defend itself?",
-          "p": "Sources & Methods",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 429,
-          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-09-06"
-        },
-        {
-          "i": 875,
-          "e": "White House Correspondents’ Dinner, Ukraine hits Russian Retailer, India Protests",
-          "p": "Up First from NPR",
-          "d": "2026-07-25"
-        },
-        {
-          "i": 1052,
-          "e": "Iran Ceasefire Over, Platner Replacements Emerge, Olympic Committee Lifts Russia Ban",
-          "p": "Up First from NPR",
-          "d": "2026-07-08"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "weather-disasters",
-      "name": "Weather & disasters",
-      "blurb": "Storms, floods, fires, disasters.",
+      "id": "labor-unions",
+      "name": "Labor & unions",
+      "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 84,
-      "hours": 7.04,
+      "count": 156,
+      "hours": 7.2,
       "byYear": {
-        "2020": 1,
-        "2021": 2,
-        "2022": 5,
-        "2023": 16,
-        "2024": 19,
-        "2025": 23,
-        "2026": 18
+        "2020": 4,
+        "2021": 6,
+        "2022": 13,
+        "2023": 22,
+        "2024": 30,
+        "2025": 35,
+        "2026": 46
       },
       "evidence": {
         "title": 0,
-        "notes": 18,
-        "transcript": 66
+        "notes": 14,
+        "transcript": 142
       },
       "samples": [
         {
-          "i": 62,
-          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "i": 7,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 81,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 111,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
           "p": "Up First from NPR",
-          "d": "2026-10-12"
+          "d": "2026-10-07"
         },
         {
-          "i": 66,
-          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
+          "i": 204,
+          "e": "He Was Deported to a Country He’d Never Heard Of",
+          "p": "The Daily",
+          "d": "2026-09-28"
         },
         {
-          "i": 94,
-          "e": "Hurricane Isaias Prep, Competitive Midterm Races, Trump's Media Ban In Court",
-          "p": "Up First from NPR",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 140,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 225,
-          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
-          "p": "Up First from NPR",
-          "d": "2026-09-26"
-        },
-        {
-          "i": 429,
-          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-09-06"
-        },
-        {
-          "i": 471,
-          "e": "An avalanche survivor on the melting Himalayas",
-          "p": "ABC News Daily",
-          "d": "2026-09-01"
-        },
-        {
-          "i": 474,
-          "e": "Mud like quicksand: On the ground in Nepal",
+          "i": 323,
+          "e": "Could Australia join the European Union?",
           "p": "The Morning Edition",
-          "d": "2026-09-01"
+          "d": "2026-09-17"
+        },
+        {
+          "i": 505,
+          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
+          "p": "Durma com essa",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 536,
+          "e": "The Stunning Rise of the Democratic Socialists of America",
+          "p": "The Daily",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 578,
+          "e": "The $100,000-a-month market for Trump’s posts",
+          "p": "7am",
+          "d": "2026-08-24"
         }
       ],
       "children": []
@@ -6231,22 +6305,22 @@
       "blurb": "LGBTQ+ rights and culture.",
       "kind": "frame",
       "facet": "frame",
-      "count": 52,
-      "hours": 6.93,
+      "count": 53,
+      "hours": 6.96,
       "byYear": {
         "2019": 1,
         "2020": 3,
         "2021": 6,
         "2022": 5,
         "2023": 11,
-        "2024": 6,
+        "2024": 7,
         "2025": 10,
         "2026": 10
       },
       "evidence": {
         "title": 17,
         "notes": 20,
-        "transcript": 15
+        "transcript": 16
       },
       "samples": [
         {
@@ -6306,21 +6380,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 190,
-      "hours": 6.69,
+      "count": 193,
+      "hours": 6.74,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
         "2023": 39,
-        "2024": 41,
+        "2024": 44,
         "2025": 31,
         "2026": 58
       },
       "evidence": {
         "title": 20,
         "notes": 64,
-        "transcript": 106
+        "transcript": 109
       },
       "samples": [
         {
@@ -6370,80 +6444,6 @@
           "e": "Fed Raises Interest Rates, Iran War and Oil Prices, EU-Canada Alliance",
           "p": "Up First from NPR",
           "d": "2026-09-18"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "labor-unions",
-      "name": "Labor & unions",
-      "blurb": "Labor, wages, strikes, unions.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 149,
-      "hours": 6.62,
-      "byYear": {
-        "2020": 4,
-        "2021": 6,
-        "2022": 9,
-        "2023": 22,
-        "2024": 28,
-        "2025": 35,
-        "2026": 45
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 14,
-        "transcript": 135
-      },
-      "samples": [
-        {
-          "i": 7,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 81,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 111,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 204,
-          "e": "He Was Deported to a Country He’d Never Heard Of",
-          "p": "The Daily",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 323,
-          "e": "Could Australia join the European Union?",
-          "p": "The Morning Edition",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 505,
-          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
-          "p": "Durma com essa",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 536,
-          "e": "The Stunning Rise of the Democratic Socialists of America",
-          "p": "The Daily",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 578,
-          "e": "The $100,000-a-month market for Trump’s posts",
-          "p": "7am",
-          "d": "2026-08-24"
         }
       ],
       "children": []
@@ -6528,22 +6528,22 @@
       "blurb": "Advertising, agencies, and brands.",
       "kind": "domain",
       "facet": "domain",
-      "count": 72,
-      "hours": 5.78,
+      "count": 74,
+      "hours": 5.93,
       "byYear": {
         "2019": 2,
         "2020": 3,
         "2021": 8,
         "2022": 8,
         "2023": 10,
-        "2024": 15,
+        "2024": 17,
         "2025": 5,
         "2026": 21
       },
       "evidence": {
         "title": 4,
         "notes": 28,
-        "transcript": 40
+        "transcript": 42
       },
       "samples": [
         {
@@ -6677,21 +6677,21 @@
       "blurb": "Disinformation and fake news.",
       "kind": "domain",
       "facet": "domain",
-      "count": 72,
-      "hours": 5.3,
+      "count": 75,
+      "hours": 5.37,
       "byYear": {
         "2020": 6,
         "2021": 10,
         "2022": 5,
-        "2023": 10,
-        "2024": 11,
+        "2023": 11,
+        "2024": 13,
         "2025": 17,
         "2026": 13
       },
       "evidence": {
         "title": 0,
         "notes": 32,
-        "transcript": 40
+        "transcript": 43
       },
       "samples": [
         {
@@ -6746,98 +6746,26 @@
       "children": []
     },
     {
-      "id": "eu-far-right",
-      "name": "European far right",
-      "blurb": "Far-right parties and politics in Europe.",
-      "kind": "local",
-      "facet": "local",
-      "count": 40,
-      "hours": 5.2,
-      "byYear": {
-        "2022": 6,
-        "2023": 2,
-        "2024": 8,
-        "2025": 8,
-        "2026": 16
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 22,
-        "transcript": 12
-      },
-      "samples": [
-        {
-          "i": 141,
-          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 151,
-          "e": "Policy of rupture: How the AfD became Germany's most disruptive force",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 345,
-          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-14"
-        },
-        {
-          "i": 394,
-          "e": "How Giorgia Meloni built Italy's most stable government since Mussolini",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-09"
-        },
-        {
-          "i": 405,
-          "e": "Germany had ruled out extremist parties. Then came this election win",
-          "p": "The Morning Edition",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 407,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 419,
-          "e": "Miami Plane Crash, Witkoff & Kushner Visit Ukraine, Far-Right AfD Wins In Germany",
-          "p": "Up First from NPR",
-          "d": "2026-09-07"
-        },
-        {
-          "i": 420,
-          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-07"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "psychology-behaviour",
       "name": "Psychology & behaviour",
       "blurb": "Psychology and behaviour.",
       "kind": "domain",
       "facet": "domain",
-      "count": 68,
-      "hours": 5.18,
+      "count": 70,
+      "hours": 5.3,
       "byYear": {
         "2020": 4,
         "2021": 2,
         "2022": 7,
         "2023": 13,
-        "2024": 15,
+        "2024": 17,
         "2025": 10,
         "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 44
+        "transcript": 46
       },
       "samples": [
         {
@@ -6892,27 +6820,99 @@
       "children": []
     },
     {
+      "id": "eu-far-right",
+      "name": "European far right",
+      "blurb": "Far-right parties and politics in Europe.",
+      "kind": "local",
+      "facet": "local",
+      "count": 41,
+      "hours": 5.25,
+      "byYear": {
+        "2022": 6,
+        "2023": 2,
+        "2024": 9,
+        "2025": 8,
+        "2026": 16
+      },
+      "evidence": {
+        "title": 6,
+        "notes": 22,
+        "transcript": 13
+      },
+      "samples": [
+        {
+          "i": 141,
+          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 151,
+          "e": "Policy of rupture: How the AfD became Germany's most disruptive force",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 345,
+          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-14"
+        },
+        {
+          "i": 394,
+          "e": "How Giorgia Meloni built Italy's most stable government since Mussolini",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-09"
+        },
+        {
+          "i": 405,
+          "e": "Germany had ruled out extremist parties. Then came this election win",
+          "p": "The Morning Edition",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 407,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 419,
+          "e": "Miami Plane Crash, Witkoff & Kushner Visit Ukraine, Far-Right AfD Wins In Germany",
+          "p": "Up First from NPR",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 420,
+          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-07"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "india-government",
       "name": "Indian government",
       "blurb": "Indian government and BJP/Congress politics.",
       "kind": "local",
       "facet": "local",
-      "count": 31,
-      "hours": 5.08,
+      "count": 32,
+      "hours": 5.16,
       "byYear": {
         "2019": 1,
         "2020": 1,
         "2021": 1,
         "2022": 4,
         "2023": 8,
-        "2024": 7,
+        "2024": 8,
         "2025": 7,
         "2026": 2
       },
       "evidence": {
         "title": 0,
         "notes": 23,
-        "transcript": 8
+        "transcript": 9
       },
       "samples": [
         {
@@ -7333,8 +7333,8 @@
       "blurb": "Corruption and graft scandals.",
       "kind": "domain",
       "facet": "domain",
-      "count": 63,
-      "hours": 3.55,
+      "count": 64,
+      "hours": 3.62,
       "byYear": {
         "2020": 1,
         "2021": 5,
@@ -7342,12 +7342,12 @@
         "2023": 3,
         "2024": 12,
         "2025": 12,
-        "2026": 20
+        "2026": 21
       },
       "evidence": {
         "title": 0,
         "notes": 16,
-        "transcript": 47
+        "transcript": 48
       },
       "samples": [
         {
@@ -7407,20 +7407,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 87,
-      "hours": 3.41,
+      "count": 89,
+      "hours": 3.45,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 5,
-        "2024": 6,
-        "2025": 56,
+        "2024": 7,
+        "2025": 57,
         "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 66
+        "transcript": 68
       },
       "samples": [
         {
@@ -7697,21 +7697,21 @@
       "blurb": "Elections in India.",
       "kind": "local",
       "facet": "local",
-      "count": 14,
-      "hours": 2.31,
+      "count": 15,
+      "hours": 2.39,
       "byYear": {
         "2019": 1,
         "2020": 1,
         "2022": 1,
         "2023": 2,
-        "2024": 5,
+        "2024": 6,
         "2025": 1,
         "2026": 3
       },
       "evidence": {
         "title": 6,
         "notes": 7,
-        "transcript": 1
+        "transcript": 2
       },
       "samples": [
         {
@@ -7751,16 +7751,16 @@
           "d": "2024-06-06"
         },
         {
+          "i": 8678,
+          "e": "Voters give India’s Modi a reality check",
+          "p": "ABC News Daily",
+          "d": "2024-06-05"
+        },
+        {
           "i": 8731,
           "e": "Insights into the Indian Elections with Dr. Ronojoy Sen",
           "p": "Asia In-Depth",
           "d": "2024-06-01"
-        },
-        {
-          "i": 8965,
-          "e": "One Strongman, One Billion Voters, and the Future of India",
-          "p": "The Daily",
-          "d": "2024-05-10"
         }
       ],
       "children": []
@@ -8327,7 +8327,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6128,
-      "hours": 1146.97,
+      "hours": 1141.11,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8339,9 +8339,9 @@
         "2026": 901
       },
       "evidence": {
-        "title": 3810,
+        "title": 3764,
         "notes": 504,
-        "transcript": 1814
+        "transcript": 1860
       },
       "samples": [
         {
@@ -8400,13 +8400,13 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4115,
-      "hours": 979.1,
+      "count": 4116,
+      "hours": 979.11,
       "byYear": {
         "2019": 264,
         "2020": 446,
         "2021": 455,
-        "2022": 486,
+        "2022": 487,
         "2023": 443,
         "2024": 586,
         "2025": 817,
@@ -8415,7 +8415,7 @@
       "evidence": {
         "title": 1099,
         "notes": 2589,
-        "transcript": 427
+        "transcript": 428
       },
       "samples": [
         {
@@ -8475,7 +8475,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 901.53,
+      "hours": 886.51,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8487,9 +8487,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2912,
+        "title": 2775,
         "notes": 1069,
-        "transcript": 1660
+        "transcript": 1797
       },
       "samples": [
         {
@@ -8696,22 +8696,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2231,
-      "hours": 356.8,
+      "count": 2255,
+      "hours": 357.34,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
         "2022": 206,
-        "2023": 233,
-        "2024": 319,
+        "2023": 234,
+        "2024": 341,
         "2025": 554,
-        "2026": 514
+        "2026": 515
       },
       "evidence": {
-        "title": 978,
+        "title": 970,
         "notes": 769,
-        "transcript": 484
+        "transcript": 516
       },
       "samples": [
         {
@@ -8770,22 +8770,22 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2451,
-      "hours": 251.59,
+      "count": 2454,
+      "hours": 251.78,
       "byYear": {
         "2019": 34,
         "2020": 101,
         "2021": 76,
-        "2022": 114,
-        "2023": 236,
+        "2022": 116,
+        "2023": 237,
         "2024": 537,
         "2025": 798,
         "2026": 555
       },
       "evidence": {
-        "title": 1021,
+        "title": 993,
         "notes": 455,
-        "transcript": 975
+        "transcript": 1006
       },
       "samples": [
         {
@@ -8844,22 +8844,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2684,
-      "hours": 232.76,
+      "count": 2702,
+      "hours": 233.05,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 274,
-        "2023": 418,
-        "2024": 439,
-        "2025": 566,
-        "2026": 556
+        "2023": 419,
+        "2024": 451,
+        "2025": 567,
+        "2026": 560
       },
       "evidence": {
-        "title": 523,
+        "title": 517,
         "notes": 1200,
-        "transcript": 961
+        "transcript": 985
       },
       "samples": [
         {
@@ -8992,22 +8992,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1941,
-      "hours": 175.21,
+      "count": 1973,
+      "hours": 176.91,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
-        "2022": 199,
-        "2023": 222,
-        "2024": 264,
+        "2022": 206,
+        "2023": 226,
+        "2024": 280,
         "2025": 469,
-        "2026": 604
+        "2026": 609
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1373
+        "transcript": 1405
       },
       "samples": [
         {
@@ -9140,22 +9140,22 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1163,
-      "hours": 124.2,
+      "count": 1186,
+      "hours": 126.3,
       "byYear": {
         "2019": 2,
         "2020": 114,
         "2021": 116,
         "2022": 93,
-        "2023": 182,
-        "2024": 240,
-        "2025": 215,
-        "2026": 201
+        "2023": 185,
+        "2024": 257,
+        "2025": 216,
+        "2026": 203
       },
       "evidence": {
-        "title": 51,
+        "title": 48,
         "notes": 724,
-        "transcript": 388
+        "transcript": 414
       },
       "samples": [
         {
@@ -9214,22 +9214,22 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1274,
-      "hours": 120.89,
+      "count": 1276,
+      "hours": 120.93,
       "byYear": {
         "2019": 1,
         "2020": 420,
         "2021": 461,
-        "2022": 158,
+        "2022": 159,
         "2023": 83,
-        "2024": 43,
+        "2024": 44,
         "2025": 72,
         "2026": 36
       },
       "evidence": {
-        "title": 451,
+        "title": 449,
         "notes": 678,
-        "transcript": 145
+        "transcript": 149
       },
       "samples": [
         {
@@ -9289,7 +9289,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 109.3,
+      "hours": 109.37,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -9301,9 +9301,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 466,
+        "title": 459,
         "notes": 223,
-        "transcript": 176
+        "transcript": 183
       },
       "samples": [
         {
@@ -9362,22 +9362,22 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1148,
-      "hours": 107.92,
+      "count": 1157,
+      "hours": 108.33,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
-        "2022": 148,
+        "2022": 152,
         "2023": 177,
-        "2024": 156,
+        "2024": 160,
         "2025": 201,
-        "2026": 245
+        "2026": 246
       },
       "evidence": {
-        "title": 197,
+        "title": 196,
         "notes": 552,
-        "transcript": 399
+        "transcript": 409
       },
       "samples": [
         {
@@ -9436,22 +9436,22 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1049,
-      "hours": 102.78,
+      "count": 1063,
+      "hours": 103.27,
       "byYear": {
         "2019": 1,
         "2020": 15,
         "2021": 46,
-        "2022": 76,
+        "2022": 80,
         "2023": 136,
-        "2024": 139,
+        "2024": 148,
         "2025": 334,
-        "2026": 302
+        "2026": 303
       },
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 839
+        "transcript": 853
       },
       "samples": [
         {
@@ -9510,22 +9510,22 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1095,
-      "hours": 99.89,
+      "count": 1108,
+      "hours": 101.36,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
-        "2022": 54,
-        "2023": 130,
-        "2024": 141,
+        "2022": 62,
+        "2023": 131,
+        "2024": 144,
         "2025": 304,
-        "2026": 425
+        "2026": 426
       },
       "evidence": {
-        "title": 163,
+        "title": 161,
         "notes": 116,
-        "transcript": 816
+        "transcript": 831
       },
       "samples": [
         {
@@ -9584,22 +9584,22 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 865,
-      "hours": 99.87,
+      "count": 874,
+      "hours": 100.19,
       "byYear": {
         "2019": 3,
         "2020": 141,
         "2021": 96,
-        "2022": 90,
+        "2022": 92,
         "2023": 117,
-        "2024": 125,
+        "2024": 131,
         "2025": 188,
-        "2026": 105
+        "2026": 106
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 300
+        "transcript": 309
       },
       "samples": [
         {
@@ -9732,22 +9732,22 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 708,
-      "hours": 87.0,
+      "count": 717,
+      "hours": 87.52,
       "byYear": {
         "2019": 5,
         "2020": 25,
         "2021": 39,
-        "2022": 39,
-        "2023": 123,
-        "2024": 144,
+        "2022": 40,
+        "2023": 124,
+        "2024": 151,
         "2025": 149,
         "2026": 184
       },
       "evidence": {
-        "title": 6,
+        "title": 5,
         "notes": 419,
-        "transcript": 283
+        "transcript": 293
       },
       "samples": [
         {
@@ -9806,22 +9806,22 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 928,
-      "hours": 84.14,
+      "count": 944,
+      "hours": 84.69,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
         "2022": 86,
-        "2023": 133,
-        "2024": 128,
+        "2023": 135,
+        "2024": 140,
         "2025": 203,
-        "2026": 274
+        "2026": 276
       },
       "evidence": {
-        "title": 164,
+        "title": 155,
         "notes": 300,
-        "transcript": 464
+        "transcript": 489
       },
       "samples": [
         {
@@ -10029,7 +10029,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 435,
-      "hours": 63.1,
+      "hours": 62.97,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10041,9 +10041,9 @@
         "2026": 190
       },
       "evidence": {
-        "title": 60,
+        "title": 57,
         "notes": 140,
-        "transcript": 235
+        "transcript": 238
       },
       "samples": [
         {
@@ -10102,22 +10102,22 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 694,
-      "hours": 59.68,
+      "count": 712,
+      "hours": 61.14,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
         "2022": 61,
-        "2023": 80,
-        "2024": 79,
-        "2025": 134,
-        "2026": 211
+        "2023": 81,
+        "2024": 91,
+        "2025": 135,
+        "2026": 215
       },
       "evidence": {
-        "title": 153,
+        "title": 150,
         "notes": 194,
-        "transcript": 347
+        "transcript": 368
       },
       "samples": [
         {
@@ -10250,22 +10250,22 @@
       "blurb": "Authoritarian and illiberal politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 402,
-      "hours": 57.43,
+      "count": 404,
+      "hours": 57.46,
       "byYear": {
         "2019": 9,
         "2020": 10,
         "2021": 30,
-        "2022": 28,
+        "2022": 29,
         "2023": 66,
-        "2024": 77,
+        "2024": 78,
         "2025": 129,
         "2026": 53
       },
       "evidence": {
         "title": 51,
         "notes": 258,
-        "transcript": 93
+        "transcript": 95
       },
       "samples": [
         {
@@ -10319,101 +10319,27 @@
       ]
     },
     {
-      "id": "us-courts",
-      "name": "US courts",
-      "blurb": "SCOTUS and US courts.",
-      "kind": "local",
-      "facet": "local",
-      "count": 552,
-      "hours": 54.03,
-      "byYear": {
-        "2019": 26,
-        "2020": 17,
-        "2021": 30,
-        "2022": 36,
-        "2023": 76,
-        "2024": 99,
-        "2025": 139,
-        "2026": 129
-      },
-      "evidence": {
-        "title": 158,
-        "notes": 43,
-        "transcript": 351
-      },
-      "samples": [
-        {
-          "i": 99,
-          "e": "Fox News wanted war images in Ukraine - their journalists died",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 111,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 115,
-          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
-          "p": "Up First from NPR",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 129,
-          "e": "Will a midterm 'blue wave' sink Trump?",
-          "p": "ABC News Daily",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 146,
-          "e": "Why Washington Is Trying to Rein In College Sports",
-          "p": "The Daily",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 172,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 176,
-          "e": "Trump AI Summit, US Pulls Out Of Iraq, SCOTUS Third Country Deportations",
-          "p": "Up First from NPR",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 189,
-          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
-          "p": "The Daily",
-          "d": "2026-09-29"
-        }
-      ]
-    },
-    {
       "id": "crime-policing",
       "name": "Crime & policing",
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 702,
-      "hours": 53.64,
+      "count": 722,
+      "hours": 55.11,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 30,
-        "2023": 83,
-        "2024": 137,
-        "2025": 205,
-        "2026": 229
+        "2023": 84,
+        "2024": 150,
+        "2025": 207,
+        "2026": 233
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 531
+        "transcript": 551
       },
       "samples": [
         {
@@ -10467,18 +10393,92 @@
       ]
     },
     {
+      "id": "us-courts",
+      "name": "US courts",
+      "blurb": "SCOTUS and US courts.",
+      "kind": "local",
+      "facet": "local",
+      "count": 554,
+      "hours": 54.23,
+      "byYear": {
+        "2019": 26,
+        "2020": 17,
+        "2021": 30,
+        "2022": 36,
+        "2023": 76,
+        "2024": 101,
+        "2025": 139,
+        "2026": 129
+      },
+      "evidence": {
+        "title": 157,
+        "notes": 43,
+        "transcript": 354
+      },
+      "samples": [
+        {
+          "i": 99,
+          "e": "Fox News wanted war images in Ukraine - their journalists died",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 111,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 115,
+          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
+          "p": "Up First from NPR",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 129,
+          "e": "Will a midterm 'blue wave' sink Trump?",
+          "p": "ABC News Daily",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 146,
+          "e": "Why Washington Is Trying to Rein In College Sports",
+          "p": "The Daily",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 172,
+          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
+          "p": "The Morning Edition",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 176,
+          "e": "Trump AI Summit, US Pulls Out Of Iraq, SCOTUS Third Country Deportations",
+          "p": "Up First from NPR",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 189,
+          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
+          "p": "The Daily",
+          "d": "2026-09-29"
+        }
+      ]
+    },
+    {
       "id": "books-literature",
       "name": "Books & literature",
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 350,
-      "hours": 51.35,
+      "count": 351,
+      "hours": 51.42,
       "byYear": {
         "2019": 1,
         "2020": 16,
         "2021": 26,
-        "2022": 34,
+        "2022": 35,
         "2023": 35,
         "2024": 54,
         "2025": 87,
@@ -10487,7 +10487,7 @@
       "evidence": {
         "title": 0,
         "notes": 157,
-        "transcript": 193
+        "transcript": 194
       },
       "samples": [
         {
@@ -10541,100 +10541,26 @@
       ]
     },
     {
-      "id": "us-economy",
-      "name": "US economy",
-      "blurb": "US economy, Fed, markets.",
-      "kind": "local",
-      "facet": "local",
-      "count": 633,
-      "hours": 50.82,
-      "byYear": {
-        "2019": 5,
-        "2020": 12,
-        "2021": 11,
-        "2022": 36,
-        "2023": 62,
-        "2024": 96,
-        "2025": 229,
-        "2026": 182
-      },
-      "evidence": {
-        "title": 95,
-        "notes": 102,
-        "transcript": 436
-      },
-      "samples": [
-        {
-          "i": 35,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 45,
-          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 57,
-          "e": "Why Trump's selling out to Putin again",
-          "p": "ABC News Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 111,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 143,
-          "e": "Wages Vs Inflation, Tennessee Failed Execution, Cornell Rape Case Special Prosecutor",
-          "p": "Up First from NPR",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 172,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 178,
-          "e": "'To the Victor Belong the Spoils': Trump's UN speech and the weakest world order in generations",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 189,
-          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
-          "p": "The Daily",
-          "d": "2026-09-29"
-        }
-      ]
-    },
-    {
       "id": "health-medicine",
       "name": "Health & medicine",
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 566,
-      "hours": 50.05,
+      "count": 584,
+      "hours": 51.41,
       "byYear": {
         "2020": 42,
         "2021": 36,
-        "2022": 30,
-        "2023": 73,
-        "2024": 90,
+        "2022": 31,
+        "2023": 74,
+        "2024": 104,
         "2025": 160,
-        "2026": 135
+        "2026": 137
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 404
+        "transcript": 422
       },
       "samples": [
         {
@@ -10688,27 +10614,101 @@
       ]
     },
     {
+      "id": "us-economy",
+      "name": "US economy",
+      "blurb": "US economy, Fed, markets.",
+      "kind": "local",
+      "facet": "local",
+      "count": 636,
+      "hours": 50.83,
+      "byYear": {
+        "2019": 5,
+        "2020": 12,
+        "2021": 11,
+        "2022": 36,
+        "2023": 62,
+        "2024": 98,
+        "2025": 230,
+        "2026": 182
+      },
+      "evidence": {
+        "title": 92,
+        "notes": 102,
+        "transcript": 442
+      },
+      "samples": [
+        {
+          "i": 35,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 45,
+          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 57,
+          "e": "Why Trump's selling out to Putin again",
+          "p": "ABC News Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 111,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 143,
+          "e": "Wages Vs Inflation, Tennessee Failed Execution, Cornell Rape Case Special Prosecutor",
+          "p": "Up First from NPR",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 172,
+          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
+          "p": "The Morning Edition",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 178,
+          "e": "'To the Victor Belong the Spoils': Trump's UN speech and the weakest world order in generations",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 189,
+          "e": "Are Prediction Markets Gambling? A Lot Rides on the Answer.",
+          "p": "The Daily",
+          "d": "2026-09-29"
+        }
+      ]
+    },
+    {
       "id": "us-media",
       "name": "US media",
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 510,
-      "hours": 48.73,
+      "count": 517,
+      "hours": 49.52,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
-        "2022": 30,
+        "2022": 34,
         "2023": 56,
-        "2024": 80,
+        "2024": 82,
         "2025": 158,
-        "2026": 155
+        "2026": 156
       },
       "evidence": {
         "title": 42,
         "notes": 83,
-        "transcript": 385
+        "transcript": 392
       },
       "samples": [
         {
@@ -10836,79 +10836,6 @@
       ]
     },
     {
-      "id": "ukraine-war",
-      "name": "Ukraine war",
-      "blurb": "Russia’s war against Ukraine.",
-      "kind": "story",
-      "facet": "story",
-      "count": 350,
-      "hours": 47.35,
-      "byYear": {
-        "2019": 10,
-        "2021": 2,
-        "2022": 105,
-        "2023": 80,
-        "2024": 53,
-        "2025": 65,
-        "2026": 35
-      },
-      "evidence": {
-        "title": 189,
-        "notes": 89,
-        "transcript": 72
-      },
-      "samples": [
-        {
-          "i": 10,
-          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 12,
-          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 14,
-          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 25,
-          "e": "Key comms cut-off in Ukraine / Zelenskyy sit-down / Russian diesel",
-          "p": "Sources & Methods",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 64,
-          "e": "Trump Pressures Ukraine, Trump's Midterm Priorities, Saudi Arabia Airport Attacks",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 66,
-          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 89,
-          "e": "Russia is stealing and indoctrinating Ukraine's children",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 99,
-          "e": "Fox News wanted war images in Ukraine - their journalists died",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        }
-      ]
-    },
-    {
       "id": "br-crime",
       "name": "Brazilian crime & security",
       "blurb": "Crime and security in Brazil.",
@@ -10978,6 +10905,79 @@
           "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
           "p": "Foro de Teresina",
           "d": "2026-09-26"
+        }
+      ]
+    },
+    {
+      "id": "ukraine-war",
+      "name": "Ukraine war",
+      "blurb": "Russia’s war against Ukraine.",
+      "kind": "story",
+      "facet": "story",
+      "count": 350,
+      "hours": 46.94,
+      "byYear": {
+        "2019": 10,
+        "2021": 2,
+        "2022": 105,
+        "2023": 80,
+        "2024": 53,
+        "2025": 65,
+        "2026": 35
+      },
+      "evidence": {
+        "title": 185,
+        "notes": 89,
+        "transcript": 76
+      },
+      "samples": [
+        {
+          "i": 10,
+          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 12,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 14,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 25,
+          "e": "Key comms cut-off in Ukraine / Zelenskyy sit-down / Russian diesel",
+          "p": "Sources & Methods",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 64,
+          "e": "Trump Pressures Ukraine, Trump's Midterm Priorities, Saudi Arabia Airport Attacks",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 66,
+          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 89,
+          "e": "Russia is stealing and indoctrinating Ukraine's children",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 99,
+          "e": "Fox News wanted war images in Ukraine - their journalists died",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
         }
       ]
     },
@@ -11061,22 +11061,22 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 361,
-      "hours": 44.91,
+      "count": 362,
+      "hours": 44.93,
       "byYear": {
         "2019": 4,
         "2020": 36,
         "2021": 19,
         "2022": 59,
         "2023": 68,
-        "2024": 87,
+        "2024": 88,
         "2025": 43,
         "2026": 45
       },
       "evidence": {
-        "title": 97,
+        "title": 96,
         "notes": 140,
-        "transcript": 124
+        "transcript": 126
       },
       "samples": [
         {
@@ -11135,21 +11135,21 @@
       "blurb": "History and memory.",
       "kind": "domain",
       "facet": "domain",
-      "count": 427,
-      "hours": 44.61,
+      "count": 429,
+      "hours": 44.64,
       "byYear": {
         "2020": 11,
         "2021": 25,
         "2022": 33,
         "2023": 47,
-        "2024": 60,
+        "2024": 62,
         "2025": 121,
         "2026": 130
       },
       "evidence": {
         "title": 17,
         "notes": 91,
-        "transcript": 319
+        "transcript": 321
       },
       "samples": [
         {
@@ -11430,22 +11430,22 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 433,
-      "hours": 38.67,
+      "count": 435,
+      "hours": 38.77,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
-        "2022": 28,
+        "2022": 29,
         "2023": 47,
-        "2024": 63,
+        "2024": 64,
         "2025": 123,
         "2026": 147
       },
       "evidence": {
         "title": 62,
         "notes": 32,
-        "transcript": 339
+        "transcript": 341
       },
       "samples": [
         {
@@ -11504,22 +11504,22 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 408,
-      "hours": 36.2,
+      "count": 413,
+      "hours": 36.58,
       "byYear": {
         "2019": 9,
         "2020": 37,
         "2021": 45,
         "2022": 46,
         "2023": 42,
-        "2024": 50,
+        "2024": 54,
         "2025": 90,
-        "2026": 89
+        "2026": 90
       },
       "evidence": {
-        "title": 76,
+        "title": 75,
         "notes": 139,
-        "transcript": 193
+        "transcript": 199
       },
       "samples": [
         {
@@ -11578,22 +11578,22 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 314,
-      "hours": 32.0,
+      "count": 321,
+      "hours": 32.25,
       "byYear": {
         "2019": 1,
         "2020": 52,
         "2021": 32,
-        "2022": 38,
-        "2023": 31,
-        "2024": 46,
+        "2022": 39,
+        "2023": 32,
+        "2024": 49,
         "2025": 65,
-        "2026": 49
+        "2026": 51
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 129
+        "transcript": 136
       },
       "samples": [
         {
@@ -11652,22 +11652,22 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 317,
-      "hours": 31.94,
+      "count": 322,
+      "hours": 32.19,
       "byYear": {
         "2019": 6,
         "2020": 13,
         "2021": 24,
         "2022": 27,
-        "2023": 40,
-        "2024": 48,
+        "2023": 41,
+        "2024": 51,
         "2025": 74,
-        "2026": 85
+        "2026": 86
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 208
+        "transcript": 213
       },
       "samples": [
         {
@@ -11727,7 +11727,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 30.11,
+      "hours": 29.91,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -11738,9 +11738,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 112,
+        "title": 107,
         "notes": 55,
-        "transcript": 192
+        "transcript": 197
       },
       "samples": [
         {
@@ -11799,22 +11799,22 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 227,
-      "hours": 29.38,
+      "count": 231,
+      "hours": 29.82,
       "byYear": {
         "2019": 3,
         "2020": 19,
         "2021": 28,
         "2022": 28,
         "2023": 37,
-        "2024": 33,
+        "2024": 37,
         "2025": 57,
         "2026": 22
       },
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 91
+        "transcript": 95
       },
       "samples": [
         {
@@ -11873,22 +11873,22 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 314,
-      "hours": 28.22,
+      "count": 317,
+      "hours": 28.45,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
-        "2022": 6,
+        "2022": 7,
         "2023": 35,
-        "2024": 58,
+        "2024": 60,
         "2025": 111,
         "2026": 95
       },
       "evidence": {
-        "title": 63,
+        "title": 62,
         "notes": 27,
-        "transcript": 224
+        "transcript": 228
       },
       "samples": [
         {
@@ -11947,21 +11947,21 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 269,
-      "hours": 27.07,
+      "count": 271,
+      "hours": 26.93,
       "byYear": {
         "2020": 9,
         "2021": 13,
-        "2022": 22,
+        "2022": 23,
         "2023": 44,
-        "2024": 48,
+        "2024": 49,
         "2025": 66,
         "2026": 67
       },
       "evidence": {
-        "title": 26,
+        "title": 25,
         "notes": 147,
-        "transcript": 96
+        "transcript": 99
       },
       "samples": [
         {
@@ -12020,13 +12020,13 @@
       "blurb": "Football and World Cup.",
       "kind": "domain",
       "facet": "domain",
-      "count": 219,
-      "hours": 26.82,
+      "count": 220,
+      "hours": 26.83,
       "byYear": {
         "2019": 5,
         "2020": 5,
         "2021": 12,
-        "2022": 54,
+        "2022": 55,
         "2023": 28,
         "2024": 13,
         "2025": 17,
@@ -12035,7 +12035,7 @@
       "evidence": {
         "title": 65,
         "notes": 57,
-        "transcript": 97
+        "transcript": 98
       },
       "samples": [
         {
@@ -12094,22 +12094,22 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 358,
-      "hours": 26.02,
+      "count": 366,
+      "hours": 26.3,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
         "2022": 23,
-        "2023": 26,
-        "2024": 39,
+        "2023": 27,
+        "2024": 46,
         "2025": 86,
         "2026": 100
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 192
+        "transcript": 200
       },
       "samples": [
         {
@@ -12168,13 +12168,13 @@
       "blurb": "Race and racism.",
       "kind": "frame",
       "facet": "frame",
-      "count": 183,
-      "hours": 25.86,
+      "count": 184,
+      "hours": 26.09,
       "byYear": {
         "2019": 2,
         "2020": 18,
         "2021": 13,
-        "2022": 22,
+        "2022": 23,
         "2023": 45,
         "2024": 33,
         "2025": 28,
@@ -12183,7 +12183,7 @@
       "evidence": {
         "title": 33,
         "notes": 98,
-        "transcript": 52
+        "transcript": 53
       },
       "samples": [
         {
@@ -12242,21 +12242,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 433,
-      "hours": 23.54,
+      "count": 441,
+      "hours": 23.71,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 33,
-        "2024": 66,
+        "2024": 74,
         "2025": 134,
         "2026": 180
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 379
+        "transcript": 387
       },
       "samples": [
         {
@@ -12306,6 +12306,80 @@
           "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
           "p": "7am",
           "d": "2026-10-06"
+        }
+      ]
+    },
+    {
+      "id": "us-health",
+      "name": "US health policy",
+      "blurb": "US health policy and public health.",
+      "kind": "local",
+      "facet": "local",
+      "count": 247,
+      "hours": 23.19,
+      "byYear": {
+        "2019": 1,
+        "2020": 21,
+        "2021": 26,
+        "2022": 26,
+        "2023": 34,
+        "2024": 30,
+        "2025": 70,
+        "2026": 39
+      },
+      "evidence": {
+        "title": 79,
+        "notes": 15,
+        "transcript": 153
+      },
+      "samples": [
+        {
+          "i": 216,
+          "e": "Can clergy candidates help Democrats win in red states?",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 246,
+          "e": "The Clancy trial and a split over postpartum psychosis",
+          "p": "Up First from NPR",
+          "d": "2026-09-24"
+        },
+        {
+          "i": 256,
+          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
+          "p": "The Daily",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 500,
+          "e": "Super El Niño, Measles, Iran War Stalemate",
+          "p": "Up First from NPR",
+          "d": "2026-08-30"
+        },
+        {
+          "i": 503,
+          "e": "A Historic Settlement Over Social Media Addiction",
+          "p": "The Daily",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 526,
+          "e": "How big tech is creating the next Donald Trump",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-27"
+        },
+        {
+          "i": 549,
+          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 635,
+          "e": "How Trump’s anti-vax agenda is infecting Australia",
+          "p": "7am",
+          "d": "2026-08-17"
         }
       ]
     },
@@ -12384,101 +12458,27 @@
       ]
     },
     {
-      "id": "us-health",
-      "name": "US health policy",
-      "blurb": "US health policy and public health.",
-      "kind": "local",
-      "facet": "local",
-      "count": 245,
-      "hours": 23.07,
-      "byYear": {
-        "2019": 1,
-        "2020": 21,
-        "2021": 26,
-        "2022": 25,
-        "2023": 34,
-        "2024": 29,
-        "2025": 70,
-        "2026": 39
-      },
-      "evidence": {
-        "title": 79,
-        "notes": 15,
-        "transcript": 151
-      },
-      "samples": [
-        {
-          "i": 216,
-          "e": "Can clergy candidates help Democrats win in red states?",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 246,
-          "e": "The Clancy trial and a split over postpartum psychosis",
-          "p": "Up First from NPR",
-          "d": "2026-09-24"
-        },
-        {
-          "i": 256,
-          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
-          "p": "The Daily",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 500,
-          "e": "Super El Niño, Measles, Iran War Stalemate",
-          "p": "Up First from NPR",
-          "d": "2026-08-30"
-        },
-        {
-          "i": 503,
-          "e": "A Historic Settlement Over Social Media Addiction",
-          "p": "The Daily",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 526,
-          "e": "How big tech is creating the next Donald Trump",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-27"
-        },
-        {
-          "i": 549,
-          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 635,
-          "e": "How Trump’s anti-vax agenda is infecting Australia",
-          "p": "7am",
-          "d": "2026-08-17"
-        }
-      ]
-    },
-    {
       "id": "human-rights",
       "name": "Human rights",
       "blurb": "Human rights and civil liberties.",
       "kind": "frame",
       "facet": "frame",
-      "count": 180,
-      "hours": 21.8,
+      "count": 182,
+      "hours": 21.92,
       "byYear": {
         "2019": 7,
         "2020": 12,
         "2021": 22,
         "2022": 17,
         "2023": 33,
-        "2024": 29,
+        "2024": 31,
         "2025": 33,
         "2026": 27
       },
       "evidence": {
         "title": 14,
         "notes": 130,
-        "transcript": 36
+        "transcript": 38
       },
       "samples": [
         {
@@ -12610,22 +12610,22 @@
       "blurb": "Film, TV, and streaming.",
       "kind": "domain",
       "facet": "domain",
-      "count": 154,
-      "hours": 21.33,
+      "count": 155,
+      "hours": 21.34,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 4,
         "2022": 12,
         "2023": 12,
-        "2024": 18,
+        "2024": 19,
         "2025": 40,
         "2026": 65
       },
       "evidence": {
         "title": 23,
         "notes": 36,
-        "transcript": 95
+        "transcript": 96
       },
       "samples": [
         {
@@ -12684,20 +12684,20 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 206,
-      "hours": 20.46,
+      "count": 207,
+      "hours": 20.52,
       "byYear": {
         "2021": 1,
         "2022": 9,
         "2023": 28,
-        "2024": 43,
+        "2024": 44,
         "2025": 69,
         "2026": 56
       },
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 201
+        "transcript": 202
       },
       "samples": [
         {
@@ -12756,22 +12756,22 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 233,
-      "hours": 18.27,
+      "count": 238,
+      "hours": 18.71,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
-        "2022": 15,
+        "2022": 19,
         "2023": 27,
         "2024": 29,
         "2025": 33,
-        "2026": 110
+        "2026": 111
       },
       "evidence": {
         "title": 41,
         "notes": 40,
-        "transcript": 152
+        "transcript": 157
       },
       "samples": [
         {
@@ -12904,22 +12904,22 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 129,
-      "hours": 16.16,
+      "count": 130,
+      "hours": 16.21,
       "byYear": {
         "2019": 4,
         "2020": 10,
         "2021": 5,
         "2022": 12,
         "2023": 17,
-        "2024": 25,
+        "2024": 26,
         "2025": 16,
         "2026": 40
       },
       "evidence": {
         "title": 11,
         "notes": 76,
-        "transcript": 42
+        "transcript": 43
       },
       "samples": [
         {
@@ -12969,6 +12969,80 @@
           "e": "Could Australia join the European Union?",
           "p": "The Morning Edition",
           "d": "2026-09-17"
+        }
+      ]
+    },
+    {
+      "id": "au-immigration",
+      "name": "Australian immigration",
+      "blurb": "Australian immigration and borders.",
+      "kind": "local",
+      "facet": "local",
+      "count": 182,
+      "hours": 15.77,
+      "byYear": {
+        "2019": 1,
+        "2020": 9,
+        "2021": 10,
+        "2022": 10,
+        "2023": 12,
+        "2024": 47,
+        "2025": 28,
+        "2026": 65
+      },
+      "evidence": {
+        "title": 25,
+        "notes": 46,
+        "transcript": 111
+      },
+      "samples": [
+        {
+          "i": 46,
+          "e": "Curtin's Cast Ep 73 - 13 October 2026 - George Megalogenis on Australia's 3 Great Shocks",
+          "p": "Curtin’s Cast",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 47,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 76,
+          "e": "As the Coalition veers right, should Albo hold the centre?",
+          "p": "7am",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 77,
+          "e": "Migration cuts: what's at stake for Australia's universities?",
+          "p": "Politics Now",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 86,
+          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
+          "p": "The Morning Edition",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 118,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 156,
+          "e": "Guardian Essential report: what do Australians really think about immigration?",
+          "p": "Australian Politics",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 215,
+          "e": "How real is Australia's immigration problem?",
+          "p": "The Morning Edition",
+          "d": "2026-09-28"
         }
       ]
     },
@@ -13043,80 +13117,6 @@
           "e": "The Fallout of Massive Earthquakes for Venezuela — and the U.S.",
           "p": "The Daily",
           "d": "2026-07-05"
-        }
-      ]
-    },
-    {
-      "id": "au-immigration",
-      "name": "Australian immigration",
-      "blurb": "Australian immigration and borders.",
-      "kind": "local",
-      "facet": "local",
-      "count": 175,
-      "hours": 15.45,
-      "byYear": {
-        "2019": 1,
-        "2020": 9,
-        "2021": 10,
-        "2022": 10,
-        "2023": 12,
-        "2024": 40,
-        "2025": 28,
-        "2026": 65
-      },
-      "evidence": {
-        "title": 26,
-        "notes": 46,
-        "transcript": 103
-      },
-      "samples": [
-        {
-          "i": 46,
-          "e": "Curtin's Cast Ep 73 - 13 October 2026 - George Megalogenis on Australia's 3 Great Shocks",
-          "p": "Curtin’s Cast",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 47,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 76,
-          "e": "As the Coalition veers right, should Albo hold the centre?",
-          "p": "7am",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 77,
-          "e": "Migration cuts: what's at stake for Australia's universities?",
-          "p": "Politics Now",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 86,
-          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
-          "p": "The Morning Edition",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 118,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 156,
-          "e": "Guardian Essential report: what do Australians really think about immigration?",
-          "p": "Australian Politics",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 215,
-          "e": "How real is Australia's immigration problem?",
-          "p": "The Morning Edition",
-          "d": "2026-09-28"
         }
       ]
     },
@@ -13200,13 +13200,13 @@
       "blurb": "US foreign policy and diplomacy.",
       "kind": "local",
       "facet": "local",
-      "count": 195,
-      "hours": 14.4,
+      "count": 196,
+      "hours": 14.46,
       "byYear": {
         "2019": 5,
         "2020": 7,
         "2021": 13,
-        "2022": 15,
+        "2022": 16,
         "2023": 15,
         "2024": 19,
         "2025": 66,
@@ -13215,7 +13215,7 @@
       "evidence": {
         "title": 26,
         "notes": 75,
-        "transcript": 94
+        "transcript": 95
       },
       "samples": [
         {
@@ -13269,89 +13269,16 @@
       ]
     },
     {
-      "id": "nuclear",
-      "name": "Nuclear",
-      "blurb": "Nuclear weapons and energy.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 222,
-      "hours": 13.51,
-      "byYear": {
-        "2019": 1,
-        "2021": 9,
-        "2022": 20,
-        "2023": 13,
-        "2024": 26,
-        "2025": 67,
-        "2026": 86
-      },
-      "evidence": {
-        "title": 2,
-        "notes": 37,
-        "transcript": 183
-      },
-      "samples": [
-        {
-          "i": 59,
-          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 236,
-          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
-          "p": "The Daily",
-          "d": "2026-09-25"
-        },
-        {
-          "i": 283,
-          "e": "The race to put weapons in space",
-          "p": "7am",
-          "d": "2026-09-21"
-        },
-        {
-          "i": 302,
-          "e": "The Alliance | Your questions answered",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-18"
-        },
-        {
-          "i": 314,
-          "e": "Trump vs China and the AI 'hoax'",
-          "p": "ABC News Daily",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 357,
-          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
-          "p": "The Daily",
-          "d": "2026-09-13"
-        },
-        {
-          "i": 364,
-          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-09-12"
-        },
-        {
-          "i": 614,
-          "e": "Ep 188: Missiles, Pacific integration and managed competition",
-          "p": "Australia in the World",
-          "d": "2026-08-19"
-        }
-      ]
-    },
-    {
       "id": "space",
       "name": "Space",
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 120,
-      "hours": 13.15,
+      "count": 121,
+      "hours": 13.87,
       "byYear": {
         "2021": 4,
-        "2022": 9,
+        "2022": 10,
         "2023": 11,
         "2024": 20,
         "2025": 31,
@@ -13360,7 +13287,7 @@
       "evidence": {
         "title": 3,
         "notes": 32,
-        "transcript": 85
+        "transcript": 86
       },
       "samples": [
         {
@@ -13410,6 +13337,79 @@
           "e": "The A.I. Revolt Is Here",
           "p": "The Ezra Klein Show",
           "d": "2026-08-05"
+        }
+      ]
+    },
+    {
+      "id": "nuclear",
+      "name": "Nuclear",
+      "blurb": "Nuclear weapons and energy.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 227,
+      "hours": 13.67,
+      "byYear": {
+        "2019": 1,
+        "2021": 9,
+        "2022": 20,
+        "2023": 13,
+        "2024": 31,
+        "2025": 67,
+        "2026": 86
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 37,
+        "transcript": 188
+      },
+      "samples": [
+        {
+          "i": 59,
+          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 236,
+          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
+          "p": "The Daily",
+          "d": "2026-09-25"
+        },
+        {
+          "i": 283,
+          "e": "The race to put weapons in space",
+          "p": "7am",
+          "d": "2026-09-21"
+        },
+        {
+          "i": 302,
+          "e": "The Alliance | Your questions answered",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-18"
+        },
+        {
+          "i": 314,
+          "e": "Trump vs China and the AI 'hoax'",
+          "p": "ABC News Daily",
+          "d": "2026-09-17"
+        },
+        {
+          "i": 357,
+          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
+          "p": "The Daily",
+          "d": "2026-09-13"
+        },
+        {
+          "i": 364,
+          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-09-12"
+        },
+        {
+          "i": 614,
+          "e": "Ep 188: Missiles, Pacific integration and managed competition",
+          "p": "Australia in the World",
+          "d": "2026-08-19"
         }
       ]
     },
@@ -13493,22 +13493,22 @@
       "blurb": "Broader culture and entertainment.",
       "kind": "domain",
       "facet": "domain",
-      "count": 107,
-      "hours": 12.3,
+      "count": 108,
+      "hours": 12.36,
       "byYear": {
         "2019": 5,
         "2020": 16,
         "2021": 13,
         "2022": 9,
         "2023": 17,
-        "2024": 11,
+        "2024": 12,
         "2025": 13,
         "2026": 23
       },
       "evidence": {
         "title": 51,
         "notes": 27,
-        "transcript": 29
+        "transcript": 30
       },
       "samples": [
         {
@@ -13567,21 +13567,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 209,
-      "hours": 11.83,
+      "count": 219,
+      "hours": 12.09,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 5,
-        "2023": 32,
-        "2024": 30,
+        "2023": 33,
+        "2024": 37,
         "2025": 61,
-        "2026": 78
+        "2026": 80
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 178
+        "transcript": 188
       },
       "samples": [
         {
@@ -13640,22 +13640,22 @@
       "blurb": "Sport beyond football.",
       "kind": "domain",
       "facet": "domain",
-      "count": 115,
-      "hours": 11.12,
+      "count": 116,
+      "hours": 11.19,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 15,
         "2022": 10,
         "2023": 10,
-        "2024": 36,
+        "2024": 37,
         "2025": 13,
         "2026": 24
       },
       "evidence": {
-        "title": 46,
+        "title": 45,
         "notes": 18,
-        "transcript": 51
+        "transcript": 53
       },
       "samples": [
         {
@@ -13709,100 +13709,26 @@
       ]
     },
     {
-      "id": "france-politics",
-      "name": "French politics",
-      "blurb": "French politics and Macron.",
-      "kind": "local",
-      "facet": "local",
-      "count": 88,
-      "hours": 10.89,
-      "byYear": {
-        "2019": 3,
-        "2020": 6,
-        "2021": 11,
-        "2022": 17,
-        "2023": 10,
-        "2024": 23,
-        "2025": 8,
-        "2026": 10
-      },
-      "evidence": {
-        "title": 43,
-        "notes": 31,
-        "transcript": 14
-      },
-      "samples": [
-        {
-          "i": 65,
-          "e": "Why France Is in Crisis",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 102,
-          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 141,
-          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 345,
-          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-14"
-        },
-        {
-          "i": 407,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 817,
-          "e": "Europe Is Burning",
-          "p": "The Daily",
-          "d": "2026-07-30"
-        },
-        {
-          "i": 831,
-          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-07-29"
-        },
-        {
-          "i": 966,
-          "e": "Marine Le Pen and the French far-right are back",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-07-17"
-        }
-      ]
-    },
-    {
       "id": "religion",
       "name": "Religion & belief",
       "blurb": "Religion and belief.",
       "kind": "domain",
       "facet": "domain",
-      "count": 121,
-      "hours": 10.74,
+      "count": 124,
+      "hours": 10.83,
       "byYear": {
         "2020": 3,
         "2021": 5,
         "2022": 8,
         "2023": 14,
-        "2024": 14,
+        "2024": 17,
         "2025": 43,
         "2026": 34
       },
       "evidence": {
         "title": 0,
         "notes": 21,
-        "transcript": 100
+        "transcript": 103
       },
       "samples": [
         {
@@ -13852,6 +13778,80 @@
           "e": "Is Christopher Nolan’s Odyssey conservative, woke, or something else entirely?",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-07-31"
+        }
+      ]
+    },
+    {
+      "id": "france-politics",
+      "name": "French politics",
+      "blurb": "French politics and Macron.",
+      "kind": "local",
+      "facet": "local",
+      "count": 88,
+      "hours": 10.83,
+      "byYear": {
+        "2019": 3,
+        "2020": 6,
+        "2021": 11,
+        "2022": 17,
+        "2023": 10,
+        "2024": 23,
+        "2025": 8,
+        "2026": 10
+      },
+      "evidence": {
+        "title": 42,
+        "notes": 31,
+        "transcript": 15
+      },
+      "samples": [
+        {
+          "i": 65,
+          "e": "Why France Is in Crisis",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 102,
+          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 141,
+          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 345,
+          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-14"
+        },
+        {
+          "i": 407,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 817,
+          "e": "Europe Is Burning",
+          "p": "The Daily",
+          "d": "2026-07-30"
+        },
+        {
+          "i": 831,
+          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-07-29"
+        },
+        {
+          "i": 966,
+          "e": "Marine Le Pen and the French far-right are back",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-07-17"
         }
       ]
     },
@@ -13934,13 +13934,13 @@
       "blurb": "Populist politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 65,
-      "hours": 9.71,
+      "count": 66,
+      "hours": 9.83,
       "byYear": {
         "2019": 2,
         "2020": 3,
         "2021": 2,
-        "2022": 1,
+        "2022": 2,
         "2023": 3,
         "2024": 3,
         "2025": 19,
@@ -13949,7 +13949,7 @@
       "evidence": {
         "title": 4,
         "notes": 37,
-        "transcript": 24
+        "transcript": 25
       },
       "samples": [
         {
@@ -14008,22 +14008,22 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 78,
-      "hours": 9.51,
+      "count": 80,
+      "hours": 9.63,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 2,
         "2022": 7,
         "2023": 9,
-        "2024": 18,
+        "2024": 20,
         "2025": 22,
         "2026": 17
       },
       "evidence": {
-        "title": 13,
+        "title": 11,
         "notes": 8,
-        "transcript": 57
+        "transcript": 61
       },
       "samples": [
         {
@@ -14082,21 +14082,21 @@
       "blurb": "Elections across Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 69,
-      "hours": 8.61,
+      "count": 70,
+      "hours": 8.65,
       "byYear": {
         "2020": 1,
         "2021": 1,
         "2022": 8,
         "2023": 4,
-        "2024": 21,
+        "2024": 22,
         "2025": 8,
         "2026": 26
       },
       "evidence": {
         "title": 19,
         "notes": 33,
-        "transcript": 17
+        "transcript": 18
       },
       "samples": [
         {
@@ -14155,22 +14155,22 @@
       "blurb": "Cybersecurity and espionage.",
       "kind": "domain",
       "facet": "domain",
-      "count": 82,
-      "hours": 8.27,
+      "count": 85,
+      "hours": 8.41,
       "byYear": {
         "2019": 3,
         "2020": 4,
         "2021": 8,
         "2022": 19,
-        "2023": 18,
-        "2024": 13,
+        "2023": 19,
+        "2024": 15,
         "2025": 6,
         "2026": 11
       },
       "evidence": {
         "title": 0,
         "notes": 49,
-        "transcript": 33
+        "transcript": 36
       },
       "samples": [
         {
@@ -14220,6 +14220,150 @@
           "e": "Nick McKenzie on how North Korean spies are infiltrating Australian companies",
           "p": "The Morning Edition",
           "d": "2026-03-31"
+        }
+      ]
+    },
+    {
+      "id": "ru-government",
+      "name": "Russian government",
+      "blurb": "Russian government and Kremlin.",
+      "kind": "local",
+      "facet": "local",
+      "count": 63,
+      "hours": 7.85,
+      "byYear": {
+        "2022": 10,
+        "2023": 11,
+        "2024": 7,
+        "2025": 19,
+        "2026": 16
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 21,
+        "transcript": 40
+      },
+      "samples": [
+        {
+          "i": 13,
+          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
+          "p": "Up First from NPR",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 35,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 89,
+          "e": "Russia is stealing and indoctrinating Ukraine's children",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 184,
+          "e": "Europe on edge from threats of Russia's growing escalation. Can NATO defend itself?",
+          "p": "Sources & Methods",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 429,
+          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-09-06"
+        },
+        {
+          "i": 875,
+          "e": "White House Correspondents’ Dinner, Ukraine hits Russian Retailer, India Protests",
+          "p": "Up First from NPR",
+          "d": "2026-07-25"
+        },
+        {
+          "i": 1052,
+          "e": "Iran Ceasefire Over, Platner Replacements Emerge, Olympic Committee Lifts Russia Ban",
+          "p": "Up First from NPR",
+          "d": "2026-07-08"
+        }
+      ]
+    },
+    {
+      "id": "weather-disasters",
+      "name": "Weather & disasters",
+      "blurb": "Storms, floods, fires, disasters.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 86,
+      "hours": 7.74,
+      "byYear": {
+        "2020": 1,
+        "2021": 2,
+        "2022": 6,
+        "2023": 16,
+        "2024": 19,
+        "2025": 23,
+        "2026": 19
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 18,
+        "transcript": 68
+      },
+      "samples": [
+        {
+          "i": 62,
+          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 66,
+          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 94,
+          "e": "Hurricane Isaias Prep, Competitive Midterm Races, Trump's Media Ban In Court",
+          "p": "Up First from NPR",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 140,
+          "e": "EP156: Rohingya Repatriation",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 225,
+          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
+          "p": "Up First from NPR",
+          "d": "2026-09-26"
+        },
+        {
+          "i": 429,
+          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-09-06"
+        },
+        {
+          "i": 471,
+          "e": "An avalanche survivor on the melting Himalayas",
+          "p": "ABC News Daily",
+          "d": "2026-09-01"
+        },
+        {
+          "i": 474,
+          "e": "Mud like quicksand: On the ground in Nepal",
+          "p": "The Morning Edition",
+          "d": "2026-09-01"
         }
       ]
     },
@@ -14298,146 +14442,75 @@
       ]
     },
     {
-      "id": "ru-government",
-      "name": "Russian government",
-      "blurb": "Russian government and Kremlin.",
-      "kind": "local",
-      "facet": "local",
-      "count": 60,
-      "hours": 7.46,
-      "byYear": {
-        "2022": 8,
-        "2023": 11,
-        "2024": 6,
-        "2025": 19,
-        "2026": 16
-      },
-      "evidence": {
-        "title": 2,
-        "notes": 21,
-        "transcript": 37
-      },
-      "samples": [
-        {
-          "i": 13,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 33,
-          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
-          "p": "Up First from NPR",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 35,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 89,
-          "e": "Russia is stealing and indoctrinating Ukraine's children",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 184,
-          "e": "Europe on edge from threats of Russia's growing escalation. Can NATO defend itself?",
-          "p": "Sources & Methods",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 429,
-          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-09-06"
-        },
-        {
-          "i": 875,
-          "e": "White House Correspondents’ Dinner, Ukraine hits Russian Retailer, India Protests",
-          "p": "Up First from NPR",
-          "d": "2026-07-25"
-        },
-        {
-          "i": 1052,
-          "e": "Iran Ceasefire Over, Platner Replacements Emerge, Olympic Committee Lifts Russia Ban",
-          "p": "Up First from NPR",
-          "d": "2026-07-08"
-        }
-      ]
-    },
-    {
-      "id": "weather-disasters",
-      "name": "Weather & disasters",
-      "blurb": "Storms, floods, fires, disasters.",
+      "id": "labor-unions",
+      "name": "Labor & unions",
+      "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 84,
-      "hours": 7.04,
+      "count": 156,
+      "hours": 7.2,
       "byYear": {
-        "2020": 1,
-        "2021": 2,
-        "2022": 5,
-        "2023": 16,
-        "2024": 19,
-        "2025": 23,
-        "2026": 18
+        "2020": 4,
+        "2021": 6,
+        "2022": 13,
+        "2023": 22,
+        "2024": 30,
+        "2025": 35,
+        "2026": 46
       },
       "evidence": {
         "title": 0,
-        "notes": 18,
-        "transcript": 66
+        "notes": 14,
+        "transcript": 142
       },
       "samples": [
         {
-          "i": 62,
-          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "i": 7,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 81,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 111,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
           "p": "Up First from NPR",
-          "d": "2026-10-12"
+          "d": "2026-10-07"
         },
         {
-          "i": 66,
-          "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
+          "i": 204,
+          "e": "He Was Deported to a Country He’d Never Heard Of",
+          "p": "The Daily",
+          "d": "2026-09-28"
         },
         {
-          "i": 94,
-          "e": "Hurricane Isaias Prep, Competitive Midterm Races, Trump's Media Ban In Court",
-          "p": "Up First from NPR",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 140,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 225,
-          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
-          "p": "Up First from NPR",
-          "d": "2026-09-26"
-        },
-        {
-          "i": 429,
-          "e": "Negotiators to Moscow and Kyiv, Judge Issues Order on Arch, Western Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-09-06"
-        },
-        {
-          "i": 471,
-          "e": "An avalanche survivor on the melting Himalayas",
-          "p": "ABC News Daily",
-          "d": "2026-09-01"
-        },
-        {
-          "i": 474,
-          "e": "Mud like quicksand: On the ground in Nepal",
+          "i": 323,
+          "e": "Could Australia join the European Union?",
           "p": "The Morning Edition",
-          "d": "2026-09-01"
+          "d": "2026-09-17"
+        },
+        {
+          "i": 505,
+          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
+          "p": "Durma com essa",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 536,
+          "e": "The Stunning Rise of the Democratic Socialists of America",
+          "p": "The Daily",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 578,
+          "e": "The $100,000-a-month market for Trump’s posts",
+          "p": "7am",
+          "d": "2026-08-24"
         }
       ]
     },
@@ -14447,22 +14520,22 @@
       "blurb": "LGBTQ+ rights and culture.",
       "kind": "frame",
       "facet": "frame",
-      "count": 52,
-      "hours": 6.93,
+      "count": 53,
+      "hours": 6.96,
       "byYear": {
         "2019": 1,
         "2020": 3,
         "2021": 6,
         "2022": 5,
         "2023": 11,
-        "2024": 6,
+        "2024": 7,
         "2025": 10,
         "2026": 10
       },
       "evidence": {
         "title": 17,
         "notes": 20,
-        "transcript": 15
+        "transcript": 16
       },
       "samples": [
         {
@@ -14521,21 +14594,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 190,
-      "hours": 6.69,
+      "count": 193,
+      "hours": 6.74,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
         "2023": 39,
-        "2024": 41,
+        "2024": 44,
         "2025": 31,
         "2026": 58
       },
       "evidence": {
         "title": 20,
         "notes": 64,
-        "transcript": 106
+        "transcript": 109
       },
       "samples": [
         {
@@ -14585,79 +14658,6 @@
           "e": "Fed Raises Interest Rates, Iran War and Oil Prices, EU-Canada Alliance",
           "p": "Up First from NPR",
           "d": "2026-09-18"
-        }
-      ]
-    },
-    {
-      "id": "labor-unions",
-      "name": "Labor & unions",
-      "blurb": "Labor, wages, strikes, unions.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 149,
-      "hours": 6.62,
-      "byYear": {
-        "2020": 4,
-        "2021": 6,
-        "2022": 9,
-        "2023": 22,
-        "2024": 28,
-        "2025": 35,
-        "2026": 45
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 14,
-        "transcript": 135
-      },
-      "samples": [
-        {
-          "i": 7,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 81,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 111,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 204,
-          "e": "He Was Deported to a Country He’d Never Heard Of",
-          "p": "The Daily",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 323,
-          "e": "Could Australia join the European Union?",
-          "p": "The Morning Edition",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 505,
-          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
-          "p": "Durma com essa",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 536,
-          "e": "The Stunning Rise of the Democratic Socialists of America",
-          "p": "The Daily",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 578,
-          "e": "The $100,000-a-month market for Trump’s posts",
-          "p": "7am",
-          "d": "2026-08-24"
         }
       ]
     },
@@ -14740,22 +14740,22 @@
       "blurb": "Advertising, agencies, and brands.",
       "kind": "domain",
       "facet": "domain",
-      "count": 72,
-      "hours": 5.78,
+      "count": 74,
+      "hours": 5.93,
       "byYear": {
         "2019": 2,
         "2020": 3,
         "2021": 8,
         "2022": 8,
         "2023": 10,
-        "2024": 15,
+        "2024": 17,
         "2025": 5,
         "2026": 21
       },
       "evidence": {
         "title": 4,
         "notes": 28,
-        "transcript": 40
+        "transcript": 42
       },
       "samples": [
         {
@@ -14887,21 +14887,21 @@
       "blurb": "Disinformation and fake news.",
       "kind": "domain",
       "facet": "domain",
-      "count": 72,
-      "hours": 5.3,
+      "count": 75,
+      "hours": 5.37,
       "byYear": {
         "2020": 6,
         "2021": 10,
         "2022": 5,
-        "2023": 10,
-        "2024": 11,
+        "2023": 11,
+        "2024": 13,
         "2025": 17,
         "2026": 13
       },
       "evidence": {
         "title": 0,
         "notes": 32,
-        "transcript": 40
+        "transcript": 43
       },
       "samples": [
         {
@@ -14955,97 +14955,26 @@
       ]
     },
     {
-      "id": "eu-far-right",
-      "name": "European far right",
-      "blurb": "Far-right parties and politics in Europe.",
-      "kind": "local",
-      "facet": "local",
-      "count": 40,
-      "hours": 5.2,
-      "byYear": {
-        "2022": 6,
-        "2023": 2,
-        "2024": 8,
-        "2025": 8,
-        "2026": 16
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 22,
-        "transcript": 12
-      },
-      "samples": [
-        {
-          "i": 141,
-          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 151,
-          "e": "Policy of rupture: How the AfD became Germany's most disruptive force",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 345,
-          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-14"
-        },
-        {
-          "i": 394,
-          "e": "How Giorgia Meloni built Italy's most stable government since Mussolini",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-09"
-        },
-        {
-          "i": 405,
-          "e": "Germany had ruled out extremist parties. Then came this election win",
-          "p": "The Morning Edition",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 407,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 419,
-          "e": "Miami Plane Crash, Witkoff & Kushner Visit Ukraine, Far-Right AfD Wins In Germany",
-          "p": "Up First from NPR",
-          "d": "2026-09-07"
-        },
-        {
-          "i": 420,
-          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-07"
-        }
-      ]
-    },
-    {
       "id": "psychology-behaviour",
       "name": "Psychology & behaviour",
       "blurb": "Psychology and behaviour.",
       "kind": "domain",
       "facet": "domain",
-      "count": 68,
-      "hours": 5.18,
+      "count": 70,
+      "hours": 5.3,
       "byYear": {
         "2020": 4,
         "2021": 2,
         "2022": 7,
         "2023": 13,
-        "2024": 15,
+        "2024": 17,
         "2025": 10,
         "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 44
+        "transcript": 46
       },
       "samples": [
         {
@@ -15099,27 +15028,98 @@
       ]
     },
     {
+      "id": "eu-far-right",
+      "name": "European far right",
+      "blurb": "Far-right parties and politics in Europe.",
+      "kind": "local",
+      "facet": "local",
+      "count": 41,
+      "hours": 5.25,
+      "byYear": {
+        "2022": 6,
+        "2023": 2,
+        "2024": 9,
+        "2025": 8,
+        "2026": 16
+      },
+      "evidence": {
+        "title": 6,
+        "notes": 22,
+        "transcript": 13
+      },
+      "samples": [
+        {
+          "i": 141,
+          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 151,
+          "e": "Policy of rupture: How the AfD became Germany's most disruptive force",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 345,
+          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-14"
+        },
+        {
+          "i": 394,
+          "e": "How Giorgia Meloni built Italy's most stable government since Mussolini",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-09"
+        },
+        {
+          "i": 405,
+          "e": "Germany had ruled out extremist parties. Then came this election win",
+          "p": "The Morning Edition",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 407,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 419,
+          "e": "Miami Plane Crash, Witkoff & Kushner Visit Ukraine, Far-Right AfD Wins In Germany",
+          "p": "Up First from NPR",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 420,
+          "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-07"
+        }
+      ]
+    },
+    {
       "id": "india-government",
       "name": "Indian government",
       "blurb": "Indian government and BJP/Congress politics.",
       "kind": "local",
       "facet": "local",
-      "count": 31,
-      "hours": 5.08,
+      "count": 32,
+      "hours": 5.16,
       "byYear": {
         "2019": 1,
         "2020": 1,
         "2021": 1,
         "2022": 4,
         "2023": 8,
-        "2024": 7,
+        "2024": 8,
         "2025": 7,
         "2026": 2
       },
       "evidence": {
         "title": 0,
         "notes": 23,
-        "transcript": 8
+        "transcript": 9
       },
       "samples": [
         {
@@ -15534,8 +15534,8 @@
       "blurb": "Corruption and graft scandals.",
       "kind": "domain",
       "facet": "domain",
-      "count": 63,
-      "hours": 3.55,
+      "count": 64,
+      "hours": 3.62,
       "byYear": {
         "2020": 1,
         "2021": 5,
@@ -15543,12 +15543,12 @@
         "2023": 3,
         "2024": 12,
         "2025": 12,
-        "2026": 20
+        "2026": 21
       },
       "evidence": {
         "title": 0,
         "notes": 16,
-        "transcript": 47
+        "transcript": 48
       },
       "samples": [
         {
@@ -15607,20 +15607,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 87,
-      "hours": 3.41,
+      "count": 89,
+      "hours": 3.45,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 5,
-        "2024": 6,
-        "2025": 56,
+        "2024": 7,
+        "2025": 57,
         "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 66
+        "transcript": 68
       },
       "samples": [
         {
@@ -15893,21 +15893,21 @@
       "blurb": "Elections in India.",
       "kind": "local",
       "facet": "local",
-      "count": 14,
-      "hours": 2.31,
+      "count": 15,
+      "hours": 2.39,
       "byYear": {
         "2019": 1,
         "2020": 1,
         "2022": 1,
         "2023": 2,
-        "2024": 5,
+        "2024": 6,
         "2025": 1,
         "2026": 3
       },
       "evidence": {
         "title": 6,
         "notes": 7,
-        "transcript": 1
+        "transcript": 2
       },
       "samples": [
         {
@@ -15947,16 +15947,16 @@
           "d": "2024-06-06"
         },
         {
+          "i": 8678,
+          "e": "Voters give India’s Modi a reality check",
+          "p": "ABC News Daily",
+          "d": "2024-06-05"
+        },
+        {
           "i": 8731,
           "e": "Insights into the Indian Elections with Dr. Ronojoy Sen",
           "p": "Asia In-Depth",
           "d": "2024-06-01"
-        },
-        {
-          "i": 8965,
-          "e": "One Strongman, One Billion Voters, and the Future of India",
-          "p": "The Daily",
-          "d": "2024-05-10"
         }
       ]
     },
