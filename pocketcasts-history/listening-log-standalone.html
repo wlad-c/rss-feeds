@@ -110,6 +110,14 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
+  /*
+   * Page inline inset — always ≥16px, plus device safe-area.
+   * Prefer padding-based gutters (see .wrap) over width:calc(100%-N):
+   * overflowing flex children must not paint into the screen edge.
+   */
+  --page-inline: 16px;
+  --inset-left: max(var(--page-inline), var(--safe-left));
+  --inset-right: max(var(--page-inline), var(--safe-right));
   --tab-bar-h: 0px;
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -172,8 +180,17 @@ html {
   /* hidden before clip: older iOS ignores clip and then rubber-bands sideways */
   overflow-x: hidden;
   overflow-x: clip;
+  overscroll-behavior-x: none;
   max-width: 100%;
   width: 100%;
+}
+
+/* Runtime class from guardHorizontalOverflow() — belt-and-suspenders on iOS */
+html.edge-lock,
+html.edge-lock body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  overscroll-behavior-x: none !important;
 }
 
 body {
@@ -183,6 +200,7 @@ body {
   width: 100%;
   overflow-x: hidden;
   overflow-x: clip;
+  overscroll-behavior-x: none;
   color: var(--label);
   font-family: var(--font);
   font-size: 17px;
@@ -195,8 +213,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-bottom: calc(var(--tab-bar-h) + var(--safe-bottom));
-  padding-left: var(--safe-left);
-  padding-right: var(--safe-right);
+  /* Horizontal insets live on .wrap / fixed overlays — not body — so position:fixed
+     chrome shares the same gutter tokens and cannot escape into the unsafe edge. */
+  padding-left: 0;
+  padding-right: 0;
   transition: background-color 240ms var(--ease-out), color 200ms var(--ease-out);
 }
 
@@ -214,11 +234,14 @@ button, input, select { font: inherit; color: inherit; }
 .wrap {
   position: relative;
   z-index: 1;
-  width: min(980px, calc(100% - 32px));
+  width: min(980px, 100%);
   max-width: 100%;
   min-width: 0;
   margin: 0 auto;
+  padding-left: var(--inset-left);
+  padding-right: var(--inset-right);
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* ——— Chrome bar (Liquid Glass) ——— */
@@ -242,7 +265,8 @@ button, input, select { font: inherit; color: inherit; }
   min-height: 52px;
   min-width: 0;
   max-width: 100%;
-  padding: 8px 0;
+  /* padding-block only — padding-inline comes from .wrap (--inset-*) */
+  padding-block: 8px;
   overflow: hidden;
 }
 
@@ -432,7 +456,10 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 .glass-surface,
 .period-bar {
   margin: 0 auto;
-  padding: 10px 12px;
+  /* Do not use padding shorthand here when .period-bar also has .wrap — that
+     would zero --inset-* gutters. Desktop glass gets a little extra inline pad. */
+  padding-block: 10px;
+  padding-inline: max(12px, var(--inset-left)) max(12px, var(--inset-right));
   border-radius: var(--radius-lg);
   background: var(--glass);
   border: 0.5px solid var(--glass-border);
@@ -441,6 +468,12 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   -webkit-backdrop-filter: saturate(180%) blur(28px);
   display: grid;
   gap: 8px;
+}
+
+/* .period-bar.wrap: page inset is enough; avoid double horizontal padding */
+.wrap.period-bar,
+.period-bar.wrap {
+  padding-inline: var(--inset-left) var(--inset-right);
 }
 
 .period-toolbar {
@@ -595,7 +628,7 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   align-items: center;
   flex-shrink: 0;
   min-height: 48px;
-  padding: 6px max(16px, var(--safe-right)) 6px max(16px, var(--safe-left));
+  padding: 6px var(--inset-right) 6px var(--inset-left);
   border-bottom: 0.5px solid var(--separator);
   background: var(--grouped-bg-elevated);
 }
@@ -619,7 +652,7 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
 
 .combo-picker-search {
   flex-shrink: 0;
-  padding: 10px max(16px, var(--safe-right)) 8px max(16px, var(--safe-left));
+  padding: 10px var(--inset-right) 8px var(--inset-left);
   background: var(--grouped-bg);
 }
 
@@ -647,7 +680,7 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   min-height: 0;
   min-width: 0;
   margin: 0;
-  padding: 4px max(12px, var(--safe-right)) calc(12px + var(--safe-bottom)) max(12px, var(--safe-left));
+  padding: 4px var(--inset-right) calc(12px + var(--safe-bottom)) var(--inset-left);
   list-style: none;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -1607,12 +1640,14 @@ footer {
 .tab-bar {
   display: none;
   position: fixed;
-  left: max(10px, var(--safe-left));
-  right: max(10px, var(--safe-right));
+  /* left+right only — never also width/max-width:100% (over-constrains and clips) */
+  left: var(--inset-left);
+  right: var(--inset-right);
   bottom: max(8px, var(--safe-bottom));
   z-index: 50;
   height: 58px;
-  max-width: 100%;
+  width: auto;
+  max-width: none;
   box-sizing: border-box;
   padding: 4px 4px;
   border-radius: 22px;
@@ -1736,9 +1771,8 @@ body.is-filtering #periodSummary {
   :root { --tab-bar-h: 88px; }
 
   .wrap {
-    width: min(980px, calc(100% - 32px));
-    padding-left: 0;
-    padding-right: 0;
+    width: min(980px, 100%);
+    /* keep --inset-left/right padding — do not zero it on mobile */
   }
 
   .chrome-tabs { display: none; }
@@ -1776,7 +1810,8 @@ body.is-filtering #periodSummary {
   }
 
   .period-bar {
-    padding: 8px 0;
+    /* keep padding-inline from .wrap / .wrap.period-bar — only tighten block */
+    padding-block: 8px;
     gap: 0;
     border: 0;
     border-radius: 0;
@@ -1902,11 +1937,12 @@ body.is-filtering #periodSummary {
     right: 0;
     bottom: 0;
     z-index: 90;
-    width: 100%;
-    max-width: 100%;
+    /* width from left/right only — avoid width:100% + left/right over-constraint */
+    width: auto;
+    max-width: none;
     box-sizing: border-box;
     max-height: min(78dvh, 640px);
-    padding: 0 max(var(--safe-right), 0px) max(14px, var(--safe-bottom)) max(var(--safe-left), 0px);
+    padding: 0 var(--inset-right) max(14px, var(--safe-bottom)) var(--inset-left);
     border-radius: 14px 14px 0 0;
     background: var(--grouped-bg);
     border: 0.5px solid var(--separator);
@@ -1919,7 +1955,8 @@ body.is-filtering #periodSummary {
   .filter-sheet-chrome {
     display: block;
     flex-shrink: 0;
-    padding: 8px 16px 4px;
+    /* horizontal inset comes from the sheet; keep vertical chrome padding only */
+    padding: 8px 0 4px;
     border-bottom: 0.5px solid var(--separator);
     background: var(--grouped-bg);
   }
@@ -1983,7 +2020,8 @@ body.is-filtering #periodSummary {
     overflow: hidden;
   }
 
-  /* Inset grouped list — Apple Settings / filter sheet pattern */
+  /* Inset grouped list — Apple Settings / filter sheet pattern.
+     Horizontal page inset already applied on .filter-sheet. */
   .filter-sheet-body .period-controls {
     display: flex;
     flex-direction: column;
@@ -1991,7 +2029,7 @@ body.is-filtering #periodSummary {
     gap: 0;
     align-content: start;
     align-items: stretch;
-    margin: 12px 16px;
+    margin: 12px 0;
     padding: 0;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -3321,6 +3359,20 @@ body.is-filtering #periodSummary {
     root.setProperty("--vv-left", `${Math.round(left)}px`);
     root.setProperty("--vv-width", `${Math.round(width)}px`);
     root.setProperty("--vv-height", `${Math.round(height)}px`);
+  }
+
+  /** Last-resort lock: if anything expands the page sideways, pin scroll and clip. */
+  function guardHorizontalOverflow() {
+    const root = document.documentElement;
+    const spill = root.scrollWidth - window.innerWidth;
+    if (spill > 1) {
+      root.classList.add("edge-lock");
+      if (window.scrollX || root.scrollLeft) {
+        window.scrollTo(0, window.scrollY || window.pageYOffset || 0);
+      }
+    } else {
+      root.classList.remove("edge-lock");
+    }
   }
 
   let comboPickerState = null;
@@ -6060,8 +6112,11 @@ body.is-filtering #periodSummary {
       setFilterSheetOpen(false);
     });
     const onViewport = () => {
-      if (document.body.classList.contains("combo-picker-open")) syncVisualViewportVars();
+      syncVisualViewportVars();
+      guardHorizontalOverflow();
     };
+    syncVisualViewportVars();
+    guardHorizontalOverflow();
     window.visualViewport?.addEventListener("resize", onViewport);
     window.visualViewport?.addEventListener("scroll", onViewport);
     window.matchMedia("(max-width: 860px)").addEventListener("change", () => {
@@ -6071,11 +6126,15 @@ body.is-filtering #periodSummary {
       placeFilterToggle();
       placeFilterPanel(false);
       layoutDesktopFilterOverflow();
+      guardHorizontalOverflow();
     });
     let filterLayoutTimer = 0;
     window.addEventListener("resize", () => {
       clearTimeout(filterLayoutTimer);
-      filterLayoutTimer = window.setTimeout(() => layoutDesktopFilterOverflow(), 80);
+      filterLayoutTimer = window.setTimeout(() => {
+        layoutDesktopFilterOverflow();
+        guardHorizontalOverflow();
+      }, 80);
     });
 
     $("#periodClear")?.addEventListener("click", () => clearAllFilters());

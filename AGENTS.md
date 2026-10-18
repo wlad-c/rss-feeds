@@ -26,23 +26,42 @@ If CI is still running, wait for required checks when feasible, then merge. Do *
 
 This has recurred across multiple fixes. Treat it as a **hard ship gate**, not a nice-to-have.
 
-Before merging or deploying any change that touches Listening Log layout, filters, chrome, pickers, charts, or CSS/HTML/JS under `pocketcasts-history/` or `docs/`, agents **must** verify the live UI on a phone-width viewport and confirm **no content is clipped on the left or right**.
+Before merging or deploying any change that touches Listening Log layout, filters, chrome, pickers, charts, or CSS/HTML/JS under `pocketcasts-history/` or `docs/`, agents **must**:
 
-### Required checks (block ship if any fail)
+1. Keep the **padding-inset architecture** (do not regress it).
+2. Run the automated edge check and fix until it passes.
+3. Confirm screenshots still look inset on phone widths.
 
-Run the explorer at **≤430 CSS px** wide (also spot-check **390** and **320**). With a **long show title** selected (e.g. RapaduraCast / Ghibliotheque):
+### Architecture (do not break)
 
-1. **Chrome bar:** brand, Eps/Hours, theme toggle, and Refresh are fully visible — nothing cut by the screen edge.
-2. **Filter row:** Show field truncates with ellipsis *inside* its control; the Filters button is fully visible with clear right inset.
-3. **Shows / combo picker:** Cancel, title, Done, search field, and list text all have horizontal inset; no letter clipped (`ancel` / `Don` / flush list text = fail).
-4. **Page shell:** `document.documentElement.scrollWidth <= window.innerWidth` (no horizontal page scroll). Fixed overlays (picker, sheets, tab bar) stay inside the visual viewport.
+Horizontal inset is owned by CSS tokens, not one-off margins:
 
-### Known failure modes to re-test after CSS/flex changes
+- `--page-inline` (min 16px) + `--safe-left/right` → `--inset-left` / `--inset-right`
+- `.wrap` uses **`padding-inline: var(--inset-*)`** and `width: min(980px, 100%)` — **not** `width: calc(100% - Npx)` with zero padding (overflowing children paint into the gutter and off-screen)
+- Elements that also use `.wrap` (`.chrome-inner`, `.period-bar`) must set **`padding-block` only** — never `padding: Npx 0` / shorthand that resets inline inset to 0 (this was the recurring root cause)
+- Fixed UI (tab bar, filter sheet, combo picker chrome) must use the same `--inset-*` tokens
+- Never combine `left` + `right` + `width: 100%` / `max-width: 100%` on fixed elements (over-constrains and clips Cancel/Done)
+- Body does **not** carry horizontal safe padding (fixed layers ignore it)
 
-- iOS Safari: `input[type=search]` / combo inputs ignore `min-width: 0` for flex min-content — long values push Filters off-screen unless the Show flex item is forced to shrink (`flex: 1 1 0; width: 0; overflow: hidden`) and inputs are capped at `max-width: 100%`.
-- `position: fixed` pickers at `left: 0; right: 0` ignore body safe-area padding and misalign when `visualViewport.offsetLeft` ≠ 0 — pin with `--vv-left` / `--vv-width` and pad with `max(…, var(--safe-left/right))`.
-- `overflow-x: clip` alone is not enough on older iOS — keep `overflow-x: hidden` as a fallback on `html`/`body` and contain chrome / period-dock overflow.
+### Required automated check (block ship if it fails)
 
-### How to prove it
+```bash
+cd pocketcasts-history && python3 -m http.server 8765
+# other terminal:
+node pocketcasts-history/scripts/check_mobile_edges.mjs http://127.0.0.1:8765
+```
 
-Prefer a real device or Puppeteer/Chrome at mobile viewport widths. Save at least one screenshot of (a) the filter row with a long show name and (b) the open Shows picker. **Do not merge/deploy if either shows edge clipping.** If a layout change cannot pass these checks, fix it in the same PR before shipping.
+The script fails the process if chrome tools, Filters, the filter sheet, or the Shows picker spill past the viewport at **430 / 390 / 320** CSS px (including a long show title). **Do not merge/deploy on failure.**
+
+### Manual spot checks
+
+With a long show title selected:
+
+1. Chrome: brand, Eps/Hours, theme, Refresh fully visible with clear side inset
+2. Filter row: Show truncates inside its control; Filters fully visible
+3. Shows picker + Filters sheet: Cancel/Clear/Done fully visible (not `ancel` / `Don`)
+4. `document.documentElement.scrollWidth <= window.innerWidth`
+
+### Deploy note
+
+GitHub Pages serves **`main:/docs`**. Also update **`gh-pages`** for the jsDelivr mirror, bump `?v=` cache-bust on CSS/JS, and purge jsDelivr — stale CDN HTML has repeatedly made “fixed” builds look broken on device.

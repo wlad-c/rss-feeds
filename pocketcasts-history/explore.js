@@ -807,6 +807,20 @@
     root.setProperty("--vv-height", `${Math.round(height)}px`);
   }
 
+  /** Last-resort lock: if anything expands the page sideways, pin scroll and clip. */
+  function guardHorizontalOverflow() {
+    const root = document.documentElement;
+    const spill = root.scrollWidth - window.innerWidth;
+    if (spill > 1) {
+      root.classList.add("edge-lock");
+      if (window.scrollX || root.scrollLeft) {
+        window.scrollTo(0, window.scrollY || window.pageYOffset || 0);
+      }
+    } else {
+      root.classList.remove("edge-lock");
+    }
+  }
+
   let comboPickerState = null;
 
   function ensureComboPickerHost() {
@@ -3544,8 +3558,11 @@
       setFilterSheetOpen(false);
     });
     const onViewport = () => {
-      if (document.body.classList.contains("combo-picker-open")) syncVisualViewportVars();
+      syncVisualViewportVars();
+      guardHorizontalOverflow();
     };
+    syncVisualViewportVars();
+    guardHorizontalOverflow();
     window.visualViewport?.addEventListener("resize", onViewport);
     window.visualViewport?.addEventListener("scroll", onViewport);
     window.matchMedia("(max-width: 860px)").addEventListener("change", () => {
@@ -3555,11 +3572,15 @@
       placeFilterToggle();
       placeFilterPanel(false);
       layoutDesktopFilterOverflow();
+      guardHorizontalOverflow();
     });
     let filterLayoutTimer = 0;
     window.addEventListener("resize", () => {
       clearTimeout(filterLayoutTimer);
-      filterLayoutTimer = window.setTimeout(() => layoutDesktopFilterOverflow(), 80);
+      filterLayoutTimer = window.setTimeout(() => {
+        layoutDesktopFilterOverflow();
+        guardHorizontalOverflow();
+      }, 80);
     });
 
     $("#periodClear")?.addEventListener("click", () => clearAllFilters());
