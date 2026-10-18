@@ -70,12 +70,11 @@ YT_CHANNELS: dict[str, dict] = {
     },
     "ABC News Daily": {
         "handle": "@abcnewsaustralia",
-        # Dedicated podcast playlist exists on the channel Podcasts tab
-        # (PLn2RjxYNpcazZe2QhC7vAjasGOYFNifcT) but yt-dlp/YouTube return
-        # "playlist does not exist" for that id — harvest via uploads instead.
-        "playlist": "PLn2RjxYNpcazZe2QhC7vAjasGOYFNifcT",
+        # Podcasts-tab playlist id exists in the UI but yt-dlp gets
+        # "playlist does not exist"; channel search returns the series cleanly.
+        "channel_search": "ABC News Daily",
         "title_must": "abc news daily",
-        # ~39 titled uploads in the latest 1500 @abcnewsaustralia videos.
+        # Fallback if search is thin: ~42 titled uploads in latest 1600 videos.
         "channel_limit": 1600,
         # Episode titles are a near-exact prefix of YT
         # "… | ABC News Daily podcast"; low thresholds steal videos via
@@ -83,24 +82,21 @@ YT_CHANNELS: dict[str, dict] = {
         "min_score": 0.85,
         "reject_title": [],
     },
-    # Politics Now: full episodes are NOT on YouTube. @abcnewsaustralia has
-    # zero "Politics Now" uploads in the latest 1500 videos; Insiders clips
-    # (interview segments) are not the podcast. Skip rather than force matches.
+    # Daily Politics Now audio (~30 min) is not on YouTube — only short promo
+    # clips. Episodes tagged "| Insiders On Background" in the feed DO match
+    # the Insiders On Background playlist on @ABCNewsIndepth (~25 min).
     "Politics Now": {
-        "handle": "@abcnewsaustralia",
-        "skip_youtube": True,
-        "skip_reason": (
-            "Full Politics Now episodes are not published on YouTube; "
-            "only Insiders interview clips appear on @abcnewsaustralia."
-        ),
-        "title_must": "politics now",  # would filter to empty; belt+suspenders
+        "handle": "@ABCNewsIndepth",
+        "playlist": "PLDTPrMoGHssDd3-ICckOsBZwpp3IEDxYs",
+        "playlist_only": True,
+        "title_must": ["insiders", "insiders on background"],
+        "min_score": 0.72,
         "reject_title": [
             "abc news daily",
             "news breakfast",
             "7.30",
             "four corners",
             "lateline",
-            "insiders",
         ],
     },
     "Up First from NPR": {
@@ -113,21 +109,27 @@ YT_CHANNELS: dict[str, dict] = {
         "title_must": None,
         "reject_title": [],
     },
-    # Full episodes publish on the g1 channel (legacy @oassunto is stale).
-    # English uploads often end with "| THE SUBJECT" (literal translation).
+    # Full episodes live on g1's "O Assunto" playlist (legacy @oassunto is stale).
+    # EN uploads end with "| THE SUBJECT" / "| THE TOPIC" / "| THE MATTER".
     "O Assunto": {
         "handle": "@g1globo",
-        "title_must": ["o assunto", "the subject"],
-        "reject_title": [],
+        "playlist": "PLU_2p8ieYan5oe6zOciXRO3uPdBsrQrdN",
+        "playlist_only": True,
+        "title_must": ["o assunto", "the subject", "the topic", "the matter"],
+        "reject_title": ["o assunto - cortes", "cortes |"],
         # PT episode titles vs EN YouTube titles score poorly on text alone;
         # blend in duration proximity when the show marker is present.
         "cross_lang": True,
         "search_fallback": True,
     },
+    # Full episodes on revista piauí ("Foro de Teresina" / "Teresina Forum").
     "Foro de Teresina": {
         "handle": "@revistapiaui",
-        "title_must": "foro de teresina",
-        "reject_title": [],
+        "playlist": "PLn_YkZF2TTNsQjrIOyqOsJilCV9FCtYb7",
+        "playlist_only": True,
+        "title_must": ["foro de teresina", "teresina forum"],
+        "reject_title": ["berro do boi"],
+        "cross_lang": True,
     },
     "Xadrez Verbal": {
         "handle": "@XadrezVerbal",
@@ -139,8 +141,15 @@ YT_CHANNELS: dict[str, dict] = {
         "title_must": None,
         "reject_title": [],
     },
+    # Full Sinica episodes are not published on YouTube. @SinicaPodcast only
+    # has "China Talking Points"; @TheChinaProject has trailers/anniversaries.
     "Sinica Podcast": {
         "handle": "@SinicaPodcast",
+        "skip_youtube": True,
+        "skip_reason": (
+            "Full Sinica Podcast episodes are not on YouTube "
+            "(@SinicaPodcast is China Talking Points only)."
+        ),
         "title_must": None,
         "reject_title": [],
     },
@@ -1096,50 +1105,73 @@ def match_via_search(
 ) -> dict | None:
     hint = YT_SHOW_HINTS.get(podcast, podcast)
     conf = YT_CHANNELS.get(podcast) or {}
-    queries = [
-        f"{hint} {episode_title}",
-        f"{podcast} {episode_title}",
-        f'"{episode_title}" {podcast}',
-    ]
-    # g1 English uploads: search with show markers helps surface THE SUBJECT.
-    if conf.get("cross_lang") or podcast == "O Assunto":
-        queries = [
+    cross = bool(conf.get("cross_lang") or podcast == "O Assunto")
+    # Primary queries first — rank-1 + duration is a strong PT↔EN signal.
+    if cross:
+        primary_queries = [
             f"{episode_title} O ASSUNTO",
             f"{episode_title} THE SUBJECT",
-            f"O ASSUNTO {episode_title}",
-            *queries,
         ]
-    results: list[dict] = []
-    seen: set[str] = set()
-    for q in queries:
-        for r in yt_search(q, n=search_n):
-            if r["id"] in seen:
-                continue
-            seen.add(r["id"])
-            results.append(r)
-        # Keep gathering a bit for cross-lang so EN title variants appear.
-        if results and not conf.get("cross_lang"):
-            break
-        if len(results) >= search_n * 2:
-            break
-    if not results:
-        return None
+        secondary_queries = [
+            f"O ASSUNTO {episode_title}",
+            f"{hint} {episode_title}",
+            f"{podcast} {episode_title}",
+            f'"{episode_title}" {podcast}',
+        ]
+    else:
+        primary_queries = []
+        secondary_queries = [
+            f"{hint} {episode_title}",
+            f"{podcast} {episode_title}",
+            f'"{episode_title}" {podcast}',
+        ]
+
+    ep_dict = ep or {"e": episode_title}
     best = None
     best_score = 0.0
-    ep_dict = ep or {"e": episode_title}
-    for r in results:
+    seen: set[str] = set()
+
+    def consider(r: dict, *, primary_rank: int | None) -> None:
+        nonlocal best, best_score
         if not video_allowed(podcast, r["title"]):
-            continue
+            return
         score = episode_video_score(
             podcast, ep_dict, r["title"], r.get("duration")
         )
+        dscore = duration_score(ep_dict.get("dur"), r.get("duration"))
+        # Exact-title search + show marker: trust top hit when length fits.
+        if primary_rank is not None and primary_rank == 0 and dscore >= 0.5:
+            score = max(score, 0.42 + 0.40 * dscore + 0.18 * min(score, 1.0))
+        elif primary_rank is not None and primary_rank <= 2 and dscore >= 0.8:
+            score = max(score, 0.36 + 0.35 * dscore + 0.20 * min(score, 1.0))
         if score > best_score:
             best_score = score
             best = r
+
+    for q in primary_queries:
+        hits = yt_search(q, n=search_n)
+        for rank, r in enumerate(hits):
+            if r["id"] in seen:
+                continue
+            seen.add(r["id"])
+            consider(r, primary_rank=rank)
+        if best_score >= 0.55:
+            break
+
+    if best_score < 0.55:
+        for q in secondary_queries:
+            for r in yt_search(q, n=search_n):
+                if r["id"] in seen:
+                    continue
+                seen.add(r["id"])
+                consider(r, primary_rank=None)
+            if best_score >= 0.55 or (best and not cross):
+                break
+
     if conf.get("min_score") is not None:
         thr = float(conf["min_score"])
-    elif conf.get("cross_lang"):
-        thr = 0.40
+    elif cross:
+        thr = 0.45
     else:
         thr = 0.48
     if not best or best_score < thr:
