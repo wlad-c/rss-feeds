@@ -39,10 +39,11 @@
       }
     }
   },
-  "lastCheckpoint": "2026-10-18T16:29Z",
-  "youtubeCount": 1978,
-  "sttCount": 100,
+  "lastCheckpoint": "2026-10-18T16:47Z",
+  "youtubeCount": 2019,
+  "sttCount": 108,
   "dailyYoutube": 1016,
   "abcYoutube": 537,
-  "misaligned": 0
+  "misaligned": 0,
+  "note": "recovered ghost DB after writers held deleted inode; abc 578"
 }
