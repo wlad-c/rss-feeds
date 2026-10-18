@@ -1,25 +1,21 @@
 {
   "harvest": {
-    "tried": 22,
-    "fetched": 22,
-    "upserted": 22,
+    "tried": 0,
+    "fetched": 0,
+    "upserted": 0,
     "noCaptions": 0,
     "rateLimited": 0,
-    "pairs": 22,
-    "byBackend": {
-      "yt_transcript_net": 22
-    },
-    "byShow": {
-      "Politics Now": 22
-    },
+    "pairs": 0,
+    "byBackend": {},
+    "byShow": {},
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8836,
-    "withPublisherOrSttTranscript": 2133,
-    "withLongText2000plus": 2594,
-    "pctTranscript": 9.69,
-    "pctLongText": 11.79,
+    "withAnyText": 8936,
+    "withPublisherOrSttTranscript": 2233,
+    "withLongText2000plus": 2694,
+    "pctTranscript": 10.15,
+    "pctLongText": 12.24,
     "bySrc": {
       "show-notes": {
         "count": 6703,
@@ -34,8 +30,8 @@
         "chars": 31872197
       },
       "youtube": {
-        "count": 428,
-        "chars": 17530023
+        "count": 528,
+        "chars": 19510625
       }
     }
   }
