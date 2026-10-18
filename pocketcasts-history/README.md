@@ -90,6 +90,25 @@ python3 scripts/fetch_publisher_transcripts.py
 python3 scripts/fetch_omny_transcripts.py
 ```
 
+
+## Theme refresh (hourly)
+
+When new full transcripts land in `transcripts/full.sqlite` (e.g. ongoing Gemini
+harvests), themes are rebuilt with within-episode **time shares**:
+
+```bash
+# Check fingerprint; rebuild + sync docs only when the store changed
+python3 scripts/refresh_themes_from_transcripts.py
+
+# Also pull a richer store from a harvest branch first
+python3 scripts/refresh_themes_from_transcripts.py \
+  --adopt-remote-branch cursor/xv-gemini-transcripts-8084
+```
+
+**Schedule:** GitHub Action **Listening Log theme refresh** runs hourly (`:17` UTC)
+and adopts `cursor/xv-gemini-transcripts-8084` when that branch has more transcript
+chars than `main`. Manual: Actions → Listening Log theme refresh → Run workflow.
+
 ## Daily sync
 
 Refresh listening history from Pocket Casts (needs `POCKETCAST_EMAIL` / `POCKETCAST_PASSWORD`):

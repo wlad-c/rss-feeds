@@ -1,0 +1,78 @@
+name: Listening Log theme refresh
+
+# Hourly: if transcripts/full.sqlite gained new full-text evidence (or a harvest
+# branch has a richer store), rebuild themes with within-episode time shares and
+# push updated tables/docs to main.
+on:
+  schedule:
+    - cron: "17 * * * *" # hourly at :17 UTC
+  workflow_dispatch:
+    inputs:
+      adopt_branch:
+        description: "Optional remote branch to adopt a richer transcript store from"
+        required: false
+        default: "cursor/xv-gemini-transcripts-8084"
+      force:
+        description: "Force rebuild even if fingerprint unchanged"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: listening-log-theme-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Refresh themes if transcripts changed
+        id: refresh
+        env:
+          ADOPT_BRANCH: ${{ github.event.inputs.adopt_branch || 'cursor/xv-gemini-transcripts-8084' }}
+          FORCE: ${{ github.event.inputs.force || 'false' }}
+        run: |
+          set -euo pipefail
+          ARGS=(python3 pocketcasts-history/scripts/refresh_themes_from_transcripts.py)
+          if [ -n "${ADOPT_BRANCH}" ]; then
+            ARGS+=(--adopt-remote-branch "${ADOPT_BRANCH}")
+          fi
+          if [ "${FORCE}" = "true" ]; then
+            ARGS+=(--force)
+          fi
+          "${ARGS[@]}" | tee /tmp/theme-refresh.log
+          if grep -q "unchanged — themes already match" /tmp/theme-refresh.log; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push if changed
+        if: steps.refresh.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pocketcasts-history/ docs/
+          if git diff --staged --quiet; then
+            echo "No file changes after refresh"
+            exit 0
+          fi
+          git commit -m "Hourly theme refresh from new transcripts ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push origin HEAD:main
