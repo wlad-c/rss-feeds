@@ -2019,8 +2019,11 @@
     };
   }
 
-  function metricSeriesFromMonthMap(hoursMap, countMap) {
-    return seriesFromMap(metricIsHours() ? hoursMap : countMap, metricIsHours());
+  function metricSeriesFromMonthMap(hoursMap, countMap, keys = null) {
+    const map = metricIsHours() ? hoursMap : countMap;
+    const useHours = metricIsHours();
+    if (keys && keys.length) return seriesFromMapKeys(map, keys, useHours);
+    return seriesFromMap(map, useHours);
   }
 
   function yoyFromMonthMap(hoursMap, countMap) {
@@ -2170,6 +2173,109 @@
     return s;
   }
 
+  function daysInCalendarMonth(year, month) {
+    const y = Number(year);
+    const m = Number(month);
+    if (!Number.isFinite(y) || !Number.isFinite(m) || m < 1 || m > 12) return 0;
+    return new Date(y, m, 0).getDate();
+  }
+
+  function enumerateMonthKeys(startYm, endYm) {
+    const start = String(startYm || "");
+    const end = String(endYm || "");
+    if (!/^\d{4}-\d{2}$/.test(start) || !/^\d{4}-\d{2}$/.test(end) || start > end) {
+      return [];
+    }
+    const keys = [];
+    let y = Number(start.slice(0, 4));
+    let m = Number(start.slice(5, 7));
+    const ey = Number(end.slice(0, 4));
+    const em = Number(end.slice(5, 7));
+    while (y < ey || (y === ey && m <= em)) {
+      keys.push(`${y}-${String(m).padStart(2, "0")}`);
+      m += 1;
+      if (m > 12) {
+        m = 1;
+        y += 1;
+      }
+    }
+    return keys;
+  }
+
+  function enumerateDayKeys(year, month) {
+    const y = String(year || "");
+    const mo = String(month || "").padStart(2, "0");
+    const n = daysInCalendarMonth(y, mo);
+    const keys = [];
+    for (let d = 1; d <= n; d++) {
+      keys.push(`${y}-${mo}-${String(d).padStart(2, "0")}`);
+    }
+    return keys;
+  }
+
+  function historyYearKeys() {
+    const years = (state.agg?.meta?.years || [])
+      .map((y) => Number(y))
+      .filter((y) => Number.isFinite(y))
+      .sort((a, b) => a - b);
+    if (!years.length) return [];
+    const keys = [];
+    for (let y = years[0]; y <= years[years.length - 1]; y++) keys.push(String(y));
+    return keys;
+  }
+
+  /** Full calendar axis for the sticky time filter (not “keys that have listens”). */
+  function periodAxisKeys() {
+    const { year, month, day } = state.chartPeriod;
+    if (year && month && day) {
+      const d = `${year}-${month}-${String(day).padStart(2, "0")}`;
+      return { grain: "day", keys: [d] };
+    }
+    if (year && month) {
+      return { grain: "day", keys: enumerateDayKeys(year, month) };
+    }
+    if (year) {
+      return {
+        grain: "month",
+        keys: enumerateMonthKeys(`${year}-01`, `${year}-12`),
+      };
+    }
+    const from = String(state.agg?.meta?.perEpisodeHistoryFrom || "").slice(0, 7);
+    const yearKeys = historyYearKeys();
+    if (/^\d{4}-\d{2}$/.test(from) && yearKeys.length) {
+      const endYear = yearKeys[yearKeys.length - 1];
+      const now = new Date();
+      const end =
+        Number(endYear) === now.getFullYear()
+          ? `${endYear}-${String(now.getMonth() + 1).padStart(2, "0")}`
+          : `${endYear}-12`;
+      return { grain: "month", keys: enumerateMonthKeys(from, end) };
+    }
+    return { grain: "year", keys: yearKeys };
+  }
+
+  function seriesFromMapKeys(map, keys, useHours) {
+    const points = keys.map((k) => {
+      const raw = Number(map?.[k] || 0);
+      const count = useHours ? Math.round(raw * 10) / 10 : raw;
+      return { month: k, count };
+    });
+    const rolling = points.map((_, i) => {
+      const slice = points.slice(Math.max(0, i - 2), i + 1);
+      const sum = slice.reduce((acc, m) => acc + m.count, 0);
+      return Math.round((sum / slice.length) * 10) / 10;
+    });
+    let running = 0;
+    const cumulative = points.map((m) => {
+      running += m.count;
+      return {
+        month: m.month,
+        total: useHours ? Math.round(running * 10) / 10 : running,
+      };
+    });
+    return { points, rolling, cumulative };
+  }
+
   function listeningDateSpan(stats) {
     const dates = Object.keys(stats.byDateCount || {}).sort();
     if (!dates.length) return "—";
@@ -2240,11 +2346,23 @@
 
   function trendSeries() {
     const stats = ensureChartStats();
-    const daily = !!(state.chartPeriod.year && state.chartPeriod.month);
+    const axis = periodAxisKeys();
+    const daily = axis.grain === "day";
     if (daily) {
-      return metricSeriesFromMonthMap(stats.byDateHours, stats.byDateCount);
+      return metricSeriesFromMonthMap(stats.byDateHours, stats.byDateCount, axis.keys);
     }
+    if (axis.grain === "month") {
+      return metricSeriesFromMonthMap(stats.byMonthHours, stats.byMonthCount, axis.keys);
+    }
+    // Year grain (rare for the line charts) — fall back to months in history span.
     if (!chartPeriodActive() && !metricIsHours()) {
+      // Prefer the filled calendar span so empty months stay visible.
+      const filled = metricSeriesFromMonthMap(
+        stats.byMonthHours,
+        stats.byMonthCount,
+        periodAxisKeys().keys
+      );
+      if (filled.points.length) return filled;
       const monthly = state.agg.monthly || [];
       return {
         points: monthly,
@@ -2252,12 +2370,12 @@
         cumulative: state.agg.cumulative || [],
       };
     }
-    return metricSeriesFromMonthMap(stats.byMonthHours, stats.byMonthCount);
+    return metricSeriesFromMonthMap(stats.byMonthHours, stats.byMonthCount, axis.keys);
   }
 
   function renderTrendChart() {
     const hours = metricIsHours();
-    const daily = !!(state.chartPeriod.year && state.chartPeriod.month);
+    const daily = periodAxisKeys().grain === "day";
     const { points, rolling } = trendSeries();
     destroyChart("trend");
     const ctx = $("#trendChart");
@@ -2350,31 +2468,43 @@
   function yearChartItems() {
     const stats = ensureChartStats();
     const hours = metricIsHours();
-    if (state.chartPeriod.month) {
+    const axis = periodAxisKeys();
+    if (axis.grain === "day") {
       const src = hours ? stats.byDateHours : stats.byDateCount;
-      return Object.keys(src)
-        .sort()
-        .map((date) => {
-          const label = formatDateKey(date);
-          return {
-            year: label,
-            label,
-            count: hours ? Math.round(src[date] * 10) / 10 : src[date],
-          };
-        });
+      return axis.keys.map((date) => {
+        const raw = src[date] || 0;
+        const label = formatDateKey(date);
+        return {
+          year: label,
+          label,
+          count: hours ? Math.round(raw * 10) / 10 : raw,
+        };
+      });
     }
-    if (state.chartPeriod.year) {
+    if (axis.grain === "month" && state.chartPeriod.year) {
       const src = hours ? stats.byMonthHours : stats.byMonthCount;
-      return Object.keys(src)
-        .sort()
-        .map((ym) => {
-          const label = formatMonthKey(ym);
-          return {
-            year: label,
-            label,
-            count: hours ? Math.round(src[ym] * 10) / 10 : src[ym],
-          };
-        });
+      return axis.keys.map((ym) => {
+        const raw = src[ym] || 0;
+        const label = formatMonthKey(ym);
+        return {
+          year: label,
+          label,
+          count: hours ? Math.round(raw * 10) / 10 : raw,
+        };
+      });
+    }
+    // All-time (or non-time filters): one bar per history year, including empty years.
+    const src = hours ? stats.byYearHours : stats.byYearCount;
+    const yearKeys = historyYearKeys();
+    if (yearKeys.length) {
+      return yearKeys.map((year) => {
+        const raw = src[year] || 0;
+        return {
+          year: Number(year),
+          label: String(year),
+          count: hours ? Math.round(raw * 10) / 10 : raw,
+        };
+      });
     }
     if (!hours && !chartPeriodActive()) {
       return (state.agg.yearly || []).map((d) => ({
@@ -2383,7 +2513,6 @@
         count: d.count,
       }));
     }
-    const src = hours ? stats.byYearHours : stats.byYearCount;
     return Object.keys(src)
       .sort((a, b) => Number(a) - Number(b))
       .map((year) => ({
@@ -2723,7 +2852,29 @@
     const stats = ensureChartStats();
     const hours = metricIsHours();
     const src = hours ? stats.byDateHours : stats.byDateCount;
+    const { year, month, day } = state.chartPeriod;
+    // Time-scoped filters: paint every calendar day in the selected period.
+    if (year && month) {
+      const keys = day
+        ? [`${year}-${month}-${String(day).padStart(2, "0")}`]
+        : enumerateDayKeys(year, month);
+      return keys.map((date) => {
+        const raw = src[date] || 0;
+        return { date, count: hours ? Math.round(raw * 10) / 10 : raw };
+      });
+    }
+    if (year) {
+      const keys = [];
+      for (let m = 1; m <= 12; m++) {
+        keys.push(...enumerateDayKeys(year, String(m).padStart(2, "0")));
+      }
+      return keys.map((date) => {
+        const raw = src[date] || 0;
+        return { date, count: hours ? Math.round(raw * 10) / 10 : raw };
+      });
+    }
     if (chartPeriodActive()) {
+      // Non-time filters: keep data days only (no single calendar period to fill).
       return Object.keys(src)
         .sort()
         .map((date) => ({
@@ -3224,21 +3375,19 @@
   }
 
   function themeTrendBuckets() {
-    const stats = ensureChartStats({ ignoreTheme: true });
     const grain = themeTrendGrain();
-    const { year, month } = state.chartPeriod;
     if (grain === "day") {
-      const prefix = `${year}-${month}-`;
-      return Object.keys(stats.byDateCount || {})
-        .filter((d) => d.startsWith(prefix))
-        .sort();
+      const { year, month, day } = state.chartPeriod;
+      if (day) return [`${year}-${month}-${String(day).padStart(2, "0")}`];
+      return enumerateDayKeys(year, month);
     }
     if (grain === "month") {
-      const prefix = `${year}-`;
-      return Object.keys(stats.byMonthCount || {})
-        .filter((m) => m.startsWith(prefix))
-        .sort();
+      const { year } = state.chartPeriod;
+      return enumerateMonthKeys(`${year}-01`, `${year}-12`);
     }
+    const years = historyYearKeys();
+    if (years.length) return years;
+    const stats = ensureChartStats({ ignoreTheme: true });
     return Object.keys(stats.byYearCount || {}).sort((a, b) => Number(a) - Number(b));
   }
 
