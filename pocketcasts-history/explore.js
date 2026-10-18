@@ -72,6 +72,7 @@
     themeMatchPage: 0,
     themeMatchPageSize: 25,
     _themeMatchThemeId: "",
+    _themeShowsThemeId: "",
     metric: "episodes", // "episodes" | "hours"
     chartPeriod: {
       year: "",
@@ -1682,6 +1683,11 @@
 
   /** Horizontal bar chart with progressive disclosure.
    * Default: largest value at top. Pass preserveOrder for chronological axes. */
+  function themeFocusColor() {
+    // Distinct from the default teal theme bars so the focused theme stands out.
+    return palette().blue;
+  }
+
   function renderExpandableHBar({
     key,
     canvasSel,
@@ -1693,6 +1699,7 @@
     valueLabel,
     color,
     colors,
+    colorOf,
     onClick,
     preserveOrder = false,
   }) {
@@ -1717,6 +1724,11 @@
     const chrome = chartChrome();
     // Attach before new Chart so the first afterDatasetsDraw can format values.
     canvas.__formatBarEnd = (v) => formatBarEndValue(v, label);
+    const barColors = colorOf
+      ? visible.map((d) => colorOf(d))
+      : colors
+        ? visible.map((_, i) => colors[i % colors.length])
+        : color || palette().teal;
     state.charts[key] = new Chart(canvas, {
       type: "bar",
       plugins: [barValueLabelsPlugin],
@@ -1729,9 +1741,7 @@
           {
             label,
             data: visible.map(valueOf),
-            backgroundColor: colors
-              ? visible.map((_, i) => colors[i % colors.length])
-              : color || palette().teal,
+            backgroundColor: barColors,
             borderRadius: 5,
             maxBarThickness: 22,
           },
@@ -1839,6 +1849,7 @@
         valueLabel,
         color,
         colors,
+        colorOf,
         onClick,
         preserveOrder,
       })
@@ -3127,6 +3138,8 @@
 
   function jumpToThemePodcast(podcastName) {
     if (!podcastName) return;
+    // Keep the active theme filter; narrow to this show, then jump to the
+    // episode list (Explore) so theme ∩ show matches are visible.
     patchChartPeriod({ podcast: podcastName });
     goToSection("explorePanel");
   }
@@ -3302,7 +3315,8 @@
       items,
       labelOf: (d) => d.name,
       valueOf: (d) => (hours ? d.hours : d.count),
-      colors: categorical(),
+      // Match the focused theme highlight on the Themes chart.
+      color: themeFocusColor(),
       onClick: (d) => jumpToThemePodcast(d?.name),
     });
   }
@@ -3424,6 +3438,15 @@
       .sort((a, b) => themeMetricInYears(b) - themeMetricInYears(a));
   }
 
+  /** Pin the focused theme to the top so it stays visible while highlighted. */
+  function themeChartItemsPinned(focusId) {
+    const items = themeChartItems();
+    if (!focusId) return items;
+    const focused = items.find((t) => t.id === focusId);
+    if (!focused) return items;
+    return [focused, ...items.filter((t) => t.id !== focusId)];
+  }
+
   function leaveThemeDrill() {
     state.focusedParentId = "";
     state.barReveal.theme = BAR_PAGE;
@@ -3432,10 +3455,11 @@
 
   function renderThemeChart() {
     if (!state.themesDoc?.themes) return;
-    const items = themeChartItems();
+    const active = state.themeById[state.activeTheme];
+    const focusId = active?.id || "";
+    const items = themeChartItemsPinned(focusId);
     const title = $("#themeChartTitle");
     const back = $("#themeChartBack");
-    const active = state.themeById[state.activeTheme];
     const periodLabel = chartPeriodActive()
       ? chartPeriodLabel({ omitTheme: !!active })
       : "";
@@ -3452,6 +3476,8 @@
       back.setAttribute("aria-label", "Clear theme selection");
       back.onclick = active ? () => leaveThemeDrill() : null;
     }
+    const baseColor = palette().teal;
+    const focusColor = themeFocusColor();
     renderExpandableHBar({
       key: "theme",
       canvasSel: "#themeChart",
@@ -3460,7 +3486,8 @@
       items,
       labelOf: (d) => d.name,
       valueOf: (d) => themeMetricInYears(d),
-      color: palette().teal,
+      preserveOrder: !!focusId,
+      colorOf: (d) => (d.id === focusId ? focusColor : baseColor),
       onClick: (d) => {
         if (!d?.id) return;
         selectTheme(d.id, false);
@@ -3587,18 +3614,23 @@
     const title = $("#themeDetailTitle");
     const blurb = $("#themeDetailBlurb");
     const samples = $("#themeSamples");
+    const showsWrap = $("#themeShowsWrap");
     const btn = $("#filterByTheme");
     if (!t) {
       title.textContent = "Pick a theme";
       blurb.textContent =
-        "Tap a theme to see matching episodes. Local themes are specific (e.g. Brazilian elections); the sticky filter bar scopes counts and samples.";
-      samples.innerHTML = "";
+        "Tap a theme to see which shows cover it. Local themes are specific (e.g. Brazilian elections); the sticky filter bar scopes counts.";
+      if (samples) samples.innerHTML = "";
+      if (showsWrap) showsWrap.hidden = true;
+      destroyChart("themeShows");
+      state.barReveal.themeShows = null;
       btn.hidden = true;
       return;
     }
     const n = themeMetricInYears(t);
     const periodSuffix = chartPeriodActive() ? ` in ${chartPeriodLabel()}` : "";
-    const unit = metricIsHours() ? "hours" : "episodes";
+    const hours = metricIsHours();
+    const unit = hours ? "hours" : "episodes";
     const ev = t.evidence || {};
     const evBits = [
       ev.transcript ? `${fmt(ev.transcript)} transcript-backed` : "",
@@ -3606,20 +3638,47 @@
       ev.title ? `${fmt(ev.title)} title-only` : "",
     ].filter(Boolean);
     title.textContent = t.name;
-    blurb.textContent = `${t.blurb} · ${fmtMetric(n)} ${unit}${periodSuffix}.${
-      evBits.length ? ` Evidence: ${evBits.join(", ")}.` : ""
-    }`;
-    const samplesList = (t.samples || []).filter(sampleMatchesChartPeriod);
-    samples.innerHTML = samplesList
-      .map(
-        (s) => `
-      <div class="theme-sample">
-        <strong>${escapeHtml(s.e || "")}</strong>
-        <span>${escapeHtml(s.p || "Podcast")} · ${escapeHtml(formatUiDate(s.d || ""))}</span>
-      </div>`
-      )
-      .join("") ||
-      `<div class="empty">No samples${periodSuffix || " yet"}.</div>`;
+    const items = podcastsForTheme(t.id)
+      .slice()
+      .sort((a, b) =>
+        hours
+          ? b.hours - a.hours || a.name.localeCompare(b.name)
+          : b.count - a.count || a.name.localeCompare(b.name)
+      );
+    if (t.id !== state._themeShowsThemeId) {
+      state._themeShowsThemeId = t.id;
+      state.barReveal.themeShows = null;
+    }
+    if (!items.length) {
+      blurb.textContent = `${t.blurb} · ${fmtMetric(n)} ${unit}${periodSuffix}.${
+        evBits.length ? ` Evidence: ${evBits.join(", ")}.` : ""
+      } No matching shows under the current filters.`;
+      if (samples) {
+        samples.innerHTML = `<div class="empty">No shows match this theme${periodSuffix || ""}.</div>`;
+      }
+      if (showsWrap) showsWrap.hidden = true;
+      destroyChart("themeShows");
+      btn.hidden = false;
+      btn.onclick = () => selectTheme(t.id, true);
+      return;
+    }
+    const top = items[0];
+    blurb.textContent = `${t.blurb} · ${fmtMetric(n)} ${unit}${periodSuffix} · ${fmt(items.length)} shows (top: ${top.name}, ${
+      hours ? `${fmtHours(top.hours)}h` : fmt(top.count)
+    }).${evBits.length ? ` Evidence: ${evBits.join(", ")}.` : ""} Tap a show to open matching episodes.`;
+    if (samples) samples.innerHTML = "";
+    if (showsWrap) showsWrap.hidden = false;
+    renderExpandableHBar({
+      key: "themeShows",
+      canvasSel: "#themeShowsChart",
+      boxSel: "#themeShowsBox",
+      moreSel: "#themeShowsMore",
+      items,
+      labelOf: (d) => d.name,
+      valueOf: (d) => (hours ? d.hours : d.count),
+      color: themeFocusColor(),
+      onClick: (d) => jumpToThemePodcast(d?.name),
+    });
     btn.hidden = false;
     btn.onclick = () => selectTheme(t.id, true);
   }
