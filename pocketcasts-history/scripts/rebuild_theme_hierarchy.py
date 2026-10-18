@@ -19,7 +19,8 @@ Other rules:
   - Hard-news shows are NOT banned from Music/Film/etc. Body text can tag
     them when there is *substance* (album, Grammys, Emmys, musician, …).
     Bare leftover "music" / weak tokens alone are not enough — so NPR covering
-    the Emmys or a new album still tags, while soundbite beds do not.
+    the Emmys tags Film & TV, and Music only when the episode is actually
+    covering music news (Grammys, album, music industry…), not soundbite beds.
   - Theme *hours* are time-shares within each episode (transcript hit density;
     equal split when only title/notes), not full duration × every tag.
   - Show priors baseline known coverage (A Hora → BR politics; Braincast → tech/culture).
@@ -271,7 +272,7 @@ PANDEMIC = [
     r"\bvaccine\b",
 ]
 FILM = [
-    r"\bfilme\b", r"\bfilm\b", r"\bcinema\b", r"\boscar\b", r"\boscares\b",
+    r"\bfilme\b", r"\bfilm\b", r"\bcinema\b", r"\boscar(?:s|es)?\b",
     r"\bemmys?\b", r"\bacademy awards?\b", r"\bgolden globes?\b",
     r"\bbaftas?\b", r"\bnetflix\b", r"\bs[eé]rie\b", r"\btv show\b",
     r"\bgame of thrones\b", r"\bhollywood director\b", r"\bfilm director\b",
@@ -279,10 +280,18 @@ FILM = [
 ]
 # Substance-only film cues for hard-news body text (excludes noisy bare "série").
 FILM_SUBSTANCE = [
-    r"\bfilme\b", r"\bfilm\b", r"\bcinema\b", r"\boscar\b", r"\boscares\b",
+    r"\bfilme\b", r"\bfilm\b", r"\bcinema\b", r"\boscar(?:s|es)?\b",
     r"\bemmys?\b", r"\bacademy awards?\b", r"\bgolden globes?\b",
     r"\bbaftas?\b", r"\bnetflix\b", r"\btv show\b", r"\bgame of thrones\b",
     r"\bfilm directors?\b", r"\bmovie directors?\b",
+    r"\bawards (?:show|season|night|ceremony)\b",
+]
+# Strong beat anchors for hard-news body: repeated awards cues are enough on
+# their own (NPR Emmys recap) without a second unrelated token.
+FILM_ANCHORS = [
+    r"\boscar(?:s|es)?\b",
+    r"\bemmys?\b", r"\bacademy awards?\b", r"\bgolden globes?\b",
+    r"\bbaftas?\b",
     r"\bawards (?:show|season|night|ceremony)\b",
 ]
 # Intentionally omit bare "spotify" — almost every show-notes footer lists
@@ -296,6 +305,17 @@ MUSIC_SUBSTANCE = [
     r"\borchestra\b", r"\bsinf[oô]nica\b", r"\bplaylist\b",
     r"\bgrammys?\b",
     # "billboard" alone matches political ad boards; require chart/magazine cue.
+    r"\bbillboard (?:charts?|hot ?100|200|magazine|music)\b",
+    r"\bchart[- ]topping\b",
+    r"\bsingle (?:release|chart)\b", r"\bstudio album\b",
+]
+# Industry / awards anchors — not weak tokens like bare "concert" / "playlist".
+MUSIC_ANCHORS = [
+    r"\bmusic industry\b", r"\bmusic scene\b", r"\bpop music\b",
+    r"\blive music\b", r"\bmusic festival\b", r"\bmusic awards?\b",
+    r"\bsongwriter\b", r"\bshow musical\b",
+    r"\bdiscografia\b", r"\bdiscography\b", r"\bhip-?hop\b", r"\brapper\b",
+    r"\bgrammys?\b",
     r"\bbillboard (?:charts?|hot ?100|200|magazine|music)\b",
     r"\bchart[- ]topping\b",
     r"\bsingle (?:release|chart)\b", r"\bstudio album\b",
@@ -561,6 +581,11 @@ _SCRUB_PATTERNS: list[re.Pattern[str]] = [
     re.compile(
         r"(?i)story from up first[^\n.]{0,200}"
     ),
+    # Idioms / non-music senses that otherwise light Music on hard news.
+    re.compile(r"(?i)\bin concert with\b"),
+    re.compile(r"(?i)\bphoto albums?\b"),
+    re.compile(r"(?i)\balbum covers?\b"),
+    re.compile(r"(?i)\borchestra leaders?\b"),
 ]
 
 
@@ -841,6 +866,13 @@ ENTERTAINMENT_SUBSTANCE_RE: dict[str, list[re.Pattern]] = {
     "sport": _compile(SPORT_SUBSTANCE),
     "culture-entertainment": _compile(CULTURE_SUBSTANCE),
 }
+# Awards / industry anchors: enough to unlock Film/Music on hard news when
+# repeated (or paired with any second substance cue). Weak tokens alone never
+# qualify via this map.
+ENTERTAINMENT_ANCHOR_RE: dict[str, list[re.Pattern]] = {
+    "music": _compile(MUSIC_ANCHORS),
+    "film-tv": _compile(FILM_ANCHORS),
+}
 
 
 def match_count(pats: list[re.Pattern], text: str) -> int:
@@ -1075,9 +1107,10 @@ def tag_episode(
 
     # Hard-news shows: entertainment domains when the episode is *actually*
     # covering that beat — not banned, but not lit by soundbite beds, metaphors
-    # ("musicians like crickets"), one-off analogies ("like the music industry"),
-    # or network cross-promos. Accept if (a) the title cues it, or (b) scrubbed
-    # body has multiple distinct substance cues (Grammys + album, Emmys + film…).
+    # ("in concert with"), photo "album covers", or network cross-promos.
+    # Accept if (a) the title cues it (Emmys/Oscars/Grammys in the rundown),
+    # (b) awards/industry *anchors* appear (≥2 hits, or 1 anchor + another
+    # substance cue), or (c) denser multi-cue substance for long digressions.
     if is_hard_news_show(show):
         def entertainment_coverage(tid: str) -> bool:
             meta = by_id.get(tid) or {}
@@ -1094,14 +1127,24 @@ def tag_episode(
                 if n:
                     distinct += 1
                     total += n
-            # Short news blocks: a couple of distinct cues (Emmys + Netflix).
-            # Multi-hour geopolitics digressions (cantor/rapper name-drops) need
-            # denser evidence so XV/Braincast asides don't become Music news.
+            anchors = ENTERTAINMENT_ANCHOR_RE.get(tid) or []
+            anchor_total = 0
+            for pat in anchors:
+                anchor_total += len(pat.findall(primary))
+            # NPR Emmys thrice / Grammys + album / music industry + awards.
+            if anchor_total >= 2:
+                return True
+            if anchor_total >= 1 and distinct >= 2 and total >= 2:
+                return True
+            # Multi-hour geopolitics digressions need denser evidence so a
+            # cantor/rapper name-drop does not become Music news.
             if primary_long and len(primary) > 80000:
                 min_total = max(5, len(primary) // 40000)
                 min_distinct = 3
                 return (distinct >= min_distinct and total >= min_total) or total >= min_total + 4
-            return (distinct >= 2 and total >= 2) or total >= 4
+            # Weak pairs (playlist+cantor, musician+orchestra metaphor) need
+            # a third cue or denser repetition — not two stray tokens.
+            return (distinct >= 3 and total >= 3) or total >= 5
 
         hits = [
             tid
