@@ -282,7 +282,12 @@ def main() -> None:
     ap.add_argument("--min-year", type=int, default=2022)
     ap.add_argument("--max-episodes-per-wave", type=int, default=8)
     ap.add_argument("--parallel", type=int, default=2)
-    ap.add_argument("--channel-limit", type=int, default=500)
+    ap.add_argument(
+        "--channel-limit",
+        type=int,
+        default=1600,
+        help="Default channel uploads to list; per-show YT_CHANNELS.channel_limit overrides.",
+    )
     ap.add_argument("--once", action="store_true", help="Single wave then exit")
     ap.add_argument("--no-commit", action="store_true")
     args = ap.parse_args()
@@ -297,6 +302,8 @@ def main() -> None:
     os.environ["PATH"] = f"{local_bin}:{os.environ.get('PATH', '')}"
 
     wave = 0
+    # Models that hit hard daily quota mid-wave (probe can miss YouTube-hour caps).
+    blacklisted: dict[str, float] = {}  # model → earliest retry epoch
     while True:
         wave += 1
         need, total = remaining(args.shows, args.min_year)
@@ -314,13 +321,24 @@ def main() -> None:
                 git_commit_progress(args.shows, args.min_year)
             return
 
+        now = time.time()
+        for m, until in list(blacklisted.items()):
+            if until <= now:
+                del blacklisted[m]
+                print(f"  un-blacklist {m}", flush=True)
+
         usable: list[str] = []
         daily_waits: list[float] = []
         for model in models:
+            if model in blacklisted:
+                daily_waits.append(max(60.0, blacklisted[model] - now))
+                print(f"  skip {model}: blacklisted until daily reset", flush=True)
+                continue
             ok, retry = probe_model(model, key)
             if ok:
                 usable.append(model)
             elif retry:
+                blacklisted[model] = now + retry
                 daily_waits.append(retry)
             time.sleep(0.5)
 
@@ -356,6 +374,22 @@ def main() -> None:
             + ", ".join(f"rc={p.returncode}" for p in procs),
             flush=True,
         )
+
+        # Blacklist models whose logs show hard daily quota this wave.
+        for show, model in pairs:
+            safe_show = re.sub(r"[^\w]+", "_", show).strip("_")[:40]
+            log = LOG_DIR / f"w-{safe_show}-{model.replace('.', '_')}.log"
+            try:
+                text = log.read_text(encoding="utf-8", errors="replace")[-8000:]
+            except OSError:
+                continue
+            if "daily quota exhausted" in text or "RATE LIMITED" in text:
+                # YouTube-hour daily caps typically reset ~18h; use 12h floor.
+                blacklisted[model] = max(
+                    blacklisted.get(model, 0), now + 12 * 3600
+                )
+                print(f"  blacklist {model} after daily/rate-limit in log", flush=True)
+
         if not args.no_commit:
             try:
                 con = sqlite3.connect(DB)

@@ -70,20 +70,37 @@ YT_CHANNELS: dict[str, dict] = {
     },
     "ABC News Daily": {
         "handle": "@abcnewsaustralia",
+        # Dedicated podcast playlist exists on the channel Podcasts tab
+        # (PLn2RjxYNpcazZe2QhC7vAjasGOYFNifcT) but yt-dlp/YouTube return
+        # "playlist does not exist" for that id — harvest via uploads instead.
+        "playlist": "PLn2RjxYNpcazZe2QhC7vAjasGOYFNifcT",
         "title_must": "abc news daily",
+        # ~39 titled uploads in the latest 1500 @abcnewsaustralia videos.
+        "channel_limit": 1600,
+        # Episode titles are a near-exact prefix of YT
+        # "… | ABC News Daily podcast"; low thresholds steal videos via
+        # shared Trump/AI tokens onto older unrelated episodes.
+        "min_score": 0.85,
         "reject_title": [],
     },
-    # Politics Now episodes often appear on ABC YouTube as Insiders clips /
-    # panel titles without the show name — matching is weak; prefer search.
+    # Politics Now: full episodes are NOT on YouTube. @abcnewsaustralia has
+    # zero "Politics Now" uploads in the latest 1500 videos; Insiders clips
+    # (interview segments) are not the podcast. Skip rather than force matches.
     "Politics Now": {
         "handle": "@abcnewsaustralia",
-        "title_must": None,
+        "skip_youtube": True,
+        "skip_reason": (
+            "Full Politics Now episodes are not published on YouTube; "
+            "only Insiders interview clips appear on @abcnewsaustralia."
+        ),
+        "title_must": "politics now",  # would filter to empty; belt+suspenders
         "reject_title": [
             "abc news daily",
             "news breakfast",
             "7.30",
             "four corners",
             "lateline",
+            "insiders",
         ],
     },
     "Up First from NPR": {
@@ -274,14 +291,12 @@ def episode_video_score(
     shared = {
         t for t in (ta & tb) if len(t) >= 4 or any(ch.isdigit() for ch in t)
     }
-    # Duration alone is dangerous on a ~30min daily show — require lexical anchors.
+    # Duration alone is dangerous on a ~30min daily show — require ≥2 anchors.
     if len(shared) >= 2 and dscore >= 0.5:
         return min(
             1.0,
             0.50 * tscore + 0.35 * dscore + 0.15 * min(1.0, len(shared) / 3.0),
         )
-    if len(shared) >= 1 and dscore >= 0.8 and tscore >= 0.30:
-        return 0.55 * tscore + 0.45 * dscore
     return tscore
 
 
@@ -366,6 +381,41 @@ def yt_search(query: str, n: int = 5) -> list[dict]:
 def channel_uploads(handle: str, limit: int = 250) -> list[dict]:
     handle = handle if handle.startswith("@") else f"@{handle}"
     return yt_dump(f"https://www.youtube.com/{handle}/videos", limit=limit)
+
+
+def playlist_videos(playlist_id: str, limit: int = 500) -> list[dict]:
+    """Fetch a playlist; returns [] if YouTube reports it missing (common for
+    Podcasts-tab series ids that are not enumerable as classic playlists)."""
+    pid = (playlist_id or "").strip()
+    if not pid:
+        return []
+    if pid.startswith("http"):
+        url = pid
+    else:
+        url = f"https://www.youtube.com/playlist?list={pid}"
+    return yt_dump(url, limit=limit)
+
+
+def show_video_pool(conf: dict, channel_limit: int) -> list[dict]:
+    """Playlist (if any) merged with channel uploads; uploads win on id clash."""
+    limit = int(conf.get("channel_limit") or channel_limit or 300)
+    by_id: dict[str, dict] = {}
+    pl = conf.get("playlist")
+    if pl:
+        for v in playlist_videos(str(pl), limit=max(limit, 500)):
+            by_id[v["id"]] = v
+        if by_id:
+            print(f"  playlist listed={len(by_id)}", flush=True)
+        else:
+            print(
+                f"  playlist {pl} empty/unavailable — using channel uploads",
+                flush=True,
+            )
+    handle = conf.get("handle")
+    if handle:
+        for v in channel_uploads(handle, limit=limit):
+            by_id[v["id"]] = v
+    return list(by_id.values())
 
 
 def fetch_yta(video_id: str) -> str | None:
@@ -1006,7 +1056,11 @@ def match_from_channel(
     """Greedy one-to-one match: highest scoring (episode, video) pairs."""
     conf = YT_CHANNELS.get(podcast) or {}
     # Cross-lang: allow slightly below default once duration+shared tokens lift.
-    thr = 0.48 if conf.get("cross_lang") else min_score
+    # Per-show min_score (e.g. ABC News Daily 0.85) beats the call default.
+    if conf.get("cross_lang"):
+        thr = float(conf.get("min_score") or 0.48)
+    else:
+        thr = float(conf.get("min_score") or min_score)
     scored: list[tuple[float, int, int, dict]] = []
     for ei, (idx, ep) in enumerate(episodes):
         for vi, vid in enumerate(uploads):
@@ -1082,7 +1136,12 @@ def match_via_search(
         if score > best_score:
             best_score = score
             best = r
-    thr = 0.40 if conf.get("cross_lang") else 0.48
+    if conf.get("min_score") is not None:
+        thr = float(conf["min_score"])
+    elif conf.get("cross_lang"):
+        thr = 0.40
+    else:
+        thr = 0.48
     if not best or best_score < thr:
         return None
     best = dict(best)
@@ -1101,10 +1160,18 @@ def build_pairs(
     channel_limit: int,
     search_fallback: bool,
 ) -> list[tuple[int, dict, dict]]:
-    by_show: dict[str, list[tuple[int, dict]]] = defaultdict(list)
+    # Pool = all year/duration-eligible episodes (for correct video ownership).
+    # Need = subset still missing a long transcript (what we harvest).
+    pool_by_show: dict[str, list[tuple[int, dict]]] = defaultdict(list)
+    need_by_show: dict[str, list[tuple[int, dict]]] = defaultdict(list)
+    need_idxs: set[int] = set()
+
     for i, ep in enumerate(episodes):
         name = ep.get("p") or ""
         if shows and name not in shows:
+            continue
+        conf = YT_CHANNELS.get(name)
+        if conf and conf.get("skip_youtube"):
             continue
         if not shows and name not in YT_CHANNELS and name not in YT_SHOW_HINTS:
             continue
@@ -1114,36 +1181,52 @@ def build_pairs(
         mins = parse_minutes(ep.get("dur"))
         if max_minutes and mins > max_minutes:
             continue
-        if not needs_youtube(conn, i, episodes):
-            continue
-        by_show[name].append((i, ep))
+        pool_by_show[name].append((i, ep))
+        if needs_youtube(conn, i, episodes):
+            need_by_show[name].append((i, ep))
+            need_idxs.add(i)
 
-    for name in by_show:
-        by_show[name].sort(key=lambda t: t[1].get("t") or "", reverse=True)
+    for name in pool_by_show:
+        pool_by_show[name].sort(key=lambda t: t[1].get("t") or "", reverse=True)
+        need_by_show[name].sort(key=lambda t: t[1].get("t") or "", reverse=True)
 
-    order = [s for s in PRIORITY_SHOWS if s in by_show]
-    order += sorted(k for k in by_show if k not in order)
+    # Surface skip_youtube shows when explicitly requested so logs document why.
+    if shows:
+        for name in shows:
+            conf = YT_CHANNELS.get(name) or {}
+            if conf.get("skip_youtube"):
+                reason = conf.get("skip_reason") or "configured skip_youtube"
+                print(f"[skip] {name}: {reason}", flush=True)
+
+    order = [s for s in PRIORITY_SHOWS if s in need_by_show]
+    order += sorted(k for k in need_by_show if k not in order)
 
     pairs: list[tuple[int, dict, dict]] = []
     matched_idxs: set[int] = set()
     matched_vids: set[str] = set()
     per_show: dict[str, list[tuple[int, dict, dict]]] = {}
 
-    # 1) Channel-first (collect per show, then interleave so one show can't eat quota)
+    # 1) Channel/playlist-first (match against full pool, keep need-only pairs)
     for podcast in order:
         conf = YT_CHANNELS.get(podcast)
         if not conf:
             continue
         print(
-            f"[channel] {podcast} → {conf['handle']} (need {len(by_show[podcast])} eps)",
+            f"[channel] {podcast} → {conf['handle']} "
+            f"(need {len(need_by_show[podcast])} / pool {len(pool_by_show[podcast])} eps)",
             flush=True,
         )
-        uploads = channel_uploads(conf["handle"], limit=channel_limit)
-        print(f"  uploads listed={len(uploads)}", flush=True)
+        uploads = show_video_pool(conf, channel_limit)
+        print(f"  video pool listed={len(uploads)}", flush=True)
         if not uploads:
             continue
-        found = match_from_channel(podcast, by_show[podcast], uploads)
-        print(f"  channel matches={len(found)}", flush=True)
+        found_all = match_from_channel(podcast, pool_by_show[podcast], uploads)
+        found = [(i, e, v) for i, e, v in found_all if i in need_idxs]
+        print(
+            f"  channel matches={len(found)} "
+            f"(of {len(found_all)} incl. already-covered)",
+            flush=True,
+        )
         per_show[podcast] = found
 
     pointers = {s: 0 for s in per_show}
@@ -1170,7 +1253,10 @@ def build_pairs(
     if search_fallback and len(pairs) < max_episodes:
         print("[search-fallback]", flush=True)
         for podcast in order:
-            for idx, ep in by_show[podcast]:
+            conf = YT_CHANNELS.get(podcast) or {}
+            if conf.get("skip_youtube"):
+                continue
+            for idx, ep in need_by_show[podcast]:
                 if idx in matched_idxs:
                     continue
                 if len(pairs) >= max_episodes:
@@ -1203,7 +1289,12 @@ def main() -> None:
         default=0.0,
         help="Skip episodes longer than this (0 = no limit). Use 120 without gemini.",
     )
-    ap.add_argument("--channel-limit", type=int, default=300)
+    ap.add_argument(
+        "--channel-limit",
+        type=int,
+        default=1600,
+        help="Max channel uploads to list (per-show channel_limit in YT_CHANNELS wins).",
+    )
     ap.add_argument("--shows", nargs="*", default=None)
     ap.add_argument(
         "--backends",
