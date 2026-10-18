@@ -5,8 +5,8 @@ Personal Pocket Casts listening history + **Listening Log** explorer.
 Everything lives in this GitHub repository. No third-party hosts or CDNs.
 
 > **Agent ship gate:** before merging UI/CSS/filter changes, follow the
-> [golden rule in `/AGENTS.md`](../AGENTS.md#golden-rule-never-ship-listening-log-ui-with-edge-cutoffs) —
-> phone-width check that chrome, Filters, and the Shows picker are not clipped left/right.
+> [golden rule in `/AGENTS.md`](../AGENTS.md#golden-rule-never-ship-listening-log-ui-with-edge-cutoffs)
+> and run `node scripts/check_mobile_edges.mjs` against a local server — must pass.
 
 ## Live site
 
