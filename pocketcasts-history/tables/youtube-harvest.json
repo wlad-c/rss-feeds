@@ -1,29 +1,29 @@
 {
   "harvest": {
     "tried": 6,
-    "fetched": 6,
-    "upserted": 6,
-    "noCaptions": 0,
+    "fetched": 3,
+    "upserted": 3,
+    "noCaptions": 1,
     "rateLimited": 0,
     "pairs": 6,
     "byBackend": {
-      "gemini": 6
+      "gemini": 3
     },
     "byShow": {
-      "Foro de Teresina": 6
+      "Politics Now": 3
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8689,
-    "withPublisherOrSttTranscript": 1977,
-    "withLongText2000plus": 2439,
-    "pctTranscript": 8.98,
-    "pctLongText": 11.08,
+    "withAnyText": 8698,
+    "withPublisherOrSttTranscript": 1989,
+    "withLongText2000plus": 2451,
+    "pctTranscript": 9.04,
+    "pctLongText": 11.14,
     "bySrc": {
       "show-notes": {
-        "count": 6712,
-        "chars": 6522635
+        "count": 6709,
+        "chars": 6520490
       },
       "stt": {
         "count": 15,
@@ -34,8 +34,8 @@
         "chars": 31872197
       },
       "youtube": {
-        "count": 272,
-        "chars": 12398519
+        "count": 284,
+        "chars": 12695486
       }
     }
   }
