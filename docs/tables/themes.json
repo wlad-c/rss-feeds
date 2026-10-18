@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "youtube": 189,
-      "title": 13331,
+      "youtube": 233,
+      "title": 13305,
       "transcript": 1703,
-      "show-notes": 6769,
+      "show-notes": 6751,
       "stt": 16
     },
-    "episodesWithTranscriptEvidence": 1908,
-    "episodesWithNotesEvidence": 6769,
-    "episodesWithTitleOnlyEvidence": 13331,
+    "episodesWithTranscriptEvidence": 1952,
+    "episodesWithNotesEvidence": 6751,
+    "episodesWithTitleOnlyEvidence": 13305,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -40,9 +40,9 @@
         "2026": 899
       },
       "evidence": {
-        "title": 4905,
-        "notes": 535,
-        "transcript": 685
+        "title": 4901,
+        "notes": 534,
+        "transcript": 690
       },
       "samples": [
         {
@@ -102,22 +102,22 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4081,
-      "hours": 1004.55,
+      "count": 4080,
+      "hours": 1004.1,
       "byYear": {
         "2019": 264,
         "2020": 446,
         "2021": 456,
         "2022": 486,
         "2023": 437,
-        "2024": 581,
-        "2025": 802,
+        "2024": 582,
+        "2025": 800,
         "2026": 609
       },
       "evidence": {
-        "title": 1110,
-        "notes": 2743,
-        "transcript": 228
+        "title": 1109,
+        "notes": 2739,
+        "transcript": 232
       },
       "samples": [
         {
@@ -178,7 +178,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5630,
-      "hours": 946.76,
+      "hours": 944.43,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -190,9 +190,9 @@
         "2026": 1071
       },
       "evidence": {
-        "title": 3412,
+        "title": 3386,
         "notes": 1113,
-        "transcript": 1105
+        "transcript": 1131
       },
       "samples": [
         {
@@ -328,7 +328,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5622,
-      "hours": 559.12,
+      "hours": 557.41,
       "byYear": {
         "2019": 258,
         "2020": 535,
@@ -341,8 +341,8 @@
       },
       "evidence": {
         "title": 2968,
-        "notes": 2541,
-        "transcript": 113
+        "notes": 2527,
+        "transcript": 127
       },
       "samples": [
         {
@@ -402,8 +402,8 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2168,
-      "hours": 357.36,
+      "count": 2170,
+      "hours": 356.59,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -411,13 +411,13 @@
         "2022": 204,
         "2023": 224,
         "2024": 300,
-        "2025": 538,
+        "2025": 540,
         "2026": 501
       },
       "evidence": {
-        "title": 1047,
+        "title": 1036,
         "notes": 795,
-        "transcript": 326
+        "transcript": 339
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2279,
-      "hours": 257.9,
+      "hours": 257.85,
       "byYear": {
         "2019": 34,
         "2020": 100,
@@ -490,9 +490,9 @@
         "2026": 524
       },
       "evidence": {
-        "title": 1351,
-        "notes": 474,
-        "transcript": 454
+        "title": 1347,
+        "notes": 473,
+        "transcript": 459
       },
       "samples": [
         {
@@ -547,102 +547,27 @@
       "children": []
     },
     {
-      "id": "br-elections",
-      "name": "Brazilian elections",
-      "blurb": "Elections and campaigns in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 1653,
-      "hours": 220.3,
-      "byYear": {
-        "2019": 58,
-        "2020": 189,
-        "2021": 175,
-        "2022": 270,
-        "2023": 231,
-        "2024": 264,
-        "2025": 205,
-        "2026": 261
-      },
-      "evidence": {
-        "title": 367,
-        "notes": 1187,
-        "transcript": 99
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 5,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 17,
-          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
-          "p": "A Hora",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 30,
-          "e": "O fim da escala 6x1 aprovado no Congresso",
-          "p": "O Assunto",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 38,
-          "e": "A abstenção e o poder do voto de quem não votou",
-          "p": "O Assunto",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 40,
-          "e": "Lula propõe Pix de até R$ 5.000 e perdão de dívidas de MEIs a 12 dias do 2º turno",
-          "p": "Boletim Folha",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 43,
-          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 47,
-          "e": "TSE diz a Kassio não ter encontrado conteúdo citado por Flávio em canal pró-Lula",
-          "p": "Boletim Folha",
-          "d": "2026-10-13"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "economy-markets",
       "name": "Economy & markets",
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2303,
-      "hours": 219.54,
+      "count": 2314,
+      "hours": 219.78,
       "byYear": {
         "2019": 51,
         "2020": 184,
         "2021": 174,
         "2022": 235,
         "2023": 347,
-        "2024": 358,
-        "2025": 454,
-        "2026": 500
+        "2024": 363,
+        "2025": 457,
+        "2026": 503
       },
       "evidence": {
-        "title": 566,
-        "notes": 1229,
-        "transcript": 508
+        "title": 565,
+        "notes": 1225,
+        "transcript": 524
       },
       "samples": [
         {
@@ -697,13 +622,88 @@
       "children": []
     },
     {
+      "id": "br-elections",
+      "name": "Brazilian elections",
+      "blurb": "Elections and campaigns in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 1654,
+      "hours": 218.68,
+      "byYear": {
+        "2019": 58,
+        "2020": 189,
+        "2021": 175,
+        "2022": 270,
+        "2023": 231,
+        "2024": 264,
+        "2025": 205,
+        "2026": 262
+      },
+      "evidence": {
+        "title": 367,
+        "notes": 1177,
+        "transcript": 110
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 5,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 17,
+          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
+          "p": "A Hora",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 30,
+          "e": "O fim da escala 6x1 aprovado no Congresso",
+          "p": "O Assunto",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 38,
+          "e": "A abstenção e o poder do voto de quem não votou",
+          "p": "O Assunto",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 40,
+          "e": "Lula propõe Pix de até R$ 5.000 e perdão de dívidas de MEIs a 12 dias do 2º turno",
+          "p": "Boletim Folha",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 43,
+          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 47,
+          "e": "TSE diz a Kassio não ter encontrado conteúdo citado por Flávio em canal pró-Lula",
+          "p": "Boletim Folha",
+          "d": "2026-10-13"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "indo-pacific-security",
       "name": "Indo-Pacific security",
       "blurb": "AUKUS, Quad, Indo-Pacific security.",
       "kind": "story",
       "facet": "story",
       "count": 1142,
-      "hours": 189.36,
+      "hours": 188.95,
       "byYear": {
         "2019": 54,
         "2020": 144,
@@ -716,8 +716,8 @@
       },
       "evidence": {
         "title": 194,
-        "notes": 877,
-        "transcript": 71
+        "notes": 873,
+        "transcript": 75
       },
       "samples": [
         {
@@ -777,22 +777,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1341,
-      "hours": 137.62,
+      "count": 1353,
+      "hours": 138.29,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 100,
         "2022": 151,
         "2023": 102,
-        "2024": 136,
-        "2025": 303,
-        "2026": 488
+        "2024": 137,
+        "2025": 309,
+        "2026": 493
       },
       "evidence": {
         "title": 3,
         "notes": 581,
-        "transcript": 757
+        "transcript": 769
       },
       "samples": [
         {
@@ -853,7 +853,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 1216,
-      "hours": 120.4,
+      "hours": 120.21,
       "byYear": {
         "2019": 1,
         "2020": 420,
@@ -866,8 +866,8 @@
       },
       "evidence": {
         "title": 463,
-        "notes": 701,
-        "transcript": 52
+        "notes": 700,
+        "transcript": 53
       },
       "samples": [
         {
@@ -927,8 +927,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1099,
-      "hours": 119.74,
+      "count": 1104,
+      "hours": 120.01,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -936,13 +936,13 @@
         "2022": 86,
         "2023": 178,
         "2024": 231,
-        "2025": 187,
-        "2026": 187
+        "2025": 191,
+        "2026": 188
       },
       "evidence": {
         "title": 58,
         "notes": 748,
-        "transcript": 293
+        "transcript": 298
       },
       "samples": [
         {
@@ -1003,7 +1003,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 107.63,
+      "hours": 107.7,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -1015,9 +1015,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 535,
+        "title": 532,
         "notes": 229,
-        "transcript": 101
+        "transcript": 104
       },
       "samples": [
         {
@@ -1077,22 +1077,22 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1028,
-      "hours": 101.75,
+      "count": 1032,
+      "hours": 101.83,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 110,
         "2022": 133,
         "2023": 157,
-        "2024": 131,
+        "2024": 134,
         "2025": 179,
-        "2026": 219
+        "2026": 220
       },
       "evidence": {
-        "title": 219,
+        "title": 218,
         "notes": 573,
-        "transcript": 236
+        "transcript": 241
       },
       "samples": [
         {
@@ -1152,22 +1152,22 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 599,
-      "hours": 95.92,
+      "count": 613,
+      "hours": 96.31,
       "byYear": {
         "2019": 1,
         "2020": 15,
         "2021": 17,
         "2022": 30,
         "2023": 51,
-        "2024": 42,
-        "2025": 207,
-        "2026": 236
+        "2024": 44,
+        "2025": 214,
+        "2026": 241
       },
       "evidence": {
         "title": 97,
         "notes": 159,
-        "transcript": 343
+        "transcript": 357
       },
       "samples": [
         {
@@ -1227,22 +1227,22 @@
       "blurb": "STF, TSE, and Brazilian judicial politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1121,
-      "hours": 92.03,
+      "count": 1125,
+      "hours": 92.54,
       "byYear": {
         "2019": 17,
         "2020": 78,
         "2021": 143,
         "2022": 142,
         "2023": 195,
-        "2024": 160,
+        "2024": 163,
         "2025": 194,
-        "2026": 192
+        "2026": 193
       },
       "evidence": {
         "title": 384,
-        "notes": 647,
-        "transcript": 90
+        "notes": 644,
+        "transcript": 97
       },
       "samples": [
         {
@@ -1302,22 +1302,22 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 703,
-      "hours": 88.08,
+      "count": 704,
+      "hours": 88.0,
       "byYear": {
         "2019": 3,
         "2020": 141,
         "2021": 88,
         "2022": 69,
         "2023": 84,
-        "2024": 89,
-        "2025": 141,
-        "2026": 88
+        "2024": 90,
+        "2025": 142,
+        "2026": 87
       },
       "evidence": {
         "title": 2,
-        "notes": 578,
-        "transcript": 123
+        "notes": 576,
+        "transcript": 126
       },
       "samples": [
         {
@@ -1377,22 +1377,22 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 593,
-      "hours": 80.56,
+      "count": 598,
+      "hours": 80.7,
       "byYear": {
         "2019": 5,
         "2020": 25,
         "2021": 32,
         "2022": 25,
         "2023": 109,
-        "2024": 119,
-        "2025": 116,
-        "2026": 162
+        "2024": 121,
+        "2025": 117,
+        "2026": 164
       },
       "evidence": {
         "title": 6,
         "notes": 437,
-        "transcript": 150
+        "transcript": 155
       },
       "samples": [
         {
@@ -1442,6 +1442,156 @@
           "e": "Call My A.I. Agent",
           "p": "The Daily",
           "d": "2026-10-07"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "br-congress",
+      "name": "Brazilian Congress",
+      "blurb": "Brazilian Chamber, Senate, and amendments.",
+      "kind": "local",
+      "facet": "local",
+      "count": 826,
+      "hours": 77.95,
+      "byYear": {
+        "2019": 16,
+        "2020": 45,
+        "2021": 114,
+        "2022": 83,
+        "2023": 176,
+        "2024": 131,
+        "2025": 146,
+        "2026": 115
+      },
+      "evidence": {
+        "title": 189,
+        "notes": 543,
+        "transcript": 94
+      },
+      "samples": [
+        {
+          "i": 5,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 28,
+          "e": "Senado aprova PEC que acaba com a escala 6x1, em trunfo para Lula",
+          "p": "Boletim Folha",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 30,
+          "e": "O fim da escala 6x1 aprovado no Congresso",
+          "p": "O Assunto",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 50,
+          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
+          "p": "O Assunto",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 67,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 79,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 81,
+          "e": "A Hora #116 - O primeiro golpe de Flávio e as chances de Lula",
+          "p": "A Hora",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 95,
+          "e": "A eleição das redes sociais e o que muda na disputa como a conhecemos",
+          "p": "O Assunto",
+          "d": "2026-10-08"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "au-defence",
+      "name": "Australian defence",
+      "blurb": "Australian defence and AUKUS politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 819,
+      "hours": 77.76,
+      "byYear": {
+        "2019": 6,
+        "2020": 39,
+        "2021": 52,
+        "2022": 80,
+        "2023": 117,
+        "2024": 109,
+        "2025": 161,
+        "2026": 255
+      },
+      "evidence": {
+        "title": 192,
+        "notes": 322,
+        "transcript": 305
+      },
+      "samples": [
+        {
+          "i": 24,
+          "e": "Could Trump wage another war in the Middle East?",
+          "p": "7am",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 45,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 46,
+          "e": "Will Trump stream an execution to the world?",
+          "p": "ABC News Daily",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 55,
+          "e": "Why Trump's selling out to Putin again",
+          "p": "ABC News Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 69,
+          "e": "How a remote Ecuadorian village took on Gina Rinehart",
+          "p": "The Morning Edition",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 70,
+          "e": "Is Iran's economy really about to collapse?",
+          "p": "ABC News Daily",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 126,
+          "e": "Undercover inside Cuba: The world’s longest-running blockade",
+          "p": "7am",
+          "d": "2026-10-05"
         }
       ],
       "children": []
@@ -1522,163 +1672,13 @@
       "children": []
     },
     {
-      "id": "br-congress",
-      "name": "Brazilian Congress",
-      "blurb": "Brazilian Chamber, Senate, and amendments.",
-      "kind": "local",
-      "facet": "local",
-      "count": 820,
-      "hours": 77.36,
-      "byYear": {
-        "2019": 16,
-        "2020": 45,
-        "2021": 114,
-        "2022": 83,
-        "2023": 176,
-        "2024": 127,
-        "2025": 145,
-        "2026": 114
-      },
-      "evidence": {
-        "title": 189,
-        "notes": 546,
-        "transcript": 85
-      },
-      "samples": [
-        {
-          "i": 5,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 28,
-          "e": "Senado aprova PEC que acaba com a escala 6x1, em trunfo para Lula",
-          "p": "Boletim Folha",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 30,
-          "e": "O fim da escala 6x1 aprovado no Congresso",
-          "p": "O Assunto",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 50,
-          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
-          "p": "O Assunto",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 67,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 79,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 81,
-          "e": "A Hora #116 - O primeiro golpe de Flávio e as chances de Lula",
-          "p": "A Hora",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 95,
-          "e": "A eleição das redes sociais e o que muda na disputa como a conhecemos",
-          "p": "O Assunto",
-          "d": "2026-10-08"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "au-defence",
-      "name": "Australian defence",
-      "blurb": "Australian defence and AUKUS politics.",
-      "kind": "local",
-      "facet": "local",
-      "count": 812,
-      "hours": 77.22,
-      "byYear": {
-        "2019": 6,
-        "2020": 39,
-        "2021": 52,
-        "2022": 80,
-        "2023": 117,
-        "2024": 109,
-        "2025": 159,
-        "2026": 250
-      },
-      "evidence": {
-        "title": 192,
-        "notes": 323,
-        "transcript": 297
-      },
-      "samples": [
-        {
-          "i": 24,
-          "e": "Could Trump wage another war in the Middle East?",
-          "p": "7am",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 33,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 45,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 46,
-          "e": "Will Trump stream an execution to the world?",
-          "p": "ABC News Daily",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 55,
-          "e": "Why Trump's selling out to Putin again",
-          "p": "ABC News Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 69,
-          "e": "How a remote Ecuadorian village took on Gina Rinehart",
-          "p": "The Morning Edition",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 70,
-          "e": "Is Iran's economy really about to collapse?",
-          "p": "ABC News Daily",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 126,
-          "e": "Undercover inside Cuba: The world’s longest-running blockade",
-          "p": "7am",
-          "d": "2026-10-05"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "us-defence",
       "name": "US defence",
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 757,
-      "hours": 67.01,
+      "count": 758,
+      "hours": 67.07,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -1687,12 +1687,12 @@
         "2023": 61,
         "2024": 59,
         "2025": 210,
-        "2026": 359
+        "2026": 360
       },
       "evidence": {
         "title": 235,
         "notes": 122,
-        "transcript": 400
+        "transcript": 401
       },
       "samples": [
         {
@@ -1752,22 +1752,22 @@
       "blurb": "Brazilian markets, inflation, fiscal policy.",
       "kind": "local",
       "facet": "local",
-      "count": 824,
-      "hours": 57.73,
+      "count": 829,
+      "hours": 58.4,
       "byYear": {
         "2019": 10,
         "2020": 64,
         "2021": 100,
         "2022": 103,
         "2023": 145,
-        "2024": 147,
-        "2025": 127,
-        "2026": 128
+        "2024": 152,
+        "2025": 128,
+        "2026": 127
       },
       "evidence": {
         "title": 174,
-        "notes": 562,
-        "transcript": 88
+        "notes": 559,
+        "transcript": 96
       },
       "samples": [
         {
@@ -1827,22 +1827,22 @@
       "blurb": "Authoritarian and illiberal politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 376,
-      "hours": 57.23,
+      "count": 380,
+      "hours": 57.29,
       "byYear": {
         "2019": 9,
         "2020": 10,
         "2021": 25,
         "2022": 26,
         "2023": 67,
-        "2024": 64,
-        "2025": 125,
+        "2024": 67,
+        "2025": 126,
         "2026": 50
       },
       "evidence": {
         "title": 54,
         "notes": 258,
-        "transcript": 64
+        "transcript": 68
       },
       "samples": [
         {
@@ -1902,8 +1902,8 @@
       "blurb": "AI, LLMs, and machine learning.",
       "kind": "domain",
       "facet": "domain",
-      "count": 356,
-      "hours": 53.55,
+      "count": 358,
+      "hours": 53.65,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1911,13 +1911,13 @@
         "2022": 5,
         "2023": 42,
         "2024": 40,
-        "2025": 92,
+        "2025": 94,
         "2026": 163
       },
       "evidence": {
         "title": 77,
-        "notes": 144,
-        "transcript": 135
+        "notes": 143,
+        "transcript": 138
       },
       "samples": [
         {
@@ -1977,8 +1977,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 586,
-      "hours": 50.67,
+      "count": 591,
+      "hours": 51.06,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -1986,13 +1986,13 @@
         "2022": 50,
         "2023": 54,
         "2024": 65,
-        "2025": 99,
-        "2026": 196
+        "2025": 100,
+        "2026": 200
       },
       "evidence": {
-        "title": 175,
+        "title": 174,
         "notes": 204,
-        "transcript": 207
+        "transcript": 213
       },
       "samples": [
         {
@@ -2127,7 +2127,7 @@
       "kind": "local",
       "facet": "local",
       "count": 376,
-      "hours": 48.84,
+      "hours": 48.77,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -2140,8 +2140,8 @@
       },
       "evidence": {
         "title": 158,
-        "notes": 162,
-        "transcript": 56
+        "notes": 161,
+        "transcript": 57
       },
       "samples": [
         {
@@ -2191,6 +2191,80 @@
           "e": "Trump Venezuela Oil Deal, US & Iran Renew Strikes, House Back From Recess",
           "p": "Up First from NPR",
           "d": "2026-08-31"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "br-crime",
+      "name": "Brazilian crime & security",
+      "blurb": "Crime and security in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 429,
+      "hours": 46.07,
+      "byYear": {
+        "2020": 22,
+        "2021": 19,
+        "2022": 35,
+        "2023": 87,
+        "2024": 82,
+        "2025": 87,
+        "2026": 97
+      },
+      "evidence": {
+        "title": 21,
+        "notes": 314,
+        "transcript": 94
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 5,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 67,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 79,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 150,
+          "e": "Lula x Flávio: o que está em jogo na reta final",
+          "p": "Foro de Teresina",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 162,
+          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
+          "p": "Durma com essa",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 222,
+          "e": "Xadrez Verbal #476 Lula na ONU e Trump recebe Xi",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 224,
+          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
+          "p": "Foro de Teresina",
+          "d": "2026-09-26"
         }
       ],
       "children": []
@@ -2266,80 +2340,6 @@
           "e": "Reading History Through Letters",
           "p": "Beyond the Ballot Box",
           "d": "2026-09-07"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "br-crime",
-      "name": "Brazilian crime & security",
-      "blurb": "Crime and security in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 425,
-      "hours": 45.45,
-      "byYear": {
-        "2020": 22,
-        "2021": 19,
-        "2022": 35,
-        "2023": 87,
-        "2024": 78,
-        "2025": 87,
-        "2026": 97
-      },
-      "evidence": {
-        "title": 21,
-        "notes": 315,
-        "transcript": 89
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 5,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 67,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 79,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 150,
-          "e": "Lula x Flávio: o que está em jogo na reta final",
-          "p": "Foro de Teresina",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 162,
-          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
-          "p": "Durma com essa",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 222,
-          "e": "Xadrez Verbal #476 Lula na ONU e Trump recebe Xi",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 224,
-          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
-          "p": "Foro de Teresina",
-          "d": "2026-09-26"
         }
       ],
       "children": []
@@ -2425,22 +2425,22 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 504,
-      "hours": 41.74,
+      "count": 511,
+      "hours": 42.16,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 3,
         "2022": 15,
         "2023": 49,
-        "2024": 79,
-        "2025": 144,
+        "2024": 83,
+        "2025": 147,
         "2026": 203
       },
       "evidence": {
         "title": 0,
-        "notes": 173,
-        "transcript": 331
+        "notes": 172,
+        "transcript": 339
       },
       "samples": [
         {
@@ -2495,13 +2495,88 @@
       "children": []
     },
     {
+      "id": "br-media",
+      "name": "Brazilian media",
+      "blurb": "Press, platforms, and media politics in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 463,
+      "hours": 40.89,
+      "byYear": {
+        "2019": 9,
+        "2020": 29,
+        "2021": 31,
+        "2022": 33,
+        "2023": 165,
+        "2024": 65,
+        "2025": 69,
+        "2026": 62
+      },
+      "evidence": {
+        "title": 52,
+        "notes": 343,
+        "transcript": 68
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 6,
+          "e": "Meta admite que contas de Lula foram prejudicadas por restrições e fala em falhas técnicas",
+          "p": "Boletim Folha",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 17,
+          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
+          "p": "A Hora",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 20,
+          "e": "O caso Meta e a disputa no TSE em torno das redes sociais",
+          "p": "O Assunto",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 67,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 80,
+          "e": "Jurista sul-africana Navi Pillay vence Nobel da Paz",
+          "p": "Boletim Folha",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 150,
+          "e": "Lula x Flávio: o que está em jogo na reta final",
+          "p": "Foro de Teresina",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 162,
+          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
+          "p": "Durma com essa",
+          "d": "2026-10-02"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "books-literature",
       "name": "Books & literature",
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 263,
-      "hours": 40.88,
+      "count": 261,
+      "hours": 40.69,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -2510,11 +2585,11 @@
         "2023": 27,
         "2024": 42,
         "2025": 50,
-        "2026": 82
+        "2026": 80
       },
       "evidence": {
         "title": 0,
-        "notes": 170,
+        "notes": 168,
         "transcript": 93
       },
       "samples": [
@@ -2570,101 +2645,26 @@
       "children": []
     },
     {
-      "id": "br-media",
-      "name": "Brazilian media",
-      "blurb": "Press, platforms, and media politics in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 459,
-      "hours": 40.66,
-      "byYear": {
-        "2019": 9,
-        "2020": 29,
-        "2021": 31,
-        "2022": 33,
-        "2023": 165,
-        "2024": 62,
-        "2025": 69,
-        "2026": 61
-      },
-      "evidence": {
-        "title": 52,
-        "notes": 344,
-        "transcript": 63
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 6,
-          "e": "Meta admite que contas de Lula foram prejudicadas por restrições e fala em falhas técnicas",
-          "p": "Boletim Folha",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 17,
-          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
-          "p": "A Hora",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 20,
-          "e": "O caso Meta e a disputa no TSE em torno das redes sociais",
-          "p": "O Assunto",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 67,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 80,
-          "e": "Jurista sul-africana Navi Pillay vence Nobel da Paz",
-          "p": "Boletim Folha",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 150,
-          "e": "Lula x Flávio: o que está em jogo na reta final",
-          "p": "Foro de Teresina",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 162,
-          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
-          "p": "Durma com essa",
-          "d": "2026-10-02"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "history",
       "name": "History",
       "blurb": "History and memory.",
       "kind": "domain",
       "facet": "domain",
-      "count": 286,
-      "hours": 39.08,
+      "count": 290,
+      "hours": 39.13,
       "byYear": {
         "2020": 11,
         "2021": 13,
         "2022": 16,
         "2023": 25,
-        "2024": 23,
-        "2025": 90,
+        "2024": 26,
+        "2025": 91,
         "2026": 108
       },
       "evidence": {
         "title": 17,
         "notes": 92,
-        "transcript": 177
+        "transcript": 181
       },
       "samples": [
         {
@@ -2724,22 +2724,22 @@
       "blurb": "Public health and SUS politics in Brazil.",
       "kind": "local",
       "facet": "local",
-      "count": 663,
-      "hours": 38.38,
+      "count": 666,
+      "hours": 38.85,
       "byYear": {
         "2019": 4,
         "2020": 151,
         "2021": 266,
         "2022": 75,
         "2023": 55,
-        "2024": 50,
-        "2025": 32,
+        "2024": 52,
+        "2025": 33,
         "2026": 30
       },
       "evidence": {
         "title": 227,
-        "notes": 418,
-        "transcript": 18
+        "notes": 417,
+        "transcript": 22
       },
       "samples": [
         {
@@ -2875,7 +2875,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 34.76,
+      "hours": 34.72,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -2886,9 +2886,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 152,
+        "title": 151,
         "notes": 56,
-        "transcript": 151
+        "transcript": 152
       },
       "samples": [
         {
@@ -2948,8 +2948,8 @@
       "blurb": "China–Taiwan cross-strait tensions.",
       "kind": "story",
       "facet": "story",
-      "count": 242,
-      "hours": 34.56,
+      "count": 243,
+      "hours": 34.7,
       "byYear": {
         "2019": 11,
         "2020": 10,
@@ -2957,13 +2957,13 @@
         "2022": 54,
         "2023": 33,
         "2024": 34,
-        "2025": 45,
+        "2025": 46,
         "2026": 36
       },
       "evidence": {
         "title": 69,
         "notes": 143,
-        "transcript": 30
+        "transcript": 31
       },
       "samples": [
         {
@@ -3023,8 +3023,8 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 372,
-      "hours": 32.84,
+      "count": 373,
+      "hours": 32.95,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -3033,12 +3033,12 @@
         "2023": 35,
         "2024": 41,
         "2025": 81,
-        "2026": 86
+        "2026": 87
       },
       "evidence": {
-        "title": 87,
+        "title": 86,
         "notes": 149,
-        "transcript": 136
+        "transcript": 138
       },
       "samples": [
         {
@@ -3098,21 +3098,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 360,
-      "hours": 30.02,
+      "count": 365,
+      "hours": 30.23,
       "byYear": {
         "2020": 42,
         "2021": 26,
         "2022": 13,
         "2023": 26,
-        "2024": 42,
-        "2025": 100,
-        "2026": 111
+        "2024": 44,
+        "2025": 102,
+        "2026": 112
       },
       "evidence": {
         "title": 7,
-        "notes": 162,
-        "transcript": 191
+        "notes": 161,
+        "transcript": 197
       },
       "samples": [
         {
@@ -3172,8 +3172,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 255,
-      "hours": 29.69,
+      "count": 256,
+      "hours": 29.74,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -3181,13 +3181,13 @@
         "2022": 32,
         "2023": 24,
         "2024": 38,
-        "2025": 43,
+        "2025": 44,
         "2026": 40
       },
       "evidence": {
         "title": 4,
         "notes": 193,
-        "transcript": 58
+        "transcript": 59
       },
       "samples": [
         {
@@ -3247,8 +3247,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 415,
-      "hours": 29.06,
+      "count": 416,
+      "hours": 29.17,
       "byYear": {
         "2019": 5,
         "2020": 11,
@@ -3257,12 +3257,12 @@
         "2023": 27,
         "2024": 43,
         "2025": 156,
-        "2026": 144
+        "2026": 145
       },
       "evidence": {
-        "title": 121,
-        "notes": 107,
-        "transcript": 187
+        "title": 120,
+        "notes": 106,
+        "transcript": 190
       },
       "samples": [
         {
@@ -3322,8 +3322,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 301,
-      "hours": 27.21,
+      "count": 303,
+      "hours": 27.34,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -3331,13 +3331,13 @@
         "2022": 10,
         "2023": 22,
         "2024": 29,
-        "2025": 93,
+        "2025": 95,
         "2026": 118
       },
       "evidence": {
         "title": 59,
         "notes": 86,
-        "transcript": 156
+        "transcript": 158
       },
       "samples": [
         {
@@ -3397,21 +3397,21 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 245,
-      "hours": 27.11,
+      "count": 249,
+      "hours": 27.14,
       "byYear": {
         "2020": 9,
         "2021": 13,
         "2022": 22,
         "2023": 40,
-        "2024": 38,
-        "2025": 59,
-        "2026": 64
+        "2024": 40,
+        "2025": 60,
+        "2026": 65
       },
       "evidence": {
         "title": 33,
         "notes": 149,
-        "transcript": 63
+        "transcript": 67
       },
       "samples": [
         {
@@ -3546,22 +3546,22 @@
       "blurb": "Race and racism.",
       "kind": "frame",
       "facet": "frame",
-      "count": 161,
-      "hours": 24.98,
+      "count": 162,
+      "hours": 24.93,
       "byYear": {
         "2019": 2,
         "2020": 18,
         "2021": 14,
         "2022": 16,
         "2023": 38,
-        "2024": 28,
+        "2024": 29,
         "2025": 21,
         "2026": 24
       },
       "evidence": {
         "title": 35,
-        "notes": 102,
-        "transcript": 24
+        "notes": 101,
+        "transcript": 26
       },
       "samples": [
         {
@@ -3621,8 +3621,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 209,
-      "hours": 24.83,
+      "count": 211,
+      "hours": 24.88,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -3630,13 +3630,13 @@
         "2022": 18,
         "2023": 13,
         "2024": 25,
-        "2025": 50,
+        "2025": 52,
         "2026": 66
       },
       "evidence": {
         "title": 11,
-        "notes": 102,
-        "transcript": 96
+        "notes": 101,
+        "transcript": 99
       },
       "samples": [
         {
@@ -3696,22 +3696,22 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 292,
-      "hours": 23.79,
+      "count": 295,
+      "hours": 23.82,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 27,
         "2022": 18,
         "2023": 25,
-        "2024": 24,
-        "2025": 56,
+        "2024": 26,
+        "2025": 57,
         "2026": 92
       },
       "evidence": {
         "title": 0,
         "notes": 172,
-        "transcript": 120
+        "transcript": 123
       },
       "samples": [
         {
@@ -3761,6 +3761,81 @@
           "e": "Trump Banned the Media. This Time, the Media Struck Back.",
           "p": "The Daily",
           "d": "2026-09-23"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "br-climate",
+      "name": "Brazilian climate & Amazon",
+      "blurb": "Climate, Amazon, and energy in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 318,
+      "hours": 22.98,
+      "byYear": {
+        "2019": 9,
+        "2020": 12,
+        "2021": 33,
+        "2022": 51,
+        "2023": 72,
+        "2024": 51,
+        "2025": 47,
+        "2026": 43
+      },
+      "evidence": {
+        "title": 43,
+        "notes": 247,
+        "transcript": 28
+      },
+      "samples": [
+        {
+          "i": 113,
+          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
+          "p": "Up First from NPR",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 145,
+          "e": "Lula mira indecisos e Flávio Bolsonaro pede 'voto de revolta' na reta final do 1º turno",
+          "p": "Boletim Folha",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 224,
+          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
+          "p": "Foro de Teresina",
+          "d": "2026-09-26"
+        },
+        {
+          "i": 265,
+          "e": "A nova crise do petróleo e a economia global fora de ordem",
+          "p": "O Assunto",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 275,
+          "e": "ESPECIAL ELEIÇÕES: o país diante de uma encruzilhada ambiental",
+          "p": "O Assunto",
+          "d": "2026-09-22"
+        },
+        {
+          "i": 295,
+          "e": "Com STF, com Dark Horse, com tudo",
+          "p": "Foro de Teresina",
+          "d": "2026-09-19"
+        },
+        {
+          "i": 328,
+          "e": "A sessão histórica que colocou o Supremo contra si mesmo",
+          "p": "O Assunto",
+          "d": "2026-09-16"
+        },
+        {
+          "i": 452,
+          "e": "Mendonça vs. Moraes: as reações do Supremo ao Caso Master",
+          "p": "O Assunto",
+          "d": "2026-09-03"
         }
       ],
       "children": []
@@ -3841,88 +3916,13 @@
       "children": []
     },
     {
-      "id": "br-climate",
-      "name": "Brazilian climate & Amazon",
-      "blurb": "Climate, Amazon, and energy in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 315,
-      "hours": 22.65,
-      "byYear": {
-        "2019": 9,
-        "2020": 12,
-        "2021": 33,
-        "2022": 51,
-        "2023": 72,
-        "2024": 48,
-        "2025": 47,
-        "2026": 43
-      },
-      "evidence": {
-        "title": 43,
-        "notes": 247,
-        "transcript": 25
-      },
-      "samples": [
-        {
-          "i": 113,
-          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
-          "p": "Up First from NPR",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 145,
-          "e": "Lula mira indecisos e Flávio Bolsonaro pede 'voto de revolta' na reta final do 1º turno",
-          "p": "Boletim Folha",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 224,
-          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
-          "p": "Foro de Teresina",
-          "d": "2026-09-26"
-        },
-        {
-          "i": 265,
-          "e": "A nova crise do petróleo e a economia global fora de ordem",
-          "p": "O Assunto",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 275,
-          "e": "ESPECIAL ELEIÇÕES: o país diante de uma encruzilhada ambiental",
-          "p": "O Assunto",
-          "d": "2026-09-22"
-        },
-        {
-          "i": 295,
-          "e": "Com STF, com Dark Horse, com tudo",
-          "p": "Foro de Teresina",
-          "d": "2026-09-19"
-        },
-        {
-          "i": 328,
-          "e": "A sessão histórica que colocou o Supremo contra si mesmo",
-          "p": "O Assunto",
-          "d": "2026-09-16"
-        },
-        {
-          "i": 452,
-          "e": "Mendonça vs. Moraes: as reações do Supremo ao Caso Master",
-          "p": "O Assunto",
-          "d": "2026-09-03"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "cn-government",
       "name": "Chinese government",
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 177,
-      "hours": 21.7,
+      "count": 178,
+      "hours": 21.8,
       "byYear": {
         "2019": 3,
         "2020": 19,
@@ -3930,13 +3930,13 @@
         "2022": 23,
         "2023": 25,
         "2024": 26,
-        "2025": 39,
+        "2025": 40,
         "2026": 19
       },
       "evidence": {
         "title": 11,
         "notes": 129,
-        "transcript": 37
+        "transcript": 38
       },
       "samples": [
         {
@@ -3996,22 +3996,22 @@
       "blurb": "Human rights and civil liberties.",
       "kind": "frame",
       "facet": "frame",
-      "count": 170,
-      "hours": 21.62,
+      "count": 171,
+      "hours": 21.63,
       "byYear": {
         "2019": 7,
         "2020": 12,
         "2021": 18,
         "2022": 16,
         "2023": 33,
-        "2024": 27,
+        "2024": 28,
         "2025": 31,
         "2026": 26
       },
       "evidence": {
         "title": 15,
         "notes": 134,
-        "transcript": 21
+        "transcript": 22
       },
       "samples": [
         {
@@ -4072,7 +4072,7 @@
       "kind": "local",
       "facet": "local",
       "count": 121,
-      "hours": 21.6,
+      "hours": 21.48,
       "byYear": {
         "2019": 2,
         "2021": 3,
@@ -4084,8 +4084,8 @@
       },
       "evidence": {
         "title": 19,
-        "notes": 82,
-        "transcript": 20
+        "notes": 81,
+        "transcript": 21
       },
       "samples": [
         {
@@ -4220,22 +4220,22 @@
       "blurb": "Film, TV, and streaming.",
       "kind": "domain",
       "facet": "domain",
-      "count": 124,
-      "hours": 18.37,
+      "count": 125,
+      "hours": 18.38,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 4,
         "2022": 11,
         "2023": 6,
-        "2024": 8,
+        "2024": 9,
         "2025": 32,
         "2026": 60
       },
       "evidence": {
         "title": 26,
         "notes": 38,
-        "transcript": 60
+        "transcript": 61
       },
       "samples": [
         {
@@ -4295,21 +4295,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 274,
-      "hours": 16.61,
+      "count": 276,
+      "hours": 16.63,
       "byYear": {
         "2020": 1,
         "2021": 3,
         "2022": 7,
         "2023": 7,
-        "2024": 27,
+        "2024": 28,
         "2025": 79,
-        "2026": 150
+        "2026": 151
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 220
+        "transcript": 222
       },
       "samples": [
         {
@@ -4814,81 +4814,6 @@
       "children": []
     },
     {
-      "id": "argentina-politics",
-      "name": "Argentine politics",
-      "blurb": "Argentine politics and Milei.",
-      "kind": "local",
-      "facet": "local",
-      "count": 120,
-      "hours": 12.47,
-      "byYear": {
-        "2019": 11,
-        "2020": 7,
-        "2021": 3,
-        "2022": 17,
-        "2023": 44,
-        "2024": 20,
-        "2025": 10,
-        "2026": 8
-      },
-      "evidence": {
-        "title": 54,
-        "notes": 61,
-        "transcript": 5
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 258,
-          "e": "Will Argentina go to war with the UK over the Falklands?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 523,
-          "e": "Colombia: An Early Test for the New Government",
-          "p": "The Americas Quarterly Podcast",
-          "d": "2026-08-27"
-        },
-        {
-          "i": 783,
-          "e": "Brasil versus Argentina e Paraguai: a América do Sul em tempos de polarização",
-          "p": "O Assunto",
-          "d": "2026-08-03"
-        },
-        {
-          "i": 789,
-          "e": "A insensatez de Milei, o caos em Minas e o juíz no Paraná",
-          "p": "Foro de Teresina",
-          "d": "2026-08-02"
-        },
-        {
-          "i": 1446,
-          "e": "Xadrez Verbal #462 Xi Anfitrião e Protestos na Bolívia",
-          "p": "Xadrez Verbal",
-          "d": "2026-05-30"
-        },
-        {
-          "i": 1696,
-          "e": "Javier Milei: impopularidade recorde e situação econômica na Argentina",
-          "p": "O Assunto",
-          "d": "2026-05-06"
-        },
-        {
-          "i": 2992,
-          "e": "Venezuela invadida por Trump e a deposição de Maduro",
-          "p": "O Assunto",
-          "d": "2026-01-04"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "culture-entertainment",
       "name": "Culture & entertainment",
       "blurb": "Broader culture and entertainment.",
@@ -4959,6 +4884,81 @@
           "e": "Should we worry about the end of the world?",
           "p": "Up First from NPR",
           "d": "2026-07-12"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "argentina-politics",
+      "name": "Argentine politics",
+      "blurb": "Argentine politics and Milei.",
+      "kind": "local",
+      "facet": "local",
+      "count": 120,
+      "hours": 12.34,
+      "byYear": {
+        "2019": 11,
+        "2020": 7,
+        "2021": 3,
+        "2022": 17,
+        "2023": 44,
+        "2024": 20,
+        "2025": 10,
+        "2026": 8
+      },
+      "evidence": {
+        "title": 54,
+        "notes": 60,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 258,
+          "e": "Will Argentina go to war with the UK over the Falklands?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 523,
+          "e": "Colombia: An Early Test for the New Government",
+          "p": "The Americas Quarterly Podcast",
+          "d": "2026-08-27"
+        },
+        {
+          "i": 783,
+          "e": "Brasil versus Argentina e Paraguai: a América do Sul em tempos de polarização",
+          "p": "O Assunto",
+          "d": "2026-08-03"
+        },
+        {
+          "i": 789,
+          "e": "A insensatez de Milei, o caos em Minas e o juíz no Paraná",
+          "p": "Foro de Teresina",
+          "d": "2026-08-02"
+        },
+        {
+          "i": 1446,
+          "e": "Xadrez Verbal #462 Xi Anfitrião e Protestos na Bolívia",
+          "p": "Xadrez Verbal",
+          "d": "2026-05-30"
+        },
+        {
+          "i": 1696,
+          "e": "Javier Milei: impopularidade recorde e situação econômica na Argentina",
+          "p": "O Assunto",
+          "d": "2026-05-06"
+        },
+        {
+          "i": 2992,
+          "e": "Venezuela invadida por Trump e a deposição de Maduro",
+          "p": "O Assunto",
+          "d": "2026-01-04"
         }
       ],
       "children": []
@@ -5044,8 +5044,8 @@
       "blurb": "US foreign policy and diplomacy.",
       "kind": "local",
       "facet": "local",
-      "count": 153,
-      "hours": 11.26,
+      "count": 152,
+      "hours": 11.21,
       "byYear": {
         "2019": 5,
         "2020": 7,
@@ -5053,11 +5053,11 @@
         "2022": 13,
         "2023": 9,
         "2024": 16,
-        "2025": 47,
+        "2025": 46,
         "2026": 45
       },
       "evidence": {
-        "title": 30,
+        "title": 29,
         "notes": 78,
         "transcript": 45
       },
@@ -5194,20 +5194,20 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 88,
-      "hours": 10.37,
+      "count": 90,
+      "hours": 10.39,
       "byYear": {
         "2021": 3,
         "2022": 6,
         "2023": 4,
         "2024": 15,
-        "2025": 23,
-        "2026": 37
+        "2025": 24,
+        "2026": 38
       },
       "evidence": {
         "title": 4,
         "notes": 32,
-        "transcript": 52
+        "transcript": 54
       },
       "samples": [
         {
@@ -5267,21 +5267,21 @@
       "blurb": "Nuclear weapons and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 141,
-      "hours": 10.14,
+      "count": 144,
+      "hours": 10.19,
       "byYear": {
         "2019": 1,
         "2021": 4,
         "2022": 14,
         "2023": 4,
         "2024": 12,
-        "2025": 46,
-        "2026": 60
+        "2025": 47,
+        "2026": 62
       },
       "evidence": {
         "title": 2,
         "notes": 41,
-        "transcript": 98
+        "transcript": 101
       },
       "samples": [
         {
@@ -5341,8 +5341,8 @@
       "blurb": "Populist politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 52,
-      "hours": 9.8,
+      "count": 53,
+      "hours": 9.81,
       "byYear": {
         "2019": 2,
         "2020": 3,
@@ -5351,12 +5351,12 @@
         "2023": 2,
         "2024": 1,
         "2025": 15,
-        "2026": 27
+        "2026": 28
       },
       "evidence": {
         "title": 6,
         "notes": 38,
-        "transcript": 8
+        "transcript": 9
       },
       "samples": [
         {
@@ -5714,8 +5714,8 @@
       "blurb": "Cybersecurity and espionage.",
       "kind": "domain",
       "facet": "domain",
-      "count": 65,
-      "hours": 7.69,
+      "count": 66,
+      "hours": 7.71,
       "byYear": {
         "2019": 3,
         "2020": 4,
@@ -5723,13 +5723,13 @@
         "2022": 15,
         "2023": 17,
         "2024": 8,
-        "2025": 3,
+        "2025": 4,
         "2026": 8
       },
       "evidence": {
         "title": 0,
         "notes": 51,
-        "transcript": 14
+        "transcript": 15
       },
       "samples": [
         {
@@ -5864,21 +5864,21 @@
       "blurb": "Religion and belief.",
       "kind": "domain",
       "facet": "domain",
-      "count": 68,
-      "hours": 6.37,
+      "count": 69,
+      "hours": 6.38,
       "byYear": {
         "2020": 3,
         "2021": 3,
         "2022": 1,
         "2023": 4,
         "2024": 6,
-        "2025": 24,
+        "2025": 25,
         "2026": 27
       },
       "evidence": {
         "title": 0,
         "notes": 21,
-        "transcript": 47
+        "transcript": 48
       },
       "samples": [
         {
@@ -5938,21 +5938,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 130,
-      "hours": 6.16,
+      "count": 132,
+      "hours": 6.18,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 1,
         "2023": 11,
         "2024": 15,
-        "2025": 35,
-        "2026": 65
+        "2025": 36,
+        "2026": 66
       },
       "evidence": {
         "title": 0,
         "notes": 33,
-        "transcript": 97
+        "transcript": 99
       },
       "samples": [
         {
@@ -6160,21 +6160,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 151,
-      "hours": 5.36,
+      "count": 153,
+      "hours": 5.38,
       "byYear": {
         "2020": 2,
         "2021": 5,
         "2022": 10,
         "2023": 25,
-        "2024": 32,
+        "2024": 34,
         "2025": 24,
         "2026": 53
       },
       "evidence": {
         "title": 20,
         "notes": 64,
-        "transcript": 67
+        "transcript": 69
       },
       "samples": [
         {
@@ -6450,22 +6450,22 @@
       "blurb": "Advertising, agencies, and brands.",
       "kind": "domain",
       "facet": "domain",
-      "count": 55,
-      "hours": 5.02,
+      "count": 56,
+      "hours": 5.03,
       "byYear": {
         "2019": 2,
         "2020": 3,
         "2021": 7,
         "2022": 4,
         "2023": 5,
-        "2024": 11,
+        "2024": 12,
         "2025": 4,
         "2026": 19
       },
       "evidence": {
         "title": 4,
         "notes": 28,
-        "transcript": 23
+        "transcript": 24
       },
       "samples": [
         {
@@ -6525,8 +6525,8 @@
       "blurb": "Disinformation and fake news.",
       "kind": "domain",
       "facet": "domain",
-      "count": 54,
-      "hours": 4.72,
+      "count": 55,
+      "hours": 4.74,
       "byYear": {
         "2020": 6,
         "2021": 6,
@@ -6534,12 +6534,12 @@
         "2023": 6,
         "2024": 9,
         "2025": 12,
-        "2026": 12
+        "2026": 13
       },
       "evidence": {
         "title": 0,
         "notes": 32,
-        "transcript": 22
+        "transcript": 23
       },
       "samples": [
         {
@@ -6672,22 +6672,22 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 45,
-      "hours": 4.32,
+      "count": 47,
+      "hours": 4.33,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 2,
         "2022": 5,
         "2023": 1,
-        "2024": 9,
+        "2024": 11,
         "2025": 14,
         "2026": 11
       },
       "evidence": {
         "title": 16,
         "notes": 8,
-        "transcript": 21
+        "transcript": 23
       },
       "samples": [
         {
@@ -7040,7 +7040,7 @@
       "kind": "local",
       "facet": "local",
       "count": 26,
-      "hours": 3.71,
+      "hours": 3.82,
       "byYear": {
         "2020": 1,
         "2021": 4,
@@ -7050,8 +7050,8 @@
       },
       "evidence": {
         "title": 2,
-        "notes": 16,
-        "transcript": 8
+        "notes": 15,
+        "transcript": 9
       },
       "samples": [
         {
@@ -7183,21 +7183,21 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 74,
-      "hours": 3.26,
+      "count": 78,
+      "hours": 3.34,
       "byYear": {
         "2020": 3,
         "2021": 2,
         "2022": 1,
         "2023": 5,
-        "2024": 9,
+        "2024": 11,
         "2025": 22,
-        "2026": 32
+        "2026": 34
       },
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 60
+        "transcript": 64
       },
       "samples": [
         {
@@ -7330,18 +7330,19 @@
       "blurb": "Video games and gaming culture.",
       "kind": "domain",
       "facet": "domain",
-      "count": 13,
-      "hours": 2.99,
+      "count": 14,
+      "hours": 3.0,
       "byYear": {
         "2021": 1,
         "2023": 7,
         "2024": 1,
+        "2025": 1,
         "2026": 4
       },
       "evidence": {
         "title": 0,
         "notes": 13,
-        "transcript": 0
+        "transcript": 1
       },
       "samples": [
         {
@@ -7369,6 +7370,12 @@
           "d": "2026-03-15"
         },
         {
+          "i": 6572,
+          "e": "O pix, as bets e o cessar-fogo",
+          "p": "Foro de Teresina",
+          "d": "2025-01-20"
+        },
+        {
           "i": 8086,
           "e": "Extratos da semana das contestações à eleição venezuelana",
           "p": "Durma com essa",
@@ -7385,12 +7392,6 @@
           "e": "Bate-Papo 549 - Copa do Mundo de 2030: geopolítica e business",
           "p": "Petit Journal",
           "d": "2023-10-05"
-        },
-        {
-          "i": 11815,
-          "e": "Arábia Saudita: fortuna no futebol pode limpar imagem da ditadura?",
-          "p": "O Assunto",
-          "d": "2023-08-15"
         }
       ],
       "children": []
@@ -7474,21 +7475,21 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 51,
-      "hours": 2.77,
+      "count": 53,
+      "hours": 2.79,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 2,
         "2023": 4,
-        "2024": 11,
+        "2024": 13,
         "2025": 15,
         "2026": 16
       },
       "evidence": {
         "title": 0,
-        "notes": 19,
-        "transcript": 32
+        "notes": 18,
+        "transcript": 35
       },
       "samples": [
         {
@@ -7548,20 +7549,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 51,
-      "hours": 2.67,
+      "count": 52,
+      "hours": 2.7,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 4,
         "2024": 1,
-        "2025": 29,
+        "2025": 30,
         "2026": 14
       },
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 30
+        "transcript": 31
       },
       "samples": [
         {
@@ -7973,7 +7974,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 13,
-      "hours": 1.05,
+      "hours": 0.97,
       "byYear": {
         "2019": 1,
         "2020": 1,
@@ -7984,8 +7985,8 @@
       },
       "evidence": {
         "title": 0,
-        "notes": 8,
-        "transcript": 5
+        "notes": 7,
+        "transcript": 6
       },
       "samples": [
         {
@@ -8240,15 +8241,15 @@
       "blurb": "Startups and venture capital.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4,
-      "hours": 0.16,
+      "count": 5,
+      "hours": 0.2,
       "byYear": {
-        "2026": 4
+        "2026": 5
       },
       "evidence": {
         "title": 0,
         "notes": 0,
-        "transcript": 4
+        "transcript": 5
       },
       "samples": [
         {
@@ -8274,6 +8275,12 @@
           "e": "Who will invest in Elon Musk’s SpaceX vision?",
           "p": "ABC News Daily",
           "d": "2026-06-02"
+        },
+        {
+          "i": 1518,
+          "e": "Tech sector warns tax could \"double\" under CGT changes | Insiders on Background",
+          "p": "Politics Now",
+          "d": "2026-05-23"
         }
       ],
       "children": []
@@ -8299,9 +8306,9 @@
         "2026": 899
       },
       "evidence": {
-        "title": 4905,
-        "notes": 535,
-        "transcript": 685
+        "title": 4901,
+        "notes": 534,
+        "transcript": 690
       },
       "samples": [
         {
@@ -8360,22 +8367,22 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4081,
-      "hours": 1004.55,
+      "count": 4080,
+      "hours": 1004.1,
       "byYear": {
         "2019": 264,
         "2020": 446,
         "2021": 456,
         "2022": 486,
         "2023": 437,
-        "2024": 581,
-        "2025": 802,
+        "2024": 582,
+        "2025": 800,
         "2026": 609
       },
       "evidence": {
-        "title": 1110,
-        "notes": 2743,
-        "transcript": 228
+        "title": 1109,
+        "notes": 2739,
+        "transcript": 232
       },
       "samples": [
         {
@@ -8435,7 +8442,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5630,
-      "hours": 946.76,
+      "hours": 944.43,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8447,9 +8454,9 @@
         "2026": 1071
       },
       "evidence": {
-        "title": 3412,
+        "title": 3386,
         "notes": 1113,
-        "transcript": 1105
+        "transcript": 1131
       },
       "samples": [
         {
@@ -8583,7 +8590,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5622,
-      "hours": 559.12,
+      "hours": 557.41,
       "byYear": {
         "2019": 258,
         "2020": 535,
@@ -8596,8 +8603,8 @@
       },
       "evidence": {
         "title": 2968,
-        "notes": 2541,
-        "transcript": 113
+        "notes": 2527,
+        "transcript": 127
       },
       "samples": [
         {
@@ -8656,8 +8663,8 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2168,
-      "hours": 357.36,
+      "count": 2170,
+      "hours": 356.59,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8665,13 +8672,13 @@
         "2022": 204,
         "2023": 224,
         "2024": 300,
-        "2025": 538,
+        "2025": 540,
         "2026": 501
       },
       "evidence": {
-        "title": 1047,
+        "title": 1036,
         "notes": 795,
-        "transcript": 326
+        "transcript": 339
       },
       "samples": [
         {
@@ -8731,7 +8738,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2279,
-      "hours": 257.9,
+      "hours": 257.85,
       "byYear": {
         "2019": 34,
         "2020": 100,
@@ -8743,9 +8750,9 @@
         "2026": 524
       },
       "evidence": {
-        "title": 1351,
-        "notes": 474,
-        "transcript": 454
+        "title": 1347,
+        "notes": 473,
+        "transcript": 459
       },
       "samples": [
         {
@@ -8799,101 +8806,27 @@
       ]
     },
     {
-      "id": "br-elections",
-      "name": "Brazilian elections",
-      "blurb": "Elections and campaigns in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 1653,
-      "hours": 220.3,
-      "byYear": {
-        "2019": 58,
-        "2020": 189,
-        "2021": 175,
-        "2022": 270,
-        "2023": 231,
-        "2024": 264,
-        "2025": 205,
-        "2026": 261
-      },
-      "evidence": {
-        "title": 367,
-        "notes": 1187,
-        "transcript": 99
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 5,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 17,
-          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
-          "p": "A Hora",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 30,
-          "e": "O fim da escala 6x1 aprovado no Congresso",
-          "p": "O Assunto",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 38,
-          "e": "A abstenção e o poder do voto de quem não votou",
-          "p": "O Assunto",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 40,
-          "e": "Lula propõe Pix de até R$ 5.000 e perdão de dívidas de MEIs a 12 dias do 2º turno",
-          "p": "Boletim Folha",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 43,
-          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 47,
-          "e": "TSE diz a Kassio não ter encontrado conteúdo citado por Flávio em canal pró-Lula",
-          "p": "Boletim Folha",
-          "d": "2026-10-13"
-        }
-      ]
-    },
-    {
       "id": "economy-markets",
       "name": "Economy & markets",
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2303,
-      "hours": 219.54,
+      "count": 2314,
+      "hours": 219.78,
       "byYear": {
         "2019": 51,
         "2020": 184,
         "2021": 174,
         "2022": 235,
         "2023": 347,
-        "2024": 358,
-        "2025": 454,
-        "2026": 500
+        "2024": 363,
+        "2025": 457,
+        "2026": 503
       },
       "evidence": {
-        "title": 566,
-        "notes": 1229,
-        "transcript": 508
+        "title": 565,
+        "notes": 1225,
+        "transcript": 524
       },
       "samples": [
         {
@@ -8947,13 +8880,87 @@
       ]
     },
     {
+      "id": "br-elections",
+      "name": "Brazilian elections",
+      "blurb": "Elections and campaigns in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 1654,
+      "hours": 218.68,
+      "byYear": {
+        "2019": 58,
+        "2020": 189,
+        "2021": 175,
+        "2022": 270,
+        "2023": 231,
+        "2024": 264,
+        "2025": 205,
+        "2026": 262
+      },
+      "evidence": {
+        "title": 367,
+        "notes": 1177,
+        "transcript": 110
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 5,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 17,
+          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
+          "p": "A Hora",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 30,
+          "e": "O fim da escala 6x1 aprovado no Congresso",
+          "p": "O Assunto",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 38,
+          "e": "A abstenção e o poder do voto de quem não votou",
+          "p": "O Assunto",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 40,
+          "e": "Lula propõe Pix de até R$ 5.000 e perdão de dívidas de MEIs a 12 dias do 2º turno",
+          "p": "Boletim Folha",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 43,
+          "e": "Brazil’s Bolsonaro surge: are Trump’s friends taking over Latin America?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 47,
+          "e": "TSE diz a Kassio não ter encontrado conteúdo citado por Flávio em canal pró-Lula",
+          "p": "Boletim Folha",
+          "d": "2026-10-13"
+        }
+      ]
+    },
+    {
       "id": "indo-pacific-security",
       "name": "Indo-Pacific security",
       "blurb": "AUKUS, Quad, Indo-Pacific security.",
       "kind": "story",
       "facet": "story",
       "count": 1142,
-      "hours": 189.36,
+      "hours": 188.95,
       "byYear": {
         "2019": 54,
         "2020": 144,
@@ -8966,8 +8973,8 @@
       },
       "evidence": {
         "title": 194,
-        "notes": 877,
-        "transcript": 71
+        "notes": 873,
+        "transcript": 75
       },
       "samples": [
         {
@@ -9026,22 +9033,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1341,
-      "hours": 137.62,
+      "count": 1353,
+      "hours": 138.29,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 100,
         "2022": 151,
         "2023": 102,
-        "2024": 136,
-        "2025": 303,
-        "2026": 488
+        "2024": 137,
+        "2025": 309,
+        "2026": 493
       },
       "evidence": {
         "title": 3,
         "notes": 581,
-        "transcript": 757
+        "transcript": 769
       },
       "samples": [
         {
@@ -9101,7 +9108,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 1216,
-      "hours": 120.4,
+      "hours": 120.21,
       "byYear": {
         "2019": 1,
         "2020": 420,
@@ -9114,8 +9121,8 @@
       },
       "evidence": {
         "title": 463,
-        "notes": 701,
-        "transcript": 52
+        "notes": 700,
+        "transcript": 53
       },
       "samples": [
         {
@@ -9174,8 +9181,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1099,
-      "hours": 119.74,
+      "count": 1104,
+      "hours": 120.01,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9183,13 +9190,13 @@
         "2022": 86,
         "2023": 178,
         "2024": 231,
-        "2025": 187,
-        "2026": 187
+        "2025": 191,
+        "2026": 188
       },
       "evidence": {
         "title": 58,
         "notes": 748,
-        "transcript": 293
+        "transcript": 298
       },
       "samples": [
         {
@@ -9249,7 +9256,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 107.63,
+      "hours": 107.7,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -9261,9 +9268,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 535,
+        "title": 532,
         "notes": 229,
-        "transcript": 101
+        "transcript": 104
       },
       "samples": [
         {
@@ -9322,22 +9329,22 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1028,
-      "hours": 101.75,
+      "count": 1032,
+      "hours": 101.83,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 110,
         "2022": 133,
         "2023": 157,
-        "2024": 131,
+        "2024": 134,
         "2025": 179,
-        "2026": 219
+        "2026": 220
       },
       "evidence": {
-        "title": 219,
+        "title": 218,
         "notes": 573,
-        "transcript": 236
+        "transcript": 241
       },
       "samples": [
         {
@@ -9396,22 +9403,22 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 599,
-      "hours": 95.92,
+      "count": 613,
+      "hours": 96.31,
       "byYear": {
         "2019": 1,
         "2020": 15,
         "2021": 17,
         "2022": 30,
         "2023": 51,
-        "2024": 42,
-        "2025": 207,
-        "2026": 236
+        "2024": 44,
+        "2025": 214,
+        "2026": 241
       },
       "evidence": {
         "title": 97,
         "notes": 159,
-        "transcript": 343
+        "transcript": 357
       },
       "samples": [
         {
@@ -9470,22 +9477,22 @@
       "blurb": "STF, TSE, and Brazilian judicial politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1121,
-      "hours": 92.03,
+      "count": 1125,
+      "hours": 92.54,
       "byYear": {
         "2019": 17,
         "2020": 78,
         "2021": 143,
         "2022": 142,
         "2023": 195,
-        "2024": 160,
+        "2024": 163,
         "2025": 194,
-        "2026": 192
+        "2026": 193
       },
       "evidence": {
         "title": 384,
-        "notes": 647,
-        "transcript": 90
+        "notes": 644,
+        "transcript": 97
       },
       "samples": [
         {
@@ -9544,22 +9551,22 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 703,
-      "hours": 88.08,
+      "count": 704,
+      "hours": 88.0,
       "byYear": {
         "2019": 3,
         "2020": 141,
         "2021": 88,
         "2022": 69,
         "2023": 84,
-        "2024": 89,
-        "2025": 141,
-        "2026": 88
+        "2024": 90,
+        "2025": 142,
+        "2026": 87
       },
       "evidence": {
         "title": 2,
-        "notes": 578,
-        "transcript": 123
+        "notes": 576,
+        "transcript": 126
       },
       "samples": [
         {
@@ -9618,22 +9625,22 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 593,
-      "hours": 80.56,
+      "count": 598,
+      "hours": 80.7,
       "byYear": {
         "2019": 5,
         "2020": 25,
         "2021": 32,
         "2022": 25,
         "2023": 109,
-        "2024": 119,
-        "2025": 116,
-        "2026": 162
+        "2024": 121,
+        "2025": 117,
+        "2026": 164
       },
       "evidence": {
         "title": 6,
         "notes": 437,
-        "transcript": 150
+        "transcript": 155
       },
       "samples": [
         {
@@ -9683,6 +9690,154 @@
           "e": "Call My A.I. Agent",
           "p": "The Daily",
           "d": "2026-10-07"
+        }
+      ]
+    },
+    {
+      "id": "br-congress",
+      "name": "Brazilian Congress",
+      "blurb": "Brazilian Chamber, Senate, and amendments.",
+      "kind": "local",
+      "facet": "local",
+      "count": 826,
+      "hours": 77.95,
+      "byYear": {
+        "2019": 16,
+        "2020": 45,
+        "2021": 114,
+        "2022": 83,
+        "2023": 176,
+        "2024": 131,
+        "2025": 146,
+        "2026": 115
+      },
+      "evidence": {
+        "title": 189,
+        "notes": 543,
+        "transcript": 94
+      },
+      "samples": [
+        {
+          "i": 5,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 28,
+          "e": "Senado aprova PEC que acaba com a escala 6x1, em trunfo para Lula",
+          "p": "Boletim Folha",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 30,
+          "e": "O fim da escala 6x1 aprovado no Congresso",
+          "p": "O Assunto",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 50,
+          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
+          "p": "O Assunto",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 67,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 79,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 81,
+          "e": "A Hora #116 - O primeiro golpe de Flávio e as chances de Lula",
+          "p": "A Hora",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 95,
+          "e": "A eleição das redes sociais e o que muda na disputa como a conhecemos",
+          "p": "O Assunto",
+          "d": "2026-10-08"
+        }
+      ]
+    },
+    {
+      "id": "au-defence",
+      "name": "Australian defence",
+      "blurb": "Australian defence and AUKUS politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 819,
+      "hours": 77.76,
+      "byYear": {
+        "2019": 6,
+        "2020": 39,
+        "2021": 52,
+        "2022": 80,
+        "2023": 117,
+        "2024": 109,
+        "2025": 161,
+        "2026": 255
+      },
+      "evidence": {
+        "title": 192,
+        "notes": 322,
+        "transcript": 305
+      },
+      "samples": [
+        {
+          "i": 24,
+          "e": "Could Trump wage another war in the Middle East?",
+          "p": "7am",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 45,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 46,
+          "e": "Will Trump stream an execution to the world?",
+          "p": "ABC News Daily",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 55,
+          "e": "Why Trump's selling out to Putin again",
+          "p": "ABC News Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 69,
+          "e": "How a remote Ecuadorian village took on Gina Rinehart",
+          "p": "The Morning Edition",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 70,
+          "e": "Is Iran's economy really about to collapse?",
+          "p": "ABC News Daily",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 126,
+          "e": "Undercover inside Cuba: The world’s longest-running blockade",
+          "p": "7am",
+          "d": "2026-10-05"
         }
       ]
     },
@@ -9761,161 +9916,13 @@
       ]
     },
     {
-      "id": "br-congress",
-      "name": "Brazilian Congress",
-      "blurb": "Brazilian Chamber, Senate, and amendments.",
-      "kind": "local",
-      "facet": "local",
-      "count": 820,
-      "hours": 77.36,
-      "byYear": {
-        "2019": 16,
-        "2020": 45,
-        "2021": 114,
-        "2022": 83,
-        "2023": 176,
-        "2024": 127,
-        "2025": 145,
-        "2026": 114
-      },
-      "evidence": {
-        "title": 189,
-        "notes": 546,
-        "transcript": 85
-      },
-      "samples": [
-        {
-          "i": 5,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 28,
-          "e": "Senado aprova PEC que acaba com a escala 6x1, em trunfo para Lula",
-          "p": "Boletim Folha",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 30,
-          "e": "O fim da escala 6x1 aprovado no Congresso",
-          "p": "O Assunto",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 50,
-          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
-          "p": "O Assunto",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 67,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 79,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 81,
-          "e": "A Hora #116 - O primeiro golpe de Flávio e as chances de Lula",
-          "p": "A Hora",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 95,
-          "e": "A eleição das redes sociais e o que muda na disputa como a conhecemos",
-          "p": "O Assunto",
-          "d": "2026-10-08"
-        }
-      ]
-    },
-    {
-      "id": "au-defence",
-      "name": "Australian defence",
-      "blurb": "Australian defence and AUKUS politics.",
-      "kind": "local",
-      "facet": "local",
-      "count": 812,
-      "hours": 77.22,
-      "byYear": {
-        "2019": 6,
-        "2020": 39,
-        "2021": 52,
-        "2022": 80,
-        "2023": 117,
-        "2024": 109,
-        "2025": 159,
-        "2026": 250
-      },
-      "evidence": {
-        "title": 192,
-        "notes": 323,
-        "transcript": 297
-      },
-      "samples": [
-        {
-          "i": 24,
-          "e": "Could Trump wage another war in the Middle East?",
-          "p": "7am",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 33,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 45,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 46,
-          "e": "Will Trump stream an execution to the world?",
-          "p": "ABC News Daily",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 55,
-          "e": "Why Trump's selling out to Putin again",
-          "p": "ABC News Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 69,
-          "e": "How a remote Ecuadorian village took on Gina Rinehart",
-          "p": "The Morning Edition",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 70,
-          "e": "Is Iran's economy really about to collapse?",
-          "p": "ABC News Daily",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 126,
-          "e": "Undercover inside Cuba: The world’s longest-running blockade",
-          "p": "7am",
-          "d": "2026-10-05"
-        }
-      ]
-    },
-    {
       "id": "us-defence",
       "name": "US defence",
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 757,
-      "hours": 67.01,
+      "count": 758,
+      "hours": 67.07,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -9924,12 +9931,12 @@
         "2023": 61,
         "2024": 59,
         "2025": 210,
-        "2026": 359
+        "2026": 360
       },
       "evidence": {
         "title": 235,
         "notes": 122,
-        "transcript": 400
+        "transcript": 401
       },
       "samples": [
         {
@@ -9988,22 +9995,22 @@
       "blurb": "Brazilian markets, inflation, fiscal policy.",
       "kind": "local",
       "facet": "local",
-      "count": 824,
-      "hours": 57.73,
+      "count": 829,
+      "hours": 58.4,
       "byYear": {
         "2019": 10,
         "2020": 64,
         "2021": 100,
         "2022": 103,
         "2023": 145,
-        "2024": 147,
-        "2025": 127,
-        "2026": 128
+        "2024": 152,
+        "2025": 128,
+        "2026": 127
       },
       "evidence": {
         "title": 174,
-        "notes": 562,
-        "transcript": 88
+        "notes": 559,
+        "transcript": 96
       },
       "samples": [
         {
@@ -10062,22 +10069,22 @@
       "blurb": "Authoritarian and illiberal politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 376,
-      "hours": 57.23,
+      "count": 380,
+      "hours": 57.29,
       "byYear": {
         "2019": 9,
         "2020": 10,
         "2021": 25,
         "2022": 26,
         "2023": 67,
-        "2024": 64,
-        "2025": 125,
+        "2024": 67,
+        "2025": 126,
         "2026": 50
       },
       "evidence": {
         "title": 54,
         "notes": 258,
-        "transcript": 64
+        "transcript": 68
       },
       "samples": [
         {
@@ -10136,8 +10143,8 @@
       "blurb": "AI, LLMs, and machine learning.",
       "kind": "domain",
       "facet": "domain",
-      "count": 356,
-      "hours": 53.55,
+      "count": 358,
+      "hours": 53.65,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10145,13 +10152,13 @@
         "2022": 5,
         "2023": 42,
         "2024": 40,
-        "2025": 92,
+        "2025": 94,
         "2026": 163
       },
       "evidence": {
         "title": 77,
-        "notes": 144,
-        "transcript": 135
+        "notes": 143,
+        "transcript": 138
       },
       "samples": [
         {
@@ -10210,8 +10217,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 586,
-      "hours": 50.67,
+      "count": 591,
+      "hours": 51.06,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -10219,13 +10226,13 @@
         "2022": 50,
         "2023": 54,
         "2024": 65,
-        "2025": 99,
-        "2026": 196
+        "2025": 100,
+        "2026": 200
       },
       "evidence": {
-        "title": 175,
+        "title": 174,
         "notes": 204,
-        "transcript": 207
+        "transcript": 213
       },
       "samples": [
         {
@@ -10358,7 +10365,7 @@
       "kind": "local",
       "facet": "local",
       "count": 376,
-      "hours": 48.84,
+      "hours": 48.77,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -10371,8 +10378,8 @@
       },
       "evidence": {
         "title": 158,
-        "notes": 162,
-        "transcript": 56
+        "notes": 161,
+        "transcript": 57
       },
       "samples": [
         {
@@ -10422,6 +10429,79 @@
           "e": "Trump Venezuela Oil Deal, US & Iran Renew Strikes, House Back From Recess",
           "p": "Up First from NPR",
           "d": "2026-08-31"
+        }
+      ]
+    },
+    {
+      "id": "br-crime",
+      "name": "Brazilian crime & security",
+      "blurb": "Crime and security in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 429,
+      "hours": 46.07,
+      "byYear": {
+        "2020": 22,
+        "2021": 19,
+        "2022": 35,
+        "2023": 87,
+        "2024": 82,
+        "2025": 87,
+        "2026": 97
+      },
+      "evidence": {
+        "title": 21,
+        "notes": 314,
+        "transcript": 94
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 5,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 67,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 79,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 150,
+          "e": "Lula x Flávio: o que está em jogo na reta final",
+          "p": "Foro de Teresina",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 162,
+          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
+          "p": "Durma com essa",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 222,
+          "e": "Xadrez Verbal #476 Lula na ONU e Trump recebe Xi",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 224,
+          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
+          "p": "Foro de Teresina",
+          "d": "2026-09-26"
         }
       ]
     },
@@ -10496,79 +10576,6 @@
           "e": "Reading History Through Letters",
           "p": "Beyond the Ballot Box",
           "d": "2026-09-07"
-        }
-      ]
-    },
-    {
-      "id": "br-crime",
-      "name": "Brazilian crime & security",
-      "blurb": "Crime and security in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 425,
-      "hours": 45.45,
-      "byYear": {
-        "2020": 22,
-        "2021": 19,
-        "2022": 35,
-        "2023": 87,
-        "2024": 78,
-        "2025": 87,
-        "2026": 97
-      },
-      "evidence": {
-        "title": 21,
-        "notes": 315,
-        "transcript": 89
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 5,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 67,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 79,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 150,
-          "e": "Lula x Flávio: o que está em jogo na reta final",
-          "p": "Foro de Teresina",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 162,
-          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
-          "p": "Durma com essa",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 222,
-          "e": "Xadrez Verbal #476 Lula na ONU e Trump recebe Xi",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 224,
-          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
-          "p": "Foro de Teresina",
-          "d": "2026-09-26"
         }
       ]
     },
@@ -10652,22 +10659,22 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 504,
-      "hours": 41.74,
+      "count": 511,
+      "hours": 42.16,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 3,
         "2022": 15,
         "2023": 49,
-        "2024": 79,
-        "2025": 144,
+        "2024": 83,
+        "2025": 147,
         "2026": 203
       },
       "evidence": {
         "title": 0,
-        "notes": 173,
-        "transcript": 331
+        "notes": 172,
+        "transcript": 339
       },
       "samples": [
         {
@@ -10721,13 +10728,87 @@
       ]
     },
     {
+      "id": "br-media",
+      "name": "Brazilian media",
+      "blurb": "Press, platforms, and media politics in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 463,
+      "hours": 40.89,
+      "byYear": {
+        "2019": 9,
+        "2020": 29,
+        "2021": 31,
+        "2022": 33,
+        "2023": 165,
+        "2024": 65,
+        "2025": 69,
+        "2026": 62
+      },
+      "evidence": {
+        "title": 52,
+        "notes": 343,
+        "transcript": 68
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 6,
+          "e": "Meta admite que contas de Lula foram prejudicadas por restrições e fala em falhas técnicas",
+          "p": "Boletim Folha",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 17,
+          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
+          "p": "A Hora",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 20,
+          "e": "O caso Meta e a disputa no TSE em torno das redes sociais",
+          "p": "O Assunto",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 67,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 80,
+          "e": "Jurista sul-africana Navi Pillay vence Nobel da Paz",
+          "p": "Boletim Folha",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 150,
+          "e": "Lula x Flávio: o que está em jogo na reta final",
+          "p": "Foro de Teresina",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 162,
+          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
+          "p": "Durma com essa",
+          "d": "2026-10-02"
+        }
+      ]
+    },
+    {
       "id": "books-literature",
       "name": "Books & literature",
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 263,
-      "hours": 40.88,
+      "count": 261,
+      "hours": 40.69,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -10736,11 +10817,11 @@
         "2023": 27,
         "2024": 42,
         "2025": 50,
-        "2026": 82
+        "2026": 80
       },
       "evidence": {
         "title": 0,
-        "notes": 170,
+        "notes": 168,
         "transcript": 93
       },
       "samples": [
@@ -10795,100 +10876,26 @@
       ]
     },
     {
-      "id": "br-media",
-      "name": "Brazilian media",
-      "blurb": "Press, platforms, and media politics in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 459,
-      "hours": 40.66,
-      "byYear": {
-        "2019": 9,
-        "2020": 29,
-        "2021": 31,
-        "2022": 33,
-        "2023": 165,
-        "2024": 62,
-        "2025": 69,
-        "2026": 61
-      },
-      "evidence": {
-        "title": 52,
-        "notes": 344,
-        "transcript": 63
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 6,
-          "e": "Meta admite que contas de Lula foram prejudicadas por restrições e fala em falhas técnicas",
-          "p": "Boletim Folha",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 17,
-          "e": "A Hora #117 - A Meta de Kassio e o Arenão de Lula",
-          "p": "A Hora",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 20,
-          "e": "O caso Meta e a disputa no TSE em torno das redes sociais",
-          "p": "O Assunto",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 67,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 80,
-          "e": "Jurista sul-africana Navi Pillay vence Nobel da Paz",
-          "p": "Boletim Folha",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 150,
-          "e": "Lula x Flávio: o que está em jogo na reta final",
-          "p": "Foro de Teresina",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 162,
-          "e": "Hora do voto: quando o brasileiro se vê diante da urna",
-          "p": "Durma com essa",
-          "d": "2026-10-02"
-        }
-      ]
-    },
-    {
       "id": "history",
       "name": "History",
       "blurb": "History and memory.",
       "kind": "domain",
       "facet": "domain",
-      "count": 286,
-      "hours": 39.08,
+      "count": 290,
+      "hours": 39.13,
       "byYear": {
         "2020": 11,
         "2021": 13,
         "2022": 16,
         "2023": 25,
-        "2024": 23,
-        "2025": 90,
+        "2024": 26,
+        "2025": 91,
         "2026": 108
       },
       "evidence": {
         "title": 17,
         "notes": 92,
-        "transcript": 177
+        "transcript": 181
       },
       "samples": [
         {
@@ -10947,22 +10954,22 @@
       "blurb": "Public health and SUS politics in Brazil.",
       "kind": "local",
       "facet": "local",
-      "count": 663,
-      "hours": 38.38,
+      "count": 666,
+      "hours": 38.85,
       "byYear": {
         "2019": 4,
         "2020": 151,
         "2021": 266,
         "2022": 75,
         "2023": 55,
-        "2024": 50,
-        "2025": 32,
+        "2024": 52,
+        "2025": 33,
         "2026": 30
       },
       "evidence": {
         "title": 227,
-        "notes": 418,
-        "transcript": 18
+        "notes": 417,
+        "transcript": 22
       },
       "samples": [
         {
@@ -11096,7 +11103,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 34.76,
+      "hours": 34.72,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -11107,9 +11114,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 152,
+        "title": 151,
         "notes": 56,
-        "transcript": 151
+        "transcript": 152
       },
       "samples": [
         {
@@ -11168,8 +11175,8 @@
       "blurb": "China–Taiwan cross-strait tensions.",
       "kind": "story",
       "facet": "story",
-      "count": 242,
-      "hours": 34.56,
+      "count": 243,
+      "hours": 34.7,
       "byYear": {
         "2019": 11,
         "2020": 10,
@@ -11177,13 +11184,13 @@
         "2022": 54,
         "2023": 33,
         "2024": 34,
-        "2025": 45,
+        "2025": 46,
         "2026": 36
       },
       "evidence": {
         "title": 69,
         "notes": 143,
-        "transcript": 30
+        "transcript": 31
       },
       "samples": [
         {
@@ -11242,8 +11249,8 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 372,
-      "hours": 32.84,
+      "count": 373,
+      "hours": 32.95,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -11252,12 +11259,12 @@
         "2023": 35,
         "2024": 41,
         "2025": 81,
-        "2026": 86
+        "2026": 87
       },
       "evidence": {
-        "title": 87,
+        "title": 86,
         "notes": 149,
-        "transcript": 136
+        "transcript": 138
       },
       "samples": [
         {
@@ -11316,21 +11323,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 360,
-      "hours": 30.02,
+      "count": 365,
+      "hours": 30.23,
       "byYear": {
         "2020": 42,
         "2021": 26,
         "2022": 13,
         "2023": 26,
-        "2024": 42,
-        "2025": 100,
-        "2026": 111
+        "2024": 44,
+        "2025": 102,
+        "2026": 112
       },
       "evidence": {
         "title": 7,
-        "notes": 162,
-        "transcript": 191
+        "notes": 161,
+        "transcript": 197
       },
       "samples": [
         {
@@ -11389,8 +11396,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 255,
-      "hours": 29.69,
+      "count": 256,
+      "hours": 29.74,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -11398,13 +11405,13 @@
         "2022": 32,
         "2023": 24,
         "2024": 38,
-        "2025": 43,
+        "2025": 44,
         "2026": 40
       },
       "evidence": {
         "title": 4,
         "notes": 193,
-        "transcript": 58
+        "transcript": 59
       },
       "samples": [
         {
@@ -11463,8 +11470,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 415,
-      "hours": 29.06,
+      "count": 416,
+      "hours": 29.17,
       "byYear": {
         "2019": 5,
         "2020": 11,
@@ -11473,12 +11480,12 @@
         "2023": 27,
         "2024": 43,
         "2025": 156,
-        "2026": 144
+        "2026": 145
       },
       "evidence": {
-        "title": 121,
-        "notes": 107,
-        "transcript": 187
+        "title": 120,
+        "notes": 106,
+        "transcript": 190
       },
       "samples": [
         {
@@ -11537,8 +11544,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 301,
-      "hours": 27.21,
+      "count": 303,
+      "hours": 27.34,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -11546,13 +11553,13 @@
         "2022": 10,
         "2023": 22,
         "2024": 29,
-        "2025": 93,
+        "2025": 95,
         "2026": 118
       },
       "evidence": {
         "title": 59,
         "notes": 86,
-        "transcript": 156
+        "transcript": 158
       },
       "samples": [
         {
@@ -11611,21 +11618,21 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 245,
-      "hours": 27.11,
+      "count": 249,
+      "hours": 27.14,
       "byYear": {
         "2020": 9,
         "2021": 13,
         "2022": 22,
         "2023": 40,
-        "2024": 38,
-        "2025": 59,
-        "2026": 64
+        "2024": 40,
+        "2025": 60,
+        "2026": 65
       },
       "evidence": {
         "title": 33,
         "notes": 149,
-        "transcript": 63
+        "transcript": 67
       },
       "samples": [
         {
@@ -11758,22 +11765,22 @@
       "blurb": "Race and racism.",
       "kind": "frame",
       "facet": "frame",
-      "count": 161,
-      "hours": 24.98,
+      "count": 162,
+      "hours": 24.93,
       "byYear": {
         "2019": 2,
         "2020": 18,
         "2021": 14,
         "2022": 16,
         "2023": 38,
-        "2024": 28,
+        "2024": 29,
         "2025": 21,
         "2026": 24
       },
       "evidence": {
         "title": 35,
-        "notes": 102,
-        "transcript": 24
+        "notes": 101,
+        "transcript": 26
       },
       "samples": [
         {
@@ -11832,8 +11839,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 209,
-      "hours": 24.83,
+      "count": 211,
+      "hours": 24.88,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -11841,13 +11848,13 @@
         "2022": 18,
         "2023": 13,
         "2024": 25,
-        "2025": 50,
+        "2025": 52,
         "2026": 66
       },
       "evidence": {
         "title": 11,
-        "notes": 102,
-        "transcript": 96
+        "notes": 101,
+        "transcript": 99
       },
       "samples": [
         {
@@ -11906,22 +11913,22 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 292,
-      "hours": 23.79,
+      "count": 295,
+      "hours": 23.82,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 27,
         "2022": 18,
         "2023": 25,
-        "2024": 24,
-        "2025": 56,
+        "2024": 26,
+        "2025": 57,
         "2026": 92
       },
       "evidence": {
         "title": 0,
         "notes": 172,
-        "transcript": 120
+        "transcript": 123
       },
       "samples": [
         {
@@ -11971,6 +11978,80 @@
           "e": "Trump Banned the Media. This Time, the Media Struck Back.",
           "p": "The Daily",
           "d": "2026-09-23"
+        }
+      ]
+    },
+    {
+      "id": "br-climate",
+      "name": "Brazilian climate & Amazon",
+      "blurb": "Climate, Amazon, and energy in Brazil.",
+      "kind": "local",
+      "facet": "local",
+      "count": 318,
+      "hours": 22.98,
+      "byYear": {
+        "2019": 9,
+        "2020": 12,
+        "2021": 33,
+        "2022": 51,
+        "2023": 72,
+        "2024": 51,
+        "2025": 47,
+        "2026": 43
+      },
+      "evidence": {
+        "title": 43,
+        "notes": 247,
+        "transcript": 28
+      },
+      "samples": [
+        {
+          "i": 113,
+          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
+          "p": "Up First from NPR",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 145,
+          "e": "Lula mira indecisos e Flávio Bolsonaro pede 'voto de revolta' na reta final do 1º turno",
+          "p": "Boletim Folha",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 224,
+          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
+          "p": "Foro de Teresina",
+          "d": "2026-09-26"
+        },
+        {
+          "i": 265,
+          "e": "A nova crise do petróleo e a economia global fora de ordem",
+          "p": "O Assunto",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 275,
+          "e": "ESPECIAL ELEIÇÕES: o país diante de uma encruzilhada ambiental",
+          "p": "O Assunto",
+          "d": "2026-09-22"
+        },
+        {
+          "i": 295,
+          "e": "Com STF, com Dark Horse, com tudo",
+          "p": "Foro de Teresina",
+          "d": "2026-09-19"
+        },
+        {
+          "i": 328,
+          "e": "A sessão histórica que colocou o Supremo contra si mesmo",
+          "p": "O Assunto",
+          "d": "2026-09-16"
+        },
+        {
+          "i": 452,
+          "e": "Mendonça vs. Moraes: as reações do Supremo ao Caso Master",
+          "p": "O Assunto",
+          "d": "2026-09-03"
         }
       ]
     },
@@ -12049,87 +12130,13 @@
       ]
     },
     {
-      "id": "br-climate",
-      "name": "Brazilian climate & Amazon",
-      "blurb": "Climate, Amazon, and energy in Brazil.",
-      "kind": "local",
-      "facet": "local",
-      "count": 315,
-      "hours": 22.65,
-      "byYear": {
-        "2019": 9,
-        "2020": 12,
-        "2021": 33,
-        "2022": 51,
-        "2023": 72,
-        "2024": 48,
-        "2025": 47,
-        "2026": 43
-      },
-      "evidence": {
-        "title": 43,
-        "notes": 247,
-        "transcript": 25
-      },
-      "samples": [
-        {
-          "i": 113,
-          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
-          "p": "Up First from NPR",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 145,
-          "e": "Lula mira indecisos e Flávio Bolsonaro pede 'voto de revolta' na reta final do 1º turno",
-          "p": "Boletim Folha",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 224,
-          "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
-          "p": "Foro de Teresina",
-          "d": "2026-09-26"
-        },
-        {
-          "i": 265,
-          "e": "A nova crise do petróleo e a economia global fora de ordem",
-          "p": "O Assunto",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 275,
-          "e": "ESPECIAL ELEIÇÕES: o país diante de uma encruzilhada ambiental",
-          "p": "O Assunto",
-          "d": "2026-09-22"
-        },
-        {
-          "i": 295,
-          "e": "Com STF, com Dark Horse, com tudo",
-          "p": "Foro de Teresina",
-          "d": "2026-09-19"
-        },
-        {
-          "i": 328,
-          "e": "A sessão histórica que colocou o Supremo contra si mesmo",
-          "p": "O Assunto",
-          "d": "2026-09-16"
-        },
-        {
-          "i": 452,
-          "e": "Mendonça vs. Moraes: as reações do Supremo ao Caso Master",
-          "p": "O Assunto",
-          "d": "2026-09-03"
-        }
-      ]
-    },
-    {
       "id": "cn-government",
       "name": "Chinese government",
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 177,
-      "hours": 21.7,
+      "count": 178,
+      "hours": 21.8,
       "byYear": {
         "2019": 3,
         "2020": 19,
@@ -12137,13 +12144,13 @@
         "2022": 23,
         "2023": 25,
         "2024": 26,
-        "2025": 39,
+        "2025": 40,
         "2026": 19
       },
       "evidence": {
         "title": 11,
         "notes": 129,
-        "transcript": 37
+        "transcript": 38
       },
       "samples": [
         {
@@ -12202,22 +12209,22 @@
       "blurb": "Human rights and civil liberties.",
       "kind": "frame",
       "facet": "frame",
-      "count": 170,
-      "hours": 21.62,
+      "count": 171,
+      "hours": 21.63,
       "byYear": {
         "2019": 7,
         "2020": 12,
         "2021": 18,
         "2022": 16,
         "2023": 33,
-        "2024": 27,
+        "2024": 28,
         "2025": 31,
         "2026": 26
       },
       "evidence": {
         "title": 15,
         "notes": 134,
-        "transcript": 21
+        "transcript": 22
       },
       "samples": [
         {
@@ -12277,7 +12284,7 @@
       "kind": "local",
       "facet": "local",
       "count": 121,
-      "hours": 21.6,
+      "hours": 21.48,
       "byYear": {
         "2019": 2,
         "2021": 3,
@@ -12289,8 +12296,8 @@
       },
       "evidence": {
         "title": 19,
-        "notes": 82,
-        "transcript": 20
+        "notes": 81,
+        "transcript": 21
       },
       "samples": [
         {
@@ -12423,22 +12430,22 @@
       "blurb": "Film, TV, and streaming.",
       "kind": "domain",
       "facet": "domain",
-      "count": 124,
-      "hours": 18.37,
+      "count": 125,
+      "hours": 18.38,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 4,
         "2022": 11,
         "2023": 6,
-        "2024": 8,
+        "2024": 9,
         "2025": 32,
         "2026": 60
       },
       "evidence": {
         "title": 26,
         "notes": 38,
-        "transcript": 60
+        "transcript": 61
       },
       "samples": [
         {
@@ -12497,21 +12504,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 274,
-      "hours": 16.61,
+      "count": 276,
+      "hours": 16.63,
       "byYear": {
         "2020": 1,
         "2021": 3,
         "2022": 7,
         "2023": 7,
-        "2024": 27,
+        "2024": 28,
         "2025": 79,
-        "2026": 150
+        "2026": 151
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 220
+        "transcript": 222
       },
       "samples": [
         {
@@ -13009,80 +13016,6 @@
       ]
     },
     {
-      "id": "argentina-politics",
-      "name": "Argentine politics",
-      "blurb": "Argentine politics and Milei.",
-      "kind": "local",
-      "facet": "local",
-      "count": 120,
-      "hours": 12.47,
-      "byYear": {
-        "2019": 11,
-        "2020": 7,
-        "2021": 3,
-        "2022": 17,
-        "2023": 44,
-        "2024": 20,
-        "2025": 10,
-        "2026": 8
-      },
-      "evidence": {
-        "title": 54,
-        "notes": 61,
-        "transcript": 5
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 258,
-          "e": "Will Argentina go to war with the UK over the Falklands?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 523,
-          "e": "Colombia: An Early Test for the New Government",
-          "p": "The Americas Quarterly Podcast",
-          "d": "2026-08-27"
-        },
-        {
-          "i": 783,
-          "e": "Brasil versus Argentina e Paraguai: a América do Sul em tempos de polarização",
-          "p": "O Assunto",
-          "d": "2026-08-03"
-        },
-        {
-          "i": 789,
-          "e": "A insensatez de Milei, o caos em Minas e o juíz no Paraná",
-          "p": "Foro de Teresina",
-          "d": "2026-08-02"
-        },
-        {
-          "i": 1446,
-          "e": "Xadrez Verbal #462 Xi Anfitrião e Protestos na Bolívia",
-          "p": "Xadrez Verbal",
-          "d": "2026-05-30"
-        },
-        {
-          "i": 1696,
-          "e": "Javier Milei: impopularidade recorde e situação econômica na Argentina",
-          "p": "O Assunto",
-          "d": "2026-05-06"
-        },
-        {
-          "i": 2992,
-          "e": "Venezuela invadida por Trump e a deposição de Maduro",
-          "p": "O Assunto",
-          "d": "2026-01-04"
-        }
-      ]
-    },
-    {
       "id": "culture-entertainment",
       "name": "Culture & entertainment",
       "blurb": "Broader culture and entertainment.",
@@ -13153,6 +13086,80 @@
           "e": "Should we worry about the end of the world?",
           "p": "Up First from NPR",
           "d": "2026-07-12"
+        }
+      ]
+    },
+    {
+      "id": "argentina-politics",
+      "name": "Argentine politics",
+      "blurb": "Argentine politics and Milei.",
+      "kind": "local",
+      "facet": "local",
+      "count": 120,
+      "hours": 12.34,
+      "byYear": {
+        "2019": 11,
+        "2020": 7,
+        "2021": 3,
+        "2022": 17,
+        "2023": 44,
+        "2024": 20,
+        "2025": 10,
+        "2026": 8
+      },
+      "evidence": {
+        "title": 54,
+        "notes": 60,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 258,
+          "e": "Will Argentina go to war with the UK over the Falklands?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 523,
+          "e": "Colombia: An Early Test for the New Government",
+          "p": "The Americas Quarterly Podcast",
+          "d": "2026-08-27"
+        },
+        {
+          "i": 783,
+          "e": "Brasil versus Argentina e Paraguai: a América do Sul em tempos de polarização",
+          "p": "O Assunto",
+          "d": "2026-08-03"
+        },
+        {
+          "i": 789,
+          "e": "A insensatez de Milei, o caos em Minas e o juíz no Paraná",
+          "p": "Foro de Teresina",
+          "d": "2026-08-02"
+        },
+        {
+          "i": 1446,
+          "e": "Xadrez Verbal #462 Xi Anfitrião e Protestos na Bolívia",
+          "p": "Xadrez Verbal",
+          "d": "2026-05-30"
+        },
+        {
+          "i": 1696,
+          "e": "Javier Milei: impopularidade recorde e situação econômica na Argentina",
+          "p": "O Assunto",
+          "d": "2026-05-06"
+        },
+        {
+          "i": 2992,
+          "e": "Venezuela invadida por Trump e a deposição de Maduro",
+          "p": "O Assunto",
+          "d": "2026-01-04"
         }
       ]
     },
@@ -13236,8 +13243,8 @@
       "blurb": "US foreign policy and diplomacy.",
       "kind": "local",
       "facet": "local",
-      "count": 153,
-      "hours": 11.26,
+      "count": 152,
+      "hours": 11.21,
       "byYear": {
         "2019": 5,
         "2020": 7,
@@ -13245,11 +13252,11 @@
         "2022": 13,
         "2023": 9,
         "2024": 16,
-        "2025": 47,
+        "2025": 46,
         "2026": 45
       },
       "evidence": {
-        "title": 30,
+        "title": 29,
         "notes": 78,
         "transcript": 45
       },
@@ -13384,20 +13391,20 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 88,
-      "hours": 10.37,
+      "count": 90,
+      "hours": 10.39,
       "byYear": {
         "2021": 3,
         "2022": 6,
         "2023": 4,
         "2024": 15,
-        "2025": 23,
-        "2026": 37
+        "2025": 24,
+        "2026": 38
       },
       "evidence": {
         "title": 4,
         "notes": 32,
-        "transcript": 52
+        "transcript": 54
       },
       "samples": [
         {
@@ -13456,21 +13463,21 @@
       "blurb": "Nuclear weapons and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 141,
-      "hours": 10.14,
+      "count": 144,
+      "hours": 10.19,
       "byYear": {
         "2019": 1,
         "2021": 4,
         "2022": 14,
         "2023": 4,
         "2024": 12,
-        "2025": 46,
-        "2026": 60
+        "2025": 47,
+        "2026": 62
       },
       "evidence": {
         "title": 2,
         "notes": 41,
-        "transcript": 98
+        "transcript": 101
       },
       "samples": [
         {
@@ -13529,8 +13536,8 @@
       "blurb": "Populist politics.",
       "kind": "frame",
       "facet": "frame",
-      "count": 52,
-      "hours": 9.8,
+      "count": 53,
+      "hours": 9.81,
       "byYear": {
         "2019": 2,
         "2020": 3,
@@ -13539,12 +13546,12 @@
         "2023": 2,
         "2024": 1,
         "2025": 15,
-        "2026": 27
+        "2026": 28
       },
       "evidence": {
         "title": 6,
         "notes": 38,
-        "transcript": 8
+        "transcript": 9
       },
       "samples": [
         {
@@ -13897,8 +13904,8 @@
       "blurb": "Cybersecurity and espionage.",
       "kind": "domain",
       "facet": "domain",
-      "count": 65,
-      "hours": 7.69,
+      "count": 66,
+      "hours": 7.71,
       "byYear": {
         "2019": 3,
         "2020": 4,
@@ -13906,13 +13913,13 @@
         "2022": 15,
         "2023": 17,
         "2024": 8,
-        "2025": 3,
+        "2025": 4,
         "2026": 8
       },
       "evidence": {
         "title": 0,
         "notes": 51,
-        "transcript": 14
+        "transcript": 15
       },
       "samples": [
         {
@@ -14045,21 +14052,21 @@
       "blurb": "Religion and belief.",
       "kind": "domain",
       "facet": "domain",
-      "count": 68,
-      "hours": 6.37,
+      "count": 69,
+      "hours": 6.38,
       "byYear": {
         "2020": 3,
         "2021": 3,
         "2022": 1,
         "2023": 4,
         "2024": 6,
-        "2025": 24,
+        "2025": 25,
         "2026": 27
       },
       "evidence": {
         "title": 0,
         "notes": 21,
-        "transcript": 47
+        "transcript": 48
       },
       "samples": [
         {
@@ -14118,21 +14125,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 130,
-      "hours": 6.16,
+      "count": 132,
+      "hours": 6.18,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 1,
         "2023": 11,
         "2024": 15,
-        "2025": 35,
-        "2026": 65
+        "2025": 36,
+        "2026": 66
       },
       "evidence": {
         "title": 0,
         "notes": 33,
-        "transcript": 97
+        "transcript": 99
       },
       "samples": [
         {
@@ -14337,21 +14344,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 151,
-      "hours": 5.36,
+      "count": 153,
+      "hours": 5.38,
       "byYear": {
         "2020": 2,
         "2021": 5,
         "2022": 10,
         "2023": 25,
-        "2024": 32,
+        "2024": 34,
         "2025": 24,
         "2026": 53
       },
       "evidence": {
         "title": 20,
         "notes": 64,
-        "transcript": 67
+        "transcript": 69
       },
       "samples": [
         {
@@ -14623,22 +14630,22 @@
       "blurb": "Advertising, agencies, and brands.",
       "kind": "domain",
       "facet": "domain",
-      "count": 55,
-      "hours": 5.02,
+      "count": 56,
+      "hours": 5.03,
       "byYear": {
         "2019": 2,
         "2020": 3,
         "2021": 7,
         "2022": 4,
         "2023": 5,
-        "2024": 11,
+        "2024": 12,
         "2025": 4,
         "2026": 19
       },
       "evidence": {
         "title": 4,
         "notes": 28,
-        "transcript": 23
+        "transcript": 24
       },
       "samples": [
         {
@@ -14697,8 +14704,8 @@
       "blurb": "Disinformation and fake news.",
       "kind": "domain",
       "facet": "domain",
-      "count": 54,
-      "hours": 4.72,
+      "count": 55,
+      "hours": 4.74,
       "byYear": {
         "2020": 6,
         "2021": 6,
@@ -14706,12 +14713,12 @@
         "2023": 6,
         "2024": 9,
         "2025": 12,
-        "2026": 12
+        "2026": 13
       },
       "evidence": {
         "title": 0,
         "notes": 32,
-        "transcript": 22
+        "transcript": 23
       },
       "samples": [
         {
@@ -14842,22 +14849,22 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 45,
-      "hours": 4.32,
+      "count": 47,
+      "hours": 4.33,
       "byYear": {
         "2019": 1,
         "2020": 2,
         "2021": 2,
         "2022": 5,
         "2023": 1,
-        "2024": 9,
+        "2024": 11,
         "2025": 14,
         "2026": 11
       },
       "evidence": {
         "title": 16,
         "notes": 8,
-        "transcript": 21
+        "transcript": 23
       },
       "samples": [
         {
@@ -15205,7 +15212,7 @@
       "kind": "local",
       "facet": "local",
       "count": 26,
-      "hours": 3.71,
+      "hours": 3.82,
       "byYear": {
         "2020": 1,
         "2021": 4,
@@ -15215,8 +15222,8 @@
       },
       "evidence": {
         "title": 2,
-        "notes": 16,
-        "transcript": 8
+        "notes": 15,
+        "transcript": 9
       },
       "samples": [
         {
@@ -15346,21 +15353,21 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 74,
-      "hours": 3.26,
+      "count": 78,
+      "hours": 3.34,
       "byYear": {
         "2020": 3,
         "2021": 2,
         "2022": 1,
         "2023": 5,
-        "2024": 9,
+        "2024": 11,
         "2025": 22,
-        "2026": 32
+        "2026": 34
       },
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 60
+        "transcript": 64
       },
       "samples": [
         {
@@ -15491,18 +15498,19 @@
       "blurb": "Video games and gaming culture.",
       "kind": "domain",
       "facet": "domain",
-      "count": 13,
-      "hours": 2.99,
+      "count": 14,
+      "hours": 3.0,
       "byYear": {
         "2021": 1,
         "2023": 7,
         "2024": 1,
+        "2025": 1,
         "2026": 4
       },
       "evidence": {
         "title": 0,
         "notes": 13,
-        "transcript": 0
+        "transcript": 1
       },
       "samples": [
         {
@@ -15530,6 +15538,12 @@
           "d": "2026-03-15"
         },
         {
+          "i": 6572,
+          "e": "O pix, as bets e o cessar-fogo",
+          "p": "Foro de Teresina",
+          "d": "2025-01-20"
+        },
+        {
           "i": 8086,
           "e": "Extratos da semana das contestações à eleição venezuelana",
           "p": "Durma com essa",
@@ -15546,12 +15560,6 @@
           "e": "Bate-Papo 549 - Copa do Mundo de 2030: geopolítica e business",
           "p": "Petit Journal",
           "d": "2023-10-05"
-        },
-        {
-          "i": 11815,
-          "e": "Arábia Saudita: fortuna no futebol pode limpar imagem da ditadura?",
-          "p": "O Assunto",
-          "d": "2023-08-15"
         }
       ]
     },
@@ -15633,21 +15641,21 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 51,
-      "hours": 2.77,
+      "count": 53,
+      "hours": 2.79,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 2,
         "2023": 4,
-        "2024": 11,
+        "2024": 13,
         "2025": 15,
         "2026": 16
       },
       "evidence": {
         "title": 0,
-        "notes": 19,
-        "transcript": 32
+        "notes": 18,
+        "transcript": 35
       },
       "samples": [
         {
@@ -15706,20 +15714,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 51,
-      "hours": 2.67,
+      "count": 52,
+      "hours": 2.7,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 4,
         "2024": 1,
-        "2025": 29,
+        "2025": 30,
         "2026": 14
       },
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 30
+        "transcript": 31
       },
       "samples": [
         {
@@ -16125,7 +16133,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 13,
-      "hours": 1.05,
+      "hours": 0.97,
       "byYear": {
         "2019": 1,
         "2020": 1,
@@ -16136,8 +16144,8 @@
       },
       "evidence": {
         "title": 0,
-        "notes": 8,
-        "transcript": 5
+        "notes": 7,
+        "transcript": 6
       },
       "samples": [
         {
@@ -16387,15 +16395,15 @@
       "blurb": "Startups and venture capital.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4,
-      "hours": 0.16,
+      "count": 5,
+      "hours": 0.2,
       "byYear": {
-        "2026": 4
+        "2026": 5
       },
       "evidence": {
         "title": 0,
         "notes": 0,
-        "transcript": 4
+        "transcript": 5
       },
       "samples": [
         {
@@ -16421,6 +16429,12 @@
           "e": "Who will invest in Elon Musk’s SpaceX vision?",
           "p": "ABC News Daily",
           "d": "2026-06-02"
+        },
+        {
+          "i": 1518,
+          "e": "Tech sector warns tax could \"double\" under CGT changes | Insiders on Background",
+          "p": "Politics Now",
+          "d": "2026-05-23"
         }
       ]
     }
