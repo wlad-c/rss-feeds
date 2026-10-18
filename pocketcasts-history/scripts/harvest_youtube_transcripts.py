@@ -4,9 +4,13 @@
 YouTube blocks most cloud/datacenter IPs for direct caption fetches
 (youtube-transcript-api / yt-dlp timedtext). This script tries backends in order:
 
-  1. youtube-transcript-api  — works on residential IPs / with WEBSHARE_* proxies
-  2. YTAPI_API_KEY           — optional https://ytapi.dev key (env)
-  3. transcribeyoutube.com   — free hosted extractor (no key; fair-use rate limits)
+  1. gemini                  — GEMINI_API_KEY; full audio transcription via Gemini
+                               video understanding (YouTube URL). Best for long
+                               shows without captions (e.g. Xadrez Verbal). Free
+                               tier ≈8h of YouTube/day; paid has no daily length cap.
+  2. youtube-transcript-api  — works on residential IPs / with WEBSHARE_* proxies
+  3. YTAPI_API_KEY           — optional https://ytapi.dev key (env)
+  4. transcribeyoutube.com   — free hosted extractor (no key; fair-use rate limits)
 
 Matching prefers channel upload lists (reliable), then yt-dlp `ytsearchN:` fallback.
 
@@ -383,9 +387,115 @@ def fetch_transcribe_yt(video_id: str) -> str | None:
     return text if len(text) >= 80 else None
 
 
+GEMINI_TRANSCRIBE_PROMPT = (
+    "Transcribe the FULL spoken audio of this YouTube video verbatim in the "
+    "original language. Output plain text only — no commentary, no title, no "
+    "markdown fences. Preserve natural paragraph breaks. Do not summarize or "
+    "omit segments. If the video is very long, continue until the audio ends."
+)
+
+
+def fetch_gemini(video_id: str) -> str | None:
+    """Full transcript via Gemini YouTube URL video understanding."""
+    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    if not key:
+        return None
+    model = os.environ.get("GEMINI_YT_MODEL", "gemini-3.8-flash")
+    yt_url = f"https://www.youtube.com/watch?v={video_id}"
+    body = {
+        "model": model,
+        "input": [
+            {"type": "text", "text": GEMINI_TRANSCRIBE_PROMPT},
+            {"type": "video", "uri": yt_url},
+        ],
+    }
+    req = urllib.request.Request(
+        "https://generativelanguage.googleapis.com/v1beta/interactions",
+        data=json.dumps(body).encode(),
+        method="POST",
+        headers={
+            "User-Agent": UA,
+            "Content-Type": "application/json",
+            "x-goog-api-key": key,
+            "Accept": "application/json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=900) as resp:
+            data = json.loads(resp.read().decode())
+    except urllib.error.HTTPError as exc:
+        payload = b""
+        try:
+            payload = exc.read()
+        except Exception:  # noqa: BLE001
+            pass
+        msg = payload.decode("utf-8", errors="replace")[:400]
+        if exc.code == 429:
+            raise RateLimited()
+        print(f"  gemini HTTP {exc.code}: {msg}", flush=True)
+        return None
+    except Exception as exc:  # noqa: BLE001
+        print(f"  gemini error: {exc}", flush=True)
+        return None
+
+    text = ""
+    if isinstance(data, dict):
+        text = (
+            data.get("output_text")
+            or data.get("outputText")
+            or ""
+        )
+        if not text:
+            # interactions response shapes vary; walk for text parts
+            for key_name in ("outputs", "output", "candidates", "response"):
+                blob = data.get(key_name)
+                if isinstance(blob, str) and len(blob) > 80:
+                    text = blob
+                    break
+                if isinstance(blob, list):
+                    parts = []
+                    for item in blob:
+                        if isinstance(item, str):
+                            parts.append(item)
+                        elif isinstance(item, dict):
+                            parts.append(
+                                item.get("text")
+                                or item.get("output_text")
+                                or ""
+                            )
+                            content = item.get("content")
+                            if isinstance(content, list):
+                                for c in content:
+                                    if isinstance(c, dict) and c.get("text"):
+                                        parts.append(c["text"])
+                                    elif isinstance(c, str):
+                                        parts.append(c)
+                    joined = "\n".join(p for p in parts if p).strip()
+                    if len(joined) >= 80:
+                        text = joined
+                        break
+    text = (text or "").strip()
+    # Drop accidental model preambles
+    for prefix in (
+        "Here is the full transcript",
+        "Here's the full transcript",
+        "Transcript:",
+        "Full transcript:",
+    ):
+        if text.lower().startswith(prefix.lower()):
+            text = text[len(prefix) :].lstrip(" \n:")
+            break
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    return text if len(text) >= 80 else None
+
+
 def fetch_captions(video_id: str, backends: list[str]) -> tuple[str | None, str | None]:
     for name in backends:
-        if name == "yta":
+        if name == "gemini":
+            text = fetch_gemini(video_id)
+            if text:
+                return text, "gemini"
+        elif name == "yta":
             text = fetch_yta(video_id)
             if text:
                 return text, "yta"
@@ -597,16 +707,37 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--max-episodes", type=int, default=90)
     ap.add_argument("--min-year", type=int, default=2020)
-    ap.add_argument("--max-minutes", type=float, default=120.0)
+    ap.add_argument(
+        "--max-minutes",
+        type=float,
+        default=0.0,
+        help="Skip episodes longer than this (0 = no limit). Use 120 without gemini.",
+    )
     ap.add_argument("--channel-limit", type=int, default=300)
     ap.add_argument("--shows", nargs="*", default=None)
-    ap.add_argument("--backends", default="yta,ytapi,transcribe_yt")
+    ap.add_argument(
+        "--backends",
+        default="gemini,yta,ytapi,transcribe_yt",
+        help="Comma list. gemini needs GEMINI_API_KEY (full YT audio transcription).",
+    )
     ap.add_argument("--sleep", type=float, default=13.0)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-search-fallback", action="store_true")
     args = ap.parse_args()
 
     backends = [b.strip() for b in args.backends.split(",") if b.strip()]
+    if "gemini" in backends and not (
+        os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+    ):
+        print(
+            "WARN: gemini backend selected but GEMINI_API_KEY unset — skipping it",
+            flush=True,
+        )
+        backends = [b for b in backends if b != "gemini"]
+    if not backends and not args.dry_run:
+        raise SystemExit(
+            "no transcript backends available (set GEMINI_API_KEY for gemini)"
+        )
     episodes = json.loads((TABLES / "episodes.json").read_text(encoding="utf-8"))
     conn = connect()
 
