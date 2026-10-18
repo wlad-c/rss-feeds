@@ -29,10 +29,19 @@ TABLES = ROOT / "tables"
 DB = ROOT / "transcripts" / "full.sqlite"
 LOG_DIR = Path("/tmp/xv-supervisor")
 
+# Free-tier RPD is per model — shard across every flash/lite that accepts
+# YouTube videoMetadata windows.
 MODELS = [
     "gemini-3.5-flash-lite",
-    "gemini-3.6-flash",
     "gemini-3.1-flash-lite",
+    "gemini-3.1-flash-lite-preview",
+    "gemini-flash-lite-latest",
+    "gemini-3.6-flash",
+    "gemini-3.7-flash",
+    "gemini-3.5-flash",
+    "gemini-3.8-flash",
+    "gemini-flash-latest",
+    "gemini-3-flash-preview",
 ]
 
 
