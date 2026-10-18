@@ -1,29 +1,29 @@
 {
   "harvest": {
     "tried": 4,
-    "fetched": 3,
-    "upserted": 3,
+    "fetched": 4,
+    "upserted": 4,
     "noCaptions": 0,
     "rateLimited": 0,
     "pairs": 4,
     "byBackend": {
-      "gemini": 3
+      "gemini": 4
     },
     "byShow": {
-      "Foro de Teresina": 3
+      "O Assunto": 4
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8650,
-    "withPublisherOrSttTranscript": 1795,
-    "withLongText2000plus": 2258,
-    "pctTranscript": 8.16,
-    "pctLongText": 10.26,
+    "withAnyText": 8656,
+    "withPublisherOrSttTranscript": 1808,
+    "withLongText2000plus": 2271,
+    "pctTranscript": 8.22,
+    "pctLongText": 10.32,
     "bySrc": {
       "show-notes": {
-        "count": 6855,
-        "chars": 6699956
+        "count": 6848,
+        "chars": 6693367
       },
       "stt": {
         "count": 15,
@@ -34,8 +34,8 @@
         "chars": 25026810
       },
       "youtube": {
-        "count": 215,
-        "chars": 10877689
+        "count": 228,
+        "chars": 11144171
       }
     }
   }
