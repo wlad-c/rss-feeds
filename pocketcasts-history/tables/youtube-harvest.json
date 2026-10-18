@@ -1,47 +1,47 @@
 {
   "harvest": {
-    "tried": 5,
-    "fetched": 3,
-    "upserted": 3,
-    "noCaptions": 2,
+    "tried": 150,
+    "fetched": 135,
+    "upserted": 135,
+    "noCaptions": 15,
     "rateLimited": 0,
-    "pairs": 5,
+    "pairs": 150,
     "byBackend": {
-      "yt_transcript_net": 3
+      "yt_transcript_net": 135
     },
     "byShow": {
-      "Global Roaming with Geraldine Doogue and Hamish Macdonald": 3
+      "The Daily": 135
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 9841,
-    "withPublisherOrSttTranscript": 3286,
-    "withLongText2000plus": 3731,
-    "pctTranscript": 14.93,
-    "pctLongText": 16.95,
+    "withAnyText": 9985,
+    "withPublisherOrSttTranscript": 3433,
+    "withLongText2000plus": 3865,
+    "pctTranscript": 15.6,
+    "pctLongText": 17.56,
     "bySrc": {
       "show-notes": {
-        "count": 6555,
-        "chars": 6391322
+        "count": 6552,
+        "chars": 6389337
       },
       "stt": {
-        "count": 61,
-        "chars": 831384
+        "count": 73,
+        "chars": 1038342
       },
       "transcript": {
         "count": 1702,
         "chars": 32049141
       },
       "youtube": {
-        "count": 1523,
-        "chars": 45684971
+        "count": 1658,
+        "chars": 48155249
       }
     }
   },
-  "lastCheckpoint": "2026-10-18T15:12Z",
-  "youtubeCount": 1523,
-  "sttCount": 69,
-  "misaligned": 0,
-  "note": "rebuilt sqlite after concurrent-writer malformed error; serializing caption harvest"
+  "lastCheckpoint": "2026-10-18T15:27Z",
+  "youtubeCount": 1693,
+  "sttCount": 76,
+  "dailyYoutube": 996,
+  "misaligned": 0
 }
