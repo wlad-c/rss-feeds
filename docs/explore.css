@@ -1645,14 +1645,14 @@ footer {
 body:not(.ready) .charts-block,
 body:not(.ready) #explorePanel,
 body:not(.ready) #themes,
-body:not(.ready) #topPanel {
+body:not(.ready) #shows {
   opacity: 0.4;
 }
 
 /* Filter changes: keep controls snappy; charts catch up in the background. */
 body.is-filtering .charts-block,
 body.is-filtering #themes,
-body.is-filtering #topPanel,
+body.is-filtering #shows,
 body.is-filtering #explorePanel .ep-list {
   opacity: 0.72;
   transition: opacity 120ms var(--ease-out);

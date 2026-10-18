@@ -30,9 +30,9 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="explore.css?v=mobile-edge-1" />
+  <link rel="stylesheet" href="explore.css?v=no-leaderboard-1" />
   <script src="vendor/chart.umd.min.js" defer></script>
-  <script src="explore.js?v=mobile-edge-1" defer></script>
+  <script src="explore.js?v=no-leaderboard-1" defer></script>
 </head>
 <body>
   <!-- UI chrome layer (Liquid Glass) -->
@@ -198,24 +198,10 @@
             <p>Where your attention went — tap a show name to filter the explorer.</p>
           </div>
         </div>
-        <div class="grid-2">
-          <div class="panel">
-            <h3 id="topChartTitle">Podcasts by listens</h3>
-            <div class="chart-box tall" id="topChartBox"><canvas id="topChart"></canvas></div>
-            <div class="chart-more" id="topChartMore"></div>
-          </div>
-          <div class="panel" id="topPanel">
-            <h3>Leaderboard</h3>
-            <div class="table-scroll">
-              <table id="topTable">
-                <thead>
-                  <tr><th>#</th><th>Podcast</th><th id="topTableMetricHead">Eps</th><th></th></tr>
-                </thead>
-                <tbody></tbody>
-              </table>
-            </div>
-            <div class="chart-more" id="topTableMore"></div>
-          </div>
+        <div class="panel">
+          <h3 id="topChartTitle">Podcasts by listens</h3>
+          <div class="chart-box tall" id="topChartBox"><canvas id="topChart"></canvas></div>
+          <div class="chart-more" id="topChartMore"></div>
         </div>
         <div class="grid-2 equal stack-gap">
           <div class="panel">
