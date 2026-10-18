@@ -6,8 +6,9 @@ YouTube blocks most cloud/datacenter IPs for direct caption fetches
 
   1. youtube-transcript-api  — works on residential IPs / with WEBSHARE_* proxies
   2. YTAPI_API_KEY           — optional https://ytapi.dev key (env)
-  3. transcribeyoutube.com   — free hosted extractor (no key; fair-use rate limits)
-  4. gemini                  — GEMINI_API_KEY; full audio transcription via Gemini
+  3. yt_transcript_net       — free https://yt-transcript.net (works from cloud IPs)
+  4. transcribeyoutube.com   — free hosted extractor (no key; fair-use rate limits)
+  5. gemini                  — GEMINI_API_KEY; full audio transcription via Gemini
                                video understanding (YouTube URL). Use after free
                                caption backends are exhausted / rate-limited.
                                Long episodes are chunked (default 10 min) via
@@ -15,6 +16,9 @@ YouTube blocks most cloud/datacenter IPs for direct caption fetches
                                multi-hour videos exceed the 1M token cap.
                                Free Gemini tier ≈8h YouTube/day; paid key has no
                                daily length cap.
+
+Caption backends only work when YouTube already has captions (manual or auto).
+They do NOT speech-recognize audio — for caption-less uploads use gemini or STT.
 
 Matching prefers channel upload lists (reliable), then yt-dlp `ytsearchN:` fallback.
 
@@ -48,6 +52,7 @@ from transcript_store import (
 
 UA = "rss-feeds-listening-log/1.1 (+https://github.com/wlad-c/rss-feeds)"
 TRANSCRIBE_YT_URL = "https://transcribeyoutube.com/api/transcript"
+YT_TRANSCRIPT_NET_URL = "https://yt-transcript.net"
 
 # podcast → YouTube channel handle / uploads URL seed
 YT_CHANNELS: dict[str, dict] = {
@@ -606,6 +611,30 @@ class EpisodeClaimed(Exception):
     """Another parallel worker already owns this video_id."""
 
 
+def fetch_yt_transcript_net(video_id: str) -> str | None:
+    """Free caption relay that works from many cloud IPs (no API key).
+
+    Returns None for videos without captions (HTTP 404) or transient failures.
+    """
+    url = f"{YT_TRANSCRIPT_NET_URL}/{urllib.parse.quote(video_id)}?fmt=text"
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": UA, "Accept": "text/plain, */*"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            text = resp.read().decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as exc:
+        if exc.code == 429:
+            raise RateLimited()
+        return None
+    except Exception:  # noqa: BLE001
+        return None
+    text = re.sub(r"\s+", " ", (text or "").strip())
+    return text if len(text) >= 80 else None
+
+
 def fetch_transcribe_yt(video_id: str) -> str | None:
     body = json.dumps(
         {"url": f"https://www.youtube.com/watch?v={video_id}"}
@@ -1122,6 +1151,10 @@ def fetch_captions(
             text = fetch_ytapi(video_id)
             if text:
                 return text, "ytapi"
+        elif name == "yt_transcript_net":
+            text = fetch_yt_transcript_net(video_id)
+            if text:
+                return text, "yt_transcript_net"
         elif name == "transcribe_yt":
             text = fetch_transcribe_yt(video_id)
             if text:
@@ -1437,7 +1470,7 @@ def main() -> None:
     ap.add_argument("--shows", nargs="*", default=None)
     ap.add_argument(
         "--backends",
-        default="yta,ytapi,transcribe_yt,gemini",
+        default="yta,ytapi,yt_transcript_net,transcribe_yt,gemini",
         help="Comma list. gemini needs GEMINI_API_KEY (full YT audio transcription).",
     )
     ap.add_argument("--sleep", type=float, default=13.0)
