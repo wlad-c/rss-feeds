@@ -1,49 +1,47 @@
 {
   "harvest": {
-    "tried": 49,
-    "fetched": 32,
-    "upserted": 32,
-    "noCaptions": 17,
+    "tried": 5,
+    "fetched": 5,
+    "upserted": 5,
+    "noCaptions": 0,
     "rateLimited": 0,
-    "pairs": 49,
+    "pairs": 5,
     "byBackend": {
-      "yt_transcript_net": 32
+      "yt_transcript_net": 5
     },
     "byShow": {
-      "The Daily": 32
+      "ABC News Daily": 5
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 10308,
-    "withPublisherOrSttTranscript": 3776,
-    "withLongText2000plus": 4208,
-    "pctTranscript": 17.16,
-    "pctLongText": 19.12,
+    "withAnyText": 10458,
+    "withPublisherOrSttTranscript": 3927,
+    "withLongText2000plus": 4357,
+    "pctTranscript": 17.84,
+    "pctLongText": 19.8,
     "bySrc": {
       "show-notes": {
-        "count": 6532,
-        "chars": 6374670
+        "count": 6531,
+        "chars": 6374330
       },
       "stt": {
-        "count": 96,
-        "chars": 1430604
+        "count": 149,
+        "chars": 2252899
       },
       "transcript": {
         "count": 1702,
         "chars": 32049141
       },
       "youtube": {
-        "count": 1978,
-        "chars": 52313068
+        "count": 2076,
+        "chars": 53414269
       }
     }
   },
-  "lastCheckpoint": "2026-10-18T18:05Z",
-  "youtubeCount": 2071,
-  "sttCount": 142,
-  "dailyYoutube": 1016,
-  "abcYoutube": 630,
-  "misaligned": 0,
-  "note": "recovered ghost DB after writers held deleted inode; abc 578"
+  "lastCheckpoint": "2026-10-18T18:20Z",
+  "youtubeCount": 2076,
+  "sttCount": 149,
+  "abcYoutube": 635,
+  "misaligned": 0
 }
