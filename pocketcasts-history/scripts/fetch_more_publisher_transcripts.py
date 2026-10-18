@@ -149,49 +149,82 @@ def extract_foro_transcript(page: str) -> tuple[str, str]:
     return title, text
 
 
+def _resolve_url(url: str) -> tuple[str, str]:
+    """Follow redirects; return (final_url, body)."""
+    req = urllib.request.Request(
+        url, headers={"User-Agent": UA, "Accept": "*/*"}, method="GET"
+    )
+    with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as resp:
+        final = resp.geturl()
+        data = resp.read()
+    for enc in ("utf-8", "latin-1"):
+        try:
+            return final, data.decode(enc)
+        except UnicodeDecodeError:
+            continue
+    return final, data.decode("utf-8", errors="replace")
+
+
 def harvest_foro(
     conn, episodes: list[dict], listened: dict[str, list[int]], stats: dict
 ) -> None:
     print(f"[Foro] {FORO_SHOW}", flush=True)
-    # Prefer feed-linked ft pages; also probe a contiguous recent range.
+    # Feed links both piaui.uol.com.br/web/ftN and piaui.co/ftN (short → archive pages).
     xml_text = http_get_text(FORO_FEED)
     time.sleep(0.1)
     items = parse_rss_items(xml_text)
     url_by_title: dict[str, str] = {}
+    seed_urls: set[str] = set()
     for it in items:
-        m = re.search(r"https?://piaui\.uol\.com\.br/web/ft\d+/?", it["desc"])
-        if m:
-            url_by_title[it["norm"]] = m.group(0).rstrip("/") + "/"
-
-    urls = set(url_by_title.values())
-    for n in range(110, 160):
-        urls.add(f"https://piaui.uol.com.br/web/ft{n}/")
-    print(f"  candidate URLs: {len(urls)} (feed-linked={len(url_by_title)})", flush=True)
+        blob = f"{it['desc']} {it['link']}"
+        for m in re.finditer(
+            r"https?://(?:piaui\.uol\.com\.br/web/ft\d+|piaui\.co/ft\d+)/?",
+            blob,
+        ):
+            u = m.group(0).rstrip("/") + "/"
+            seed_urls.add(u)
+            url_by_title[it["norm"]] = u
+    # Contiguous probe covers gaps not present in the current feed window.
+    for n in range(1, 160):
+        seed_urls.add(f"https://piaui.co/ft{n}/")
+        seed_urls.add(f"https://piaui.uol.com.br/web/ft{n}/")
+    print(
+        f"  seed URLs: {len(seed_urls)} (feed-linked titles={len(url_by_title)})",
+        flush=True,
+    )
 
     upgraded = skipped = failed = matched = 0
 
     def fetch_one(url: str) -> tuple[str, str, str, str | None]:
         try:
-            page = http_get_text(url)
+            final, page = _resolve_url(url)
             title, text = extract_foro_transcript(page)
-            return url, title, text, None
+            return final, title, text, None
         except Exception as exc:  # noqa: BLE001
             return url, "", "", str(exc)
 
-    with ThreadPoolExecutor(max_workers=6) as pool:
-        futs = [pool.submit(fetch_one, u) for u in sorted(urls)]
+    # Dedupe by final URL after resolve.
+    seen_final: set[str] = set()
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        futs = [pool.submit(fetch_one, u) for u in sorted(seed_urls)]
         for i, fut in enumerate(as_completed(futs), 1):
             url, title, text, err = fut.result()
             if err:
                 failed += 1
                 continue
+            final_key = url.rstrip("/")
+            if final_key in seen_final:
+                continue
+            seen_final.add(final_key)
             if len(text) < 500:
                 continue
             idxs = match_idxs(normalize(title), listened) if title else []
             if not idxs:
-                # try reverse: any feed title pointing at this URL
                 for tnorm, u in url_by_title.items():
-                    if u.rstrip("/") == url.rstrip("/"):
+                    # short or long form may match after redirect; compare path tail
+                    if u.rstrip("/") in final_key or final_key.endswith(
+                        u.rstrip("/").rsplit("/", 1)[-1]
+                    ):
                         idxs = match_idxs(tnorm, listened)
                         if idxs:
                             title = episodes[idxs[0]].get("e") or title
@@ -223,14 +256,16 @@ def harvest_foro(
                 upgraded += 1
             if upgraded % 10 == 0:
                 conn.commit()
-            if i % 20 == 0:
+            if i % 40 == 0:
                 print(
-                    f"  scanned={i}/{len(urls)} upgraded≈{upgraded} matched={matched}",
+                    f"  scanned={i}/{len(seed_urls)} upgraded≈{upgraded} "
+                    f"matched={matched} unique_ok={len(seen_final)}",
                     flush=True,
                 )
     conn.commit()
     stats["foro"] = {
-        "candidates": len(urls),
+        "candidates": len(seed_urls),
+        "resolvedUnique": len(seen_final),
         "matched": matched,
         "upgraded": upgraded,
         "skipped": skipped,
