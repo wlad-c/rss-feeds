@@ -145,6 +145,13 @@ YT_CHANNELS: dict[str, dict] = {
         "reject_title": ["berro do boi"],
         "cross_lang": True,
     },
+    # Weekly politics show; full episodes uploaded on @uol (often as live VODs).
+    "A Hora": {
+        "handle": "@uol",
+        "title_must": ["a hora"],
+        "reject_title": ["cortes", "shorts"],
+        "search_fallback": True,
+    },
     "Xadrez Verbal": {
         "handle": "@XadrezVerbal",
         "title_must": None,
@@ -207,6 +214,7 @@ PRIORITY_SHOWS = [
     "7am",
     "O Assunto",
     "Foro de Teresina",
+    "A Hora",
     "Xadrez Verbal",
     "Lowy Institute",
     "Sinica Podcast",
