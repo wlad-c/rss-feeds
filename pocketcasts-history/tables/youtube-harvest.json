@@ -1,44 +1,45 @@
 {
   "harvest": {
-    "tried": 2,
-    "fetched": 2,
-    "upserted": 2,
-    "noCaptions": 0,
+    "tried": 18,
+    "fetched": 16,
+    "upserted": 16,
+    "noCaptions": 2,
     "rateLimited": 0,
-    "pairs": 2,
+    "pairs": 18,
     "byBackend": {
-      "yt_transcript_net": 2
+      "yt_transcript_net": 16
     },
     "byShow": {
-      "7am": 2
+      "Global Roaming with Geraldine Doogue and Hamish Macdonald": 16
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 9337,
-    "withPublisherOrSttTranscript": 2635,
-    "withLongText2000plus": 3096,
-    "pctTranscript": 11.97,
-    "pctLongText": 14.07,
+    "withAnyText": 9515,
+    "withPublisherOrSttTranscript": 2887,
+    "withLongText2000plus": 3337,
+    "pctTranscript": 13.12,
+    "pctLongText": 15.16,
     "bySrc": {
       "show-notes": {
-        "count": 6702,
-        "chars": 6513697
+        "count": 6628,
+        "chars": 6442763
       },
       "stt": {
-        "count": 15,
-        "chars": 254513
+        "count": 27,
+        "chars": 359257
       },
       "transcript": {
         "count": 1702,
         "chars": 32049141
       },
       "youtube": {
-        "count": 918,
-        "chars": 28324202
+        "count": 1158,
+        "chars": 35310992
       }
     }
   },
-  "lastCheckpoint": "2026-10-18T13:13Z",
-  "youtubeCount": 946
+  "lastCheckpoint": "2026-10-18T13:27Z",
+  "youtubeCount": 1216,
+  "sttCount": 28
 }
