@@ -258,10 +258,17 @@ def main() -> None:
             time.sleep(1)
 
         if not usable:
-            wait = min(daily_waits) if daily_waits else 1800
-            # Cap at 6h so we re-probe; floor 10min to avoid thrash.
-            wait = max(600.0, min(wait, 6 * 3600))
-            print(f"all models daily-blocked; sleeping {wait:.0f}s", flush=True)
+            # Re-probe often: if the project is upgraded Free→Paid mid-run,
+            # we should resume within minutes instead of sleeping for hours.
+            wait = float(os.environ.get("GEMINI_QUOTA_REPROBE_SECS", "900"))
+            wait = max(120.0, min(wait, 1800.0))
+            hint = min(daily_waits) if daily_waits else None
+            print(
+                f"all models quota-blocked"
+                + (f" (server retry≈{hint:.0f}s)" if hint else "")
+                + f"; re-probing in {wait:.0f}s",
+                flush=True,
+            )
             if args.once:
                 return
             time.sleep(wait)
