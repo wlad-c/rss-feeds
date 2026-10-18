@@ -45,15 +45,21 @@ Horizontal inset is owned by CSS tokens, not one-off margins:
 - Never combine `left` + `right` + `width: 100%` / `max-width: 100%` on fixed elements (over-constrains and clips Cancel/Done)
 - Body does **not** carry horizontal safe padding (fixed layers ignore it)
 
-### Required automated check (block ship if it fails)
+### Required automated checks (block ship if either fails)
+
+Serve the UI, then run **both** gates:
 
 ```bash
-cd pocketcasts-history && python3 -m http.server 8765
+cd docs && python3 -m http.server 8765
 # other terminal:
 node pocketcasts-history/scripts/check_mobile_edges.mjs http://127.0.0.1:8765
+node pocketcasts-history/scripts/check_filter_combos.mjs http://127.0.0.1:8765
 ```
 
-The script fails the process if chrome tools, Filters, the filter sheet, or the Shows picker spill past the viewport at **430 / 390 / 320** CSS px (including a long show title). **Do not merge/deploy on failure.**
+1. **`check_mobile_edges.mjs`** — chrome tools, Filters, filter sheet, and Shows picker must not spill past the viewport at **430 / 390 / 320** CSS px (including a long show title). Also requires picker search font-size ≥16px.
+2. **`check_filter_combos.mjs`** — on **desktop/iPad widths (1180 / 1024 / 900 / 861)** Show, Country, and Theme comboboxes must open a **portaled, usable list** (height ≥100px, many visible options, not a 1–2 row clipped strip). Type-to-filter must keep a usable list. On **compact widths (430 / 390)** Show must open the full-screen picker with ≥16px search text.
+
+Sticky filter chrome uses `overflow-x: hidden` for edge containment; that **clips** absolutely positioned dropdowns. Desktop combo lists must be portaled to `document.body` with `position: fixed` (see `.combo-list.is-ported`). **Do not merge/deploy on failure.**
 
 ### Manual spot checks
 
@@ -63,6 +69,7 @@ With a long show title selected:
 2. Filter row: Show truncates inside its control; Filters fully visible
 3. Shows picker + Filters sheet: Cancel/Clear/Done fully visible (not `ancel` / `Don`)
 4. `document.documentElement.scrollWidth <= window.innerWidth`
+5. **Desktop / iPad landscape (≥861px):** clicking Show, Country, and Theme opens a full-width dropdown with a scrollable option list (not Paste/AutoFill alone, not a tiny blue stub). Typing filters the list; choosing an option applies it.
 
 ### Deploy note
 
