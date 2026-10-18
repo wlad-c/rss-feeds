@@ -1,25 +1,25 @@
 {
   "harvest": {
-    "tried": 2,
+    "tried": 1,
     "fetched": 0,
     "upserted": 0,
     "noCaptions": 0,
     "rateLimited": 1,
-    "pairs": 6,
+    "pairs": 8,
     "byBackend": {},
     "byShow": {},
     "errors": []
   },
   "coverage": {
     "withAnyText": 8383,
-    "withPublisherOrSttTranscript": 1442,
-    "withLongText2000plus": 1905,
-    "pctTranscript": 6.55,
+    "withPublisherOrSttTranscript": 1443,
+    "withLongText2000plus": 1906,
+    "pctTranscript": 6.56,
     "pctLongText": 8.66,
     "bySrc": {
       "show-notes": {
-        "count": 6941,
-        "chars": 6789200
+        "count": 6940,
+        "chars": 6787932
       },
       "stt": {
         "count": 16,
@@ -30,8 +30,8 @@
         "chars": 21800239
       },
       "youtube": {
-        "count": 79,
-        "chars": 4776331
+        "count": 80,
+        "chars": 4983051
       }
     }
   }
