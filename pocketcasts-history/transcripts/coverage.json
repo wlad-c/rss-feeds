@@ -1,26 +1,26 @@
 {
   "coverage": {
-    "withAnyText": 9621,
-    "withPublisherOrSttTranscript": 3031,
-    "withLongText2000plus": 3481,
-    "pctTranscript": 13.77,
-    "pctLongText": 15.82,
+    "withAnyText": 9824,
+    "withPublisherOrSttTranscript": 3237,
+    "withLongText2000plus": 3687,
+    "pctTranscript": 14.71,
+    "pctLongText": 16.75,
     "bySrc": {
       "show-notes": {
-        "count": 6590,
-        "chars": 6423135
+        "count": 6587,
+        "chars": 6420511
       },
       "stt": {
-        "count": 42,
-        "chars": 564727
+        "count": 52,
+        "chars": 715323
       },
       "transcript": {
         "count": 1702,
         "chars": 32049141
       },
       "youtube": {
-        "count": 1287,
-        "chars": 39225479
+        "count": 1483,
+        "chars": 44256253
       }
     }
   }
