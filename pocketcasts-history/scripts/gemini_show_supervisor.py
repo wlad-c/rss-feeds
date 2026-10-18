@@ -391,12 +391,19 @@ def main() -> None:
                 text = log.read_text(encoding="utf-8", errors="replace")[-8000:]
             except OSError:
                 continue
-            if "daily quota exhausted" in text or "RATE LIMITED" in text:
-                # YouTube-hour daily caps typically reset ~18h; use 12h floor.
+            # Only hard daily / YouTube-hour caps — soft RPM "RATE LIMITED"
+            # stops one wave but should not sleep the model for 12h.
+            if "daily quota exhausted" in text:
                 blacklisted[model] = max(
                     blacklisted.get(model, 0), now + 12 * 3600
                 )
-                print(f"  blacklist {model} after daily/rate-limit in log", flush=True)
+                print(f"  blacklist {model} after daily quota in log", flush=True)
+            elif "RATE LIMITED" in text:
+                # Brief cool-down only (next wave can retry).
+                blacklisted[model] = max(
+                    blacklisted.get(model, 0), now + 180
+                )
+                print(f"  cool {model} 180s after soft rate-limit", flush=True)
 
         if not args.no_commit:
             try:
