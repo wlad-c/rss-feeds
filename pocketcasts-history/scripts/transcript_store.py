@@ -24,7 +24,13 @@ def _norm(s: str | None) -> str:
 
 def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
     TRANSCRIPTS.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(db_path)
+    # timeout helps when parallel harvest workers commit concurrently
+    conn = sqlite3.connect(db_path, timeout=60)
+    try:
+        conn.execute("PRAGMA journal_mode=WAL")
+        conn.execute("PRAGMA busy_timeout=60000")
+    except sqlite3.Error:
+        pass
     conn.execute(
         """
         CREATE TABLE IF NOT EXISTS transcripts (

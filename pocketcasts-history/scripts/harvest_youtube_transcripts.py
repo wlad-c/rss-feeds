@@ -33,6 +33,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from difflib import SequenceMatcher
 from pathlib import Path
 
@@ -365,6 +366,10 @@ class RateLimited(Exception):
         super().__init__(f"rate limited retry_after={retry_after}")
 
 
+class EpisodeClaimed(Exception):
+    """Another parallel worker already owns this video_id."""
+
+
 def fetch_transcribe_yt(video_id: str) -> str | None:
     body = json.dumps(
         {"url": f"https://www.youtube.com/watch?v={video_id}"}
@@ -500,6 +505,42 @@ def _gemini_clear_chunks(video_id: str) -> None:
             pass
     try:
         d.rmdir()
+    except OSError:
+        pass
+
+
+def _gemini_claim_path(video_id: str) -> Path:
+    d = TRANSCRIPTS / ".gemini_chunks" / ".claims"
+    d.mkdir(parents=True, exist_ok=True)
+    return d / f"{video_id}.claim"
+
+
+def _gemini_try_claim(video_id: str) -> bool:
+    """Exclusive in-progress lock so parallel workers don't double-fetch."""
+    path = _gemini_claim_path(video_id)
+    try:
+        fd = os.open(str(path), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        # Stale claim (>6h) → steal; else skip.
+        try:
+            age = time.time() - path.stat().st_mtime
+        except OSError:
+            age = 0
+        if age < 6 * 3600:
+            return False
+        try:
+            path.unlink()
+        except OSError:
+            return False
+        return _gemini_try_claim(video_id)
+    with os.fdopen(fd, "w", encoding="utf-8") as fh:
+        fh.write(f"pid={os.getpid()} ts={time.time():.0f}\n")
+    return True
+
+
+def _gemini_release_claim(video_id: str) -> None:
+    try:
+        _gemini_claim_path(video_id).unlink()
     except OSError:
         pass
 
@@ -673,14 +714,21 @@ def _gemini_generate_chunk(
     return None
 
 
-def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
+def fetch_gemini(
+    video_id: str,
+    duration: int | None = None,
+    *,
+    model: str | None = None,
+    parallel: int | None = None,
+) -> str | None:
     """Full transcript via Gemini YouTube video understanding (chunked).
 
     Whole multi-hour episodes exceed the 1M input-token cap under static
     frame sampling. We clip with videoMetadata start/end offsets and
     concatenate. Chunk length defaults to 10 minutes (GEMINI_YT_CHUNK_SECS).
     Completed chunks are cached under transcripts/.gemini_chunks/ so a
-    mid-episode 429 can resume on the next run.
+    mid-episode 429 can resume on the next run. Set parallel>1 to fetch
+    windows concurrently (biggest wall-clock win on free tier).
 
     Prefer `duration` from the channel flat-playlist (yt-dlp watch pages are
     often bot-blocked from datacenter IPs).
@@ -690,10 +738,14 @@ def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
         return None
     # Prefer flash-lite: free-tier RPD is per-model; 3.8-flash burns out
     # quickly (20 RPD) while lite handles long chunked XV harvests.
-    model = os.environ.get("GEMINI_YT_MODEL", "gemini-3.5-flash-lite")
+    model = model or os.environ.get("GEMINI_YT_MODEL", "gemini-3.5-flash-lite")
     chunk_secs = int(os.environ.get("GEMINI_YT_CHUNK_SECS", "600"))
     chunk_secs = max(120, min(chunk_secs, 1800))
-    chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "8"))
+    chunk_sleep = float(os.environ.get("GEMINI_YT_CHUNK_SLEEP", "2"))
+    workers = parallel if parallel is not None else int(
+        os.environ.get("GEMINI_YT_PARALLEL", "4")
+    )
+    workers = max(1, min(workers, 12))
 
     if not duration or duration <= 0:
         duration = yt_duration_seconds(video_id)
@@ -701,54 +753,106 @@ def fetch_gemini(video_id: str, duration: int | None = None) -> str | None:
         print("  gemini: could not resolve video duration", flush=True)
         return None
 
-    pieces: list[str] = []
-    failed = 0
-    n_chunks = (duration + chunk_secs - 1) // chunk_secs
+    if not _gemini_try_claim(video_id):
+        print(
+            f"  gemini: skip {video_id} — already claimed by another worker",
+            flush=True,
+        )
+        raise EpisodeClaimed(video_id)
+
+    windows: list[tuple[int, int]] = []
+    for start in range(0, duration, chunk_secs):
+        end = min(start + chunk_secs, duration)
+        if end - start < 15 and windows:
+            break
+        windows.append((start, end))
+    n_chunks = len(windows)
     print(
         f"  gemini chunking duration={duration}s → {n_chunks}×{chunk_secs}s "
-        f"model={model}",
+        f"model={model} parallel={workers}",
         flush=True,
     )
-    for i, start in enumerate(range(0, duration, chunk_secs)):
-        end = min(start + chunk_secs, duration)
-        # Skip tiny trailing slivers (outro logos)
-        if end - start < 15 and pieces:
-            break
+
+    results: dict[int, str | None] = {}
+    rate_limited = False
+
+    def _one(window: tuple[int, int]) -> tuple[int, int, str | None]:
+        start_s, end_s = window
         text = _gemini_generate_chunk(
             key=key,
             model=model,
             video_id=video_id,
-            start_s=start,
-            end_s=end,
+            start_s=start_s,
+            end_s=end_s,
         )
-        if text:
-            pieces.append(text)
-            failed = 0
-        else:
-            failed += 1
-            # Allow a couple of bad chunks (music-only outros) but abort if
-            # several consecutive windows fail — likely quota / model outage.
-            if failed >= 3:
-                print("  gemini: aborting after 3 consecutive chunk failures", flush=True)
-                break
-        if i + 1 < n_chunks and chunk_sleep > 0:
-            time.sleep(chunk_sleep)
+        return start_s, end_s, text
 
-    if not pieces:
-        return None
-    joined = _gemini_strip_preamble("\n\n".join(pieces))
-    # Require a plausible fraction of the episode (very short → incomplete).
-    min_chars = max(500, min(8000, duration // 2))
-    if len(joined) < min_chars:
-        print(
-            f"  gemini: joined transcript too short "
-            f"({len(joined)} chars for {duration}s; need ≥{min_chars})",
-            flush=True,
-        )
-        return None
-    # Full episode assembled — drop resume cache.
-    _gemini_clear_chunks(video_id)
-    return joined
+    try:
+        if workers == 1:
+            for i, window in enumerate(windows):
+                try:
+                    start_s, end_s, text = _one(window)
+                except RateLimited:
+                    rate_limited = True
+                    break
+                results[start_s] = text
+                if i + 1 < n_chunks and chunk_sleep > 0:
+                    time.sleep(chunk_sleep)
+        else:
+            with ThreadPoolExecutor(max_workers=workers) as pool:
+                futs = {pool.submit(_one, w): w for w in windows}
+                for fut in as_completed(futs):
+                    try:
+                        start_s, end_s, text = fut.result()
+                        results[start_s] = text
+                    except RateLimited:
+                        rate_limited = True
+                        for other in futs:
+                            other.cancel()
+                        break
+                    except Exception as exc:  # noqa: BLE001
+                        start_s, end_s = futs[fut]
+                        print(
+                            f"  gemini chunk {start_s}-{end_s}s worker error: {exc}",
+                            flush=True,
+                        )
+                        results[start_s] = None
+        if rate_limited:
+            raise RateLimited()
+
+        pieces: list[str] = []
+        failed = 0
+        for start_s, end_s in windows:
+            text = results.get(start_s)
+            if text:
+                pieces.append(text)
+                failed = 0
+            else:
+                failed += 1
+                if failed >= 3:
+                    print(
+                        "  gemini: aborting after 3 consecutive chunk failures",
+                        flush=True,
+                    )
+                    break
+
+        if not pieces:
+            return None
+        joined = _gemini_strip_preamble("\n\n".join(pieces))
+        # Require a plausible fraction of the episode (very short → incomplete).
+        min_chars = max(500, min(8000, duration // 2))
+        if len(joined) < min_chars:
+            print(
+                f"  gemini: joined transcript too short "
+                f"({len(joined)} chars for {duration}s; need ≥{min_chars})",
+                flush=True,
+            )
+            return None
+        # Full episode assembled — drop resume cache.
+        _gemini_clear_chunks(video_id)
+        return joined
+    finally:
+        _gemini_release_claim(video_id)
 
 
 def fetch_captions(
@@ -756,10 +860,17 @@ def fetch_captions(
     backends: list[str],
     *,
     duration: int | None = None,
+    gemini_model: str | None = None,
+    gemini_parallel: int | None = None,
 ) -> tuple[str | None, str | None]:
     for name in backends:
         if name == "gemini":
-            text = fetch_gemini(video_id, duration=duration)
+            text = fetch_gemini(
+                video_id,
+                duration=duration,
+                model=gemini_model,
+                parallel=gemini_parallel,
+            )
             if text:
                 return text, "gemini"
         elif name == "yta":
@@ -990,6 +1101,17 @@ def main() -> None:
     ap.add_argument("--sleep", type=float, default=13.0)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-search-fallback", action="store_true")
+    ap.add_argument(
+        "--gemini-model",
+        default=None,
+        help="Override GEMINI_YT_MODEL (shard workers across models for free-tier RPD).",
+    )
+    ap.add_argument(
+        "--gemini-parallel",
+        type=int,
+        default=None,
+        help="Concurrent chunk requests per episode (default 4 / GEMINI_YT_PARALLEL).",
+    )
     args = ap.parse_args()
 
     backends = [b.strip() for b in args.backends.split(",") if b.strip()]
@@ -1005,6 +1127,8 @@ def main() -> None:
         raise SystemExit(
             "no transcript backends available (set GEMINI_API_KEY for gemini)"
         )
+    if args.gemini_model:
+        os.environ["GEMINI_YT_MODEL"] = args.gemini_model
     episodes = json.loads((TABLES / "episodes.json").read_text(encoding="utf-8"))
     conn = connect()
 
@@ -1019,7 +1143,9 @@ def main() -> None:
         search_fallback=not args.no_search_fallback,
     )
     print(
-        f"pairs={len(pairs)} backends={backends} dry_run={args.dry_run}",
+        f"pairs={len(pairs)} backends={backends} dry_run={args.dry_run} "
+        f"gemini_model={args.gemini_model or os.environ.get('GEMINI_YT_MODEL', 'gemini-3.5-flash-lite')} "
+        f"gemini_parallel={args.gemini_parallel or os.environ.get('GEMINI_YT_PARALLEL', '4')}",
         flush=True,
     )
 
@@ -1066,7 +1192,12 @@ def main() -> None:
                 vid["id"],
                 backends,
                 duration=dur,
+                gemini_model=args.gemini_model,
+                gemini_parallel=args.gemini_parallel,
             )
+        except EpisodeClaimed:
+            print("  skipped (claimed by peer worker)", flush=True)
+            continue
         except RateLimited as rl:
             stats["rateLimited"] += 1
             print(
