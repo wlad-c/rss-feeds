@@ -4,13 +4,14 @@
 YouTube blocks most cloud/datacenter IPs for direct caption fetches
 (youtube-transcript-api / yt-dlp timedtext). This script tries backends in order:
 
-  1. gemini                  — GEMINI_API_KEY; full audio transcription via Gemini
-                               video understanding (YouTube URL). Best for long
-                               shows without captions (e.g. Xadrez Verbal). Free
-                               tier ≈8h of YouTube/day; paid has no daily length cap.
-  2. youtube-transcript-api  — works on residential IPs / with WEBSHARE_* proxies
-  3. YTAPI_API_KEY           — optional https://ytapi.dev key (env)
-  4. transcribeyoutube.com   — free hosted extractor (no key; fair-use rate limits)
+  1. youtube-transcript-api  — works on residential IPs / with WEBSHARE_* proxies
+  2. YTAPI_API_KEY           — optional https://ytapi.dev key (env)
+  3. transcribeyoutube.com   — free hosted extractor (no key; fair-use rate limits)
+  4. gemini                  — GEMINI_API_KEY; full audio transcription via Gemini
+                               video understanding (YouTube URL). Use after free
+                               caption backends are exhausted / rate-limited.
+                               Free Gemini tier ≈8h YouTube/day; paid key has no
+                               daily length cap.
 
 Matching prefers channel upload lists (reliable), then yt-dlp `ytsearchN:` fallback.
 
@@ -717,7 +718,7 @@ def main() -> None:
     ap.add_argument("--shows", nargs="*", default=None)
     ap.add_argument(
         "--backends",
-        default="gemini,yta,ytapi,transcribe_yt",
+        default="yta,ytapi,transcribe_yt,gemini",
         help="Comma list. gemini needs GEMINI_API_KEY (full YT audio transcription).",
     )
     ap.add_argument("--sleep", type=float, default=13.0)
