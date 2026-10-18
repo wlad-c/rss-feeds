@@ -631,13 +631,14 @@ def primary_evidence(
     tx = full_texts.get(str(i)) or ""
     if tx.strip():
         note = notes.get(str(i)) or {}
-        src = (
-            note.get("src")
-            if isinstance(note, dict)
-            and note.get("src") in ("transcript", "stt", "youtube")
+        if (
+            isinstance(note, dict)
             and _note_matches_episode(note, ep_p, ep_e)
-            else "transcript"
-        )
+            and note.get("src")
+        ):
+            src = note.get("src")
+        else:
+            src = "transcript"
         return tx, src or "transcript", len(tx) > 800
     note = notes.get(str(i)) or {}
     if isinstance(note, dict) and _note_matches_episode(note, ep_p, ep_e):
@@ -905,7 +906,10 @@ def main() -> None:
             TABLES / "notes.json",
             TABLES / "notes-meta.json",
             total_episodes=len(episodes),
+            preserve_notes=notes,
+            episodes=episodes,
         )
+        notes = json.loads(notes_path.read_text(encoding="utf-8"))
         full_texts = full_text_map(conn, episodes)
         conn.close()
         print(f"full_transcripts_loaded={len(full_texts)} (aligned)")

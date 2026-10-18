@@ -700,11 +700,18 @@ def main() -> None:
             )
             align = assert_aligned(conn, compact)
             print(f"transcript_align_ok exact={align['exact']}")
+            prior_notes = {}
+            if (TABLES / "notes.json").exists():
+                prior_notes = json.loads(
+                    (TABLES / "notes.json").read_text(encoding="utf-8")
+                )
             write_slim_notes(
                 conn,
                 TABLES / "notes.json",
                 TABLES / "notes-meta.json",
                 total_episodes=len(compact),
+                preserve_notes=prior_notes,
+                episodes=compact,
             )
         finally:
             conn.close()

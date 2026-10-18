@@ -31,11 +31,16 @@ def main() -> None:
     before = conn.execute("SELECT COUNT(*) FROM transcripts").fetchone()[0]
     stats = repair_episode_indices(conn, episodes)
     aligned = full_text_map(conn, episodes)
+    prior = {}
+    if (TABLES / "notes.json").exists():
+        prior = json.loads((TABLES / "notes.json").read_text(encoding="utf-8"))
     meta = write_slim_notes(
         conn,
         TABLES / "notes.json",
         TABLES / "notes-meta.json",
         total_episodes=len(episodes),
+        preserve_notes=prior,
+        episodes=episodes,
     )
     conn.close()
     print(f"before_rows={before}")

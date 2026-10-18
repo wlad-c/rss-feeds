@@ -308,8 +308,16 @@ def write_slim_notes(
     notes_path: Path,
     meta_path: Path,
     total_episodes: int,
+    *,
+    preserve_notes: dict | None = None,
+    episodes: list[dict] | None = None,
 ) -> dict:
-    """Build Pages-friendly notes.json from the full store."""
+    """Build Pages-friendly notes.json from the full store.
+
+    When ``preserve_notes`` + ``episodes`` are given, keep prior note entries that
+    are absent from sqlite but still label-aligned — so show-notes-only rows are
+    not wiped by a transcript-index repair.
+    """
     notes: dict[str, dict] = {}
     for idx, podcast, episode, src, url, chars, text in conn.execute(
         "SELECT episode_idx, podcast, episode, src, url, chars, text FROM transcripts"
@@ -325,6 +333,30 @@ def write_slim_notes(
             "p": podcast,
             "e": episode,
         }
+    if preserve_notes and episodes:
+        by_key = {
+            (_norm(ep.get("p")), _norm(ep.get("e"))): i
+            for i, ep in enumerate(episodes)
+            if (ep.get("p") or "").strip() and (ep.get("e") or "").strip()
+        }
+        for _k, row in preserve_notes.items():
+            if not isinstance(row, dict):
+                continue
+            text = (row.get("text") or "").strip()
+            if len(text) < 40:
+                continue
+            key = (_norm(row.get("p")), _norm(row.get("e")))
+            match = by_key.get(key) if key[0] and key[1] else None
+            if match is None:
+                continue
+            si = str(match)
+            if si in notes:
+                continue  # sqlite wins
+            entry = dict(row)
+            entry["p"] = episodes[match].get("p")
+            entry["e"] = episodes[match].get("e")
+            entry.setdefault("src", "show-notes")
+            notes[si] = entry
     stats = coverage_stats(conn, total_episodes)
     notes_path.write_text(
         json.dumps(notes, ensure_ascii=False, separators=(",", ":")),
