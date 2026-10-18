@@ -1,41 +1,41 @@
 {
   "harvest": {
-    "tried": 3,
+    "tried": 1,
     "fetched": 1,
     "upserted": 1,
-    "noCaptions": 1,
-    "rateLimited": 1,
-    "pairs": 25,
+    "noCaptions": 0,
+    "rateLimited": 0,
+    "pairs": 1,
     "byBackend": {
-      "transcribe_yt": 1
+      "gemini": 1
     },
     "byShow": {
-      "The Daily": 1
+      "Xadrez Verbal": 1
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8417,
-    "withPublisherOrSttTranscript": 1450,
-    "withLongText2000plus": 1913,
-    "pctTranscript": 6.6,
-    "pctLongText": 8.7,
+    "withAnyText": 8383,
+    "withPublisherOrSttTranscript": 1438,
+    "withLongText2000plus": 1901,
+    "pctTranscript": 6.53,
+    "pctLongText": 8.64,
     "bySrc": {
       "show-notes": {
-        "count": 6967,
-        "chars": 6818399
+        "count": 6945,
+        "chars": 6795066
       },
       "stt": {
         "count": 16,
         "chars": 268686
       },
       "transcript": {
-        "count": 1360,
-        "chars": 21987522
+        "count": 1347,
+        "chars": 21800239
       },
       "youtube": {
-        "count": 74,
-        "chars": 3638135
+        "count": 75,
+        "chars": 3822859
       }
     }
   }
