@@ -63,12 +63,48 @@ GEO: dict[str, list[str]] = {
         r"\borb[aá]n\b", r"\bportugal\b", r"\bbrussels\b", r"\bafd\b",
         r"\ble pen\b",
     ],
-    "apac": [
-        r"\bmalaysia\b", r"\bmalaysian\b", r"\banwar\b", r"\bsingapore\b",
-        r"\bindonesia\b", r"\bjakarta\b", r"\bthailand\b", r"\bvietnam\b",
-        r"\bphilippines\b", r"\basean\b", r"\bsoutheast asia\b",
-        r"\bsouth[- ]east asia\b", r"\basia[- ]pacific\b", r"\bpakistan\b",
-        r"\bbangladesh\b",
+    "my": [
+        r"\bmalaysia\b", r"\bmalaysian\b", r"\banwar\b", r"\bkuala lumpur\b",
+        r"\bputrajaya\b", r"\bumno\b", r"\bpakatan\b",
+    ],
+    "sg": [
+        r"\bsingapore\b", r"\bsingaporean\b", r"\blee hsien loong\b",
+        r"\blawrence wong\b",
+    ],
+    "id": [
+        r"\bindonesia\b", r"\bindonesian\b", r"\bjakarta\b", r"\bjokowi\b",
+        r"\bprabowo\b", r"\bgibran\b", r"\bsubianto\b",
+    ],
+    "th": [
+        r"\bthailand\b", r"\bthai\b", r"\bbangkok\b", r"\bprayut\b",
+        r"\bpaetongtarn\b", r"\bthaksin\b",
+    ],
+    "ph": [
+        r"\bphilippines\b", r"\bfilipino\b", r"\bmanila\b", r"\bmarcos\b",
+        r"\bduterte\b",
+    ],
+    "vn": [
+        r"\bvietnam\b", r"\bvietnamese\b", r"\bhanoi\b", r"\bho chi minh\b",
+    ],
+    "mm": [
+        r"\bmyanmar\b", r"\bburma\b", r"\bburmese\b",
+        r"\baung san suu kyi\b", r"\btatmadaw\b",
+    ],
+    "pk": [
+        r"\bpakistan\b", r"\bpakistani\b", r"\bislamabad\b", r"\bimran khan\b",
+    ],
+    "jp": [
+        r"\bjapan\b", r"\bjapanese\b", r"\btokyo\b", r"\bkishida\b",
+        r"\bishiba\b",
+    ],
+    "kr": [
+        r"\bkorea\b", r"\bkorean\b", r"\bseoul\b", r"\bkim jong\b",
+        r"\bnorth korea\b", r"\bsouth korea\b", r"\bpyongyang\b",
+    ],
+    "sea": [
+        r"\basean\b", r"\bsoutheast asia\b", r"\bsouth[- ]east asia\b",
+        r"\basia[- ]pacific\b", r"\bbangladesh\b", r"\bcambodia\b",
+        r"\blaos\b", r"\bpapua new guinea\b", r"\bnew zealand\b",
     ],
     "india": [
         r"\bindia\b", r"\bindian\b", r"\bmodi\b", r"\bdelhi\b", r"\bbjp\b",
@@ -289,10 +325,22 @@ TITLE_ACTORS: list[tuple[str | None, str, list[str]]] = [
         r"\b(albanese|albo|dutton|one nation|pauline hanson)\b",
         ["au-elections", "au-government"],
     ),
+    # Asia-Pacific country actors
+    ("my", r"\b(anwar|umno|pakatan)\b", ["my-elections", "my-government"]),
+    ("id", r"\b(jokowi|prabowo|gibran|subianto)\b", ["id-elections", "id-government"]),
+    ("sg", r"\b(lee hsien loong|lawrence wong)\b", ["sg-government"]),
+    ("ph", r"\b(marcos|duterte)\b", ["ph-government"]),
+    ("th", r"\b(thaksin|prayut|paetongtarn)\b", ["th-government"]),
+    ("mm", r"\b(aung san suu kyi|tatmadaw)\b", ["mm-government"]),
+    ("pk", r"\b(imran khan)\b", ["pk-government"]),
+    ("jp", r"\b(kishida|ishiba)\b", ["jp-government"]),
+    ("kr", r"\b(kim jong|yoon suk|pyongyang)\b", ["kr-government"]),
 ]
 
 # Shows that imply a geo even when the title is witty / actor-only
 SHOW_GEO: dict[str, str] = {
+    "beyond the ballot box": "my",
+    "are we ok?": "my",
     "a hora": "br",
     "foro de teresina": "br",
     "o assunto": "br",
@@ -336,8 +384,10 @@ SHOW_DEFAULTS: dict[str, list[str]] = {
     "the national security podcast": ["defence-war", "indo-pacific-security"],
     "aspi podcast: policy, guns & money": ["defence-war", "indo-pacific-security"],
     "asia geopolitics": ["indo-pacific-security", "diplomacy"],
-    "beyond the ballot box": ["apac-elections", "apac-government"],
-    "straight talk southeast asia": ["apac-government", "diplomacy"],
+    "beyond the ballot box": ["my-elections", "my-government"],
+    "straight talk southeast asia": ["diplomacy"],
+    "are we ok?": ["my-government"],
+    "cna correspondent": ["diplomacy", "international-affairs"],
     "global roaming with geraldine doogue and hamish macdonald": [
         "international-affairs",
         "diplomacy",
@@ -393,8 +443,20 @@ THEMES: list[dict] = [
     T("eu-government", "European government", "local", "European governments and EU institutions.", geo="eu", topic=GOV),
     T("latam-elections", "Latin American elections", "local", "Elections in Latin America (ex-Brazil).", geo="latam", topic=ELEC),
     T("latam-government", "Latin American government", "local", "Governments in Latin America (ex-Brazil).", geo="latam", topic=GOV),
-    T("apac-elections", "Asia-Pacific elections", "local", "Elections across Asia-Pacific (ex CN/AU/US/IN).", geo="apac", topic=ELEC),
-    T("apac-government", "Asia-Pacific government", "local", "Governments across Asia-Pacific (ex CN/AU/US/IN).", geo="apac", topic=GOV),
+    T("my-elections", "Malaysian elections", "local", "Elections and campaigns in Malaysia.", geo="my", topic=ELEC),
+    T("my-government", "Malaysian government", "local", "Malaysian government and politics.", geo="my", topic=GOV),
+    T("id-elections", "Indonesian elections", "local", "Elections and campaigns in Indonesia.", geo="id", topic=ELEC),
+    T("id-government", "Indonesian government", "local", "Indonesian government and politics.", geo="id", topic=GOV),
+    T("sg-government", "Singapore government", "local", "Singapore government and politics.", geo="sg", topic=GOV),
+    T("th-government", "Thai government", "local", "Thai government and politics.", geo="th", topic=GOV),
+    T("ph-government", "Philippine government", "local", "Philippine government and politics.", geo="ph", topic=GOV),
+    T("vn-government", "Vietnamese government", "local", "Vietnamese government and politics.", geo="vn", topic=GOV),
+    T("mm-government", "Myanmar government", "local", "Myanmar government, junta, and crisis politics.", geo="mm", topic=GOV + WAR),
+    T("pk-government", "Pakistani government", "local", "Pakistani government and politics.", geo="pk", topic=GOV),
+    T("jp-government", "Japanese government", "local", "Japanese government and domestic politics.", geo="jp", topic=GOV),
+    T("kr-government", "Korean government", "local", "South/North Korean politics and government.", geo="kr", topic=GOV),
+    T("sea-elections", "Southeast Asia elections", "local", "Regional SEA/ASEAN elections without a single-country focus.", geo="sea", topic=ELEC),
+    T("sea-government", "Southeast Asia government", "local", "Regional SEA/ASEAN politics without a single-country focus.", geo="sea", topic=GOV),
     T("india-elections", "Indian elections", "local", "Elections in India.", geo="india", topic=ELEC),
     T("india-government", "Indian government", "local", "Indian government and BJP/Congress politics.", geo="india", topic=GOV),
     T("japan-korea-security", "Japan & Korea security", "local", "Japan/Korea security and North Korea.", geo="jp_kr", topic=DEF + WAR + GOV),
@@ -692,8 +754,16 @@ def tag_episode(
         geo_hit = dict(geo_hit)
         geo_hit[sg] = True
 
-    # 1) Show baselines (known coverage)
+    # 1) Show baselines (known coverage). Residual SEA themes are skipped when a
+    # specific Asia country geo already fired — otherwise BFM/regional shows
+    # would re-inflate the broad bucket on every Malaysia/Japan episode.
+    specific_asia = any(
+        geo_hit.get(k)
+        for k in ("my", "sg", "id", "th", "ph", "vn", "mm", "pk", "jp", "kr", "cn_tw", "india")
+    )
     for tid in show_defaults(show):
+        if specific_asia and tid in ("sea-government", "sea-elections"):
+            continue
         add(tid)
 
     # 2) Title actors → local compounds (geo-gated; titles carry witty politics cues)
@@ -711,8 +781,21 @@ def tag_episode(
         gk = t["geo"]
         if not gk or not geo_hit.get(gk):
             continue
-        if gk == "apac" and (
-            geo_hit.get("cn_tw") or geo_hit.get("au") or geo_hit.get("us") or geo_hit.get("india")
+        if gk == "sea" and (
+            geo_hit.get("my")
+            or geo_hit.get("sg")
+            or geo_hit.get("id")
+            or geo_hit.get("th")
+            or geo_hit.get("ph")
+            or geo_hit.get("vn")
+            or geo_hit.get("mm")
+            or geo_hit.get("pk")
+            or geo_hit.get("jp")
+            or geo_hit.get("kr")
+            or geo_hit.get("cn_tw")
+            or geo_hit.get("au")
+            or geo_hit.get("us")
+            or geo_hit.get("india")
         ):
             continue
         topic_re = t["topic_re"]
