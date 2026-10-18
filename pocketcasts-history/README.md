@@ -10,9 +10,11 @@ Everything lives in this GitHub repository. No third-party hosts or CDNs.
 
 ## Live site
 
-**https://wlad-c.github.io/rss-feeds/**
+**Prefer GitHub Pages (source of truth):** **https://wlad-c.github.io/rss-feeds/**
 
-CDN mirror: **https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/pocketcasts-history/**
+After a UI deploy, confirm the footer shows the current `build …` stamp. If edges still look clipped, tap **Refresh** (clears caches) or open the Pages URL in a Private Tab — do **not** trust a stale jsDelivr tab.
+
+CDN mirror (can lag hours despite purge): **https://cdn.jsdelivr.net/gh/wlad-c/rss-feeds@gh-pages/pocketcasts-history/**
 
 ## Interactive explorer (offline)
 
