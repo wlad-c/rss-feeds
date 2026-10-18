@@ -1,29 +1,29 @@
 {
   "harvest": {
     "tried": 8,
-    "fetched": 5,
-    "upserted": 5,
+    "fetched": 7,
+    "upserted": 7,
     "noCaptions": 0,
     "rateLimited": 0,
     "pairs": 8,
     "byBackend": {
-      "gemini": 5
+      "gemini": 7
     },
     "byShow": {
-      "Xadrez Verbal": 5
+      "Xadrez Verbal": 7
     },
     "errors": []
   },
   "coverage": {
     "withAnyText": 8383,
-    "withPublisherOrSttTranscript": 1449,
-    "withLongText2000plus": 1912,
-    "pctTranscript": 6.58,
-    "pctLongText": 8.69,
+    "withPublisherOrSttTranscript": 1457,
+    "withLongText2000plus": 1920,
+    "pctTranscript": 6.62,
+    "pctLongText": 8.72,
     "bySrc": {
       "show-notes": {
-        "count": 6934,
-        "chars": 6781197
+        "count": 6926,
+        "chars": 6772111
       },
       "stt": {
         "count": 16,
@@ -34,8 +34,8 @@
         "chars": 21800239
       },
       "youtube": {
-        "count": 86,
-        "chars": 6236112
+        "count": 94,
+        "chars": 7658032
       }
     }
   }
