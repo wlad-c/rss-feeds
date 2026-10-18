@@ -40,6 +40,7 @@ Horizontal inset is owned by CSS tokens, not one-off margins:
 - `.wrap` gutters are **`border-left/right: max(16px, env(safe-area-inset-*)) solid transparent`** + `overflow-x: hidden` + `box-sizing: border-box`. **Never use padding for the page gutter** — overflowing flex children paint into padding and still reach the screen edge (`overflow` clips at the padding edge, not outside it).
 - Elements that also use `.wrap` (`.chrome-inner`, `.period-bar`) must not reset those transparent borders (no `border: 0` / `border: 0.5px solid …` shorthand that wipes the gutter).
 - Show field on mobile: `flex: 1 1 0; width: 0; overflow: hidden` so iOS search inputs cannot expand the row past Filters.
+- **All focused text fields must be ≥16px** (`input.combo-picker-input`, `.combo-input`, filter-sheet search). Smaller fields trigger iOS focus-zoom; after typing in the Shows/Theme dropdown the visual viewport stays shifted and chrome/Filters look cut off on the sides.
 - Fixed UI (tab bar, filter sheet, combo picker chrome) must use the same `--inset-*` tokens
 - Never combine `left` + `right` + `width: 100%` / `max-width: 100%` on fixed elements (over-constrains and clips Cancel/Done)
 - Body does **not** carry horizontal safe padding (fixed layers ignore it)
