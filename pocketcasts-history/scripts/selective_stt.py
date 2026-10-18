@@ -28,6 +28,8 @@ from pathlib import Path
 from transcript_store import TABLES, connect, get_full, upsert_full, write_slim_notes
 
 EPISODES_CSV = TABLES / "episodes.csv"
+# Persistent skip list for dead audio URLs (404) so waves do not re-burn them.
+STT_SKIP_PATH = TABLES.parent / "transcripts" / "stt-skip.json"
 
 UA = "rss-feeds-listening-log/1.1 (+https://github.com/wlad-c/rss-feeds)"
 # Prefer shows that lack reliable YouTube captions / publisher transcripts.
@@ -125,8 +127,11 @@ def already_good(
 ) -> bool:
     """Skip episodes that already have a reliable full transcript.
 
-    Treat publisher transcripts and YouTube captions as authoritative —
-    never burn STT quota (or risk a weaker Whisper pass) overwriting them.
+    Treat publisher transcripts and YouTube captions as authoritative when
+    they are long enough — never burn STT over a solid caption/transcript.
+    Short publisher stubs (<1200 chars) may still be upgraded by STT
+    (transcript_store trust order allows that). Any prior STT attempt with
+    usable text is treated as done so we do not re-Whisper the same clip.
     """
     ep = episodes[idx] if 0 <= idx < len(episodes) else {}
     row = get_full(
@@ -142,9 +147,29 @@ def already_good(
     # Publisher / YouTube captions are highest-trust free sources.
     if src in ("transcript", "youtube") and chars >= 1200:
         return True
-    if src == "stt" and chars >= min_chars:
+    # Already STT'd (including short promos) — do not re-burn CPU.
+    if src == "stt" and chars >= 80:
         return True
     return False
+
+
+def audio_url_ok(url: str) -> bool:
+    """Cheap preflight: skip known-dead enclosures before download/transcribe."""
+    try:
+        req = urllib.request.Request(
+            url, headers={"User-Agent": UA}, method="HEAD"
+        )
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            code = getattr(resp, "status", None) or resp.getcode()
+            if int(code) >= 400:
+                return False
+            cl = resp.headers.get("Content-Length")
+            if cl is not None and int(cl) < 8000:
+                return False
+            return True
+    except Exception:  # noqa: BLE001
+        # Some CDNs reject HEAD; fall through to GET download.
+        return True
 
 
 def download_audio(url: str, dest: Path) -> None:
@@ -281,6 +306,36 @@ def transcribe(
     raise RuntimeError(f"unknown engine {engine}")
 
 
+def load_stt_skip() -> set[str]:
+    if not STT_SKIP_PATH.exists():
+        return set()
+    try:
+        data = json.loads(STT_SKIP_PATH.read_text(encoding="utf-8"))
+        return {str(x) for x in (data.get("keys") or [])}
+    except Exception:  # noqa: BLE001
+        return set()
+
+
+def remember_stt_skip(podcast: str, episode: str, reason: str) -> None:
+    key = f"{normalize(podcast)}|{normalize(episode)}"
+    data = {"keys": [], "reasons": {}}
+    if STT_SKIP_PATH.exists():
+        try:
+            data = json.loads(STT_SKIP_PATH.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            pass
+    keys = list(data.get("keys") or [])
+    if key not in keys:
+        keys.append(key)
+    reasons = dict(data.get("reasons") or {})
+    reasons[key] = reason
+    STT_SKIP_PATH.parent.mkdir(parents=True, exist_ok=True)
+    STT_SKIP_PATH.write_text(
+        json.dumps({"keys": keys, "reasons": reasons}, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
 def pick_candidates(
     episodes: list[dict],
     conn,
@@ -292,6 +347,7 @@ def pick_candidates(
     # score: priority show rank, recency, shorter duration
     show_rank = {n: i for i, n in enumerate(PRIORITY_SHOWS)}
     counts = Counter(ep.get("p") for ep in episodes)
+    skip = load_stt_skip()
     scored: list[tuple[float, int]] = []
     for i, ep in enumerate(episodes):
         y = int(ep.get("y") or 0)
@@ -302,6 +358,9 @@ def pick_candidates(
         pod = ep.get("p") or ""
         if pod not in show_rank and counts[pod] < 200:
             continue
+        skip_key = f"{normalize(pod)}|{normalize(ep.get('e') or '')}"
+        if skip_key in skip:
+            continue
         # skip if we already have any long-ish publisher text
         existing = get_full(
             conn, i, expect_podcast=pod, expect_episode=ep.get("e")
@@ -310,6 +369,9 @@ def pick_candidates(
             continue
         mins = dur_minutes(ep)
         if mins > 45:
+            continue
+        # Skip promos / trailers — Whisper on <3 min clips wastes budget.
+        if mins < 3.0:
             continue
         rank = show_rank.get(pod, 50 + (0 if counts[pod] >= 500 else 20))
         score = rank * 1000 + (2030 - y) * 10 + mins
@@ -440,6 +502,8 @@ def main() -> None:
             raw = tdir / f"{idx}.audio"
             wav = tdir / f"{idx}.wav"
             try:
+                if not audio_url_ok(url):
+                    raise RuntimeError("audio URL preflight failed (404/empty)")
                 download_audio(url, raw)
                 # Prefer compact mp3/m4a for NoteTakers; wav for local Whisper.
                 text, used = transcribe(
@@ -467,6 +531,11 @@ def main() -> None:
             except Exception as exc:  # noqa: BLE001
                 fail += 1
                 print(f"  FAIL {exc}", flush=True)
+                err = str(exc)
+                if "404" in err or "preflight failed" in err:
+                    remember_stt_skip(
+                        ep.get("p") or "", ep.get("e") or "", err[:200]
+                    )
             finally:
                 for p in (raw, wav):
                     try:
