@@ -794,9 +794,14 @@
   function syncVisualViewportVars() {
     const vv = window.visualViewport;
     const top = vv ? vv.offsetTop : 0;
+    const left = vv ? vv.offsetLeft : 0;
+    const width = vv ? vv.width : window.innerWidth;
     const height = vv ? vv.height : window.innerHeight;
-    document.documentElement.style.setProperty("--vv-top", `${Math.round(top)}px`);
-    document.documentElement.style.setProperty("--vv-height", `${Math.round(height)}px`);
+    const root = document.documentElement.style;
+    root.setProperty("--vv-top", `${Math.round(top)}px`);
+    root.setProperty("--vv-left", `${Math.round(left)}px`);
+    root.setProperty("--vv-width", `${Math.round(width)}px`);
+    root.setProperty("--vv-height", `${Math.round(height)}px`);
   }
 
   let comboPickerState = null;
