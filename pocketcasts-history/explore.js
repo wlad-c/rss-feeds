@@ -893,11 +893,32 @@
     if (selectedEl) selectedEl.scrollIntoView({ block: "nearest" });
   }
 
+  function resetViewportAfterOverlay() {
+    syncVisualViewportVars();
+    try {
+      const y = window.scrollY || window.pageYOffset || 0;
+      window.scrollTo(0, y);
+      document.documentElement.scrollLeft = 0;
+      document.body.scrollLeft = 0;
+    } catch (_) {}
+    guardHorizontalOverflow();
+    // Second pass after iOS finishes keyboard / zoom teardown.
+    requestAnimationFrame(() => {
+      syncVisualViewportVars();
+      guardHorizontalOverflow();
+      setTimeout(() => {
+        syncVisualViewportVars();
+        guardHorizontalOverflow();
+      }, 120);
+    });
+  }
+
   function closeComboPicker(restoreFocus) {
     const host = $("#comboPickerHost");
     if (!host || host.hidden) {
       comboPickerState = null;
       document.body.classList.remove("combo-picker-open");
+      resetViewportAfterOverlay();
       return;
     }
     const originInput = comboPickerState?.originInput;
@@ -909,6 +930,7 @@
     } else {
       originInput?.blur();
     }
+    resetViewportAfterOverlay();
   }
 
   function openComboPicker(select, { emptyLabel, title, originInput }) {
@@ -1310,6 +1332,7 @@
         ($("#periodQ") || $("#periodYear"))?.focus?.({ preventScroll: true });
       });
     } else {
+      resetViewportAfterOverlay();
       requestAnimationFrame(() => layoutDesktopFilterOverflow());
     }
   }

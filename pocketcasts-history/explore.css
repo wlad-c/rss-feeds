@@ -652,7 +652,8 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   background: var(--grouped-bg);
 }
 
-.combo-picker-input {
+.combo-picker-input,
+input.combo-picker-input[type="search"] {
   width: 100%;
   box-sizing: border-box;
   min-height: 40px;
@@ -662,7 +663,7 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   background: var(--fill);
   color: var(--label);
   font: inherit;
-  font-size: 1rem;
+  font-size: 16px;
   letter-spacing: -0.02em;
 }
 
@@ -976,6 +977,15 @@ select {
   min-width: 8.5rem;
   max-width: 16rem;
   transition: background 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+
+/* iOS Safari zooms the visual viewport when focused text is <16px; that zoom
+   often sticks after typing in the Shows/Theme picker and clips L/R chrome. */
+.period-search input,
+input[type="search"],
+input.combo-input,
+input.combo-picker-input {
+  font-size: 16px;
 }
 
 .period-field select:focus,
@@ -1902,7 +1912,7 @@ body.is-filtering #periodSummary {
   .period-hero-show select {
     min-height: 36px;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 16px;
     padding: 8px 12px;
   }
 
@@ -2079,6 +2089,12 @@ body.is-filtering #periodSummary {
     padding: 8px 0;
     font-weight: 400;
     color: var(--secondary-label);
+  }
+
+  .filter-sheet-body .period-field-search input,
+  .filter-sheet-body .combo-input,
+  .filter-sheet-body input[type="search"] {
+    font-size: 16px;
   }
 
   .filter-sheet-body .period-field select:focus,

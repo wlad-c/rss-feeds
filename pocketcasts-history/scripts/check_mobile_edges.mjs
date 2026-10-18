@@ -125,13 +125,29 @@ async function runWidth(browser, w) {
   await page.keyboard.press("Escape");
   await new Promise((r) => setTimeout(r, 300));
 
-  // Open Shows picker
+  // Open Shows picker and type in the filter field (iOS zoom trigger if <16px)
   await page.click(".period-hero-show .combo-input");
   await new Promise((r) => setTimeout(r, 500));
+  const pickerFont = await page.evaluate(() => {
+    const input = document.querySelector("#comboPickerInput, .combo-picker-input");
+    if (!input) return { found: false };
+    const cs = getComputedStyle(input);
+    return {
+      found: true,
+      fontSizePx: parseFloat(cs.fontSize),
+      fontSize: cs.fontSize,
+    };
+  });
+  await page.focus("#comboPickerInput");
+  await page.type("#comboPickerInput", "xa", { delay: 20 });
+  await new Promise((r) => setTimeout(r, 300));
   const picker = await spillReport(page);
+  await page.keyboard.press("Escape");
+  await new Promise((r) => setTimeout(r, 400));
+  const afterType = await spillReport(page);
 
   await page.close();
-  return { w, main, sheet, picker };
+  return { w, main, sheet, picker, pickerFont, afterType };
 }
 
 function fail(label, report) {
@@ -149,7 +165,16 @@ let failed = false;
 try {
   for (const w of widths) {
     const result = await runWidth(browser, w);
-    for (const kind of ["main", "sheet", "picker"]) {
+    const font = result.pickerFont;
+    if (!font?.found || !(font.fontSizePx >= 16)) {
+      failed = true;
+      console.log(
+        `[FAIL] ${w}px picker-font: need ≥16px to avoid iOS focus-zoom, got ${JSON.stringify(font)}`
+      );
+    } else {
+      console.log(`[ok] ${w}px picker-font: ${font.fontSize}`);
+    }
+    for (const kind of ["main", "sheet", "picker", "afterType"]) {
       const report = result[kind];
       const bad = fail(kind, report);
       const status = bad ? "FAIL" : "ok";
