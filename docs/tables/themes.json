@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 12134,
+      "title": 12126,
       "youtube": 1524,
       "transcript": 1715,
       "show-notes": 6575,
-      "stt": 62
+      "stt": 70
     },
-    "episodesWithTranscriptEvidence": 3301,
+    "episodesWithTranscriptEvidence": 3309,
     "episodesWithNotesEvidence": 6575,
-    "episodesWithTitleOnlyEvidence": 12134,
+    "episodesWithTitleOnlyEvidence": 12126,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -178,7 +178,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5640,
-      "hours": 917.83,
+      "hours": 916.06,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -190,9 +190,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 3084,
+        "title": 3076,
         "notes": 1087,
-        "transcript": 1469
+        "transcript": 1477
       },
       "samples": [
         {
@@ -402,8 +402,8 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2209,
-      "hours": 356.04,
+      "count": 2211,
+      "hours": 356.23,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -412,12 +412,12 @@
         "2023": 234,
         "2024": 307,
         "2025": 547,
-        "2026": 510
+        "2026": 512
       },
       "evidence": {
         "title": 995,
         "notes": 778,
-        "transcript": 436
+        "transcript": 438
       },
       "samples": [
         {
@@ -552,8 +552,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2635,
-      "hours": 230.72,
+      "count": 2636,
+      "hours": 230.73,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -562,12 +562,12 @@
         "2023": 418,
         "2024": 433,
         "2025": 549,
-        "2026": 545
+        "2026": 546
       },
       "evidence": {
         "title": 527,
         "notes": 1202,
-        "transcript": 906
+        "transcript": 907
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1849,
-      "hours": 171.28,
+      "count": 1851,
+      "hours": 171.31,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -712,12 +712,12 @@
         "2023": 217,
         "2024": 252,
         "2025": 427,
-        "2026": 590
+        "2026": 592
       },
       "evidence": {
         "title": 3,
         "notes": 566,
-        "transcript": 1280
+        "transcript": 1282
       },
       "samples": [
         {
@@ -852,8 +852,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1153,
-      "hours": 123.68,
+      "count": 1154,
+      "hours": 123.74,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -862,12 +862,12 @@
         "2023": 192,
         "2024": 237,
         "2025": 203,
-        "2026": 197
+        "2026": 198
       },
       "evidence": {
         "title": 53,
         "notes": 742,
-        "transcript": 358
+        "transcript": 359
       },
       "samples": [
         {
@@ -1077,8 +1077,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1130,
-      "hours": 107.32,
+      "count": 1131,
+      "hours": 107.38,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -1087,12 +1087,12 @@
         "2023": 176,
         "2024": 153,
         "2025": 195,
-        "2026": 240
+        "2026": 241
       },
       "evidence": {
         "title": 201,
         "notes": 552,
-        "transcript": 377
+        "transcript": 378
       },
       "samples": [
         {
@@ -1527,8 +1527,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 886,
-      "hours": 82.36,
+      "count": 888,
+      "hours": 82.47,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -1537,12 +1537,12 @@
         "2023": 133,
         "2024": 119,
         "2025": 177,
-        "2026": 268
+        "2026": 270
       },
       "evidence": {
         "title": 174,
         "notes": 305,
-        "transcript": 407
+        "transcript": 409
       },
       "samples": [
         {
@@ -1902,8 +1902,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 671,
-      "hours": 58.14,
+      "count": 672,
+      "hours": 58.19,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -1912,12 +1912,12 @@
         "2023": 80,
         "2024": 74,
         "2025": 123,
-        "2026": 205
+        "2026": 206
       },
       "evidence": {
         "title": 156,
         "notes": 196,
-        "transcript": 319
+        "transcript": 320
       },
       "samples": [
         {
@@ -2496,6 +2496,80 @@
       "children": []
     },
     {
+      "id": "health-medicine",
+      "name": "Health & medicine",
+      "blurb": "Health and medicine.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 538,
+      "hours": 47.38,
+      "byYear": {
+        "2020": 42,
+        "2021": 36,
+        "2022": 20,
+        "2023": 72,
+        "2024": 84,
+        "2025": 151,
+        "2026": 133
+      },
+      "evidence": {
+        "title": 6,
+        "notes": 156,
+        "transcript": 376
+      },
+      "samples": [
+        {
+          "i": 11,
+          "e": "The Republican Strategy to Salvage the Midterms",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 43,
+          "e": "The One Nation vote: a map of government neglect",
+          "p": "Democracy Sausage with Mark Kenny",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 56,
+          "e": "Australia is incubating a dementia time bomb",
+          "p": "The Morning Edition",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 69,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 88,
+          "e": "A Failed Execution and the Future of the Death Penalty",
+          "p": "The Daily",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 196,
+          "e": "The Medicare hack and the rise of rogue AI agents",
+          "p": "7am",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 216,
+          "e": "Can clergy candidates help Democrats win in red states?",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 218,
+          "e": "Could AI really cure cancer?",
+          "p": "ABC News Daily",
+          "d": "2026-09-27"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "br-crime",
       "name": "Brazilian crime & security",
       "blurb": "Crime and security in Brazil.",
@@ -2565,80 +2639,6 @@
           "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
           "p": "Foro de Teresina",
           "d": "2026-09-26"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "health-medicine",
-      "name": "Health & medicine",
-      "blurb": "Health and medicine.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 536,
-      "hours": 46.89,
-      "byYear": {
-        "2020": 42,
-        "2021": 36,
-        "2022": 20,
-        "2023": 72,
-        "2024": 84,
-        "2025": 151,
-        "2026": 131
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 156,
-        "transcript": 374
-      },
-      "samples": [
-        {
-          "i": 11,
-          "e": "The Republican Strategy to Salvage the Midterms",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 43,
-          "e": "The One Nation vote: a map of government neglect",
-          "p": "Democracy Sausage with Mark Kenny",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 56,
-          "e": "Australia is incubating a dementia time bomb",
-          "p": "The Morning Edition",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 69,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 88,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 196,
-          "e": "The Medicare hack and the rise of rogue AI agents",
-          "p": "7am",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 216,
-          "e": "Can clergy candidates help Democrats win in red states?",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 218,
-          "e": "Could AI really cure cancer?",
-          "p": "ABC News Daily",
-          "d": "2026-09-27"
         }
       ],
       "children": []
@@ -3248,8 +3248,8 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 400,
-      "hours": 35.49,
+      "count": 401,
+      "hours": 35.59,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -3258,12 +3258,12 @@
         "2023": 41,
         "2024": 48,
         "2025": 87,
-        "2026": 87
+        "2026": 88
       },
       "evidence": {
         "title": 78,
         "notes": 139,
-        "transcript": 183
+        "transcript": 184
       },
       "samples": [
         {
@@ -3323,8 +3323,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 309,
-      "hours": 31.75,
+      "count": 310,
+      "hours": 31.79,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -3333,12 +3333,12 @@
         "2023": 31,
         "2024": 46,
         "2025": 63,
-        "2026": 48
+        "2026": 49
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 124
+        "transcript": 125
       },
       "samples": [
         {
@@ -3771,7 +3771,7 @@
       "blurb": "Football and World Cup.",
       "kind": "domain",
       "facet": "domain",
-      "count": 216,
+      "count": 217,
       "hours": 26.55,
       "byYear": {
         "2019": 5,
@@ -3781,12 +3781,12 @@
         "2023": 28,
         "2024": 13,
         "2025": 17,
-        "2026": 83
+        "2026": 84
       },
       "evidence": {
         "title": 66,
         "notes": 58,
-        "transcript": 92
+        "transcript": 93
       },
       "samples": [
         {
@@ -3991,6 +3991,80 @@
       "children": []
     },
     {
+      "id": "migration-borders",
+      "name": "Migration & borders",
+      "blurb": "Migration and borders.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 417,
+      "hours": 23.24,
+      "byYear": {
+        "2020": 2,
+        "2021": 6,
+        "2022": 11,
+        "2023": 32,
+        "2024": 61,
+        "2025": 126,
+        "2026": 179
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 54,
+        "transcript": 363
+      },
+      "samples": [
+        {
+          "i": 2,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 47,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 62,
+          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 76,
+          "e": "As the Coalition veers right, should Albo hold the centre?",
+          "p": "7am",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 77,
+          "e": "Migration cuts: what's at stake for Australia's universities?",
+          "p": "Politics Now",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 86,
+          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
+          "p": "The Morning Edition",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 116,
+          "e": "cna-correspondent-china-vietnam-durian-audio",
+          "p": "CNA Correspondent",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 118,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "br-climate",
       "name": "Brazilian climate & Amazon",
       "blurb": "Climate, Amazon, and energy in Brazil.",
@@ -4061,80 +4135,6 @@
           "e": "Mendonça vs. Moraes: as reações do Supremo ao Caso Master",
           "p": "O Assunto",
           "d": "2026-09-03"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "migration-borders",
-      "name": "Migration & borders",
-      "blurb": "Migration and borders.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 415,
-      "hours": 23.07,
-      "byYear": {
-        "2020": 2,
-        "2021": 6,
-        "2022": 11,
-        "2023": 32,
-        "2024": 61,
-        "2025": 126,
-        "2026": 177
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 54,
-        "transcript": 361
-      },
-      "samples": [
-        {
-          "i": 2,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 47,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 62,
-          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 76,
-          "e": "As the Coalition veers right, should Albo hold the centre?",
-          "p": "7am",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 77,
-          "e": "Migration cuts: what's at stake for Australia's universities?",
-          "p": "Politics Now",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 86,
-          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
-          "p": "The Morning Edition",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 116,
-          "e": "cna-correspondent-china-vietnam-durian-audio",
-          "p": "CNA Correspondent",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 118,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
         }
       ],
       "children": []
@@ -4892,8 +4892,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 164,
-      "hours": 14.8,
+      "count": 166,
+      "hours": 15.07,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -4902,12 +4902,12 @@
         "2023": 11,
         "2024": 38,
         "2025": 23,
-        "2026": 62
+        "2026": 64
       },
       "evidence": {
         "title": 27,
         "notes": 46,
-        "transcript": 91
+        "transcript": 93
       },
       "samples": [
         {
@@ -5277,9 +5277,9 @@
         "2026": 22
       },
       "evidence": {
-        "title": 52,
+        "title": 51,
         "notes": 27,
-        "transcript": 24
+        "transcript": 25
       },
       "samples": [
         {
@@ -5339,8 +5339,8 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 195,
-      "hours": 10.97,
+      "count": 197,
+      "hours": 11.08,
       "byYear": {
         "2020": 1,
         "2021": 2,
@@ -5348,12 +5348,12 @@
         "2023": 32,
         "2024": 28,
         "2025": 56,
-        "2026": 73
+        "2026": 75
       },
       "evidence": {
         "title": 0,
         "notes": 33,
-        "transcript": 162
+        "transcript": 164
       },
       "samples": [
         {
@@ -5413,8 +5413,8 @@
       "blurb": "Sport beyond football.",
       "kind": "domain",
       "facet": "domain",
-      "count": 108,
-      "hours": 10.75,
+      "count": 109,
+      "hours": 10.81,
       "byYear": {
         "2019": 2,
         "2020": 5,
@@ -5423,12 +5423,12 @@
         "2023": 10,
         "2024": 36,
         "2025": 12,
-        "2026": 20
+        "2026": 21
       },
       "evidence": {
         "title": 47,
         "notes": 18,
-        "transcript": 43
+        "transcript": 44
       },
       "samples": [
         {
@@ -5442,6 +5442,12 @@
           "e": "Australia’s ‘Moneyball’: Finding the next big thing in footy",
           "p": "The Morning Edition",
           "d": "2026-09-14"
+        },
+        {
+          "i": 842,
+          "e": "Are the Commonwealth Games on their last legs?",
+          "p": "The Morning Edition",
+          "d": "2026-07-29"
         },
         {
           "i": 924,
@@ -5472,12 +5478,6 @@
           "e": "Trump's Iran Negotiations, Entertainment Mergers, NBA finals",
           "p": "Up First from NPR",
           "d": "2026-06-13"
-        },
-        {
-          "i": 1335,
-          "e": "The Iran War's Devastating Butterfly Effect",
-          "p": "The Daily",
-          "d": "2026-06-10"
         }
       ],
       "children": []
@@ -6898,8 +6898,8 @@
       "blurb": "Psychology and behaviour.",
       "kind": "domain",
       "facet": "domain",
-      "count": 63,
-      "hours": 4.99,
+      "count": 64,
+      "hours": 5.02,
       "byYear": {
         "2020": 4,
         "2021": 2,
@@ -6907,12 +6907,12 @@
         "2023": 13,
         "2024": 15,
         "2025": 9,
-        "2026": 16
+        "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 39
+        "transcript": 40
       },
       "samples": [
         {
@@ -8474,7 +8474,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5640,
-      "hours": 917.83,
+      "hours": 916.06,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8486,9 +8486,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 3084,
+        "title": 3076,
         "notes": 1087,
-        "transcript": 1469
+        "transcript": 1477
       },
       "samples": [
         {
@@ -8695,8 +8695,8 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2209,
-      "hours": 356.04,
+      "count": 2211,
+      "hours": 356.23,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8705,12 +8705,12 @@
         "2023": 234,
         "2024": 307,
         "2025": 547,
-        "2026": 510
+        "2026": 512
       },
       "evidence": {
         "title": 995,
         "notes": 778,
-        "transcript": 436
+        "transcript": 438
       },
       "samples": [
         {
@@ -8843,8 +8843,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2635,
-      "hours": 230.72,
+      "count": 2636,
+      "hours": 230.73,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8853,12 +8853,12 @@
         "2023": 418,
         "2024": 433,
         "2025": 549,
-        "2026": 545
+        "2026": 546
       },
       "evidence": {
         "title": 527,
         "notes": 1202,
-        "transcript": 906
+        "transcript": 907
       },
       "samples": [
         {
@@ -8991,8 +8991,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1849,
-      "hours": 171.28,
+      "count": 1851,
+      "hours": 171.31,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9001,12 +9001,12 @@
         "2023": 217,
         "2024": 252,
         "2025": 427,
-        "2026": 590
+        "2026": 592
       },
       "evidence": {
         "title": 3,
         "notes": 566,
-        "transcript": 1280
+        "transcript": 1282
       },
       "samples": [
         {
@@ -9139,8 +9139,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1153,
-      "hours": 123.68,
+      "count": 1154,
+      "hours": 123.74,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9149,12 +9149,12 @@
         "2023": 192,
         "2024": 237,
         "2025": 203,
-        "2026": 197
+        "2026": 198
       },
       "evidence": {
         "title": 53,
         "notes": 742,
-        "transcript": 358
+        "transcript": 359
       },
       "samples": [
         {
@@ -9361,8 +9361,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1130,
-      "hours": 107.32,
+      "count": 1131,
+      "hours": 107.38,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -9371,12 +9371,12 @@
         "2023": 176,
         "2024": 153,
         "2025": 195,
-        "2026": 240
+        "2026": 241
       },
       "evidence": {
         "title": 201,
         "notes": 552,
-        "transcript": 377
+        "transcript": 378
       },
       "samples": [
         {
@@ -9805,8 +9805,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 886,
-      "hours": 82.36,
+      "count": 888,
+      "hours": 82.47,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -9815,12 +9815,12 @@
         "2023": 133,
         "2024": 119,
         "2025": 177,
-        "2026": 268
+        "2026": 270
       },
       "evidence": {
         "title": 174,
         "notes": 305,
-        "transcript": 407
+        "transcript": 409
       },
       "samples": [
         {
@@ -10175,8 +10175,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 671,
-      "hours": 58.14,
+      "count": 672,
+      "hours": 58.19,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -10185,12 +10185,12 @@
         "2023": 80,
         "2024": 74,
         "2025": 123,
-        "2026": 205
+        "2026": 206
       },
       "evidence": {
         "title": 156,
         "notes": 196,
-        "transcript": 319
+        "transcript": 320
       },
       "samples": [
         {
@@ -10761,6 +10761,79 @@
       ]
     },
     {
+      "id": "health-medicine",
+      "name": "Health & medicine",
+      "blurb": "Health and medicine.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 538,
+      "hours": 47.38,
+      "byYear": {
+        "2020": 42,
+        "2021": 36,
+        "2022": 20,
+        "2023": 72,
+        "2024": 84,
+        "2025": 151,
+        "2026": 133
+      },
+      "evidence": {
+        "title": 6,
+        "notes": 156,
+        "transcript": 376
+      },
+      "samples": [
+        {
+          "i": 11,
+          "e": "The Republican Strategy to Salvage the Midterms",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 43,
+          "e": "The One Nation vote: a map of government neglect",
+          "p": "Democracy Sausage with Mark Kenny",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 56,
+          "e": "Australia is incubating a dementia time bomb",
+          "p": "The Morning Edition",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 69,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 88,
+          "e": "A Failed Execution and the Future of the Death Penalty",
+          "p": "The Daily",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 196,
+          "e": "The Medicare hack and the rise of rogue AI agents",
+          "p": "7am",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 216,
+          "e": "Can clergy candidates help Democrats win in red states?",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 218,
+          "e": "Could AI really cure cancer?",
+          "p": "ABC News Daily",
+          "d": "2026-09-27"
+        }
+      ]
+    },
+    {
       "id": "br-crime",
       "name": "Brazilian crime & security",
       "blurb": "Crime and security in Brazil.",
@@ -10830,79 +10903,6 @@
           "e": "Lula na ONU, a turma do KN e o Peixe de Flávio Bolsonaro",
           "p": "Foro de Teresina",
           "d": "2026-09-26"
-        }
-      ]
-    },
-    {
-      "id": "health-medicine",
-      "name": "Health & medicine",
-      "blurb": "Health and medicine.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 536,
-      "hours": 46.89,
-      "byYear": {
-        "2020": 42,
-        "2021": 36,
-        "2022": 20,
-        "2023": 72,
-        "2024": 84,
-        "2025": 151,
-        "2026": 131
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 156,
-        "transcript": 374
-      },
-      "samples": [
-        {
-          "i": 11,
-          "e": "The Republican Strategy to Salvage the Midterms",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 43,
-          "e": "The One Nation vote: a map of government neglect",
-          "p": "Democracy Sausage with Mark Kenny",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 56,
-          "e": "Australia is incubating a dementia time bomb",
-          "p": "The Morning Edition",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 69,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 88,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 196,
-          "e": "The Medicare hack and the rise of rogue AI agents",
-          "p": "7am",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 216,
-          "e": "Can clergy candidates help Democrats win in red states?",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 218,
-          "e": "Could AI really cure cancer?",
-          "p": "ABC News Daily",
-          "d": "2026-09-27"
         }
       ]
     },
@@ -11503,8 +11503,8 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 400,
-      "hours": 35.49,
+      "count": 401,
+      "hours": 35.59,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -11513,12 +11513,12 @@
         "2023": 41,
         "2024": 48,
         "2025": 87,
-        "2026": 87
+        "2026": 88
       },
       "evidence": {
         "title": 78,
         "notes": 139,
-        "transcript": 183
+        "transcript": 184
       },
       "samples": [
         {
@@ -11577,8 +11577,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 309,
-      "hours": 31.75,
+      "count": 310,
+      "hours": 31.79,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -11587,12 +11587,12 @@
         "2023": 31,
         "2024": 46,
         "2025": 63,
-        "2026": 48
+        "2026": 49
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 124
+        "transcript": 125
       },
       "samples": [
         {
@@ -12019,7 +12019,7 @@
       "blurb": "Football and World Cup.",
       "kind": "domain",
       "facet": "domain",
-      "count": 216,
+      "count": 217,
       "hours": 26.55,
       "byYear": {
         "2019": 5,
@@ -12029,12 +12029,12 @@
         "2023": 28,
         "2024": 13,
         "2025": 17,
-        "2026": 83
+        "2026": 84
       },
       "evidence": {
         "title": 66,
         "notes": 58,
-        "transcript": 92
+        "transcript": 93
       },
       "samples": [
         {
@@ -12236,6 +12236,79 @@
       ]
     },
     {
+      "id": "migration-borders",
+      "name": "Migration & borders",
+      "blurb": "Migration and borders.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 417,
+      "hours": 23.24,
+      "byYear": {
+        "2020": 2,
+        "2021": 6,
+        "2022": 11,
+        "2023": 32,
+        "2024": 61,
+        "2025": 126,
+        "2026": 179
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 54,
+        "transcript": 363
+      },
+      "samples": [
+        {
+          "i": 2,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 47,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 62,
+          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 76,
+          "e": "As the Coalition veers right, should Albo hold the centre?",
+          "p": "7am",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 77,
+          "e": "Migration cuts: what's at stake for Australia's universities?",
+          "p": "Politics Now",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 86,
+          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
+          "p": "The Morning Edition",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 116,
+          "e": "cna-correspondent-china-vietnam-durian-audio",
+          "p": "CNA Correspondent",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 118,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        }
+      ]
+    },
+    {
       "id": "br-climate",
       "name": "Brazilian climate & Amazon",
       "blurb": "Climate, Amazon, and energy in Brazil.",
@@ -12306,79 +12379,6 @@
           "e": "Mendonça vs. Moraes: as reações do Supremo ao Caso Master",
           "p": "O Assunto",
           "d": "2026-09-03"
-        }
-      ]
-    },
-    {
-      "id": "migration-borders",
-      "name": "Migration & borders",
-      "blurb": "Migration and borders.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 415,
-      "hours": 23.07,
-      "byYear": {
-        "2020": 2,
-        "2021": 6,
-        "2022": 11,
-        "2023": 32,
-        "2024": 61,
-        "2025": 126,
-        "2026": 177
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 54,
-        "transcript": 361
-      },
-      "samples": [
-        {
-          "i": 2,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 47,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 62,
-          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 76,
-          "e": "As the Coalition veers right, should Albo hold the centre?",
-          "p": "7am",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 77,
-          "e": "Migration cuts: what's at stake for Australia's universities?",
-          "p": "Politics Now",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 86,
-          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
-          "p": "The Morning Edition",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 116,
-          "e": "cna-correspondent-china-vietnam-durian-audio",
-          "p": "CNA Correspondent",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 118,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
         }
       ]
     },
@@ -13125,8 +13125,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 164,
-      "hours": 14.8,
+      "count": 166,
+      "hours": 15.07,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -13135,12 +13135,12 @@
         "2023": 11,
         "2024": 38,
         "2025": 23,
-        "2026": 62
+        "2026": 64
       },
       "evidence": {
         "title": 27,
         "notes": 46,
-        "transcript": 91
+        "transcript": 93
       },
       "samples": [
         {
@@ -13505,9 +13505,9 @@
         "2026": 22
       },
       "evidence": {
-        "title": 52,
+        "title": 51,
         "notes": 27,
-        "transcript": 24
+        "transcript": 25
       },
       "samples": [
         {
@@ -13566,8 +13566,8 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 195,
-      "hours": 10.97,
+      "count": 197,
+      "hours": 11.08,
       "byYear": {
         "2020": 1,
         "2021": 2,
@@ -13575,12 +13575,12 @@
         "2023": 32,
         "2024": 28,
         "2025": 56,
-        "2026": 73
+        "2026": 75
       },
       "evidence": {
         "title": 0,
         "notes": 33,
-        "transcript": 162
+        "transcript": 164
       },
       "samples": [
         {
@@ -13639,8 +13639,8 @@
       "blurb": "Sport beyond football.",
       "kind": "domain",
       "facet": "domain",
-      "count": 108,
-      "hours": 10.75,
+      "count": 109,
+      "hours": 10.81,
       "byYear": {
         "2019": 2,
         "2020": 5,
@@ -13649,12 +13649,12 @@
         "2023": 10,
         "2024": 36,
         "2025": 12,
-        "2026": 20
+        "2026": 21
       },
       "evidence": {
         "title": 47,
         "notes": 18,
-        "transcript": 43
+        "transcript": 44
       },
       "samples": [
         {
@@ -13668,6 +13668,12 @@
           "e": "Australia’s ‘Moneyball’: Finding the next big thing in footy",
           "p": "The Morning Edition",
           "d": "2026-09-14"
+        },
+        {
+          "i": 842,
+          "e": "Are the Commonwealth Games on their last legs?",
+          "p": "The Morning Edition",
+          "d": "2026-07-29"
         },
         {
           "i": 924,
@@ -13698,12 +13704,6 @@
           "e": "Trump's Iran Negotiations, Entertainment Mergers, NBA finals",
           "p": "Up First from NPR",
           "d": "2026-06-13"
-        },
-        {
-          "i": 1335,
-          "e": "The Iran War's Devastating Butterfly Effect",
-          "p": "The Daily",
-          "d": "2026-06-10"
         }
       ]
     },
@@ -15104,8 +15104,8 @@
       "blurb": "Psychology and behaviour.",
       "kind": "domain",
       "facet": "domain",
-      "count": 63,
-      "hours": 4.99,
+      "count": 64,
+      "hours": 5.02,
       "byYear": {
         "2020": 4,
         "2021": 2,
@@ -15113,12 +15113,12 @@
         "2023": 13,
         "2024": 15,
         "2025": 9,
-        "2026": 16
+        "2026": 17
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 39
+        "transcript": 40
       },
       "samples": [
         {
