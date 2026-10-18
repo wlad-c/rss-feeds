@@ -110,7 +110,15 @@ def upsert_full(
               AND NOT (
                 excluded.src = 'stt'
                 AND transcripts.src IN ('transcript', 'youtube')
+                AND transcripts.chars >= 1200
               )
+            )
+            -- Allow STT to replace short publisher/caption stubs only.
+            OR (
+              excluded.src = 'stt'
+              AND transcripts.src IN ('transcript', 'youtube')
+              AND transcripts.chars < 1200
+              AND excluded.chars >= 2000
             )
           )
         """,
