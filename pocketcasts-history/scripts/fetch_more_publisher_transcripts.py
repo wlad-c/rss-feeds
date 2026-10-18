@@ -186,12 +186,18 @@ def harvest_foro(
             r"https?://(?:piaui\.uol\.com\.br/web/ft\d+|piaui\.co/ft\d+)/?",
             blob,
         ):
-            u = m.group(0).rstrip("/") + "/"
+            raw = m.group(0)
+            # piaui.co Bitly short links break with a trailing slash
+            # (BSD landing page); keep bare /ftN. web/ftN pages want /.
+            if "piaui.co/" in raw:
+                u = raw.rstrip("/")
+            else:
+                u = raw.rstrip("/") + "/"
             seed_urls.add(u)
             url_by_title[it["norm"]] = u
     # Contiguous probe covers gaps not present in the current feed window.
     for n in range(1, 160):
-        seed_urls.add(f"https://piaui.co/ft{n}/")
+        seed_urls.add(f"https://piaui.co/ft{n}")
         seed_urls.add(f"https://piaui.uol.com.br/web/ft{n}/")
     print(
         f"  seed URLs: {len(seed_urls)} (feed-linked titles={len(url_by_title)})",
