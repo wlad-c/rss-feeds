@@ -1,29 +1,29 @@
 {
   "harvest": {
     "tried": 4,
-    "fetched": 4,
-    "upserted": 4,
+    "fetched": 3,
+    "upserted": 3,
     "noCaptions": 0,
     "rateLimited": 0,
     "pairs": 4,
     "byBackend": {
-      "gemini": 4
+      "gemini": 3
     },
     "byShow": {
-      "Lowy Institute": 4
+      "Foro de Teresina": 3
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8635,
-    "withPublisherOrSttTranscript": 1759,
-    "withLongText2000plus": 2222,
-    "pctTranscript": 7.99,
-    "pctLongText": 10.1,
+    "withAnyText": 8637,
+    "withPublisherOrSttTranscript": 1768,
+    "withLongText2000plus": 2231,
+    "pctTranscript": 8.03,
+    "pctLongText": 10.14,
     "bySrc": {
       "show-notes": {
-        "count": 6876,
-        "chars": 6717698
+        "count": 6869,
+        "chars": 6712850
       },
       "stt": {
         "count": 15,
@@ -34,8 +34,8 @@
         "chars": 25026810
       },
       "youtube": {
-        "count": 179,
-        "chars": 9674179
+        "count": 188,
+        "chars": 9978978
       }
     }
   }
