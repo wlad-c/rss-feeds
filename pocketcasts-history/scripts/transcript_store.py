@@ -68,6 +68,17 @@ def upsert_full(
     text = (text or "").strip()
     if len(text) < 80:
         return
+    # Refuse to clobber a row that belongs to a different episode. episode_idx
+    # can drift when episodes.json is rebuilt; identity is (podcast, episode).
+    existing = conn.execute(
+        "SELECT podcast, episode FROM transcripts WHERE episode_idx=?",
+        (int(episode_idx),),
+    ).fetchone()
+    if existing is not None and podcast is not None and episode is not None:
+        if _norm(existing[0]) != _norm(podcast) or _norm(existing[1]) != _norm(
+            episode
+        ):
+            return
     conn.execute(
         """
         INSERT INTO transcripts(episode_idx, podcast, episode, src, url, chars, text, updated_at)
@@ -81,22 +92,25 @@ def upsert_full(
           text=excluded.text,
           updated_at=datetime('now')
         WHERE
-          -- Trust order: publisher transcript / YouTube captions > STT > show-notes.
-          -- Always allow transcript|youtube to replace stt|show-notes regardless of length.
-          -- Never let STT clobber transcript|youtube (Whisper can be longer but lower-trust).
-          (
-            excluded.src IN ('transcript', 'youtube')
-            AND transcripts.src IN ('stt', 'show-notes')
-          )
-          OR (
-            excluded.src IN ('transcript', 'stt', 'youtube')
-            AND transcripts.src = 'show-notes'
-          )
-          OR (
-            excluded.chars >= transcripts.chars
-            AND NOT (
-              excluded.src = 'stt'
-              AND transcripts.src IN ('transcript', 'youtube')
+          -- Only update when identity matches (also enforced in Python above).
+          lower(trim(coalesce(transcripts.podcast,''))) = lower(trim(coalesce(excluded.podcast,'')))
+          AND lower(trim(coalesce(transcripts.episode,''))) = lower(trim(coalesce(excluded.episode,'')))
+          AND (
+            -- Trust order: publisher transcript / YouTube captions > STT > show-notes.
+            (
+              excluded.src IN ('transcript', 'youtube')
+              AND transcripts.src IN ('stt', 'show-notes')
+            )
+            OR (
+              excluded.src IN ('transcript', 'stt', 'youtube')
+              AND transcripts.src = 'show-notes'
+            )
+            OR (
+              excluded.chars >= transcripts.chars
+              AND NOT (
+                excluded.src = 'stt'
+                AND transcripts.src IN ('transcript', 'youtube')
+              )
             )
           )
         """,
