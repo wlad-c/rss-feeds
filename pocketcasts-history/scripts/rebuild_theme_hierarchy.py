@@ -1091,7 +1091,13 @@ def tag_episode(
                 if n:
                     distinct += 1
                     total += n
-            # ≥2 different substance patterns, or a dense single-topic burst.
+            # Short news blocks: a couple of distinct cues (Emmys + Netflix).
+            # Multi-hour geopolitics digressions (cantor/rapper name-drops) need
+            # denser evidence so XV/Braincast asides don't become Music news.
+            if primary_long and len(primary) > 80000:
+                min_total = max(5, len(primary) // 40000)
+                min_distinct = 3
+                return (distinct >= min_distinct and total >= min_total) or total >= min_total + 4
             return (distinct >= 2 and total >= 2) or total >= 4
 
         hits = [
