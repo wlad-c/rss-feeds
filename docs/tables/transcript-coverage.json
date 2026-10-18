@@ -1,33 +1,31 @@
 {
-  "coverage": {
-    "totalEpisodes": 22010,
-    "withAnyText": 10531,
-    "withPublisherOrSttTranscript": 4000,
-    "withLongText2000plus": 4426,
-    "pctAnyText": 47.85,
-    "pctTranscript": 18.17,
-    "pctLongText": 20.11,
-    "bySrc": {
-      "show-notes": {
-        "count": 6531,
-        "chars": 6374330
-      },
-      "stt": {
-        "count": 215,
-        "chars": 3401774
-      },
-      "transcript": {
-        "count": 1702,
-        "chars": 32049141
-      },
-      "youtube": {
-        "count": 2083,
-        "chars": 53432189
-      }
+  "totalEpisodes": 22010,
+  "withAnyText": 10520,
+  "withPublisherOrSttTranscript": 3989,
+  "withLongText2000plus": 4415,
+  "pctAnyText": 47.8,
+  "pctTranscript": 18.12,
+  "pctLongText": 20.06,
+  "bySrc": {
+    "show-notes": {
+      "count": 6531,
+      "chars": 6374330
     },
-    "notesStored": 10531,
-    "snippetChars": 900,
-    "store": "transcripts/full.sqlite",
-    "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/)."
-  }
+    "stt": {
+      "count": 215,
+      "chars": 3401774
+    },
+    "transcript": {
+      "count": 1699,
+      "chars": 32011988
+    },
+    "youtube": {
+      "count": 2075,
+      "chars": 53332431
+    }
+  },
+  "notesStored": 10557,
+  "snippetChars": 900,
+  "store": "transcripts/full.sqlite",
+  "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/)."
 }
