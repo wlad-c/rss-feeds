@@ -545,19 +545,33 @@ def _gemini_release_claim(video_id: str) -> None:
         pass
 
 
-def _gemini_quota_exhausted(msg: str) -> bool:
-    low = (msg or "").lower()
-    return any(
-        s in low
-        for s in (
-            "exceeded your current quota",
-            "daily limit",
-            "quota exceeded",
-            "resource_exhausted",
-            "youtube video length",
-            "8 hours",
-        )
+def _gemini_parse_retry_seconds(msg: str) -> float | None:
+    """Parse 'Please retry in 20h59m7s' / '48.4s' into seconds."""
+    m = re.search(
+        r"retry in\s*(?:(\d+)\s*h)?\s*(?:(\d+)\s*m)?\s*(?:(\d+(?:\.\d+)?)\s*s)?",
+        msg or "",
+        re.I,
     )
+    if not m:
+        return None
+    h = int(m.group(1) or 0)
+    mins = int(m.group(2) or 0)
+    secs = float(m.group(3) or 0)
+    total = h * 3600 + mins * 60 + secs
+    return total if total > 0 else None
+
+
+def _gemini_daily_quota(msg: str) -> bool:
+    """True when Google is telling us to wait hours (day bucket), not seconds (RPM)."""
+    low = (msg or "").lower()
+    retry_s = _gemini_parse_retry_seconds(msg) or 0
+    if retry_s >= 3600:
+        return True
+    if "perday" in low or "per_day" in low or "per-day" in low:
+        return retry_s >= 600  # day metric with long retry
+    if "youtube" in low and ("8 hour" in low or "daily" in low):
+        return True
+    return False
 
 
 def _gemini_generate_chunk(
@@ -629,36 +643,27 @@ def _gemini_generate_chunk(
             msg = payload.decode("utf-8", errors="replace")
             last_err = f"HTTP {exc.code}: {msg[:240]}"
             if exc.code == 429:
-                # Surface retry hint when Google returns "Please retry in Nh…"
-                retry_hint = None
-                m = re.search(
-                    r"retry in ([0-9]+h)?([0-9]+m)?([0-9]+(?:\.[0-9]+)?s)?",
-                    msg,
-                    re.I,
-                )
-                if m:
-                    retry_hint = "".join(g for g in m.groups() if g)
-                if _gemini_quota_exhausted(msg) or (
-                    "perday" in msg.lower()
-                    or "per_day" in msg.lower()
-                    or "free_tier_requests" in msg.lower()
-                ):
+                retry_s = _gemini_parse_retry_seconds(msg)
+                if _gemini_daily_quota(msg):
+                    hint = f"{retry_s:.0f}s" if retry_s else "?"
                     print(
-                        f"  gemini daily quota exhausted"
-                        + (f" (retry in {retry_hint})" if retry_hint else "")
-                        + f": {msg[:220]}",
+                        f"  gemini daily quota exhausted (retry in ~{hint}): "
+                        f"{msg[:220]}",
                         flush=True,
                     )
-                    raise RateLimited()
-                # Soft RPM throttle — wait and retry; raise only after many tries.
-                wait = min(180, 30 * (attempt + 1))
+                    raise RateLimited(retry_s)
+                # Soft RPM / burst throttle — honor server hint when present.
+                wait = retry_s if retry_s and retry_s < 3600 else min(
+                    180, 20 * (attempt + 1)
+                )
+                wait = max(5.0, min(wait + 2.0, 300.0))
                 print(
-                    f"  gemini {start_s}-{end_s}s 429; backoff {wait}s "
+                    f"  gemini {start_s}-{end_s}s 429; backoff {wait:.0f}s "
                     f"(attempt {attempt + 1}/{retries})",
                     flush=True,
                 )
                 if attempt + 1 >= retries:
-                    raise RateLimited()
+                    raise RateLimited(retry_s)
                 time.sleep(wait)
                 continue
             if exc.code in (503, 500, 502, 504) and attempt + 1 < retries:

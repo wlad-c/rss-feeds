@@ -1,17 +1,13 @@
 {
   "harvest": {
     "tried": 2,
-    "fetched": 2,
-    "upserted": 2,
+    "fetched": 0,
+    "upserted": 0,
     "noCaptions": 0,
-    "rateLimited": 0,
-    "pairs": 2,
-    "byBackend": {
-      "gemini": 2
-    },
-    "byShow": {
-      "Xadrez Verbal": 2
-    },
+    "rateLimited": 1,
+    "pairs": 6,
+    "byBackend": {},
+    "byShow": {},
     "errors": []
   },
   "coverage": {
