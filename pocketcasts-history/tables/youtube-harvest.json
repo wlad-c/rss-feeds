@@ -1,41 +1,37 @@
 {
   "harvest": {
-    "tried": 3,
-    "fetched": 1,
-    "upserted": 1,
-    "noCaptions": 1,
+    "tried": 2,
+    "fetched": 0,
+    "upserted": 0,
+    "noCaptions": 0,
     "rateLimited": 1,
-    "pairs": 25,
-    "byBackend": {
-      "transcribe_yt": 1
-    },
-    "byShow": {
-      "The Daily": 1
-    },
+    "pairs": 6,
+    "byBackend": {},
+    "byShow": {},
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8417,
-    "withPublisherOrSttTranscript": 1450,
-    "withLongText2000plus": 1913,
-    "pctTranscript": 6.6,
-    "pctLongText": 8.7,
+    "withAnyText": 8383,
+    "withPublisherOrSttTranscript": 1442,
+    "withLongText2000plus": 1905,
+    "pctTranscript": 6.55,
+    "pctLongText": 8.66,
     "bySrc": {
       "show-notes": {
-        "count": 6967,
-        "chars": 6818399
+        "count": 6941,
+        "chars": 6789200
       },
       "stt": {
         "count": 16,
         "chars": 268686
       },
       "transcript": {
-        "count": 1360,
-        "chars": 21987522
+        "count": 1347,
+        "chars": 21800239
       },
       "youtube": {
-        "count": 74,
-        "chars": 3638135
+        "count": 79,
+        "chars": 4776331
       }
     }
   }
