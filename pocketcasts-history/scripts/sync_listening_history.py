@@ -432,7 +432,10 @@ def remap_notes(old_compact: list[dict], new_compact: list[dict]) -> dict:
         return {}
 
     def key_for(ep: dict) -> tuple[str, str]:
-        return ((ep.get("p") or "").strip().lower(), (ep.get("e") or "").strip().lower())
+        return (
+            " ".join((ep.get("p") or "").casefold().split()),
+            " ".join((ep.get("e") or "").casefold().split()),
+        )
 
     old_by_key: dict[tuple[str, str], dict] = {}
     for idx_s, note in old_notes.items():
@@ -443,7 +446,7 @@ def remap_notes(old_compact: list[dict], new_compact: list[dict]) -> dict:
         if 0 <= idx < len(old_compact):
             old_by_key[key_for(old_compact[idx])] = note
         elif isinstance(note, dict) and (note.get("p") or note.get("e")):
-            old_by_key[((note.get("p") or "").strip().lower(), (note.get("e") or "").strip().lower())] = note
+            old_by_key[key_for({"p": note.get("p"), "e": note.get("e")})] = note
 
     remapped: dict[str, dict] = {}
     for i, ep in enumerate(new_compact):
@@ -673,10 +676,51 @@ def main() -> None:
 
     built, coverage = build_aggregates(rows, stats, year_counts_raw)
     compact = write_tables(rows, built)
-    notes = remap_notes(old_compact, compact)
-    (TABLES / "notes.json").write_text(
-        json.dumps(notes, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
-    )
+    # Transcripts are keyed by episode_idx. Daily re-exports reorder episodes, so
+    # the sqlite store MUST be remapped by podcast+title before themes/notes use it.
+    # notes.json is regenerated from the repaired store. Never leave sqlite poisoned
+    # while only remapping notes — that caused cross-show theme contamination.
+    sys.path.insert(0, str(ROOT / "scripts"))
+    sqlite_path = ROOT / "transcripts" / "full.sqlite"
+    if sqlite_path.exists():
+        from transcript_store import (
+            assert_aligned,
+            connect,
+            repair_episode_indices,
+            write_slim_notes,
+        )
+
+        conn = connect()
+        try:
+            repair = repair_episode_indices(conn, compact)
+            print(
+                "transcript_index_repair "
+                f"kept={repair['kept']} orphans_deleted={repair['orphansDeleted']} "
+                f"collisions={repair['collisionsResolved']}"
+            )
+            align = assert_aligned(conn, compact)
+            print(f"transcript_align_ok exact={align['exact']}")
+            prior_notes = {}
+            if (TABLES / "notes.json").exists():
+                prior_notes = json.loads(
+                    (TABLES / "notes.json").read_text(encoding="utf-8")
+                )
+            write_slim_notes(
+                conn,
+                TABLES / "notes.json",
+                TABLES / "notes-meta.json",
+                total_episodes=len(compact),
+                preserve_notes=prior_notes,
+                episodes=compact,
+            )
+        finally:
+            conn.close()
+    else:
+        notes = remap_notes(old_compact, compact)
+        (TABLES / "notes.json").write_text(
+            json.dumps(notes, ensure_ascii=False, separators=(",", ":")),
+            encoding="utf-8",
+        )
     write_excel(rows, coverage, built["meta"])
     run_themes()
     sync_docs()

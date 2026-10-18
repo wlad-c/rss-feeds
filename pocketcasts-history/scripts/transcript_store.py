@@ -18,6 +18,10 @@ DB_PATH = TRANSCRIPTS / "full.sqlite"
 SNIPPET_CHARS = 900
 
 
+def _norm(s: str | None) -> str:
+    return " ".join((s or "").casefold().split())
+
+
 def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
     TRANSCRIPTS.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(db_path)
@@ -88,13 +92,24 @@ def upsert_full(
     )
 
 
-def get_full(conn: sqlite3.Connection, episode_idx: int) -> dict | None:
+def get_full(
+    conn: sqlite3.Connection,
+    episode_idx: int,
+    *,
+    expect_podcast: str | None = None,
+    expect_episode: str | None = None,
+) -> dict | None:
     row = conn.execute(
         "SELECT episode_idx, podcast, episode, src, url, chars, text FROM transcripts WHERE episode_idx=?",
         (int(episode_idx),),
     ).fetchone()
     if not row:
         return None
+    if expect_podcast is not None or expect_episode is not None:
+        if _norm(row[1]) != _norm(expect_podcast) or _norm(row[2]) != _norm(
+            expect_episode
+        ):
+            return None
     return {
         "i": row[0],
         "p": row[1],
@@ -106,12 +121,152 @@ def get_full(conn: sqlite3.Connection, episode_idx: int) -> dict | None:
     }
 
 
-def full_text_map(conn: sqlite3.Connection) -> dict[str, str]:
-    """episode_idx(str) → full text for theme tagging."""
-    out: dict[str, str] = {}
-    for idx, text in conn.execute("SELECT episode_idx, text FROM transcripts"):
-        out[str(idx)] = text
+def assert_aligned(conn: sqlite3.Connection, episodes: list[dict]) -> dict:
+    """Return alignment stats; raise if any row disagrees with episodes[idx]."""
+    exact = poison = 0
+    examples: list[dict] = []
+    for idx, podcast, episode in conn.execute(
+        "SELECT episode_idx, podcast, episode FROM transcripts"
+    ):
+        if not (0 <= int(idx) < len(episodes)):
+            poison += 1
+            continue
+        ep = episodes[int(idx)]
+        if _norm(ep.get("p")) == _norm(podcast) and _norm(ep.get("e")) == _norm(
+            episode
+        ):
+            exact += 1
+        else:
+            poison += 1
+            if len(examples) < 5:
+                examples.append(
+                    {
+                        "idx": idx,
+                        "store": {"p": podcast, "e": episode},
+                        "actual": {"p": ep.get("p"), "e": ep.get("e")},
+                    }
+                )
+    stats = {"exact": exact, "poison": poison, "examples": examples}
+    if poison:
+        raise RuntimeError(
+            f"transcript index poison detected: {poison} bad / {exact} ok; "
+            f"examples={examples}"
+        )
+    return stats
+
+
+def full_text_map(
+    conn: sqlite3.Connection,
+    episodes: list[dict] | None = None,
+) -> dict[str, str]:
+    """episode_idx(str) → full text for theme tagging.
+
+    If ``episodes`` is provided, only attach text when the stored podcast+episode
+    labels match that index (or can be remapped by those labels). This guards
+    against stale episode_idx after episodes.json was rebuilt/reordered.
+    """
+    rows = list(
+        conn.execute(
+            "SELECT episode_idx, podcast, episode, text FROM transcripts"
+        )
+    )
+    if not episodes:
+        return {str(idx): text for idx, _p, _e, text in rows if text}
+
+    by_idx_ok: dict[str, str] = {}
+    by_key: dict[tuple[str, str], str] = {}
+    for idx, podcast, episode, text in rows:
+        if not text:
+            continue
+        key = (_norm(podcast), _norm(episode))
+        if key[0] and key[1]:
+            # Prefer longer text if duplicate keys
+            prev = by_key.get(key)
+            if prev is None or len(text) > len(prev):
+                by_key[key] = text
+        if 0 <= int(idx) < len(episodes):
+            ep = episodes[int(idx)]
+            if _norm(ep.get("p")) == _norm(podcast) and _norm(ep.get("e")) == _norm(
+                episode
+            ):
+                by_idx_ok[str(idx)] = text
+
+    out: dict[str, str] = dict(by_idx_ok)
+    for i, ep in enumerate(episodes):
+        si = str(i)
+        if si in out:
+            continue
+        key = (_norm(ep.get("p")), _norm(ep.get("e")))
+        if key in by_key:
+            out[si] = by_key[key]
     return out
+
+
+def repair_episode_indices(
+    conn: sqlite3.Connection, episodes: list[dict]
+) -> dict:
+    """Re-key transcript rows onto current episode indices by podcast+title.
+
+    Orphan rows (no matching episode) are deleted so stale idx cannot poison tagging.
+    """
+    # O(1) lookup — nested scan was ~minutes on 8k×22k rows and invited drift bugs.
+    by_key: dict[tuple[str, str], int] = {}
+    for i, ep in enumerate(episodes):
+        key = (_norm(ep.get("p")), _norm(ep.get("e")))
+        if key[0] and key[1] and key not in by_key:
+            by_key[key] = i
+
+    rows = list(
+        conn.execute(
+            "SELECT episode_idx, podcast, episode, src, url, chars, text, updated_at "
+            "FROM transcripts"
+        )
+    )
+    target: dict[int, tuple] = {}
+    orphans = 0
+    collisions = 0
+    for row in rows:
+        _idx, podcast, episode, src, url, chars, text, updated_at = row
+        key = (_norm(podcast), _norm(episode))
+        match_i = by_key.get(key) if key[0] and key[1] else None
+        if match_i is None:
+            orphans += 1
+            continue
+        # Canonical labels from episodes.json (prevents case/whitespace drift)
+        can_p = episodes[match_i].get("p") or podcast
+        can_e = episodes[match_i].get("e") or episode
+        prev = target.get(match_i)
+        if prev is None or int(chars or 0) >= int(prev[5] or 0):
+            if prev is not None:
+                collisions += 1
+            target[match_i] = (
+                match_i,
+                can_p,
+                can_e,
+                src,
+                url,
+                chars,
+                text,
+                updated_at,
+            )
+        else:
+            collisions += 1
+
+    conn.execute("DELETE FROM transcripts")
+    conn.executemany(
+        """
+        INSERT INTO transcripts(episode_idx, podcast, episode, src, url, chars, text, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        list(target.values()),
+    )
+    conn.commit()
+    return {
+        "inputRows": len(rows),
+        "kept": len(target),
+        "orphansDeleted": orphans,
+        "collisionsResolved": collisions,
+    }
 
 
 def coverage_stats(conn: sqlite3.Connection, total_episodes: int) -> dict:
@@ -153,8 +308,16 @@ def write_slim_notes(
     notes_path: Path,
     meta_path: Path,
     total_episodes: int,
+    *,
+    preserve_notes: dict | None = None,
+    episodes: list[dict] | None = None,
 ) -> dict:
-    """Build Pages-friendly notes.json from the full store."""
+    """Build Pages-friendly notes.json from the full store.
+
+    When ``preserve_notes`` + ``episodes`` are given, keep prior note entries that
+    are absent from sqlite but still label-aligned — so show-notes-only rows are
+    not wiped by a transcript-index repair.
+    """
     notes: dict[str, dict] = {}
     for idx, podcast, episode, src, url, chars, text in conn.execute(
         "SELECT episode_idx, podcast, episode, src, url, chars, text FROM transcripts"
@@ -170,6 +333,30 @@ def write_slim_notes(
             "p": podcast,
             "e": episode,
         }
+    if preserve_notes and episodes:
+        by_key = {
+            (_norm(ep.get("p")), _norm(ep.get("e"))): i
+            for i, ep in enumerate(episodes)
+            if (ep.get("p") or "").strip() and (ep.get("e") or "").strip()
+        }
+        for _k, row in preserve_notes.items():
+            if not isinstance(row, dict):
+                continue
+            text = (row.get("text") or "").strip()
+            if len(text) < 40:
+                continue
+            key = (_norm(row.get("p")), _norm(row.get("e")))
+            match = by_key.get(key) if key[0] and key[1] else None
+            if match is None:
+                continue
+            si = str(match)
+            if si in notes:
+                continue  # sqlite wins
+            entry = dict(row)
+            entry["p"] = episodes[match].get("p")
+            entry["e"] = episodes[match].get("e")
+            entry.setdefault("src", "show-notes")
+            notes[si] = entry
     stats = coverage_stats(conn, total_episodes)
     notes_path.write_text(
         json.dumps(notes, ensure_ascii=False, separators=(",", ":")),
