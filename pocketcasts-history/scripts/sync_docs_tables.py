@@ -17,6 +17,7 @@ COPY = [
     "aggregates.json",
     "episodes.json",
     "episode-themes.json",
+    "episode-theme-weights.json",
     "notes.json",
     "notes-meta.json",
     "podcasts.json",

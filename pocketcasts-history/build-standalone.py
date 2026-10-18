@@ -25,12 +25,18 @@ def main() -> None:
     podcasts = json.loads((ROOT / "tables/podcasts.json").read_text(encoding="utf-8"))
     themes_path = ROOT / "tables/themes.json"
     episode_themes_path = ROOT / "tables/episode-themes.json"
+    episode_theme_weights_path = ROOT / "tables/episode-theme-weights.json"
     notes_path = ROOT / "tables/notes.json"
     countries_path = ROOT / "tables/podcast-countries.json"
     themes = json.loads(themes_path.read_text(encoding="utf-8")) if themes_path.exists() else None
     episode_themes = (
         json.loads(episode_themes_path.read_text(encoding="utf-8"))
         if episode_themes_path.exists()
+        else None
+    )
+    episode_theme_weights = (
+        json.loads(episode_theme_weights_path.read_text(encoding="utf-8"))
+        if episode_theme_weights_path.exists()
         else None
     )
     notes = json.loads(notes_path.read_text(encoding="utf-8")) if notes_path.exists() else {}
@@ -83,6 +89,7 @@ def main() -> None:
             "podcasts": podcasts,
             "themes": themes,
             "episodeThemes": episode_themes,
+            "episodeThemeWeights": episode_theme_weights,
             "notes": notes,
             "countries": countries,
         },
