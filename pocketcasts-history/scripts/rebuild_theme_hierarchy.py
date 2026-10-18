@@ -549,6 +549,15 @@ _SCRUB_PATTERNS: list[re.Pattern[str]] = [
         r"[^\n]{0,100}?(?:spotify|apple podcasts|google podcasts|deezer|outros apps)"
         r"[^\n]{0,40}"
     ),
+    # NPR / network cross-promos ("Shaboozey talks about his latest album…")
+    re.compile(
+        r"(?i)(?:listen to|coming up on|stay with us for|tomorrow on)\s+"
+        r"(?:the\s+)?(?:sunday story|up first|consider this|morning edition|"
+        r"all things considered|fresh air|throughline|embedded)[^\n.]{0,200}"
+    ),
+    re.compile(
+        r"(?i)story from up first[^\n.]{0,200}"
+    ),
 ]
 
 
@@ -1062,10 +1071,10 @@ def tag_episode(
             add(tid)
 
     # Hard-news shows: entertainment domains when the episode is *actually*
-    # covering that beat — not banned, but not lit by soundbite beds either.
-    # Accept if (a) the title cues it, or (b) scrubbed body has substance
-    # terms (Grammys/album/Emmys/…), without long-transcript hit scaling so a
-    # short Emmys block inside a news show still counts.
+    # covering that beat — not banned, but not lit by soundbite beds, metaphors
+    # ("musicians like crickets"), one-off analogies ("like the music industry"),
+    # or network cross-promos. Accept if (a) the title cues it, or (b) scrubbed
+    # body has multiple distinct substance cues (Grammys + album, Emmys + film…).
     if is_hard_news_show(show):
         def entertainment_coverage(tid: str) -> bool:
             meta = by_id.get(tid) or {}
@@ -1075,8 +1084,15 @@ def tag_episode(
             substance = ENTERTAINMENT_SUBSTANCE_RE.get(tid) or topic_re
             if not substance:
                 return False
-            need = max(2, int(meta.get("min_hits") or 1))
-            return match_count(substance, primary) >= need
+            total = 0
+            distinct = 0
+            for pat in substance:
+                n = len(pat.findall(primary))
+                if n:
+                    distinct += 1
+                    total += n
+            # ≥2 different substance patterns, or a dense single-topic burst.
+            return (distinct >= 2 and total >= 2) or total >= 4
 
         hits = [
             tid
