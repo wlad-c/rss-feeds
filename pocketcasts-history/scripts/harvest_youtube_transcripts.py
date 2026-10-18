@@ -97,10 +97,15 @@ YT_CHANNELS: dict[str, dict] = {
         "reject_title": [],
     },
     # Full episodes publish on the g1 channel (legacy @oassunto is stale).
+    # English uploads often end with "| THE SUBJECT" (literal translation).
     "O Assunto": {
         "handle": "@g1globo",
-        "title_must": "o assunto",
+        "title_must": ["o assunto", "the subject"],
         "reject_title": [],
+        # PT episode titles vs EN YouTube titles score poorly on text alone;
+        # blend in duration proximity when the show marker is present.
+        "cross_lang": True,
+        "search_fallback": True,
     },
     "Foro de Teresina": {
         "handle": "@revistapiaui",
@@ -200,8 +205,20 @@ def token_set(s: str) -> set[str]:
     return {t for t in normalize(s).split() if len(t) > 1 and t not in stop}
 
 
+def _strip_show_suffix(yt_title: str) -> str:
+    """Remove trailing show markers used on mixed channels (g1, etc.)."""
+    t = yt_title or ""
+    # "Title | O ASSUNTO" / "Title | THE SUBJECT"
+    if " | " in t:
+        t = t.split(" | ", 1)[0]
+    # Older g1 style: "Title I O ASSUNTO I g1"
+    t = re.split(r"\s+[iI]\s+O\s+ASSUNTO\b", t, maxsplit=1)[0]
+    t = re.split(r"\s+[iI]\s+THE\s+SUBJECT\b", t, maxsplit=1)[0]
+    return t
+
+
 def title_score(ep_title: str, yt_title: str) -> float:
-    a, b = normalize(ep_title), normalize(yt_title)
+    a, b = normalize(ep_title), normalize(_strip_show_suffix(yt_title))
     if not a or not b:
         return 0.0
     for prefix in (
@@ -214,14 +231,49 @@ def title_score(ep_title: str, yt_title: str) -> float:
     ):
         if b.startswith(prefix):
             b = b[len(prefix) :]
-    # Drop trailing " | show name"
-    if " | " in yt_title:
-        b = normalize(yt_title.split(" | ", 1)[0])
     seq = SequenceMatcher(None, a, b).ratio()
     ta, tb = token_set(a), token_set(b)
     jacc = (len(ta & tb) / len(ta | tb)) if ta and tb else 0.0
     contain = 1.0 if (a in b or b in a) else 0.0
-    return 0.45 * seq + 0.45 * jacc + 0.10 * contain
+    # Shared distinctive tokens (longer words / digits) help PT↔EN pairs.
+    proper = {t for t in (ta & tb) if len(t) >= 4 or any(ch.isdigit() for ch in t)}
+    proper_boost = min(0.25, 0.08 * len(proper))
+    return min(1.0, 0.45 * seq + 0.45 * jacc + 0.10 * contain + proper_boost)
+
+
+def duration_score(ep_dur: str | None, yt_seconds: int | None) -> float:
+    """1.0 when lengths nearly match; 0 when unknown or far apart."""
+    mins = parse_minutes(ep_dur)
+    if not mins or not yt_seconds or yt_seconds <= 0:
+        return 0.0
+    ep_s = mins * 60.0
+    ratio = abs(ep_s - float(yt_seconds)) / max(ep_s, float(yt_seconds))
+    if ratio <= 0.06:
+        return 1.0
+    if ratio <= 0.12:
+        return 0.8
+    if ratio <= 0.20:
+        return 0.5
+    if ratio <= 0.30:
+        return 0.25
+    return 0.0
+
+
+def episode_video_score(
+    podcast: str, ep: dict, yt_title: str, yt_duration: int | None
+) -> float:
+    """Composite match score; duration-aware for cross-language shows."""
+    conf = YT_CHANNELS.get(podcast) or {}
+    tscore = title_score(ep.get("e") or "", yt_title)
+    if not conf.get("cross_lang"):
+        return tscore
+    dscore = duration_score(ep.get("dur"), yt_duration)
+    # When show-tagged on a mixed channel, trust duration + light title signal.
+    if dscore >= 0.8 and tscore >= 0.18:
+        return max(tscore, 0.55 * tscore + 0.45 * dscore)
+    if dscore >= 0.5 and tscore >= 0.28:
+        return 0.55 * tscore + 0.45 * dscore
+    return tscore
 
 
 def parse_minutes(dur: str | None) -> float:
@@ -925,8 +977,10 @@ def video_allowed(podcast: str, yt_title: str) -> bool:
     conf = YT_CHANNELS.get(podcast) or {}
     low = (yt_title or "").lower()
     must = conf.get("title_must")
-    if must and must not in low:
-        return False
+    if must:
+        musts = must if isinstance(must, (list, tuple)) else [must]
+        if not any(m.lower() in low for m in musts):
+            return False
     for rej in conf.get("reject_title") or []:
         if rej in low:
             return False
@@ -941,14 +995,18 @@ def match_from_channel(
     min_score: float = 0.55,
 ) -> list[tuple[int, dict, dict]]:
     """Greedy one-to-one match: highest scoring (episode, video) pairs."""
+    conf = YT_CHANNELS.get(podcast) or {}
+    # Cross-lang shows need a lower bar; duration blend lifts true pairs.
+    thr = 0.42 if conf.get("cross_lang") else min_score
     scored: list[tuple[float, int, int, dict]] = []
     for ei, (idx, ep) in enumerate(episodes):
-        title = ep.get("e") or ""
         for vi, vid in enumerate(uploads):
             if not video_allowed(podcast, vid["title"]):
                 continue
-            sc = title_score(title, vid["title"])
-            if sc >= min_score:
+            sc = episode_video_score(
+                podcast, ep, vid["title"], vid.get("duration")
+            )
+            if sc >= thr:
                 scored.append((sc, ei, vi, vid))
     scored.sort(reverse=True, key=lambda t: t[0])
     used_e: set[int] = set()
@@ -966,13 +1024,28 @@ def match_from_channel(
     return pairs
 
 
-def match_via_search(podcast: str, episode_title: str, search_n: int = 5) -> dict | None:
+def match_via_search(
+    podcast: str,
+    episode_title: str,
+    search_n: int = 5,
+    *,
+    ep: dict | None = None,
+) -> dict | None:
     hint = YT_SHOW_HINTS.get(podcast, podcast)
+    conf = YT_CHANNELS.get(podcast) or {}
     queries = [
         f"{hint} {episode_title}",
         f"{podcast} {episode_title}",
         f'"{episode_title}" {podcast}',
     ]
+    # g1 English uploads: search with show markers helps surface THE SUBJECT.
+    if conf.get("cross_lang") or podcast == "O Assunto":
+        queries = [
+            f"{episode_title} O ASSUNTO",
+            f"{episode_title} THE SUBJECT",
+            f"O ASSUNTO {episode_title}",
+            *queries,
+        ]
     results: list[dict] = []
     seen: set[str] = set()
     for q in queries:
@@ -981,20 +1054,27 @@ def match_via_search(podcast: str, episode_title: str, search_n: int = 5) -> dic
                 continue
             seen.add(r["id"])
             results.append(r)
-        if results:
+        # Keep gathering a bit for cross-lang so EN title variants appear.
+        if results and not conf.get("cross_lang"):
+            break
+        if len(results) >= search_n * 2:
             break
     if not results:
         return None
     best = None
     best_score = 0.0
+    ep_dict = ep or {"e": episode_title}
     for r in results:
         if not video_allowed(podcast, r["title"]):
             continue
-        score = title_score(episode_title, r["title"])
+        score = episode_video_score(
+            podcast, ep_dict, r["title"], r.get("duration")
+        )
         if score > best_score:
             best_score = score
             best = r
-    if not best or best_score < 0.48:
+    thr = 0.40 if conf.get("cross_lang") else 0.48
+    if not best or best_score < thr:
         return None
     best = dict(best)
     best["matchScore"] = round(best_score, 3)
@@ -1082,7 +1162,7 @@ def build_pairs(
                     continue
                 if len(pairs) >= max_episodes:
                     return pairs
-                hit = match_via_search(podcast, ep.get("e") or "")
+                hit = match_via_search(podcast, ep.get("e") or "", ep=ep)
                 if not hit:
                     continue
                 matched_idxs.add(idx)

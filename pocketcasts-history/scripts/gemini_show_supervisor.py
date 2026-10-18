@@ -150,6 +150,13 @@ def probe_model(model: str, key: str) -> tuple[bool, float | None]:
         return False, None
 
 
+# Shows on mixed channels / cross-language titles need ytsearch fallback.
+SEARCH_FALLBACK_SHOWS = {
+    "O Assunto",
+    "Politics Now",
+}
+
+
 def run_worker(
     model: str,
     show: str,
@@ -178,12 +185,13 @@ def run_worker(
         str(channel_limit),
         "--sleep",
         "2",
-        "--no-search-fallback",
         "--gemini-model",
         model,
         "--gemini-parallel",
         str(parallel),
     ]
+    if show not in SEARCH_FALLBACK_SHOWS:
+        cmd.append("--no-search-fallback")
     env = os.environ.copy()
     env["PATH"] = f"{Path.home() / '.local/bin'}:{env.get('PATH', '')}"
     fh = open(log, "a", encoding="utf-8")
