@@ -1,41 +1,41 @@
 {
   "harvest": {
-    "tried": 3,
-    "fetched": 2,
-    "upserted": 2,
+    "tried": 4,
+    "fetched": 3,
+    "upserted": 3,
     "noCaptions": 0,
-    "rateLimited": 1,
+    "rateLimited": 0,
     "pairs": 4,
     "byBackend": {
-      "gemini": 2
+      "gemini": 3
     },
     "byShow": {
-      "The Daily": 2
+      "Foro de Teresina": 3
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8414,
-    "withPublisherOrSttTranscript": 1519,
-    "withLongText2000plus": 1982,
-    "pctTranscript": 6.9,
-    "pctLongText": 9.01,
+    "withAnyText": 8637,
+    "withPublisherOrSttTranscript": 1768,
+    "withLongText2000plus": 2231,
+    "pctTranscript": 8.03,
+    "pctLongText": 10.14,
     "bySrc": {
       "show-notes": {
-        "count": 6895,
-        "chars": 6737389
+        "count": 6869,
+        "chars": 6712850
       },
       "stt": {
-        "count": 16,
-        "chars": 268686
+        "count": 15,
+        "chars": 254513
       },
       "transcript": {
-        "count": 1347,
-        "chars": 21800239
+        "count": 1565,
+        "chars": 25026810
       },
       "youtube": {
-        "count": 156,
-        "chars": 9118675
+        "count": 188,
+        "chars": 9978978
       }
     }
   }
