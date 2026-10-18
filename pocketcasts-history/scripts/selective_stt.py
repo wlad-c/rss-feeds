@@ -125,8 +125,11 @@ def already_good(
 ) -> bool:
     """Skip episodes that already have a reliable full transcript.
 
-    Treat publisher transcripts and YouTube captions as authoritative —
-    never burn STT quota (or risk a weaker Whisper pass) overwriting them.
+    Treat publisher transcripts and YouTube captions as authoritative when
+    they are long enough — never burn STT over a solid caption/transcript.
+    Short publisher stubs (<1200 chars) may still be upgraded by STT
+    (transcript_store trust order allows that). Any prior STT attempt with
+    usable text is treated as done so we do not re-Whisper the same clip.
     """
     ep = episodes[idx] if 0 <= idx < len(episodes) else {}
     row = get_full(
@@ -142,9 +145,29 @@ def already_good(
     # Publisher / YouTube captions are highest-trust free sources.
     if src in ("transcript", "youtube") and chars >= 1200:
         return True
-    if src == "stt" and chars >= min_chars:
+    # Already STT'd (including short promos) — do not re-burn CPU.
+    if src == "stt" and chars >= 80:
         return True
     return False
+
+
+def audio_url_ok(url: str) -> bool:
+    """Cheap preflight: skip known-dead enclosures before download/transcribe."""
+    try:
+        req = urllib.request.Request(
+            url, headers={"User-Agent": UA}, method="HEAD"
+        )
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            code = getattr(resp, "status", None) or resp.getcode()
+            if int(code) >= 400:
+                return False
+            cl = resp.headers.get("Content-Length")
+            if cl is not None and int(cl) < 8000:
+                return False
+            return True
+    except Exception:  # noqa: BLE001
+        # Some CDNs reject HEAD; fall through to GET download.
+        return True
 
 
 def download_audio(url: str, dest: Path) -> None:
@@ -311,6 +334,9 @@ def pick_candidates(
         mins = dur_minutes(ep)
         if mins > 45:
             continue
+        # Skip promos / trailers — Whisper on <3 min clips wastes budget.
+        if mins < 3.0:
+            continue
         rank = show_rank.get(pod, 50 + (0 if counts[pod] >= 500 else 20))
         score = rank * 1000 + (2030 - y) * 10 + mins
         scored.append((score, i))
@@ -440,6 +466,8 @@ def main() -> None:
             raw = tdir / f"{idx}.audio"
             wav = tdir / f"{idx}.wav"
             try:
+                if not audio_url_ok(url):
+                    raise RuntimeError("audio URL preflight failed (404/empty)")
                 download_audio(url, raw)
                 # Prefer compact mp3/m4a for NoteTakers; wav for local Whisper.
                 text, used = transcribe(
