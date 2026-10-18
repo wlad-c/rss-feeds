@@ -13,6 +13,6 @@ site/
 .DS_Store
 pocketcasts-export/
 pocketcasts-history/transcripts/_stt_tmp/
-
-# Theme refresh temp checkout
-.theme-refresh-tmp/
+pocketcasts-history/transcripts/.gemini_chunks/
+pocketcasts-history/transcripts/full.sqlite-wal
+pocketcasts-history/transcripts/full.sqlite-shm
