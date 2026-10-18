@@ -73,10 +73,18 @@ YT_CHANNELS: dict[str, dict] = {
         "title_must": "abc news daily",
         "reject_title": [],
     },
+    # Politics Now episodes often appear on ABC YouTube as Insiders clips /
+    # panel titles without the show name — matching is weak; prefer search.
     "Politics Now": {
         "handle": "@abcnewsaustralia",
-        "title_must": "politics now",
-        "reject_title": [],
+        "title_must": None,
+        "reject_title": [
+            "abc news daily",
+            "news breakfast",
+            "7.30",
+            "four corners",
+            "lateline",
+        ],
     },
     "Up First from NPR": {
         "handle": "@nprpodcasts",
@@ -88,14 +96,15 @@ YT_CHANNELS: dict[str, dict] = {
         "title_must": None,
         "reject_title": [],
     },
+    # Full episodes publish on the g1 channel (legacy @oassunto is stale).
     "O Assunto": {
-        "handle": "@oassunto",
-        "title_must": None,
+        "handle": "@g1globo",
+        "title_must": "o assunto",
         "reject_title": [],
     },
     "Foro de Teresina": {
-        "handle": "@ForodeTeresina",
-        "title_must": None,
+        "handle": "@revistapiaui",
+        "title_must": "foro de teresina",
         "reject_title": [],
     },
     "Xadrez Verbal": {
