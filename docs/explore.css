@@ -546,6 +546,18 @@ html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
   background: var(--grouped-bg-elevated);
   border: 0.5px solid var(--separator);
   box-shadow: var(--shadow);
+  box-sizing: border-box;
+}
+
+/*
+ * Desktop: list is portaled to <body> so sticky filter overflow-x:hidden
+ * (period-dock / period-bar / period-controls) cannot clip the options.
+ */
+.combo-list.is-ported,
+body > .combo-list {
+  position: fixed;
+  z-index: 240;
+  margin: 0;
 }
 
 .combo-list[hidden] { display: none !important; }

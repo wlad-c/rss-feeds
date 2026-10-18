@@ -1019,6 +1019,8 @@
 
     let highlight = -1;
     let filtered = [];
+    let desktopOpen = false;
+    let repositionBound = null;
 
     const selectedLabel = () => {
       const opt = select.options[select.selectedIndex];
@@ -1031,10 +1033,54 @@
       highlight = -1;
     };
 
+    /**
+     * Desktop lists must leave the sticky filter chrome. Parents use
+     * overflow-x:hidden for edge containment, which also clips absolute
+     * dropdowns — so portal to <body> and pin with position:fixed.
+     */
+    const positionDesktopList = () => {
+      if (!desktopOpen || list.hidden) return;
+      const r = input.getBoundingClientRect();
+      const gutter = 8;
+      const width = Math.max(160, Math.round(r.width));
+      let left = Math.round(r.left);
+      left = Math.min(left, window.innerWidth - width - gutter);
+      left = Math.max(gutter, left);
+      const spaceBelow = window.innerHeight - r.bottom - gutter;
+      const spaceAbove = r.top - gutter;
+      const preferBelow = spaceBelow >= 160 || spaceBelow >= spaceAbove;
+      const maxH = Math.min(280, Math.max(120, preferBelow ? spaceBelow : spaceAbove));
+      const top = preferBelow
+        ? Math.round(r.bottom + 4)
+        : Math.round(Math.max(gutter, r.top - 4 - maxH));
+      list.style.position = "fixed";
+      list.style.left = `${left}px`;
+      list.style.top = `${top}px`;
+      list.style.width = `${width}px`;
+      list.style.right = "auto";
+      list.style.maxHeight = `${Math.round(maxH)}px`;
+      list.style.zIndex = "240";
+    };
+
+    const detachDesktopListeners = () => {
+      if (!repositionBound) return;
+      window.removeEventListener("resize", repositionBound);
+      window.removeEventListener("scroll", repositionBound, true);
+      window.visualViewport?.removeEventListener("resize", repositionBound);
+      window.visualViewport?.removeEventListener("scroll", repositionBound);
+      repositionBound = null;
+    };
+
     const closeDesktop = () => {
+      desktopOpen = false;
+      detachDesktopListeners();
       list.hidden = true;
+      list.classList.remove("is-ported");
       input.setAttribute("aria-expanded", "false");
       highlight = -1;
+      // Park the list back under the combo so DOM order stays predictable.
+      if (list.parentElement !== wrap) wrap.appendChild(list);
+      list.removeAttribute("style");
       paintClosed();
     };
 
@@ -1062,8 +1108,21 @@
             })
             .join("")
         : `<li class="combo-empty">No matches</li>`;
+      if (list.parentElement !== document.body) {
+        document.body.appendChild(list);
+      }
+      list.classList.add("is-ported");
       list.hidden = false;
+      desktopOpen = true;
       input.setAttribute("aria-expanded", "true");
+      positionDesktopList();
+      if (!repositionBound) {
+        repositionBound = () => positionDesktopList();
+        window.addEventListener("resize", repositionBound);
+        window.addEventListener("scroll", repositionBound, true);
+        window.visualViewport?.addEventListener("resize", repositionBound);
+        window.visualViewport?.addEventListener("scroll", repositionBound);
+      }
     };
 
     const pickDesktop = (value) => {
@@ -1148,13 +1207,16 @@
     input.addEventListener("blur", () => {
       if (isCompactFilterUi()) return;
       window.setTimeout(() => {
-        if (!wrap.contains(document.activeElement)) closeDesktop();
+        const active = document.activeElement;
+        if (wrap.contains(active) || list.contains(active)) return;
+        closeDesktop();
       }, 140);
     });
 
     select._comboPaint = paintClosed;
     select._comboInput = input;
     select._comboOpenMobile = openMobile;
+    select._comboCloseDesktop = closeDesktop;
     paintClosed();
   }
 
