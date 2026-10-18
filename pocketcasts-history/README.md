@@ -64,10 +64,12 @@ Episode **themes** are inferred from titles across the full history (news titles
 python3 scripts/seed_store_from_notes.py
 python3 scripts/harvest_full_transcripts.py
 
-# 2) YouTube captions for shows that publish video (src=youtube)
-#    Matching uses yt-dlp search. Captions: youtube-transcript-api (residential IP /
-#    WEBSHARE_* proxy), optional YTAPI_API_KEY, or free transcribeyoutube.com host.
-python3 scripts/harvest_youtube_transcripts.py --max-episodes 90 --min-year 2022
+# 2) YouTube → full text (src=youtube)
+#    Prefer Gemini video understanding when GEMINI_API_KEY is set (full audio
+#    transcript from the YouTube URL — works for long shows without captions,
+#    e.g. Xadrez Verbal). Free tier ≈8h YouTube/day. Fallbacks: caption APIs.
+python3 scripts/harvest_youtube_transcripts.py --shows "Xadrez Verbal" \
+  --backends gemini --max-episodes 2 --min-year 2022 --sleep 5
 
 # 3) Optional free STT for high-value gaps (no paid API)
 #    auto = NoteTakers free 10/day, then local faster-whisper
