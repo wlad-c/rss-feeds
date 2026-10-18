@@ -78,15 +78,30 @@ def strip_html(raw: str) -> str:
 
 
 def itunes_feed_url(name: str) -> str | None:
-    q = urllib.parse.urlencode({"term": name, "media": "podcast", "limit": 5})
-    data = json.loads(http_get(f"https://itunes.apple.com/search?{q}").decode())
+    # Prefer AU store for ABC Australia shows (US results often collide with ABC News US).
+    countries = ("au", "") if name.lower().startswith("abc ") or name in {
+        "Politics Now",
+        "ABC News Daily",
+    } else ("",)
     name_l = name.lower()
-    for r in data.get("results") or []:
-        cn = (r.get("collectionName") or "").lower()
-        if (cn == name_l or name_l in cn or cn in name_l) and r.get("feedUrl"):
-            return r["feedUrl"]
-    if data.get("results") and data["results"][0].get("feedUrl"):
-        return data["results"][0]["feedUrl"]
+    for country in countries:
+        params = {"term": name, "media": "podcast", "limit": 5}
+        if country:
+            params["country"] = country
+        q = urllib.parse.urlencode(params)
+        data = json.loads(http_get(f"https://itunes.apple.com/search?{q}").decode())
+        for r in data.get("results") or []:
+            cn = (r.get("collectionName") or "").lower()
+            artist = (r.get("artistName") or "").lower()
+            if country == "au" and "abc" in name_l and "abc" not in cn and "abc" not in artist:
+                continue
+            if (cn == name_l or name_l in cn or cn in name_l) and r.get("feedUrl"):
+                return r["feedUrl"]
+        if data.get("results") and data["results"][0].get("feedUrl"):
+            # Only accept first-result fallback when names are close or AU-scoped.
+            cn = (data["results"][0].get("collectionName") or "").lower()
+            if cn == name_l or name_l in cn or cn in name_l:
+                return data["results"][0]["feedUrl"]
     return None
 
 
