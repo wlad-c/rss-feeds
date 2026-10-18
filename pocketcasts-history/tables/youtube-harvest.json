@@ -1,48 +1,42 @@
 {
   "harvest": {
-    "tried": 29,
-    "fetched": 28,
-    "upserted": 28,
-    "noCaptions": 1,
+    "tried": 21,
+    "fetched": 5,
+    "upserted": 5,
+    "noCaptions": 16,
     "rateLimited": 0,
-    "pairs": 29,
+    "pairs": 21,
     "byBackend": {
-      "yt_transcript_net": 28
+      "yt_transcript_net": 5
     },
     "byShow": {
-      "7am": 28
+      "Lowy Institute": 5
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 10153,
-    "withPublisherOrSttTranscript": 3619,
-    "withLongText2000plus": 4051,
-    "pctTranscript": 16.44,
-    "pctLongText": 18.41,
+    "withAnyText": 10155,
+    "withPublisherOrSttTranscript": 3623,
+    "withLongText2000plus": 4055,
+    "pctTranscript": 16.46,
+    "pctLongText": 18.42,
     "bySrc": {
       "show-notes": {
-        "count": 6534,
-        "chars": 6375664
+        "count": 6532,
+        "chars": 6374670
       },
       "stt": {
-        "count": 81,
-        "chars": 1178406
+        "count": 83,
+        "chars": 1217531
       },
       "transcript": {
         "count": 1702,
         "chars": 32049141
       },
       "youtube": {
-        "count": 1836,
-        "chars": 50435271
+        "count": 1838,
+        "chars": 50534321
       }
     }
-  },
-  "lastCheckpoint": "2026-10-18T15:43Z",
-  "youtubeCount": 1836,
-  "sttCount": 82,
-  "abcYoutube": 417,
-  "dailyYoutube": 996,
-  "misaligned": 0
+  }
 }
