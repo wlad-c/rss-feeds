@@ -1,12 +1,12 @@
 {
   "meta": {
     "totalEpisodes": 22008,
-    "episodesWithTheme": 20849,
-    "parentCount": 100,
-    "placeParentCount": 53,
+    "episodesWithTheme": 20895,
+    "parentCount": 112,
+    "placeParentCount": 65,
     "topicParentCount": 47,
     "childCount": 0,
-    "themeCount": 100,
+    "themeCount": 112,
     "evidenceSourceCounts": {
       "title": 13591,
       "show-notes": 6966,
@@ -249,21 +249,21 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4084,
+      "count": 4217,
       "byYear": {
         "2019": 264,
         "2020": 395,
         "2021": 446,
         "2022": 486,
-        "2023": 423,
-        "2024": 553,
-        "2025": 818,
-        "2026": 699
+        "2023": 431,
+        "2024": 599,
+        "2025": 874,
+        "2026": 722
       },
       "evidence": {
-        "title": 1109,
-        "notes": 2604,
-        "transcript": 371
+        "title": 1110,
+        "notes": 2710,
+        "transcript": 397
       },
       "samples": [
         {
@@ -313,6 +313,80 @@
           "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
           "p": "Up First from NPR",
           "d": "2026-10-15"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "international-affairs",
+      "name": "International affairs",
+      "blurb": "Geopolitics and world affairs.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 2782,
+      "byYear": {
+        "2019": 200,
+        "2020": 298,
+        "2021": 278,
+        "2022": 303,
+        "2023": 292,
+        "2024": 372,
+        "2025": 526,
+        "2026": 513
+      },
+      "evidence": {
+        "title": 1013,
+        "notes": 1694,
+        "transcript": 75
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 7,
+          "e": "O colapso da IA? - Invest 133",
+          "p": "Petit Journal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 15,
+          "e": "Patrick Radden Keefe on the Russian money that remade London",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 18,
+          "e": "What the gold market tells us about Trump, Russia, and China",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 19,
+          "e": "Palácio de governo atacado - BP 1161",
+          "p": "Petit Journal",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 27,
+          "e": "Musk sabota a Ucrânia - BP 1160",
+          "p": "Petit Journal",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 35,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 37,
+          "e": "Bots russos sob ataque - BP 1159",
+          "p": "Petit Journal",
+          "d": "2026-10-14"
         }
       ],
       "children": []
@@ -387,80 +461,6 @@
           "e": "Why Trump's selling out to Putin again",
           "p": "ABC News Daily",
           "d": "2026-10-12"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "international-affairs",
-      "name": "International affairs",
-      "blurb": "Geopolitics and world affairs.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 2645,
-      "byYear": {
-        "2019": 200,
-        "2020": 298,
-        "2021": 278,
-        "2022": 303,
-        "2023": 285,
-        "2024": 322,
-        "2025": 467,
-        "2026": 492
-      },
-      "evidence": {
-        "title": 1012,
-        "notes": 1590,
-        "transcript": 43
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 7,
-          "e": "O colapso da IA? - Invest 133",
-          "p": "Petit Journal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 15,
-          "e": "Patrick Radden Keefe on the Russian money that remade London",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 18,
-          "e": "What the gold market tells us about Trump, Russia, and China",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 19,
-          "e": "Palácio de governo atacado - BP 1161",
-          "p": "Petit Journal",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 27,
-          "e": "Musk sabota a Ucrânia - BP 1160",
-          "p": "Petit Journal",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 35,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 37,
-          "e": "Bots russos sob ataque - BP 1159",
-          "p": "Petit Journal",
-          "d": "2026-10-14"
         }
       ],
       "children": []
@@ -1951,19 +1951,19 @@
       "blurb": "Brazilian markets, inflation, fiscal policy.",
       "kind": "local",
       "facet": "local",
-      "count": 763,
+      "count": 761,
       "byYear": {
-        "2019": 11,
+        "2019": 10,
         "2020": 64,
         "2021": 100,
         "2022": 103,
         "2023": 145,
         "2024": 146,
-        "2025": 101,
+        "2025": 100,
         "2026": 93
       },
       "evidence": {
-        "title": 176,
+        "title": 174,
         "notes": 584,
         "transcript": 3
       },
@@ -2173,11 +2173,11 @@
       "blurb": "Crime and security in Brazil.",
       "kind": "local",
       "facet": "local",
-      "count": 676,
+      "count": 675,
       "byYear": {
         "2019": 11,
         "2020": 38,
-        "2021": 56,
+        "2021": 55,
         "2022": 82,
         "2023": 161,
         "2024": 131,
@@ -2185,7 +2185,7 @@
         "2026": 106
       },
       "evidence": {
-        "title": 253,
+        "title": 252,
         "notes": 420,
         "transcript": 3
       },
@@ -3283,19 +3283,19 @@
       "blurb": "Press, platforms, and media politics in Brazil.",
       "kind": "local",
       "facet": "local",
-      "count": 415,
+      "count": 413,
       "byYear": {
         "2019": 9,
         "2020": 29,
         "2021": 31,
-        "2022": 34,
+        "2022": 33,
         "2023": 164,
         "2024": 61,
         "2025": 44,
-        "2026": 43
+        "2026": 42
       },
       "evidence": {
-        "title": 54,
+        "title": 52,
         "notes": 358,
         "transcript": 3
       },
@@ -4010,80 +4010,6 @@
           "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
           "p": "The Morning Edition",
           "d": "2026-10-09"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "apac-government",
-      "name": "Asia-Pacific government",
-      "blurb": "Governments across Asia-Pacific (ex CN/AU/US/IN).",
-      "kind": "local",
-      "facet": "local",
-      "count": 319,
-      "byYear": {
-        "2019": 1,
-        "2020": 3,
-        "2021": 4,
-        "2022": 3,
-        "2023": 19,
-        "2024": 50,
-        "2025": 150,
-        "2026": 89
-      },
-      "evidence": {
-        "title": 30,
-        "notes": 233,
-        "transcript": 56
-      },
-      "samples": [
-        {
-          "i": 1,
-          "e": "Ones to Watch #11 - How do young politicians learn the ropes?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 90,
-          "e": "Ones to Watch #12 - Youth, Political Parties and GE-16",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 91,
-          "e": "Making Sense of the Rise of Far-Right Movements Globally",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 138,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 169,
-          "e": "ASEAN in a Multipolar World",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 384,
-          "e": "Prime Minister of Thailand Anutin Charnvirakul",
-          "p": "Lowy Institute",
-          "d": "2026-09-10"
-        },
-        {
-          "i": 393,
-          "e": "Douglas Lim on the Rosmah Backlash, 1MDB Jokes | Is Political Comedy Safe in Malaysia? | EP104",
-          "p": "Are We OK?",
-          "d": "2026-09-09"
-        },
-        {
-          "i": 414,
-          "e": "Ones to Watch #10 - Where are youth in Sarawakian politics?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
         }
       ],
       "children": []
@@ -4903,24 +4829,26 @@
       "children": []
     },
     {
-      "id": "apac-elections",
-      "name": "Asia-Pacific elections",
-      "blurb": "Elections across Asia-Pacific (ex CN/AU/US/IN).",
+      "id": "my-government",
+      "name": "Malaysian government",
+      "blurb": "Malaysian government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 229,
+      "count": 225,
       "byYear": {
         "2019": 2,
-        "2022": 5,
+        "2020": 2,
+        "2021": 2,
+        "2022": 1,
         "2023": 8,
-        "2024": 15,
-        "2025": 115,
-        "2026": 84
+        "2024": 5,
+        "2025": 109,
+        "2026": 96
       },
       "evidence": {
-        "title": 27,
-        "notes": 161,
-        "transcript": 41
+        "title": 31,
+        "notes": 186,
+        "transcript": 8
       },
       "samples": [
         {
@@ -4942,34 +4870,34 @@
           "d": "2026-10-08"
         },
         {
-          "i": 138,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
-        },
-        {
           "i": 169,
           "e": "ASEAN in a Multipolar World",
           "p": "Beyond the Ballot Box",
           "d": "2026-10-01"
         },
         {
-          "i": 414,
-          "e": "Ones to Watch #10 - Where are youth in Sarawakian politics?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
+          "i": 263,
+          "e": "Why DAP Vote to Stay in Cabinet | PH Losing Power? | GE16: Sooner or Later? EP 105",
+          "p": "Are We OK?",
+          "d": "2026-09-23"
         },
         {
-          "i": 415,
-          "e": "Reading History Through Letters",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
+          "i": 290,
+          "e": "\"Why I Quit DAP On Merdeka Day\" | Anthony Loke's \"Madu\" Remark, Explained | EP 102",
+          "p": "Are We OK?",
+          "d": "2026-09-19"
         },
         {
-          "i": 416,
-          "e": "Ones to Watch #9 - Can Muslim youth usher in progressive politics?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
+          "i": 393,
+          "e": "Douglas Lim on the Rosmah Backlash, 1MDB Jokes | Is Political Comedy Safe in Malaysia? | EP104",
+          "p": "Are We OK?",
+          "d": "2026-09-09"
+        },
+        {
+          "i": 410,
+          "e": "RM90 Billion Up For Grabs | Malaysia vs Singapore in Logistics | Michael Tio's Masterplan",
+          "p": "Are We OK?",
+          "d": "2026-09-08"
         }
       ],
       "children": []
@@ -5118,6 +5046,80 @@
           "e": "With extreme heat getting worse, why aren't cities ready?",
           "p": "CNA Correspondent",
           "d": "2026-09-22"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "my-elections",
+      "name": "Malaysian elections",
+      "blurb": "Elections and campaigns in Malaysia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 189,
+      "byYear": {
+        "2019": 2,
+        "2020": 2,
+        "2021": 1,
+        "2022": 1,
+        "2023": 7,
+        "2024": 4,
+        "2025": 88,
+        "2026": 84
+      },
+      "evidence": {
+        "title": 30,
+        "notes": 152,
+        "transcript": 7
+      },
+      "samples": [
+        {
+          "i": 1,
+          "e": "Ones to Watch #11 - How do young politicians learn the ropes?",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 90,
+          "e": "Ones to Watch #12 - Youth, Political Parties and GE-16",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 91,
+          "e": "Making Sense of the Rise of Far-Right Movements Globally",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 169,
+          "e": "ASEAN in a Multipolar World",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 263,
+          "e": "Why DAP Vote to Stay in Cabinet | PH Losing Power? | GE16: Sooner or Later? EP 105",
+          "p": "Are We OK?",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 290,
+          "e": "\"Why I Quit DAP On Merdeka Day\" | Anthony Loke's \"Madu\" Remark, Explained | EP 102",
+          "p": "Are We OK?",
+          "d": "2026-09-19"
+        },
+        {
+          "i": 414,
+          "e": "Ones to Watch #10 - Where are youth in Sarawakian politics?",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 415,
+          "e": "Reading History Through Letters",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-09-07"
         }
       ],
       "children": []
@@ -7034,6 +7036,224 @@
       "children": []
     },
     {
+      "id": "id-government",
+      "name": "Indonesian government",
+      "blurb": "Indonesian government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 37,
+      "byYear": {
+        "2019": 2,
+        "2020": 2,
+        "2021": 4,
+        "2023": 5,
+        "2024": 7,
+        "2025": 15,
+        "2026": 2
+      },
+      "evidence": {
+        "title": 7,
+        "notes": 24,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 1813,
+          "e": "Indonesia Rising: How do you ban social media on an archipelago?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-04-27"
+        },
+        {
+          "i": 1874,
+          "e": "Indonesia Rising: Can Australia keep up with our neighbour's rapid growth?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-04-20"
+        },
+        {
+          "i": 3027,
+          "e": "Conversations: Pukpuk, Indonesia, and the Philippines-Taiwan connection",
+          "p": "Lowy Institute",
+          "d": "2025-12-30"
+        },
+        {
+          "i": 3878,
+          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
+          "p": "Southeast Asia Radio",
+          "d": "2025-10-08"
+        },
+        {
+          "i": 3993,
+          "e": "EP108: Indonesia Civil-Military Relations w/ Natalie Sambhi & Reshuffle Insights by Wasisto Raharjo Jati",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-30"
+        },
+        {
+          "i": 4005,
+          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
+          "p": "CNA Correspondent",
+          "d": "2025-09-29"
+        },
+        {
+          "i": 4281,
+          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-02"
+        },
+        {
+          "i": 4353,
+          "e": "Conversations: Indonesian foreign policy under President Prabowo",
+          "p": "Lowy Institute",
+          "d": "2025-08-26"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "id-elections",
+      "name": "Indonesian elections",
+      "blurb": "Elections and campaigns in Indonesia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 34,
+      "byYear": {
+        "2019": 2,
+        "2021": 1,
+        "2023": 2,
+        "2024": 14,
+        "2025": 14,
+        "2026": 1
+      },
+      "evidence": {
+        "title": 7,
+        "notes": 21,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 2545,
+          "e": "Your Call: Japan's 'Iron Lady' and Thailand's 'Cannabis King'; Indonesia commits troops to Gaza",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-02-17"
+        },
+        {
+          "i": 3878,
+          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
+          "p": "Southeast Asia Radio",
+          "d": "2025-10-08"
+        },
+        {
+          "i": 3993,
+          "e": "EP108: Indonesia Civil-Military Relations w/ Natalie Sambhi & Reshuffle Insights by Wasisto Raharjo Jati",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-30"
+        },
+        {
+          "i": 4005,
+          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
+          "p": "CNA Correspondent",
+          "d": "2025-09-29"
+        },
+        {
+          "i": 4281,
+          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-02"
+        },
+        {
+          "i": 4353,
+          "e": "Conversations: Indonesian foreign policy under President Prabowo",
+          "p": "Lowy Institute",
+          "d": "2025-08-26"
+        },
+        {
+          "i": 4963,
+          "e": "What does Putin want in Indonesia?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2025-06-30"
+        },
+        {
+          "i": 5204,
+          "e": "Development Futures: Indonesia’s economic policies under Prabowo — new era or same path?",
+          "p": "Lowy Institute",
+          "d": "2025-06-11"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "sea-government",
+      "name": "Southeast Asia government",
+      "blurb": "Regional SEA/ASEAN politics without a single-country focus.",
+      "kind": "local",
+      "facet": "local",
+      "count": 33,
+      "byYear": {
+        "2019": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 2,
+        "2024": 6,
+        "2025": 16,
+        "2026": 6
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 11,
+        "transcript": 22
+      },
+      "samples": [
+        {
+          "i": 138,
+          "e": "EP156: Rohingya Repatriation",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 1337,
+          "e": "EP138: Shangri-La 2026 - Defence Diplomacy Challenges with Dr. Evan Laksamana",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-06-10"
+        },
+        {
+          "i": 1690,
+          "e": "EP135: Papua Protests with Dr. Hipo Wangge",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-05-06"
+        },
+        {
+          "i": 2113,
+          "e": "EP129:  Iran War and Southeast Asia with James Dorsey",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-03-28"
+        },
+        {
+          "i": 2862,
+          "e": "EP120: Cambodia Scam Centers with Jacob Sims",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-01-17"
+        },
+        {
+          "i": 2925,
+          "e": "EP119: Looking Back at 2025",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-01-11"
+        },
+        {
+          "i": 3133,
+          "e": "EP116: Climate Governance in Southeast Asia with Sharon Seah",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        },
+        {
+          "i": 3140,
+          "e": "EP115: Regional Lessons from Sabah Polls",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "startups-venture",
       "name": "Startups & venture",
       "blurb": "Startups and venture capital.",
@@ -7175,6 +7395,434 @@
           "e": "Why are India and Pakistan on the brink of war?",
           "p": "CNA Correspondent",
           "d": "2025-05-11"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "mm-government",
+      "name": "Myanmar government",
+      "blurb": "Myanmar government, junta, and crisis politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 26,
+      "byYear": {
+        "2020": 1,
+        "2021": 4,
+        "2024": 5,
+        "2025": 11,
+        "2026": 5
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 17,
+        "transcript": 7
+      },
+      "samples": [
+        {
+          "i": 376,
+          "e": "As Myanmar's civil war intensifies, Rohingya Muslims face violence once again",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-11"
+        },
+        {
+          "i": 990,
+          "e": "EP144: Myanmar’s Junta Normalisation with Professor Thitinan Pongsudhirak",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-07-14"
+        },
+        {
+          "i": 1308,
+          "e": "Where is Aung San Suu Kyi?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-06-13"
+        },
+        {
+          "i": 1533,
+          "e": "Myanmar at a crossroads: Five years after the coup",
+          "p": "Lowy Institute",
+          "d": "2026-05-22"
+        },
+        {
+          "i": 2700,
+          "e": "The long emergency: Myanmar since 2021’s military coup",
+          "p": "CNA Correspondent",
+          "d": "2026-02-02"
+        },
+        {
+          "i": 3084,
+          "e": "EP118: Myanmar's Junta Polls w/ Billy Ford",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-21"
+        },
+        {
+          "i": 3682,
+          "e": "EP112: Myanmar and ASEAN with Dr. Moe Thuzar",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-10-28"
+        },
+        {
+          "i": 3748,
+          "e": "What's Next for Myanmar's Revolution and Has Malaysia Made a Difference?",
+          "p": "Beyond the Ballot Box",
+          "d": "2025-10-21"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "jp-government",
+      "name": "Japanese government",
+      "blurb": "Japanese government and domestic politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 26,
+      "byYear": {
+        "2020": 1,
+        "2022": 2,
+        "2023": 4,
+        "2024": 6,
+        "2025": 8,
+        "2026": 5
+      },
+      "evidence": {
+        "title": 4,
+        "notes": 16,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 1760,
+          "e": "If Australia can't trust the US, can it trust Japan?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-05-01"
+        },
+        {
+          "i": 2186,
+          "e": "Israel and Iran Trade Airstrikes, Trump Meets Japan PM, Kharg Island Future",
+          "p": "Up First from NPR",
+          "d": "2026-03-22"
+        },
+        {
+          "i": 2596,
+          "e": "Takaichi's time: Where is Japan headed under its emboldened 'Iron Lady' leader?",
+          "p": "CNA Correspondent",
+          "d": "2026-02-12"
+        },
+        {
+          "i": 2698,
+          "e": "161 - Japan election preview",
+          "p": "The Tally Room",
+          "d": "2026-02-02"
+        },
+        {
+          "i": 2732,
+          "e": "Japan's PM takes her tough talk on China to the polls",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-01-30"
+        },
+        {
+          "i": 3187,
+          "e": "Taiwan Sparks Tensions: Inside the China-Japan Dispute",
+          "p": "China Global",
+          "d": "2025-12-11"
+        },
+        {
+          "i": 3672,
+          "e": "SNAP Benefits Shutdown, Trump In Japan, Hurricane Melissa",
+          "p": "Up First from NPR",
+          "d": "2025-10-28"
+        },
+        {
+          "i": 3741,
+          "e": "New leader, old problems: What’s next for Japan under Sanae Takaichi?",
+          "p": "CNA Correspondent",
+          "d": "2025-10-22"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "th-government",
+      "name": "Thai government",
+      "blurb": "Thai government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 23,
+      "byYear": {
+        "2020": 1,
+        "2023": 4,
+        "2024": 6,
+        "2025": 8,
+        "2026": 4
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 12,
+        "transcript": 9
+      },
+      "samples": [
+        {
+          "i": 384,
+          "e": "Prime Minister of Thailand Anutin Charnvirakul",
+          "p": "Lowy Institute",
+          "d": "2026-09-10"
+        },
+        {
+          "i": 1083,
+          "e": "A thousand girls, neon lights: Human toll of Thailand’s sex tourism industry",
+          "p": "The Morning Edition",
+          "d": "2026-07-06"
+        },
+        {
+          "i": 1831,
+          "e": "EP133: Thailand’s Military with Dr. Paul Chambers",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-04-24"
+        },
+        {
+          "i": 2540,
+          "e": "162 - Thailand swings to the right",
+          "p": "The Tally Room",
+          "d": "2026-02-17"
+        },
+        {
+          "i": 4179,
+          "e": "Billionaire behind bars: Thailand’s top court sends ex-PM Thaksin back to jail",
+          "p": "CNA Correspondent",
+          "d": "2025-09-11"
+        },
+        {
+          "i": 4579,
+          "e": "EP100: Southern Thailand's Not So Contained Conflict with Don Pathan",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-08-04"
+        },
+        {
+          "i": 4596,
+          "e": "EP99: Thailand-Cambodia Border Clashes with Professor Gregory Raymond",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-08-03"
+        },
+        {
+          "i": 4690,
+          "e": "EP97: Protecting Myanmar Nationals in Thailand with HRW’s Nadia Hardman",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-07-24"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "ph-government",
+      "name": "Philippine government",
+      "blurb": "Philippine government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 23,
+      "byYear": {
+        "2022": 3,
+        "2023": 7,
+        "2024": 4,
+        "2025": 9
+      },
+      "evidence": {
+        "title": 9,
+        "notes": 8,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 3027,
+          "e": "Conversations: Pukpuk, Indonesia, and the Philippines-Taiwan connection",
+          "p": "Lowy Institute",
+          "d": "2025-12-30"
+        },
+        {
+          "i": 3800,
+          "e": "Maria Ressa on what Donald Trump learnt from Rodrigo Duterte and other strongman rulers",
+          "p": "",
+          "d": "2025-10-16"
+        },
+        {
+          "i": 5338,
+          "e": "EP87: Philippines Mid-Term Elections with Professor Ronald Holmes",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-05-31"
+        },
+        {
+          "i": 5520,
+          "e": "EP79: Duterte’s Arrest and its Aftermath with Carlos Conde",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-05-12"
+        },
+        {
+          "i": 5592,
+          "e": "From bullets to ballots, former rebels learn to govern in southern Philippines",
+          "p": "CNA Correspondent",
+          "d": "2025-05-05"
+        },
+        {
+          "i": 5703,
+          "e": "Former Philippine President Rodrigo Duterte has been arrested. Now what?",
+          "p": "CNA Correspondent",
+          "d": "2025-04-24"
+        },
+        {
+          "i": 5740,
+          "e": "Duterte in the Hague: The Philippines and the Geopolitics of International Law",
+          "p": "Asia Geopolitics",
+          "d": "2025-04-21"
+        },
+        {
+          "i": 6006,
+          "e": "The Long Shadow of Duterte's Drug War",
+          "p": "Up First from NPR",
+          "d": "2025-03-23"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "sea-elections",
+      "name": "Southeast Asia elections",
+      "blurb": "Regional SEA/ASEAN elections without a single-country focus.",
+      "kind": "local",
+      "facet": "local",
+      "count": 21,
+      "byYear": {
+        "2022": 2,
+        "2023": 1,
+        "2024": 3,
+        "2025": 12,
+        "2026": 3
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 5,
+        "transcript": 14
+      },
+      "samples": [
+        {
+          "i": 138,
+          "e": "EP156: Rohingya Repatriation",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 1690,
+          "e": "EP135: Papua Protests with Dr. Hipo Wangge",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-05-06"
+        },
+        {
+          "i": 2925,
+          "e": "EP119: Looking Back at 2025",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-01-11"
+        },
+        {
+          "i": 3133,
+          "e": "EP116: Climate Governance in Southeast Asia with Sharon Seah",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        },
+        {
+          "i": 3140,
+          "e": "EP115: Regional Lessons from Sabah Polls",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        },
+        {
+          "i": 3434,
+          "e": "EP114: AI Governance in Southeast Asia w/ Michael Bak",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-11-18"
+        },
+        {
+          "i": 3908,
+          "e": "EP109: Trends in Transnational Crime with Jason Tower",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-10-06"
+        },
+        {
+          "i": 4068,
+          "e": "EP107: Bangsamoro Election with Georgi Englebrecht",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-22"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "kr-government",
+      "name": "Korean government",
+      "blurb": "South/North Korean politics and government.",
+      "kind": "local",
+      "facet": "local",
+      "count": 17,
+      "byYear": {
+        "2019": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 2,
+        "2024": 4,
+        "2025": 5,
+        "2026": 3
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 8,
+        "transcript": 7
+      },
+      "samples": [
+        {
+          "i": 637,
+          "e": "Trump, Talibã e Kim Jong-Un - BP 1129",
+          "p": "Petit Journal",
+          "d": "2026-08-17"
+        },
+        {
+          "i": 641,
+          "e": "New Zealand's leadership challenge and the mystery of Kim Jong Un's heir",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-17"
+        },
+        {
+          "i": 1326,
+          "e": "North Korea just made China back down. Is Trump taking note?",
+          "p": "The Morning Edition",
+          "d": "2026-06-11"
+        },
+        {
+          "i": 4265,
+          "e": "Xi Jinping recebe Putin e Kim Jong Un - BP 924",
+          "p": "Petit Journal",
+          "d": "2025-09-03"
+        },
+        {
+          "i": 4305,
+          "e": "Minneapolis Shooting Latest, New Acting CDC Director, North Korean Leader to Beijing",
+          "p": "Up First from NPR",
+          "d": "2025-08-29"
+        },
+        {
+          "i": 4363,
+          "e": "Trump Threatens Chicago, DOJ Latest, US-South Korea Summit",
+          "p": "Up First from NPR",
+          "d": "2025-08-25"
+        },
+        {
+          "i": 6323,
+          "e": "After insurrection and impeachment, what's next for South Korea's Yoon Suk Yeol?",
+          "p": "CNA Correspondent",
+          "d": "2025-02-12"
+        },
+        {
+          "i": 6702,
+          "e": "What happens now after the South Korean president's failed martial law move?",
+          "p": "CNA Correspondent",
+          "d": "2025-01-04"
         }
       ],
       "children": []
@@ -7324,6 +7972,114 @@
       "children": []
     },
     {
+      "id": "sg-government",
+      "name": "Singapore government",
+      "blurb": "Singapore government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 6,
+      "byYear": {
+        "2024": 2,
+        "2025": 2,
+        "2026": 2
+      },
+      "evidence": {
+        "title": 1,
+        "notes": 2,
+        "transcript": 3
+      },
+      "samples": [
+        {
+          "i": 1057,
+          "e": "Does Singapore Need More Democracy?",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-07-08"
+        },
+        {
+          "i": 1964,
+          "e": "Can Singapore help with Australia’s fuel problem?",
+          "p": "7am",
+          "d": "2026-04-11"
+        },
+        {
+          "i": 5105,
+          "e": "EP93: Southeast Asia Goes Nuclear? A Look at Singapore with Dr. Alvin Chew",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-06-19"
+        },
+        {
+          "i": 5340,
+          "e": "EP85: Singapore Goes to Polls with Dr. Elvin Ong",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-05-31"
+        },
+        {
+          "i": 8002,
+          "e": "PM Lawrence Wong's Priorities For Singapore",
+          "p": "Morning Brief",
+          "d": "2024-08-10"
+        },
+        {
+          "i": 8925,
+          "e": "EP37: A More Resilient Singapore: Lee Hsien Loong’s Legacy in Conversation with Dr. Bilveer Singh",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2024-05-13"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "pk-government",
+      "name": "Pakistani government",
+      "blurb": "Pakistani government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 5,
+      "byYear": {
+        "2022": 2,
+        "2023": 1,
+        "2025": 2
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 2,
+        "transcript": 1
+      },
+      "samples": [
+        {
+          "i": 5032,
+          "e": "China’s Role in the India-Pakistan Clash",
+          "p": "China Global",
+          "d": "2025-06-25"
+        },
+        {
+          "i": 5539,
+          "e": "Why are India and Pakistan on the brink of war?",
+          "p": "CNA Correspondent",
+          "d": "2025-05-11"
+        },
+        {
+          "i": 13169,
+          "e": "Bank Rescues, California Central Valley Floods, Imran Khan Rally in Pakistan",
+          "p": "Up First from NPR",
+          "d": "2023-03-24"
+        },
+        {
+          "i": 14155,
+          "e": "Non-proliferation, infantry fighting vehicles, floods in Pakistan, Federal Budget & Defence",
+          "p": "ASPI Podcast: Policy, Guns & Money",
+          "d": "2022-11-13"
+        },
+        {
+          "i": 15670,
+          "e": "Continuity and Change in Pakistani Politics: The End of Imran Khan and What’s Next",
+          "p": "Asia Geopolitics",
+          "d": "2022-04-17"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "af-government",
       "name": "African government",
       "blurb": "Governments across Africa.",
@@ -7371,6 +8127,37 @@
           "e": "Africa Day 2021",
           "p": "ASPI Podcast: Policy, Guns & Money",
           "d": "2021-06-11"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "vn-government",
+      "name": "Vietnamese government",
+      "blurb": "Vietnamese government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 2,
+      "byYear": {
+        "2025": 2
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 1,
+        "transcript": 1
+      },
+      "samples": [
+        {
+          "i": 4871,
+          "e": "EP96: Vietnam’s Administration Restructuring w/ Hanh Nguyen",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-07-07"
+        },
+        {
+          "i": 5596,
+          "e": "Reunified Vietnam at 50, with Bich Tran",
+          "p": "Asia In-Depth",
+          "d": "2025-05-05"
         }
       ],
       "children": []
@@ -7602,21 +8389,21 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4084,
+      "count": 4217,
       "byYear": {
         "2019": 264,
         "2020": 395,
         "2021": 446,
         "2022": 486,
-        "2023": 423,
-        "2024": 553,
-        "2025": 818,
-        "2026": 699
+        "2023": 431,
+        "2024": 599,
+        "2025": 874,
+        "2026": 722
       },
       "evidence": {
-        "title": 1109,
-        "notes": 2604,
-        "transcript": 371
+        "title": 1110,
+        "notes": 2710,
+        "transcript": 397
       },
       "samples": [
         {
@@ -7666,6 +8453,79 @@
           "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
           "p": "Up First from NPR",
           "d": "2026-10-15"
+        }
+      ]
+    },
+    {
+      "id": "international-affairs",
+      "name": "International affairs",
+      "blurb": "Geopolitics and world affairs.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 2782,
+      "byYear": {
+        "2019": 200,
+        "2020": 298,
+        "2021": 278,
+        "2022": 303,
+        "2023": 292,
+        "2024": 372,
+        "2025": 526,
+        "2026": 513
+      },
+      "evidence": {
+        "title": 1013,
+        "notes": 1694,
+        "transcript": 75
+      },
+      "samples": [
+        {
+          "i": 0,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 7,
+          "e": "O colapso da IA? - Invest 133",
+          "p": "Petit Journal",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 15,
+          "e": "Patrick Radden Keefe on the Russian money that remade London",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 18,
+          "e": "What the gold market tells us about Trump, Russia, and China",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 19,
+          "e": "Palácio de governo atacado - BP 1161",
+          "p": "Petit Journal",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 27,
+          "e": "Musk sabota a Ucrânia - BP 1160",
+          "p": "Petit Journal",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 35,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 37,
+          "e": "Bots russos sob ataque - BP 1159",
+          "p": "Petit Journal",
+          "d": "2026-10-14"
         }
       ]
     },
@@ -7739,79 +8599,6 @@
           "e": "Why Trump's selling out to Putin again",
           "p": "ABC News Daily",
           "d": "2026-10-12"
-        }
-      ]
-    },
-    {
-      "id": "international-affairs",
-      "name": "International affairs",
-      "blurb": "Geopolitics and world affairs.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 2645,
-      "byYear": {
-        "2019": 200,
-        "2020": 298,
-        "2021": 278,
-        "2022": 303,
-        "2023": 285,
-        "2024": 322,
-        "2025": 467,
-        "2026": 492
-      },
-      "evidence": {
-        "title": 1012,
-        "notes": 1590,
-        "transcript": 43
-      },
-      "samples": [
-        {
-          "i": 0,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 7,
-          "e": "O colapso da IA? - Invest 133",
-          "p": "Petit Journal",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 15,
-          "e": "Patrick Radden Keefe on the Russian money that remade London",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 18,
-          "e": "What the gold market tells us about Trump, Russia, and China",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 19,
-          "e": "Palácio de governo atacado - BP 1161",
-          "p": "Petit Journal",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 27,
-          "e": "Musk sabota a Ucrânia - BP 1160",
-          "p": "Petit Journal",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 35,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 37,
-          "e": "Bots russos sob ataque - BP 1159",
-          "p": "Petit Journal",
-          "d": "2026-10-14"
         }
       ]
     },
@@ -9281,19 +10068,19 @@
       "blurb": "Brazilian markets, inflation, fiscal policy.",
       "kind": "local",
       "facet": "local",
-      "count": 763,
+      "count": 761,
       "byYear": {
-        "2019": 11,
+        "2019": 10,
         "2020": 64,
         "2021": 100,
         "2022": 103,
         "2023": 145,
         "2024": 146,
-        "2025": 101,
+        "2025": 100,
         "2026": 93
       },
       "evidence": {
-        "title": 176,
+        "title": 174,
         "notes": 584,
         "transcript": 3
       },
@@ -9500,11 +10287,11 @@
       "blurb": "Crime and security in Brazil.",
       "kind": "local",
       "facet": "local",
-      "count": 676,
+      "count": 675,
       "byYear": {
         "2019": 11,
         "2020": 38,
-        "2021": 56,
+        "2021": 55,
         "2022": 82,
         "2023": 161,
         "2024": 131,
@@ -9512,7 +10299,7 @@
         "2026": 106
       },
       "evidence": {
-        "title": 253,
+        "title": 252,
         "notes": 420,
         "transcript": 3
       },
@@ -10595,19 +11382,19 @@
       "blurb": "Press, platforms, and media politics in Brazil.",
       "kind": "local",
       "facet": "local",
-      "count": 415,
+      "count": 413,
       "byYear": {
         "2019": 9,
         "2020": 29,
         "2021": 31,
-        "2022": 34,
+        "2022": 33,
         "2023": 164,
         "2024": 61,
         "2025": 44,
-        "2026": 43
+        "2026": 42
       },
       "evidence": {
-        "title": 54,
+        "title": 52,
         "notes": 358,
         "transcript": 3
       },
@@ -11313,79 +12100,6 @@
           "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
           "p": "The Morning Edition",
           "d": "2026-10-09"
-        }
-      ]
-    },
-    {
-      "id": "apac-government",
-      "name": "Asia-Pacific government",
-      "blurb": "Governments across Asia-Pacific (ex CN/AU/US/IN).",
-      "kind": "local",
-      "facet": "local",
-      "count": 319,
-      "byYear": {
-        "2019": 1,
-        "2020": 3,
-        "2021": 4,
-        "2022": 3,
-        "2023": 19,
-        "2024": 50,
-        "2025": 150,
-        "2026": 89
-      },
-      "evidence": {
-        "title": 30,
-        "notes": 233,
-        "transcript": 56
-      },
-      "samples": [
-        {
-          "i": 1,
-          "e": "Ones to Watch #11 - How do young politicians learn the ropes?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 90,
-          "e": "Ones to Watch #12 - Youth, Political Parties and GE-16",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 91,
-          "e": "Making Sense of the Rise of Far-Right Movements Globally",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 138,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 169,
-          "e": "ASEAN in a Multipolar World",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 384,
-          "e": "Prime Minister of Thailand Anutin Charnvirakul",
-          "p": "Lowy Institute",
-          "d": "2026-09-10"
-        },
-        {
-          "i": 393,
-          "e": "Douglas Lim on the Rosmah Backlash, 1MDB Jokes | Is Political Comedy Safe in Malaysia? | EP104",
-          "p": "Are We OK?",
-          "d": "2026-09-09"
-        },
-        {
-          "i": 414,
-          "e": "Ones to Watch #10 - Where are youth in Sarawakian politics?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
         }
       ]
     },
@@ -12193,24 +12907,26 @@
       ]
     },
     {
-      "id": "apac-elections",
-      "name": "Asia-Pacific elections",
-      "blurb": "Elections across Asia-Pacific (ex CN/AU/US/IN).",
+      "id": "my-government",
+      "name": "Malaysian government",
+      "blurb": "Malaysian government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 229,
+      "count": 225,
       "byYear": {
         "2019": 2,
-        "2022": 5,
+        "2020": 2,
+        "2021": 2,
+        "2022": 1,
         "2023": 8,
-        "2024": 15,
-        "2025": 115,
-        "2026": 84
+        "2024": 5,
+        "2025": 109,
+        "2026": 96
       },
       "evidence": {
-        "title": 27,
-        "notes": 161,
-        "transcript": 41
+        "title": 31,
+        "notes": 186,
+        "transcript": 8
       },
       "samples": [
         {
@@ -12232,34 +12948,34 @@
           "d": "2026-10-08"
         },
         {
-          "i": 138,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
-        },
-        {
           "i": 169,
           "e": "ASEAN in a Multipolar World",
           "p": "Beyond the Ballot Box",
           "d": "2026-10-01"
         },
         {
-          "i": 414,
-          "e": "Ones to Watch #10 - Where are youth in Sarawakian politics?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
+          "i": 263,
+          "e": "Why DAP Vote to Stay in Cabinet | PH Losing Power? | GE16: Sooner or Later? EP 105",
+          "p": "Are We OK?",
+          "d": "2026-09-23"
         },
         {
-          "i": 415,
-          "e": "Reading History Through Letters",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
+          "i": 290,
+          "e": "\"Why I Quit DAP On Merdeka Day\" | Anthony Loke's \"Madu\" Remark, Explained | EP 102",
+          "p": "Are We OK?",
+          "d": "2026-09-19"
         },
         {
-          "i": 416,
-          "e": "Ones to Watch #9 - Can Muslim youth usher in progressive politics?",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-09-07"
+          "i": 393,
+          "e": "Douglas Lim on the Rosmah Backlash, 1MDB Jokes | Is Political Comedy Safe in Malaysia? | EP104",
+          "p": "Are We OK?",
+          "d": "2026-09-09"
+        },
+        {
+          "i": 410,
+          "e": "RM90 Billion Up For Grabs | Malaysia vs Singapore in Logistics | Michael Tio's Masterplan",
+          "p": "Are We OK?",
+          "d": "2026-09-08"
         }
       ]
     },
@@ -12406,6 +13122,79 @@
           "e": "With extreme heat getting worse, why aren't cities ready?",
           "p": "CNA Correspondent",
           "d": "2026-09-22"
+        }
+      ]
+    },
+    {
+      "id": "my-elections",
+      "name": "Malaysian elections",
+      "blurb": "Elections and campaigns in Malaysia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 189,
+      "byYear": {
+        "2019": 2,
+        "2020": 2,
+        "2021": 1,
+        "2022": 1,
+        "2023": 7,
+        "2024": 4,
+        "2025": 88,
+        "2026": 84
+      },
+      "evidence": {
+        "title": 30,
+        "notes": 152,
+        "transcript": 7
+      },
+      "samples": [
+        {
+          "i": 1,
+          "e": "Ones to Watch #11 - How do young politicians learn the ropes?",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 90,
+          "e": "Ones to Watch #12 - Youth, Political Parties and GE-16",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 91,
+          "e": "Making Sense of the Rise of Far-Right Movements Globally",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 169,
+          "e": "ASEAN in a Multipolar World",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 263,
+          "e": "Why DAP Vote to Stay in Cabinet | PH Losing Power? | GE16: Sooner or Later? EP 105",
+          "p": "Are We OK?",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 290,
+          "e": "\"Why I Quit DAP On Merdeka Day\" | Anthony Loke's \"Madu\" Remark, Explained | EP 102",
+          "p": "Are We OK?",
+          "d": "2026-09-19"
+        },
+        {
+          "i": 414,
+          "e": "Ones to Watch #10 - Where are youth in Sarawakian politics?",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 415,
+          "e": "Reading History Through Letters",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-09-07"
         }
       ]
     },
@@ -14295,6 +15084,221 @@
       ]
     },
     {
+      "id": "id-government",
+      "name": "Indonesian government",
+      "blurb": "Indonesian government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 37,
+      "byYear": {
+        "2019": 2,
+        "2020": 2,
+        "2021": 4,
+        "2023": 5,
+        "2024": 7,
+        "2025": 15,
+        "2026": 2
+      },
+      "evidence": {
+        "title": 7,
+        "notes": 24,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 1813,
+          "e": "Indonesia Rising: How do you ban social media on an archipelago?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-04-27"
+        },
+        {
+          "i": 1874,
+          "e": "Indonesia Rising: Can Australia keep up with our neighbour's rapid growth?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-04-20"
+        },
+        {
+          "i": 3027,
+          "e": "Conversations: Pukpuk, Indonesia, and the Philippines-Taiwan connection",
+          "p": "Lowy Institute",
+          "d": "2025-12-30"
+        },
+        {
+          "i": 3878,
+          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
+          "p": "Southeast Asia Radio",
+          "d": "2025-10-08"
+        },
+        {
+          "i": 3993,
+          "e": "EP108: Indonesia Civil-Military Relations w/ Natalie Sambhi & Reshuffle Insights by Wasisto Raharjo Jati",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-30"
+        },
+        {
+          "i": 4005,
+          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
+          "p": "CNA Correspondent",
+          "d": "2025-09-29"
+        },
+        {
+          "i": 4281,
+          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-02"
+        },
+        {
+          "i": 4353,
+          "e": "Conversations: Indonesian foreign policy under President Prabowo",
+          "p": "Lowy Institute",
+          "d": "2025-08-26"
+        }
+      ]
+    },
+    {
+      "id": "id-elections",
+      "name": "Indonesian elections",
+      "blurb": "Elections and campaigns in Indonesia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 34,
+      "byYear": {
+        "2019": 2,
+        "2021": 1,
+        "2023": 2,
+        "2024": 14,
+        "2025": 14,
+        "2026": 1
+      },
+      "evidence": {
+        "title": 7,
+        "notes": 21,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 2545,
+          "e": "Your Call: Japan's 'Iron Lady' and Thailand's 'Cannabis King'; Indonesia commits troops to Gaza",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-02-17"
+        },
+        {
+          "i": 3878,
+          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
+          "p": "Southeast Asia Radio",
+          "d": "2025-10-08"
+        },
+        {
+          "i": 3993,
+          "e": "EP108: Indonesia Civil-Military Relations w/ Natalie Sambhi & Reshuffle Insights by Wasisto Raharjo Jati",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-30"
+        },
+        {
+          "i": 4005,
+          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
+          "p": "CNA Correspondent",
+          "d": "2025-09-29"
+        },
+        {
+          "i": 4281,
+          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-02"
+        },
+        {
+          "i": 4353,
+          "e": "Conversations: Indonesian foreign policy under President Prabowo",
+          "p": "Lowy Institute",
+          "d": "2025-08-26"
+        },
+        {
+          "i": 4963,
+          "e": "What does Putin want in Indonesia?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2025-06-30"
+        },
+        {
+          "i": 5204,
+          "e": "Development Futures: Indonesia’s economic policies under Prabowo — new era or same path?",
+          "p": "Lowy Institute",
+          "d": "2025-06-11"
+        }
+      ]
+    },
+    {
+      "id": "sea-government",
+      "name": "Southeast Asia government",
+      "blurb": "Regional SEA/ASEAN politics without a single-country focus.",
+      "kind": "local",
+      "facet": "local",
+      "count": 33,
+      "byYear": {
+        "2019": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 2,
+        "2024": 6,
+        "2025": 16,
+        "2026": 6
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 11,
+        "transcript": 22
+      },
+      "samples": [
+        {
+          "i": 138,
+          "e": "EP156: Rohingya Repatriation",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 1337,
+          "e": "EP138: Shangri-La 2026 - Defence Diplomacy Challenges with Dr. Evan Laksamana",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-06-10"
+        },
+        {
+          "i": 1690,
+          "e": "EP135: Papua Protests with Dr. Hipo Wangge",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-05-06"
+        },
+        {
+          "i": 2113,
+          "e": "EP129:  Iran War and Southeast Asia with James Dorsey",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-03-28"
+        },
+        {
+          "i": 2862,
+          "e": "EP120: Cambodia Scam Centers with Jacob Sims",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-01-17"
+        },
+        {
+          "i": 2925,
+          "e": "EP119: Looking Back at 2025",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-01-11"
+        },
+        {
+          "i": 3133,
+          "e": "EP116: Climate Governance in Southeast Asia with Sharon Seah",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        },
+        {
+          "i": 3140,
+          "e": "EP115: Regional Lessons from Sabah Polls",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        }
+      ]
+    },
+    {
       "id": "startups-venture",
       "name": "Startups & venture",
       "blurb": "Startups and venture capital.",
@@ -14435,6 +15439,428 @@
           "e": "Why are India and Pakistan on the brink of war?",
           "p": "CNA Correspondent",
           "d": "2025-05-11"
+        }
+      ]
+    },
+    {
+      "id": "mm-government",
+      "name": "Myanmar government",
+      "blurb": "Myanmar government, junta, and crisis politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 26,
+      "byYear": {
+        "2020": 1,
+        "2021": 4,
+        "2024": 5,
+        "2025": 11,
+        "2026": 5
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 17,
+        "transcript": 7
+      },
+      "samples": [
+        {
+          "i": 376,
+          "e": "As Myanmar's civil war intensifies, Rohingya Muslims face violence once again",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-11"
+        },
+        {
+          "i": 990,
+          "e": "EP144: Myanmar’s Junta Normalisation with Professor Thitinan Pongsudhirak",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-07-14"
+        },
+        {
+          "i": 1308,
+          "e": "Where is Aung San Suu Kyi?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-06-13"
+        },
+        {
+          "i": 1533,
+          "e": "Myanmar at a crossroads: Five years after the coup",
+          "p": "Lowy Institute",
+          "d": "2026-05-22"
+        },
+        {
+          "i": 2700,
+          "e": "The long emergency: Myanmar since 2021’s military coup",
+          "p": "CNA Correspondent",
+          "d": "2026-02-02"
+        },
+        {
+          "i": 3084,
+          "e": "EP118: Myanmar's Junta Polls w/ Billy Ford",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-21"
+        },
+        {
+          "i": 3682,
+          "e": "EP112: Myanmar and ASEAN with Dr. Moe Thuzar",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-10-28"
+        },
+        {
+          "i": 3748,
+          "e": "What's Next for Myanmar's Revolution and Has Malaysia Made a Difference?",
+          "p": "Beyond the Ballot Box",
+          "d": "2025-10-21"
+        }
+      ]
+    },
+    {
+      "id": "jp-government",
+      "name": "Japanese government",
+      "blurb": "Japanese government and domestic politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 26,
+      "byYear": {
+        "2020": 1,
+        "2022": 2,
+        "2023": 4,
+        "2024": 6,
+        "2025": 8,
+        "2026": 5
+      },
+      "evidence": {
+        "title": 4,
+        "notes": 16,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 1760,
+          "e": "If Australia can't trust the US, can it trust Japan?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-05-01"
+        },
+        {
+          "i": 2186,
+          "e": "Israel and Iran Trade Airstrikes, Trump Meets Japan PM, Kharg Island Future",
+          "p": "Up First from NPR",
+          "d": "2026-03-22"
+        },
+        {
+          "i": 2596,
+          "e": "Takaichi's time: Where is Japan headed under its emboldened 'Iron Lady' leader?",
+          "p": "CNA Correspondent",
+          "d": "2026-02-12"
+        },
+        {
+          "i": 2698,
+          "e": "161 - Japan election preview",
+          "p": "The Tally Room",
+          "d": "2026-02-02"
+        },
+        {
+          "i": 2732,
+          "e": "Japan's PM takes her tough talk on China to the polls",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-01-30"
+        },
+        {
+          "i": 3187,
+          "e": "Taiwan Sparks Tensions: Inside the China-Japan Dispute",
+          "p": "China Global",
+          "d": "2025-12-11"
+        },
+        {
+          "i": 3672,
+          "e": "SNAP Benefits Shutdown, Trump In Japan, Hurricane Melissa",
+          "p": "Up First from NPR",
+          "d": "2025-10-28"
+        },
+        {
+          "i": 3741,
+          "e": "New leader, old problems: What’s next for Japan under Sanae Takaichi?",
+          "p": "CNA Correspondent",
+          "d": "2025-10-22"
+        }
+      ]
+    },
+    {
+      "id": "th-government",
+      "name": "Thai government",
+      "blurb": "Thai government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 23,
+      "byYear": {
+        "2020": 1,
+        "2023": 4,
+        "2024": 6,
+        "2025": 8,
+        "2026": 4
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 12,
+        "transcript": 9
+      },
+      "samples": [
+        {
+          "i": 384,
+          "e": "Prime Minister of Thailand Anutin Charnvirakul",
+          "p": "Lowy Institute",
+          "d": "2026-09-10"
+        },
+        {
+          "i": 1083,
+          "e": "A thousand girls, neon lights: Human toll of Thailand’s sex tourism industry",
+          "p": "The Morning Edition",
+          "d": "2026-07-06"
+        },
+        {
+          "i": 1831,
+          "e": "EP133: Thailand’s Military with Dr. Paul Chambers",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-04-24"
+        },
+        {
+          "i": 2540,
+          "e": "162 - Thailand swings to the right",
+          "p": "The Tally Room",
+          "d": "2026-02-17"
+        },
+        {
+          "i": 4179,
+          "e": "Billionaire behind bars: Thailand’s top court sends ex-PM Thaksin back to jail",
+          "p": "CNA Correspondent",
+          "d": "2025-09-11"
+        },
+        {
+          "i": 4579,
+          "e": "EP100: Southern Thailand's Not So Contained Conflict with Don Pathan",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-08-04"
+        },
+        {
+          "i": 4596,
+          "e": "EP99: Thailand-Cambodia Border Clashes with Professor Gregory Raymond",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-08-03"
+        },
+        {
+          "i": 4690,
+          "e": "EP97: Protecting Myanmar Nationals in Thailand with HRW’s Nadia Hardman",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-07-24"
+        }
+      ]
+    },
+    {
+      "id": "ph-government",
+      "name": "Philippine government",
+      "blurb": "Philippine government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 23,
+      "byYear": {
+        "2022": 3,
+        "2023": 7,
+        "2024": 4,
+        "2025": 9
+      },
+      "evidence": {
+        "title": 9,
+        "notes": 8,
+        "transcript": 6
+      },
+      "samples": [
+        {
+          "i": 3027,
+          "e": "Conversations: Pukpuk, Indonesia, and the Philippines-Taiwan connection",
+          "p": "Lowy Institute",
+          "d": "2025-12-30"
+        },
+        {
+          "i": 3800,
+          "e": "Maria Ressa on what Donald Trump learnt from Rodrigo Duterte and other strongman rulers",
+          "p": "",
+          "d": "2025-10-16"
+        },
+        {
+          "i": 5338,
+          "e": "EP87: Philippines Mid-Term Elections with Professor Ronald Holmes",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-05-31"
+        },
+        {
+          "i": 5520,
+          "e": "EP79: Duterte’s Arrest and its Aftermath with Carlos Conde",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-05-12"
+        },
+        {
+          "i": 5592,
+          "e": "From bullets to ballots, former rebels learn to govern in southern Philippines",
+          "p": "CNA Correspondent",
+          "d": "2025-05-05"
+        },
+        {
+          "i": 5703,
+          "e": "Former Philippine President Rodrigo Duterte has been arrested. Now what?",
+          "p": "CNA Correspondent",
+          "d": "2025-04-24"
+        },
+        {
+          "i": 5740,
+          "e": "Duterte in the Hague: The Philippines and the Geopolitics of International Law",
+          "p": "Asia Geopolitics",
+          "d": "2025-04-21"
+        },
+        {
+          "i": 6006,
+          "e": "The Long Shadow of Duterte's Drug War",
+          "p": "Up First from NPR",
+          "d": "2025-03-23"
+        }
+      ]
+    },
+    {
+      "id": "sea-elections",
+      "name": "Southeast Asia elections",
+      "blurb": "Regional SEA/ASEAN elections without a single-country focus.",
+      "kind": "local",
+      "facet": "local",
+      "count": 21,
+      "byYear": {
+        "2022": 2,
+        "2023": 1,
+        "2024": 3,
+        "2025": 12,
+        "2026": 3
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 5,
+        "transcript": 14
+      },
+      "samples": [
+        {
+          "i": 138,
+          "e": "EP156: Rohingya Repatriation",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 1690,
+          "e": "EP135: Papua Protests with Dr. Hipo Wangge",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-05-06"
+        },
+        {
+          "i": 2925,
+          "e": "EP119: Looking Back at 2025",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2026-01-11"
+        },
+        {
+          "i": 3133,
+          "e": "EP116: Climate Governance in Southeast Asia with Sharon Seah",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        },
+        {
+          "i": 3140,
+          "e": "EP115: Regional Lessons from Sabah Polls",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-12-16"
+        },
+        {
+          "i": 3434,
+          "e": "EP114: AI Governance in Southeast Asia w/ Michael Bak",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-11-18"
+        },
+        {
+          "i": 3908,
+          "e": "EP109: Trends in Transnational Crime with Jason Tower",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-10-06"
+        },
+        {
+          "i": 4068,
+          "e": "EP107: Bangsamoro Election with Georgi Englebrecht",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-22"
+        }
+      ]
+    },
+    {
+      "id": "kr-government",
+      "name": "Korean government",
+      "blurb": "South/North Korean politics and government.",
+      "kind": "local",
+      "facet": "local",
+      "count": 17,
+      "byYear": {
+        "2019": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 2,
+        "2024": 4,
+        "2025": 5,
+        "2026": 3
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 8,
+        "transcript": 7
+      },
+      "samples": [
+        {
+          "i": 637,
+          "e": "Trump, Talibã e Kim Jong-Un - BP 1129",
+          "p": "Petit Journal",
+          "d": "2026-08-17"
+        },
+        {
+          "i": 641,
+          "e": "New Zealand's leadership challenge and the mystery of Kim Jong Un's heir",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-17"
+        },
+        {
+          "i": 1326,
+          "e": "North Korea just made China back down. Is Trump taking note?",
+          "p": "The Morning Edition",
+          "d": "2026-06-11"
+        },
+        {
+          "i": 4265,
+          "e": "Xi Jinping recebe Putin e Kim Jong Un - BP 924",
+          "p": "Petit Journal",
+          "d": "2025-09-03"
+        },
+        {
+          "i": 4305,
+          "e": "Minneapolis Shooting Latest, New Acting CDC Director, North Korean Leader to Beijing",
+          "p": "Up First from NPR",
+          "d": "2025-08-29"
+        },
+        {
+          "i": 4363,
+          "e": "Trump Threatens Chicago, DOJ Latest, US-South Korea Summit",
+          "p": "Up First from NPR",
+          "d": "2025-08-25"
+        },
+        {
+          "i": 6323,
+          "e": "After insurrection and impeachment, what's next for South Korea's Yoon Suk Yeol?",
+          "p": "CNA Correspondent",
+          "d": "2025-02-12"
+        },
+        {
+          "i": 6702,
+          "e": "What happens now after the South Korean president's failed martial law move?",
+          "p": "CNA Correspondent",
+          "d": "2025-01-04"
         }
       ]
     },
@@ -14581,6 +16007,112 @@
       ]
     },
     {
+      "id": "sg-government",
+      "name": "Singapore government",
+      "blurb": "Singapore government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 6,
+      "byYear": {
+        "2024": 2,
+        "2025": 2,
+        "2026": 2
+      },
+      "evidence": {
+        "title": 1,
+        "notes": 2,
+        "transcript": 3
+      },
+      "samples": [
+        {
+          "i": 1057,
+          "e": "Does Singapore Need More Democracy?",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-07-08"
+        },
+        {
+          "i": 1964,
+          "e": "Can Singapore help with Australia’s fuel problem?",
+          "p": "7am",
+          "d": "2026-04-11"
+        },
+        {
+          "i": 5105,
+          "e": "EP93: Southeast Asia Goes Nuclear? A Look at Singapore with Dr. Alvin Chew",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-06-19"
+        },
+        {
+          "i": 5340,
+          "e": "EP85: Singapore Goes to Polls with Dr. Elvin Ong",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-05-31"
+        },
+        {
+          "i": 8002,
+          "e": "PM Lawrence Wong's Priorities For Singapore",
+          "p": "Morning Brief",
+          "d": "2024-08-10"
+        },
+        {
+          "i": 8925,
+          "e": "EP37: A More Resilient Singapore: Lee Hsien Loong’s Legacy in Conversation with Dr. Bilveer Singh",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2024-05-13"
+        }
+      ]
+    },
+    {
+      "id": "pk-government",
+      "name": "Pakistani government",
+      "blurb": "Pakistani government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 5,
+      "byYear": {
+        "2022": 2,
+        "2023": 1,
+        "2025": 2
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 2,
+        "transcript": 1
+      },
+      "samples": [
+        {
+          "i": 5032,
+          "e": "China’s Role in the India-Pakistan Clash",
+          "p": "China Global",
+          "d": "2025-06-25"
+        },
+        {
+          "i": 5539,
+          "e": "Why are India and Pakistan on the brink of war?",
+          "p": "CNA Correspondent",
+          "d": "2025-05-11"
+        },
+        {
+          "i": 13169,
+          "e": "Bank Rescues, California Central Valley Floods, Imran Khan Rally in Pakistan",
+          "p": "Up First from NPR",
+          "d": "2023-03-24"
+        },
+        {
+          "i": 14155,
+          "e": "Non-proliferation, infantry fighting vehicles, floods in Pakistan, Federal Budget & Defence",
+          "p": "ASPI Podcast: Policy, Guns & Money",
+          "d": "2022-11-13"
+        },
+        {
+          "i": 15670,
+          "e": "Continuity and Change in Pakistani Politics: The End of Imran Khan and What’s Next",
+          "p": "Asia Geopolitics",
+          "d": "2022-04-17"
+        }
+      ]
+    },
+    {
       "id": "af-government",
       "name": "African government",
       "blurb": "Governments across Africa.",
@@ -14628,6 +16160,36 @@
           "e": "Africa Day 2021",
           "p": "ASPI Podcast: Policy, Guns & Money",
           "d": "2021-06-11"
+        }
+      ]
+    },
+    {
+      "id": "vn-government",
+      "name": "Vietnamese government",
+      "blurb": "Vietnamese government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 2,
+      "byYear": {
+        "2025": 2
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 1,
+        "transcript": 1
+      },
+      "samples": [
+        {
+          "i": 4871,
+          "e": "EP96: Vietnam’s Administration Restructuring w/ Hanh Nguyen",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-07-07"
+        },
+        {
+          "i": 5596,
+          "e": "Reunified Vietnam at 50, with Bich Tran",
+          "p": "Asia In-Depth",
+          "d": "2025-05-05"
         }
       ]
     }
