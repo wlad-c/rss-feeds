@@ -1,21 +1,25 @@
 {
   "harvest": {
-    "tried": 0,
-    "fetched": 0,
-    "upserted": 0,
+    "tried": 2,
+    "fetched": 2,
+    "upserted": 2,
     "noCaptions": 0,
     "rateLimited": 0,
-    "pairs": 0,
-    "byBackend": {},
-    "byShow": {},
+    "pairs": 2,
+    "byBackend": {
+      "yt_transcript_net": 2
+    },
+    "byShow": {
+      "7am": 2
+    },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 9205,
-    "withPublisherOrSttTranscript": 2503,
-    "withLongText2000plus": 2964,
-    "pctTranscript": 11.37,
-    "pctLongText": 13.47,
+    "withAnyText": 9337,
+    "withPublisherOrSttTranscript": 2635,
+    "withLongText2000plus": 3096,
+    "pctTranscript": 11.97,
+    "pctLongText": 14.07,
     "bySrc": {
       "show-notes": {
         "count": 6702,
@@ -26,13 +30,15 @@
         "chars": 254513
       },
       "transcript": {
-        "count": 1690,
-        "chars": 31872197
+        "count": 1702,
+        "chars": 32049141
       },
       "youtube": {
-        "count": 798,
-        "chars": 25205129
+        "count": 918,
+        "chars": 28324202
       }
     }
-  }
+  },
+  "lastCheckpoint": "2026-10-18T13:13Z",
+  "youtubeCount": 946
 }
