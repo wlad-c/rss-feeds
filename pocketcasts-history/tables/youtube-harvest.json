@@ -1,25 +1,25 @@
 {
   "harvest": {
     "tried": 4,
-    "fetched": 2,
-    "upserted": 2,
+    "fetched": 4,
+    "upserted": 4,
     "noCaptions": 0,
     "rateLimited": 0,
     "pairs": 4,
     "byBackend": {
-      "gemini": 2
+      "gemini": 4
     },
     "byShow": {
-      "O Assunto": 2
+      "The Daily": 4
     },
     "errors": []
   },
   "coverage": {
-    "withAnyText": 8399,
-    "withPublisherOrSttTranscript": 1490,
-    "withLongText2000plus": 1953,
+    "withAnyText": 8400,
+    "withPublisherOrSttTranscript": 1491,
+    "withLongText2000plus": 1954,
     "pctTranscript": 6.77,
-    "pctLongText": 8.87,
+    "pctLongText": 8.88,
     "bySrc": {
       "show-notes": {
         "count": 6909,
@@ -34,8 +34,8 @@
         "chars": 21800239
       },
       "youtube": {
-        "count": 127,
-        "chars": 8403846
+        "count": 128,
+        "chars": 8448721
       }
     }
   }
