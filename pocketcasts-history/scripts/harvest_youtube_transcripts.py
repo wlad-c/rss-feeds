@@ -1186,6 +1186,10 @@ def main() -> None:
             f"← {vid['id']} ({vid.get('matchScore')})",
             flush=True,
         )
+        # Re-check DB: peer workers may have filled this episode since pairs built.
+        if not needs_youtube(conn, idx, episodes):
+            print("  skipped (already have long transcript)", flush=True)
+            continue
         try:
             dur = vid.get("duration")
             if not dur:
