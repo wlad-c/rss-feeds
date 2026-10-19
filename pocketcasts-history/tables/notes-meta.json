@@ -1,30 +1,30 @@
 {
   "totalEpisodes": 22010,
-  "withAnyText": 10779,
-  "withPublisherOrSttTranscript": 4248,
-  "withLongText2000plus": 4676,
-  "pctAnyText": 48.97,
-  "pctTranscript": 19.3,
-  "pctLongText": 21.24,
+  "withAnyText": 10799,
+  "withPublisherOrSttTranscript": 4268,
+  "withLongText2000plus": 4696,
+  "pctAnyText": 49.06,
+  "pctTranscript": 19.39,
+  "pctLongText": 21.34,
   "bySrc": {
     "show-notes": {
       "count": 6531,
       "chars": 6374330
     },
     "stt": {
-      "count": 476,
-      "chars": 8117737
+      "count": 485,
+      "chars": 8271044
     },
     "transcript": {
-      "count": 1697,
-      "chars": 32010588
+      "count": 1700,
+      "chars": 32047741
     },
     "youtube": {
-      "count": 2075,
-      "chars": 53332431
+      "count": 2083,
+      "chars": 53432189
     }
   },
-  "notesStored": 10816,
+  "notesStored": 10799,
   "snippetChars": 900,
   "store": "transcripts/full.sqlite",
   "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/)."
