@@ -49,6 +49,8 @@ jobs:
 
       - uses: actions/checkout@v4
         if: steps.tz.outputs.should_run == 'true'
+        with:
+          lfs: true
 
       - name: Set up Python
         if: steps.tz.outputs.should_run == 'true'

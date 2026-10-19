@@ -682,7 +682,12 @@ def main() -> None:
     # while only remapping notes — that caused cross-show theme contamination.
     sys.path.insert(0, str(ROOT / "scripts"))
     sqlite_path = ROOT / "transcripts" / "full.sqlite"
-    if sqlite_path.exists():
+    sqlite_ready = False
+    if sqlite_path.exists() and sqlite_path.stat().st_size > 1024:
+        # Skip Git LFS pointer stubs (small text files starting with "version https://git-lfs").
+        head = sqlite_path.read_bytes()[:64]
+        sqlite_ready = not head.startswith(b"version https://git-lfs")
+    if sqlite_ready:
         from transcript_store import (
             assert_aligned,
             connect,
@@ -716,13 +721,20 @@ def main() -> None:
         finally:
             conn.close()
     else:
+        print(
+            "transcript sqlite missing or Git LFS pointer — "
+            "remapping notes.json only (run: git lfs pull)"
+        )
         notes = remap_notes(old_compact, compact)
         (TABLES / "notes.json").write_text(
             json.dumps(notes, ensure_ascii=False, separators=(",", ":")),
             encoding="utf-8",
         )
     write_excel(rows, coverage, built["meta"])
-    run_themes()
+    if os.environ.get("SKIP_THEMES") == "1":
+        print("SKIP_THEMES=1 — leaving existing theme tables")
+    else:
+        run_themes()
     sync_docs()
     run_standalone()
     print(
