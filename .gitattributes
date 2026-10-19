@@ -1,0 +1,2 @@
+pocketcasts-history/transcripts/full.sqlite filter=lfs diff=lfs merge=lfs -text
+pocketcasts-history/transcripts/*.sqlite filter=lfs diff=lfs merge=lfs -text
