@@ -1932,6 +1932,7 @@
     let hoursTotal = 0;
     let progressSum = 0;
     let progressN = 0;
+    const finishLagDays = [];
     const eps = state.episodes || [];
     const matchOpts = ignoreTheme ? { theme: "" } : null;
     const matchedIdxs = matchedEpisodeIndexes(matchOpts);
@@ -1955,6 +1956,18 @@
       if (e.prog !== "" && e.prog != null && !Number.isNaN(Number(e.prog))) {
         progressSum += Number(e.prog);
         progressN += 1;
+      }
+      // Release → fully listened lag (Played only; pub date vs listen timestamp).
+      if (e.st === "Played" && e.pub && e.t) {
+        const pubStr = String(e.pub);
+        const pubMs = Date.parse(
+          pubStr.length === 10 ? `${pubStr}T00:00:00Z` : pubStr
+        );
+        const listen = parseListenUtc(e.t);
+        if (listen && Number.isFinite(pubMs)) {
+          const lag = (listen.getTime() - pubMs) / 86400000;
+          if (lag >= 0) finishLagDays.push(lag);
+        }
       }
       const name = e.p || "Unknown";
       const year = e.y != null && e.y !== "" ? String(e.y) : String(e.d || "").slice(0, 4);
@@ -2056,6 +2069,7 @@
         episodeCount > 0 ? Math.round(((hoursTotal * 60) / episodeCount) * 10) / 10 : null,
       avgProgressPct:
         progressN > 0 ? Math.round((progressSum / progressN) * 10) / 10 : null,
+      medianFinishLagDays: medianOf(finishLagDays),
       byPodcastHours,
       byPodcastCount,
       byYearHours,
@@ -2242,6 +2256,27 @@
     };
   }
 
+  /** Median of a numeric array. Mutates a copy via sort; returns null if empty. */
+  function medianOf(values) {
+    const n = values?.length || 0;
+    if (!n) return null;
+    const sorted = values.slice().sort((a, b) => a - b);
+    const mid = Math.floor(n / 2);
+    if (n % 2) return sorted[mid];
+    return (sorted[mid - 1] + sorted[mid]) / 2;
+  }
+
+  /** Compact duration for hero stats — hours below 1 day, else days. */
+  function formatLagDuration(days) {
+    if (days == null || !Number.isFinite(days)) return "—";
+    if (days < 1) {
+      const hours = Math.round(days * 24 * 10) / 10;
+      return `${hours}h`;
+    }
+    const rounded = Math.round(days * 10) / 10;
+    return `${rounded}d`;
+  }
+
   /** MMM YYYY — e.g. Jun 2025 (month buckets have no day). */
   function formatMonthKey(ym) {
     const s = String(ym || "");
@@ -2378,11 +2413,10 @@
     return { points, rolling, cumulative };
   }
 
-  function listeningDateSpan(stats) {
+  function listeningDateBounds(stats) {
     const dates = Object.keys(stats.byDateCount || {}).sort();
-    if (!dates.length) return "—";
-    if (dates.length === 1) return formatDateShort(dates[0]);
-    return `${formatDateShort(dates[0])} – ${formatDateShort(dates[dates.length - 1])}`;
+    if (!dates.length) return null;
+    return { from: dates[0], to: dates[dates.length - 1] };
   }
 
   function avgEpisodesPerDay(stats) {
@@ -2400,7 +2434,7 @@
     if (!state.agg || !$("#heroStats")) return;
     const stats = ensureChartStats();
     const hours = metricIsHours();
-    const span = listeningDateSpan(stats);
+    const bounds = listeningDateBounds(stats);
     const monthPeak = peakFromMap(
       hours ? stats.byMonthHours : stats.byMonthCount,
       hours
@@ -2413,6 +2447,13 @@
     const dayValue = dayPeak
       ? `${formatDateKey(dayPeak.key)} · ${fmtMetric(dayPeak.value)}${hours ? "h" : ""}`
       : "—";
+
+    const meta = $("#exportedAt");
+    if (meta) {
+      meta.textContent = bounds
+        ? `Stats from ${formatUiDate(bounds.from)} and ${formatUiDate(bounds.to)}`
+        : "";
+    }
 
     // One 3×3 grid (no separate insights strip) so rows share the same card.
     const items = [
@@ -2427,7 +2468,7 @@
         "Finish rate",
         stats.avgProgressPct != null ? `${stats.avgProgressPct}%` : "—",
       ],
-      ["Span", span],
+      ["Median finish lag", formatLagDuration(stats.medianFinishLagDays)],
       ["Busiest month", monthValue],
       ["Most active day", dayValue],
       ["Avg episodes / day", avgDay != null ? String(avgDay) : "—"],
@@ -3970,7 +4011,6 @@
       $("#bootStatus").textContent = "Indexing listening history…";
       prepareEpisodeIndex();
 
-      $("#exportedAt").textContent = `Snapshot ${formatUiDate(agg.meta.exportedAt?.slice(0, 10) || "")}`;
       renderHeroStats();
       populateFilters();
       syncPeriodControls();
