@@ -186,7 +186,14 @@ def get_full(
     *,
     expect_podcast: str | None = None,
     expect_episode: str | None = None,
+    identity_fallback: bool = False,
 ) -> dict | None:
+    """Lookup by episode_idx.
+
+    When ``expect_*`` is set and the idx row is missing or mismatched, optionally
+    fall back to (podcast, episode) identity. Default off so bulk scans
+    (pick_candidates) stay O(1) per episode after repair.
+    """
     row = conn.execute(
         "SELECT episode_idx, podcast, episode, src, url, chars, text FROM transcripts WHERE episode_idx=?",
         (int(episode_idx),),
@@ -198,8 +205,9 @@ def get_full(
             expect_episode
         ):
             return _row_to_dict(row)
-    # Idx miss or drift: fall back to stable (podcast, episode) identity.
-    if expect_podcast is not None or expect_episode is not None:
+    if identity_fallback and (
+        expect_podcast is not None or expect_episode is not None
+    ):
         return get_full_by_identity(conn, expect_podcast, expect_episode)
     return None
 
