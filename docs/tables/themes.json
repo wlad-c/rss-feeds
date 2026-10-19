@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 11346,
+      "title": 11340,
       "youtube": 2077,
       "transcript": 1710,
-      "stt": 326,
+      "stt": 332,
       "show-notes": 6551
     },
-    "episodesWithTranscriptEvidence": 4113,
+    "episodesWithTranscriptEvidence": 4119,
     "episodesWithNotesEvidence": 6551,
-    "episodesWithTitleOnlyEvidence": 11346,
+    "episodesWithTitleOnlyEvidence": 11340,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -178,7 +178,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 843.0,
+      "hours": 842.4,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -190,9 +190,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2456,
+        "title": 2450,
         "notes": 1069,
-        "transcript": 2116
+        "transcript": 2122
       },
       "samples": [
         {
@@ -402,22 +402,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2310,
-      "hours": 360.22,
+      "count": 2313,
+      "hours": 360.43,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
         "2022": 207,
         "2023": 245,
-        "2024": 341,
-        "2025": 586,
+        "2024": 342,
+        "2025": 588,
         "2026": 526
       },
       "evidence": {
-        "title": 943,
+        "title": 941,
         "notes": 769,
-        "transcript": 598
+        "transcript": 603
       },
       "samples": [
         {
@@ -702,22 +702,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2056,
-      "hours": 179.82,
+      "count": 2057,
+      "hours": 179.84,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
         "2023": 241,
-        "2024": 282,
+        "2024": 283,
         "2025": 510,
         "2026": 629
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1488
+        "transcript": 1489
       },
       "samples": [
         {
@@ -852,8 +852,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1257,
-      "hours": 132.64,
+      "count": 1259,
+      "hours": 132.82,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -861,13 +861,13 @@
         "2022": 99,
         "2023": 190,
         "2024": 258,
-        "2025": 263,
+        "2025": 265,
         "2026": 215
       },
       "evidence": {
         "title": 45,
         "notes": 724,
-        "transcript": 488
+        "transcript": 490
       },
       "samples": [
         {
@@ -1152,8 +1152,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1103,
-      "hours": 104.59,
+      "count": 1104,
+      "hours": 104.65,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1161,13 +1161,13 @@
         "2022": 82,
         "2023": 138,
         "2024": 148,
-        "2025": 362,
+        "2025": 363,
         "2026": 311
       },
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 893
+        "transcript": 894
       },
       "samples": [
         {
@@ -1302,22 +1302,22 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 884,
-      "hours": 101.11,
+      "count": 887,
+      "hours": 101.22,
       "byYear": {
         "2019": 3,
         "2020": 141,
         "2021": 96,
         "2022": 92,
         "2023": 119,
-        "2024": 132,
-        "2025": 195,
+        "2024": 133,
+        "2025": 197,
         "2026": 106
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 319
+        "transcript": 322
       },
       "samples": [
         {
@@ -1528,7 +1528,7 @@
       "kind": "local",
       "facet": "local",
       "count": 1008,
-      "hours": 88.25,
+      "hours": 88.18,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -1540,9 +1540,9 @@
         "2026": 293
       },
       "evidence": {
-        "title": 137,
+        "title": 136,
         "notes": 300,
-        "transcript": 571
+        "transcript": 572
       },
       "samples": [
         {
@@ -2127,21 +2127,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 625,
-      "hours": 54.65,
+      "count": 626,
+      "hours": 54.69,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 81,
         "2024": 104,
-        "2025": 186,
+        "2025": 187,
         "2026": 143
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 463
+        "transcript": 464
       },
       "samples": [
         {
@@ -2799,8 +2799,8 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 366,
-      "hours": 45.39,
+      "count": 367,
+      "hours": 45.41,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -2808,13 +2808,13 @@
         "2022": 59,
         "2023": 71,
         "2024": 88,
-        "2025": 44,
+        "2025": 45,
         "2026": 45
       },
       "evidence": {
         "title": 96,
         "notes": 140,
-        "transcript": 130
+        "transcript": 131
       },
       "samples": [
         {
@@ -3398,8 +3398,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 328,
-      "hours": 32.78,
+      "count": 329,
+      "hours": 32.79,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -3407,13 +3407,13 @@
         "2022": 39,
         "2023": 35,
         "2024": 49,
-        "2025": 69,
+        "2025": 70,
         "2026": 51
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 143
+        "transcript": 144
       },
       "samples": [
         {
@@ -3697,8 +3697,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 385,
-      "hours": 26.69,
+      "count": 386,
+      "hours": 26.71,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -3706,13 +3706,13 @@
         "2022": 24,
         "2023": 28,
         "2024": 46,
-        "2025": 101,
+        "2025": 102,
         "2026": 102
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 219
+        "transcript": 220
       },
       "samples": [
         {
@@ -6231,21 +6231,21 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 161,
-      "hours": 7.42,
+      "count": 162,
+      "hours": 7.43,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
         "2023": 23,
-        "2024": 30,
+        "2024": 31,
         "2025": 38,
         "2026": 47
       },
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 147
+        "transcript": 148
       },
       "samples": [
         {
@@ -8475,7 +8475,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 843.0,
+      "hours": 842.4,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8487,9 +8487,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2456,
+        "title": 2450,
         "notes": 1069,
-        "transcript": 2116
+        "transcript": 2122
       },
       "samples": [
         {
@@ -8696,22 +8696,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2310,
-      "hours": 360.22,
+      "count": 2313,
+      "hours": 360.43,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
         "2022": 207,
         "2023": 245,
-        "2024": 341,
-        "2025": 586,
+        "2024": 342,
+        "2025": 588,
         "2026": 526
       },
       "evidence": {
-        "title": 943,
+        "title": 941,
         "notes": 769,
-        "transcript": 598
+        "transcript": 603
       },
       "samples": [
         {
@@ -8992,22 +8992,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2056,
-      "hours": 179.82,
+      "count": 2057,
+      "hours": 179.84,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
         "2023": 241,
-        "2024": 282,
+        "2024": 283,
         "2025": 510,
         "2026": 629
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1488
+        "transcript": 1489
       },
       "samples": [
         {
@@ -9140,8 +9140,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1257,
-      "hours": 132.64,
+      "count": 1259,
+      "hours": 132.82,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9149,13 +9149,13 @@
         "2022": 99,
         "2023": 190,
         "2024": 258,
-        "2025": 263,
+        "2025": 265,
         "2026": 215
       },
       "evidence": {
         "title": 45,
         "notes": 724,
-        "transcript": 488
+        "transcript": 490
       },
       "samples": [
         {
@@ -9436,8 +9436,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1103,
-      "hours": 104.59,
+      "count": 1104,
+      "hours": 104.65,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9445,13 +9445,13 @@
         "2022": 82,
         "2023": 138,
         "2024": 148,
-        "2025": 362,
+        "2025": 363,
         "2026": 311
       },
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 893
+        "transcript": 894
       },
       "samples": [
         {
@@ -9584,22 +9584,22 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 884,
-      "hours": 101.11,
+      "count": 887,
+      "hours": 101.22,
       "byYear": {
         "2019": 3,
         "2020": 141,
         "2021": 96,
         "2022": 92,
         "2023": 119,
-        "2024": 132,
-        "2025": 195,
+        "2024": 133,
+        "2025": 197,
         "2026": 106
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 319
+        "transcript": 322
       },
       "samples": [
         {
@@ -9807,7 +9807,7 @@
       "kind": "local",
       "facet": "local",
       "count": 1008,
-      "hours": 88.25,
+      "hours": 88.18,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -9819,9 +9819,9 @@
         "2026": 293
       },
       "evidence": {
-        "title": 137,
+        "title": 136,
         "notes": 300,
-        "transcript": 571
+        "transcript": 572
       },
       "samples": [
         {
@@ -10398,21 +10398,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 625,
-      "hours": 54.65,
+      "count": 626,
+      "hours": 54.69,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 81,
         "2024": 104,
-        "2025": 186,
+        "2025": 187,
         "2026": 143
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 463
+        "transcript": 464
       },
       "samples": [
         {
@@ -11061,8 +11061,8 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 366,
-      "hours": 45.39,
+      "count": 367,
+      "hours": 45.41,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -11070,13 +11070,13 @@
         "2022": 59,
         "2023": 71,
         "2024": 88,
-        "2025": 44,
+        "2025": 45,
         "2026": 45
       },
       "evidence": {
         "title": 96,
         "notes": 140,
-        "transcript": 130
+        "transcript": 131
       },
       "samples": [
         {
@@ -11652,8 +11652,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 328,
-      "hours": 32.78,
+      "count": 329,
+      "hours": 32.79,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -11661,13 +11661,13 @@
         "2022": 39,
         "2023": 35,
         "2024": 49,
-        "2025": 69,
+        "2025": 70,
         "2026": 51
       },
       "evidence": {
         "title": 4,
         "notes": 181,
-        "transcript": 143
+        "transcript": 144
       },
       "samples": [
         {
@@ -11947,8 +11947,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 385,
-      "hours": 26.69,
+      "count": 386,
+      "hours": 26.71,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -11956,13 +11956,13 @@
         "2022": 24,
         "2023": 28,
         "2024": 46,
-        "2025": 101,
+        "2025": 102,
         "2026": 102
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 219
+        "transcript": 220
       },
       "samples": [
         {
@@ -14447,21 +14447,21 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 161,
-      "hours": 7.42,
+      "count": 162,
+      "hours": 7.43,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
         "2023": 23,
-        "2024": 30,
+        "2024": 31,
         "2025": 38,
         "2026": 47
       },
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 147
+        "transcript": 148
       },
       "samples": [
         {
