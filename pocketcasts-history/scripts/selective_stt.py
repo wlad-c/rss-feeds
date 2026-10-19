@@ -122,8 +122,40 @@ def dur_minutes(ep: dict) -> float:
     return 25.0
 
 
+def _row_is_good(src: str, chars: int) -> bool:
+    """Publisher/YouTube captions ≥1200 chars, or any usable prior STT."""
+    if src in ("transcript", "youtube") and chars >= 1200:
+        return True
+    if src == "stt" and chars >= 80:
+        return True
+    return False
+
+
+def load_already_good_keys(conn) -> set[tuple[str, str]]:
+    """Preload (podcast, episode) identities that must not be STT'd again.
+
+    Identity-keyed so pick_candidates stays correct after episodes.json reorder
+    without an O(n) SQL fallback per episode.
+    """
+    good: set[tuple[str, str]] = set()
+    for podcast, episode, src, chars in conn.execute(
+        "SELECT podcast, episode, src, chars FROM transcripts"
+    ):
+        if not _row_is_good(src or "", int(chars or 0)):
+            continue
+        key = (normalize(podcast or ""), normalize(episode or ""))
+        if key[0] and key[1]:
+            good.add(key)
+    return good
+
+
 def already_good(
-    conn, idx: int, episodes: list[dict], min_chars: int = 2000
+    conn,
+    idx: int,
+    episodes: list[dict],
+    min_chars: int = 2000,
+    *,
+    good_keys: set[tuple[str, str]] | None = None,
 ) -> bool:
     """Skip episodes that already have a reliable full transcript.
 
@@ -134,23 +166,21 @@ def already_good(
     usable text is treated as done so we do not re-Whisper the same clip.
     """
     ep = episodes[idx] if 0 <= idx < len(episodes) else {}
+    if good_keys is not None:
+        key = (normalize(ep.get("p") or ""), normalize(ep.get("e") or ""))
+        if key in good_keys:
+            return True
+        return False
     row = get_full(
         conn,
         idx,
         expect_podcast=ep.get("p"),
         expect_episode=ep.get("e"),
+        identity_fallback=True,
     )
     if not row:
         return False
-    src = row["src"]
-    chars = int(row["chars"] or 0)
-    # Publisher / YouTube captions are highest-trust free sources.
-    if src in ("transcript", "youtube") and chars >= 1200:
-        return True
-    # Already STT'd (including short promos) — do not re-burn CPU.
-    if src == "stt" and chars >= 80:
-        return True
-    return False
+    return _row_is_good(row["src"], int(row["chars"] or 0))
 
 
 def audio_url_ok(url: str) -> bool:
@@ -348,12 +378,13 @@ def pick_candidates(
     show_rank = {n: i for i, n in enumerate(PRIORITY_SHOWS)}
     counts = Counter(ep.get("p") for ep in episodes)
     skip = load_stt_skip()
+    good_keys = load_already_good_keys(conn)
     scored: list[tuple[float, int]] = []
     for i, ep in enumerate(episodes):
         y = int(ep.get("y") or 0)
         if years and y not in years:
             continue
-        if already_good(conn, i, episodes):
+        if already_good(conn, i, episodes, good_keys=good_keys):
             continue
         pod = ep.get("p") or ""
         if pod not in show_rank and counts[pod] < 200:
