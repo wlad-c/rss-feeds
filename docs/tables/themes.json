@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 11292,
+      "title": 11281,
       "youtube": 2077,
       "transcript": 1710,
-      "stt": 380,
+      "stt": 391,
       "show-notes": 6551
     },
-    "episodesWithTranscriptEvidence": 4167,
+    "episodesWithTranscriptEvidence": 4178,
     "episodesWithNotesEvidence": 6551,
-    "episodesWithTitleOnlyEvidence": 11292,
+    "episodesWithTitleOnlyEvidence": 11281,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -178,7 +178,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 835.96,
+      "hours": 833.97,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -190,9 +190,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2402,
+        "title": 2391,
         "notes": 1069,
-        "transcript": 2170
+        "transcript": 2181
       },
       "samples": [
         {
@@ -402,22 +402,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2324,
-      "hours": 360.19,
+      "count": 2327,
+      "hours": 360.22,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
         "2022": 207,
         "2023": 245,
-        "2024": 346,
-        "2025": 594,
+        "2024": 347,
+        "2025": 596,
         "2026": 527
       },
       "evidence": {
-        "title": 930,
+        "title": 928,
         "notes": 769,
-        "transcript": 625
+        "transcript": 630
       },
       "samples": [
         {
@@ -552,22 +552,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2778,
-      "hours": 234.61,
+      "count": 2781,
+      "hours": 234.62,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
         "2023": 431,
-        "2024": 454,
-        "2025": 610,
+        "2024": 455,
+        "2025": 612,
         "2026": 574
       },
       "evidence": {
-        "title": 499,
+        "title": 498,
         "notes": 1200,
-        "transcript": 1079
+        "transcript": 1083
       },
       "samples": [
         {
@@ -702,22 +702,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2074,
-      "hours": 180.38,
+      "count": 2078,
+      "hours": 180.51,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
         "2023": 241,
-        "2024": 285,
-        "2025": 524,
+        "2024": 286,
+        "2025": 527,
         "2026": 630
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1506
+        "transcript": 1510
       },
       "samples": [
         {
@@ -852,22 +852,22 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1283,
-      "hours": 134.61,
+      "count": 1289,
+      "hours": 135.37,
       "byYear": {
         "2019": 2,
         "2020": 114,
         "2021": 116,
         "2022": 99,
         "2023": 190,
-        "2024": 263,
-        "2025": 282,
+        "2024": 264,
+        "2025": 287,
         "2026": 217
       },
       "evidence": {
         "title": 45,
         "notes": 724,
-        "transcript": 514
+        "transcript": 520
       },
       "samples": [
         {
@@ -997,88 +997,13 @@
       "children": []
     },
     {
-      "id": "israel-gaza-war",
-      "name": "Israel–Gaza war",
-      "blurb": "Israel–Gaza war coverage.",
-      "kind": "story",
-      "facet": "story",
-      "count": 865,
-      "hours": 109.3,
-      "byYear": {
-        "2019": 16,
-        "2020": 13,
-        "2021": 18,
-        "2022": 10,
-        "2023": 210,
-        "2024": 262,
-        "2025": 238,
-        "2026": 98
-      },
-      "evidence": {
-        "title": 445,
-        "notes": 223,
-        "transcript": 197
-      },
-      "samples": [
-        {
-          "i": 37,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 61,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 63,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 100,
-          "e": "Could the Flydubai attack keep Netanyahu in power?",
-          "p": "7am",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 105,
-          "e": "'Frozen on October 7': Why Israel hasn't moved on",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 173,
-          "e": "What did Netanyahu know before October 7?",
-          "p": "ABC News Daily",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 223,
-          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
-          "p": "Up First from NPR",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 350,
-          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-14"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "climate-energy",
       "name": "Climate & energy",
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1192,
-      "hours": 109.21,
+      "count": 1196,
+      "hours": 109.32,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -1086,13 +1011,13 @@
         "2022": 154,
         "2023": 181,
         "2024": 163,
-        "2025": 216,
+        "2025": 220,
         "2026": 257
       },
       "evidence": {
         "title": 192,
         "notes": 552,
-        "transcript": 448
+        "transcript": 452
       },
       "samples": [
         {
@@ -1147,13 +1072,88 @@
       "children": []
     },
     {
+      "id": "israel-gaza-war",
+      "name": "Israel–Gaza war",
+      "blurb": "Israel–Gaza war coverage.",
+      "kind": "story",
+      "facet": "story",
+      "count": 865,
+      "hours": 109.32,
+      "byYear": {
+        "2019": 16,
+        "2020": 13,
+        "2021": 18,
+        "2022": 10,
+        "2023": 210,
+        "2024": 262,
+        "2025": 238,
+        "2026": 98
+      },
+      "evidence": {
+        "title": 443,
+        "notes": 223,
+        "transcript": 199
+      },
+      "samples": [
+        {
+          "i": 37,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 61,
+          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 63,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 100,
+          "e": "Could the Flydubai attack keep Netanyahu in power?",
+          "p": "7am",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 105,
+          "e": "'Frozen on October 7': Why Israel hasn't moved on",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 173,
+          "e": "What did Netanyahu know before October 7?",
+          "p": "ABC News Daily",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 223,
+          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
+          "p": "Up First from NPR",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 350,
+          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-14"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "ideas-society",
       "name": "Ideas & society",
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1113,
-      "hours": 104.83,
+      "count": 1116,
+      "hours": 104.94,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1161,13 +1161,13 @@
         "2022": 82,
         "2023": 138,
         "2024": 150,
-        "2025": 370,
+        "2025": 373,
         "2026": 311
       },
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 903
+        "transcript": 906
       },
       "samples": [
         {
@@ -1302,8 +1302,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 890,
-      "hours": 101.27,
+      "count": 891,
+      "hours": 101.33,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -1311,13 +1311,13 @@
         "2022": 92,
         "2023": 119,
         "2024": 133,
-        "2025": 198,
+        "2025": 199,
         "2026": 108
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 325
+        "transcript": 326
       },
       "samples": [
         {
@@ -1452,22 +1452,22 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1023,
-      "hours": 89.17,
+      "count": 1026,
+      "hours": 89.26,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
         "2022": 89,
         "2023": 147,
-        "2024": 141,
-        "2025": 248,
+        "2024": 142,
+        "2025": 250,
         "2026": 294
       },
       "evidence": {
-        "title": 133,
+        "title": 132,
         "notes": 300,
-        "transcript": 590
+        "transcript": 594
       },
       "samples": [
         {
@@ -1527,8 +1527,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 736,
-      "hours": 88.33,
+      "count": 738,
+      "hours": 88.4,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -1536,13 +1536,13 @@
         "2022": 41,
         "2023": 128,
         "2024": 153,
-        "2025": 161,
+        "2025": 163,
         "2026": 184
       },
       "evidence": {
         "title": 5,
         "notes": 419,
-        "transcript": 312
+        "transcript": 314
       },
       "samples": [
         {
@@ -1752,22 +1752,22 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 787,
-      "hours": 65.72,
+      "count": 790,
+      "hours": 65.91,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
         "2022": 65,
         "2023": 93,
-        "2024": 94,
-        "2025": 177,
+        "2024": 95,
+        "2025": 179,
         "2026": 229
       },
       "evidence": {
-        "title": 133,
+        "title": 132,
         "notes": 194,
-        "transcript": 460
+        "transcript": 464
       },
       "samples": [
         {
@@ -1902,22 +1902,22 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 770,
-      "hours": 59.41,
+      "count": 771,
+      "hours": 59.44,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
         "2023": 87,
-        "2024": 154,
+        "2024": 155,
         "2025": 240,
         "2026": 238
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 599
+        "transcript": 600
       },
       "samples": [
         {
@@ -2127,21 +2127,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 631,
-      "hours": 55.01,
+      "count": 632,
+      "hours": 55.05,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 81,
         "2024": 104,
-        "2025": 191,
+        "2025": 192,
         "2026": 144
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 469
+        "transcript": 470
       },
       "samples": [
         {
@@ -2351,8 +2351,8 @@
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 354,
-      "hours": 51.64,
+      "count": 355,
+      "hours": 51.71,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -2360,13 +2360,13 @@
         "2022": 35,
         "2023": 35,
         "2024": 54,
-        "2025": 90,
+        "2025": 91,
         "2026": 97
       },
       "evidence": {
         "title": 0,
         "notes": 157,
-        "transcript": 197
+        "transcript": 198
       },
       "samples": [
         {
@@ -2502,7 +2502,7 @@
       "kind": "local",
       "facet": "local",
       "count": 379,
-      "hours": 48.49,
+      "hours": 48.45,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -2514,9 +2514,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 149,
+        "title": 148,
         "notes": 159,
-        "transcript": 71
+        "transcript": 72
       },
       "samples": [
         {
@@ -3024,7 +3024,7 @@
       "kind": "story",
       "facet": "story",
       "count": 276,
-      "hours": 39.47,
+      "hours": 39.46,
       "byYear": {
         "2019": 11,
         "2020": 10,
@@ -3036,9 +3036,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 59,
+        "title": 58,
         "notes": 140,
-        "transcript": 77
+        "transcript": 78
       },
       "samples": [
         {
@@ -3088,6 +3088,81 @@
           "e": "‘The world has changed’: Peter Hartcher on China’s extraordinary missile test",
           "p": "The Morning Edition",
           "d": "2026-07-09"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "au-climate",
+      "name": "Australian climate & energy",
+      "blurb": "Climate and energy policy in Australia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 452,
+      "hours": 39.35,
+      "byYear": {
+        "2019": 9,
+        "2020": 37,
+        "2021": 45,
+        "2022": 48,
+        "2023": 46,
+        "2024": 57,
+        "2025": 109,
+        "2026": 101
+      },
+      "evidence": {
+        "title": 71,
+        "notes": 139,
+        "transcript": 242
+      },
+      "samples": [
+        {
+          "i": 27,
+          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
+          "p": "The Morning Edition",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 35,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 74,
+          "e": "Why does Australia have a productivity problem?",
+          "p": "Australian Politics",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 128,
+          "e": "Undercover inside Cuba: The world’s longest-running blockade",
+          "p": "7am",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 145,
+          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 155,
+          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
+          "p": "Australian Politics",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 190,
+          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 228,
+          "e": "What's the bigger threat to humanity: climate change or AI?",
+          "p": "Politics Now",
+          "d": "2026-09-26"
         }
       ],
       "children": []
@@ -3238,81 +3313,6 @@
           "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
           "p": "The Morning Edition",
           "d": "2026-10-01"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "au-climate",
-      "name": "Australian climate & energy",
-      "blurb": "Climate and energy policy in Australia.",
-      "kind": "local",
-      "facet": "local",
-      "count": 448,
-      "hours": 39.07,
-      "byYear": {
-        "2019": 9,
-        "2020": 37,
-        "2021": 45,
-        "2022": 48,
-        "2023": 46,
-        "2024": 57,
-        "2025": 105,
-        "2026": 101
-      },
-      "evidence": {
-        "title": 71,
-        "notes": 139,
-        "transcript": 238
-      },
-      "samples": [
-        {
-          "i": 27,
-          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
-          "p": "The Morning Edition",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 35,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 74,
-          "e": "Why does Australia have a productivity problem?",
-          "p": "Australian Politics",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 128,
-          "e": "Undercover inside Cuba: The world’s longest-running blockade",
-          "p": "7am",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 145,
-          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 155,
-          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
-          "p": "Australian Politics",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 190,
-          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 228,
-          "e": "What's the bigger threat to humanity: climate change or AI?",
-          "p": "Politics Now",
-          "d": "2026-09-26"
         }
       ],
       "children": []
@@ -3473,22 +3473,22 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 239,
-      "hours": 30.48,
+      "count": 240,
+      "hours": 30.56,
       "byYear": {
         "2019": 3,
         "2020": 19,
         "2021": 28,
         "2022": 30,
         "2023": 40,
-        "2024": 37,
+        "2024": 38,
         "2025": 60,
         "2026": 22
       },
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 103
+        "transcript": 104
       },
       "samples": [
         {
@@ -3697,22 +3697,22 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 400,
-      "hours": 26.95,
+      "count": 404,
+      "hours": 27.03,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
         "2022": 24,
         "2023": 28,
-        "2024": 48,
-        "2025": 114,
+        "2024": 49,
+        "2025": 117,
         "2026": 102
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 234
+        "transcript": 238
       },
       "samples": [
         {
@@ -5189,21 +5189,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 253,
-      "hours": 13.2,
+      "count": 254,
+      "hours": 13.21,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 6,
         "2023": 42,
         "2024": 37,
-        "2025": 77,
+        "2025": 78,
         "2026": 88
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 222
+        "transcript": 223
       },
       "samples": [
         {
@@ -5413,7 +5413,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 96,
-      "hours": 11.53,
+      "hours": 11.43,
       "byYear": {
         "2019": 5,
         "2020": 16,
@@ -5425,9 +5425,9 @@
         "2026": 17
       },
       "evidence": {
-        "title": 46,
+        "title": 45,
         "notes": 27,
-        "transcript": 23
+        "transcript": 24
       },
       "samples": [
         {
@@ -8475,7 +8475,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5641,
-      "hours": 835.96,
+      "hours": 833.97,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8487,9 +8487,9 @@
         "2026": 1070
       },
       "evidence": {
-        "title": 2402,
+        "title": 2391,
         "notes": 1069,
-        "transcript": 2170
+        "transcript": 2181
       },
       "samples": [
         {
@@ -8696,22 +8696,22 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2324,
-      "hours": 360.19,
+      "count": 2327,
+      "hours": 360.22,
       "byYear": {
         "2019": 81,
         "2020": 163,
         "2021": 161,
         "2022": 207,
         "2023": 245,
-        "2024": 346,
-        "2025": 594,
+        "2024": 347,
+        "2025": 596,
         "2026": 527
       },
       "evidence": {
-        "title": 930,
+        "title": 928,
         "notes": 769,
-        "transcript": 625
+        "transcript": 630
       },
       "samples": [
         {
@@ -8844,22 +8844,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2778,
-      "hours": 234.61,
+      "count": 2781,
+      "hours": 234.62,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
         "2023": 431,
-        "2024": 454,
-        "2025": 610,
+        "2024": 455,
+        "2025": 612,
         "2026": 574
       },
       "evidence": {
-        "title": 499,
+        "title": 498,
         "notes": 1200,
-        "transcript": 1079
+        "transcript": 1083
       },
       "samples": [
         {
@@ -8992,22 +8992,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2074,
-      "hours": 180.38,
+      "count": 2078,
+      "hours": 180.51,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
         "2023": 241,
-        "2024": 285,
-        "2025": 524,
+        "2024": 286,
+        "2025": 527,
         "2026": 630
       },
       "evidence": {
         "title": 3,
         "notes": 565,
-        "transcript": 1506
+        "transcript": 1510
       },
       "samples": [
         {
@@ -9140,22 +9140,22 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1283,
-      "hours": 134.61,
+      "count": 1289,
+      "hours": 135.37,
       "byYear": {
         "2019": 2,
         "2020": 114,
         "2021": 116,
         "2022": 99,
         "2023": 190,
-        "2024": 263,
-        "2025": 282,
+        "2024": 264,
+        "2025": 287,
         "2026": 217
       },
       "evidence": {
         "title": 45,
         "notes": 724,
-        "transcript": 514
+        "transcript": 520
       },
       "samples": [
         {
@@ -9283,87 +9283,13 @@
       ]
     },
     {
-      "id": "israel-gaza-war",
-      "name": "Israel–Gaza war",
-      "blurb": "Israel–Gaza war coverage.",
-      "kind": "story",
-      "facet": "story",
-      "count": 865,
-      "hours": 109.3,
-      "byYear": {
-        "2019": 16,
-        "2020": 13,
-        "2021": 18,
-        "2022": 10,
-        "2023": 210,
-        "2024": 262,
-        "2025": 238,
-        "2026": 98
-      },
-      "evidence": {
-        "title": 445,
-        "notes": 223,
-        "transcript": 197
-      },
-      "samples": [
-        {
-          "i": 37,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 61,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 63,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 100,
-          "e": "Could the Flydubai attack keep Netanyahu in power?",
-          "p": "7am",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 105,
-          "e": "'Frozen on October 7': Why Israel hasn't moved on",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 173,
-          "e": "What did Netanyahu know before October 7?",
-          "p": "ABC News Daily",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 223,
-          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
-          "p": "Up First from NPR",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 350,
-          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-14"
-        }
-      ]
-    },
-    {
       "id": "climate-energy",
       "name": "Climate & energy",
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1192,
-      "hours": 109.21,
+      "count": 1196,
+      "hours": 109.32,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -9371,13 +9297,13 @@
         "2022": 154,
         "2023": 181,
         "2024": 163,
-        "2025": 216,
+        "2025": 220,
         "2026": 257
       },
       "evidence": {
         "title": 192,
         "notes": 552,
-        "transcript": 448
+        "transcript": 452
       },
       "samples": [
         {
@@ -9431,13 +9357,87 @@
       ]
     },
     {
+      "id": "israel-gaza-war",
+      "name": "Israel–Gaza war",
+      "blurb": "Israel–Gaza war coverage.",
+      "kind": "story",
+      "facet": "story",
+      "count": 865,
+      "hours": 109.32,
+      "byYear": {
+        "2019": 16,
+        "2020": 13,
+        "2021": 18,
+        "2022": 10,
+        "2023": 210,
+        "2024": 262,
+        "2025": 238,
+        "2026": 98
+      },
+      "evidence": {
+        "title": 443,
+        "notes": 223,
+        "transcript": 199
+      },
+      "samples": [
+        {
+          "i": 37,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 61,
+          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 63,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 100,
+          "e": "Could the Flydubai attack keep Netanyahu in power?",
+          "p": "7am",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 105,
+          "e": "'Frozen on October 7': Why Israel hasn't moved on",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 173,
+          "e": "What did Netanyahu know before October 7?",
+          "p": "ABC News Daily",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 223,
+          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
+          "p": "Up First from NPR",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 350,
+          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-14"
+        }
+      ]
+    },
+    {
       "id": "ideas-society",
       "name": "Ideas & society",
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1113,
-      "hours": 104.83,
+      "count": 1116,
+      "hours": 104.94,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9445,13 +9445,13 @@
         "2022": 82,
         "2023": 138,
         "2024": 150,
-        "2025": 370,
+        "2025": 373,
         "2026": 311
       },
       "evidence": {
         "title": 56,
         "notes": 154,
-        "transcript": 903
+        "transcript": 906
       },
       "samples": [
         {
@@ -9584,8 +9584,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 890,
-      "hours": 101.27,
+      "count": 891,
+      "hours": 101.33,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -9593,13 +9593,13 @@
         "2022": 92,
         "2023": 119,
         "2024": 133,
-        "2025": 198,
+        "2025": 199,
         "2026": 108
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 325
+        "transcript": 326
       },
       "samples": [
         {
@@ -9732,22 +9732,22 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1023,
-      "hours": 89.17,
+      "count": 1026,
+      "hours": 89.26,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
         "2022": 89,
         "2023": 147,
-        "2024": 141,
-        "2025": 248,
+        "2024": 142,
+        "2025": 250,
         "2026": 294
       },
       "evidence": {
-        "title": 133,
+        "title": 132,
         "notes": 300,
-        "transcript": 590
+        "transcript": 594
       },
       "samples": [
         {
@@ -9806,8 +9806,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 736,
-      "hours": 88.33,
+      "count": 738,
+      "hours": 88.4,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -9815,13 +9815,13 @@
         "2022": 41,
         "2023": 128,
         "2024": 153,
-        "2025": 161,
+        "2025": 163,
         "2026": 184
       },
       "evidence": {
         "title": 5,
         "notes": 419,
-        "transcript": 312
+        "transcript": 314
       },
       "samples": [
         {
@@ -10028,22 +10028,22 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 787,
-      "hours": 65.72,
+      "count": 790,
+      "hours": 65.91,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
         "2022": 65,
         "2023": 93,
-        "2024": 94,
-        "2025": 177,
+        "2024": 95,
+        "2025": 179,
         "2026": 229
       },
       "evidence": {
-        "title": 133,
+        "title": 132,
         "notes": 194,
-        "transcript": 460
+        "transcript": 464
       },
       "samples": [
         {
@@ -10176,22 +10176,22 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 770,
-      "hours": 59.41,
+      "count": 771,
+      "hours": 59.44,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
         "2023": 87,
-        "2024": 154,
+        "2024": 155,
         "2025": 240,
         "2026": 238
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 599
+        "transcript": 600
       },
       "samples": [
         {
@@ -10398,21 +10398,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 631,
-      "hours": 55.01,
+      "count": 632,
+      "hours": 55.05,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 81,
         "2024": 104,
-        "2025": 191,
+        "2025": 192,
         "2026": 144
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 469
+        "transcript": 470
       },
       "samples": [
         {
@@ -10619,8 +10619,8 @@
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 354,
-      "hours": 51.64,
+      "count": 355,
+      "hours": 51.71,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -10628,13 +10628,13 @@
         "2022": 35,
         "2023": 35,
         "2024": 54,
-        "2025": 90,
+        "2025": 91,
         "2026": 97
       },
       "evidence": {
         "title": 0,
         "notes": 157,
-        "transcript": 197
+        "transcript": 198
       },
       "samples": [
         {
@@ -10768,7 +10768,7 @@
       "kind": "local",
       "facet": "local",
       "count": 379,
-      "hours": 48.49,
+      "hours": 48.45,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -10780,9 +10780,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 149,
+        "title": 148,
         "notes": 159,
-        "transcript": 71
+        "transcript": 72
       },
       "samples": [
         {
@@ -11283,7 +11283,7 @@
       "kind": "story",
       "facet": "story",
       "count": 276,
-      "hours": 39.47,
+      "hours": 39.46,
       "byYear": {
         "2019": 11,
         "2020": 10,
@@ -11295,9 +11295,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 59,
+        "title": 58,
         "notes": 140,
-        "transcript": 77
+        "transcript": 78
       },
       "samples": [
         {
@@ -11347,6 +11347,80 @@
           "e": "‘The world has changed’: Peter Hartcher on China’s extraordinary missile test",
           "p": "The Morning Edition",
           "d": "2026-07-09"
+        }
+      ]
+    },
+    {
+      "id": "au-climate",
+      "name": "Australian climate & energy",
+      "blurb": "Climate and energy policy in Australia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 452,
+      "hours": 39.35,
+      "byYear": {
+        "2019": 9,
+        "2020": 37,
+        "2021": 45,
+        "2022": 48,
+        "2023": 46,
+        "2024": 57,
+        "2025": 109,
+        "2026": 101
+      },
+      "evidence": {
+        "title": 71,
+        "notes": 139,
+        "transcript": 242
+      },
+      "samples": [
+        {
+          "i": 27,
+          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
+          "p": "The Morning Edition",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 35,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 74,
+          "e": "Why does Australia have a productivity problem?",
+          "p": "Australian Politics",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 128,
+          "e": "Undercover inside Cuba: The world’s longest-running blockade",
+          "p": "7am",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 145,
+          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 155,
+          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
+          "p": "Australian Politics",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 190,
+          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 228,
+          "e": "What's the bigger threat to humanity: climate change or AI?",
+          "p": "Politics Now",
+          "d": "2026-09-26"
         }
       ]
     },
@@ -11495,80 +11569,6 @@
           "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
           "p": "The Morning Edition",
           "d": "2026-10-01"
-        }
-      ]
-    },
-    {
-      "id": "au-climate",
-      "name": "Australian climate & energy",
-      "blurb": "Climate and energy policy in Australia.",
-      "kind": "local",
-      "facet": "local",
-      "count": 448,
-      "hours": 39.07,
-      "byYear": {
-        "2019": 9,
-        "2020": 37,
-        "2021": 45,
-        "2022": 48,
-        "2023": 46,
-        "2024": 57,
-        "2025": 105,
-        "2026": 101
-      },
-      "evidence": {
-        "title": 71,
-        "notes": 139,
-        "transcript": 238
-      },
-      "samples": [
-        {
-          "i": 27,
-          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
-          "p": "The Morning Edition",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 35,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 74,
-          "e": "Why does Australia have a productivity problem?",
-          "p": "Australian Politics",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 128,
-          "e": "Undercover inside Cuba: The world’s longest-running blockade",
-          "p": "7am",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 145,
-          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 155,
-          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
-          "p": "Australian Politics",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 190,
-          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 228,
-          "e": "What's the bigger threat to humanity: climate change or AI?",
-          "p": "Politics Now",
-          "d": "2026-09-26"
         }
       ]
     },
@@ -11726,22 +11726,22 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 239,
-      "hours": 30.48,
+      "count": 240,
+      "hours": 30.56,
       "byYear": {
         "2019": 3,
         "2020": 19,
         "2021": 28,
         "2022": 30,
         "2023": 40,
-        "2024": 37,
+        "2024": 38,
         "2025": 60,
         "2026": 22
       },
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 103
+        "transcript": 104
       },
       "samples": [
         {
@@ -11947,22 +11947,22 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 400,
-      "hours": 26.95,
+      "count": 404,
+      "hours": 27.03,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
         "2022": 24,
         "2023": 28,
-        "2024": 48,
-        "2025": 114,
+        "2024": 49,
+        "2025": 117,
         "2026": 102
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 234
+        "transcript": 238
       },
       "samples": [
         {
@@ -13419,21 +13419,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 253,
-      "hours": 13.2,
+      "count": 254,
+      "hours": 13.21,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 6,
         "2023": 42,
         "2024": 37,
-        "2025": 77,
+        "2025": 78,
         "2026": 88
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 222
+        "transcript": 223
       },
       "samples": [
         {
@@ -13640,7 +13640,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 96,
-      "hours": 11.53,
+      "hours": 11.43,
       "byYear": {
         "2019": 5,
         "2020": 16,
@@ -13652,9 +13652,9 @@
         "2026": 17
       },
       "evidence": {
-        "title": 46,
+        "title": 45,
         "notes": 27,
-        "transcript": 23
+        "transcript": 24
       },
       "samples": [
         {
