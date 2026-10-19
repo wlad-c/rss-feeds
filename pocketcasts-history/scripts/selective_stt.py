@@ -515,7 +515,7 @@ def main() -> None:
                 )
                 if len(text) < 80:
                     raise RuntimeError(f"short transcript ({len(text)} chars)")
-                upsert_full(
+                wrote = upsert_full(
                     conn,
                     idx,
                     text,
@@ -525,6 +525,13 @@ def main() -> None:
                     url=url,
                 )
                 conn.commit()
+                if not wrote:
+                    # Idx drift / trust-order skip — do not count as progress.
+                    print(
+                        f"  skip upsert (idx drift or lower-trust) chars={len(text)}",
+                        flush=True,
+                    )
+                    continue
                 ok += 1
                 by_engine[used] += 1
                 print(f"  ok via={used} chars={len(text)}", flush=True)
