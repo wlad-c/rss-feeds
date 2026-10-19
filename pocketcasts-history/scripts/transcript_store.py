@@ -55,6 +55,43 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
     return conn
 
 
+def _row_to_dict(row: tuple) -> dict:
+    return {
+        "i": row[0],
+        "p": row[1],
+        "e": row[2],
+        "src": row[3],
+        "url": row[4],
+        "chars": row[5],
+        "text": row[6],
+    }
+
+
+def get_full_by_identity(
+    conn: sqlite3.Connection,
+    podcast: str | None,
+    episode: str | None,
+) -> dict | None:
+    """Lookup by (podcast, episode) — stable across episodes.json rebuilds."""
+    if not (podcast and episode):
+        return None
+    rows = conn.execute(
+        "SELECT episode_idx, podcast, episode, src, url, chars, text FROM transcripts "
+        "WHERE lower(trim(coalesce(podcast,''))) = lower(trim(?)) "
+        "AND lower(trim(coalesce(episode,''))) = lower(trim(?))",
+        (podcast, episode),
+    ).fetchall()
+    if not rows:
+        return None
+    # Prefer higher-trust / longer text if duplicates somehow exist.
+    trust = {"youtube": 3, "transcript": 3, "stt": 2, "show-notes": 1}
+
+    def _key(r: tuple) -> tuple:
+        return (trust.get(r[3], 0), int(r[5] or 0))
+
+    return _row_to_dict(max(rows, key=_key))
+
+
 def upsert_full(
     conn: sqlite3.Connection,
     episode_idx: int,
@@ -64,21 +101,29 @@ def upsert_full(
     podcast: str | None = None,
     episode: str | None = None,
     url: str | None = None,
-) -> None:
+) -> bool:
+    """Upsert full transcript. Returns True when a row was written/updated."""
     text = (text or "").strip()
     if len(text) < 80:
-        return
-    # Refuse to clobber a row that belongs to a different episode. episode_idx
-    # can drift when episodes.json is rebuilt; identity is (podcast, episode).
+        return False
+    # Identity is (podcast, episode). episode_idx can drift after rebuilds.
+    # If this idx holds a different episode, write to the identity's idx instead
+    # when known; otherwise refuse (caller should repair_episode_indices).
+    write_idx = int(episode_idx)
     existing = conn.execute(
         "SELECT podcast, episode FROM transcripts WHERE episode_idx=?",
-        (int(episode_idx),),
+        (write_idx,),
     ).fetchone()
     if existing is not None and podcast is not None and episode is not None:
         if _norm(existing[0]) != _norm(podcast) or _norm(existing[1]) != _norm(
             episode
         ):
-            return
+            by_id = get_full_by_identity(conn, podcast, episode)
+            if by_id is not None:
+                write_idx = int(by_id["i"])
+            else:
+                return False
+    before = conn.total_changes
     conn.execute(
         """
         INSERT INTO transcripts(episode_idx, podcast, episode, src, url, chars, text, updated_at)
@@ -123,7 +168,7 @@ def upsert_full(
           )
         """,
         (
-            int(episode_idx),
+            write_idx,
             podcast,
             episode,
             src,
@@ -132,6 +177,7 @@ def upsert_full(
             text,
         ),
     )
+    return conn.total_changes > before
 
 
 def get_full(
@@ -140,27 +186,30 @@ def get_full(
     *,
     expect_podcast: str | None = None,
     expect_episode: str | None = None,
+    identity_fallback: bool = False,
 ) -> dict | None:
+    """Lookup by episode_idx.
+
+    When ``expect_*`` is set and the idx row is missing or mismatched, optionally
+    fall back to (podcast, episode) identity. Default off so bulk scans
+    (pick_candidates) stay O(1) per episode after repair.
+    """
     row = conn.execute(
         "SELECT episode_idx, podcast, episode, src, url, chars, text FROM transcripts WHERE episode_idx=?",
         (int(episode_idx),),
     ).fetchone()
-    if not row:
-        return None
-    if expect_podcast is not None or expect_episode is not None:
-        if _norm(row[1]) != _norm(expect_podcast) or _norm(row[2]) != _norm(
+    if row:
+        if expect_podcast is None and expect_episode is None:
+            return _row_to_dict(row)
+        if _norm(row[1]) == _norm(expect_podcast) and _norm(row[2]) == _norm(
             expect_episode
         ):
-            return None
-    return {
-        "i": row[0],
-        "p": row[1],
-        "e": row[2],
-        "src": row[3],
-        "url": row[4],
-        "chars": row[5],
-        "text": row[6],
-    }
+            return _row_to_dict(row)
+    if identity_fallback and (
+        expect_podcast is not None or expect_episode is not None
+    ):
+        return get_full_by_identity(conn, expect_podcast, expect_episode)
+    return None
 
 
 def assert_aligned(conn: sqlite3.Connection, episodes: list[dict]) -> dict:
