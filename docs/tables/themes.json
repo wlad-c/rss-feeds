@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 10598,
-      "stt": 1145,
-      "show-notes": 6505,
+      "title": 10589,
+      "stt": 1155,
+      "show-notes": 6504,
       "youtube": 2079,
       "transcript": 1704
     },
-    "episodesWithTranscriptEvidence": 4928,
-    "episodesWithNotesEvidence": 6505,
-    "episodesWithTitleOnlyEvidence": 10598,
+    "episodesWithTranscriptEvidence": 4938,
+    "episodesWithNotesEvidence": 6504,
+    "episodesWithTitleOnlyEvidence": 10589,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1123.53,
+      "hours": 1122.79,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 3483,
-        "notes": 458,
-        "transcript": 2192
+        "title": 3474,
+        "notes": 457,
+        "transcript": 2202
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2474,
-      "hours": 245.4,
+      "hours": 245.34,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -490,9 +490,9 @@
         "2026": 559
       },
       "evidence": {
-        "title": 818,
+        "title": 811,
         "notes": 430,
-        "transcript": 1226
+        "transcript": 1233
       },
       "samples": [
         {
@@ -552,22 +552,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2902,
-      "hours": 235.97,
+      "count": 2903,
+      "hours": 235.98,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
         "2023": 465,
-        "2024": 493,
+        "2024": 494,
         "2025": 657,
         "2026": 578
       },
       "evidence": {
         "title": 463,
         "notes": 1188,
-        "transcript": 1251
+        "transcript": 1252
       },
       "samples": [
         {
@@ -702,22 +702,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2343,
-      "hours": 188.81,
+      "count": 2348,
+      "hours": 188.89,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
         "2023": 295,
-        "2024": 356,
+        "2024": 361,
         "2025": 654,
         "2026": 644
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 1777
+        "transcript": 1782
       },
       "samples": [
         {
@@ -1072,102 +1072,27 @@
       "children": []
     },
     {
-      "id": "israel-gaza-war",
-      "name": "Israel–Gaza war",
-      "blurb": "Israel–Gaza war coverage.",
-      "kind": "story",
-      "facet": "story",
-      "count": 865,
-      "hours": 108.9,
-      "byYear": {
-        "2019": 16,
-        "2020": 13,
-        "2021": 18,
-        "2022": 10,
-        "2023": 210,
-        "2024": 262,
-        "2025": 238,
-        "2026": 98
-      },
-      "evidence": {
-        "title": 378,
-        "notes": 205,
-        "transcript": 282
-      },
-      "samples": [
-        {
-          "i": 62,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 83,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 85,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 122,
-          "e": "Could the Flydubai attack keep Netanyahu in power?",
-          "p": "7am",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 127,
-          "e": "'Frozen on October 7': Why Israel hasn't moved on",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 194,
-          "e": "What did Netanyahu know before October 7?",
-          "p": "ABC News Daily",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 244,
-          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
-          "p": "Up First from NPR",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 371,
-          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-14"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "us-defence",
       "name": "US defence",
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1251,
-      "hours": 108.86,
+      "count": 1254,
+      "hours": 108.95,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
         "2022": 62,
         "2023": 134,
-        "2024": 160,
+        "2024": 163,
         "2025": 413,
         "2026": 441
       },
       "evidence": {
-        "title": 137,
+        "title": 135,
         "notes": 103,
-        "transcript": 1011
+        "transcript": 1016
       },
       "samples": [
         {
@@ -1222,13 +1147,88 @@
       "children": []
     },
     {
+      "id": "israel-gaza-war",
+      "name": "Israel–Gaza war",
+      "blurb": "Israel–Gaza war coverage.",
+      "kind": "story",
+      "facet": "story",
+      "count": 865,
+      "hours": 108.8,
+      "byYear": {
+        "2019": 16,
+        "2020": 13,
+        "2021": 18,
+        "2022": 10,
+        "2023": 210,
+        "2024": 262,
+        "2025": 238,
+        "2026": 98
+      },
+      "evidence": {
+        "title": 373,
+        "notes": 205,
+        "transcript": 287
+      },
+      "samples": [
+        {
+          "i": 62,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 83,
+          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 85,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 122,
+          "e": "Could the Flydubai attack keep Netanyahu in power?",
+          "p": "7am",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 127,
+          "e": "'Frozen on October 7': Why Israel hasn't moved on",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 194,
+          "e": "What did Netanyahu know before October 7?",
+          "p": "ABC News Daily",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 244,
+          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
+          "p": "Up First from NPR",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 371,
+          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-14"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "ideas-society",
       "name": "Ideas & society",
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1197,
-      "hours": 108.65,
+      "count": 1199,
+      "hours": 108.79,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1236,13 +1236,13 @@
         "2022": 82,
         "2023": 169,
         "2024": 178,
-        "2025": 390,
+        "2025": 392,
         "2026": 316
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 985
+        "transcript": 987
       },
       "samples": [
         {
@@ -1302,7 +1302,7 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 946,
+      "count": 947,
       "hours": 103.9,
       "byYear": {
         "2019": 3,
@@ -1310,14 +1310,14 @@
         "2021": 96,
         "2022": 92,
         "2023": 135,
-        "2024": 141,
+        "2024": 142,
         "2025": 226,
         "2026": 112
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 381
+        "transcript": 382
       },
       "samples": [
         {
@@ -1977,21 +1977,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 732,
-      "hours": 60.01,
+      "count": 734,
+      "hours": 60.06,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 112,
-        "2024": 121,
-        "2025": 242,
+        "2024": 122,
+        "2025": 243,
         "2026": 146
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 571
+        "transcript": 573
       },
       "samples": [
         {
@@ -2201,22 +2201,22 @@
       "blurb": "SCOTUS and US courts.",
       "kind": "local",
       "facet": "local",
-      "count": 592,
-      "hours": 55.59,
+      "count": 594,
+      "hours": 55.69,
       "byYear": {
         "2019": 26,
         "2020": 17,
         "2021": 30,
         "2022": 36,
         "2023": 79,
-        "2024": 108,
+        "2024": 110,
         "2025": 166,
         "2026": 130
       },
       "evidence": {
-        "title": 134,
+        "title": 133,
         "notes": 35,
-        "transcript": 423
+        "transcript": 426
       },
       "samples": [
         {
@@ -2276,22 +2276,22 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 699,
-      "hours": 54.29,
+      "count": 700,
+      "hours": 54.32,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
         "2023": 63,
-        "2024": 106,
+        "2024": 107,
         "2025": 280,
         "2026": 186
       },
       "evidence": {
         "title": 67,
         "notes": 90,
-        "transcript": 542
+        "transcript": 543
       },
       "samples": [
         {
@@ -2351,8 +2351,8 @@
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 370,
-      "hours": 52.79,
+      "count": 371,
+      "hours": 53.03,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -2360,13 +2360,13 @@
         "2022": 35,
         "2023": 42,
         "2024": 57,
-        "2025": 96,
+        "2025": 97,
         "2026": 97
       },
       "evidence": {
         "title": 0,
-        "notes": 157,
-        "transcript": 213
+        "notes": 156,
+        "transcript": 215
       },
       "samples": [
         {
@@ -2426,22 +2426,22 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 576,
-      "hours": 52.2,
+      "count": 577,
+      "hours": 52.15,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
         "2022": 35,
         "2023": 60,
-        "2024": 89,
-        "2025": 203,
+        "2024": 91,
+        "2025": 202,
         "2026": 158
       },
       "evidence": {
         "title": 37,
-        "notes": 81,
-        "transcript": 458
+        "notes": 80,
+        "transcript": 460
       },
       "samples": [
         {
@@ -2502,7 +2502,7 @@
       "kind": "local",
       "facet": "local",
       "count": 379,
-      "hours": 48.39,
+      "hours": 48.37,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -2514,9 +2514,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 147,
+        "title": 146,
         "notes": 158,
-        "transcript": 74
+        "transcript": 75
       },
       "samples": [
         {
@@ -2726,7 +2726,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 46.21,
+      "hours": 46.16,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -2737,9 +2737,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 149,
+        "title": 148,
         "notes": 85,
-        "transcript": 118
+        "transcript": 119
       },
       "samples": [
         {
@@ -2789,6 +2789,81 @@
           "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
           "p": "Up First from NPR",
           "d": "2026-10-12"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "feminism-gender",
+      "name": "Feminism & gender",
+      "blurb": "Feminism, abortion, women’s rights.",
+      "kind": "frame",
+      "facet": "frame",
+      "count": 386,
+      "hours": 45.91,
+      "byYear": {
+        "2019": 4,
+        "2020": 36,
+        "2021": 19,
+        "2022": 59,
+        "2023": 77,
+        "2024": 96,
+        "2025": 50,
+        "2026": 45
+      },
+      "evidence": {
+        "title": 90,
+        "notes": 140,
+        "transcript": 156
+      },
+      "samples": [
+        {
+          "i": 73,
+          "e": "The ‘glass cliff’ and why the McKinsey saga shows it still exists",
+          "p": "The Morning Edition",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 75,
+          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
+          "p": "O Assunto",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 155,
+          "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
+          "p": "The Morning Edition",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 184,
+          "e": "What the ‘Cornell 7’ tells us about male silence, violence and misogyny",
+          "p": "7am",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 187,
+          "e": "A fotografia das pesquisas eleitorais às vésperas do 1º turno",
+          "p": "O Assunto",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 198,
+          "e": "Curtin's Cast Episode 71 - 30 September 2026 - Viren Naidu on India's Gen Z 'Cockroach' Party",
+          "p": "Curtin’s Cast",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 211,
+          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 392,
+          "e": "Insegurança: quando a violência toma novas e velhas formas",
+          "p": "Durma com essa",
+          "d": "2026-09-11"
         }
       ],
       "children": []
@@ -2863,81 +2938,6 @@
           "e": "Lula x Flávio: o que está em jogo na reta final",
           "p": "Foro de Teresina",
           "d": "2026-10-02"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "feminism-gender",
-      "name": "Feminism & gender",
-      "blurb": "Feminism, abortion, women’s rights.",
-      "kind": "frame",
-      "facet": "frame",
-      "count": 385,
-      "hours": 45.85,
-      "byYear": {
-        "2019": 4,
-        "2020": 36,
-        "2021": 19,
-        "2022": 59,
-        "2023": 77,
-        "2024": 96,
-        "2025": 49,
-        "2026": 45
-      },
-      "evidence": {
-        "title": 90,
-        "notes": 140,
-        "transcript": 155
-      },
-      "samples": [
-        {
-          "i": 73,
-          "e": "The ‘glass cliff’ and why the McKinsey saga shows it still exists",
-          "p": "The Morning Edition",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 75,
-          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
-          "p": "O Assunto",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 155,
-          "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
-          "p": "The Morning Edition",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 184,
-          "e": "What the ‘Cornell 7’ tells us about male silence, violence and misogyny",
-          "p": "7am",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 187,
-          "e": "A fotografia das pesquisas eleitorais às vésperas do 1º turno",
-          "p": "O Assunto",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 198,
-          "e": "Curtin's Cast Episode 71 - 30 September 2026 - Viren Naidu on India's Gen Z 'Cockroach' Party",
-          "p": "Curtin’s Cast",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 211,
-          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 392,
-          "e": "Insegurança: quando a violência toma novas e velhas formas",
-          "p": "Durma com essa",
-          "d": "2026-09-11"
         }
       ],
       "children": []
@@ -3098,22 +3098,22 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 479,
-      "hours": 40.69,
+      "count": 483,
+      "hours": 40.8,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
         "2023": 48,
-        "2024": 71,
+        "2024": 75,
         "2025": 158,
         "2026": 147
       },
       "evidence": {
         "title": 53,
         "notes": 22,
-        "transcript": 404
+        "transcript": 408
       },
       "samples": [
         {
@@ -3398,8 +3398,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 351,
-      "hours": 33.44,
+      "count": 352,
+      "hours": 33.58,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -3407,13 +3407,13 @@
         "2022": 27,
         "2023": 52,
         "2024": 59,
-        "2025": 82,
+        "2025": 83,
         "2026": 88
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 242
+        "transcript": 243
       },
       "samples": [
         {
@@ -3548,22 +3548,22 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 349,
-      "hours": 29.35,
+      "count": 350,
+      "hours": 29.36,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
         "2022": 7,
         "2023": 35,
-        "2024": 64,
+        "2024": 65,
         "2025": 139,
         "2026": 95
       },
       "evidence": {
-        "title": 41,
+        "title": 40,
         "notes": 24,
-        "transcript": 284
+        "transcript": 286
       },
       "samples": [
         {
@@ -3699,7 +3699,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 28.17,
+      "hours": 28.13,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3710,9 +3710,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 77,
+        "title": 76,
         "notes": 53,
-        "transcript": 229
+        "transcript": 230
       },
       "samples": [
         {
@@ -3841,6 +3841,80 @@
       "children": []
     },
     {
+      "id": "migration-borders",
+      "name": "Migration & borders",
+      "blurb": "Migration and borders.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 554,
+      "hours": 25.83,
+      "byYear": {
+        "2020": 2,
+        "2021": 6,
+        "2022": 12,
+        "2023": 56,
+        "2024": 107,
+        "2025": 187,
+        "2026": 184
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 54,
+        "transcript": 500
+      },
+      "samples": [
+        {
+          "i": 28,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 70,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 84,
+          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 98,
+          "e": "As the Coalition veers right, should Albo hold the centre?",
+          "p": "7am",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 99,
+          "e": "Migration cuts: what's at stake for Australia's universities?",
+          "p": "Politics Now",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 108,
+          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
+          "p": "The Morning Edition",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 138,
+          "e": "cna-correspondent-china-vietnam-durian-audio",
+          "p": "CNA Correspondent",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 140,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "race",
       "name": "Race & racism",
       "blurb": "Race and racism.",
@@ -3911,80 +3985,6 @@
           "e": "How Kumanjayi Walker’s death should change the NT Police",
           "p": "7am",
           "d": "2026-07-04"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "migration-borders",
-      "name": "Migration & borders",
-      "blurb": "Migration and borders.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 552,
-      "hours": 25.8,
-      "byYear": {
-        "2020": 2,
-        "2021": 6,
-        "2022": 12,
-        "2023": 56,
-        "2024": 105,
-        "2025": 187,
-        "2026": 184
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 54,
-        "transcript": 498
-      },
-      "samples": [
-        {
-          "i": 28,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 70,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 84,
-          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 98,
-          "e": "As the Coalition veers right, should Albo hold the centre?",
-          "p": "7am",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 99,
-          "e": "Migration cuts: what's at stake for Australia's universities?",
-          "p": "Politics Now",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 108,
-          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
-          "p": "The Morning Edition",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 138,
-          "e": "cna-correspondent-china-vietnam-durian-audio",
-          "p": "CNA Correspondent",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 140,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
         }
       ],
       "children": []
@@ -4070,22 +4070,22 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 269,
-      "hours": 24.33,
+      "count": 270,
+      "hours": 24.35,
       "byYear": {
         "2019": 1,
         "2020": 21,
         "2021": 26,
         "2022": 26,
         "2023": 34,
-        "2024": 31,
+        "2024": 32,
         "2025": 90,
         "2026": 40
       },
       "evidence": {
         "title": 73,
         "notes": 14,
-        "transcript": 182
+        "transcript": 183
       },
       "samples": [
         {
@@ -4444,7 +4444,7 @@
       "kind": "local",
       "facet": "local",
       "count": 127,
-      "hours": 21.75,
+      "hours": 21.73,
       "byYear": {
         "2019": 2,
         "2021": 3,
@@ -4455,9 +4455,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 18,
+        "title": 17,
         "notes": 79,
-        "transcript": 30
+        "transcript": 31
       },
       "samples": [
         {
@@ -4818,7 +4818,7 @@
       "kind": "local",
       "facet": "local",
       "count": 151,
-      "hours": 15.53,
+      "hours": 15.51,
       "byYear": {
         "2019": 10,
         "2020": 1,
@@ -4830,9 +4830,9 @@
         "2026": 58
       },
       "evidence": {
-        "title": 49,
+        "title": 48,
         "notes": 51,
-        "transcript": 51
+        "transcript": 52
       },
       "samples": [
         {
@@ -5413,7 +5413,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 97,
-      "hours": 11.33,
+      "hours": 11.26,
       "byYear": {
         "2019": 5,
         "2020": 16,
@@ -5425,9 +5425,9 @@
         "2026": 17
       },
       "evidence": {
-        "title": 43,
+        "title": 42,
         "notes": 27,
-        "transcript": 27
+        "transcript": 28
       },
       "samples": [
         {
@@ -5562,22 +5562,22 @@
       "blurb": "Sport beyond football.",
       "kind": "domain",
       "facet": "domain",
-      "count": 105,
-      "hours": 10.92,
+      "count": 106,
+      "hours": 10.93,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 15,
         "2022": 8,
         "2023": 11,
-        "2024": 31,
+        "2024": 32,
         "2025": 13,
         "2026": 20
       },
       "evidence": {
         "title": 38,
         "notes": 17,
-        "transcript": 50
+        "transcript": 51
       },
       "samples": [
         {
@@ -8233,17 +8233,18 @@
       "blurb": "Pakistani government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 9,
-      "hours": 0.93,
+      "count": 10,
+      "hours": 0.96,
       "byYear": {
         "2022": 2,
         "2023": 1,
+        "2024": 1,
         "2025": 6
       },
       "evidence": {
         "title": 2,
         "notes": 2,
-        "transcript": 5
+        "transcript": 6
       },
       "samples": [
         {
@@ -8283,16 +8284,16 @@
           "d": "2025-05-03"
         },
         {
+          "i": 10185,
+          "e": "Gaza Blackout, Pakistan strikes back at Iran, and the status of U.S. aid to Ukraine",
+          "p": "Up First from NPR",
+          "d": "2024-01-20"
+        },
+        {
           "i": 13192,
           "e": "Bank Rescues, California Central Valley Floods, Imran Khan Rally in Pakistan",
           "p": "Up First from NPR",
           "d": "2023-03-24"
-        },
-        {
-          "i": 14178,
-          "e": "Non-proliferation, infantry fighting vehicles, floods in Pakistan, Federal Budget & Defence",
-          "p": "ASPI Podcast: Policy, Guns & Money",
-          "d": "2022-11-13"
         }
       ],
       "children": []
@@ -8365,7 +8366,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1123.53,
+      "hours": 1122.79,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8377,9 +8378,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 3483,
-        "notes": 458,
-        "transcript": 2192
+        "title": 3474,
+        "notes": 457,
+        "transcript": 2202
       },
       "samples": [
         {
@@ -8809,7 +8810,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2474,
-      "hours": 245.4,
+      "hours": 245.34,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8821,9 +8822,9 @@
         "2026": 559
       },
       "evidence": {
-        "title": 818,
+        "title": 811,
         "notes": 430,
-        "transcript": 1226
+        "transcript": 1233
       },
       "samples": [
         {
@@ -8882,22 +8883,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2902,
-      "hours": 235.97,
+      "count": 2903,
+      "hours": 235.98,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
         "2023": 465,
-        "2024": 493,
+        "2024": 494,
         "2025": 657,
         "2026": 578
       },
       "evidence": {
         "title": 463,
         "notes": 1188,
-        "transcript": 1251
+        "transcript": 1252
       },
       "samples": [
         {
@@ -9030,22 +9031,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2343,
-      "hours": 188.81,
+      "count": 2348,
+      "hours": 188.89,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
         "2023": 295,
-        "2024": 356,
+        "2024": 361,
         "2025": 654,
         "2026": 644
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 1777
+        "transcript": 1782
       },
       "samples": [
         {
@@ -9395,101 +9396,27 @@
       ]
     },
     {
-      "id": "israel-gaza-war",
-      "name": "Israel–Gaza war",
-      "blurb": "Israel–Gaza war coverage.",
-      "kind": "story",
-      "facet": "story",
-      "count": 865,
-      "hours": 108.9,
-      "byYear": {
-        "2019": 16,
-        "2020": 13,
-        "2021": 18,
-        "2022": 10,
-        "2023": 210,
-        "2024": 262,
-        "2025": 238,
-        "2026": 98
-      },
-      "evidence": {
-        "title": 378,
-        "notes": 205,
-        "transcript": 282
-      },
-      "samples": [
-        {
-          "i": 62,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 83,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 85,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 122,
-          "e": "Could the Flydubai attack keep Netanyahu in power?",
-          "p": "7am",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 127,
-          "e": "'Frozen on October 7': Why Israel hasn't moved on",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 194,
-          "e": "What did Netanyahu know before October 7?",
-          "p": "ABC News Daily",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 244,
-          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
-          "p": "Up First from NPR",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 371,
-          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-14"
-        }
-      ]
-    },
-    {
       "id": "us-defence",
       "name": "US defence",
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1251,
-      "hours": 108.86,
+      "count": 1254,
+      "hours": 108.95,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
         "2022": 62,
         "2023": 134,
-        "2024": 160,
+        "2024": 163,
         "2025": 413,
         "2026": 441
       },
       "evidence": {
-        "title": 137,
+        "title": 135,
         "notes": 103,
-        "transcript": 1011
+        "transcript": 1016
       },
       "samples": [
         {
@@ -9543,13 +9470,87 @@
       ]
     },
     {
+      "id": "israel-gaza-war",
+      "name": "Israel–Gaza war",
+      "blurb": "Israel–Gaza war coverage.",
+      "kind": "story",
+      "facet": "story",
+      "count": 865,
+      "hours": 108.8,
+      "byYear": {
+        "2019": 16,
+        "2020": 13,
+        "2021": 18,
+        "2022": 10,
+        "2023": 210,
+        "2024": 262,
+        "2025": 238,
+        "2026": 98
+      },
+      "evidence": {
+        "title": 373,
+        "notes": 205,
+        "transcript": 287
+      },
+      "samples": [
+        {
+          "i": 62,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 83,
+          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 85,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 122,
+          "e": "Could the Flydubai attack keep Netanyahu in power?",
+          "p": "7am",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 127,
+          "e": "'Frozen on October 7': Why Israel hasn't moved on",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 194,
+          "e": "What did Netanyahu know before October 7?",
+          "p": "ABC News Daily",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 244,
+          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
+          "p": "Up First from NPR",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 371,
+          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-14"
+        }
+      ]
+    },
+    {
       "id": "ideas-society",
       "name": "Ideas & society",
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1197,
-      "hours": 108.65,
+      "count": 1199,
+      "hours": 108.79,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9557,13 +9558,13 @@
         "2022": 82,
         "2023": 169,
         "2024": 178,
-        "2025": 390,
+        "2025": 392,
         "2026": 316
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 985
+        "transcript": 987
       },
       "samples": [
         {
@@ -9622,7 +9623,7 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 946,
+      "count": 947,
       "hours": 103.9,
       "byYear": {
         "2019": 3,
@@ -9630,14 +9631,14 @@
         "2021": 96,
         "2022": 92,
         "2023": 135,
-        "2024": 141,
+        "2024": 142,
         "2025": 226,
         "2026": 112
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 381
+        "transcript": 382
       },
       "samples": [
         {
@@ -10288,21 +10289,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 732,
-      "hours": 60.01,
+      "count": 734,
+      "hours": 60.06,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 112,
-        "2024": 121,
-        "2025": 242,
+        "2024": 122,
+        "2025": 243,
         "2026": 146
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 571
+        "transcript": 573
       },
       "samples": [
         {
@@ -10509,22 +10510,22 @@
       "blurb": "SCOTUS and US courts.",
       "kind": "local",
       "facet": "local",
-      "count": 592,
-      "hours": 55.59,
+      "count": 594,
+      "hours": 55.69,
       "byYear": {
         "2019": 26,
         "2020": 17,
         "2021": 30,
         "2022": 36,
         "2023": 79,
-        "2024": 108,
+        "2024": 110,
         "2025": 166,
         "2026": 130
       },
       "evidence": {
-        "title": 134,
+        "title": 133,
         "notes": 35,
-        "transcript": 423
+        "transcript": 426
       },
       "samples": [
         {
@@ -10583,22 +10584,22 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 699,
-      "hours": 54.29,
+      "count": 700,
+      "hours": 54.32,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
         "2023": 63,
-        "2024": 106,
+        "2024": 107,
         "2025": 280,
         "2026": 186
       },
       "evidence": {
         "title": 67,
         "notes": 90,
-        "transcript": 542
+        "transcript": 543
       },
       "samples": [
         {
@@ -10657,8 +10658,8 @@
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 370,
-      "hours": 52.79,
+      "count": 371,
+      "hours": 53.03,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -10666,13 +10667,13 @@
         "2022": 35,
         "2023": 42,
         "2024": 57,
-        "2025": 96,
+        "2025": 97,
         "2026": 97
       },
       "evidence": {
         "title": 0,
-        "notes": 157,
-        "transcript": 213
+        "notes": 156,
+        "transcript": 215
       },
       "samples": [
         {
@@ -10731,22 +10732,22 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 576,
-      "hours": 52.2,
+      "count": 577,
+      "hours": 52.15,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
         "2022": 35,
         "2023": 60,
-        "2024": 89,
-        "2025": 203,
+        "2024": 91,
+        "2025": 202,
         "2026": 158
       },
       "evidence": {
         "title": 37,
-        "notes": 81,
-        "transcript": 458
+        "notes": 80,
+        "transcript": 460
       },
       "samples": [
         {
@@ -10806,7 +10807,7 @@
       "kind": "local",
       "facet": "local",
       "count": 379,
-      "hours": 48.39,
+      "hours": 48.37,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -10818,9 +10819,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 147,
+        "title": 146,
         "notes": 158,
-        "transcript": 74
+        "transcript": 75
       },
       "samples": [
         {
@@ -11027,7 +11028,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 46.21,
+      "hours": 46.16,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -11038,9 +11039,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 149,
+        "title": 148,
         "notes": 85,
-        "transcript": 118
+        "transcript": 119
       },
       "samples": [
         {
@@ -11090,6 +11091,80 @@
           "e": "Bracing For Hurricane Isaias, Ukraine Pushes Russia Back, Iran War Impact On Midterms",
           "p": "Up First from NPR",
           "d": "2026-10-12"
+        }
+      ]
+    },
+    {
+      "id": "feminism-gender",
+      "name": "Feminism & gender",
+      "blurb": "Feminism, abortion, women’s rights.",
+      "kind": "frame",
+      "facet": "frame",
+      "count": 386,
+      "hours": 45.91,
+      "byYear": {
+        "2019": 4,
+        "2020": 36,
+        "2021": 19,
+        "2022": 59,
+        "2023": 77,
+        "2024": 96,
+        "2025": 50,
+        "2026": 45
+      },
+      "evidence": {
+        "title": 90,
+        "notes": 140,
+        "transcript": 156
+      },
+      "samples": [
+        {
+          "i": 73,
+          "e": "The ‘glass cliff’ and why the McKinsey saga shows it still exists",
+          "p": "The Morning Edition",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 75,
+          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
+          "p": "O Assunto",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 155,
+          "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
+          "p": "The Morning Edition",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 184,
+          "e": "What the ‘Cornell 7’ tells us about male silence, violence and misogyny",
+          "p": "7am",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 187,
+          "e": "A fotografia das pesquisas eleitorais às vésperas do 1º turno",
+          "p": "O Assunto",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 198,
+          "e": "Curtin's Cast Episode 71 - 30 September 2026 - Viren Naidu on India's Gen Z 'Cockroach' Party",
+          "p": "Curtin’s Cast",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 211,
+          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 392,
+          "e": "Insegurança: quando a violência toma novas e velhas formas",
+          "p": "Durma com essa",
+          "d": "2026-09-11"
         }
       ]
     },
@@ -11163,80 +11238,6 @@
           "e": "Lula x Flávio: o que está em jogo na reta final",
           "p": "Foro de Teresina",
           "d": "2026-10-02"
-        }
-      ]
-    },
-    {
-      "id": "feminism-gender",
-      "name": "Feminism & gender",
-      "blurb": "Feminism, abortion, women’s rights.",
-      "kind": "frame",
-      "facet": "frame",
-      "count": 385,
-      "hours": 45.85,
-      "byYear": {
-        "2019": 4,
-        "2020": 36,
-        "2021": 19,
-        "2022": 59,
-        "2023": 77,
-        "2024": 96,
-        "2025": 49,
-        "2026": 45
-      },
-      "evidence": {
-        "title": 90,
-        "notes": 140,
-        "transcript": 155
-      },
-      "samples": [
-        {
-          "i": 73,
-          "e": "The ‘glass cliff’ and why the McKinsey saga shows it still exists",
-          "p": "The Morning Edition",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 75,
-          "e": "O movimento contra o voto feminino – no Brasil e no mundo",
-          "p": "O Assunto",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 155,
-          "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
-          "p": "The Morning Edition",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 184,
-          "e": "What the ‘Cornell 7’ tells us about male silence, violence and misogyny",
-          "p": "7am",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 187,
-          "e": "A fotografia das pesquisas eleitorais às vésperas do 1º turno",
-          "p": "O Assunto",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 198,
-          "e": "Curtin's Cast Episode 71 - 30 September 2026 - Viren Naidu on India's Gen Z 'Cockroach' Party",
-          "p": "Curtin’s Cast",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 211,
-          "e": "They risked their lives for Australia. We left them behind in Afghanistan",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 392,
-          "e": "Insegurança: quando a violência toma novas e velhas formas",
-          "p": "Durma com essa",
-          "d": "2026-09-11"
         }
       ]
     },
@@ -11394,22 +11395,22 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 479,
-      "hours": 40.69,
+      "count": 483,
+      "hours": 40.8,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
         "2023": 48,
-        "2024": 71,
+        "2024": 75,
         "2025": 158,
         "2026": 147
       },
       "evidence": {
         "title": 53,
         "notes": 22,
-        "transcript": 404
+        "transcript": 408
       },
       "samples": [
         {
@@ -11690,8 +11691,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 351,
-      "hours": 33.44,
+      "count": 352,
+      "hours": 33.58,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -11699,13 +11700,13 @@
         "2022": 27,
         "2023": 52,
         "2024": 59,
-        "2025": 82,
+        "2025": 83,
         "2026": 88
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 242
+        "transcript": 243
       },
       "samples": [
         {
@@ -11838,22 +11839,22 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 349,
-      "hours": 29.35,
+      "count": 350,
+      "hours": 29.36,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
         "2022": 7,
         "2023": 35,
-        "2024": 64,
+        "2024": 65,
         "2025": 139,
         "2026": 95
       },
       "evidence": {
-        "title": 41,
+        "title": 40,
         "notes": 24,
-        "transcript": 284
+        "transcript": 286
       },
       "samples": [
         {
@@ -11987,7 +11988,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 28.17,
+      "hours": 28.13,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -11998,9 +11999,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 77,
+        "title": 76,
         "notes": 53,
-        "transcript": 229
+        "transcript": 230
       },
       "samples": [
         {
@@ -12127,6 +12128,79 @@
       ]
     },
     {
+      "id": "migration-borders",
+      "name": "Migration & borders",
+      "blurb": "Migration and borders.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 554,
+      "hours": 25.83,
+      "byYear": {
+        "2020": 2,
+        "2021": 6,
+        "2022": 12,
+        "2023": 56,
+        "2024": 107,
+        "2025": 187,
+        "2026": 184
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 54,
+        "transcript": 500
+      },
+      "samples": [
+        {
+          "i": 28,
+          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 70,
+          "e": "Execution TV: Is this a turning point for Trump’s America?",
+          "p": "7am",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 84,
+          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
+          "p": "Up First from NPR",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 98,
+          "e": "As the Coalition veers right, should Albo hold the centre?",
+          "p": "7am",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 99,
+          "e": "Migration cuts: what's at stake for Australia's universities?",
+          "p": "Politics Now",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 108,
+          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
+          "p": "The Morning Edition",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 138,
+          "e": "cna-correspondent-china-vietnam-durian-audio",
+          "p": "CNA Correspondent",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 140,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        }
+      ]
+    },
+    {
       "id": "race",
       "name": "Race & racism",
       "blurb": "Race and racism.",
@@ -12197,79 +12271,6 @@
           "e": "How Kumanjayi Walker’s death should change the NT Police",
           "p": "7am",
           "d": "2026-07-04"
-        }
-      ]
-    },
-    {
-      "id": "migration-borders",
-      "name": "Migration & borders",
-      "blurb": "Migration and borders.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 552,
-      "hours": 25.8,
-      "byYear": {
-        "2020": 2,
-        "2021": 6,
-        "2022": 12,
-        "2023": 56,
-        "2024": 105,
-        "2025": 187,
-        "2026": 184
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 54,
-        "transcript": 498
-      },
-      "samples": [
-        {
-          "i": 28,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 70,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 84,
-          "e": "Hurricane Isaias Floods the Panhandle, A Russian Oil Deal, ICE Shooting in New York",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 98,
-          "e": "As the Coalition veers right, should Albo hold the centre?",
-          "p": "7am",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 99,
-          "e": "Migration cuts: what's at stake for Australia's universities?",
-          "p": "Politics Now",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 108,
-          "e": "Coalition’s 'race to the bottom on migration' and former immigration official answers your questions",
-          "p": "The Morning Edition",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 138,
-          "e": "cna-correspondent-china-vietnam-durian-audio",
-          "p": "CNA Correspondent",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 140,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
         }
       ]
     },
@@ -12353,22 +12354,22 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 269,
-      "hours": 24.33,
+      "count": 270,
+      "hours": 24.35,
       "byYear": {
         "2019": 1,
         "2020": 21,
         "2021": 26,
         "2022": 26,
         "2023": 34,
-        "2024": 31,
+        "2024": 32,
         "2025": 90,
         "2026": 40
       },
       "evidence": {
         "title": 73,
         "notes": 14,
-        "transcript": 182
+        "transcript": 183
       },
       "samples": [
         {
@@ -12722,7 +12723,7 @@
       "kind": "local",
       "facet": "local",
       "count": 127,
-      "hours": 21.75,
+      "hours": 21.73,
       "byYear": {
         "2019": 2,
         "2021": 3,
@@ -12733,9 +12734,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 18,
+        "title": 17,
         "notes": 79,
-        "transcript": 30
+        "transcript": 31
       },
       "samples": [
         {
@@ -13091,7 +13092,7 @@
       "kind": "local",
       "facet": "local",
       "count": 151,
-      "hours": 15.53,
+      "hours": 15.51,
       "byYear": {
         "2019": 10,
         "2020": 1,
@@ -13103,9 +13104,9 @@
         "2026": 58
       },
       "evidence": {
-        "title": 49,
+        "title": 48,
         "notes": 51,
-        "transcript": 51
+        "transcript": 52
       },
       "samples": [
         {
@@ -13678,7 +13679,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 97,
-      "hours": 11.33,
+      "hours": 11.26,
       "byYear": {
         "2019": 5,
         "2020": 16,
@@ -13690,9 +13691,9 @@
         "2026": 17
       },
       "evidence": {
-        "title": 43,
+        "title": 42,
         "notes": 27,
-        "transcript": 27
+        "transcript": 28
       },
       "samples": [
         {
@@ -13825,22 +13826,22 @@
       "blurb": "Sport beyond football.",
       "kind": "domain",
       "facet": "domain",
-      "count": 105,
-      "hours": 10.92,
+      "count": 106,
+      "hours": 10.93,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 15,
         "2022": 8,
         "2023": 11,
-        "2024": 31,
+        "2024": 32,
         "2025": 13,
         "2026": 20
       },
       "evidence": {
         "title": 38,
         "notes": 17,
-        "transcript": 50
+        "transcript": 51
       },
       "samples": [
         {
@@ -16459,17 +16460,18 @@
       "blurb": "Pakistani government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 9,
-      "hours": 0.93,
+      "count": 10,
+      "hours": 0.96,
       "byYear": {
         "2022": 2,
         "2023": 1,
+        "2024": 1,
         "2025": 6
       },
       "evidence": {
         "title": 2,
         "notes": 2,
-        "transcript": 5
+        "transcript": 6
       },
       "samples": [
         {
@@ -16509,16 +16511,16 @@
           "d": "2025-05-03"
         },
         {
+          "i": 10185,
+          "e": "Gaza Blackout, Pakistan strikes back at Iran, and the status of U.S. aid to Ukraine",
+          "p": "Up First from NPR",
+          "d": "2024-01-20"
+        },
+        {
           "i": 13192,
           "e": "Bank Rescues, California Central Valley Floods, Imran Khan Rally in Pakistan",
           "p": "Up First from NPR",
           "d": "2023-03-24"
-        },
-        {
-          "i": 14178,
-          "e": "Non-proliferation, infantry fighting vehicles, floods in Pakistan, Federal Budget & Defence",
-          "p": "ASPI Podcast: Policy, Guns & Money",
-          "d": "2022-11-13"
         }
       ]
     },
