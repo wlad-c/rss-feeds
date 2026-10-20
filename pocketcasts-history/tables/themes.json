@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "show-notes": 6545,
-      "title": 10775,
-      "stt": 919,
+      "show-notes": 6541,
+      "title": 10756,
+      "stt": 942,
       "youtube": 2079,
       "transcript": 1707
     },
-    "episodesWithTranscriptEvidence": 4705,
-    "episodesWithNotesEvidence": 6545,
-    "episodesWithTitleOnlyEvidence": 10775,
+    "episodesWithTranscriptEvidence": 4728,
+    "episodesWithNotesEvidence": 6541,
+    "episodesWithTitleOnlyEvidence": 10756,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6132,
-      "hours": 1137.72,
+      "hours": 1136.84,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 904
       },
       "evidence": {
-        "title": 3664,
-        "notes": 498,
-        "transcript": 1970
+        "title": 3645,
+        "notes": 494,
+        "transcript": 1993
       },
       "samples": [
         {
@@ -102,8 +102,8 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4140,
-      "hours": 980.31,
+      "count": 4139,
+      "hours": 980.17,
       "byYear": {
         "2019": 264,
         "2020": 446,
@@ -112,20 +112,14 @@
         "2023": 450,
         "2024": 592,
         "2025": 824,
-        "2026": 622
+        "2026": 621
       },
       "evidence": {
-        "title": 1099,
-        "notes": 2588,
-        "transcript": 453
+        "title": 1097,
+        "notes": 2587,
+        "transcript": 455
       },
       "samples": [
-        {
-          "i": 4,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
         {
           "i": 10,
           "e": "Is Narendra Modi trying to rig India’s elections?",
@@ -165,6 +159,12 @@
         {
           "i": 36,
           "e": "Patrick Radden Keefe on the Russian money that remade London",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 39,
+          "e": "What the gold market tells us about Trump, Russia, and China",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-10-16"
         }
@@ -477,8 +477,8 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2457,
-      "hours": 248.52,
+      "count": 2459,
+      "hours": 248.35,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -486,13 +486,13 @@
         "2022": 116,
         "2023": 237,
         "2024": 538,
-        "2025": 798,
-        "2026": 557
+        "2025": 799,
+        "2026": 558
       },
       "evidence": {
-        "title": 899,
-        "notes": 451,
-        "transcript": 1107
+        "title": 890,
+        "notes": 450,
+        "transcript": 1119
       },
       "samples": [
         {
@@ -500,6 +500,12 @@
           "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
           "p": "Up First from NPR",
           "d": "2026-10-19"
+        },
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
         },
         {
           "i": 25,
@@ -536,12 +542,6 @@
           "e": "What the gold market tells us about Trump, Russia, and China",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-10-16"
-        },
-        {
-          "i": 45,
-          "e": "Could Trump wage another war in the Middle East?",
-          "p": "7am",
-          "d": "2026-10-16"
         }
       ],
       "children": []
@@ -552,8 +552,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2867,
-      "hours": 236.53,
+      "count": 2868,
+      "hours": 236.39,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -561,13 +561,13 @@
         "2022": 278,
         "2023": 465,
         "2024": 492,
-        "2025": 624,
+        "2025": 625,
         "2026": 577
       },
       "evidence": {
-        "title": 482,
-        "notes": 1200,
-        "transcript": 1185
+        "title": 479,
+        "notes": 1198,
+        "transcript": 1191
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2216,
-      "hours": 186.34,
+      "count": 2230,
+      "hours": 186.63,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -711,15 +711,21 @@
         "2022": 211,
         "2023": 295,
         "2024": 347,
-        "2025": 545,
-        "2026": 635
+        "2025": 554,
+        "2026": 640
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 1650
+        "transcript": 1664
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 22,
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
@@ -733,9 +739,21 @@
           "d": "2026-10-16"
         },
         {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
           "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
           "d": "2026-10-16"
         },
         {
@@ -749,24 +767,6 @@
           "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
           "p": "Up First from NPR",
           "d": "2026-10-15"
-        },
-        {
-          "i": 54,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 64,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 65,
-          "e": "Will Trump stream an execution to the world?",
-          "p": "ABC News Daily",
-          "d": "2026-10-13"
         }
       ],
       "children": []
@@ -1002,8 +1002,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1230,
-      "hours": 109.98,
+      "count": 1232,
+      "hours": 109.99,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -1012,17 +1012,23 @@
         "2023": 192,
         "2024": 179,
         "2025": 224,
-        "2026": 260
+        "2026": 262
       },
       "evidence": {
         "title": 183,
         "notes": 552,
-        "transcript": 495
+        "transcript": 497
       },
       "samples": [
         {
           "i": 29,
           "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
           "p": "Up First from NPR",
           "d": "2026-10-16"
         },
@@ -1061,12 +1067,6 @@
           "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
           "p": "Up First from NPR",
           "d": "2026-10-07"
-        },
-        {
-          "i": 131,
-          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
-          "p": "Up First from NPR",
-          "d": "2026-10-06"
         }
       ],
       "children": []
@@ -1078,7 +1078,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 109.7,
+      "hours": 109.69,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -1090,9 +1090,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 416,
-        "notes": 220,
-        "transcript": 229
+        "title": 413,
+        "notes": 219,
+        "transcript": 233
       },
       "samples": [
         {
@@ -1227,8 +1227,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1150,
-      "hours": 104.07,
+      "count": 1163,
+      "hours": 104.73,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -1236,15 +1236,21 @@
         "2022": 62,
         "2023": 134,
         "2024": 153,
-        "2025": 326,
-        "2026": 434
+        "2025": 334,
+        "2026": 439
       },
       "evidence": {
         "title": 152,
-        "notes": 113,
-        "transcript": 885
+        "notes": 112,
+        "transcript": 899
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 29,
           "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
@@ -1252,9 +1258,21 @@
           "d": "2026-10-16"
         },
         {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
           "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
           "d": "2026-10-16"
         },
         {
@@ -1274,24 +1292,6 @@
           "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
           "p": "The Morning Edition",
           "d": "2026-10-14"
-        },
-        {
-          "i": 64,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 65,
-          "e": "Will Trump stream an execution to the world?",
-          "p": "ABC News Daily",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 74,
-          "e": "Why Trump's selling out to Putin again",
-          "p": "ABC News Daily",
-          "d": "2026-10-12"
         }
       ],
       "children": []
@@ -1302,8 +1302,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 919,
-      "hours": 103.14,
+      "count": 921,
+      "hours": 103.23,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -1312,14 +1312,20 @@
         "2023": 135,
         "2024": 141,
         "2025": 202,
-        "2026": 109
+        "2026": 111
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 354
+        "transcript": 356
       },
       "samples": [
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
         {
           "i": 22,
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
@@ -1361,12 +1367,6 @@
           "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
           "p": "The Morning Edition",
           "d": "2026-10-05"
-        },
-        {
-          "i": 156,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
         }
       ],
       "children": []
@@ -1527,8 +1527,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 771,
-      "hours": 90.02,
+      "count": 772,
+      "hours": 90.07,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -1536,13 +1536,13 @@
         "2022": 41,
         "2023": 140,
         "2024": 168,
-        "2025": 170,
+        "2025": 171,
         "2026": 183
       },
       "evidence": {
         "title": 5,
         "notes": 419,
-        "transcript": 347
+        "transcript": 348
       },
       "samples": [
         {
@@ -1827,8 +1827,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 845,
-      "hours": 64.95,
+      "count": 850,
+      "hours": 65.0,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -1836,15 +1836,27 @@
         "2022": 33,
         "2023": 116,
         "2024": 192,
-        "2025": 246,
-        "2026": 240
+        "2025": 248,
+        "2026": 243
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 674
+        "transcript": 679
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
         {
           "i": 22,
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
@@ -1880,18 +1892,6 @@
           "e": "As vitórias da extrema-direita e a disputa do segundo turno",
           "p": "Foro de Teresina",
           "d": "2026-10-10"
-        },
-        {
-          "i": 104,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 120,
-          "e": "Three Vans, a Startled Farmer and an Iranian Plot Against the U.S.",
-          "p": "The Daily",
-          "d": "2026-10-07"
         }
       ],
       "children": []
@@ -1903,7 +1903,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 445,
-      "hours": 63.62,
+      "hours": 63.61,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1915,9 +1915,9 @@
         "2026": 192
       },
       "evidence": {
-        "title": 49,
+        "title": 48,
         "notes": 140,
-        "transcript": 256
+        "transcript": 257
       },
       "samples": [
         {
@@ -1977,21 +1977,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 690,
-      "hours": 59.31,
+      "count": 693,
+      "hours": 59.34,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 112,
         "2024": 121,
-        "2025": 202,
+        "2025": 205,
         "2026": 144
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 528
+        "transcript": 531
       },
       "samples": [
         {
@@ -2202,7 +2202,7 @@
       "kind": "local",
       "facet": "local",
       "count": 563,
-      "hours": 54.82,
+      "hours": 54.78,
       "byYear": {
         "2019": 26,
         "2020": 17,
@@ -2214,9 +2214,9 @@
         "2026": 129
       },
       "evidence": {
-        "title": 154,
+        "title": 151,
         "notes": 42,
-        "transcript": 367
+        "transcript": 370
       },
       "samples": [
         {
@@ -2351,8 +2351,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 664,
-      "hours": 52.39,
+      "count": 665,
+      "hours": 52.38,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -2360,13 +2360,13 @@
         "2022": 36,
         "2023": 63,
         "2024": 105,
-        "2025": 247,
+        "2025": 248,
         "2026": 185
       },
       "evidence": {
-        "title": 86,
-        "notes": 102,
-        "transcript": 476
+        "title": 83,
+        "notes": 100,
+        "transcript": 482
       },
       "samples": [
         {
@@ -2426,8 +2426,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 547,
-      "hours": 51.18,
+      "count": 551,
+      "hours": 51.32,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -2435,13 +2435,13 @@
         "2022": 35,
         "2023": 60,
         "2024": 87,
-        "2025": 177,
+        "2025": 181,
         "2026": 157
       },
       "evidence": {
-        "title": 42,
+        "title": 40,
         "notes": 82,
-        "transcript": 423
+        "transcript": 429
       },
       "samples": [
         {
@@ -2502,7 +2502,7 @@
       "kind": "local",
       "facet": "local",
       "count": 379,
-      "hours": 48.45,
+      "hours": 48.42,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -2515,8 +2515,8 @@
       },
       "evidence": {
         "title": 148,
-        "notes": 159,
-        "transcript": 72
+        "notes": 158,
+        "transcript": 73
       },
       "samples": [
         {
@@ -2577,7 +2577,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 47.53,
+      "hours": 47.22,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -2588,9 +2588,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 175,
-        "notes": 89,
-        "transcript": 88
+        "title": 168,
+        "notes": 88,
+        "transcript": 96
       },
       "samples": [
         {
@@ -3111,9 +3111,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 54,
+        "title": 53,
         "notes": 140,
-        "transcript": 89
+        "transcript": 90
       },
       "samples": [
         {
@@ -3173,8 +3173,8 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 446,
-      "hours": 39.37,
+      "count": 450,
+      "hours": 39.4,
       "byYear": {
         "2019": 2,
         "2020": 5,
@@ -3182,15 +3182,21 @@
         "2022": 30,
         "2023": 48,
         "2024": 69,
-        "2025": 128,
-        "2026": 146
+        "2025": 131,
+        "2026": 147
       },
       "evidence": {
-        "title": 62,
+        "title": 60,
         "notes": 28,
-        "transcript": 356
+        "transcript": 362
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 20,
           "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
@@ -3232,12 +3238,6 @@
           "e": "Why Washington Is Trying to Rein In College Sports",
           "p": "The Daily",
           "d": "2026-10-03"
-        },
-        {
-          "i": 187,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
         }
       ],
       "children": []
@@ -3323,8 +3323,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 347,
-      "hours": 34.02,
+      "count": 348,
+      "hours": 34.03,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -3332,13 +3332,13 @@
         "2022": 39,
         "2023": 45,
         "2024": 54,
-        "2025": 73,
+        "2025": 74,
         "2026": 51
       },
       "evidence": {
         "title": 3,
         "notes": 181,
-        "transcript": 163
+        "transcript": 164
       },
       "samples": [
         {
@@ -3473,8 +3473,8 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 259,
-      "hours": 32.28,
+      "count": 262,
+      "hours": 32.38,
       "byYear": {
         "2019": 3,
         "2020": 19,
@@ -3482,13 +3482,13 @@
         "2022": 30,
         "2023": 47,
         "2024": 47,
-        "2025": 63,
+        "2025": 66,
         "2026": 22
       },
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 123
+        "transcript": 126
       },
       "samples": [
         {
@@ -3548,8 +3548,8 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 325,
-      "hours": 28.94,
+      "count": 328,
+      "hours": 29.04,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -3557,13 +3557,13 @@
         "2022": 7,
         "2023": 35,
         "2024": 63,
-        "2025": 116,
+        "2025": 119,
         "2026": 95
       },
       "evidence": {
         "title": 61,
-        "notes": 27,
-        "transcript": 237
+        "notes": 26,
+        "transcript": 241
       },
       "samples": [
         {
@@ -3624,7 +3624,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 28.86,
+      "hours": 28.83,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3635,9 +3635,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 91,
+        "title": 90,
         "notes": 54,
-        "transcript": 214
+        "transcript": 215
       },
       "samples": [
         {
@@ -3697,8 +3697,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 459,
-      "hours": 28.53,
+      "count": 460,
+      "hours": 28.54,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -3707,12 +3707,12 @@
         "2023": 50,
         "2024": 77,
         "2025": 121,
-        "2026": 103
+        "2026": 104
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 293
+        "transcript": 294
       },
       "samples": [
         {
@@ -3740,6 +3740,12 @@
           "d": "2026-09-28"
         },
         {
+          "i": 220,
+          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
           "i": 229,
           "e": "Could Australia’s media survive Trump-style attacks?",
           "p": "7am",
@@ -3756,12 +3762,6 @@
           "e": "Court Temporarily Blocks Media Ban, Trump-Xi White House Meeting, UNGA Diplomacy",
           "p": "Up First from NPR",
           "d": "2026-09-24"
-        },
-        {
-          "i": 266,
-          "e": "Will America watch Trump TV?",
-          "p": "ABC News Daily",
-          "d": "2026-09-23"
         }
       ],
       "children": []
@@ -3921,21 +3921,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 505,
-      "hours": 25.09,
+      "count": 509,
+      "hours": 25.16,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 56,
         "2024": 101,
-        "2025": 144,
+        "2025": 148,
         "2026": 184
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 451
+        "transcript": 455
       },
       "samples": [
         {
@@ -4071,7 +4071,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 169,
-      "hours": 23.98,
+      "hours": 23.89,
       "byYear": {
         "2019": 1,
         "2020": 2,
@@ -4083,9 +4083,9 @@
         "2026": 67
       },
       "evidence": {
-        "title": 28,
+        "title": 26,
         "notes": 37,
-        "transcript": 104
+        "transcript": 106
       },
       "samples": [
         {
@@ -4145,8 +4145,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 251,
-      "hours": 23.3,
+      "count": 252,
+      "hours": 23.31,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -4154,13 +4154,13 @@
         "2022": 26,
         "2023": 34,
         "2024": 31,
-        "2025": 73,
+        "2025": 74,
         "2026": 39
       },
       "evidence": {
-        "title": 79,
+        "title": 78,
         "notes": 15,
-        "transcript": 157
+        "transcript": 159
       },
       "samples": [
         {
@@ -4444,22 +4444,34 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 215,
-      "hours": 21.0,
+      "count": 220,
+      "hours": 21.18,
       "byYear": {
         "2021": 1,
         "2022": 9,
         "2023": 30,
         "2024": 47,
-        "2025": 72,
-        "2026": 56
+        "2025": 74,
+        "2026": 59
       },
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 210
+        "transcript": 215
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
         {
           "i": 65,
           "e": "Will Trump stream an execution to the world?",
@@ -4495,18 +4507,6 @@
           "e": "UK Terror Plot Investigation, Trump's Fuel Efficiency Rollback, Cornell Rape Case",
           "p": "Up First from NPR",
           "d": "2026-09-29"
-        },
-        {
-          "i": 219,
-          "e": "He Was Deported to a Country He’d Never Heard Of",
-          "p": "The Daily",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 229,
-          "e": "Could Australia’s media survive Trump-style attacks?",
-          "p": "7am",
-          "d": "2026-09-28"
         }
       ],
       "children": []
@@ -4517,8 +4517,8 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 250,
-      "hours": 19.24,
+      "count": 252,
+      "hours": 19.31,
       "byYear": {
         "2019": 1,
         "2020": 5,
@@ -4527,17 +4527,23 @@
         "2023": 27,
         "2024": 30,
         "2025": 39,
-        "2026": 116
+        "2026": 118
       },
       "evidence": {
         "title": 40,
         "notes": 40,
-        "transcript": 170
+        "transcript": 172
       },
       "samples": [
         {
           "i": 29,
           "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
           "p": "Up First from NPR",
           "d": "2026-10-16"
         },
@@ -4572,16 +4578,10 @@
           "d": "2026-10-06"
         },
         {
-          "i": 269,
-          "e": "The Trump Administration Defangs the Endangered Species Act",
-          "p": "The Daily",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 287,
-          "e": "Trump and Zelensky meet again, and this time, Zelensky has the cards",
-          "p": "The Morning Edition",
-          "d": "2026-09-22"
+          "i": 220,
+          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
         }
       ],
       "children": []
@@ -4742,8 +4742,8 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 135,
-      "hours": 16.49,
+      "count": 137,
+      "hours": 16.52,
       "byYear": {
         "2019": 4,
         "2020": 10,
@@ -4752,14 +4752,20 @@
         "2023": 18,
         "2024": 27,
         "2025": 18,
-        "2026": 41
+        "2026": 43
       },
       "evidence": {
         "title": 11,
         "notes": 76,
-        "transcript": 48
+        "transcript": 50
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 52,
           "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
@@ -4785,6 +4791,12 @@
           "d": "2026-09-30"
         },
         {
+          "i": 220,
+          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
           "i": 303,
           "e": "Trump Bans Media from White House, Europe on High Alert, College Sports Bill",
           "p": "Up First from NPR",
@@ -4795,18 +4807,6 @@
           "e": "Fed Raises Interest Rates, Iran War and Oil Prices, EU-Canada Alliance",
           "p": "Up First from NPR",
           "d": "2026-09-18"
-        },
-        {
-          "i": 331,
-          "e": "The assassination of a Maltese journalist and the verdict that shocked Europe",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 338,
-          "e": "Could Australia join the European Union?",
-          "p": "The Morning Edition",
-          "d": "2026-09-17"
         }
       ],
       "children": []
@@ -4892,8 +4892,8 @@
       "blurb": "UK politics, Brexit, Westminster.",
       "kind": "local",
       "facet": "local",
-      "count": 116,
-      "hours": 14.95,
+      "count": 115,
+      "hours": 14.9,
       "byYear": {
         "2019": 20,
         "2020": 24,
@@ -4902,20 +4902,14 @@
         "2023": 5,
         "2024": 15,
         "2025": 10,
-        "2026": 21
+        "2026": 20
       },
       "evidence": {
-        "title": 56,
+        "title": 55,
         "notes": 44,
         "transcript": 16
       },
       "samples": [
-        {
-          "i": 220,
-          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
         {
           "i": 275,
           "e": "Will Argentina go to war with the UK over the Falklands?",
@@ -4957,6 +4951,86 @@
           "e": "US-Iran War Escalates, Congress To-Do List, UK Has A New Prime Minister",
           "p": "Up First from NPR",
           "d": "2026-07-20"
+        },
+        {
+          "i": 1194,
+          "e": "Starmer’s successor /  Reset on UK-US relationship? / Strait latest",
+          "p": "Sources & Methods",
+          "d": "2026-06-27"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "nuclear",
+      "name": "Nuclear",
+      "blurb": "Nuclear weapons and energy.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 259,
+      "hours": 14.85,
+      "byYear": {
+        "2019": 1,
+        "2021": 9,
+        "2022": 20,
+        "2023": 23,
+        "2024": 42,
+        "2025": 74,
+        "2026": 90
+      },
+      "evidence": {
+        "title": 1,
+        "notes": 36,
+        "transcript": 222
+      },
+      "samples": [
+        {
+          "i": 75,
+          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 251,
+          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
+          "p": "The Daily",
+          "d": "2026-09-25"
+        },
+        {
+          "i": 298,
+          "e": "The race to put weapons in space",
+          "p": "7am",
+          "d": "2026-09-21"
+        },
+        {
+          "i": 317,
+          "e": "The Alliance | Your questions answered",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-18"
+        },
+        {
+          "i": 329,
+          "e": "Trump vs China and the AI 'hoax'",
+          "p": "ABC News Daily",
+          "d": "2026-09-17"
+        },
+        {
+          "i": 372,
+          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
+          "p": "The Daily",
+          "d": "2026-09-13"
+        },
+        {
+          "i": 379,
+          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-09-12"
+        },
+        {
+          "i": 629,
+          "e": "Ep 188: Missiles, Pacific integration and managed competition",
+          "p": "Australia in the World",
+          "d": "2026-08-19"
         }
       ],
       "children": []
@@ -5036,86 +5110,12 @@
       "children": []
     },
     {
-      "id": "nuclear",
-      "name": "Nuclear",
-      "blurb": "Nuclear weapons and energy.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 258,
-      "hours": 14.84,
-      "byYear": {
-        "2019": 1,
-        "2021": 9,
-        "2022": 20,
-        "2023": 23,
-        "2024": 42,
-        "2025": 73,
-        "2026": 90
-      },
-      "evidence": {
-        "title": 1,
-        "notes": 36,
-        "transcript": 221
-      },
-      "samples": [
-        {
-          "i": 75,
-          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 251,
-          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
-          "p": "The Daily",
-          "d": "2026-09-25"
-        },
-        {
-          "i": 298,
-          "e": "The race to put weapons in space",
-          "p": "7am",
-          "d": "2026-09-21"
-        },
-        {
-          "i": 317,
-          "e": "The Alliance | Your questions answered",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-18"
-        },
-        {
-          "i": 329,
-          "e": "Trump vs China and the AI 'hoax'",
-          "p": "ABC News Daily",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 372,
-          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
-          "p": "The Daily",
-          "d": "2026-09-13"
-        },
-        {
-          "i": 379,
-          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-09-12"
-        },
-        {
-          "i": 629,
-          "e": "Ep 188: Missiles, Pacific integration and managed competition",
-          "p": "Australia in the World",
-          "d": "2026-08-19"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "space",
       "name": "Space",
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 136,
+      "count": 137,
       "hours": 14.83,
       "byYear": {
         "2021": 4,
@@ -5123,14 +5123,20 @@
         "2023": 19,
         "2024": 22,
         "2025": 33,
-        "2026": 48
+        "2026": 49
       },
       "evidence": {
         "title": 2,
         "notes": 32,
-        "transcript": 102
+        "transcript": 103
       },
       "samples": [
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
         {
           "i": 97,
           "e": "As vitórias da extrema-direita e a disputa do segundo turno",
@@ -5172,12 +5178,6 @@
           "e": "“Accident waiting to happen”: Why Nepal’s floods could happen again",
           "p": "7am",
           "d": "2026-08-31"
-        },
-        {
-          "i": 768,
-          "e": "The A.I. Revolt Is Here",
-          "p": "The Ezra Klein Show",
-          "d": "2026-08-05"
         }
       ],
       "children": []
@@ -5188,8 +5188,8 @@
       "blurb": "US foreign policy and diplomacy.",
       "kind": "local",
       "facet": "local",
-      "count": 201,
-      "hours": 14.67,
+      "count": 200,
+      "hours": 14.62,
       "byYear": {
         "2019": 5,
         "2020": 7,
@@ -5198,20 +5198,14 @@
         "2023": 17,
         "2024": 21,
         "2025": 67,
-        "2026": 55
+        "2026": 54
       },
       "evidence": {
-        "title": 26,
-        "notes": 74,
-        "transcript": 101
+        "title": 24,
+        "notes": 73,
+        "transcript": 103
       },
       "samples": [
-        {
-          "i": 4,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
         {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
@@ -5253,6 +5247,12 @@
           "e": "Xadrez Verbal #476 Lula na ONU e Trump recebe Xi",
           "p": "Xadrez Verbal",
           "d": "2026-09-27"
+        },
+        {
+          "i": 273,
+          "e": "US And Iran Talk At UNGA, Poll Shows Dems Lead Midterm, White House Media Ban Lawsuit",
+          "p": "Up First from NPR",
+          "d": "2026-09-23"
         }
       ],
       "children": []
@@ -5482,81 +5482,6 @@
       "children": []
     },
     {
-      "id": "france-politics",
-      "name": "French politics",
-      "blurb": "French politics and Macron.",
-      "kind": "local",
-      "facet": "local",
-      "count": 89,
-      "hours": 10.87,
-      "byYear": {
-        "2019": 3,
-        "2020": 6,
-        "2021": 11,
-        "2022": 17,
-        "2023": 10,
-        "2024": 23,
-        "2025": 8,
-        "2026": 11
-      },
-      "evidence": {
-        "title": 43,
-        "notes": 31,
-        "transcript": 15
-      },
-      "samples": [
-        {
-          "i": 4,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
-        {
-          "i": 81,
-          "e": "Why France Is in Crisis",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 118,
-          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 157,
-          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 360,
-          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-14"
-        },
-        {
-          "i": 422,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 832,
-          "e": "Europe Is Burning",
-          "p": "The Daily",
-          "d": "2026-07-30"
-        },
-        {
-          "i": 846,
-          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-07-29"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "sport",
       "name": "Sport",
       "blurb": "Sport beyond football.",
@@ -5627,6 +5552,81 @@
           "e": "The most powerful man in sport is about to get more powerful",
           "p": "The Morning Edition",
           "d": "2026-05-26"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "france-politics",
+      "name": "French politics",
+      "blurb": "French politics and Macron.",
+      "kind": "local",
+      "facet": "local",
+      "count": 89,
+      "hours": 10.86,
+      "byYear": {
+        "2019": 3,
+        "2020": 6,
+        "2021": 11,
+        "2022": 17,
+        "2023": 10,
+        "2024": 23,
+        "2025": 8,
+        "2026": 11
+      },
+      "evidence": {
+        "title": 42,
+        "notes": 31,
+        "transcript": 16
+      },
+      "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 81,
+          "e": "Why France Is in Crisis",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 118,
+          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 157,
+          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 360,
+          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-14"
+        },
+        {
+          "i": 422,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 832,
+          "e": "Europe Is Burning",
+          "p": "The Daily",
+          "d": "2026-07-30"
+        },
+        {
+          "i": 846,
+          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-07-29"
         }
       ],
       "children": []
@@ -5786,8 +5786,8 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 80,
-      "hours": 9.78,
+      "count": 81,
+      "hours": 9.79,
       "byYear": {
         "2019": 1,
         "2020": 2,
@@ -5795,13 +5795,13 @@
         "2022": 7,
         "2023": 16,
         "2024": 17,
-        "2025": 15,
+        "2025": 16,
         "2026": 20
       },
       "evidence": {
         "title": 10,
         "notes": 5,
-        "transcript": 65
+        "transcript": 66
       },
       "samples": [
         {
@@ -5861,21 +5861,27 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 75,
-      "hours": 8.92,
+      "count": 76,
+      "hours": 8.96,
       "byYear": {
         "2022": 10,
         "2023": 15,
         "2024": 8,
         "2025": 25,
-        "2026": 17
+        "2026": 18
       },
       "evidence": {
         "title": 2,
         "notes": 21,
-        "transcript": 52
+        "transcript": 53
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
@@ -5917,12 +5923,6 @@
           "e": "White House Correspondents’ Dinner, Ukraine hits Russian Retailer, India Protests",
           "p": "Up First from NPR",
           "d": "2026-07-25"
-        },
-        {
-          "i": 1067,
-          "e": "Iran Ceasefire Over, Platner Replacements Emerge, Olympic Committee Lifts Russia Ban",
-          "p": "Up First from NPR",
-          "d": "2026-07-08"
         }
       ],
       "children": []
@@ -5934,7 +5934,7 @@
       "kind": "local",
       "facet": "local",
       "count": 73,
-      "hours": 8.74,
+      "hours": 8.72,
       "byYear": {
         "2020": 1,
         "2021": 1,
@@ -5945,9 +5945,9 @@
         "2026": 27
       },
       "evidence": {
-        "title": 19,
+        "title": 18,
         "notes": 33,
-        "transcript": 21
+        "transcript": 22
       },
       "samples": [
         {
@@ -6156,21 +6156,21 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 90,
-      "hours": 8.08,
+      "count": 91,
+      "hours": 8.09,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 7,
         "2023": 16,
         "2024": 19,
-        "2025": 26,
+        "2025": 27,
         "2026": 19
       },
       "evidence": {
         "title": 0,
         "notes": 18,
-        "transcript": 72
+        "transcript": 73
       },
       "samples": [
         {
@@ -7045,22 +7045,28 @@
       "blurb": "Middle East governments (ex Israel–Gaza).",
       "kind": "local",
       "facet": "local",
-      "count": 53,
-      "hours": 4.3,
+      "count": 54,
+      "hours": 4.34,
       "byYear": {
         "2019": 1,
         "2022": 2,
         "2023": 3,
         "2024": 16,
         "2025": 12,
-        "2026": 19
+        "2026": 20
       },
       "evidence": {
         "title": 4,
         "notes": 4,
-        "transcript": 45
+        "transcript": 46
       },
       "samples": [
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
         {
           "i": 45,
           "e": "Could Trump wage another war in the Middle East?",
@@ -7102,12 +7108,6 @@
           "e": "Iran And Yemen's Houthis Blockade, Hegseth On Capitol Hill, Arizona Primary Day",
           "p": "Up First from NPR",
           "d": "2026-07-22"
-        },
-        {
-          "i": 1935,
-          "e": "Middle East War Negotiations, War And The Global Economy, New Swalwell Allegations",
-          "p": "Up First from NPR",
-          "d": "2026-04-15"
         }
       ],
       "children": []
@@ -7408,20 +7408,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 100,
-      "hours": 3.54,
+      "count": 102,
+      "hours": 3.53,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 5,
         "2024": 7,
-        "2025": 67,
+        "2025": 69,
         "2026": 18
       },
       "evidence": {
-        "title": 1,
+        "title": 0,
         "notes": 20,
-        "transcript": 79
+        "transcript": 82
       },
       "samples": [
         {
@@ -8340,7 +8340,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6132,
-      "hours": 1137.72,
+      "hours": 1136.84,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8352,9 +8352,9 @@
         "2026": 904
       },
       "evidence": {
-        "title": 3664,
-        "notes": 498,
-        "transcript": 1970
+        "title": 3645,
+        "notes": 494,
+        "transcript": 1993
       },
       "samples": [
         {
@@ -8413,8 +8413,8 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4140,
-      "hours": 980.31,
+      "count": 4139,
+      "hours": 980.17,
       "byYear": {
         "2019": 264,
         "2020": 446,
@@ -8423,20 +8423,14 @@
         "2023": 450,
         "2024": 592,
         "2025": 824,
-        "2026": 622
+        "2026": 621
       },
       "evidence": {
-        "title": 1099,
-        "notes": 2588,
-        "transcript": 453
+        "title": 1097,
+        "notes": 2587,
+        "transcript": 455
       },
       "samples": [
-        {
-          "i": 4,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
         {
           "i": 10,
           "e": "Is Narendra Modi trying to rig India’s elections?",
@@ -8476,6 +8470,12 @@
         {
           "i": 36,
           "e": "Patrick Radden Keefe on the Russian money that remade London",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 39,
+          "e": "What the gold market tells us about Trump, Russia, and China",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-10-16"
         }
@@ -8783,8 +8783,8 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2457,
-      "hours": 248.52,
+      "count": 2459,
+      "hours": 248.35,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8792,13 +8792,13 @@
         "2022": 116,
         "2023": 237,
         "2024": 538,
-        "2025": 798,
-        "2026": 557
+        "2025": 799,
+        "2026": 558
       },
       "evidence": {
-        "title": 899,
-        "notes": 451,
-        "transcript": 1107
+        "title": 890,
+        "notes": 450,
+        "transcript": 1119
       },
       "samples": [
         {
@@ -8806,6 +8806,12 @@
           "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
           "p": "Up First from NPR",
           "d": "2026-10-19"
+        },
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
         },
         {
           "i": 25,
@@ -8842,12 +8848,6 @@
           "e": "What the gold market tells us about Trump, Russia, and China",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-10-16"
-        },
-        {
-          "i": 45,
-          "e": "Could Trump wage another war in the Middle East?",
-          "p": "7am",
-          "d": "2026-10-16"
         }
       ]
     },
@@ -8857,8 +8857,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2867,
-      "hours": 236.53,
+      "count": 2868,
+      "hours": 236.39,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8866,13 +8866,13 @@
         "2022": 278,
         "2023": 465,
         "2024": 492,
-        "2025": 624,
+        "2025": 625,
         "2026": 577
       },
       "evidence": {
-        "title": 482,
-        "notes": 1200,
-        "transcript": 1185
+        "title": 479,
+        "notes": 1198,
+        "transcript": 1191
       },
       "samples": [
         {
@@ -9005,8 +9005,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2216,
-      "hours": 186.34,
+      "count": 2230,
+      "hours": 186.63,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9014,15 +9014,21 @@
         "2022": 211,
         "2023": 295,
         "2024": 347,
-        "2025": 545,
-        "2026": 635
+        "2025": 554,
+        "2026": 640
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 1650
+        "transcript": 1664
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 22,
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
@@ -9036,9 +9042,21 @@
           "d": "2026-10-16"
         },
         {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
           "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
           "d": "2026-10-16"
         },
         {
@@ -9052,24 +9070,6 @@
           "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
           "p": "Up First from NPR",
           "d": "2026-10-15"
-        },
-        {
-          "i": 54,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 64,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 65,
-          "e": "Will Trump stream an execution to the world?",
-          "p": "ABC News Daily",
-          "d": "2026-10-13"
         }
       ]
     },
@@ -9301,8 +9301,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1230,
-      "hours": 109.98,
+      "count": 1232,
+      "hours": 109.99,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -9311,17 +9311,23 @@
         "2023": 192,
         "2024": 179,
         "2025": 224,
-        "2026": 260
+        "2026": 262
       },
       "evidence": {
         "title": 183,
         "notes": 552,
-        "transcript": 495
+        "transcript": 497
       },
       "samples": [
         {
           "i": 29,
           "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
           "p": "Up First from NPR",
           "d": "2026-10-16"
         },
@@ -9360,12 +9366,6 @@
           "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
           "p": "Up First from NPR",
           "d": "2026-10-07"
-        },
-        {
-          "i": 131,
-          "e": "FlyDubai Pilot Investigation, SCOTUS Climate Change Case, Brazil Runoff Election",
-          "p": "Up First from NPR",
-          "d": "2026-10-06"
         }
       ]
     },
@@ -9376,7 +9376,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 109.7,
+      "hours": 109.69,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -9388,9 +9388,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 416,
-        "notes": 220,
-        "transcript": 229
+        "title": 413,
+        "notes": 219,
+        "transcript": 233
       },
       "samples": [
         {
@@ -9523,8 +9523,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1150,
-      "hours": 104.07,
+      "count": 1163,
+      "hours": 104.73,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -9532,15 +9532,21 @@
         "2022": 62,
         "2023": 134,
         "2024": 153,
-        "2025": 326,
-        "2026": 434
+        "2025": 334,
+        "2026": 439
       },
       "evidence": {
         "title": 152,
-        "notes": 113,
-        "transcript": 885
+        "notes": 112,
+        "transcript": 899
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 29,
           "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
@@ -9548,9 +9554,21 @@
           "d": "2026-10-16"
         },
         {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
           "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 33,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
           "d": "2026-10-16"
         },
         {
@@ -9570,24 +9588,6 @@
           "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
           "p": "The Morning Edition",
           "d": "2026-10-14"
-        },
-        {
-          "i": 64,
-          "e": "Execution TV: Is this a turning point for Trump’s America?",
-          "p": "7am",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 65,
-          "e": "Will Trump stream an execution to the world?",
-          "p": "ABC News Daily",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 74,
-          "e": "Why Trump's selling out to Putin again",
-          "p": "ABC News Daily",
-          "d": "2026-10-12"
         }
       ]
     },
@@ -9597,8 +9597,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 919,
-      "hours": 103.14,
+      "count": 921,
+      "hours": 103.23,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -9607,14 +9607,20 @@
         "2023": 135,
         "2024": 141,
         "2025": 202,
-        "2026": 109
+        "2026": 111
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 354
+        "transcript": 356
       },
       "samples": [
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
         {
           "i": 22,
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
@@ -9656,12 +9662,6 @@
           "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
           "p": "The Morning Edition",
           "d": "2026-10-05"
-        },
-        {
-          "i": 156,
-          "e": "EP156: Rohingya Repatriation",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2026-10-03"
         }
       ]
     },
@@ -9819,8 +9819,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 771,
-      "hours": 90.02,
+      "count": 772,
+      "hours": 90.07,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -9828,13 +9828,13 @@
         "2022": 41,
         "2023": 140,
         "2024": 168,
-        "2025": 170,
+        "2025": 171,
         "2026": 183
       },
       "evidence": {
         "title": 5,
         "notes": 419,
-        "transcript": 347
+        "transcript": 348
       },
       "samples": [
         {
@@ -10115,8 +10115,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 845,
-      "hours": 64.95,
+      "count": 850,
+      "hours": 65.0,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -10124,15 +10124,27 @@
         "2022": 33,
         "2023": 116,
         "2024": 192,
-        "2025": 246,
-        "2026": 240
+        "2025": 248,
+        "2026": 243
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 674
+        "transcript": 679
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
         {
           "i": 22,
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
@@ -10168,18 +10180,6 @@
           "e": "As vitórias da extrema-direita e a disputa do segundo turno",
           "p": "Foro de Teresina",
           "d": "2026-10-10"
-        },
-        {
-          "i": 104,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 120,
-          "e": "Three Vans, a Startled Farmer and an Iranian Plot Against the U.S.",
-          "p": "The Daily",
-          "d": "2026-10-07"
         }
       ]
     },
@@ -10190,7 +10190,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 445,
-      "hours": 63.62,
+      "hours": 63.61,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10202,9 +10202,9 @@
         "2026": 192
       },
       "evidence": {
-        "title": 49,
+        "title": 48,
         "notes": 140,
-        "transcript": 256
+        "transcript": 257
       },
       "samples": [
         {
@@ -10263,21 +10263,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 690,
-      "hours": 59.31,
+      "count": 693,
+      "hours": 59.34,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 112,
         "2024": 121,
-        "2025": 202,
+        "2025": 205,
         "2026": 144
       },
       "evidence": {
         "title": 6,
         "notes": 156,
-        "transcript": 528
+        "transcript": 531
       },
       "samples": [
         {
@@ -10485,7 +10485,7 @@
       "kind": "local",
       "facet": "local",
       "count": 563,
-      "hours": 54.82,
+      "hours": 54.78,
       "byYear": {
         "2019": 26,
         "2020": 17,
@@ -10497,9 +10497,9 @@
         "2026": 129
       },
       "evidence": {
-        "title": 154,
+        "title": 151,
         "notes": 42,
-        "transcript": 367
+        "transcript": 370
       },
       "samples": [
         {
@@ -10632,8 +10632,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 664,
-      "hours": 52.39,
+      "count": 665,
+      "hours": 52.38,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -10641,13 +10641,13 @@
         "2022": 36,
         "2023": 63,
         "2024": 105,
-        "2025": 247,
+        "2025": 248,
         "2026": 185
       },
       "evidence": {
-        "title": 86,
-        "notes": 102,
-        "transcript": 476
+        "title": 83,
+        "notes": 100,
+        "transcript": 482
       },
       "samples": [
         {
@@ -10706,8 +10706,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 547,
-      "hours": 51.18,
+      "count": 551,
+      "hours": 51.32,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -10715,13 +10715,13 @@
         "2022": 35,
         "2023": 60,
         "2024": 87,
-        "2025": 177,
+        "2025": 181,
         "2026": 157
       },
       "evidence": {
-        "title": 42,
+        "title": 40,
         "notes": 82,
-        "transcript": 423
+        "transcript": 429
       },
       "samples": [
         {
@@ -10781,7 +10781,7 @@
       "kind": "local",
       "facet": "local",
       "count": 379,
-      "hours": 48.45,
+      "hours": 48.42,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -10794,8 +10794,8 @@
       },
       "evidence": {
         "title": 148,
-        "notes": 159,
-        "transcript": 72
+        "notes": 158,
+        "transcript": 73
       },
       "samples": [
         {
@@ -10855,7 +10855,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 47.53,
+      "hours": 47.22,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -10866,9 +10866,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 175,
-        "notes": 89,
-        "transcript": 88
+        "title": 168,
+        "notes": 88,
+        "transcript": 96
       },
       "samples": [
         {
@@ -11382,9 +11382,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 54,
+        "title": 53,
         "notes": 140,
-        "transcript": 89
+        "transcript": 90
       },
       "samples": [
         {
@@ -11443,8 +11443,8 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 446,
-      "hours": 39.37,
+      "count": 450,
+      "hours": 39.4,
       "byYear": {
         "2019": 2,
         "2020": 5,
@@ -11452,15 +11452,21 @@
         "2022": 30,
         "2023": 48,
         "2024": 69,
-        "2025": 128,
-        "2026": 146
+        "2025": 131,
+        "2026": 147
       },
       "evidence": {
-        "title": 62,
+        "title": 60,
         "notes": 28,
-        "transcript": 356
+        "transcript": 362
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 20,
           "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
@@ -11502,12 +11508,6 @@
           "e": "Why Washington Is Trying to Rein In College Sports",
           "p": "The Daily",
           "d": "2026-10-03"
-        },
-        {
-          "i": 187,
-          "e": "Did Trump offer arms to Xi Jinping? What happened on the White House tour",
-          "p": "The Morning Edition",
-          "d": "2026-10-01"
         }
       ]
     },
@@ -11591,8 +11591,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 347,
-      "hours": 34.02,
+      "count": 348,
+      "hours": 34.03,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -11600,13 +11600,13 @@
         "2022": 39,
         "2023": 45,
         "2024": 54,
-        "2025": 73,
+        "2025": 74,
         "2026": 51
       },
       "evidence": {
         "title": 3,
         "notes": 181,
-        "transcript": 163
+        "transcript": 164
       },
       "samples": [
         {
@@ -11739,8 +11739,8 @@
       "blurb": "Chinese state and CCP politics.",
       "kind": "local",
       "facet": "local",
-      "count": 259,
-      "hours": 32.28,
+      "count": 262,
+      "hours": 32.38,
       "byYear": {
         "2019": 3,
         "2020": 19,
@@ -11748,13 +11748,13 @@
         "2022": 30,
         "2023": 47,
         "2024": 47,
-        "2025": 63,
+        "2025": 66,
         "2026": 22
       },
       "evidence": {
         "title": 11,
         "notes": 125,
-        "transcript": 123
+        "transcript": 126
       },
       "samples": [
         {
@@ -11813,8 +11813,8 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 325,
-      "hours": 28.94,
+      "count": 328,
+      "hours": 29.04,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -11822,13 +11822,13 @@
         "2022": 7,
         "2023": 35,
         "2024": 63,
-        "2025": 116,
+        "2025": 119,
         "2026": 95
       },
       "evidence": {
         "title": 61,
-        "notes": 27,
-        "transcript": 237
+        "notes": 26,
+        "transcript": 241
       },
       "samples": [
         {
@@ -11888,7 +11888,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 28.86,
+      "hours": 28.83,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -11899,9 +11899,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 91,
+        "title": 90,
         "notes": 54,
-        "transcript": 214
+        "transcript": 215
       },
       "samples": [
         {
@@ -11960,8 +11960,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 459,
-      "hours": 28.53,
+      "count": 460,
+      "hours": 28.54,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -11970,12 +11970,12 @@
         "2023": 50,
         "2024": 77,
         "2025": 121,
-        "2026": 103
+        "2026": 104
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 293
+        "transcript": 294
       },
       "samples": [
         {
@@ -12003,6 +12003,12 @@
           "d": "2026-09-28"
         },
         {
+          "i": 220,
+          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
           "i": 229,
           "e": "Could Australia’s media survive Trump-style attacks?",
           "p": "7am",
@@ -12019,12 +12025,6 @@
           "e": "Court Temporarily Blocks Media Ban, Trump-Xi White House Meeting, UNGA Diplomacy",
           "p": "Up First from NPR",
           "d": "2026-09-24"
-        },
-        {
-          "i": 266,
-          "e": "Will America watch Trump TV?",
-          "p": "ABC News Daily",
-          "d": "2026-09-23"
         }
       ]
     },
@@ -12181,21 +12181,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 505,
-      "hours": 25.09,
+      "count": 509,
+      "hours": 25.16,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 56,
         "2024": 101,
-        "2025": 144,
+        "2025": 148,
         "2026": 184
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 451
+        "transcript": 455
       },
       "samples": [
         {
@@ -12329,7 +12329,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 169,
-      "hours": 23.98,
+      "hours": 23.89,
       "byYear": {
         "2019": 1,
         "2020": 2,
@@ -12341,9 +12341,9 @@
         "2026": 67
       },
       "evidence": {
-        "title": 28,
+        "title": 26,
         "notes": 37,
-        "transcript": 104
+        "transcript": 106
       },
       "samples": [
         {
@@ -12402,8 +12402,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 251,
-      "hours": 23.3,
+      "count": 252,
+      "hours": 23.31,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -12411,13 +12411,13 @@
         "2022": 26,
         "2023": 34,
         "2024": 31,
-        "2025": 73,
+        "2025": 74,
         "2026": 39
       },
       "evidence": {
-        "title": 79,
+        "title": 78,
         "notes": 15,
-        "transcript": 157
+        "transcript": 159
       },
       "samples": [
         {
@@ -12697,22 +12697,34 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 215,
-      "hours": 21.0,
+      "count": 220,
+      "hours": 21.18,
       "byYear": {
         "2021": 1,
         "2022": 9,
         "2023": 30,
         "2024": 47,
-        "2025": 72,
-        "2026": 56
+        "2025": 74,
+        "2026": 59
       },
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 210
+        "transcript": 215
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 20,
+          "e": "School Shooting in Bend, Elon Musk's Power, MN Senate Race",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
         {
           "i": 65,
           "e": "Will Trump stream an execution to the world?",
@@ -12748,18 +12760,6 @@
           "e": "UK Terror Plot Investigation, Trump's Fuel Efficiency Rollback, Cornell Rape Case",
           "p": "Up First from NPR",
           "d": "2026-09-29"
-        },
-        {
-          "i": 219,
-          "e": "He Was Deported to a Country He’d Never Heard Of",
-          "p": "The Daily",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 229,
-          "e": "Could Australia’s media survive Trump-style attacks?",
-          "p": "7am",
-          "d": "2026-09-28"
         }
       ]
     },
@@ -12769,8 +12769,8 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 250,
-      "hours": 19.24,
+      "count": 252,
+      "hours": 19.31,
       "byYear": {
         "2019": 1,
         "2020": 5,
@@ -12779,17 +12779,23 @@
         "2023": 27,
         "2024": 30,
         "2025": 39,
-        "2026": 116
+        "2026": 118
       },
       "evidence": {
         "title": 40,
         "notes": 40,
-        "transcript": 170
+        "transcript": 172
       },
       "samples": [
         {
           "i": 29,
           "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
           "p": "Up First from NPR",
           "d": "2026-10-16"
         },
@@ -12824,16 +12830,10 @@
           "d": "2026-10-06"
         },
         {
-          "i": 269,
-          "e": "The Trump Administration Defangs the Endangered Species Act",
-          "p": "The Daily",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 287,
-          "e": "Trump and Zelensky meet again, and this time, Zelensky has the cards",
-          "p": "The Morning Edition",
-          "d": "2026-09-22"
+          "i": 220,
+          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
         }
       ]
     },
@@ -12991,8 +12991,8 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 135,
-      "hours": 16.49,
+      "count": 137,
+      "hours": 16.52,
       "byYear": {
         "2019": 4,
         "2020": 10,
@@ -13001,14 +13001,20 @@
         "2023": 18,
         "2024": 27,
         "2025": 18,
-        "2026": 41
+        "2026": 43
       },
       "evidence": {
         "title": 11,
         "notes": 76,
-        "transcript": 48
+        "transcript": 50
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 52,
           "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
@@ -13034,6 +13040,12 @@
           "d": "2026-09-30"
         },
         {
+          "i": 220,
+          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
           "i": 303,
           "e": "Trump Bans Media from White House, Europe on High Alert, College Sports Bill",
           "p": "Up First from NPR",
@@ -13044,18 +13056,6 @@
           "e": "Fed Raises Interest Rates, Iran War and Oil Prices, EU-Canada Alliance",
           "p": "Up First from NPR",
           "d": "2026-09-18"
-        },
-        {
-          "i": 331,
-          "e": "The assassination of a Maltese journalist and the verdict that shocked Europe",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 338,
-          "e": "Could Australia join the European Union?",
-          "p": "The Morning Edition",
-          "d": "2026-09-17"
         }
       ]
     },
@@ -13139,8 +13139,8 @@
       "blurb": "UK politics, Brexit, Westminster.",
       "kind": "local",
       "facet": "local",
-      "count": 116,
-      "hours": 14.95,
+      "count": 115,
+      "hours": 14.9,
       "byYear": {
         "2019": 20,
         "2020": 24,
@@ -13149,20 +13149,14 @@
         "2023": 5,
         "2024": 15,
         "2025": 10,
-        "2026": 21
+        "2026": 20
       },
       "evidence": {
-        "title": 56,
+        "title": 55,
         "notes": 44,
         "transcript": 16
       },
       "samples": [
-        {
-          "i": 220,
-          "e": "Trump Rejects Iran's Ceasefire, UK Foiled Plot On US Base, Trump Press Corps Fight",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
         {
           "i": 275,
           "e": "Will Argentina go to war with the UK over the Falklands?",
@@ -13204,6 +13198,85 @@
           "e": "US-Iran War Escalates, Congress To-Do List, UK Has A New Prime Minister",
           "p": "Up First from NPR",
           "d": "2026-07-20"
+        },
+        {
+          "i": 1194,
+          "e": "Starmer’s successor /  Reset on UK-US relationship? / Strait latest",
+          "p": "Sources & Methods",
+          "d": "2026-06-27"
+        }
+      ]
+    },
+    {
+      "id": "nuclear",
+      "name": "Nuclear",
+      "blurb": "Nuclear weapons and energy.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 259,
+      "hours": 14.85,
+      "byYear": {
+        "2019": 1,
+        "2021": 9,
+        "2022": 20,
+        "2023": 23,
+        "2024": 42,
+        "2025": 74,
+        "2026": 90
+      },
+      "evidence": {
+        "title": 1,
+        "notes": 36,
+        "transcript": 222
+      },
+      "samples": [
+        {
+          "i": 75,
+          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 251,
+          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
+          "p": "The Daily",
+          "d": "2026-09-25"
+        },
+        {
+          "i": 298,
+          "e": "The race to put weapons in space",
+          "p": "7am",
+          "d": "2026-09-21"
+        },
+        {
+          "i": 317,
+          "e": "The Alliance | Your questions answered",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-18"
+        },
+        {
+          "i": 329,
+          "e": "Trump vs China and the AI 'hoax'",
+          "p": "ABC News Daily",
+          "d": "2026-09-17"
+        },
+        {
+          "i": 372,
+          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
+          "p": "The Daily",
+          "d": "2026-09-13"
+        },
+        {
+          "i": 379,
+          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-09-12"
+        },
+        {
+          "i": 629,
+          "e": "Ep 188: Missiles, Pacific integration and managed competition",
+          "p": "Australia in the World",
+          "d": "2026-08-19"
         }
       ]
     },
@@ -13281,85 +13354,12 @@
       ]
     },
     {
-      "id": "nuclear",
-      "name": "Nuclear",
-      "blurb": "Nuclear weapons and energy.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 258,
-      "hours": 14.84,
-      "byYear": {
-        "2019": 1,
-        "2021": 9,
-        "2022": 20,
-        "2023": 23,
-        "2024": 42,
-        "2025": 73,
-        "2026": 90
-      },
-      "evidence": {
-        "title": 1,
-        "notes": 36,
-        "transcript": 221
-      },
-      "samples": [
-        {
-          "i": 75,
-          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 251,
-          "e": "What Safeguarding Nukes Can Teach Us About Safeguarding A.I.",
-          "p": "The Daily",
-          "d": "2026-09-25"
-        },
-        {
-          "i": 298,
-          "e": "The race to put weapons in space",
-          "p": "7am",
-          "d": "2026-09-21"
-        },
-        {
-          "i": 317,
-          "e": "The Alliance | Your questions answered",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-18"
-        },
-        {
-          "i": 329,
-          "e": "Trump vs China and the AI 'hoax'",
-          "p": "ABC News Daily",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 372,
-          "e": "Naomi Klein and Astra Taylor Say the End of the World is Now on the Table",
-          "p": "The Daily",
-          "d": "2026-09-13"
-        },
-        {
-          "i": 379,
-          "e": "Kevin Rudd sounds alarm on Australia becoming 'complacent' | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-09-12"
-        },
-        {
-          "i": 629,
-          "e": "Ep 188: Missiles, Pacific integration and managed competition",
-          "p": "Australia in the World",
-          "d": "2026-08-19"
-        }
-      ]
-    },
-    {
       "id": "space",
       "name": "Space",
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 136,
+      "count": 137,
       "hours": 14.83,
       "byYear": {
         "2021": 4,
@@ -13367,14 +13367,20 @@
         "2023": 19,
         "2024": 22,
         "2025": 33,
-        "2026": 48
+        "2026": 49
       },
       "evidence": {
         "title": 2,
         "notes": 32,
-        "transcript": 102
+        "transcript": 103
       },
       "samples": [
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
         {
           "i": 97,
           "e": "As vitórias da extrema-direita e a disputa do segundo turno",
@@ -13416,12 +13422,6 @@
           "e": "“Accident waiting to happen”: Why Nepal’s floods could happen again",
           "p": "7am",
           "d": "2026-08-31"
-        },
-        {
-          "i": 768,
-          "e": "The A.I. Revolt Is Here",
-          "p": "The Ezra Klein Show",
-          "d": "2026-08-05"
         }
       ]
     },
@@ -13431,8 +13431,8 @@
       "blurb": "US foreign policy and diplomacy.",
       "kind": "local",
       "facet": "local",
-      "count": 201,
-      "hours": 14.67,
+      "count": 200,
+      "hours": 14.62,
       "byYear": {
         "2019": 5,
         "2020": 7,
@@ -13441,20 +13441,14 @@
         "2023": 17,
         "2024": 21,
         "2025": 67,
-        "2026": 55
+        "2026": 54
       },
       "evidence": {
-        "title": 26,
-        "notes": 74,
-        "transcript": 101
+        "title": 24,
+        "notes": 73,
+        "transcript": 103
       },
       "samples": [
-        {
-          "i": 4,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
         {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
@@ -13496,6 +13490,12 @@
           "e": "Xadrez Verbal #476 Lula na ONU e Trump recebe Xi",
           "p": "Xadrez Verbal",
           "d": "2026-09-27"
+        },
+        {
+          "i": 273,
+          "e": "US And Iran Talk At UNGA, Poll Shows Dems Lead Midterm, White House Media Ban Lawsuit",
+          "p": "Up First from NPR",
+          "d": "2026-09-23"
         }
       ]
     },
@@ -13721,80 +13721,6 @@
       ]
     },
     {
-      "id": "france-politics",
-      "name": "French politics",
-      "blurb": "French politics and Macron.",
-      "kind": "local",
-      "facet": "local",
-      "count": 89,
-      "hours": 10.87,
-      "byYear": {
-        "2019": 3,
-        "2020": 6,
-        "2021": 11,
-        "2022": 17,
-        "2023": 10,
-        "2024": 23,
-        "2025": 8,
-        "2026": 11
-      },
-      "evidence": {
-        "title": 43,
-        "notes": 31,
-        "transcript": 15
-      },
-      "samples": [
-        {
-          "i": 4,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
-        {
-          "i": 81,
-          "e": "Why France Is in Crisis",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 118,
-          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 157,
-          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 360,
-          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
-          "p": "Xadrez Verbal",
-          "d": "2026-09-14"
-        },
-        {
-          "i": 422,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 832,
-          "e": "Europe Is Burning",
-          "p": "The Daily",
-          "d": "2026-07-30"
-        },
-        {
-          "i": 846,
-          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
-          "p": "Up First from NPR",
-          "d": "2026-07-29"
-        }
-      ]
-    },
-    {
       "id": "sport",
       "name": "Sport",
       "blurb": "Sport beyond football.",
@@ -13865,6 +13791,80 @@
           "e": "The most powerful man in sport is about to get more powerful",
           "p": "The Morning Edition",
           "d": "2026-05-26"
+        }
+      ]
+    },
+    {
+      "id": "france-politics",
+      "name": "French politics",
+      "blurb": "French politics and Macron.",
+      "kind": "local",
+      "facet": "local",
+      "count": 89,
+      "hours": 10.86,
+      "byYear": {
+        "2019": 3,
+        "2020": 6,
+        "2021": 11,
+        "2022": 17,
+        "2023": 10,
+        "2024": 23,
+        "2025": 8,
+        "2026": 11
+      },
+      "evidence": {
+        "title": 42,
+        "notes": 31,
+        "transcript": 16
+      },
+      "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 81,
+          "e": "Why France Is in Crisis",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 118,
+          "e": "Threats On US Bases Overseas, France Student Protest, German Spy Arrest",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 157,
+          "e": "Xadrez Verbal #477 Protestos na Espanha e véspera de eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 360,
+          "e": "Xadrez Verbal #474 Extrema-direita na Alemanha e Ofensiva no Iêmen",
+          "p": "Xadrez Verbal",
+          "d": "2026-09-14"
+        },
+        {
+          "i": 422,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 832,
+          "e": "Europe Is Burning",
+          "p": "The Daily",
+          "d": "2026-07-30"
+        },
+        {
+          "i": 846,
+          "e": "Trump Has 'Productive' Talks With Zelenskyy And Netanyahu, France Wildfires",
+          "p": "Up First from NPR",
+          "d": "2026-07-29"
         }
       ]
     },
@@ -14021,8 +14021,8 @@
       "blurb": "Music and the music industry.",
       "kind": "domain",
       "facet": "domain",
-      "count": 80,
-      "hours": 9.78,
+      "count": 81,
+      "hours": 9.79,
       "byYear": {
         "2019": 1,
         "2020": 2,
@@ -14030,13 +14030,13 @@
         "2022": 7,
         "2023": 16,
         "2024": 17,
-        "2025": 15,
+        "2025": 16,
         "2026": 20
       },
       "evidence": {
         "title": 10,
         "notes": 5,
-        "transcript": 65
+        "transcript": 66
       },
       "samples": [
         {
@@ -14095,21 +14095,27 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 75,
-      "hours": 8.92,
+      "count": 76,
+      "hours": 8.96,
       "byYear": {
         "2022": 10,
         "2023": 15,
         "2024": 8,
         "2025": 25,
-        "2026": 17
+        "2026": 18
       },
       "evidence": {
         "title": 2,
         "notes": 21,
-        "transcript": 52
+        "transcript": 53
       },
       "samples": [
+        {
+          "i": 4,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
         {
           "i": 32,
           "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
@@ -14151,12 +14157,6 @@
           "e": "White House Correspondents’ Dinner, Ukraine hits Russian Retailer, India Protests",
           "p": "Up First from NPR",
           "d": "2026-07-25"
-        },
-        {
-          "i": 1067,
-          "e": "Iran Ceasefire Over, Platner Replacements Emerge, Olympic Committee Lifts Russia Ban",
-          "p": "Up First from NPR",
-          "d": "2026-07-08"
         }
       ]
     },
@@ -14167,7 +14167,7 @@
       "kind": "local",
       "facet": "local",
       "count": 73,
-      "hours": 8.74,
+      "hours": 8.72,
       "byYear": {
         "2020": 1,
         "2021": 1,
@@ -14178,9 +14178,9 @@
         "2026": 27
       },
       "evidence": {
-        "title": 19,
+        "title": 18,
         "notes": 33,
-        "transcript": 21
+        "transcript": 22
       },
       "samples": [
         {
@@ -14386,21 +14386,21 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 90,
-      "hours": 8.08,
+      "count": 91,
+      "hours": 8.09,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 7,
         "2023": 16,
         "2024": 19,
-        "2025": 26,
+        "2025": 27,
         "2026": 19
       },
       "evidence": {
         "title": 0,
         "notes": 18,
-        "transcript": 72
+        "transcript": 73
       },
       "samples": [
         {
@@ -15263,22 +15263,28 @@
       "blurb": "Middle East governments (ex Israel–Gaza).",
       "kind": "local",
       "facet": "local",
-      "count": 53,
-      "hours": 4.3,
+      "count": 54,
+      "hours": 4.34,
       "byYear": {
         "2019": 1,
         "2022": 2,
         "2023": 3,
         "2024": 16,
         "2025": 12,
-        "2026": 19
+        "2026": 20
       },
       "evidence": {
         "title": 4,
         "notes": 4,
-        "transcript": 45
+        "transcript": 46
       },
       "samples": [
+        {
+          "i": 31,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
         {
           "i": 45,
           "e": "Could Trump wage another war in the Middle East?",
@@ -15320,12 +15326,6 @@
           "e": "Iran And Yemen's Houthis Blockade, Hegseth On Capitol Hill, Arizona Primary Day",
           "p": "Up First from NPR",
           "d": "2026-07-22"
-        },
-        {
-          "i": 1935,
-          "e": "Middle East War Negotiations, War And The Global Economy, New Swalwell Allegations",
-          "p": "Up First from NPR",
-          "d": "2026-04-15"
         }
       ]
     },
@@ -15621,20 +15621,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 100,
-      "hours": 3.54,
+      "count": 102,
+      "hours": 3.53,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 5,
         "2024": 7,
-        "2025": 67,
+        "2025": 69,
         "2026": 18
       },
       "evidence": {
-        "title": 1,
+        "title": 0,
         "notes": 20,
-        "transcript": 79
+        "transcript": 82
       },
       "samples": [
         {
