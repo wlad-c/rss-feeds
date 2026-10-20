@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "show-notes": 6526,
-      "title": 10679,
-      "stt": 1034,
+      "show-notes": 6522,
+      "title": 10674,
+      "stt": 1044,
       "youtube": 2079,
-      "transcript": 1707
+      "transcript": 1706
     },
-    "episodesWithTranscriptEvidence": 4820,
-    "episodesWithNotesEvidence": 6526,
-    "episodesWithTitleOnlyEvidence": 10679,
+    "episodesWithTranscriptEvidence": 4829,
+    "episodesWithNotesEvidence": 6522,
+    "episodesWithTitleOnlyEvidence": 10674,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6132,
-      "hours": 1131.55,
+      "hours": 1131.21,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 904
       },
       "evidence": {
-        "title": 3568,
-        "notes": 479,
-        "transcript": 2085
+        "title": 3563,
+        "notes": 475,
+        "transcript": 2094
       },
       "samples": [
         {
@@ -477,8 +477,8 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2463,
-      "hours": 246.59,
+      "count": 2464,
+      "hours": 246.44,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -486,13 +486,13 @@
         "2022": 116,
         "2023": 237,
         "2024": 538,
-        "2025": 803,
+        "2025": 804,
         "2026": 558
       },
       "evidence": {
-        "title": 852,
-        "notes": 441,
-        "transcript": 1170
+        "title": 850,
+        "notes": 439,
+        "transcript": 1175
       },
       "samples": [
         {
@@ -552,8 +552,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2887,
-      "hours": 236.35,
+      "count": 2889,
+      "hours": 236.3,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -561,13 +561,13 @@
         "2022": 278,
         "2023": 465,
         "2024": 492,
-        "2025": 644,
+        "2025": 646,
         "2026": 577
       },
       "evidence": {
         "title": 472,
-        "notes": 1195,
-        "transcript": 1220
+        "notes": 1194,
+        "transcript": 1223
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2283,
-      "hours": 187.5,
+      "count": 2288,
+      "hours": 187.58,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -711,13 +711,13 @@
         "2022": 211,
         "2023": 295,
         "2024": 347,
-        "2025": 607,
-        "2026": 640
+        "2025": 611,
+        "2026": 641
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 1717
+        "transcript": 1722
       },
       "samples": [
         {
@@ -1078,7 +1078,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 109.34,
+      "hours": 109.29,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -1090,9 +1090,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 398,
-        "notes": 211,
-        "transcript": 256
+        "title": 395,
+        "notes": 210,
+        "transcript": 260
       },
       "samples": [
         {
@@ -1152,8 +1152,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1193,
-      "hours": 108.6,
+      "count": 1194,
+      "hours": 108.62,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1162,12 +1162,12 @@
         "2023": 169,
         "2024": 178,
         "2025": 388,
-        "2026": 314
+        "2026": 315
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 981
+        "transcript": 982
       },
       "samples": [
         {
@@ -1227,8 +1227,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1204,
-      "hours": 106.62,
+      "count": 1207,
+      "hours": 106.68,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -1236,13 +1236,13 @@
         "2022": 62,
         "2023": 134,
         "2024": 153,
-        "2025": 375,
+        "2025": 378,
         "2026": 439
       },
       "evidence": {
         "title": 146,
-        "notes": 106,
-        "transcript": 952
+        "notes": 105,
+        "transcript": 956
       },
       "samples": [
         {
@@ -1302,8 +1302,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 927,
-      "hours": 103.32,
+      "count": 929,
+      "hours": 103.38,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -1311,13 +1311,13 @@
         "2022": 92,
         "2023": 135,
         "2024": 141,
-        "2025": 208,
+        "2025": 210,
         "2026": 111
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 362
+        "transcript": 364
       },
       "samples": [
         {
@@ -1827,7 +1827,7 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 861,
+      "count": 862,
       "hours": 65.16,
       "byYear": {
         "2019": 1,
@@ -1836,13 +1836,13 @@
         "2022": 33,
         "2023": 116,
         "2024": 192,
-        "2025": 259,
+        "2025": 260,
         "2026": 243
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 690
+        "transcript": 691
       },
       "samples": [
         {
@@ -1903,7 +1903,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 446,
-      "hours": 63.52,
+      "hours": 63.46,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1916,8 +1916,8 @@
       },
       "evidence": {
         "title": 47,
-        "notes": 140,
-        "transcript": 259
+        "notes": 139,
+        "transcript": 260
       },
       "samples": [
         {
@@ -1977,21 +1977,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 711,
-      "hours": 59.61,
+      "count": 713,
+      "hours": 59.64,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 112,
         "2024": 121,
-        "2025": 223,
-        "2026": 144
+        "2025": 224,
+        "2026": 145
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 550
+        "transcript": 552
       },
       "samples": [
         {
@@ -2201,8 +2201,8 @@
       "blurb": "SCOTUS and US courts.",
       "kind": "local",
       "facet": "local",
-      "count": 582,
-      "hours": 55.51,
+      "count": 583,
+      "hours": 55.4,
       "byYear": {
         "2019": 26,
         "2020": 17,
@@ -2211,12 +2211,12 @@
         "2023": 79,
         "2024": 105,
         "2025": 160,
-        "2026": 129
+        "2026": 130
       },
       "evidence": {
-        "title": 145,
-        "notes": 38,
-        "transcript": 399
+        "title": 143,
+        "notes": 37,
+        "transcript": 403
       },
       "samples": [
         {
@@ -2276,8 +2276,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 684,
-      "hours": 53.28,
+      "count": 686,
+      "hours": 53.33,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -2285,13 +2285,13 @@
         "2022": 36,
         "2023": 63,
         "2024": 105,
-        "2025": 267,
+        "2025": 269,
         "2026": 185
       },
       "evidence": {
         "title": 76,
-        "notes": 97,
-        "transcript": 511
+        "notes": 96,
+        "transcript": 514
       },
       "samples": [
         {
@@ -2426,8 +2426,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 560,
-      "hours": 51.48,
+      "count": 563,
+      "hours": 51.68,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -2435,13 +2435,13 @@
         "2022": 35,
         "2023": 60,
         "2024": 87,
-        "2025": 190,
-        "2026": 157
+        "2025": 192,
+        "2026": 158
       },
       "evidence": {
         "title": 37,
         "notes": 81,
-        "transcript": 442
+        "transcript": 445
       },
       "samples": [
         {
@@ -3173,8 +3173,8 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 462,
-      "hours": 39.87,
+      "count": 463,
+      "hours": 39.9,
       "byYear": {
         "2019": 2,
         "2020": 5,
@@ -3182,13 +3182,13 @@
         "2022": 30,
         "2023": 48,
         "2024": 69,
-        "2025": 143,
+        "2025": 144,
         "2026": 147
       },
       "evidence": {
         "title": 55,
         "notes": 24,
-        "transcript": 383
+        "transcript": 384
       },
       "samples": [
         {
@@ -3549,7 +3549,7 @@
       "kind": "local",
       "facet": "local",
       "count": 338,
-      "hours": 29.34,
+      "hours": 29.24,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -3561,9 +3561,9 @@
         "2026": 95
       },
       "evidence": {
-        "title": 52,
+        "title": 51,
         "notes": 25,
-        "transcript": 261
+        "transcript": 262
       },
       "samples": [
         {
@@ -3921,21 +3921,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 529,
-      "hours": 25.43,
+      "count": 530,
+      "hours": 25.44,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 56,
         "2024": 101,
-        "2025": 168,
+        "2025": 169,
         "2026": 184
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 475
+        "transcript": 476
       },
       "samples": [
         {
@@ -4145,8 +4145,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 261,
-      "hours": 23.75,
+      "count": 262,
+      "hours": 23.83,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -4155,12 +4155,12 @@
         "2023": 34,
         "2024": 31,
         "2025": 83,
-        "2026": 39
+        "2026": 40
       },
       "evidence": {
         "title": 76,
         "notes": 14,
-        "transcript": 171
+        "transcript": 172
       },
       "samples": [
         {
@@ -4444,20 +4444,20 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 231,
-      "hours": 21.69,
+      "count": 232,
+      "hours": 21.73,
       "byYear": {
         "2021": 1,
         "2022": 9,
         "2023": 30,
         "2024": 47,
-        "2025": 85,
+        "2025": 86,
         "2026": 59
       },
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 226
+        "transcript": 227
       },
       "samples": [
         {
@@ -4742,8 +4742,8 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 140,
-      "hours": 16.64,
+      "count": 141,
+      "hours": 16.66,
       "byYear": {
         "2019": 4,
         "2020": 10,
@@ -4751,13 +4751,13 @@
         "2022": 12,
         "2023": 18,
         "2024": 27,
-        "2025": 21,
+        "2025": 22,
         "2026": 43
       },
       "evidence": {
         "title": 11,
         "notes": 76,
-        "transcript": 53
+        "transcript": 54
       },
       "samples": [
         {
@@ -5264,7 +5264,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 156,
-      "hours": 13.52,
+      "hours": 13.56,
       "byYear": {
         "2020": 3,
         "2021": 5,
@@ -5861,19 +5861,19 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 81,
-      "hours": 9.17,
+      "count": 82,
+      "hours": 9.2,
       "byYear": {
         "2022": 10,
         "2023": 15,
         "2024": 8,
-        "2025": 30,
+        "2025": 31,
         "2026": 18
       },
       "evidence": {
         "title": 2,
         "notes": 20,
-        "transcript": 59
+        "transcript": 60
       },
       "samples": [
         {
@@ -6380,21 +6380,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 216,
-      "hours": 7.14,
+      "count": 217,
+      "hours": 7.15,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
         "2023": 48,
         "2024": 49,
-        "2025": 39,
+        "2025": 40,
         "2026": 59
       },
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 133
+        "transcript": 134
       },
       "samples": [
         {
@@ -6751,8 +6751,8 @@
       "blurb": "Indian government and BJP/Congress politics.",
       "kind": "local",
       "facet": "local",
-      "count": 35,
-      "hours": 5.55,
+      "count": 36,
+      "hours": 5.58,
       "byYear": {
         "2019": 1,
         "2020": 1,
@@ -6760,13 +6760,13 @@
         "2022": 4,
         "2023": 8,
         "2024": 8,
-        "2025": 7,
+        "2025": 8,
         "2026": 5
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 11
+        "transcript": 12
       },
       "samples": [
         {
@@ -6900,19 +6900,19 @@
       "blurb": "Far-right parties and politics in Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 42,
-      "hours": 5.28,
+      "count": 43,
+      "hours": 5.31,
       "byYear": {
         "2022": 6,
         "2023": 2,
         "2024": 10,
-        "2025": 8,
+        "2025": 9,
         "2026": 16
       },
       "evidence": {
         "title": 5,
         "notes": 22,
-        "transcript": 15
+        "transcript": 16
       },
       "samples": [
         {
@@ -8233,17 +8233,17 @@
       "blurb": "Pakistani government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 6,
-      "hours": 0.81,
+      "count": 7,
+      "hours": 0.84,
       "byYear": {
         "2022": 2,
         "2023": 1,
-        "2025": 3
+        "2025": 4
       },
       "evidence": {
         "title": 2,
         "notes": 2,
-        "transcript": 2
+        "transcript": 3
       },
       "samples": [
         {
@@ -8263,6 +8263,12 @@
           "e": "Why are India and Pakistan on the brink of war?",
           "p": "CNA Correspondent",
           "d": "2025-05-11"
+        },
+        {
+          "i": 5579,
+          "e": "India And Pakistan Latest, Libya Deportations, The Fed And Interest Rates",
+          "p": "Up First from NPR",
+          "d": "2025-05-08"
         },
         {
           "i": 13186,
@@ -8353,7 +8359,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6132,
-      "hours": 1131.55,
+      "hours": 1131.21,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8365,9 +8371,9 @@
         "2026": 904
       },
       "evidence": {
-        "title": 3568,
-        "notes": 479,
-        "transcript": 2085
+        "title": 3563,
+        "notes": 475,
+        "transcript": 2094
       },
       "samples": [
         {
@@ -8796,8 +8802,8 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2463,
-      "hours": 246.59,
+      "count": 2464,
+      "hours": 246.44,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8805,13 +8811,13 @@
         "2022": 116,
         "2023": 237,
         "2024": 538,
-        "2025": 803,
+        "2025": 804,
         "2026": 558
       },
       "evidence": {
-        "title": 852,
-        "notes": 441,
-        "transcript": 1170
+        "title": 850,
+        "notes": 439,
+        "transcript": 1175
       },
       "samples": [
         {
@@ -8870,8 +8876,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2887,
-      "hours": 236.35,
+      "count": 2889,
+      "hours": 236.3,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8879,13 +8885,13 @@
         "2022": 278,
         "2023": 465,
         "2024": 492,
-        "2025": 644,
+        "2025": 646,
         "2026": 577
       },
       "evidence": {
         "title": 472,
-        "notes": 1195,
-        "transcript": 1220
+        "notes": 1194,
+        "transcript": 1223
       },
       "samples": [
         {
@@ -9018,8 +9024,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2283,
-      "hours": 187.5,
+      "count": 2288,
+      "hours": 187.58,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9027,13 +9033,13 @@
         "2022": 211,
         "2023": 295,
         "2024": 347,
-        "2025": 607,
-        "2026": 640
+        "2025": 611,
+        "2026": 641
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 1717
+        "transcript": 1722
       },
       "samples": [
         {
@@ -9389,7 +9395,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 109.34,
+      "hours": 109.29,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -9401,9 +9407,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 398,
-        "notes": 211,
-        "transcript": 256
+        "title": 395,
+        "notes": 210,
+        "transcript": 260
       },
       "samples": [
         {
@@ -9462,8 +9468,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1193,
-      "hours": 108.6,
+      "count": 1194,
+      "hours": 108.62,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9472,12 +9478,12 @@
         "2023": 169,
         "2024": 178,
         "2025": 388,
-        "2026": 314
+        "2026": 315
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 981
+        "transcript": 982
       },
       "samples": [
         {
@@ -9536,8 +9542,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1204,
-      "hours": 106.62,
+      "count": 1207,
+      "hours": 106.68,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -9545,13 +9551,13 @@
         "2022": 62,
         "2023": 134,
         "2024": 153,
-        "2025": 375,
+        "2025": 378,
         "2026": 439
       },
       "evidence": {
         "title": 146,
-        "notes": 106,
-        "transcript": 952
+        "notes": 105,
+        "transcript": 956
       },
       "samples": [
         {
@@ -9610,8 +9616,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 927,
-      "hours": 103.32,
+      "count": 929,
+      "hours": 103.38,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -9619,13 +9625,13 @@
         "2022": 92,
         "2023": 135,
         "2024": 141,
-        "2025": 208,
+        "2025": 210,
         "2026": 111
       },
       "evidence": {
         "title": 2,
         "notes": 563,
-        "transcript": 362
+        "transcript": 364
       },
       "samples": [
         {
@@ -10128,7 +10134,7 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 861,
+      "count": 862,
       "hours": 65.16,
       "byYear": {
         "2019": 1,
@@ -10137,13 +10143,13 @@
         "2022": 33,
         "2023": 116,
         "2024": 192,
-        "2025": 259,
+        "2025": 260,
         "2026": 243
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 690
+        "transcript": 691
       },
       "samples": [
         {
@@ -10203,7 +10209,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 446,
-      "hours": 63.52,
+      "hours": 63.46,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10216,8 +10222,8 @@
       },
       "evidence": {
         "title": 47,
-        "notes": 140,
-        "transcript": 259
+        "notes": 139,
+        "transcript": 260
       },
       "samples": [
         {
@@ -10276,21 +10282,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 711,
-      "hours": 59.61,
+      "count": 713,
+      "hours": 59.64,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 112,
         "2024": 121,
-        "2025": 223,
-        "2026": 144
+        "2025": 224,
+        "2026": 145
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 550
+        "transcript": 552
       },
       "samples": [
         {
@@ -10497,8 +10503,8 @@
       "blurb": "SCOTUS and US courts.",
       "kind": "local",
       "facet": "local",
-      "count": 582,
-      "hours": 55.51,
+      "count": 583,
+      "hours": 55.4,
       "byYear": {
         "2019": 26,
         "2020": 17,
@@ -10507,12 +10513,12 @@
         "2023": 79,
         "2024": 105,
         "2025": 160,
-        "2026": 129
+        "2026": 130
       },
       "evidence": {
-        "title": 145,
-        "notes": 38,
-        "transcript": 399
+        "title": 143,
+        "notes": 37,
+        "transcript": 403
       },
       "samples": [
         {
@@ -10571,8 +10577,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 684,
-      "hours": 53.28,
+      "count": 686,
+      "hours": 53.33,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -10580,13 +10586,13 @@
         "2022": 36,
         "2023": 63,
         "2024": 105,
-        "2025": 267,
+        "2025": 269,
         "2026": 185
       },
       "evidence": {
         "title": 76,
-        "notes": 97,
-        "transcript": 511
+        "notes": 96,
+        "transcript": 514
       },
       "samples": [
         {
@@ -10719,8 +10725,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 560,
-      "hours": 51.48,
+      "count": 563,
+      "hours": 51.68,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -10728,13 +10734,13 @@
         "2022": 35,
         "2023": 60,
         "2024": 87,
-        "2025": 190,
-        "2026": 157
+        "2025": 192,
+        "2026": 158
       },
       "evidence": {
         "title": 37,
         "notes": 81,
-        "transcript": 442
+        "transcript": 445
       },
       "samples": [
         {
@@ -11456,8 +11462,8 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 462,
-      "hours": 39.87,
+      "count": 463,
+      "hours": 39.9,
       "byYear": {
         "2019": 2,
         "2020": 5,
@@ -11465,13 +11471,13 @@
         "2022": 30,
         "2023": 48,
         "2024": 69,
-        "2025": 143,
+        "2025": 144,
         "2026": 147
       },
       "evidence": {
         "title": 55,
         "notes": 24,
-        "transcript": 383
+        "transcript": 384
       },
       "samples": [
         {
@@ -11827,7 +11833,7 @@
       "kind": "local",
       "facet": "local",
       "count": 338,
-      "hours": 29.34,
+      "hours": 29.24,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -11839,9 +11845,9 @@
         "2026": 95
       },
       "evidence": {
-        "title": 52,
+        "title": 51,
         "notes": 25,
-        "transcript": 261
+        "transcript": 262
       },
       "samples": [
         {
@@ -12194,21 +12200,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 529,
-      "hours": 25.43,
+      "count": 530,
+      "hours": 25.44,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 56,
         "2024": 101,
-        "2025": 168,
+        "2025": 169,
         "2026": 184
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 475
+        "transcript": 476
       },
       "samples": [
         {
@@ -12415,8 +12421,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 261,
-      "hours": 23.75,
+      "count": 262,
+      "hours": 23.83,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -12425,12 +12431,12 @@
         "2023": 34,
         "2024": 31,
         "2025": 83,
-        "2026": 39
+        "2026": 40
       },
       "evidence": {
         "title": 76,
         "notes": 14,
-        "transcript": 171
+        "transcript": 172
       },
       "samples": [
         {
@@ -12710,20 +12716,20 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 231,
-      "hours": 21.69,
+      "count": 232,
+      "hours": 21.73,
       "byYear": {
         "2021": 1,
         "2022": 9,
         "2023": 30,
         "2024": 47,
-        "2025": 85,
+        "2025": 86,
         "2026": 59
       },
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 226
+        "transcript": 227
       },
       "samples": [
         {
@@ -13004,8 +13010,8 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 140,
-      "hours": 16.64,
+      "count": 141,
+      "hours": 16.66,
       "byYear": {
         "2019": 4,
         "2020": 10,
@@ -13013,13 +13019,13 @@
         "2022": 12,
         "2023": 18,
         "2024": 27,
-        "2025": 21,
+        "2025": 22,
         "2026": 43
       },
       "evidence": {
         "title": 11,
         "notes": 76,
-        "transcript": 53
+        "transcript": 54
       },
       "samples": [
         {
@@ -13519,7 +13525,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 156,
-      "hours": 13.52,
+      "hours": 13.56,
       "byYear": {
         "2020": 3,
         "2021": 5,
@@ -14108,19 +14114,19 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 81,
-      "hours": 9.17,
+      "count": 82,
+      "hours": 9.2,
       "byYear": {
         "2022": 10,
         "2023": 15,
         "2024": 8,
-        "2025": 30,
+        "2025": 31,
         "2026": 18
       },
       "evidence": {
         "title": 2,
         "notes": 20,
-        "transcript": 59
+        "transcript": 60
       },
       "samples": [
         {
@@ -14620,21 +14626,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 216,
-      "hours": 7.14,
+      "count": 217,
+      "hours": 7.15,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
         "2023": 48,
         "2024": 49,
-        "2025": 39,
+        "2025": 40,
         "2026": 59
       },
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 133
+        "transcript": 134
       },
       "samples": [
         {
@@ -14986,8 +14992,8 @@
       "blurb": "Indian government and BJP/Congress politics.",
       "kind": "local",
       "facet": "local",
-      "count": 35,
-      "hours": 5.55,
+      "count": 36,
+      "hours": 5.58,
       "byYear": {
         "2019": 1,
         "2020": 1,
@@ -14995,13 +15001,13 @@
         "2022": 4,
         "2023": 8,
         "2024": 8,
-        "2025": 7,
+        "2025": 8,
         "2026": 5
       },
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 11
+        "transcript": 12
       },
       "samples": [
         {
@@ -15133,19 +15139,19 @@
       "blurb": "Far-right parties and politics in Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 42,
-      "hours": 5.28,
+      "count": 43,
+      "hours": 5.31,
       "byYear": {
         "2022": 6,
         "2023": 2,
         "2024": 10,
-        "2025": 8,
+        "2025": 9,
         "2026": 16
       },
       "evidence": {
         "title": 5,
         "notes": 22,
-        "transcript": 15
+        "transcript": 16
       },
       "samples": [
         {
@@ -16447,17 +16453,17 @@
       "blurb": "Pakistani government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 6,
-      "hours": 0.81,
+      "count": 7,
+      "hours": 0.84,
       "byYear": {
         "2022": 2,
         "2023": 1,
-        "2025": 3
+        "2025": 4
       },
       "evidence": {
         "title": 2,
         "notes": 2,
-        "transcript": 2
+        "transcript": 3
       },
       "samples": [
         {
@@ -16477,6 +16483,12 @@
           "e": "Why are India and Pakistan on the brink of war?",
           "p": "CNA Correspondent",
           "d": "2025-05-11"
+        },
+        {
+          "i": 5579,
+          "e": "India And Pakistan Latest, Libya Deportations, The Fed And Interest Rates",
+          "p": "Up First from NPR",
+          "d": "2025-05-08"
         },
         {
           "i": 13186,
