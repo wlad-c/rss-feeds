@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 9968,
-      "stt": 1786,
+      "title": 9958,
+      "stt": 1796,
       "show-notes": 6496,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5567,
+    "episodesWithTranscriptEvidence": 5577,
     "episodesWithNotesEvidence": 6496,
-    "episodesWithTitleOnlyEvidence": 9968,
+    "episodesWithTitleOnlyEvidence": 9958,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1066.52,
+      "hours": 1065.12,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 2853,
+        "title": 2843,
         "notes": 449,
-        "transcript": 2831
+        "transcript": 2841
       },
       "samples": [
         {
@@ -477,14 +477,14 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2560,
-      "hours": 241.72,
+      "count": 2563,
+      "hours": 241.8,
       "byYear": {
         "2019": 34,
         "2020": 101,
         "2021": 76,
         "2022": 116,
-        "2023": 269,
+        "2023": 272,
         "2024": 590,
         "2025": 813,
         "2026": 561
@@ -492,7 +492,7 @@
       "evidence": {
         "title": 561,
         "notes": 428,
-        "transcript": 1571
+        "transcript": 1574
       },
       "samples": [
         {
@@ -552,14 +552,14 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2978,
-      "hours": 236.83,
+      "count": 2980,
+      "hours": 236.87,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 510,
+        "2023": 512,
         "2024": 523,
         "2025": 657,
         "2026": 579
@@ -567,7 +567,7 @@
       "evidence": {
         "title": 444,
         "notes": 1187,
-        "transcript": 1347
+        "transcript": 1349
       },
       "samples": [
         {
@@ -702,22 +702,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2675,
-      "hours": 196.78,
+      "count": 2683,
+      "hours": 197.08,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 442,
-        "2024": 529,
+        "2023": 449,
+        "2024": 530,
         "2025": 663,
         "2026": 647
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2109
+        "transcript": 2117
       },
       "samples": [
         {
@@ -922,6 +922,81 @@
       "children": []
     },
     {
+      "id": "us-defence",
+      "name": "US defence",
+      "blurb": "US military and Pentagon.",
+      "kind": "local",
+      "facet": "local",
+      "count": 1534,
+      "hours": 121.3,
+      "byYear": {
+        "2019": 13,
+        "2020": 8,
+        "2021": 20,
+        "2022": 62,
+        "2023": 259,
+        "2024": 308,
+        "2025": 420,
+        "2026": 444
+      },
+      "evidence": {
+        "title": 80,
+        "notes": 103,
+        "transcript": 1351
+      },
+      "samples": [
+        {
+          "i": 10,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 27,
+          "e": "Israelis have changed. Will they change their leader?",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 35,
+          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 37,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 38,
+          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 39,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 51,
+          "e": "Could Trump wage another war in the Middle East?",
+          "p": "7am",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 58,
+          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
+          "p": "Up First from NPR",
+          "d": "2026-10-15"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "pandemics-vaccines",
       "name": "Pandemics & vaccines",
       "blurb": "Pandemics and vaccines.",
@@ -997,94 +1072,19 @@
       "children": []
     },
     {
-      "id": "us-defence",
-      "name": "US defence",
-      "blurb": "US military and Pentagon.",
-      "kind": "local",
-      "facet": "local",
-      "count": 1528,
-      "hours": 121.18,
-      "byYear": {
-        "2019": 13,
-        "2020": 8,
-        "2021": 20,
-        "2022": 62,
-        "2023": 253,
-        "2024": 308,
-        "2025": 420,
-        "2026": 444
-      },
-      "evidence": {
-        "title": 82,
-        "notes": 103,
-        "transcript": 1343
-      },
-      "samples": [
-        {
-          "i": 10,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
-        {
-          "i": 27,
-          "e": "Israelis have changed. Will they change their leader?",
-          "p": "Up First from NPR",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 35,
-          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 37,
-          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 38,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 39,
-          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 51,
-          "e": "Could Trump wage another war in the Middle East?",
-          "p": "7am",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 58,
-          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
-          "p": "Up First from NPR",
-          "d": "2026-10-15"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "climate-energy",
       "name": "Climate & energy",
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1269,
-      "hours": 110.5,
+      "count": 1270,
+      "hours": 110.53,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 208,
+        "2023": 209,
         "2024": 190,
         "2025": 233,
         "2026": 263
@@ -1092,7 +1092,7 @@
       "evidence": {
         "title": 167,
         "notes": 550,
-        "transcript": 552
+        "transcript": 553
       },
       "samples": [
         {
@@ -1303,7 +1303,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 104.98,
+      "hours": 104.72,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -1315,9 +1315,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 208,
+        "title": 203,
         "notes": 204,
-        "transcript": 453
+        "transcript": 458
       },
       "samples": [
         {
@@ -1827,14 +1827,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 986,
-      "hours": 68.37,
+      "count": 987,
+      "hours": 68.45,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
-        "2023": 172,
+        "2023": 173,
         "2024": 240,
         "2025": 275,
         "2026": 248
@@ -1842,7 +1842,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 815
+        "transcript": 816
       },
       "samples": [
         {
@@ -1977,21 +1977,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 835,
-      "hours": 62.6,
+      "count": 836,
+      "hours": 62.65,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 163,
-        "2024": 165,
+        "2024": 166,
         "2025": 248,
         "2026": 148
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 674
+        "transcript": 675
       },
       "samples": [
         {
@@ -2201,14 +2201,14 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 775,
-      "hours": 57.9,
+      "count": 777,
+      "hours": 57.97,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
-        "2023": 108,
+        "2023": 110,
         "2024": 136,
         "2025": 280,
         "2026": 187
@@ -2216,7 +2216,7 @@
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 638
+        "transcript": 640
       },
       "samples": [
         {
@@ -2351,22 +2351,22 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 670,
-      "hours": 56.43,
+      "count": 671,
+      "hours": 56.45,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
         "2022": 35,
         "2023": 101,
-        "2024": 134,
+        "2024": 135,
         "2025": 208,
         "2026": 161
       },
       "evidence": {
         "title": 25,
         "notes": 80,
-        "transcript": 565
+        "transcript": 566
       },
       "samples": [
         {
@@ -2874,14 +2874,14 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 563,
-      "hours": 43.85,
+      "count": 565,
+      "hours": 43.9,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
-        "2023": 94,
+        "2023": 96,
         "2024": 109,
         "2025": 159,
         "2026": 146
@@ -2889,7 +2889,7 @@
       "evidence": {
         "title": 35,
         "notes": 22,
-        "transcript": 506
+        "transcript": 508
       },
       "samples": [
         {
@@ -2950,7 +2950,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 43.7,
+      "hours": 43.69,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -2961,9 +2961,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 91,
+        "title": 90,
         "notes": 85,
-        "transcript": 176
+        "transcript": 177
       },
       "samples": [
         {
@@ -3548,22 +3548,22 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 400,
-      "hours": 30.85,
+      "count": 401,
+      "hours": 30.84,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
         "2022": 7,
-        "2023": 50,
+        "2023": 51,
         "2024": 97,
         "2025": 142,
         "2026": 95
       },
       "evidence": {
-        "title": 13,
+        "title": 12,
         "notes": 23,
-        "transcript": 364
+        "transcript": 366
       },
       "samples": [
         {
@@ -3698,12 +3698,12 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 355,
-      "hours": 28.2,
+      "count": 356,
+      "hours": 28.31,
       "byYear": {
         "2021": 1,
         "2022": 9,
-        "2023": 86,
+        "2023": 87,
         "2024": 95,
         "2025": 101,
         "2026": 63
@@ -3711,7 +3711,7 @@
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 350
+        "transcript": 351
       },
       "samples": [
         {
@@ -3771,13 +3771,13 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 632,
-      "hours": 27.26,
+      "count": 634,
+      "hours": 27.3,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
-        "2023": 84,
+        "2023": 86,
         "2024": 153,
         "2025": 191,
         "2026": 184
@@ -3785,7 +3785,7 @@
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 578
+        "transcript": 580
       },
       "samples": [
         {
@@ -4517,14 +4517,14 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 289,
-      "hours": 21.17,
+      "count": 290,
+      "hours": 21.21,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
         "2022": 19,
-        "2023": 43,
+        "2023": 44,
         "2024": 41,
         "2025": 48,
         "2026": 119
@@ -4532,7 +4532,7 @@
       "evidence": {
         "title": 24,
         "notes": 38,
-        "transcript": 227
+        "transcript": 228
       },
       "samples": [
         {
@@ -4667,14 +4667,14 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 166,
-      "hours": 17.72,
+      "count": 167,
+      "hours": 17.75,
       "byYear": {
         "2019": 4,
         "2020": 10,
         "2021": 5,
         "2022": 12,
-        "2023": 26,
+        "2023": 27,
         "2024": 39,
         "2025": 26,
         "2026": 44
@@ -4682,7 +4682,7 @@
       "evidence": {
         "title": 10,
         "notes": 76,
-        "transcript": 80
+        "transcript": 81
       },
       "samples": [
         {
@@ -4807,6 +4807,80 @@
           "e": "The Texas oil man planning to frack the Kimberley",
           "p": "7am",
           "d": "2026-04-06"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "housing-cost-of-living",
+      "name": "Housing & cost of living",
+      "blurb": "Housing and cost of living.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 319,
+      "hours": 15.48,
+      "byYear": {
+        "2020": 1,
+        "2021": 2,
+        "2022": 6,
+        "2023": 66,
+        "2024": 68,
+        "2025": 86,
+        "2026": 90
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 31,
+        "transcript": 288
+      },
+      "samples": [
+        {
+          "i": 3,
+          "e": "On the ground in France after widespread riots",
+          "p": "The Morning Edition",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 107,
+          "e": "The $25 billion plan to take on Coles and Woolworths",
+          "p": "7am",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 140,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 166,
+          "e": "New leader, new Greens?",
+          "p": "7am",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 185,
+          "e": "Interest rates and Labor's spending, and the Greens look to Mamdani",
+          "p": "The Morning Edition",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 206,
+          "e": "Why interest rate pain is now worse than the bad old days of 17.5%",
+          "p": "7am",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 218,
+          "e": "Another interest rate hike? Experts say there are other ways to curb inflation",
+          "p": "The Morning Edition",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 246,
+          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
+          "p": "Up First from NPR",
+          "d": "2026-09-26"
         }
       ],
       "children": []
@@ -4956,80 +5030,6 @@
           "e": "Ep 188: Missiles, Pacific integration and managed competition",
           "p": "Australia in the World",
           "d": "2026-08-19"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "housing-cost-of-living",
-      "name": "Housing & cost of living",
-      "blurb": "Housing and cost of living.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 318,
-      "hours": 15.44,
-      "byYear": {
-        "2020": 1,
-        "2021": 2,
-        "2022": 6,
-        "2023": 65,
-        "2024": 68,
-        "2025": 86,
-        "2026": 90
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 31,
-        "transcript": 287
-      },
-      "samples": [
-        {
-          "i": 3,
-          "e": "On the ground in France after widespread riots",
-          "p": "The Morning Edition",
-          "d": "2026-10-19"
-        },
-        {
-          "i": 107,
-          "e": "The $25 billion plan to take on Coles and Woolworths",
-          "p": "7am",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 140,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 166,
-          "e": "New leader, new Greens?",
-          "p": "7am",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 185,
-          "e": "Interest rates and Labor's spending, and the Greens look to Mamdani",
-          "p": "The Morning Edition",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 206,
-          "e": "Why interest rate pain is now worse than the bad old days of 17.5%",
-          "p": "7am",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 218,
-          "e": "Another interest rate hike? Experts say there are other ways to curb inflation",
-          "p": "The Morning Edition",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 246,
-          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
-          "p": "Up First from NPR",
-          "d": "2026-09-26"
         }
       ],
       "children": []
@@ -5637,11 +5637,11 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 99,
-      "hours": 10.14,
+      "count": 100,
+      "hours": 10.18,
       "byYear": {
         "2022": 10,
-        "2023": 20,
+        "2023": 21,
         "2024": 19,
         "2025": 32,
         "2026": 18
@@ -5649,7 +5649,7 @@
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 78
+        "transcript": 79
       },
       "samples": [
         {
@@ -5853,6 +5853,80 @@
       "children": []
     },
     {
+      "id": "labor-unions",
+      "name": "Labor & unions",
+      "blurb": "Labor, wages, strikes, unions.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 229,
+      "hours": 9.96,
+      "byYear": {
+        "2020": 4,
+        "2021": 6,
+        "2022": 13,
+        "2023": 55,
+        "2024": 60,
+        "2025": 44,
+        "2026": 47
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 14,
+        "transcript": 215
+      },
+      "samples": [
+        {
+          "i": 32,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 103,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 133,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 225,
+          "e": "He Was Deported to a Country He’d Never Heard Of",
+          "p": "The Daily",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 344,
+          "e": "Could Australia join the European Union?",
+          "p": "The Morning Edition",
+          "d": "2026-09-17"
+        },
+        {
+          "i": 526,
+          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
+          "p": "Durma com essa",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 557,
+          "e": "The Stunning Rise of the Democratic Socialists of America",
+          "p": "The Daily",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 599,
+          "e": "The $100,000-a-month market for Trump’s posts",
+          "p": "7am",
+          "d": "2026-08-24"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "populism",
       "name": "Populism",
       "blurb": "Populist politics.",
@@ -5928,92 +6002,18 @@
       "children": []
     },
     {
-      "id": "labor-unions",
-      "name": "Labor & unions",
-      "blurb": "Labor, wages, strikes, unions.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 226,
-      "hours": 9.82,
-      "byYear": {
-        "2020": 4,
-        "2021": 6,
-        "2022": 13,
-        "2023": 52,
-        "2024": 60,
-        "2025": 44,
-        "2026": 47
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 14,
-        "transcript": 212
-      },
-      "samples": [
-        {
-          "i": 32,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 103,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 133,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 225,
-          "e": "He Was Deported to a Country He’d Never Heard Of",
-          "p": "The Daily",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 344,
-          "e": "Could Australia join the European Union?",
-          "p": "The Morning Edition",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 526,
-          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
-          "p": "Durma com essa",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 557,
-          "e": "The Stunning Rise of the Democratic Socialists of America",
-          "p": "The Daily",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 599,
-          "e": "The $100,000-a-month market for Trump’s posts",
-          "p": "7am",
-          "d": "2026-08-24"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "weather-disasters",
       "name": "Weather & disasters",
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 145,
-      "hours": 9.62,
+      "count": 146,
+      "hours": 9.65,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 7,
-        "2023": 44,
+        "2023": 45,
         "2024": 37,
         "2025": 35,
         "2026": 19
@@ -6021,7 +6021,7 @@
       "evidence": {
         "title": 0,
         "notes": 17,
-        "transcript": 128
+        "transcript": 129
       },
       "samples": [
         {
@@ -6156,13 +6156,13 @@
       "blurb": "Elections across Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 79,
-      "hours": 8.78,
+      "count": 80,
+      "hours": 8.81,
       "byYear": {
         "2020": 1,
         "2021": 1,
         "2022": 8,
-        "2023": 6,
+        "2023": 7,
         "2024": 27,
         "2025": 9,
         "2026": 27
@@ -6170,7 +6170,7 @@
       "evidence": {
         "title": 14,
         "notes": 32,
-        "transcript": 33
+        "transcript": 34
       },
       "samples": [
         {
@@ -6230,13 +6230,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 248,
-      "hours": 7.75,
+      "count": 250,
+      "hours": 7.78,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 64,
+        "2023": 66,
         "2024": 60,
         "2025": 44,
         "2026": 59
@@ -6244,7 +6244,7 @@
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 165
+        "transcript": 167
       },
       "samples": [
         {
@@ -6677,14 +6677,14 @@
       "blurb": "Indian government and BJP/Congress politics.",
       "kind": "local",
       "facet": "local",
-      "count": 45,
-      "hours": 6.08,
+      "count": 46,
+      "hours": 6.13,
       "byYear": {
         "2019": 1,
         "2020": 1,
         "2021": 1,
         "2022": 4,
-        "2023": 13,
+        "2023": 14,
         "2024": 9,
         "2025": 11,
         "2026": 5
@@ -6692,7 +6692,7 @@
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 21
+        "transcript": 22
       },
       "samples": [
         {
@@ -8044,6 +8044,149 @@
       "children": []
     },
     {
+      "id": "pk-government",
+      "name": "Pakistani government",
+      "blurb": "Pakistani government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 20,
+      "hours": 1.46,
+      "byYear": {
+        "2022": 2,
+        "2023": 8,
+        "2024": 4,
+        "2025": 6
+      },
+      "evidence": {
+        "title": 1,
+        "notes": 2,
+        "transcript": 17
+      },
+      "samples": [
+        {
+          "i": 5055,
+          "e": "China’s Role in the India-Pakistan Clash",
+          "p": "China Global",
+          "d": "2025-06-25"
+        },
+        {
+          "i": 5232,
+          "e": "Conversations: Pakistani spies, Australian ‘mercenaries’ and the future of Asian trade — This week in The Interpreter",
+          "p": "Lowy Institute",
+          "d": "2025-06-11"
+        },
+        {
+          "i": 5562,
+          "e": "Why are India and Pakistan on the brink of war?",
+          "p": "CNA Correspondent",
+          "d": "2025-05-11"
+        },
+        {
+          "i": 5568,
+          "e": "India Pakistan Tensions Mount, Food Stamps Data, Nuclear Reactor Watchdog",
+          "p": "Up First from NPR",
+          "d": "2025-05-10"
+        },
+        {
+          "i": 5585,
+          "e": "India And Pakistan Latest, Libya Deportations, The Fed And Interest Rates",
+          "p": "Up First from NPR",
+          "d": "2025-05-08"
+        },
+        {
+          "i": 5645,
+          "e": "Economy In The Next 100 Days, Ukraine Minerals Deal, India And Pakistan Tension",
+          "p": "Up First from NPR",
+          "d": "2025-05-03"
+        },
+        {
+          "i": 6963,
+          "e": "Israel-Lebanon Ceasefire, Protests in Pakistan, Trump Threatens Tariffs",
+          "p": "Up First from NPR",
+          "d": "2024-12-07"
+        },
+        {
+          "i": 9956,
+          "e": "SCOTUS Trump Case, U.S. Strikes In Iraq, Pakistani Elections",
+          "p": "Up First from NPR",
+          "d": "2024-02-10"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "af-government",
+      "name": "African government",
+      "blurb": "Governments across Africa.",
+      "kind": "local",
+      "facet": "local",
+      "count": 16,
+      "hours": 1.41,
+      "byYear": {
+        "2021": 1,
+        "2023": 3,
+        "2024": 5,
+        "2025": 6,
+        "2026": 1
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 2,
+        "transcript": 14
+      },
+      "samples": [
+        {
+          "i": 1559,
+          "e": "The human cost of building the Dubai of Africa",
+          "p": "Up First from NPR",
+          "d": "2026-05-21"
+        },
+        {
+          "i": 3072,
+          "e": "U.S. Strikes ISIS In Nigeria, The Year In Congress, Holiday Spending",
+          "p": "Up First from NPR",
+          "d": "2025-12-27"
+        },
+        {
+          "i": 3248,
+          "e": "Blood on the ground: What’s happening in Sudan",
+          "p": "The Morning Edition",
+          "d": "2025-12-07"
+        },
+        {
+          "i": 3608,
+          "e": "Four Big Races To Watch, Partial SNAP Funding, Famine In Sudan",
+          "p": "Up First from NPR",
+          "d": "2025-11-04"
+        },
+        {
+          "i": 5226,
+          "e": "Africa: Australia’s Indo-Pacific “blind spot”",
+          "p": "The National Security Podcast",
+          "d": "2025-06-11"
+        },
+        {
+          "i": 5462,
+          "e": "Negotiating Trump's Sweeping Agenda, South Africa's President, DOGE Cuts",
+          "p": "Up First from NPR",
+          "d": "2025-05-21"
+        },
+        {
+          "i": 6033,
+          "e": "DHS job cuts, Travel troubles under Trump, Sudan Civil War latest",
+          "p": "Up First from NPR",
+          "d": "2025-03-22"
+        },
+        {
+          "i": 6786,
+          "e": "Christmas Attack In Ukraine, Honda-Nissan Merger, Nigeria's Economic Crisis",
+          "p": "Up First from NPR",
+          "d": "2024-12-27"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "philosophy-ethics",
       "name": "Philosophy & ethics",
       "blurb": "Philosophy and ethics.",
@@ -8113,149 +8256,6 @@
           "e": "Why Trump Just Gave China the Keys to A.I.’s Future",
           "p": "The Daily",
           "d": "2025-07-22"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "pk-government",
-      "name": "Pakistani government",
-      "blurb": "Pakistani government and politics.",
-      "kind": "local",
-      "facet": "local",
-      "count": 19,
-      "hours": 1.31,
-      "byYear": {
-        "2022": 2,
-        "2023": 7,
-        "2024": 4,
-        "2025": 6
-      },
-      "evidence": {
-        "title": 1,
-        "notes": 2,
-        "transcript": 16
-      },
-      "samples": [
-        {
-          "i": 5055,
-          "e": "China’s Role in the India-Pakistan Clash",
-          "p": "China Global",
-          "d": "2025-06-25"
-        },
-        {
-          "i": 5232,
-          "e": "Conversations: Pakistani spies, Australian ‘mercenaries’ and the future of Asian trade — This week in The Interpreter",
-          "p": "Lowy Institute",
-          "d": "2025-06-11"
-        },
-        {
-          "i": 5562,
-          "e": "Why are India and Pakistan on the brink of war?",
-          "p": "CNA Correspondent",
-          "d": "2025-05-11"
-        },
-        {
-          "i": 5568,
-          "e": "India Pakistan Tensions Mount, Food Stamps Data, Nuclear Reactor Watchdog",
-          "p": "Up First from NPR",
-          "d": "2025-05-10"
-        },
-        {
-          "i": 5585,
-          "e": "India And Pakistan Latest, Libya Deportations, The Fed And Interest Rates",
-          "p": "Up First from NPR",
-          "d": "2025-05-08"
-        },
-        {
-          "i": 5645,
-          "e": "Economy In The Next 100 Days, Ukraine Minerals Deal, India And Pakistan Tension",
-          "p": "Up First from NPR",
-          "d": "2025-05-03"
-        },
-        {
-          "i": 6963,
-          "e": "Israel-Lebanon Ceasefire, Protests in Pakistan, Trump Threatens Tariffs",
-          "p": "Up First from NPR",
-          "d": "2024-12-07"
-        },
-        {
-          "i": 9956,
-          "e": "SCOTUS Trump Case, U.S. Strikes In Iraq, Pakistani Elections",
-          "p": "Up First from NPR",
-          "d": "2024-02-10"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "af-government",
-      "name": "African government",
-      "blurb": "Governments across Africa.",
-      "kind": "local",
-      "facet": "local",
-      "count": 15,
-      "hours": 1.31,
-      "byYear": {
-        "2021": 1,
-        "2023": 3,
-        "2024": 4,
-        "2025": 6,
-        "2026": 1
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 2,
-        "transcript": 13
-      },
-      "samples": [
-        {
-          "i": 1559,
-          "e": "The human cost of building the Dubai of Africa",
-          "p": "Up First from NPR",
-          "d": "2026-05-21"
-        },
-        {
-          "i": 3072,
-          "e": "U.S. Strikes ISIS In Nigeria, The Year In Congress, Holiday Spending",
-          "p": "Up First from NPR",
-          "d": "2025-12-27"
-        },
-        {
-          "i": 3248,
-          "e": "Blood on the ground: What’s happening in Sudan",
-          "p": "The Morning Edition",
-          "d": "2025-12-07"
-        },
-        {
-          "i": 3608,
-          "e": "Four Big Races To Watch, Partial SNAP Funding, Famine In Sudan",
-          "p": "Up First from NPR",
-          "d": "2025-11-04"
-        },
-        {
-          "i": 5226,
-          "e": "Africa: Australia’s Indo-Pacific “blind spot”",
-          "p": "The National Security Podcast",
-          "d": "2025-06-11"
-        },
-        {
-          "i": 5462,
-          "e": "Negotiating Trump's Sweeping Agenda, South Africa's President, DOGE Cuts",
-          "p": "Up First from NPR",
-          "d": "2025-05-21"
-        },
-        {
-          "i": 6033,
-          "e": "DHS job cuts, Travel troubles under Trump, Sudan Civil War latest",
-          "p": "Up First from NPR",
-          "d": "2025-03-22"
-        },
-        {
-          "i": 6786,
-          "e": "Christmas Attack In Ukraine, Honda-Nissan Merger, Nigeria's Economic Crisis",
-          "p": "Up First from NPR",
-          "d": "2024-12-27"
         }
       ],
       "children": []
@@ -8379,7 +8379,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1066.52,
+      "hours": 1065.12,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8391,9 +8391,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 2853,
+        "title": 2843,
         "notes": 449,
-        "transcript": 2831
+        "transcript": 2841
       },
       "samples": [
         {
@@ -8822,14 +8822,14 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2560,
-      "hours": 241.72,
+      "count": 2563,
+      "hours": 241.8,
       "byYear": {
         "2019": 34,
         "2020": 101,
         "2021": 76,
         "2022": 116,
-        "2023": 269,
+        "2023": 272,
         "2024": 590,
         "2025": 813,
         "2026": 561
@@ -8837,7 +8837,7 @@
       "evidence": {
         "title": 561,
         "notes": 428,
-        "transcript": 1571
+        "transcript": 1574
       },
       "samples": [
         {
@@ -8896,14 +8896,14 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2978,
-      "hours": 236.83,
+      "count": 2980,
+      "hours": 236.87,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 510,
+        "2023": 512,
         "2024": 523,
         "2025": 657,
         "2026": 579
@@ -8911,7 +8911,7 @@
       "evidence": {
         "title": 444,
         "notes": 1187,
-        "transcript": 1347
+        "transcript": 1349
       },
       "samples": [
         {
@@ -9044,22 +9044,22 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2675,
-      "hours": 196.78,
+      "count": 2683,
+      "hours": 197.08,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 442,
-        "2024": 529,
+        "2023": 449,
+        "2024": 530,
         "2025": 663,
         "2026": 647
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2109
+        "transcript": 2117
       },
       "samples": [
         {
@@ -9261,6 +9261,80 @@
       ]
     },
     {
+      "id": "us-defence",
+      "name": "US defence",
+      "blurb": "US military and Pentagon.",
+      "kind": "local",
+      "facet": "local",
+      "count": 1534,
+      "hours": 121.3,
+      "byYear": {
+        "2019": 13,
+        "2020": 8,
+        "2021": 20,
+        "2022": 62,
+        "2023": 259,
+        "2024": 308,
+        "2025": 420,
+        "2026": 444
+      },
+      "evidence": {
+        "title": 80,
+        "notes": 103,
+        "transcript": 1351
+      },
+      "samples": [
+        {
+          "i": 10,
+          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
+          "p": "Up First from NPR",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 27,
+          "e": "Israelis have changed. Will they change their leader?",
+          "p": "Up First from NPR",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 35,
+          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 37,
+          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 38,
+          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 39,
+          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 51,
+          "e": "Could Trump wage another war in the Middle East?",
+          "p": "7am",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 58,
+          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
+          "p": "Up First from NPR",
+          "d": "2026-10-15"
+        }
+      ]
+    },
+    {
       "id": "pandemics-vaccines",
       "name": "Pandemics & vaccines",
       "blurb": "Pandemics and vaccines.",
@@ -9335,93 +9409,19 @@
       ]
     },
     {
-      "id": "us-defence",
-      "name": "US defence",
-      "blurb": "US military and Pentagon.",
-      "kind": "local",
-      "facet": "local",
-      "count": 1528,
-      "hours": 121.18,
-      "byYear": {
-        "2019": 13,
-        "2020": 8,
-        "2021": 20,
-        "2022": 62,
-        "2023": 253,
-        "2024": 308,
-        "2025": 420,
-        "2026": 444
-      },
-      "evidence": {
-        "title": 82,
-        "notes": 103,
-        "transcript": 1343
-      },
-      "samples": [
-        {
-          "i": 10,
-          "e": "Trump Eases Russia Sanctions, Midterm Campaign Money, Violent Protests In France",
-          "p": "Up First from NPR",
-          "d": "2026-10-19"
-        },
-        {
-          "i": 27,
-          "e": "Israelis have changed. Will they change their leader?",
-          "p": "Up First from NPR",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 35,
-          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 37,
-          "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 38,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 39,
-          "e": "Ukraine's President Sits With NPR, Pope Leo Cancer, Ambassador Guilfoyle Forced Out",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 51,
-          "e": "Could Trump wage another war in the Middle East?",
-          "p": "7am",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 58,
-          "e": "Trump Midterm Campaigning, Rep. Omar Home Searched, Europe Pushes Back on Russia Deal",
-          "p": "Up First from NPR",
-          "d": "2026-10-15"
-        }
-      ]
-    },
-    {
       "id": "climate-energy",
       "name": "Climate & energy",
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1269,
-      "hours": 110.5,
+      "count": 1270,
+      "hours": 110.53,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 208,
+        "2023": 209,
         "2024": 190,
         "2025": 233,
         "2026": 263
@@ -9429,7 +9429,7 @@
       "evidence": {
         "title": 167,
         "notes": 550,
-        "transcript": 552
+        "transcript": 553
       },
       "samples": [
         {
@@ -9637,7 +9637,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 104.98,
+      "hours": 104.72,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -9649,9 +9649,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 208,
+        "title": 203,
         "notes": 204,
-        "transcript": 453
+        "transcript": 458
       },
       "samples": [
         {
@@ -10154,14 +10154,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 986,
-      "hours": 68.37,
+      "count": 987,
+      "hours": 68.45,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
-        "2023": 172,
+        "2023": 173,
         "2024": 240,
         "2025": 275,
         "2026": 248
@@ -10169,7 +10169,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 815
+        "transcript": 816
       },
       "samples": [
         {
@@ -10302,21 +10302,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 835,
-      "hours": 62.6,
+      "count": 836,
+      "hours": 62.65,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 163,
-        "2024": 165,
+        "2024": 166,
         "2025": 248,
         "2026": 148
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 674
+        "transcript": 675
       },
       "samples": [
         {
@@ -10523,14 +10523,14 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 775,
-      "hours": 57.9,
+      "count": 777,
+      "hours": 57.97,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
-        "2023": 108,
+        "2023": 110,
         "2024": 136,
         "2025": 280,
         "2026": 187
@@ -10538,7 +10538,7 @@
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 638
+        "transcript": 640
       },
       "samples": [
         {
@@ -10671,22 +10671,22 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 670,
-      "hours": 56.43,
+      "count": 671,
+      "hours": 56.45,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
         "2022": 35,
         "2023": 101,
-        "2024": 134,
+        "2024": 135,
         "2025": 208,
         "2026": 161
       },
       "evidence": {
         "title": 25,
         "notes": 80,
-        "transcript": 565
+        "transcript": 566
       },
       "samples": [
         {
@@ -11187,14 +11187,14 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 563,
-      "hours": 43.85,
+      "count": 565,
+      "hours": 43.9,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
-        "2023": 94,
+        "2023": 96,
         "2024": 109,
         "2025": 159,
         "2026": 146
@@ -11202,7 +11202,7 @@
       "evidence": {
         "title": 35,
         "notes": 22,
-        "transcript": 506
+        "transcript": 508
       },
       "samples": [
         {
@@ -11262,7 +11262,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 43.7,
+      "hours": 43.69,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -11273,9 +11273,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 91,
+        "title": 90,
         "notes": 85,
-        "transcript": 176
+        "transcript": 177
       },
       "samples": [
         {
@@ -11852,22 +11852,22 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 400,
-      "hours": 30.85,
+      "count": 401,
+      "hours": 30.84,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
         "2022": 7,
-        "2023": 50,
+        "2023": 51,
         "2024": 97,
         "2025": 142,
         "2026": 95
       },
       "evidence": {
-        "title": 13,
+        "title": 12,
         "notes": 23,
-        "transcript": 364
+        "transcript": 366
       },
       "samples": [
         {
@@ -12000,12 +12000,12 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 355,
-      "hours": 28.2,
+      "count": 356,
+      "hours": 28.31,
       "byYear": {
         "2021": 1,
         "2022": 9,
-        "2023": 86,
+        "2023": 87,
         "2024": 95,
         "2025": 101,
         "2026": 63
@@ -12013,7 +12013,7 @@
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 350
+        "transcript": 351
       },
       "samples": [
         {
@@ -12072,13 +12072,13 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 632,
-      "hours": 27.26,
+      "count": 634,
+      "hours": 27.3,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
-        "2023": 84,
+        "2023": 86,
         "2024": 153,
         "2025": 191,
         "2026": 184
@@ -12086,7 +12086,7 @@
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 578
+        "transcript": 580
       },
       "samples": [
         {
@@ -12808,14 +12808,14 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 289,
-      "hours": 21.17,
+      "count": 290,
+      "hours": 21.21,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
         "2022": 19,
-        "2023": 43,
+        "2023": 44,
         "2024": 41,
         "2025": 48,
         "2026": 119
@@ -12823,7 +12823,7 @@
       "evidence": {
         "title": 24,
         "notes": 38,
-        "transcript": 227
+        "transcript": 228
       },
       "samples": [
         {
@@ -12956,14 +12956,14 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 166,
-      "hours": 17.72,
+      "count": 167,
+      "hours": 17.75,
       "byYear": {
         "2019": 4,
         "2020": 10,
         "2021": 5,
         "2022": 12,
-        "2023": 26,
+        "2023": 27,
         "2024": 39,
         "2025": 26,
         "2026": 44
@@ -12971,7 +12971,7 @@
       "evidence": {
         "title": 10,
         "notes": 76,
-        "transcript": 80
+        "transcript": 81
       },
       "samples": [
         {
@@ -13095,6 +13095,79 @@
           "e": "The Texas oil man planning to frack the Kimberley",
           "p": "7am",
           "d": "2026-04-06"
+        }
+      ]
+    },
+    {
+      "id": "housing-cost-of-living",
+      "name": "Housing & cost of living",
+      "blurb": "Housing and cost of living.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 319,
+      "hours": 15.48,
+      "byYear": {
+        "2020": 1,
+        "2021": 2,
+        "2022": 6,
+        "2023": 66,
+        "2024": 68,
+        "2025": 86,
+        "2026": 90
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 31,
+        "transcript": 288
+      },
+      "samples": [
+        {
+          "i": 3,
+          "e": "On the ground in France after widespread riots",
+          "p": "The Morning Edition",
+          "d": "2026-10-19"
+        },
+        {
+          "i": 107,
+          "e": "The $25 billion plan to take on Coles and Woolworths",
+          "p": "7am",
+          "d": "2026-10-09"
+        },
+        {
+          "i": 140,
+          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
+          "p": "7am",
+          "d": "2026-10-06"
+        },
+        {
+          "i": 166,
+          "e": "New leader, new Greens?",
+          "p": "7am",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 185,
+          "e": "Interest rates and Labor's spending, and the Greens look to Mamdani",
+          "p": "The Morning Edition",
+          "d": "2026-10-02"
+        },
+        {
+          "i": 206,
+          "e": "Why interest rate pain is now worse than the bad old days of 17.5%",
+          "p": "7am",
+          "d": "2026-09-30"
+        },
+        {
+          "i": 218,
+          "e": "Another interest rate hike? Experts say there are other ways to curb inflation",
+          "p": "The Morning Edition",
+          "d": "2026-09-29"
+        },
+        {
+          "i": 246,
+          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
+          "p": "Up First from NPR",
+          "d": "2026-09-26"
         }
       ]
     },
@@ -13242,79 +13315,6 @@
           "e": "Ep 188: Missiles, Pacific integration and managed competition",
           "p": "Australia in the World",
           "d": "2026-08-19"
-        }
-      ]
-    },
-    {
-      "id": "housing-cost-of-living",
-      "name": "Housing & cost of living",
-      "blurb": "Housing and cost of living.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 318,
-      "hours": 15.44,
-      "byYear": {
-        "2020": 1,
-        "2021": 2,
-        "2022": 6,
-        "2023": 65,
-        "2024": 68,
-        "2025": 86,
-        "2026": 90
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 31,
-        "transcript": 287
-      },
-      "samples": [
-        {
-          "i": 3,
-          "e": "On the ground in France after widespread riots",
-          "p": "The Morning Edition",
-          "d": "2026-10-19"
-        },
-        {
-          "i": 107,
-          "e": "The $25 billion plan to take on Coles and Woolworths",
-          "p": "7am",
-          "d": "2026-10-09"
-        },
-        {
-          "i": 140,
-          "e": "'Biggest cut in history': What Angus Taylor’s migration cuts would do to Australia",
-          "p": "7am",
-          "d": "2026-10-06"
-        },
-        {
-          "i": 166,
-          "e": "New leader, new Greens?",
-          "p": "7am",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 185,
-          "e": "Interest rates and Labor's spending, and the Greens look to Mamdani",
-          "p": "The Morning Edition",
-          "d": "2026-10-02"
-        },
-        {
-          "i": 206,
-          "e": "Why interest rate pain is now worse than the bad old days of 17.5%",
-          "p": "7am",
-          "d": "2026-09-30"
-        },
-        {
-          "i": 218,
-          "e": "Another interest rate hike? Experts say there are other ways to curb inflation",
-          "p": "The Morning Edition",
-          "d": "2026-09-29"
-        },
-        {
-          "i": 246,
-          "e": "Powerful storms hit the US, Supreme Court Rejects Missouri Maps, Mortgage Rates Rise",
-          "p": "Up First from NPR",
-          "d": "2026-09-26"
         }
       ]
     },
@@ -13913,11 +13913,11 @@
       "blurb": "Russian government and Kremlin.",
       "kind": "local",
       "facet": "local",
-      "count": 99,
-      "hours": 10.14,
+      "count": 100,
+      "hours": 10.18,
       "byYear": {
         "2022": 10,
-        "2023": 20,
+        "2023": 21,
         "2024": 19,
         "2025": 32,
         "2026": 18
@@ -13925,7 +13925,7 @@
       "evidence": {
         "title": 1,
         "notes": 20,
-        "transcript": 78
+        "transcript": 79
       },
       "samples": [
         {
@@ -14126,6 +14126,79 @@
       ]
     },
     {
+      "id": "labor-unions",
+      "name": "Labor & unions",
+      "blurb": "Labor, wages, strikes, unions.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 229,
+      "hours": 9.96,
+      "byYear": {
+        "2020": 4,
+        "2021": 6,
+        "2022": 13,
+        "2023": 55,
+        "2024": 60,
+        "2025": 44,
+        "2026": 47
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 14,
+        "transcript": 215
+      },
+      "samples": [
+        {
+          "i": 32,
+          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
+          "p": "Foro de Teresina",
+          "d": "2026-10-17"
+        },
+        {
+          "i": 103,
+          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
+          "p": "Foro de Teresina",
+          "d": "2026-10-10"
+        },
+        {
+          "i": 133,
+          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
+          "p": "Up First from NPR",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 225,
+          "e": "He Was Deported to a Country He’d Never Heard Of",
+          "p": "The Daily",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 344,
+          "e": "Could Australia join the European Union?",
+          "p": "The Morning Edition",
+          "d": "2026-09-17"
+        },
+        {
+          "i": 526,
+          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
+          "p": "Durma com essa",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 557,
+          "e": "The Stunning Rise of the Democratic Socialists of America",
+          "p": "The Daily",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 599,
+          "e": "The $100,000-a-month market for Trump’s posts",
+          "p": "7am",
+          "d": "2026-08-24"
+        }
+      ]
+    },
+    {
       "id": "populism",
       "name": "Populism",
       "blurb": "Populist politics.",
@@ -14200,91 +14273,18 @@
       ]
     },
     {
-      "id": "labor-unions",
-      "name": "Labor & unions",
-      "blurb": "Labor, wages, strikes, unions.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 226,
-      "hours": 9.82,
-      "byYear": {
-        "2020": 4,
-        "2021": 6,
-        "2022": 13,
-        "2023": 52,
-        "2024": 60,
-        "2025": 44,
-        "2026": 47
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 14,
-        "transcript": 212
-      },
-      "samples": [
-        {
-          "i": 32,
-          "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
-          "p": "Foro de Teresina",
-          "d": "2026-10-17"
-        },
-        {
-          "i": 103,
-          "e": "As vitórias da extrema-direita e a disputa do segundo turno",
-          "p": "Foro de Teresina",
-          "d": "2026-10-10"
-        },
-        {
-          "i": 133,
-          "e": "Growing Black Unemployment, Taxing California Billionaires, New Supreme Court Cases",
-          "p": "Up First from NPR",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 225,
-          "e": "He Was Deported to a Country He’d Never Heard Of",
-          "p": "The Daily",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 344,
-          "e": "Could Australia join the European Union?",
-          "p": "The Morning Edition",
-          "d": "2026-09-17"
-        },
-        {
-          "i": 526,
-          "e": "Mal-estar econômico: quando a renda já não dá mais conta",
-          "p": "Durma com essa",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 557,
-          "e": "The Stunning Rise of the Democratic Socialists of America",
-          "p": "The Daily",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 599,
-          "e": "The $100,000-a-month market for Trump’s posts",
-          "p": "7am",
-          "d": "2026-08-24"
-        }
-      ]
-    },
-    {
       "id": "weather-disasters",
       "name": "Weather & disasters",
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 145,
-      "hours": 9.62,
+      "count": 146,
+      "hours": 9.65,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 7,
-        "2023": 44,
+        "2023": 45,
         "2024": 37,
         "2025": 35,
         "2026": 19
@@ -14292,7 +14292,7 @@
       "evidence": {
         "title": 0,
         "notes": 17,
-        "transcript": 128
+        "transcript": 129
       },
       "samples": [
         {
@@ -14425,13 +14425,13 @@
       "blurb": "Elections across Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 79,
-      "hours": 8.78,
+      "count": 80,
+      "hours": 8.81,
       "byYear": {
         "2020": 1,
         "2021": 1,
         "2022": 8,
-        "2023": 6,
+        "2023": 7,
         "2024": 27,
         "2025": 9,
         "2026": 27
@@ -14439,7 +14439,7 @@
       "evidence": {
         "title": 14,
         "notes": 32,
-        "transcript": 33
+        "transcript": 34
       },
       "samples": [
         {
@@ -14498,13 +14498,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 248,
-      "hours": 7.75,
+      "count": 250,
+      "hours": 7.78,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 64,
+        "2023": 66,
         "2024": 60,
         "2025": 44,
         "2026": 59
@@ -14512,7 +14512,7 @@
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 165
+        "transcript": 167
       },
       "samples": [
         {
@@ -14939,14 +14939,14 @@
       "blurb": "Indian government and BJP/Congress politics.",
       "kind": "local",
       "facet": "local",
-      "count": 45,
-      "hours": 6.08,
+      "count": 46,
+      "hours": 6.13,
       "byYear": {
         "2019": 1,
         "2020": 1,
         "2021": 1,
         "2022": 4,
-        "2023": 13,
+        "2023": 14,
         "2024": 9,
         "2025": 11,
         "2026": 5
@@ -14954,7 +14954,7 @@
       "evidence": {
         "title": 1,
         "notes": 23,
-        "transcript": 21
+        "transcript": 22
       },
       "samples": [
         {
@@ -16287,6 +16287,147 @@
       ]
     },
     {
+      "id": "pk-government",
+      "name": "Pakistani government",
+      "blurb": "Pakistani government and politics.",
+      "kind": "local",
+      "facet": "local",
+      "count": 20,
+      "hours": 1.46,
+      "byYear": {
+        "2022": 2,
+        "2023": 8,
+        "2024": 4,
+        "2025": 6
+      },
+      "evidence": {
+        "title": 1,
+        "notes": 2,
+        "transcript": 17
+      },
+      "samples": [
+        {
+          "i": 5055,
+          "e": "China’s Role in the India-Pakistan Clash",
+          "p": "China Global",
+          "d": "2025-06-25"
+        },
+        {
+          "i": 5232,
+          "e": "Conversations: Pakistani spies, Australian ‘mercenaries’ and the future of Asian trade — This week in The Interpreter",
+          "p": "Lowy Institute",
+          "d": "2025-06-11"
+        },
+        {
+          "i": 5562,
+          "e": "Why are India and Pakistan on the brink of war?",
+          "p": "CNA Correspondent",
+          "d": "2025-05-11"
+        },
+        {
+          "i": 5568,
+          "e": "India Pakistan Tensions Mount, Food Stamps Data, Nuclear Reactor Watchdog",
+          "p": "Up First from NPR",
+          "d": "2025-05-10"
+        },
+        {
+          "i": 5585,
+          "e": "India And Pakistan Latest, Libya Deportations, The Fed And Interest Rates",
+          "p": "Up First from NPR",
+          "d": "2025-05-08"
+        },
+        {
+          "i": 5645,
+          "e": "Economy In The Next 100 Days, Ukraine Minerals Deal, India And Pakistan Tension",
+          "p": "Up First from NPR",
+          "d": "2025-05-03"
+        },
+        {
+          "i": 6963,
+          "e": "Israel-Lebanon Ceasefire, Protests in Pakistan, Trump Threatens Tariffs",
+          "p": "Up First from NPR",
+          "d": "2024-12-07"
+        },
+        {
+          "i": 9956,
+          "e": "SCOTUS Trump Case, U.S. Strikes In Iraq, Pakistani Elections",
+          "p": "Up First from NPR",
+          "d": "2024-02-10"
+        }
+      ]
+    },
+    {
+      "id": "af-government",
+      "name": "African government",
+      "blurb": "Governments across Africa.",
+      "kind": "local",
+      "facet": "local",
+      "count": 16,
+      "hours": 1.41,
+      "byYear": {
+        "2021": 1,
+        "2023": 3,
+        "2024": 5,
+        "2025": 6,
+        "2026": 1
+      },
+      "evidence": {
+        "title": 0,
+        "notes": 2,
+        "transcript": 14
+      },
+      "samples": [
+        {
+          "i": 1559,
+          "e": "The human cost of building the Dubai of Africa",
+          "p": "Up First from NPR",
+          "d": "2026-05-21"
+        },
+        {
+          "i": 3072,
+          "e": "U.S. Strikes ISIS In Nigeria, The Year In Congress, Holiday Spending",
+          "p": "Up First from NPR",
+          "d": "2025-12-27"
+        },
+        {
+          "i": 3248,
+          "e": "Blood on the ground: What’s happening in Sudan",
+          "p": "The Morning Edition",
+          "d": "2025-12-07"
+        },
+        {
+          "i": 3608,
+          "e": "Four Big Races To Watch, Partial SNAP Funding, Famine In Sudan",
+          "p": "Up First from NPR",
+          "d": "2025-11-04"
+        },
+        {
+          "i": 5226,
+          "e": "Africa: Australia’s Indo-Pacific “blind spot”",
+          "p": "The National Security Podcast",
+          "d": "2025-06-11"
+        },
+        {
+          "i": 5462,
+          "e": "Negotiating Trump's Sweeping Agenda, South Africa's President, DOGE Cuts",
+          "p": "Up First from NPR",
+          "d": "2025-05-21"
+        },
+        {
+          "i": 6033,
+          "e": "DHS job cuts, Travel troubles under Trump, Sudan Civil War latest",
+          "p": "Up First from NPR",
+          "d": "2025-03-22"
+        },
+        {
+          "i": 6786,
+          "e": "Christmas Attack In Ukraine, Honda-Nissan Merger, Nigeria's Economic Crisis",
+          "p": "Up First from NPR",
+          "d": "2024-12-27"
+        }
+      ]
+    },
+    {
       "id": "philosophy-ethics",
       "name": "Philosophy & ethics",
       "blurb": "Philosophy and ethics.",
@@ -16356,147 +16497,6 @@
           "e": "Why Trump Just Gave China the Keys to A.I.’s Future",
           "p": "The Daily",
           "d": "2025-07-22"
-        }
-      ]
-    },
-    {
-      "id": "pk-government",
-      "name": "Pakistani government",
-      "blurb": "Pakistani government and politics.",
-      "kind": "local",
-      "facet": "local",
-      "count": 19,
-      "hours": 1.31,
-      "byYear": {
-        "2022": 2,
-        "2023": 7,
-        "2024": 4,
-        "2025": 6
-      },
-      "evidence": {
-        "title": 1,
-        "notes": 2,
-        "transcript": 16
-      },
-      "samples": [
-        {
-          "i": 5055,
-          "e": "China’s Role in the India-Pakistan Clash",
-          "p": "China Global",
-          "d": "2025-06-25"
-        },
-        {
-          "i": 5232,
-          "e": "Conversations: Pakistani spies, Australian ‘mercenaries’ and the future of Asian trade — This week in The Interpreter",
-          "p": "Lowy Institute",
-          "d": "2025-06-11"
-        },
-        {
-          "i": 5562,
-          "e": "Why are India and Pakistan on the brink of war?",
-          "p": "CNA Correspondent",
-          "d": "2025-05-11"
-        },
-        {
-          "i": 5568,
-          "e": "India Pakistan Tensions Mount, Food Stamps Data, Nuclear Reactor Watchdog",
-          "p": "Up First from NPR",
-          "d": "2025-05-10"
-        },
-        {
-          "i": 5585,
-          "e": "India And Pakistan Latest, Libya Deportations, The Fed And Interest Rates",
-          "p": "Up First from NPR",
-          "d": "2025-05-08"
-        },
-        {
-          "i": 5645,
-          "e": "Economy In The Next 100 Days, Ukraine Minerals Deal, India And Pakistan Tension",
-          "p": "Up First from NPR",
-          "d": "2025-05-03"
-        },
-        {
-          "i": 6963,
-          "e": "Israel-Lebanon Ceasefire, Protests in Pakistan, Trump Threatens Tariffs",
-          "p": "Up First from NPR",
-          "d": "2024-12-07"
-        },
-        {
-          "i": 9956,
-          "e": "SCOTUS Trump Case, U.S. Strikes In Iraq, Pakistani Elections",
-          "p": "Up First from NPR",
-          "d": "2024-02-10"
-        }
-      ]
-    },
-    {
-      "id": "af-government",
-      "name": "African government",
-      "blurb": "Governments across Africa.",
-      "kind": "local",
-      "facet": "local",
-      "count": 15,
-      "hours": 1.31,
-      "byYear": {
-        "2021": 1,
-        "2023": 3,
-        "2024": 4,
-        "2025": 6,
-        "2026": 1
-      },
-      "evidence": {
-        "title": 0,
-        "notes": 2,
-        "transcript": 13
-      },
-      "samples": [
-        {
-          "i": 1559,
-          "e": "The human cost of building the Dubai of Africa",
-          "p": "Up First from NPR",
-          "d": "2026-05-21"
-        },
-        {
-          "i": 3072,
-          "e": "U.S. Strikes ISIS In Nigeria, The Year In Congress, Holiday Spending",
-          "p": "Up First from NPR",
-          "d": "2025-12-27"
-        },
-        {
-          "i": 3248,
-          "e": "Blood on the ground: What’s happening in Sudan",
-          "p": "The Morning Edition",
-          "d": "2025-12-07"
-        },
-        {
-          "i": 3608,
-          "e": "Four Big Races To Watch, Partial SNAP Funding, Famine In Sudan",
-          "p": "Up First from NPR",
-          "d": "2025-11-04"
-        },
-        {
-          "i": 5226,
-          "e": "Africa: Australia’s Indo-Pacific “blind spot”",
-          "p": "The National Security Podcast",
-          "d": "2025-06-11"
-        },
-        {
-          "i": 5462,
-          "e": "Negotiating Trump's Sweeping Agenda, South Africa's President, DOGE Cuts",
-          "p": "Up First from NPR",
-          "d": "2025-05-21"
-        },
-        {
-          "i": 6033,
-          "e": "DHS job cuts, Travel troubles under Trump, Sudan Civil War latest",
-          "p": "Up First from NPR",
-          "d": "2025-03-22"
-        },
-        {
-          "i": 6786,
-          "e": "Christmas Attack In Ukraine, Honda-Nissan Merger, Nigeria's Economic Crisis",
-          "p": "Up First from NPR",
-          "d": "2024-12-27"
         }
       ]
     },
