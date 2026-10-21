@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "stt": 1968,
-      "title": 9809,
+      "stt": 1977,
+      "title": 9800,
       "show-notes": 6493,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5749,
+    "episodesWithTranscriptEvidence": 5758,
     "episodesWithNotesEvidence": 6493,
-    "episodesWithTitleOnlyEvidence": 9809,
+    "episodesWithTitleOnlyEvidence": 9800,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.89,
+      "hours": 1054.85,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2806,
+        "title": 2805,
         "notes": 446,
-        "transcript": 2886
+        "transcript": 2887
       },
       "samples": [
         {
@@ -253,7 +253,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 753.11,
+      "hours": 752.42,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -265,9 +265,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1750,
+        "title": 1741,
         "notes": 1068,
-        "transcript": 2838
+        "transcript": 2847
       },
       "samples": [
         {
@@ -403,7 +403,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 355.35,
+      "hours": 354.42,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -415,9 +415,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 747,
+        "title": 738,
         "notes": 769,
-        "transcript": 945
+        "transcript": 954
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 242.12,
+      "hours": 242.04,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -490,9 +490,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 553,
+        "title": 552,
         "notes": 426,
-        "transcript": 1591
+        "transcript": 1592
       },
       "samples": [
         {
@@ -552,8 +552,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3045,
-      "hours": 239.59,
+      "count": 3050,
+      "hours": 239.78,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -561,13 +561,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 666,
-        "2026": 633
+        "2025": 667,
+        "2026": 637
       },
       "evidence": {
         "title": 438,
         "notes": 1187,
-        "transcript": 1420
+        "transcript": 1425
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2732,
-      "hours": 198.52,
+      "count": 2736,
+      "hours": 198.59,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -712,12 +712,12 @@
         "2023": 459,
         "2024": 532,
         "2025": 670,
-        "2026": 677
+        "2026": 681
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2166
+        "transcript": 2170
       },
       "samples": [
         {
@@ -852,8 +852,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1499,
-      "hours": 151.46,
+      "count": 1503,
+      "hours": 151.81,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -862,12 +862,12 @@
         "2023": 261,
         "2024": 333,
         "2025": 308,
-        "2026": 266
+        "2026": 270
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 742
+        "transcript": 746
       },
       "samples": [
         {
@@ -875,6 +875,12 @@
           "e": "How do we change the political tone?",
           "p": "Politics Now",
           "d": "2026-10-21"
+        },
+        {
+          "i": 16,
+          "e": "Has politics changed forever?",
+          "p": "Politics Now",
+          "d": "2026-10-20"
         },
         {
           "i": 39,
@@ -911,12 +917,6 @@
           "e": "Execution TV: Is this a turning point for Trump’s America?",
           "p": "7am",
           "d": "2026-10-13"
-        },
-        {
-          "i": 93,
-          "e": "The ‘glass cliff’ and why the McKinsey saga shows it still exists",
-          "p": "The Morning Edition",
-          "d": "2026-10-13"
         }
       ],
       "children": []
@@ -927,8 +927,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1551,
-      "hours": 122.38,
+      "count": 1552,
+      "hours": 122.4,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -937,12 +937,12 @@
         "2023": 267,
         "2024": 310,
         "2025": 423,
-        "2026": 448
+        "2026": 449
       },
       "evidence": {
         "title": 78,
         "notes": 103,
-        "transcript": 1370
+        "transcript": 1371
       },
       "samples": [
         {
@@ -1077,8 +1077,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1271,
-      "hours": 111.11,
+      "count": 1272,
+      "hours": 111.12,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1087,12 +1087,12 @@
         "2023": 178,
         "2024": 191,
         "2025": 407,
-        "2026": 351
+        "2026": 352
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1059
+        "transcript": 1060
       },
       "samples": [
         {
@@ -1152,8 +1152,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1288,
-      "hours": 110.78,
+      "count": 1290,
+      "hours": 110.82,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -1161,13 +1161,13 @@
         "2022": 154,
         "2023": 210,
         "2024": 190,
-        "2025": 235,
-        "2026": 278
+        "2025": 236,
+        "2026": 279
       },
       "evidence": {
         "title": 165,
         "notes": 550,
-        "transcript": 573
+        "transcript": 575
       },
       "samples": [
         {
@@ -1377,8 +1377,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1143,
-      "hours": 95.04,
+      "count": 1147,
+      "hours": 95.32,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -1387,12 +1387,12 @@
         "2023": 177,
         "2024": 186,
         "2025": 268,
-        "2026": 319
+        "2026": 323
       },
       "evidence": {
         "title": 79,
         "notes": 300,
-        "transcript": 764
+        "transcript": 768
       },
       "samples": [
         {
@@ -1752,8 +1752,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 933,
-      "hours": 76.5,
+      "count": 938,
+      "hours": 76.98,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -1761,13 +1761,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 199,
-        "2026": 281
+        "2025": 200,
+        "2026": 285
       },
       "evidence": {
         "title": 107,
         "notes": 194,
-        "transcript": 632
+        "transcript": 637
       },
       "samples": [
         {
@@ -1827,8 +1827,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1001,
-      "hours": 69.01,
+      "count": 1002,
+      "hours": 69.04,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -1837,14 +1837,20 @@
         "2023": 178,
         "2024": 241,
         "2025": 277,
-        "2026": 254
+        "2026": 255
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 830
+        "transcript": 831
       },
       "samples": [
+        {
+          "i": 16,
+          "e": "Has politics changed forever?",
+          "p": "Politics Now",
+          "d": "2026-10-20"
+        },
         {
           "i": 18,
           "e": "The attack on Helen Haines and what we know",
@@ -1886,12 +1892,6 @@
           "e": "Will Trump stream an execution to the world?",
           "p": "ABC News Daily",
           "d": "2026-10-13"
-        },
-        {
-          "i": 102,
-          "e": "The women who fought back when their jailers assaulted them",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
         }
       ],
       "children": []
@@ -1902,21 +1902,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 853,
-      "hours": 63.52,
+      "count": 854,
+      "hours": 63.54,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 166,
         "2024": 172,
-        "2025": 251,
+        "2025": 252,
         "2026": 153
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 692
+        "transcript": 693
       },
       "samples": [
         {
@@ -2276,8 +2276,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 686,
-      "hours": 57.83,
+      "count": 687,
+      "hours": 57.84,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -2286,12 +2286,12 @@
         "2023": 105,
         "2024": 139,
         "2025": 215,
-        "2026": 161
+        "2026": 162
       },
       "evidence": {
         "title": 24,
         "notes": 80,
-        "transcript": 582
+        "transcript": 583
       },
       "samples": [
         {
@@ -3023,8 +3023,8 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 500,
-      "hours": 42.88,
+      "count": 502,
+      "hours": 43.02,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -3032,13 +3032,13 @@
         "2022": 48,
         "2023": 57,
         "2024": 73,
-        "2025": 115,
-        "2026": 116
+        "2025": 116,
+        "2026": 117
       },
       "evidence": {
         "title": 61,
         "notes": 139,
-        "transcript": 300
+        "transcript": 302
       },
       "samples": [
         {
@@ -4817,8 +4817,8 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 346,
-      "hours": 16.17,
+      "count": 347,
+      "hours": 16.2,
       "byYear": {
         "2020": 1,
         "2021": 2,
@@ -4826,12 +4826,12 @@
         "2023": 67,
         "2024": 68,
         "2025": 95,
-        "2026": 107
+        "2026": 108
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 315
+        "transcript": 316
       },
       "samples": [
         {
@@ -4891,21 +4891,21 @@
       "blurb": "Nuclear weapons and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 287,
-      "hours": 15.55,
+      "count": 288,
+      "hours": 15.58,
       "byYear": {
         "2019": 1,
         "2021": 9,
         "2022": 20,
         "2023": 29,
         "2024": 46,
-        "2025": 91,
+        "2025": 92,
         "2026": 91
       },
       "evidence": {
         "title": 1,
         "notes": 36,
-        "transcript": 250
+        "transcript": 251
       },
       "samples": [
         {
@@ -5927,81 +5927,6 @@
       "children": []
     },
     {
-      "id": "populism",
-      "name": "Populism",
-      "blurb": "Populist politics.",
-      "kind": "frame",
-      "facet": "frame",
-      "count": 71,
-      "hours": 9.82,
-      "byYear": {
-        "2019": 2,
-        "2020": 3,
-        "2021": 2,
-        "2022": 2,
-        "2023": 3,
-        "2024": 5,
-        "2025": 19,
-        "2026": 35
-      },
-      "evidence": {
-        "title": 3,
-        "notes": 37,
-        "transcript": 31
-      },
-      "samples": [
-        {
-          "i": 135,
-          "e": "Making Sense of the Rise of Far-Right Movements Globally",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 173,
-          "e": "Alastair Campbell on Pauline, Trump and the shifting world order",
-          "p": "7am",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 442,
-          "e": "Whose Side Are You On?",
-          "p": "Democracy Sausage with Mark Kenny",
-          "d": "2026-09-09"
-        },
-        {
-          "i": 448,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 454,
-          "e": "The far right is winning. Could Australia’s neo-Nazis be next?",
-          "p": "7am",
-          "d": "2026-09-07"
-        },
-        {
-          "i": 702,
-          "e": "Are The Democratic Socialists Winning or Losing?",
-          "p": "The Daily",
-          "d": "2026-08-14"
-        },
-        {
-          "i": 747,
-          "e": "AMA: Peter Thiel, Chris Rufo and the D.S.A.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-08-10"
-        },
-        {
-          "i": 784,
-          "e": "What's behind the global rise of far-right populism?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-07"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "weather-disasters",
       "name": "Weather & disasters",
       "blurb": "Storms, floods, fires, disasters.",
@@ -6071,6 +5996,81 @@
           "e": "Mud like quicksand: On the ground in Nepal",
           "p": "The Morning Edition",
           "d": "2026-09-01"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "populism",
+      "name": "Populism",
+      "blurb": "Populist politics.",
+      "kind": "frame",
+      "facet": "frame",
+      "count": 70,
+      "hours": 9.66,
+      "byYear": {
+        "2019": 2,
+        "2020": 3,
+        "2021": 2,
+        "2022": 2,
+        "2023": 3,
+        "2024": 5,
+        "2025": 19,
+        "2026": 34
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 37,
+        "transcript": 31
+      },
+      "samples": [
+        {
+          "i": 135,
+          "e": "Making Sense of the Rise of Far-Right Movements Globally",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 173,
+          "e": "Alastair Campbell on Pauline, Trump and the shifting world order",
+          "p": "7am",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 442,
+          "e": "Whose Side Are You On?",
+          "p": "Democracy Sausage with Mark Kenny",
+          "d": "2026-09-09"
+        },
+        {
+          "i": 448,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 454,
+          "e": "The far right is winning. Could Australia’s neo-Nazis be next?",
+          "p": "7am",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 702,
+          "e": "Are The Democratic Socialists Winning or Losing?",
+          "p": "The Daily",
+          "d": "2026-08-14"
+        },
+        {
+          "i": 747,
+          "e": "AMA: Peter Thiel, Chris Rufo and the D.S.A.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-08-10"
+        },
+        {
+          "i": 784,
+          "e": "What's behind the global rise of far-right populism?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-07"
         }
       ],
       "children": []
@@ -6230,21 +6230,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 254,
-      "hours": 7.83,
+      "count": 255,
+      "hours": 7.9,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
         "2023": 66,
         "2024": 60,
-        "2025": 45,
+        "2025": 46,
         "2026": 62
       },
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 171
+        "transcript": 172
       },
       "samples": [
         {
@@ -6294,6 +6294,80 @@
           "e": "Fed Raises Interest Rates, Iran War and Oil Prices, EU-Canada Alliance",
           "p": "Up First from NPR",
           "d": "2026-09-18"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "japan-korea-security",
+      "name": "Japan & Korea security",
+      "blurb": "Japan/Korea security and North Korea.",
+      "kind": "local",
+      "facet": "local",
+      "count": 74,
+      "hours": 7.73,
+      "byYear": {
+        "2020": 2,
+        "2021": 4,
+        "2022": 7,
+        "2023": 8,
+        "2024": 22,
+        "2025": 16,
+        "2026": 15
+      },
+      "evidence": {
+        "title": 5,
+        "notes": 32,
+        "transcript": 37
+      },
+      "samples": [
+        {
+          "i": 373,
+          "e": "Will Japan's weak yen trigger a global debt crisis?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-16"
+        },
+        {
+          "i": 630,
+          "e": "South Korea military drills / Pivot to Asia? / USS Lincoln",
+          "p": "Sources & Methods",
+          "d": "2026-08-22"
+        },
+        {
+          "i": 653,
+          "e": "Trump's shock South Korea decision",
+          "p": "The Morning Edition",
+          "d": "2026-08-20"
+        },
+        {
+          "i": 684,
+          "e": "New Zealand's leadership challenge and the mystery of Kim Jong Un's heir",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-17"
+        },
+        {
+          "i": 1369,
+          "e": "North Korea just made China back down. Is Trump taking note?",
+          "p": "The Morning Edition",
+          "d": "2026-06-11"
+        },
+        {
+          "i": 1731,
+          "e": "Once dominant fascist powers, Japan and Germany are now saving democracy",
+          "p": "The Morning Edition",
+          "d": "2026-05-07"
+        },
+        {
+          "i": 1769,
+          "e": "Australia-Japan: friends with benefits?",
+          "p": "Politics Now",
+          "d": "2026-05-04"
+        },
+        {
+          "i": 1803,
+          "e": "If Australia can't trust the US, can it trust Japan?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-05-01"
         }
       ],
       "children": []
@@ -6369,80 +6443,6 @@
           "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-09-07"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "japan-korea-security",
-      "name": "Japan & Korea security",
-      "blurb": "Japan/Korea security and North Korea.",
-      "kind": "local",
-      "facet": "local",
-      "count": 73,
-      "hours": 7.64,
-      "byYear": {
-        "2020": 2,
-        "2021": 4,
-        "2022": 7,
-        "2023": 8,
-        "2024": 22,
-        "2025": 16,
-        "2026": 14
-      },
-      "evidence": {
-        "title": 5,
-        "notes": 32,
-        "transcript": 36
-      },
-      "samples": [
-        {
-          "i": 373,
-          "e": "Will Japan's weak yen trigger a global debt crisis?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-16"
-        },
-        {
-          "i": 630,
-          "e": "South Korea military drills / Pivot to Asia? / USS Lincoln",
-          "p": "Sources & Methods",
-          "d": "2026-08-22"
-        },
-        {
-          "i": 653,
-          "e": "Trump's shock South Korea decision",
-          "p": "The Morning Edition",
-          "d": "2026-08-20"
-        },
-        {
-          "i": 684,
-          "e": "New Zealand's leadership challenge and the mystery of Kim Jong Un's heir",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-17"
-        },
-        {
-          "i": 1369,
-          "e": "North Korea just made China back down. Is Trump taking note?",
-          "p": "The Morning Edition",
-          "d": "2026-06-11"
-        },
-        {
-          "i": 1731,
-          "e": "Once dominant fascist powers, Japan and Germany are now saving democracy",
-          "p": "The Morning Edition",
-          "d": "2026-05-07"
-        },
-        {
-          "i": 1803,
-          "e": "If Australia can't trust the US, can it trust Japan?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-05-01"
-        },
-        {
-          "i": 2132,
-          "e": "Will Japan be pulled into defending the Strait of Hormuz?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-03-31"
         }
       ],
       "children": []
@@ -7481,22 +7481,28 @@
       "blurb": "Japanese government and domestic politics.",
       "kind": "local",
       "facet": "local",
-      "count": 29,
-      "hours": 3.51,
+      "count": 30,
+      "hours": 3.58,
       "byYear": {
         "2020": 1,
         "2022": 2,
         "2023": 5,
         "2024": 8,
         "2025": 7,
-        "2026": 6
+        "2026": 7
       },
       "evidence": {
         "title": 4,
         "notes": 16,
-        "transcript": 9
+        "transcript": 10
       },
       "samples": [
+        {
+          "i": 1769,
+          "e": "Australia-Japan: friends with benefits?",
+          "p": "Politics Now",
+          "d": "2026-05-04"
+        },
         {
           "i": 1803,
           "e": "If Australia can't trust the US, can it trust Japan?",
@@ -7538,12 +7544,6 @@
           "e": "Taiwan Sparks Tensions: Inside the China-Japan Dispute",
           "p": "China Global",
           "d": "2025-12-11"
-        },
-        {
-          "i": 3715,
-          "e": "SNAP Benefits Shutdown, Trump In Japan, Hurricane Melissa",
-          "p": "Up First from NPR",
-          "d": "2025-10-28"
         }
       ],
       "children": []
@@ -8379,7 +8379,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.89,
+      "hours": 1054.85,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8391,9 +8391,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2806,
+        "title": 2805,
         "notes": 446,
-        "transcript": 2886
+        "transcript": 2887
       },
       "samples": [
         {
@@ -8601,7 +8601,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 753.11,
+      "hours": 752.42,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8613,9 +8613,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1750,
+        "title": 1741,
         "notes": 1068,
-        "transcript": 2838
+        "transcript": 2847
       },
       "samples": [
         {
@@ -8749,7 +8749,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 355.35,
+      "hours": 354.42,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8761,9 +8761,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 747,
+        "title": 738,
         "notes": 769,
-        "transcript": 945
+        "transcript": 954
       },
       "samples": [
         {
@@ -8823,7 +8823,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 242.12,
+      "hours": 242.04,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8835,9 +8835,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 553,
+        "title": 552,
         "notes": 426,
-        "transcript": 1591
+        "transcript": 1592
       },
       "samples": [
         {
@@ -8896,8 +8896,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3045,
-      "hours": 239.59,
+      "count": 3050,
+      "hours": 239.78,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8905,13 +8905,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 666,
-        "2026": 633
+        "2025": 667,
+        "2026": 637
       },
       "evidence": {
         "title": 438,
         "notes": 1187,
-        "transcript": 1420
+        "transcript": 1425
       },
       "samples": [
         {
@@ -9044,8 +9044,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2732,
-      "hours": 198.52,
+      "count": 2736,
+      "hours": 198.59,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9054,12 +9054,12 @@
         "2023": 459,
         "2024": 532,
         "2025": 670,
-        "2026": 677
+        "2026": 681
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2166
+        "transcript": 2170
       },
       "samples": [
         {
@@ -9192,8 +9192,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1499,
-      "hours": 151.46,
+      "count": 1503,
+      "hours": 151.81,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9202,12 +9202,12 @@
         "2023": 261,
         "2024": 333,
         "2025": 308,
-        "2026": 266
+        "2026": 270
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 742
+        "transcript": 746
       },
       "samples": [
         {
@@ -9215,6 +9215,12 @@
           "e": "How do we change the political tone?",
           "p": "Politics Now",
           "d": "2026-10-21"
+        },
+        {
+          "i": 16,
+          "e": "Has politics changed forever?",
+          "p": "Politics Now",
+          "d": "2026-10-20"
         },
         {
           "i": 39,
@@ -9251,12 +9257,6 @@
           "e": "Execution TV: Is this a turning point for Trump’s America?",
           "p": "7am",
           "d": "2026-10-13"
-        },
-        {
-          "i": 93,
-          "e": "The ‘glass cliff’ and why the McKinsey saga shows it still exists",
-          "p": "The Morning Edition",
-          "d": "2026-10-13"
         }
       ]
     },
@@ -9266,8 +9266,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1551,
-      "hours": 122.38,
+      "count": 1552,
+      "hours": 122.4,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -9276,12 +9276,12 @@
         "2023": 267,
         "2024": 310,
         "2025": 423,
-        "2026": 448
+        "2026": 449
       },
       "evidence": {
         "title": 78,
         "notes": 103,
-        "transcript": 1370
+        "transcript": 1371
       },
       "samples": [
         {
@@ -9414,8 +9414,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1271,
-      "hours": 111.11,
+      "count": 1272,
+      "hours": 111.12,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9424,12 +9424,12 @@
         "2023": 178,
         "2024": 191,
         "2025": 407,
-        "2026": 351
+        "2026": 352
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1059
+        "transcript": 1060
       },
       "samples": [
         {
@@ -9488,8 +9488,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1288,
-      "hours": 110.78,
+      "count": 1290,
+      "hours": 110.82,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -9497,13 +9497,13 @@
         "2022": 154,
         "2023": 210,
         "2024": 190,
-        "2025": 235,
-        "2026": 278
+        "2025": 236,
+        "2026": 279
       },
       "evidence": {
         "title": 165,
         "notes": 550,
-        "transcript": 573
+        "transcript": 575
       },
       "samples": [
         {
@@ -9710,8 +9710,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1143,
-      "hours": 95.04,
+      "count": 1147,
+      "hours": 95.32,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -9720,12 +9720,12 @@
         "2023": 177,
         "2024": 186,
         "2025": 268,
-        "2026": 319
+        "2026": 323
       },
       "evidence": {
         "title": 79,
         "notes": 300,
-        "transcript": 764
+        "transcript": 768
       },
       "samples": [
         {
@@ -10080,8 +10080,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 933,
-      "hours": 76.5,
+      "count": 938,
+      "hours": 76.98,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -10089,13 +10089,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 199,
-        "2026": 281
+        "2025": 200,
+        "2026": 285
       },
       "evidence": {
         "title": 107,
         "notes": 194,
-        "transcript": 632
+        "transcript": 637
       },
       "samples": [
         {
@@ -10154,8 +10154,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1001,
-      "hours": 69.01,
+      "count": 1002,
+      "hours": 69.04,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -10164,14 +10164,20 @@
         "2023": 178,
         "2024": 241,
         "2025": 277,
-        "2026": 254
+        "2026": 255
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 830
+        "transcript": 831
       },
       "samples": [
+        {
+          "i": 16,
+          "e": "Has politics changed forever?",
+          "p": "Politics Now",
+          "d": "2026-10-20"
+        },
         {
           "i": 18,
           "e": "The attack on Helen Haines and what we know",
@@ -10213,12 +10219,6 @@
           "e": "Will Trump stream an execution to the world?",
           "p": "ABC News Daily",
           "d": "2026-10-13"
-        },
-        {
-          "i": 102,
-          "e": "The women who fought back when their jailers assaulted them",
-          "p": "Up First from NPR",
-          "d": "2026-10-12"
         }
       ]
     },
@@ -10228,21 +10228,21 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 853,
-      "hours": 63.52,
+      "count": 854,
+      "hours": 63.54,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
         "2023": 166,
         "2024": 172,
-        "2025": 251,
+        "2025": 252,
         "2026": 153
       },
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 692
+        "transcript": 693
       },
       "samples": [
         {
@@ -10597,8 +10597,8 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 686,
-      "hours": 57.83,
+      "count": 687,
+      "hours": 57.84,
       "byYear": {
         "2019": 2,
         "2020": 9,
@@ -10607,12 +10607,12 @@
         "2023": 105,
         "2024": 139,
         "2025": 215,
-        "2026": 161
+        "2026": 162
       },
       "evidence": {
         "title": 24,
         "notes": 80,
-        "transcript": 582
+        "transcript": 583
       },
       "samples": [
         {
@@ -11334,8 +11334,8 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 500,
-      "hours": 42.88,
+      "count": 502,
+      "hours": 43.02,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -11343,13 +11343,13 @@
         "2022": 48,
         "2023": 57,
         "2024": 73,
-        "2025": 115,
-        "2026": 116
+        "2025": 116,
+        "2026": 117
       },
       "evidence": {
         "title": 61,
         "notes": 139,
-        "transcript": 300
+        "transcript": 302
       },
       "samples": [
         {
@@ -13104,8 +13104,8 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 346,
-      "hours": 16.17,
+      "count": 347,
+      "hours": 16.2,
       "byYear": {
         "2020": 1,
         "2021": 2,
@@ -13113,12 +13113,12 @@
         "2023": 67,
         "2024": 68,
         "2025": 95,
-        "2026": 107
+        "2026": 108
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 315
+        "transcript": 316
       },
       "samples": [
         {
@@ -13177,21 +13177,21 @@
       "blurb": "Nuclear weapons and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 287,
-      "hours": 15.55,
+      "count": 288,
+      "hours": 15.58,
       "byYear": {
         "2019": 1,
         "2021": 9,
         "2022": 20,
         "2023": 29,
         "2024": 46,
-        "2025": 91,
+        "2025": 92,
         "2026": 91
       },
       "evidence": {
         "title": 1,
         "notes": 36,
-        "transcript": 250
+        "transcript": 251
       },
       "samples": [
         {
@@ -14199,80 +14199,6 @@
       ]
     },
     {
-      "id": "populism",
-      "name": "Populism",
-      "blurb": "Populist politics.",
-      "kind": "frame",
-      "facet": "frame",
-      "count": 71,
-      "hours": 9.82,
-      "byYear": {
-        "2019": 2,
-        "2020": 3,
-        "2021": 2,
-        "2022": 2,
-        "2023": 3,
-        "2024": 5,
-        "2025": 19,
-        "2026": 35
-      },
-      "evidence": {
-        "title": 3,
-        "notes": 37,
-        "transcript": 31
-      },
-      "samples": [
-        {
-          "i": 135,
-          "e": "Making Sense of the Rise of Far-Right Movements Globally",
-          "p": "Beyond the Ballot Box",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 173,
-          "e": "Alastair Campbell on Pauline, Trump and the shifting world order",
-          "p": "7am",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 442,
-          "e": "Whose Side Are You On?",
-          "p": "Democracy Sausage with Mark Kenny",
-          "d": "2026-09-09"
-        },
-        {
-          "i": 448,
-          "e": "The AfD are winning elections: Is the German far-right back?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-08"
-        },
-        {
-          "i": 454,
-          "e": "The far right is winning. Could Australia’s neo-Nazis be next?",
-          "p": "7am",
-          "d": "2026-09-07"
-        },
-        {
-          "i": 702,
-          "e": "Are The Democratic Socialists Winning or Losing?",
-          "p": "The Daily",
-          "d": "2026-08-14"
-        },
-        {
-          "i": 747,
-          "e": "AMA: Peter Thiel, Chris Rufo and the D.S.A.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-08-10"
-        },
-        {
-          "i": 784,
-          "e": "What's behind the global rise of far-right populism?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-07"
-        }
-      ]
-    },
-    {
       "id": "weather-disasters",
       "name": "Weather & disasters",
       "blurb": "Storms, floods, fires, disasters.",
@@ -14342,6 +14268,80 @@
           "e": "Mud like quicksand: On the ground in Nepal",
           "p": "The Morning Edition",
           "d": "2026-09-01"
+        }
+      ]
+    },
+    {
+      "id": "populism",
+      "name": "Populism",
+      "blurb": "Populist politics.",
+      "kind": "frame",
+      "facet": "frame",
+      "count": 70,
+      "hours": 9.66,
+      "byYear": {
+        "2019": 2,
+        "2020": 3,
+        "2021": 2,
+        "2022": 2,
+        "2023": 3,
+        "2024": 5,
+        "2025": 19,
+        "2026": 34
+      },
+      "evidence": {
+        "title": 2,
+        "notes": 37,
+        "transcript": 31
+      },
+      "samples": [
+        {
+          "i": 135,
+          "e": "Making Sense of the Rise of Far-Right Movements Globally",
+          "p": "Beyond the Ballot Box",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 173,
+          "e": "Alastair Campbell on Pauline, Trump and the shifting world order",
+          "p": "7am",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 442,
+          "e": "Whose Side Are You On?",
+          "p": "Democracy Sausage with Mark Kenny",
+          "d": "2026-09-09"
+        },
+        {
+          "i": 448,
+          "e": "The AfD are winning elections: Is the German far-right back?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-08"
+        },
+        {
+          "i": 454,
+          "e": "The far right is winning. Could Australia’s neo-Nazis be next?",
+          "p": "7am",
+          "d": "2026-09-07"
+        },
+        {
+          "i": 702,
+          "e": "Are The Democratic Socialists Winning or Losing?",
+          "p": "The Daily",
+          "d": "2026-08-14"
+        },
+        {
+          "i": 747,
+          "e": "AMA: Peter Thiel, Chris Rufo and the D.S.A.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-08-10"
+        },
+        {
+          "i": 784,
+          "e": "What's behind the global rise of far-right populism?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-07"
         }
       ]
     },
@@ -14498,21 +14498,21 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 254,
-      "hours": 7.83,
+      "count": 255,
+      "hours": 7.9,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
         "2023": 66,
         "2024": 60,
-        "2025": 45,
+        "2025": 46,
         "2026": 62
       },
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 171
+        "transcript": 172
       },
       "samples": [
         {
@@ -14562,6 +14562,79 @@
           "e": "Fed Raises Interest Rates, Iran War and Oil Prices, EU-Canada Alliance",
           "p": "Up First from NPR",
           "d": "2026-09-18"
+        }
+      ]
+    },
+    {
+      "id": "japan-korea-security",
+      "name": "Japan & Korea security",
+      "blurb": "Japan/Korea security and North Korea.",
+      "kind": "local",
+      "facet": "local",
+      "count": 74,
+      "hours": 7.73,
+      "byYear": {
+        "2020": 2,
+        "2021": 4,
+        "2022": 7,
+        "2023": 8,
+        "2024": 22,
+        "2025": 16,
+        "2026": 15
+      },
+      "evidence": {
+        "title": 5,
+        "notes": 32,
+        "transcript": 37
+      },
+      "samples": [
+        {
+          "i": 373,
+          "e": "Will Japan's weak yen trigger a global debt crisis?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-16"
+        },
+        {
+          "i": 630,
+          "e": "South Korea military drills / Pivot to Asia? / USS Lincoln",
+          "p": "Sources & Methods",
+          "d": "2026-08-22"
+        },
+        {
+          "i": 653,
+          "e": "Trump's shock South Korea decision",
+          "p": "The Morning Edition",
+          "d": "2026-08-20"
+        },
+        {
+          "i": 684,
+          "e": "New Zealand's leadership challenge and the mystery of Kim Jong Un's heir",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-17"
+        },
+        {
+          "i": 1369,
+          "e": "North Korea just made China back down. Is Trump taking note?",
+          "p": "The Morning Edition",
+          "d": "2026-06-11"
+        },
+        {
+          "i": 1731,
+          "e": "Once dominant fascist powers, Japan and Germany are now saving democracy",
+          "p": "The Morning Edition",
+          "d": "2026-05-07"
+        },
+        {
+          "i": 1769,
+          "e": "Australia-Japan: friends with benefits?",
+          "p": "Politics Now",
+          "d": "2026-05-04"
+        },
+        {
+          "i": 1803,
+          "e": "If Australia can't trust the US, can it trust Japan?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-05-01"
         }
       ]
     },
@@ -14636,79 +14709,6 @@
           "e": "Is China gutting Germany's car industry while Trump grades NATO on loyalty?",
           "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
           "d": "2026-09-07"
-        }
-      ]
-    },
-    {
-      "id": "japan-korea-security",
-      "name": "Japan & Korea security",
-      "blurb": "Japan/Korea security and North Korea.",
-      "kind": "local",
-      "facet": "local",
-      "count": 73,
-      "hours": 7.64,
-      "byYear": {
-        "2020": 2,
-        "2021": 4,
-        "2022": 7,
-        "2023": 8,
-        "2024": 22,
-        "2025": 16,
-        "2026": 14
-      },
-      "evidence": {
-        "title": 5,
-        "notes": 32,
-        "transcript": 36
-      },
-      "samples": [
-        {
-          "i": 373,
-          "e": "Will Japan's weak yen trigger a global debt crisis?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-16"
-        },
-        {
-          "i": 630,
-          "e": "South Korea military drills / Pivot to Asia? / USS Lincoln",
-          "p": "Sources & Methods",
-          "d": "2026-08-22"
-        },
-        {
-          "i": 653,
-          "e": "Trump's shock South Korea decision",
-          "p": "The Morning Edition",
-          "d": "2026-08-20"
-        },
-        {
-          "i": 684,
-          "e": "New Zealand's leadership challenge and the mystery of Kim Jong Un's heir",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-17"
-        },
-        {
-          "i": 1369,
-          "e": "North Korea just made China back down. Is Trump taking note?",
-          "p": "The Morning Edition",
-          "d": "2026-06-11"
-        },
-        {
-          "i": 1731,
-          "e": "Once dominant fascist powers, Japan and Germany are now saving democracy",
-          "p": "The Morning Edition",
-          "d": "2026-05-07"
-        },
-        {
-          "i": 1803,
-          "e": "If Australia can't trust the US, can it trust Japan?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-05-01"
-        },
-        {
-          "i": 2132,
-          "e": "Will Japan be pulled into defending the Strait of Hormuz?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-03-31"
         }
       ]
     },
@@ -15732,22 +15732,28 @@
       "blurb": "Japanese government and domestic politics.",
       "kind": "local",
       "facet": "local",
-      "count": 29,
-      "hours": 3.51,
+      "count": 30,
+      "hours": 3.58,
       "byYear": {
         "2020": 1,
         "2022": 2,
         "2023": 5,
         "2024": 8,
         "2025": 7,
-        "2026": 6
+        "2026": 7
       },
       "evidence": {
         "title": 4,
         "notes": 16,
-        "transcript": 9
+        "transcript": 10
       },
       "samples": [
+        {
+          "i": 1769,
+          "e": "Australia-Japan: friends with benefits?",
+          "p": "Politics Now",
+          "d": "2026-05-04"
+        },
         {
           "i": 1803,
           "e": "If Australia can't trust the US, can it trust Japan?",
@@ -15789,12 +15795,6 @@
           "e": "Taiwan Sparks Tensions: Inside the China-Japan Dispute",
           "p": "China Global",
           "d": "2025-12-11"
-        },
-        {
-          "i": 3715,
-          "e": "SNAP Benefits Shutdown, Trump In Japan, Hurricane Melissa",
-          "p": "Up First from NPR",
-          "d": "2025-10-28"
         }
       ]
     },
