@@ -1,19 +1,19 @@
 {
   "totalEpisodes": 22051,
-  "withAnyText": 12234,
-  "withPublisherOrSttTranscript": 5761,
-  "withLongText2000plus": 6194,
-  "pctAnyText": 55.48,
-  "pctTranscript": 26.13,
-  "pctLongText": 28.09,
+  "withAnyText": 12238,
+  "withPublisherOrSttTranscript": 5765,
+  "withLongText2000plus": 6198,
+  "pctAnyText": 55.5,
+  "pctTranscript": 26.14,
+  "pctLongText": 28.11,
   "bySrc": {
     "show-notes": {
       "count": 6473,
       "chars": 6322738
     },
     "stt": {
-      "count": 1995,
-      "chars": 32578467
+      "count": 1999,
+      "chars": 32666792
     },
     "transcript": {
       "count": 1692,
@@ -24,7 +24,7 @@
       "chars": 53248147
     }
   },
-  "notesStored": 12273,
+  "notesStored": 12277,
   "snippetChars": 900,
   "store": "transcripts/full.sqlite",
   "note": "notes.json holds searchable snippets for Pages. Full text is in transcripts/full.sqlite (not shipped to docs/)."
