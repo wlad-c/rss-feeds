@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 10149,
-      "stt": 1605,
+      "title": 10136,
+      "stt": 1618,
       "show-notes": 6496,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5386,
+    "episodesWithTranscriptEvidence": 5399,
     "episodesWithNotesEvidence": 6496,
-    "episodesWithTitleOnlyEvidence": 10149,
+    "episodesWithTitleOnlyEvidence": 10136,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1083.21,
+      "hours": 1082.15,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 3034,
+        "title": 3021,
         "notes": 449,
-        "transcript": 2650
+        "transcript": 2663
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2535,
-      "hours": 242.3,
+      "hours": 242.19,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -490,9 +490,9 @@
         "2026": 560
       },
       "evidence": {
-        "title": 620,
+        "title": 615,
         "notes": 428,
-        "transcript": 1487
+        "transcript": 1492
       },
       "samples": [
         {
@@ -552,22 +552,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2952,
+      "count": 2954,
       "hours": 236.52,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 485,
+        "2023": 487,
         "2024": 522,
         "2025": 657,
         "2026": 579
       },
       "evidence": {
-        "title": 452,
+        "title": 451,
         "notes": 1187,
-        "transcript": 1313
+        "transcript": 1316
       },
       "samples": [
         {
@@ -702,14 +702,14 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2575,
-      "hours": 194.46,
+      "count": 2580,
+      "hours": 194.58,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 344,
+        "2023": 349,
         "2024": 527,
         "2025": 663,
         "2026": 647
@@ -717,7 +717,7 @@
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2009
+        "transcript": 2014
       },
       "samples": [
         {
@@ -1002,22 +1002,22 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1446,
-      "hours": 117.83,
+      "count": 1450,
+      "hours": 118.0,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
         "2022": 62,
-        "2023": 173,
+        "2023": 177,
         "2024": 306,
         "2025": 420,
         "2026": 444
       },
       "evidence": {
-        "title": 100,
+        "title": 99,
         "notes": 103,
-        "transcript": 1243
+        "transcript": 1248
       },
       "samples": [
         {
@@ -1077,14 +1077,14 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1260,
-      "hours": 110.43,
+      "count": 1262,
+      "hours": 110.47,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 199,
+        "2023": 201,
         "2024": 190,
         "2025": 233,
         "2026": 263
@@ -1092,7 +1092,7 @@
       "evidence": {
         "title": 173,
         "notes": 550,
-        "transcript": 537
+        "transcript": 539
       },
       "samples": [
         {
@@ -1228,7 +1228,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 105.28,
+      "hours": 105.27,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -1240,9 +1240,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 256,
+        "title": 254,
         "notes": 204,
-        "transcript": 405
+        "transcript": 407
       },
       "samples": [
         {
@@ -1827,14 +1827,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 952,
-      "hours": 67.49,
+      "count": 957,
+      "hours": 67.7,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
-        "2023": 138,
+        "2023": 143,
         "2024": 240,
         "2025": 275,
         "2026": 248
@@ -1842,7 +1842,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 781
+        "transcript": 786
       },
       "samples": [
         {
@@ -1977,13 +1977,13 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 798,
-      "hours": 61.85,
+      "count": 799,
+      "hours": 61.89,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
-        "2023": 127,
+        "2023": 128,
         "2024": 165,
         "2025": 248,
         "2026": 147
@@ -1991,7 +1991,7 @@
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 637
+        "transcript": 638
       },
       "samples": [
         {
@@ -2126,22 +2126,22 @@
       "blurb": "SCOTUS and US courts.",
       "kind": "local",
       "facet": "local",
-      "count": 669,
-      "hours": 58.88,
+      "count": 670,
+      "hours": 58.89,
       "byYear": {
         "2019": 26,
         "2020": 17,
         "2021": 30,
         "2022": 36,
-        "2023": 105,
+        "2023": 106,
         "2024": 156,
         "2025": 169,
         "2026": 130
       },
       "evidence": {
-        "title": 100,
+        "title": 98,
         "notes": 33,
-        "transcript": 536
+        "transcript": 539
       },
       "samples": [
         {
@@ -2276,22 +2276,22 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 749,
-      "hours": 56.77,
+      "count": 751,
+      "hours": 56.87,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
-        "2023": 83,
+        "2023": 85,
         "2024": 135,
         "2025": 280,
         "2026": 187
       },
       "evidence": {
-        "title": 56,
+        "title": 55,
         "notes": 89,
-        "transcript": 604
+        "transcript": 607
       },
       "samples": [
         {
@@ -2800,7 +2800,7 @@
       "kind": "frame",
       "facet": "frame",
       "count": 396,
-      "hours": 44.79,
+      "hours": 44.77,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -2812,9 +2812,9 @@
         "2026": 45
       },
       "evidence": {
-        "title": 67,
+        "title": 66,
         "notes": 140,
-        "transcript": 189
+        "transcript": 190
       },
       "samples": [
         {
@@ -2875,7 +2875,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 44.71,
+      "hours": 44.69,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -2886,9 +2886,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 113,
+        "title": 112,
         "notes": 85,
-        "transcript": 154
+        "transcript": 155
       },
       "samples": [
         {
@@ -2948,14 +2948,14 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 536,
-      "hours": 42.71,
+      "count": 537,
+      "hours": 42.74,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
-        "2023": 67,
+        "2023": 68,
         "2024": 109,
         "2025": 159,
         "2026": 146
@@ -2963,7 +2963,7 @@
       "evidence": {
         "title": 40,
         "notes": 22,
-        "transcript": 474
+        "transcript": 475
       },
       "samples": [
         {
@@ -3699,7 +3699,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 27.16,
+      "hours": 27.1,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3710,9 +3710,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 64,
+        "title": 63,
         "notes": 51,
-        "transcript": 244
+        "transcript": 245
       },
       "samples": [
         {
@@ -3846,12 +3846,12 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 321,
-      "hours": 26.66,
+      "count": 326,
+      "hours": 26.92,
       "byYear": {
         "2021": 1,
         "2022": 9,
-        "2023": 52,
+        "2023": 57,
         "2024": 95,
         "2025": 101,
         "2026": 63
@@ -3859,7 +3859,7 @@
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 316
+        "transcript": 321
       },
       "samples": [
         {
@@ -3919,13 +3919,13 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 280,
-      "hours": 26.49,
+      "count": 281,
+      "hours": 26.5,
       "byYear": {
         "2020": 9,
         "2021": 13,
         "2022": 23,
-        "2023": 45,
+        "2023": 46,
         "2024": 56,
         "2025": 66,
         "2026": 68
@@ -3933,7 +3933,7 @@
       "evidence": {
         "title": 17,
         "notes": 147,
-        "transcript": 116
+        "transcript": 117
       },
       "samples": [
         {
@@ -3983,6 +3983,81 @@
           "e": "Vídeo registra Alexandre de Moraes saindo de avião de Vorcaro",
           "p": "Boletim Folha",
           "d": "2026-09-21"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "us-health",
+      "name": "US health policy",
+      "blurb": "US health policy and public health.",
+      "kind": "local",
+      "facet": "local",
+      "count": 304,
+      "hours": 25.64,
+      "byYear": {
+        "2019": 1,
+        "2020": 21,
+        "2021": 26,
+        "2022": 26,
+        "2023": 46,
+        "2024": 53,
+        "2025": 91,
+        "2026": 40
+      },
+      "evidence": {
+        "title": 63,
+        "notes": 13,
+        "transcript": 228
+      },
+      "samples": [
+        {
+          "i": 237,
+          "e": "Can clergy candidates help Democrats win in red states?",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 267,
+          "e": "The Clancy trial and a split over postpartum psychosis",
+          "p": "Up First from NPR",
+          "d": "2026-09-24"
+        },
+        {
+          "i": 277,
+          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
+          "p": "The Daily",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 521,
+          "e": "Super El Niño, Measles, Iran War Stalemate",
+          "p": "Up First from NPR",
+          "d": "2026-08-30"
+        },
+        {
+          "i": 524,
+          "e": "A Historic Settlement Over Social Media Addiction",
+          "p": "The Daily",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 547,
+          "e": "How big tech is creating the next Donald Trump",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-27"
+        },
+        {
+          "i": 570,
+          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 656,
+          "e": "How Trump’s anti-vax agenda is infecting Australia",
+          "p": "7am",
+          "d": "2026-08-17"
         }
       ],
       "children": []
@@ -4058,81 +4133,6 @@
           "e": "How Kumanjayi Walker’s death should change the NT Police",
           "p": "7am",
           "d": "2026-07-04"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "us-health",
-      "name": "US health policy",
-      "blurb": "US health policy and public health.",
-      "kind": "local",
-      "facet": "local",
-      "count": 303,
-      "hours": 25.6,
-      "byYear": {
-        "2019": 1,
-        "2020": 21,
-        "2021": 26,
-        "2022": 26,
-        "2023": 45,
-        "2024": 53,
-        "2025": 91,
-        "2026": 40
-      },
-      "evidence": {
-        "title": 63,
-        "notes": 13,
-        "transcript": 227
-      },
-      "samples": [
-        {
-          "i": 237,
-          "e": "Can clergy candidates help Democrats win in red states?",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 267,
-          "e": "The Clancy trial and a split over postpartum psychosis",
-          "p": "Up First from NPR",
-          "d": "2026-09-24"
-        },
-        {
-          "i": 277,
-          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
-          "p": "The Daily",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 521,
-          "e": "Super El Niño, Measles, Iran War Stalemate",
-          "p": "Up First from NPR",
-          "d": "2026-08-30"
-        },
-        {
-          "i": 524,
-          "e": "A Historic Settlement Over Social Media Addiction",
-          "p": "The Daily",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 547,
-          "e": "How big tech is creating the next Donald Trump",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-27"
-        },
-        {
-          "i": 570,
-          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 656,
-          "e": "How Trump’s anti-vax agenda is infecting Australia",
-          "p": "7am",
-          "d": "2026-08-17"
         }
       ],
       "children": []
@@ -4517,14 +4517,14 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 280,
-      "hours": 20.85,
+      "count": 282,
+      "hours": 20.91,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
         "2022": 19,
-        "2023": 34,
+        "2023": 36,
         "2024": 41,
         "2025": 48,
         "2026": 119
@@ -4532,7 +4532,7 @@
       "evidence": {
         "title": 30,
         "notes": 38,
-        "transcript": 212
+        "transcript": 214
       },
       "samples": [
         {
@@ -4667,14 +4667,14 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 162,
-      "hours": 17.52,
+      "count": 163,
+      "hours": 17.55,
       "byYear": {
         "2019": 4,
         "2020": 10,
         "2021": 5,
         "2022": 12,
-        "2023": 22,
+        "2023": 23,
         "2024": 39,
         "2025": 26,
         "2026": 44
@@ -4682,7 +4682,7 @@
       "evidence": {
         "title": 10,
         "notes": 76,
-        "transcript": 76
+        "transcript": 77
       },
       "samples": [
         {
@@ -5933,13 +5933,13 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 128,
-      "hours": 9.23,
+      "count": 129,
+      "hours": 9.27,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 7,
-        "2023": 27,
+        "2023": 28,
         "2024": 37,
         "2025": 35,
         "2026": 19
@@ -5947,7 +5947,7 @@
       "evidence": {
         "title": 0,
         "notes": 17,
-        "transcript": 111
+        "transcript": 112
       },
       "samples": [
         {
@@ -6007,13 +6007,13 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 205,
-      "hours": 9.01,
+      "count": 206,
+      "hours": 9.05,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
-        "2023": 32,
+        "2023": 33,
         "2024": 60,
         "2025": 43,
         "2026": 47
@@ -6021,7 +6021,7 @@
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 191
+        "transcript": 192
       },
       "samples": [
         {
@@ -6081,13 +6081,13 @@
       "blurb": "Elections across Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 78,
-      "hours": 8.76,
+      "count": 79,
+      "hours": 8.78,
       "byYear": {
         "2020": 1,
         "2021": 1,
         "2022": 8,
-        "2023": 5,
+        "2023": 6,
         "2024": 27,
         "2025": 9,
         "2026": 27
@@ -6095,7 +6095,7 @@
       "evidence": {
         "title": 14,
         "notes": 32,
-        "transcript": 32
+        "transcript": 33
       },
       "samples": [
         {
@@ -6305,13 +6305,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 240,
-      "hours": 7.6,
+      "count": 241,
+      "hours": 7.61,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 56,
+        "2023": 57,
         "2024": 60,
         "2025": 44,
         "2026": 59
@@ -6319,7 +6319,7 @@
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 157
+        "transcript": 158
       },
       "samples": [
         {
@@ -6379,13 +6379,13 @@
       "blurb": "Japan/Korea security and North Korea.",
       "kind": "local",
       "facet": "local",
-      "count": 71,
-      "hours": 7.5,
+      "count": 72,
+      "hours": 7.58,
       "byYear": {
         "2020": 2,
         "2021": 4,
         "2022": 7,
-        "2023": 6,
+        "2023": 7,
         "2024": 22,
         "2025": 16,
         "2026": 14
@@ -6393,7 +6393,7 @@
       "evidence": {
         "title": 6,
         "notes": 32,
-        "transcript": 33
+        "transcript": 34
       },
       "samples": [
         {
@@ -6900,11 +6900,11 @@
       "blurb": "Far-right parties and politics in Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 47,
-      "hours": 5.44,
+      "count": 48,
+      "hours": 5.46,
       "byYear": {
         "2022": 6,
-        "2023": 2,
+        "2023": 3,
         "2024": 12,
         "2025": 11,
         "2026": 16
@@ -6912,7 +6912,7 @@
       "evidence": {
         "title": 5,
         "notes": 22,
-        "transcript": 20
+        "transcript": 21
       },
       "samples": [
         {
@@ -7773,7 +7773,7 @@
       "kind": "local",
       "facet": "local",
       "count": 24,
-      "hours": 2.1,
+      "hours": 2.06,
       "byYear": {
         "2019": 1,
         "2020": 1,
@@ -7783,9 +7783,9 @@
         "2026": 4
       },
       "evidence": {
-        "title": 10,
+        "title": 9,
         "notes": 7,
-        "transcript": 7
+        "transcript": 8
       },
       "samples": [
         {
@@ -8195,18 +8195,18 @@
       "blurb": "Pakistani government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 14,
-      "hours": 1.08,
+      "count": 15,
+      "hours": 1.13,
       "byYear": {
         "2022": 2,
-        "2023": 2,
+        "2023": 3,
         "2024": 4,
         "2025": 6
       },
       "evidence": {
-        "title": 2,
+        "title": 1,
         "notes": 2,
-        "transcript": 10
+        "transcript": 12
       },
       "samples": [
         {
@@ -8305,16 +8305,15 @@
       "blurb": "Elections across Africa.",
       "kind": "local",
       "facet": "local",
-      "count": 8,
-      "hours": 0.45,
+      "count": 7,
+      "hours": 0.39,
       "byYear": {
         "2022": 1,
-        "2023": 1,
         "2024": 5,
         "2025": 1
       },
       "evidence": {
-        "title": 3,
+        "title": 2,
         "notes": 0,
         "transcript": 5
       },
@@ -8354,12 +8353,6 @@
           "e": "Biden Courts Black Voters, Pope Francis Issues Apology, South Africa's Election",
           "p": "Up First from NPR",
           "d": "2024-05-30"
-        },
-        {
-          "i": 12832,
-          "e": "Sudan Evacuations, Pittsburgh Synagogue Trial, SCOTUS Poll",
-          "p": "Up First from NPR",
-          "d": "2023-04-30"
         },
         {
           "i": 14884,
@@ -8379,7 +8372,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1083.21,
+      "hours": 1082.15,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8391,9 +8384,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 3034,
+        "title": 3021,
         "notes": 449,
-        "transcript": 2650
+        "transcript": 2663
       },
       "samples": [
         {
@@ -8823,7 +8816,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2535,
-      "hours": 242.3,
+      "hours": 242.19,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8835,9 +8828,9 @@
         "2026": 560
       },
       "evidence": {
-        "title": 620,
+        "title": 615,
         "notes": 428,
-        "transcript": 1487
+        "transcript": 1492
       },
       "samples": [
         {
@@ -8896,22 +8889,22 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2952,
+      "count": 2954,
       "hours": 236.52,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 485,
+        "2023": 487,
         "2024": 522,
         "2025": 657,
         "2026": 579
       },
       "evidence": {
-        "title": 452,
+        "title": 451,
         "notes": 1187,
-        "transcript": 1313
+        "transcript": 1316
       },
       "samples": [
         {
@@ -9044,14 +9037,14 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2575,
-      "hours": 194.46,
+      "count": 2580,
+      "hours": 194.58,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 344,
+        "2023": 349,
         "2024": 527,
         "2025": 663,
         "2026": 647
@@ -9059,7 +9052,7 @@
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2009
+        "transcript": 2014
       },
       "samples": [
         {
@@ -9340,22 +9333,22 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1446,
-      "hours": 117.83,
+      "count": 1450,
+      "hours": 118.0,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
         "2022": 62,
-        "2023": 173,
+        "2023": 177,
         "2024": 306,
         "2025": 420,
         "2026": 444
       },
       "evidence": {
-        "title": 100,
+        "title": 99,
         "notes": 103,
-        "transcript": 1243
+        "transcript": 1248
       },
       "samples": [
         {
@@ -9414,14 +9407,14 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1260,
-      "hours": 110.43,
+      "count": 1262,
+      "hours": 110.47,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 199,
+        "2023": 201,
         "2024": 190,
         "2025": 233,
         "2026": 263
@@ -9429,7 +9422,7 @@
       "evidence": {
         "title": 173,
         "notes": 550,
-        "transcript": 537
+        "transcript": 539
       },
       "samples": [
         {
@@ -9563,7 +9556,7 @@
       "kind": "story",
       "facet": "story",
       "count": 865,
-      "hours": 105.28,
+      "hours": 105.27,
       "byYear": {
         "2019": 16,
         "2020": 13,
@@ -9575,9 +9568,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 256,
+        "title": 254,
         "notes": 204,
-        "transcript": 405
+        "transcript": 407
       },
       "samples": [
         {
@@ -10154,14 +10147,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 952,
-      "hours": 67.49,
+      "count": 957,
+      "hours": 67.7,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
-        "2023": 138,
+        "2023": 143,
         "2024": 240,
         "2025": 275,
         "2026": 248
@@ -10169,7 +10162,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 781
+        "transcript": 786
       },
       "samples": [
         {
@@ -10302,13 +10295,13 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 798,
-      "hours": 61.85,
+      "count": 799,
+      "hours": 61.89,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
-        "2023": 127,
+        "2023": 128,
         "2024": 165,
         "2025": 248,
         "2026": 147
@@ -10316,7 +10309,7 @@
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 637
+        "transcript": 638
       },
       "samples": [
         {
@@ -10449,22 +10442,22 @@
       "blurb": "SCOTUS and US courts.",
       "kind": "local",
       "facet": "local",
-      "count": 669,
-      "hours": 58.88,
+      "count": 670,
+      "hours": 58.89,
       "byYear": {
         "2019": 26,
         "2020": 17,
         "2021": 30,
         "2022": 36,
-        "2023": 105,
+        "2023": 106,
         "2024": 156,
         "2025": 169,
         "2026": 130
       },
       "evidence": {
-        "title": 100,
+        "title": 98,
         "notes": 33,
-        "transcript": 536
+        "transcript": 539
       },
       "samples": [
         {
@@ -10597,22 +10590,22 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 749,
-      "hours": 56.77,
+      "count": 751,
+      "hours": 56.87,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
-        "2023": 83,
+        "2023": 85,
         "2024": 135,
         "2025": 280,
         "2026": 187
       },
       "evidence": {
-        "title": 56,
+        "title": 55,
         "notes": 89,
-        "transcript": 604
+        "transcript": 607
       },
       "samples": [
         {
@@ -11114,7 +11107,7 @@
       "kind": "frame",
       "facet": "frame",
       "count": 396,
-      "hours": 44.79,
+      "hours": 44.77,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -11126,9 +11119,9 @@
         "2026": 45
       },
       "evidence": {
-        "title": 67,
+        "title": 66,
         "notes": 140,
-        "transcript": 189
+        "transcript": 190
       },
       "samples": [
         {
@@ -11188,7 +11181,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 44.71,
+      "hours": 44.69,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -11199,9 +11192,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 113,
+        "title": 112,
         "notes": 85,
-        "transcript": 154
+        "transcript": 155
       },
       "samples": [
         {
@@ -11260,14 +11253,14 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 536,
-      "hours": 42.71,
+      "count": 537,
+      "hours": 42.74,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
-        "2023": 67,
+        "2023": 68,
         "2024": 109,
         "2025": 159,
         "2026": 146
@@ -11275,7 +11268,7 @@
       "evidence": {
         "title": 40,
         "notes": 22,
-        "transcript": 474
+        "transcript": 475
       },
       "samples": [
         {
@@ -12001,7 +11994,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 27.16,
+      "hours": 27.1,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -12012,9 +12005,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 64,
+        "title": 63,
         "notes": 51,
-        "transcript": 244
+        "transcript": 245
       },
       "samples": [
         {
@@ -12146,12 +12139,12 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 321,
-      "hours": 26.66,
+      "count": 326,
+      "hours": 26.92,
       "byYear": {
         "2021": 1,
         "2022": 9,
-        "2023": 52,
+        "2023": 57,
         "2024": 95,
         "2025": 101,
         "2026": 63
@@ -12159,7 +12152,7 @@
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 316
+        "transcript": 321
       },
       "samples": [
         {
@@ -12218,13 +12211,13 @@
       "blurb": "Far-right and extreme-right movements.",
       "kind": "frame",
       "facet": "frame",
-      "count": 280,
-      "hours": 26.49,
+      "count": 281,
+      "hours": 26.5,
       "byYear": {
         "2020": 9,
         "2021": 13,
         "2022": 23,
-        "2023": 45,
+        "2023": 46,
         "2024": 56,
         "2025": 66,
         "2026": 68
@@ -12232,7 +12225,7 @@
       "evidence": {
         "title": 17,
         "notes": 147,
-        "transcript": 116
+        "transcript": 117
       },
       "samples": [
         {
@@ -12282,6 +12275,80 @@
           "e": "Vídeo registra Alexandre de Moraes saindo de avião de Vorcaro",
           "p": "Boletim Folha",
           "d": "2026-09-21"
+        }
+      ]
+    },
+    {
+      "id": "us-health",
+      "name": "US health policy",
+      "blurb": "US health policy and public health.",
+      "kind": "local",
+      "facet": "local",
+      "count": 304,
+      "hours": 25.64,
+      "byYear": {
+        "2019": 1,
+        "2020": 21,
+        "2021": 26,
+        "2022": 26,
+        "2023": 46,
+        "2024": 53,
+        "2025": 91,
+        "2026": 40
+      },
+      "evidence": {
+        "title": 63,
+        "notes": 13,
+        "transcript": 228
+      },
+      "samples": [
+        {
+          "i": 237,
+          "e": "Can clergy candidates help Democrats win in red states?",
+          "p": "Up First from NPR",
+          "d": "2026-09-28"
+        },
+        {
+          "i": 267,
+          "e": "The Clancy trial and a split over postpartum psychosis",
+          "p": "Up First from NPR",
+          "d": "2026-09-24"
+        },
+        {
+          "i": 277,
+          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
+          "p": "The Daily",
+          "d": "2026-09-23"
+        },
+        {
+          "i": 521,
+          "e": "Super El Niño, Measles, Iran War Stalemate",
+          "p": "Up First from NPR",
+          "d": "2026-08-30"
+        },
+        {
+          "i": 524,
+          "e": "A Historic Settlement Over Social Media Addiction",
+          "p": "The Daily",
+          "d": "2026-08-29"
+        },
+        {
+          "i": 547,
+          "e": "How big tech is creating the next Donald Trump",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-27"
+        },
+        {
+          "i": 570,
+          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-08-26"
+        },
+        {
+          "i": 656,
+          "e": "How Trump’s anti-vax agenda is infecting Australia",
+          "p": "7am",
+          "d": "2026-08-17"
         }
       ]
     },
@@ -12356,80 +12423,6 @@
           "e": "How Kumanjayi Walker’s death should change the NT Police",
           "p": "7am",
           "d": "2026-07-04"
-        }
-      ]
-    },
-    {
-      "id": "us-health",
-      "name": "US health policy",
-      "blurb": "US health policy and public health.",
-      "kind": "local",
-      "facet": "local",
-      "count": 303,
-      "hours": 25.6,
-      "byYear": {
-        "2019": 1,
-        "2020": 21,
-        "2021": 26,
-        "2022": 26,
-        "2023": 45,
-        "2024": 53,
-        "2025": 91,
-        "2026": 40
-      },
-      "evidence": {
-        "title": 63,
-        "notes": 13,
-        "transcript": 227
-      },
-      "samples": [
-        {
-          "i": 237,
-          "e": "Can clergy candidates help Democrats win in red states?",
-          "p": "Up First from NPR",
-          "d": "2026-09-28"
-        },
-        {
-          "i": 267,
-          "e": "The Clancy trial and a split over postpartum psychosis",
-          "p": "Up First from NPR",
-          "d": "2026-09-24"
-        },
-        {
-          "i": 277,
-          "e": "Health Trackers Are Everywhere. Do Babies Need Them, Too?",
-          "p": "The Daily",
-          "d": "2026-09-23"
-        },
-        {
-          "i": 521,
-          "e": "Super El Niño, Measles, Iran War Stalemate",
-          "p": "Up First from NPR",
-          "d": "2026-08-30"
-        },
-        {
-          "i": 524,
-          "e": "A Historic Settlement Over Social Media Addiction",
-          "p": "The Daily",
-          "d": "2026-08-29"
-        },
-        {
-          "i": 547,
-          "e": "How big tech is creating the next Donald Trump",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-27"
-        },
-        {
-          "i": 570,
-          "e": "Helen Clark defends Fauci pleading the fifth and says Trump's vaccine cuts could cost lives",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-08-26"
-        },
-        {
-          "i": 656,
-          "e": "How Trump’s anti-vax agenda is infecting Australia",
-          "p": "7am",
-          "d": "2026-08-17"
         }
       ]
     },
@@ -12808,14 +12801,14 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 280,
-      "hours": 20.85,
+      "count": 282,
+      "hours": 20.91,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
         "2022": 19,
-        "2023": 34,
+        "2023": 36,
         "2024": 41,
         "2025": 48,
         "2026": 119
@@ -12823,7 +12816,7 @@
       "evidence": {
         "title": 30,
         "notes": 38,
-        "transcript": 212
+        "transcript": 214
       },
       "samples": [
         {
@@ -12956,14 +12949,14 @@
       "blurb": "European governments and EU institutions.",
       "kind": "local",
       "facet": "local",
-      "count": 162,
-      "hours": 17.52,
+      "count": 163,
+      "hours": 17.55,
       "byYear": {
         "2019": 4,
         "2020": 10,
         "2021": 5,
         "2022": 12,
-        "2023": 22,
+        "2023": 23,
         "2024": 39,
         "2025": 26,
         "2026": 44
@@ -12971,7 +12964,7 @@
       "evidence": {
         "title": 10,
         "notes": 76,
-        "transcript": 76
+        "transcript": 77
       },
       "samples": [
         {
@@ -14205,13 +14198,13 @@
       "blurb": "Storms, floods, fires, disasters.",
       "kind": "domain",
       "facet": "domain",
-      "count": 128,
-      "hours": 9.23,
+      "count": 129,
+      "hours": 9.27,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 7,
-        "2023": 27,
+        "2023": 28,
         "2024": 37,
         "2025": 35,
         "2026": 19
@@ -14219,7 +14212,7 @@
       "evidence": {
         "title": 0,
         "notes": 17,
-        "transcript": 111
+        "transcript": 112
       },
       "samples": [
         {
@@ -14278,13 +14271,13 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 205,
-      "hours": 9.01,
+      "count": 206,
+      "hours": 9.05,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
-        "2023": 32,
+        "2023": 33,
         "2024": 60,
         "2025": 43,
         "2026": 47
@@ -14292,7 +14285,7 @@
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 191
+        "transcript": 192
       },
       "samples": [
         {
@@ -14351,13 +14344,13 @@
       "blurb": "Elections across Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 78,
-      "hours": 8.76,
+      "count": 79,
+      "hours": 8.78,
       "byYear": {
         "2020": 1,
         "2021": 1,
         "2022": 8,
-        "2023": 5,
+        "2023": 6,
         "2024": 27,
         "2025": 9,
         "2026": 27
@@ -14365,7 +14358,7 @@
       "evidence": {
         "title": 14,
         "notes": 32,
-        "transcript": 32
+        "transcript": 33
       },
       "samples": [
         {
@@ -14572,13 +14565,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 240,
-      "hours": 7.6,
+      "count": 241,
+      "hours": 7.61,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 56,
+        "2023": 57,
         "2024": 60,
         "2025": 44,
         "2026": 59
@@ -14586,7 +14579,7 @@
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 157
+        "transcript": 158
       },
       "samples": [
         {
@@ -14645,13 +14638,13 @@
       "blurb": "Japan/Korea security and North Korea.",
       "kind": "local",
       "facet": "local",
-      "count": 71,
-      "hours": 7.5,
+      "count": 72,
+      "hours": 7.58,
       "byYear": {
         "2020": 2,
         "2021": 4,
         "2022": 7,
-        "2023": 6,
+        "2023": 7,
         "2024": 22,
         "2025": 16,
         "2026": 14
@@ -14659,7 +14652,7 @@
       "evidence": {
         "title": 6,
         "notes": 32,
-        "transcript": 33
+        "transcript": 34
       },
       "samples": [
         {
@@ -15159,11 +15152,11 @@
       "blurb": "Far-right parties and politics in Europe.",
       "kind": "local",
       "facet": "local",
-      "count": 47,
-      "hours": 5.44,
+      "count": 48,
+      "hours": 5.46,
       "byYear": {
         "2022": 6,
-        "2023": 2,
+        "2023": 3,
         "2024": 12,
         "2025": 11,
         "2026": 16
@@ -15171,7 +15164,7 @@
       "evidence": {
         "title": 5,
         "notes": 22,
-        "transcript": 20
+        "transcript": 21
       },
       "samples": [
         {
@@ -16020,7 +16013,7 @@
       "kind": "local",
       "facet": "local",
       "count": 24,
-      "hours": 2.1,
+      "hours": 2.06,
       "byYear": {
         "2019": 1,
         "2020": 1,
@@ -16030,9 +16023,9 @@
         "2026": 4
       },
       "evidence": {
-        "title": 10,
+        "title": 9,
         "notes": 7,
-        "transcript": 7
+        "transcript": 8
       },
       "samples": [
         {
@@ -16436,18 +16429,18 @@
       "blurb": "Pakistani government and politics.",
       "kind": "local",
       "facet": "local",
-      "count": 14,
-      "hours": 1.08,
+      "count": 15,
+      "hours": 1.13,
       "byYear": {
         "2022": 2,
-        "2023": 2,
+        "2023": 3,
         "2024": 4,
         "2025": 6
       },
       "evidence": {
-        "title": 2,
+        "title": 1,
         "notes": 2,
-        "transcript": 10
+        "transcript": 12
       },
       "samples": [
         {
@@ -16544,16 +16537,15 @@
       "blurb": "Elections across Africa.",
       "kind": "local",
       "facet": "local",
-      "count": 8,
-      "hours": 0.45,
+      "count": 7,
+      "hours": 0.39,
       "byYear": {
         "2022": 1,
-        "2023": 1,
         "2024": 5,
         "2025": 1
       },
       "evidence": {
-        "title": 3,
+        "title": 2,
         "notes": 0,
         "transcript": 5
       },
@@ -16593,12 +16585,6 @@
           "e": "Biden Courts Black Voters, Pope Francis Issues Apology, South Africa's Election",
           "p": "Up First from NPR",
           "d": "2024-05-30"
-        },
-        {
-          "i": 12832,
-          "e": "Sudan Evacuations, Pittsburgh Synagogue Trial, SCOTUS Poll",
-          "p": "Up First from NPR",
-          "d": "2023-04-30"
         },
         {
           "i": 14884,
