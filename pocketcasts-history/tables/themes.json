@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 10012,
-      "stt": 1742,
+      "title": 10000,
+      "stt": 1754,
       "show-notes": 6496,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5523,
+    "episodesWithTranscriptEvidence": 5535,
     "episodesWithNotesEvidence": 6496,
-    "episodesWithTitleOnlyEvidence": 10012,
+    "episodesWithTitleOnlyEvidence": 10000,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1070.9,
+      "hours": 1069.72,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 2897,
+        "title": 2885,
         "notes": 449,
-        "transcript": 2787
+        "transcript": 2799
       },
       "samples": [
         {
@@ -477,14 +477,14 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2554,
-      "hours": 241.76,
+      "count": 2555,
+      "hours": 241.82,
       "byYear": {
         "2019": 34,
         "2020": 101,
         "2021": 76,
         "2022": 116,
-        "2023": 264,
+        "2023": 265,
         "2024": 589,
         "2025": 813,
         "2026": 561
@@ -492,7 +492,7 @@
       "evidence": {
         "title": 573,
         "notes": 428,
-        "transcript": 1553
+        "transcript": 1554
       },
       "samples": [
         {
@@ -552,14 +552,14 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2970,
-      "hours": 236.65,
+      "count": 2972,
+      "hours": 236.71,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 503,
+        "2023": 505,
         "2024": 522,
         "2025": 657,
         "2026": 579
@@ -567,7 +567,7 @@
       "evidence": {
         "title": 444,
         "notes": 1187,
-        "transcript": 1339
+        "transcript": 1341
       },
       "samples": [
         {
@@ -702,14 +702,14 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2647,
-      "hours": 196.03,
+      "count": 2657,
+      "hours": 196.29,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 416,
+        "2023": 426,
         "2024": 527,
         "2025": 663,
         "2026": 647
@@ -717,7 +717,7 @@
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2081
+        "transcript": 2091
       },
       "samples": [
         {
@@ -1002,22 +1002,22 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1502,
-      "hours": 119.95,
+      "count": 1511,
+      "hours": 120.42,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
         "2022": 62,
-        "2023": 229,
+        "2023": 238,
         "2024": 306,
         "2025": 420,
         "2026": 444
       },
       "evidence": {
-        "title": 84,
+        "title": 83,
         "notes": 103,
-        "transcript": 1315
+        "transcript": 1325
       },
       "samples": [
         {
@@ -1077,14 +1077,14 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1267,
-      "hours": 110.44,
+      "count": 1269,
+      "hours": 110.52,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 206,
+        "2023": 208,
         "2024": 190,
         "2025": 233,
         "2026": 263
@@ -1092,7 +1092,7 @@
       "evidence": {
         "title": 168,
         "notes": 550,
-        "transcript": 549
+        "transcript": 551
       },
       "samples": [
         {
@@ -1222,81 +1222,6 @@
       "children": []
     },
     {
-      "id": "israel-gaza-war",
-      "name": "Israel–Gaza war",
-      "blurb": "Israel–Gaza war coverage.",
-      "kind": "story",
-      "facet": "story",
-      "count": 865,
-      "hours": 105.22,
-      "byYear": {
-        "2019": 16,
-        "2020": 13,
-        "2021": 18,
-        "2022": 10,
-        "2023": 210,
-        "2024": 262,
-        "2025": 238,
-        "2026": 98
-      },
-      "evidence": {
-        "title": 226,
-        "notes": 204,
-        "transcript": 435
-      },
-      "samples": [
-        {
-          "i": 62,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 83,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 85,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 122,
-          "e": "Could the Flydubai attack keep Netanyahu in power?",
-          "p": "7am",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 127,
-          "e": "'Frozen on October 7': Why Israel hasn't moved on",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 194,
-          "e": "What did Netanyahu know before October 7?",
-          "p": "ABC News Daily",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 244,
-          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
-          "p": "Up First from NPR",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 371,
-          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-14"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "education",
       "name": "Education",
       "blurb": "Schools and universities.",
@@ -1367,6 +1292,81 @@
           "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
           "p": "The Morning Edition",
           "d": "2026-10-05"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "israel-gaza-war",
+      "name": "Israel–Gaza war",
+      "blurb": "Israel–Gaza war coverage.",
+      "kind": "story",
+      "facet": "story",
+      "count": 865,
+      "hours": 105.12,
+      "byYear": {
+        "2019": 16,
+        "2020": 13,
+        "2021": 18,
+        "2022": 10,
+        "2023": 210,
+        "2024": 262,
+        "2025": 238,
+        "2026": 98
+      },
+      "evidence": {
+        "title": 222,
+        "notes": 204,
+        "transcript": 439
+      },
+      "samples": [
+        {
+          "i": 62,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 83,
+          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 85,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 122,
+          "e": "Could the Flydubai attack keep Netanyahu in power?",
+          "p": "7am",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 127,
+          "e": "'Frozen on October 7': Why Israel hasn't moved on",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 194,
+          "e": "What did Netanyahu know before October 7?",
+          "p": "ABC News Daily",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 244,
+          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
+          "p": "Up First from NPR",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 371,
+          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-14"
         }
       ],
       "children": []
@@ -1827,14 +1827,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 980,
-      "hours": 68.22,
+      "count": 982,
+      "hours": 68.26,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
-        "2023": 166,
+        "2023": 168,
         "2024": 240,
         "2025": 275,
         "2026": 248
@@ -1842,7 +1842,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 809
+        "transcript": 811
       },
       "samples": [
         {
@@ -1903,7 +1903,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 454,
-      "hours": 63.32,
+      "hours": 63.31,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1915,9 +1915,9 @@
         "2026": 196
       },
       "evidence": {
-        "title": 38,
+        "title": 37,
         "notes": 139,
-        "transcript": 277
+        "transcript": 278
       },
       "samples": [
         {
@@ -1977,13 +1977,13 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 825,
-      "hours": 62.32,
+      "count": 827,
+      "hours": 62.35,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
-        "2023": 153,
+        "2023": 155,
         "2024": 165,
         "2025": 248,
         "2026": 148
@@ -1991,7 +1991,7 @@
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 664
+        "transcript": 666
       },
       "samples": [
         {
@@ -2052,7 +2052,7 @@
       "kind": "local",
       "facet": "local",
       "count": 692,
-      "hours": 59.91,
+      "hours": 59.83,
       "byYear": {
         "2019": 26,
         "2020": 17,
@@ -2064,9 +2064,9 @@
         "2026": 130
       },
       "evidence": {
-        "title": 87,
+        "title": 85,
         "notes": 33,
-        "transcript": 572
+        "transcript": 574
       },
       "samples": [
         {
@@ -2201,14 +2201,14 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 767,
-      "hours": 57.51,
+      "count": 769,
+      "hours": 57.65,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
-        "2023": 101,
+        "2023": 103,
         "2024": 135,
         "2025": 280,
         "2026": 187
@@ -2216,7 +2216,7 @@
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 630
+        "transcript": 632
       },
       "samples": [
         {
@@ -2351,14 +2351,14 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 663,
-      "hours": 56.18,
+      "count": 665,
+      "hours": 56.25,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
         "2022": 35,
-        "2023": 94,
+        "2023": 96,
         "2024": 134,
         "2025": 208,
         "2026": 161
@@ -2366,7 +2366,7 @@
       "evidence": {
         "title": 25,
         "notes": 80,
-        "transcript": 558
+        "transcript": 560
       },
       "samples": [
         {
@@ -2502,7 +2502,7 @@
       "kind": "local",
       "facet": "local",
       "count": 381,
-      "hours": 47.88,
+      "hours": 47.83,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -2514,9 +2514,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 132,
+        "title": 131,
         "notes": 158,
-        "transcript": 91
+        "transcript": 92
       },
       "samples": [
         {
@@ -2799,22 +2799,22 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 401,
-      "hours": 44.46,
+      "count": 402,
+      "hours": 44.45,
       "byYear": {
         "2019": 4,
         "2020": 36,
         "2021": 19,
         "2022": 59,
-        "2023": 84,
+        "2023": 85,
         "2024": 104,
         "2025": 50,
         "2026": 45
       },
       "evidence": {
-        "title": 56,
+        "title": 55,
         "notes": 140,
-        "transcript": 205
+        "transcript": 207
       },
       "samples": [
         {
@@ -2875,7 +2875,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 44.05,
+      "hours": 43.86,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -2886,9 +2886,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 98,
+        "title": 94,
         "notes": 85,
-        "transcript": 169
+        "transcript": 173
       },
       "samples": [
         {
@@ -2948,22 +2948,22 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 556,
-      "hours": 43.52,
+      "count": 558,
+      "hours": 43.59,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
-        "2023": 87,
+        "2023": 89,
         "2024": 109,
         "2025": 159,
         "2026": 146
       },
       "evidence": {
-        "title": 37,
+        "title": 36,
         "notes": 22,
-        "transcript": 497
+        "transcript": 500
       },
       "samples": [
         {
@@ -3174,7 +3174,7 @@
       "kind": "story",
       "facet": "story",
       "count": 288,
-      "hours": 40.29,
+      "hours": 40.32,
       "byYear": {
         "2019": 11,
         "2020": 10,
@@ -3186,9 +3186,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 46,
+        "title": 45,
         "notes": 140,
-        "transcript": 102
+        "transcript": 103
       },
       "samples": [
         {
@@ -3548,14 +3548,14 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 397,
-      "hours": 30.73,
+      "count": 399,
+      "hours": 30.83,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
         "2022": 7,
-        "2023": 47,
+        "2023": 49,
         "2024": 97,
         "2025": 142,
         "2026": 95
@@ -3563,7 +3563,7 @@
       "evidence": {
         "title": 13,
         "notes": 23,
-        "transcript": 361
+        "transcript": 363
       },
       "samples": [
         {
@@ -3623,14 +3623,14 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 476,
-      "hours": 28.7,
+      "count": 477,
+      "hours": 28.71,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
         "2022": 24,
-        "2023": 53,
+        "2023": 54,
         "2024": 85,
         "2025": 125,
         "2026": 105
@@ -3638,7 +3638,7 @@
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 310
+        "transcript": 311
       },
       "samples": [
         {
@@ -3698,12 +3698,12 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 349,
-      "hours": 27.99,
+      "count": 351,
+      "hours": 28.07,
       "byYear": {
         "2021": 1,
         "2022": 9,
-        "2023": 80,
+        "2023": 82,
         "2024": 95,
         "2025": 101,
         "2026": 63
@@ -3711,7 +3711,7 @@
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 344
+        "transcript": 346
       },
       "samples": [
         {
@@ -3771,13 +3771,13 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 629,
-      "hours": 27.21,
+      "count": 631,
+      "hours": 27.25,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
-        "2023": 81,
+        "2023": 83,
         "2024": 153,
         "2025": 191,
         "2026": 184
@@ -3785,7 +3785,7 @@
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 575
+        "transcript": 577
       },
       "samples": [
         {
@@ -3846,7 +3846,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 27.06,
+      "hours": 26.98,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3857,9 +3857,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 62,
+        "title": 61,
         "notes": 51,
-        "transcript": 246
+        "transcript": 247
       },
       "samples": [
         {
@@ -3993,14 +3993,14 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 308,
-      "hours": 25.84,
+      "count": 309,
+      "hours": 25.86,
       "byYear": {
         "2019": 1,
         "2020": 21,
         "2021": 26,
         "2022": 26,
-        "2023": 49,
+        "2023": 50,
         "2024": 53,
         "2025": 91,
         "2026": 41
@@ -4008,7 +4008,7 @@
       "evidence": {
         "title": 61,
         "notes": 13,
-        "transcript": 234
+        "transcript": 235
       },
       "samples": [
         {
@@ -4517,14 +4517,14 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 287,
-      "hours": 21.05,
+      "count": 289,
+      "hours": 21.14,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
         "2022": 19,
-        "2023": 41,
+        "2023": 43,
         "2024": 41,
         "2025": 48,
         "2026": 119
@@ -4532,7 +4532,7 @@
       "evidence": {
         "title": 25,
         "notes": 38,
-        "transcript": 224
+        "transcript": 226
       },
       "samples": [
         {
@@ -5040,12 +5040,12 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 149,
-      "hours": 15.37,
+      "count": 150,
+      "hours": 15.39,
       "byYear": {
         "2021": 4,
         "2022": 10,
-        "2023": 21,
+        "2023": 22,
         "2024": 29,
         "2025": 36,
         "2026": 49
@@ -5053,7 +5053,7 @@
       "evidence": {
         "title": 2,
         "notes": 32,
-        "transcript": 115
+        "transcript": 116
       },
       "samples": [
         {
@@ -5188,13 +5188,13 @@
       "blurb": "Religion and belief.",
       "kind": "domain",
       "facet": "domain",
-      "count": 177,
-      "hours": 14.56,
+      "count": 178,
+      "hours": 14.57,
       "byYear": {
         "2020": 3,
         "2021": 5,
         "2022": 8,
-        "2023": 27,
+        "2023": 28,
         "2024": 39,
         "2025": 57,
         "2026": 38
@@ -5202,7 +5202,7 @@
       "evidence": {
         "title": 0,
         "notes": 21,
-        "transcript": 156
+        "transcript": 157
       },
       "samples": [
         {
@@ -5933,13 +5933,13 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 223,
-      "hours": 9.69,
+      "count": 224,
+      "hours": 9.71,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
-        "2023": 49,
+        "2023": 50,
         "2024": 60,
         "2025": 44,
         "2026": 47
@@ -5947,7 +5947,7 @@
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 209
+        "transcript": 210
       },
       "samples": [
         {
@@ -8379,7 +8379,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6133,
-      "hours": 1070.9,
+      "hours": 1069.72,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8391,9 +8391,9 @@
         "2026": 905
       },
       "evidence": {
-        "title": 2897,
+        "title": 2885,
         "notes": 449,
-        "transcript": 2787
+        "transcript": 2799
       },
       "samples": [
         {
@@ -8822,14 +8822,14 @@
       "blurb": "US elections and campaigns.",
       "kind": "local",
       "facet": "local",
-      "count": 2554,
-      "hours": 241.76,
+      "count": 2555,
+      "hours": 241.82,
       "byYear": {
         "2019": 34,
         "2020": 101,
         "2021": 76,
         "2022": 116,
-        "2023": 264,
+        "2023": 265,
         "2024": 589,
         "2025": 813,
         "2026": 561
@@ -8837,7 +8837,7 @@
       "evidence": {
         "title": 573,
         "notes": 428,
-        "transcript": 1553
+        "transcript": 1554
       },
       "samples": [
         {
@@ -8896,14 +8896,14 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2970,
-      "hours": 236.65,
+      "count": 2972,
+      "hours": 236.71,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 503,
+        "2023": 505,
         "2024": 522,
         "2025": 657,
         "2026": 579
@@ -8911,7 +8911,7 @@
       "evidence": {
         "title": 444,
         "notes": 1187,
-        "transcript": 1339
+        "transcript": 1341
       },
       "samples": [
         {
@@ -9044,14 +9044,14 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2647,
-      "hours": 196.03,
+      "count": 2657,
+      "hours": 196.29,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 416,
+        "2023": 426,
         "2024": 527,
         "2025": 663,
         "2026": 647
@@ -9059,7 +9059,7 @@
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2081
+        "transcript": 2091
       },
       "samples": [
         {
@@ -9340,22 +9340,22 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1502,
-      "hours": 119.95,
+      "count": 1511,
+      "hours": 120.42,
       "byYear": {
         "2019": 13,
         "2020": 8,
         "2021": 20,
         "2022": 62,
-        "2023": 229,
+        "2023": 238,
         "2024": 306,
         "2025": 420,
         "2026": 444
       },
       "evidence": {
-        "title": 84,
+        "title": 83,
         "notes": 103,
-        "transcript": 1315
+        "transcript": 1325
       },
       "samples": [
         {
@@ -9414,14 +9414,14 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1267,
-      "hours": 110.44,
+      "count": 1269,
+      "hours": 110.52,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 206,
+        "2023": 208,
         "2024": 190,
         "2025": 233,
         "2026": 263
@@ -9429,7 +9429,7 @@
       "evidence": {
         "title": 168,
         "notes": 550,
-        "transcript": 549
+        "transcript": 551
       },
       "samples": [
         {
@@ -9557,80 +9557,6 @@
       ]
     },
     {
-      "id": "israel-gaza-war",
-      "name": "Israel–Gaza war",
-      "blurb": "Israel–Gaza war coverage.",
-      "kind": "story",
-      "facet": "story",
-      "count": 865,
-      "hours": 105.22,
-      "byYear": {
-        "2019": 16,
-        "2020": 13,
-        "2021": 18,
-        "2022": 10,
-        "2023": 210,
-        "2024": 262,
-        "2025": 238,
-        "2026": 98
-      },
-      "evidence": {
-        "title": 226,
-        "notes": 204,
-        "transcript": 435
-      },
-      "samples": [
-        {
-          "i": 62,
-          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 83,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 85,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 122,
-          "e": "Could the Flydubai attack keep Netanyahu in power?",
-          "p": "7am",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 127,
-          "e": "'Frozen on October 7': Why Israel hasn't moved on",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 194,
-          "e": "What did Netanyahu know before October 7?",
-          "p": "ABC News Daily",
-          "d": "2026-10-01"
-        },
-        {
-          "i": 244,
-          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
-          "p": "Up First from NPR",
-          "d": "2026-09-27"
-        },
-        {
-          "i": 371,
-          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-09-14"
-        }
-      ]
-    },
-    {
       "id": "education",
       "name": "Education",
       "blurb": "Schools and universities.",
@@ -9701,6 +9627,80 @@
           "e": "I was a teenage boy online. It took 13 minutes for the manosphere to come",
           "p": "The Morning Edition",
           "d": "2026-10-05"
+        }
+      ]
+    },
+    {
+      "id": "israel-gaza-war",
+      "name": "Israel–Gaza war",
+      "blurb": "Israel–Gaza war coverage.",
+      "kind": "story",
+      "facet": "story",
+      "count": 865,
+      "hours": 105.12,
+      "byYear": {
+        "2019": 16,
+        "2020": 13,
+        "2021": 18,
+        "2022": 10,
+        "2023": 210,
+        "2024": 262,
+        "2025": 238,
+        "2026": 98
+      },
+      "evidence": {
+        "title": 222,
+        "notes": 204,
+        "transcript": 439
+      },
+      "samples": [
+        {
+          "i": 62,
+          "e": "Jordan fears Israel more than Iran. Is the Middle East's buffer state about to crack?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 83,
+          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 85,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 122,
+          "e": "Could the Flydubai attack keep Netanyahu in power?",
+          "p": "7am",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 127,
+          "e": "'Frozen on October 7': Why Israel hasn't moved on",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 194,
+          "e": "What did Netanyahu know before October 7?",
+          "p": "ABC News Daily",
+          "d": "2026-10-01"
+        },
+        {
+          "i": 244,
+          "e": "Trump-Xi Summit, White House Media Ban Update, Netanyahu's UN Speech",
+          "p": "Up First from NPR",
+          "d": "2026-09-27"
+        },
+        {
+          "i": 371,
+          "e": "Britain accuses Israel of ethnic cleansing in the West Bank",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-09-14"
         }
       ]
     },
@@ -10154,14 +10154,14 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 980,
-      "hours": 68.22,
+      "count": 982,
+      "hours": 68.26,
       "byYear": {
         "2019": 1,
         "2020": 10,
         "2021": 7,
         "2022": 33,
-        "2023": 166,
+        "2023": 168,
         "2024": 240,
         "2025": 275,
         "2026": 248
@@ -10169,7 +10169,7 @@
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 809
+        "transcript": 811
       },
       "samples": [
         {
@@ -10229,7 +10229,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 454,
-      "hours": 63.32,
+      "hours": 63.31,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10241,9 +10241,9 @@
         "2026": 196
       },
       "evidence": {
-        "title": 38,
+        "title": 37,
         "notes": 139,
-        "transcript": 277
+        "transcript": 278
       },
       "samples": [
         {
@@ -10302,13 +10302,13 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 825,
-      "hours": 62.32,
+      "count": 827,
+      "hours": 62.35,
       "byYear": {
         "2020": 42,
         "2021": 36,
         "2022": 33,
-        "2023": 153,
+        "2023": 155,
         "2024": 165,
         "2025": 248,
         "2026": 148
@@ -10316,7 +10316,7 @@
       "evidence": {
         "title": 6,
         "notes": 155,
-        "transcript": 664
+        "transcript": 666
       },
       "samples": [
         {
@@ -10376,7 +10376,7 @@
       "kind": "local",
       "facet": "local",
       "count": 692,
-      "hours": 59.91,
+      "hours": 59.83,
       "byYear": {
         "2019": 26,
         "2020": 17,
@@ -10388,9 +10388,9 @@
         "2026": 130
       },
       "evidence": {
-        "title": 87,
+        "title": 85,
         "notes": 33,
-        "transcript": 572
+        "transcript": 574
       },
       "samples": [
         {
@@ -10523,14 +10523,14 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 767,
-      "hours": 57.51,
+      "count": 769,
+      "hours": 57.65,
       "byYear": {
         "2019": 5,
         "2020": 12,
         "2021": 11,
         "2022": 36,
-        "2023": 101,
+        "2023": 103,
         "2024": 135,
         "2025": 280,
         "2026": 187
@@ -10538,7 +10538,7 @@
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 630
+        "transcript": 632
       },
       "samples": [
         {
@@ -10671,14 +10671,14 @@
       "blurb": "US media and platform politics.",
       "kind": "local",
       "facet": "local",
-      "count": 663,
-      "hours": 56.18,
+      "count": 665,
+      "hours": 56.25,
       "byYear": {
         "2019": 2,
         "2020": 9,
         "2021": 20,
         "2022": 35,
-        "2023": 94,
+        "2023": 96,
         "2024": 134,
         "2025": 208,
         "2026": 161
@@ -10686,7 +10686,7 @@
       "evidence": {
         "title": 25,
         "notes": 80,
-        "transcript": 558
+        "transcript": 560
       },
       "samples": [
         {
@@ -10820,7 +10820,7 @@
       "kind": "local",
       "facet": "local",
       "count": 381,
-      "hours": 47.88,
+      "hours": 47.83,
       "byYear": {
         "2019": 38,
         "2020": 14,
@@ -10832,9 +10832,9 @@
         "2026": 98
       },
       "evidence": {
-        "title": 132,
+        "title": 131,
         "notes": 158,
-        "transcript": 91
+        "transcript": 92
       },
       "samples": [
         {
@@ -11113,22 +11113,22 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 401,
-      "hours": 44.46,
+      "count": 402,
+      "hours": 44.45,
       "byYear": {
         "2019": 4,
         "2020": 36,
         "2021": 19,
         "2022": 59,
-        "2023": 84,
+        "2023": 85,
         "2024": 104,
         "2025": 50,
         "2026": 45
       },
       "evidence": {
-        "title": 56,
+        "title": 55,
         "notes": 140,
-        "transcript": 205
+        "transcript": 207
       },
       "samples": [
         {
@@ -11188,7 +11188,7 @@
       "kind": "story",
       "facet": "story",
       "count": 352,
-      "hours": 44.05,
+      "hours": 43.86,
       "byYear": {
         "2019": 10,
         "2021": 2,
@@ -11199,9 +11199,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 98,
+        "title": 94,
         "notes": 85,
-        "transcript": 169
+        "transcript": 173
       },
       "samples": [
         {
@@ -11260,22 +11260,22 @@
       "blurb": "US House, Senate, and Capitol Hill.",
       "kind": "local",
       "facet": "local",
-      "count": 556,
-      "hours": 43.52,
+      "count": 558,
+      "hours": 43.59,
       "byYear": {
         "2019": 2,
         "2020": 5,
         "2021": 18,
         "2022": 30,
-        "2023": 87,
+        "2023": 89,
         "2024": 109,
         "2025": 159,
         "2026": 146
       },
       "evidence": {
-        "title": 37,
+        "title": 36,
         "notes": 22,
-        "transcript": 497
+        "transcript": 500
       },
       "samples": [
         {
@@ -11483,7 +11483,7 @@
       "kind": "story",
       "facet": "story",
       "count": 288,
-      "hours": 40.29,
+      "hours": 40.32,
       "byYear": {
         "2019": 11,
         "2020": 10,
@@ -11495,9 +11495,9 @@
         "2026": 37
       },
       "evidence": {
-        "title": 46,
+        "title": 45,
         "notes": 140,
-        "transcript": 102
+        "transcript": 103
       },
       "samples": [
         {
@@ -11852,14 +11852,14 @@
       "blurb": "US immigration and ICE.",
       "kind": "local",
       "facet": "local",
-      "count": 397,
-      "hours": 30.73,
+      "count": 399,
+      "hours": 30.83,
       "byYear": {
         "2019": 2,
         "2020": 2,
         "2021": 5,
         "2022": 7,
-        "2023": 47,
+        "2023": 49,
         "2024": 97,
         "2025": 142,
         "2026": 95
@@ -11867,7 +11867,7 @@
       "evidence": {
         "title": 13,
         "notes": 23,
-        "transcript": 361
+        "transcript": 363
       },
       "samples": [
         {
@@ -11926,14 +11926,14 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 476,
-      "hours": 28.7,
+      "count": 477,
+      "hours": 28.71,
       "byYear": {
         "2019": 1,
         "2020": 49,
         "2021": 34,
         "2022": 24,
-        "2023": 53,
+        "2023": 54,
         "2024": 85,
         "2025": 125,
         "2026": 105
@@ -11941,7 +11941,7 @@
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 310
+        "transcript": 311
       },
       "samples": [
         {
@@ -12000,12 +12000,12 @@
       "blurb": "US crime and policing.",
       "kind": "local",
       "facet": "local",
-      "count": 349,
-      "hours": 27.99,
+      "count": 351,
+      "hours": 28.07,
       "byYear": {
         "2021": 1,
         "2022": 9,
-        "2023": 80,
+        "2023": 82,
         "2024": 95,
         "2025": 101,
         "2026": 63
@@ -12013,7 +12013,7 @@
       "evidence": {
         "title": 0,
         "notes": 5,
-        "transcript": 344
+        "transcript": 346
       },
       "samples": [
         {
@@ -12072,13 +12072,13 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 629,
-      "hours": 27.21,
+      "count": 631,
+      "hours": 27.25,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
-        "2023": 81,
+        "2023": 83,
         "2024": 153,
         "2025": 191,
         "2026": 184
@@ -12086,7 +12086,7 @@
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 575
+        "transcript": 577
       },
       "samples": [
         {
@@ -12146,7 +12146,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 27.06,
+      "hours": 26.98,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -12157,9 +12157,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 62,
+        "title": 61,
         "notes": 51,
-        "transcript": 246
+        "transcript": 247
       },
       "samples": [
         {
@@ -12291,14 +12291,14 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 308,
-      "hours": 25.84,
+      "count": 309,
+      "hours": 25.86,
       "byYear": {
         "2019": 1,
         "2020": 21,
         "2021": 26,
         "2022": 26,
-        "2023": 49,
+        "2023": 50,
         "2024": 53,
         "2025": 91,
         "2026": 41
@@ -12306,7 +12306,7 @@
       "evidence": {
         "title": 61,
         "notes": 13,
-        "transcript": 234
+        "transcript": 235
       },
       "samples": [
         {
@@ -12808,14 +12808,14 @@
       "blurb": "US climate and energy policy.",
       "kind": "local",
       "facet": "local",
-      "count": 287,
-      "hours": 21.05,
+      "count": 289,
+      "hours": 21.14,
       "byYear": {
         "2019": 1,
         "2020": 5,
         "2021": 13,
         "2022": 19,
-        "2023": 41,
+        "2023": 43,
         "2024": 41,
         "2025": 48,
         "2026": 119
@@ -12823,7 +12823,7 @@
       "evidence": {
         "title": 25,
         "notes": 38,
-        "transcript": 224
+        "transcript": 226
       },
       "samples": [
         {
@@ -13324,12 +13324,12 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 149,
-      "hours": 15.37,
+      "count": 150,
+      "hours": 15.39,
       "byYear": {
         "2021": 4,
         "2022": 10,
-        "2023": 21,
+        "2023": 22,
         "2024": 29,
         "2025": 36,
         "2026": 49
@@ -13337,7 +13337,7 @@
       "evidence": {
         "title": 2,
         "notes": 32,
-        "transcript": 115
+        "transcript": 116
       },
       "samples": [
         {
@@ -13470,13 +13470,13 @@
       "blurb": "Religion and belief.",
       "kind": "domain",
       "facet": "domain",
-      "count": 177,
-      "hours": 14.56,
+      "count": 178,
+      "hours": 14.57,
       "byYear": {
         "2020": 3,
         "2021": 5,
         "2022": 8,
-        "2023": 27,
+        "2023": 28,
         "2024": 39,
         "2025": 57,
         "2026": 38
@@ -13484,7 +13484,7 @@
       "evidence": {
         "title": 0,
         "notes": 21,
-        "transcript": 156
+        "transcript": 157
       },
       "samples": [
         {
@@ -14205,13 +14205,13 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 223,
-      "hours": 9.69,
+      "count": 224,
+      "hours": 9.71,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
-        "2023": 49,
+        "2023": 50,
         "2024": 60,
         "2025": 44,
         "2026": 47
@@ -14219,7 +14219,7 @@
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 209
+        "transcript": 210
       },
       "samples": [
         {
