@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "stt": 1977,
-      "title": 9800,
+      "stt": 1982,
+      "title": 9795,
       "show-notes": 6493,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5758,
+    "episodesWithTranscriptEvidence": 5763,
     "episodesWithNotesEvidence": 6493,
-    "episodesWithTitleOnlyEvidence": 9800,
+    "episodesWithTitleOnlyEvidence": 9795,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.85,
+      "hours": 1054.79,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2805,
+        "title": 2803,
         "notes": 446,
-        "transcript": 2887
+        "transcript": 2889
       },
       "samples": [
         {
@@ -253,7 +253,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 752.42,
+      "hours": 752.01,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -265,9 +265,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1741,
+        "title": 1736,
         "notes": 1068,
-        "transcript": 2847
+        "transcript": 2852
       },
       "samples": [
         {
@@ -403,7 +403,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 354.42,
+      "hours": 353.9,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -415,9 +415,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 738,
+        "title": 733,
         "notes": 769,
-        "transcript": 954
+        "transcript": 959
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 242.04,
+      "hours": 241.95,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -490,9 +490,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 552,
+        "title": 550,
         "notes": 426,
-        "transcript": 1592
+        "transcript": 1594
       },
       "samples": [
         {
@@ -552,8 +552,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3050,
-      "hours": 239.78,
+      "count": 3054,
+      "hours": 239.93,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -561,13 +561,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 667,
-        "2026": 637
+        "2025": 669,
+        "2026": 639
       },
       "evidence": {
         "title": 438,
         "notes": 1187,
-        "transcript": 1425
+        "transcript": 1429
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2736,
-      "hours": 198.59,
+      "count": 2738,
+      "hours": 198.63,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -711,13 +711,13 @@
         "2022": 211,
         "2023": 459,
         "2024": 532,
-        "2025": 670,
-        "2026": 681
+        "2025": 671,
+        "2026": 682
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2170
+        "transcript": 2172
       },
       "samples": [
         {
@@ -852,8 +852,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1503,
-      "hours": 151.81,
+      "count": 1505,
+      "hours": 151.95,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -862,12 +862,12 @@
         "2023": 261,
         "2024": 333,
         "2025": 308,
-        "2026": 270
+        "2026": 272
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 746
+        "transcript": 748
       },
       "samples": [
         {
@@ -927,8 +927,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1552,
-      "hours": 122.4,
+      "count": 1553,
+      "hours": 122.43,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -936,13 +936,13 @@
         "2022": 62,
         "2023": 267,
         "2024": 310,
-        "2025": 423,
+        "2025": 424,
         "2026": 449
       },
       "evidence": {
         "title": 78,
         "notes": 103,
-        "transcript": 1371
+        "transcript": 1372
       },
       "samples": [
         {
@@ -1002,8 +1002,8 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1324,
-      "hours": 121.73,
+      "count": 1325,
+      "hours": 121.74,
       "byYear": {
         "2019": 1,
         "2020": 420,
@@ -1012,12 +1012,12 @@
         "2023": 106,
         "2024": 56,
         "2025": 81,
-        "2026": 41
+        "2026": 42
       },
       "evidence": {
         "title": 433,
         "notes": 677,
-        "transcript": 214
+        "transcript": 215
       },
       "samples": [
         {
@@ -1077,8 +1077,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1272,
-      "hours": 111.12,
+      "count": 1275,
+      "hours": 111.15,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1086,13 +1086,13 @@
         "2022": 82,
         "2023": 178,
         "2024": 191,
-        "2025": 407,
-        "2026": 352
+        "2025": 409,
+        "2026": 353
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1060
+        "transcript": 1063
       },
       "samples": [
         {
@@ -1377,8 +1377,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1147,
-      "hours": 95.32,
+      "count": 1149,
+      "hours": 95.47,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -1386,13 +1386,13 @@
         "2022": 89,
         "2023": 177,
         "2024": 186,
-        "2025": 268,
-        "2026": 323
+        "2025": 269,
+        "2026": 324
       },
       "evidence": {
         "title": 79,
         "notes": 300,
-        "transcript": 768
+        "transcript": 770
       },
       "samples": [
         {
@@ -1752,8 +1752,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 938,
-      "hours": 76.98,
+      "count": 942,
+      "hours": 77.31,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -1761,13 +1761,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 200,
-        "2026": 285
+        "2025": 202,
+        "2026": 287
       },
       "evidence": {
         "title": 107,
         "notes": 194,
-        "transcript": 637
+        "transcript": 641
       },
       "samples": [
         {
@@ -1897,87 +1897,13 @@
       "children": []
     },
     {
-      "id": "health-medicine",
-      "name": "Health & medicine",
-      "blurb": "Health and medicine.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 854,
-      "hours": 63.54,
-      "byYear": {
-        "2020": 42,
-        "2021": 36,
-        "2022": 33,
-        "2023": 166,
-        "2024": 172,
-        "2025": 252,
-        "2026": 153
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 155,
-        "transcript": 693
-      },
-      "samples": [
-        {
-          "i": 7,
-          "e": "How do we change the political tone?",
-          "p": "Politics Now",
-          "d": "2026-10-21"
-        },
-        {
-          "i": 56,
-          "e": "The Republican Strategy to Salvage the Midterms",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 69,
-          "e": "Hasan Piker on his rise as a voice of the 'insurgent left' | NPR's Newsmakers",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 87,
-          "e": "The One Nation vote: a map of government neglect",
-          "p": "Democracy Sausage with Mark Kenny",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 99,
-          "e": "Australia is incubating a dementia time bomb",
-          "p": "The Morning Edition",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 111,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 130,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 237,
-          "e": "The Medicare hack and the rise of rogue AI agents",
-          "p": "7am",
-          "d": "2026-09-29"
-        }
-      ],
-      "children": []
-    },
-    {
       "id": "ai-technology",
       "name": "Artificial intelligence",
       "blurb": "AI, LLMs, and machine learning.",
       "kind": "domain",
       "facet": "domain",
-      "count": 467,
-      "hours": 63.49,
+      "count": 468,
+      "hours": 63.55,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1986,12 +1912,12 @@
         "2023": 59,
         "2024": 54,
         "2025": 125,
-        "2026": 207
+        "2026": 208
       },
       "evidence": {
         "title": 35,
         "notes": 139,
-        "transcript": 293
+        "transcript": 294
       },
       "samples": [
         {
@@ -2041,6 +1967,80 @@
           "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
           "p": "The Daily",
           "d": "2026-10-12"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "health-medicine",
+      "name": "Health & medicine",
+      "blurb": "Health and medicine.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 855,
+      "hours": 63.49,
+      "byYear": {
+        "2020": 42,
+        "2021": 36,
+        "2022": 33,
+        "2023": 166,
+        "2024": 172,
+        "2025": 252,
+        "2026": 154
+      },
+      "evidence": {
+        "title": 5,
+        "notes": 155,
+        "transcript": 695
+      },
+      "samples": [
+        {
+          "i": 7,
+          "e": "How do we change the political tone?",
+          "p": "Politics Now",
+          "d": "2026-10-21"
+        },
+        {
+          "i": 56,
+          "e": "The Republican Strategy to Salvage the Midterms",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 69,
+          "e": "Hasan Piker on his rise as a voice of the 'insurgent left' | NPR's Newsmakers",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 87,
+          "e": "The One Nation vote: a map of government neglect",
+          "p": "Democracy Sausage with Mark Kenny",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 99,
+          "e": "Australia is incubating a dementia time bomb",
+          "p": "The Morning Edition",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 111,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 130,
+          "e": "A Failed Execution and the Future of the Death Penalty",
+          "p": "The Daily",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 237,
+          "e": "The Medicare hack and the rise of rogue AI agents",
+          "p": "7am",
+          "d": "2026-09-29"
         }
       ],
       "children": []
@@ -2201,8 +2201,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 787,
-      "hours": 58.73,
+      "count": 789,
+      "hours": 58.8,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -2210,13 +2210,13 @@
         "2022": 36,
         "2023": 111,
         "2024": 137,
-        "2025": 285,
+        "2025": 287,
         "2026": 190
       },
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 650
+        "transcript": 652
       },
       "samples": [
         {
@@ -3771,8 +3771,8 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 654,
-      "hours": 27.85,
+      "count": 655,
+      "hours": 27.86,
       "byYear": {
         "2020": 2,
         "2021": 6,
@@ -3780,12 +3780,12 @@
         "2023": 90,
         "2024": 154,
         "2025": 192,
-        "2026": 198
+        "2026": 199
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 600
+        "transcript": 601
       },
       "samples": [
         {
@@ -4592,8 +4592,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 256,
-      "hours": 19.79,
+      "count": 257,
+      "hours": 19.87,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -4602,12 +4602,12 @@
         "2023": 33,
         "2024": 72,
         "2025": 38,
-        "2026": 83
+        "2026": 84
       },
       "evidence": {
         "title": 20,
         "notes": 46,
-        "transcript": 190
+        "transcript": 191
       },
       "samples": [
         {
@@ -7408,20 +7408,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 127,
+      "count": 128,
       "hours": 3.78,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 6,
         "2024": 8,
-        "2025": 90,
+        "2025": 91,
         "2026": 20
       },
       "evidence": {
         "title": 0,
         "notes": 20,
-        "transcript": 107
+        "transcript": 108
       },
       "samples": [
         {
@@ -8379,7 +8379,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.85,
+      "hours": 1054.79,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8391,9 +8391,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2805,
+        "title": 2803,
         "notes": 446,
-        "transcript": 2887
+        "transcript": 2889
       },
       "samples": [
         {
@@ -8601,7 +8601,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 752.42,
+      "hours": 752.01,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8613,9 +8613,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1741,
+        "title": 1736,
         "notes": 1068,
-        "transcript": 2847
+        "transcript": 2852
       },
       "samples": [
         {
@@ -8749,7 +8749,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 354.42,
+      "hours": 353.9,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8761,9 +8761,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 738,
+        "title": 733,
         "notes": 769,
-        "transcript": 954
+        "transcript": 959
       },
       "samples": [
         {
@@ -8823,7 +8823,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 242.04,
+      "hours": 241.95,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8835,9 +8835,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 552,
+        "title": 550,
         "notes": 426,
-        "transcript": 1592
+        "transcript": 1594
       },
       "samples": [
         {
@@ -8896,8 +8896,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3050,
-      "hours": 239.78,
+      "count": 3054,
+      "hours": 239.93,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8905,13 +8905,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 667,
-        "2026": 637
+        "2025": 669,
+        "2026": 639
       },
       "evidence": {
         "title": 438,
         "notes": 1187,
-        "transcript": 1425
+        "transcript": 1429
       },
       "samples": [
         {
@@ -9044,8 +9044,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2736,
-      "hours": 198.59,
+      "count": 2738,
+      "hours": 198.63,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9053,13 +9053,13 @@
         "2022": 211,
         "2023": 459,
         "2024": 532,
-        "2025": 670,
-        "2026": 681
+        "2025": 671,
+        "2026": 682
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2170
+        "transcript": 2172
       },
       "samples": [
         {
@@ -9192,8 +9192,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1503,
-      "hours": 151.81,
+      "count": 1505,
+      "hours": 151.95,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9202,12 +9202,12 @@
         "2023": 261,
         "2024": 333,
         "2025": 308,
-        "2026": 270
+        "2026": 272
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 746
+        "transcript": 748
       },
       "samples": [
         {
@@ -9266,8 +9266,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1552,
-      "hours": 122.4,
+      "count": 1553,
+      "hours": 122.43,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -9275,13 +9275,13 @@
         "2022": 62,
         "2023": 267,
         "2024": 310,
-        "2025": 423,
+        "2025": 424,
         "2026": 449
       },
       "evidence": {
         "title": 78,
         "notes": 103,
-        "transcript": 1371
+        "transcript": 1372
       },
       "samples": [
         {
@@ -9340,8 +9340,8 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1324,
-      "hours": 121.73,
+      "count": 1325,
+      "hours": 121.74,
       "byYear": {
         "2019": 1,
         "2020": 420,
@@ -9350,12 +9350,12 @@
         "2023": 106,
         "2024": 56,
         "2025": 81,
-        "2026": 41
+        "2026": 42
       },
       "evidence": {
         "title": 433,
         "notes": 677,
-        "transcript": 214
+        "transcript": 215
       },
       "samples": [
         {
@@ -9414,8 +9414,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1272,
-      "hours": 111.12,
+      "count": 1275,
+      "hours": 111.15,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9423,13 +9423,13 @@
         "2022": 82,
         "2023": 178,
         "2024": 191,
-        "2025": 407,
-        "2026": 352
+        "2025": 409,
+        "2026": 353
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1060
+        "transcript": 1063
       },
       "samples": [
         {
@@ -9710,8 +9710,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1147,
-      "hours": 95.32,
+      "count": 1149,
+      "hours": 95.47,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -9719,13 +9719,13 @@
         "2022": 89,
         "2023": 177,
         "2024": 186,
-        "2025": 268,
-        "2026": 323
+        "2025": 269,
+        "2026": 324
       },
       "evidence": {
         "title": 79,
         "notes": 300,
-        "transcript": 768
+        "transcript": 770
       },
       "samples": [
         {
@@ -10080,8 +10080,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 938,
-      "hours": 76.98,
+      "count": 942,
+      "hours": 77.31,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -10089,13 +10089,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 200,
-        "2026": 285
+        "2025": 202,
+        "2026": 287
       },
       "evidence": {
         "title": 107,
         "notes": 194,
-        "transcript": 637
+        "transcript": 641
       },
       "samples": [
         {
@@ -10223,86 +10223,13 @@
       ]
     },
     {
-      "id": "health-medicine",
-      "name": "Health & medicine",
-      "blurb": "Health and medicine.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 854,
-      "hours": 63.54,
-      "byYear": {
-        "2020": 42,
-        "2021": 36,
-        "2022": 33,
-        "2023": 166,
-        "2024": 172,
-        "2025": 252,
-        "2026": 153
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 155,
-        "transcript": 693
-      },
-      "samples": [
-        {
-          "i": 7,
-          "e": "How do we change the political tone?",
-          "p": "Politics Now",
-          "d": "2026-10-21"
-        },
-        {
-          "i": 56,
-          "e": "The Republican Strategy to Salvage the Midterms",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 69,
-          "e": "Hasan Piker on his rise as a voice of the 'insurgent left' | NPR's Newsmakers",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 87,
-          "e": "The One Nation vote: a map of government neglect",
-          "p": "Democracy Sausage with Mark Kenny",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 99,
-          "e": "Australia is incubating a dementia time bomb",
-          "p": "The Morning Edition",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 111,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 130,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
-        },
-        {
-          "i": 237,
-          "e": "The Medicare hack and the rise of rogue AI agents",
-          "p": "7am",
-          "d": "2026-09-29"
-        }
-      ]
-    },
-    {
       "id": "ai-technology",
       "name": "Artificial intelligence",
       "blurb": "AI, LLMs, and machine learning.",
       "kind": "domain",
       "facet": "domain",
-      "count": 467,
-      "hours": 63.49,
+      "count": 468,
+      "hours": 63.55,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10311,12 +10238,12 @@
         "2023": 59,
         "2024": 54,
         "2025": 125,
-        "2026": 207
+        "2026": 208
       },
       "evidence": {
         "title": 35,
         "notes": 139,
-        "transcript": 293
+        "transcript": 294
       },
       "samples": [
         {
@@ -10366,6 +10293,79 @@
           "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
           "p": "The Daily",
           "d": "2026-10-12"
+        }
+      ]
+    },
+    {
+      "id": "health-medicine",
+      "name": "Health & medicine",
+      "blurb": "Health and medicine.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 855,
+      "hours": 63.49,
+      "byYear": {
+        "2020": 42,
+        "2021": 36,
+        "2022": 33,
+        "2023": 166,
+        "2024": 172,
+        "2025": 252,
+        "2026": 154
+      },
+      "evidence": {
+        "title": 5,
+        "notes": 155,
+        "transcript": 695
+      },
+      "samples": [
+        {
+          "i": 7,
+          "e": "How do we change the political tone?",
+          "p": "Politics Now",
+          "d": "2026-10-21"
+        },
+        {
+          "i": 56,
+          "e": "The Republican Strategy to Salvage the Midterms",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 69,
+          "e": "Hasan Piker on his rise as a voice of the 'insurgent left' | NPR's Newsmakers",
+          "p": "Up First from NPR",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 87,
+          "e": "The One Nation vote: a map of government neglect",
+          "p": "Democracy Sausage with Mark Kenny",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 99,
+          "e": "Australia is incubating a dementia time bomb",
+          "p": "The Morning Edition",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 111,
+          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
+          "p": "Xadrez Verbal",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 130,
+          "e": "A Failed Execution and the Future of the Death Penalty",
+          "p": "The Daily",
+          "d": "2026-10-08"
+        },
+        {
+          "i": 237,
+          "e": "The Medicare hack and the rise of rogue AI agents",
+          "p": "7am",
+          "d": "2026-09-29"
         }
       ]
     },
@@ -10523,8 +10523,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 787,
-      "hours": 58.73,
+      "count": 789,
+      "hours": 58.8,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -10532,13 +10532,13 @@
         "2022": 36,
         "2023": 111,
         "2024": 137,
-        "2025": 285,
+        "2025": 287,
         "2026": 190
       },
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 650
+        "transcript": 652
       },
       "samples": [
         {
@@ -12072,8 +12072,8 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 654,
-      "hours": 27.85,
+      "count": 655,
+      "hours": 27.86,
       "byYear": {
         "2020": 2,
         "2021": 6,
@@ -12081,12 +12081,12 @@
         "2023": 90,
         "2024": 154,
         "2025": 192,
-        "2026": 198
+        "2026": 199
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 600
+        "transcript": 601
       },
       "samples": [
         {
@@ -12882,8 +12882,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 256,
-      "hours": 19.79,
+      "count": 257,
+      "hours": 19.87,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -12892,12 +12892,12 @@
         "2023": 33,
         "2024": 72,
         "2025": 38,
-        "2026": 83
+        "2026": 84
       },
       "evidence": {
         "title": 20,
         "notes": 46,
-        "transcript": 190
+        "transcript": 191
       },
       "samples": [
         {
@@ -15660,20 +15660,20 @@
       "blurb": "Trade policy and tariffs.",
       "kind": "domain",
       "facet": "domain",
-      "count": 127,
+      "count": 128,
       "hours": 3.78,
       "byYear": {
         "2021": 2,
         "2022": 1,
         "2023": 6,
         "2024": 8,
-        "2025": 90,
+        "2025": 91,
         "2026": 20
       },
       "evidence": {
         "title": 0,
         "notes": 20,
-        "transcript": 107
+        "transcript": 108
       },
       "samples": [
         {
