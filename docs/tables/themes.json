@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "stt": 2071,
-      "title": 9706,
+      "stt": 2079,
+      "title": 9698,
       "show-notes": 6493,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5852,
+    "episodesWithTranscriptEvidence": 5860,
     "episodesWithNotesEvidence": 6493,
-    "episodesWithTitleOnlyEvidence": 9706,
+    "episodesWithTitleOnlyEvidence": 9698,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -102,7 +102,7 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4152,
+      "count": 4153,
       "hours": 980.57,
       "byYear": {
         "2019": 264,
@@ -111,13 +111,13 @@
         "2022": 487,
         "2023": 451,
         "2024": 590,
-        "2025": 829,
+        "2025": 830,
         "2026": 630
       },
       "evidence": {
         "title": 1092,
         "notes": 2586,
-        "transcript": 474
+        "transcript": 475
       },
       "samples": [
         {
@@ -253,7 +253,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 747.09,
+      "hours": 746.57,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -265,9 +265,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1647,
+        "title": 1639,
         "notes": 1068,
-        "transcript": 2941
+        "transcript": 2949
       },
       "samples": [
         {
@@ -403,7 +403,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 344.95,
+      "hours": 344.15,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -415,9 +415,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 644,
+        "title": 636,
         "notes": 769,
-        "transcript": 1048
+        "transcript": 1056
       },
       "samples": [
         {
@@ -552,8 +552,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3095,
-      "hours": 240.99,
+      "count": 3100,
+      "hours": 240.92,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -561,13 +561,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 684,
-        "2026": 665
+        "2025": 687,
+        "2026": 667
       },
       "evidence": {
-        "title": 435,
+        "title": 433,
         "notes": 1187,
-        "transcript": 1473
+        "transcript": 1480
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2764,
-      "hours": 199.18,
+      "count": 2765,
+      "hours": 199.19,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -712,12 +712,12 @@
         "2023": 459,
         "2024": 532,
         "2025": 686,
-        "2026": 693
+        "2026": 694
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2198
+        "transcript": 2199
       },
       "samples": [
         {
@@ -852,8 +852,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1537,
-      "hours": 154.61,
+      "count": 1543,
+      "hours": 155.15,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -861,13 +861,13 @@
         "2022": 99,
         "2023": 261,
         "2024": 333,
-        "2025": 320,
-        "2026": 292
+        "2025": 323,
+        "2026": 295
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 780
+        "transcript": 786
       },
       "samples": [
         {
@@ -1077,8 +1077,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1306,
-      "hours": 111.69,
+      "count": 1311,
+      "hours": 111.76,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1086,13 +1086,13 @@
         "2022": 82,
         "2023": 178,
         "2024": 191,
-        "2025": 423,
-        "2026": 370
+        "2025": 424,
+        "2026": 374
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1094
+        "transcript": 1099
       },
       "samples": [
         {
@@ -1152,8 +1152,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1301,
-      "hours": 111.06,
+      "count": 1303,
+      "hours": 111.08,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -1161,13 +1161,13 @@
         "2022": 154,
         "2023": 210,
         "2024": 190,
-        "2025": 245,
-        "2026": 281
+        "2025": 246,
+        "2026": 282
       },
       "evidence": {
         "title": 164,
         "notes": 550,
-        "transcript": 587
+        "transcript": 589
       },
       "samples": [
         {
@@ -1377,8 +1377,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1173,
-      "hours": 97.13,
+      "count": 1174,
+      "hours": 97.2,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -1387,12 +1387,12 @@
         "2023": 177,
         "2024": 186,
         "2025": 282,
-        "2026": 335
+        "2026": 336
       },
       "evidence": {
         "title": 76,
         "notes": 300,
-        "transcript": 797
+        "transcript": 798
       },
       "samples": [
         {
@@ -1527,8 +1527,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 836,
-      "hours": 92.11,
+      "count": 837,
+      "hours": 92.12,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -1537,12 +1537,12 @@
         "2023": 159,
         "2024": 184,
         "2025": 186,
-        "2026": 197
+        "2026": 198
       },
       "evidence": {
         "title": 4,
         "notes": 419,
-        "transcript": 413
+        "transcript": 414
       },
       "samples": [
         {
@@ -1602,8 +1602,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 983,
-      "hours": 80.74,
+      "count": 988,
+      "hours": 81.17,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -1611,13 +1611,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 217,
-        "2026": 313
+        "2025": 220,
+        "2026": 315
       },
       "evidence": {
-        "title": 104,
+        "title": 102,
         "notes": 194,
-        "transcript": 685
+        "transcript": 692
       },
       "samples": [
         {
@@ -1827,8 +1827,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1008,
-      "hours": 69.12,
+      "count": 1009,
+      "hours": 69.14,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -1837,12 +1837,12 @@
         "2023": 178,
         "2024": 241,
         "2025": 283,
-        "2026": 255
+        "2026": 256
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 837
+        "transcript": 838
       },
       "samples": [
         {
@@ -2799,8 +2799,8 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 406,
-      "hours": 44.55,
+      "count": 407,
+      "hours": 44.56,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -2809,12 +2809,12 @@
         "2023": 86,
         "2024": 106,
         "2025": 50,
-        "2026": 46
+        "2026": 47
       },
       "evidence": {
         "title": 51,
         "notes": 140,
-        "transcript": 215
+        "transcript": 216
       },
       "samples": [
         {
@@ -2864,6 +2864,81 @@
           "e": "Insegurança: quando a violência toma novas e velhas formas",
           "p": "Durma com essa",
           "d": "2026-09-11"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "au-climate",
+      "name": "Australian climate & energy",
+      "blurb": "Climate and energy policy in Australia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 515,
+      "hours": 44.03,
+      "byYear": {
+        "2019": 9,
+        "2020": 37,
+        "2021": 45,
+        "2022": 48,
+        "2023": 57,
+        "2024": 73,
+        "2025": 126,
+        "2026": 120
+      },
+      "evidence": {
+        "title": 60,
+        "notes": 139,
+        "transcript": 316
+      },
+      "samples": [
+        {
+          "i": 72,
+          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
+          "p": "The Morning Edition",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 80,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 116,
+          "e": "Why does Australia have a productivity problem?",
+          "p": "Australian Politics",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 149,
+          "e": "Labor doesn't want a fight on immigration",
+          "p": "Politics Now",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 170,
+          "e": "Undercover inside Cuba: The world’s longest-running blockade",
+          "p": "7am",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 176,
+          "e": "Is the 'sensible centre' dead?",
+          "p": "Politics Now",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 187,
+          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 197,
+          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
+          "p": "Australian Politics",
+          "d": "2026-10-02"
         }
       ],
       "children": []
@@ -2939,81 +3014,6 @@
           "e": "Will a midterm 'blue wave' sink Trump?",
           "p": "ABC News Daily",
           "d": "2026-10-05"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "au-climate",
-      "name": "Australian climate & energy",
-      "blurb": "Climate and energy policy in Australia.",
-      "kind": "local",
-      "facet": "local",
-      "count": 513,
-      "hours": 43.88,
-      "byYear": {
-        "2019": 9,
-        "2020": 37,
-        "2021": 45,
-        "2022": 48,
-        "2023": 57,
-        "2024": 73,
-        "2025": 125,
-        "2026": 119
-      },
-      "evidence": {
-        "title": 60,
-        "notes": 139,
-        "transcript": 314
-      },
-      "samples": [
-        {
-          "i": 72,
-          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
-          "p": "The Morning Edition",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 80,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 116,
-          "e": "Why does Australia have a productivity problem?",
-          "p": "Australian Politics",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 149,
-          "e": "Labor doesn't want a fight on immigration",
-          "p": "Politics Now",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 170,
-          "e": "Undercover inside Cuba: The world’s longest-running blockade",
-          "p": "7am",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 176,
-          "e": "Is the 'sensible centre' dead?",
-          "p": "Politics Now",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 187,
-          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 197,
-          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
-          "p": "Australian Politics",
-          "d": "2026-10-02"
         }
       ],
       "children": []
@@ -3623,8 +3623,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 512,
-      "hours": 29.36,
+      "count": 516,
+      "hours": 29.41,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -3632,13 +3632,13 @@
         "2022": 24,
         "2023": 59,
         "2024": 88,
-        "2025": 131,
-        "2026": 126
+        "2025": 134,
+        "2026": 127
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 346
+        "transcript": 350
       },
       "samples": [
         {
@@ -3846,7 +3846,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 26.9,
+      "hours": 26.8,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3857,9 +3857,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 59,
+        "title": 58,
         "notes": 51,
-        "transcript": 249
+        "transcript": 250
       },
       "samples": [
         {
@@ -4817,21 +4817,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 366,
-      "hours": 16.78,
+      "count": 368,
+      "hours": 16.87,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 6,
         "2023": 67,
         "2024": 68,
-        "2025": 106,
-        "2026": 116
+        "2025": 107,
+        "2026": 117
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 335
+        "transcript": 337
       },
       "samples": [
         {
@@ -6230,7 +6230,7 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 256,
+      "count": 257,
       "hours": 7.93,
       "byYear": {
         "2020": 2,
@@ -6238,13 +6238,13 @@
         "2022": 13,
         "2023": 66,
         "2024": 60,
-        "2025": 47,
+        "2025": 48,
         "2026": 62
       },
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 173
+        "transcript": 174
       },
       "samples": [
         {
@@ -8452,7 +8452,7 @@
       "blurb": "Diplomacy and foreign policy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 4152,
+      "count": 4153,
       "hours": 980.57,
       "byYear": {
         "2019": 264,
@@ -8461,13 +8461,13 @@
         "2022": 487,
         "2023": 451,
         "2024": 590,
-        "2025": 829,
+        "2025": 830,
         "2026": 630
       },
       "evidence": {
         "title": 1092,
         "notes": 2586,
-        "transcript": 474
+        "transcript": 475
       },
       "samples": [
         {
@@ -8601,7 +8601,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 747.09,
+      "hours": 746.57,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8613,9 +8613,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1647,
+        "title": 1639,
         "notes": 1068,
-        "transcript": 2941
+        "transcript": 2949
       },
       "samples": [
         {
@@ -8749,7 +8749,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 344.95,
+      "hours": 344.15,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8761,9 +8761,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 644,
+        "title": 636,
         "notes": 769,
-        "transcript": 1048
+        "transcript": 1056
       },
       "samples": [
         {
@@ -8896,8 +8896,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3095,
-      "hours": 240.99,
+      "count": 3100,
+      "hours": 240.92,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8905,13 +8905,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 684,
-        "2026": 665
+        "2025": 687,
+        "2026": 667
       },
       "evidence": {
-        "title": 435,
+        "title": 433,
         "notes": 1187,
-        "transcript": 1473
+        "transcript": 1480
       },
       "samples": [
         {
@@ -9044,8 +9044,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2764,
-      "hours": 199.18,
+      "count": 2765,
+      "hours": 199.19,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9054,12 +9054,12 @@
         "2023": 459,
         "2024": 532,
         "2025": 686,
-        "2026": 693
+        "2026": 694
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2198
+        "transcript": 2199
       },
       "samples": [
         {
@@ -9192,8 +9192,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1537,
-      "hours": 154.61,
+      "count": 1543,
+      "hours": 155.15,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9201,13 +9201,13 @@
         "2022": 99,
         "2023": 261,
         "2024": 333,
-        "2025": 320,
-        "2026": 292
+        "2025": 323,
+        "2026": 295
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 780
+        "transcript": 786
       },
       "samples": [
         {
@@ -9414,8 +9414,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1306,
-      "hours": 111.69,
+      "count": 1311,
+      "hours": 111.76,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9423,13 +9423,13 @@
         "2022": 82,
         "2023": 178,
         "2024": 191,
-        "2025": 423,
-        "2026": 370
+        "2025": 424,
+        "2026": 374
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1094
+        "transcript": 1099
       },
       "samples": [
         {
@@ -9488,8 +9488,8 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1301,
-      "hours": 111.06,
+      "count": 1303,
+      "hours": 111.08,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -9497,13 +9497,13 @@
         "2022": 154,
         "2023": 210,
         "2024": 190,
-        "2025": 245,
-        "2026": 281
+        "2025": 246,
+        "2026": 282
       },
       "evidence": {
         "title": 164,
         "notes": 550,
-        "transcript": 587
+        "transcript": 589
       },
       "samples": [
         {
@@ -9710,8 +9710,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1173,
-      "hours": 97.13,
+      "count": 1174,
+      "hours": 97.2,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -9720,12 +9720,12 @@
         "2023": 177,
         "2024": 186,
         "2025": 282,
-        "2026": 335
+        "2026": 336
       },
       "evidence": {
         "title": 76,
         "notes": 300,
-        "transcript": 797
+        "transcript": 798
       },
       "samples": [
         {
@@ -9858,8 +9858,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 836,
-      "hours": 92.11,
+      "count": 837,
+      "hours": 92.12,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -9868,12 +9868,12 @@
         "2023": 159,
         "2024": 184,
         "2025": 186,
-        "2026": 197
+        "2026": 198
       },
       "evidence": {
         "title": 4,
         "notes": 419,
-        "transcript": 413
+        "transcript": 414
       },
       "samples": [
         {
@@ -9932,8 +9932,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 983,
-      "hours": 80.74,
+      "count": 988,
+      "hours": 81.17,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -9941,13 +9941,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 217,
-        "2026": 313
+        "2025": 220,
+        "2026": 315
       },
       "evidence": {
-        "title": 104,
+        "title": 102,
         "notes": 194,
-        "transcript": 685
+        "transcript": 692
       },
       "samples": [
         {
@@ -10154,8 +10154,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1008,
-      "hours": 69.12,
+      "count": 1009,
+      "hours": 69.14,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -10164,12 +10164,12 @@
         "2023": 178,
         "2024": 241,
         "2025": 283,
-        "2026": 255
+        "2026": 256
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 837
+        "transcript": 838
       },
       "samples": [
         {
@@ -11113,8 +11113,8 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 406,
-      "hours": 44.55,
+      "count": 407,
+      "hours": 44.56,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -11123,12 +11123,12 @@
         "2023": 86,
         "2024": 106,
         "2025": 50,
-        "2026": 46
+        "2026": 47
       },
       "evidence": {
         "title": 51,
         "notes": 140,
-        "transcript": 215
+        "transcript": 216
       },
       "samples": [
         {
@@ -11178,6 +11178,80 @@
           "e": "Insegurança: quando a violência toma novas e velhas formas",
           "p": "Durma com essa",
           "d": "2026-09-11"
+        }
+      ]
+    },
+    {
+      "id": "au-climate",
+      "name": "Australian climate & energy",
+      "blurb": "Climate and energy policy in Australia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 515,
+      "hours": 44.03,
+      "byYear": {
+        "2019": 9,
+        "2020": 37,
+        "2021": 45,
+        "2022": 48,
+        "2023": 57,
+        "2024": 73,
+        "2025": 126,
+        "2026": 120
+      },
+      "evidence": {
+        "title": 60,
+        "notes": 139,
+        "transcript": 316
+      },
+      "samples": [
+        {
+          "i": 72,
+          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
+          "p": "The Morning Edition",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 80,
+          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
+          "p": "The Morning Edition",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 116,
+          "e": "Why does Australia have a productivity problem?",
+          "p": "Australian Politics",
+          "d": "2026-10-11"
+        },
+        {
+          "i": 149,
+          "e": "Labor doesn't want a fight on immigration",
+          "p": "Politics Now",
+          "d": "2026-10-07"
+        },
+        {
+          "i": 170,
+          "e": "Undercover inside Cuba: The world’s longest-running blockade",
+          "p": "7am",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 176,
+          "e": "Is the 'sensible centre' dead?",
+          "p": "Politics Now",
+          "d": "2026-10-05"
+        },
+        {
+          "i": 187,
+          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
+          "p": "Politics Now",
+          "d": "2026-10-03"
+        },
+        {
+          "i": 197,
+          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
+          "p": "Australian Politics",
+          "d": "2026-10-02"
         }
       ]
     },
@@ -11252,80 +11326,6 @@
           "e": "Will a midterm 'blue wave' sink Trump?",
           "p": "ABC News Daily",
           "d": "2026-10-05"
-        }
-      ]
-    },
-    {
-      "id": "au-climate",
-      "name": "Australian climate & energy",
-      "blurb": "Climate and energy policy in Australia.",
-      "kind": "local",
-      "facet": "local",
-      "count": 513,
-      "hours": 43.88,
-      "byYear": {
-        "2019": 9,
-        "2020": 37,
-        "2021": 45,
-        "2022": 48,
-        "2023": 57,
-        "2024": 73,
-        "2025": 125,
-        "2026": 119
-      },
-      "evidence": {
-        "title": 60,
-        "notes": 139,
-        "transcript": 314
-      },
-      "samples": [
-        {
-          "i": 72,
-          "e": "Jim Chalmers’ facts, an ordinary voter’s feelings and the political reality",
-          "p": "The Morning Edition",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 80,
-          "e": "A public execution and a Russian deal – will Trump’s midterm distractions work?",
-          "p": "The Morning Edition",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 116,
-          "e": "Why does Australia have a productivity problem?",
-          "p": "Australian Politics",
-          "d": "2026-10-11"
-        },
-        {
-          "i": 149,
-          "e": "Labor doesn't want a fight on immigration",
-          "p": "Politics Now",
-          "d": "2026-10-07"
-        },
-        {
-          "i": 170,
-          "e": "Undercover inside Cuba: The world’s longest-running blockade",
-          "p": "7am",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 176,
-          "e": "Is the 'sensible centre' dead?",
-          "p": "Politics Now",
-          "d": "2026-10-05"
-        },
-        {
-          "i": 187,
-          "e": "Should the Greens work with Labor or try to replace it? | Insiders On Background",
-          "p": "Politics Now",
-          "d": "2026-10-03"
-        },
-        {
-          "i": 197,
-          "e": "David Shoebridge on his plan to beat One Nation & replace Labor",
-          "p": "Australian Politics",
-          "d": "2026-10-02"
         }
       ]
     },
@@ -11926,8 +11926,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 512,
-      "hours": 29.36,
+      "count": 516,
+      "hours": 29.41,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -11935,13 +11935,13 @@
         "2022": 24,
         "2023": 59,
         "2024": 88,
-        "2025": 131,
-        "2026": 126
+        "2025": 134,
+        "2026": 127
       },
       "evidence": {
         "title": 0,
         "notes": 166,
-        "transcript": 346
+        "transcript": 350
       },
       "samples": [
         {
@@ -12146,7 +12146,7 @@
       "kind": "story",
       "facet": "story",
       "count": 359,
-      "hours": 26.9,
+      "hours": 26.8,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -12157,9 +12157,9 @@
         "2026": 258
       },
       "evidence": {
-        "title": 59,
+        "title": 58,
         "notes": 51,
-        "transcript": 249
+        "transcript": 250
       },
       "samples": [
         {
@@ -13104,21 +13104,21 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 366,
-      "hours": 16.78,
+      "count": 368,
+      "hours": 16.87,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 6,
         "2023": 67,
         "2024": 68,
-        "2025": 106,
-        "2026": 116
+        "2025": 107,
+        "2026": 117
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 335
+        "transcript": 337
       },
       "samples": [
         {
@@ -14498,7 +14498,7 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 256,
+      "count": 257,
       "hours": 7.93,
       "byYear": {
         "2020": 2,
@@ -14506,13 +14506,13 @@
         "2022": 13,
         "2023": 66,
         "2024": 60,
-        "2025": 47,
+        "2025": 48,
         "2026": 62
       },
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 173
+        "transcript": 174
       },
       "samples": [
         {
