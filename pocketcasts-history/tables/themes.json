@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "stt": 2031,
-      "title": 9746,
+      "stt": 2036,
+      "title": 9741,
       "show-notes": 6493,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5812,
+    "episodesWithTranscriptEvidence": 5817,
     "episodesWithNotesEvidence": 6493,
-    "episodesWithTitleOnlyEvidence": 9746,
+    "episodesWithTitleOnlyEvidence": 9741,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.64,
+      "hours": 1054.59,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2799,
+        "title": 2798,
         "notes": 446,
-        "transcript": 2893
+        "transcript": 2894
       },
       "samples": [
         {
@@ -253,7 +253,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 748.57,
+      "hours": 748.7,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -265,9 +265,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1687,
+        "title": 1682,
         "notes": 1068,
-        "transcript": 2901
+        "transcript": 2906
       },
       "samples": [
         {
@@ -403,7 +403,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 348.27,
+      "hours": 347.79,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -415,9 +415,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 684,
+        "title": 679,
         "notes": 769,
-        "transcript": 1008
+        "transcript": 1013
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 241.76,
+      "hours": 241.66,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -490,9 +490,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 546,
+        "title": 545,
         "notes": 426,
-        "transcript": 1598
+        "transcript": 1599
       },
       "samples": [
         {
@@ -552,8 +552,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3085,
-      "hours": 240.91,
+      "count": 3088,
+      "hours": 241.0,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -561,13 +561,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 680,
-        "2026": 659
+        "2025": 681,
+        "2026": 661
       },
       "evidence": {
         "title": 438,
         "notes": 1187,
-        "transcript": 1460
+        "transcript": 1463
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2751,
-      "hours": 198.9,
+      "count": 2752,
+      "hours": 198.92,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -711,13 +711,13 @@
         "2022": 211,
         "2023": 459,
         "2024": 532,
-        "2025": 677,
+        "2025": 678,
         "2026": 689
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2185
+        "transcript": 2186
       },
       "samples": [
         {
@@ -852,8 +852,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1524,
-      "hours": 153.57,
+      "count": 1526,
+      "hours": 153.7,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -861,13 +861,13 @@
         "2022": 99,
         "2023": 261,
         "2024": 333,
-        "2025": 313,
-        "2026": 286
+        "2025": 314,
+        "2026": 287
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 767
+        "transcript": 769
       },
       "samples": [
         {
@@ -1002,8 +1002,8 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1327,
-      "hours": 121.75,
+      "count": 1328,
+      "hours": 121.77,
       "byYear": {
         "2019": 1,
         "2020": 420,
@@ -1012,12 +1012,12 @@
         "2023": 106,
         "2024": 56,
         "2025": 81,
-        "2026": 44
+        "2026": 45
       },
       "evidence": {
         "title": 433,
         "notes": 677,
-        "transcript": 217
+        "transcript": 218
       },
       "samples": [
         {
@@ -1077,8 +1077,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1293,
-      "hours": 111.41,
+      "count": 1295,
+      "hours": 111.45,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1087,12 +1087,12 @@
         "2023": 178,
         "2024": 191,
         "2025": 417,
-        "2026": 363
+        "2026": 365
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1081
+        "transcript": 1083
       },
       "samples": [
         {
@@ -1153,7 +1153,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 1294,
-      "hours": 110.93,
+      "hours": 110.86,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -1165,9 +1165,9 @@
         "2026": 280
       },
       "evidence": {
-        "title": 165,
+        "title": 164,
         "notes": 550,
-        "transcript": 579
+        "transcript": 580
       },
       "samples": [
         {
@@ -1377,8 +1377,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1162,
-      "hours": 96.33,
+      "count": 1163,
+      "hours": 96.39,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -1386,13 +1386,13 @@
         "2022": 89,
         "2023": 177,
         "2024": 186,
-        "2025": 275,
+        "2025": 276,
         "2026": 331
       },
       "evidence": {
         "title": 78,
         "notes": 300,
-        "transcript": 784
+        "transcript": 785
       },
       "samples": [
         {
@@ -1602,8 +1602,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 973,
-      "hours": 80.01,
+      "count": 976,
+      "hours": 80.22,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -1611,13 +1611,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 213,
-        "2026": 307
+        "2025": 214,
+        "2026": 309
       },
       "evidence": {
         "title": 107,
         "notes": 194,
-        "transcript": 672
+        "transcript": 675
       },
       "samples": [
         {
@@ -1657,15 +1657,15 @@
           "d": "2026-10-14"
         },
         {
+          "i": 94,
+          "e": "'Spicy' late night letters about an AI world",
+          "p": "Politics Now",
+          "d": "2026-10-13"
+        },
+        {
           "i": 100,
           "e": "Why Trump's selling out to Putin again",
           "p": "ABC News Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 110,
-          "e": "Is Josh Frydenberg back?",
-          "p": "Politics Now",
           "d": "2026-10-12"
         }
       ],
@@ -1827,8 +1827,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1003,
-      "hours": 69.04,
+      "count": 1004,
+      "hours": 69.07,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -1836,13 +1836,13 @@
         "2022": 33,
         "2023": 178,
         "2024": 241,
-        "2025": 278,
+        "2025": 279,
         "2026": 255
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 832
+        "transcript": 833
       },
       "samples": [
         {
@@ -1903,7 +1903,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 471,
-      "hours": 63.66,
+      "hours": 63.55,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1915,9 +1915,9 @@
         "2026": 211
       },
       "evidence": {
-        "title": 34,
+        "title": 33,
         "notes": 139,
-        "transcript": 298
+        "transcript": 299
       },
       "samples": [
         {
@@ -1977,8 +1977,8 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 857,
-      "hours": 63.53,
+      "count": 858,
+      "hours": 63.54,
       "byYear": {
         "2020": 42,
         "2021": 36,
@@ -1986,12 +1986,12 @@
         "2023": 166,
         "2024": 172,
         "2025": 252,
-        "2026": 156
+        "2026": 157
       },
       "evidence": {
         "title": 5,
         "notes": 155,
-        "transcript": 697
+        "transcript": 698
       },
       "samples": [
         {
@@ -2201,8 +2201,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 792,
-      "hours": 58.91,
+      "count": 793,
+      "hours": 58.98,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -2211,12 +2211,12 @@
         "2023": 111,
         "2024": 137,
         "2025": 290,
-        "2026": 190
+        "2026": 191
       },
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 655
+        "transcript": 656
       },
       "samples": [
         {
@@ -3024,7 +3024,7 @@
       "kind": "local",
       "facet": "local",
       "count": 506,
-      "hours": 43.35,
+      "hours": 43.32,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -3036,9 +3036,9 @@
         "2026": 118
       },
       "evidence": {
-        "title": 61,
+        "title": 60,
         "notes": 139,
-        "transcript": 306
+        "transcript": 307
       },
       "samples": [
         {
@@ -3398,8 +3398,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 365,
-      "hours": 33.87,
+      "count": 366,
+      "hours": 33.89,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -3408,12 +3408,12 @@
         "2023": 54,
         "2024": 62,
         "2025": 85,
-        "2026": 94
+        "2026": 95
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 256
+        "transcript": 257
       },
       "samples": [
         {
@@ -3427,6 +3427,12 @@
           "e": "The productivity problem driving up interest rates",
           "p": "7am",
           "d": "2026-10-14"
+        },
+        {
+          "i": 94,
+          "e": "'Spicy' late night letters about an AI world",
+          "p": "Politics Now",
+          "d": "2026-10-13"
         },
         {
           "i": 98,
@@ -3457,12 +3463,6 @@
           "e": "The Medicare hack and the rise of rogue AI agents",
           "p": "7am",
           "d": "2026-09-29"
-        },
-        {
-          "i": 244,
-          "e": "Terras raras: quando o modelo extrativista do Brasil vai ao divã",
-          "p": "Durma com essa",
-          "d": "2026-09-28"
         }
       ],
       "children": []
@@ -3919,8 +3919,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 317,
-      "hours": 26.4,
+      "count": 318,
+      "hours": 26.44,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -3929,12 +3929,12 @@
         "2023": 55,
         "2024": 55,
         "2025": 92,
-        "2026": 41
+        "2026": 42
       },
       "evidence": {
         "title": 60,
         "notes": 13,
-        "transcript": 244
+        "transcript": 245
       },
       "samples": [
         {
@@ -8379,7 +8379,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.64,
+      "hours": 1054.59,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8391,9 +8391,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2799,
+        "title": 2798,
         "notes": 446,
-        "transcript": 2893
+        "transcript": 2894
       },
       "samples": [
         {
@@ -8601,7 +8601,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5656,
-      "hours": 748.57,
+      "hours": 748.7,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8613,9 +8613,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1687,
+        "title": 1682,
         "notes": 1068,
-        "transcript": 2901
+        "transcript": 2906
       },
       "samples": [
         {
@@ -8749,7 +8749,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 348.27,
+      "hours": 347.79,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8761,9 +8761,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 684,
+        "title": 679,
         "notes": 769,
-        "transcript": 1008
+        "transcript": 1013
       },
       "samples": [
         {
@@ -8823,7 +8823,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 241.76,
+      "hours": 241.66,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8835,9 +8835,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 546,
+        "title": 545,
         "notes": 426,
-        "transcript": 1598
+        "transcript": 1599
       },
       "samples": [
         {
@@ -8896,8 +8896,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3085,
-      "hours": 240.91,
+      "count": 3088,
+      "hours": 241.0,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8905,13 +8905,13 @@
         "2022": 278,
         "2023": 513,
         "2024": 524,
-        "2025": 680,
-        "2026": 659
+        "2025": 681,
+        "2026": 661
       },
       "evidence": {
         "title": 438,
         "notes": 1187,
-        "transcript": 1460
+        "transcript": 1463
       },
       "samples": [
         {
@@ -9044,8 +9044,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2751,
-      "hours": 198.9,
+      "count": 2752,
+      "hours": 198.92,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9053,13 +9053,13 @@
         "2022": 211,
         "2023": 459,
         "2024": 532,
-        "2025": 677,
+        "2025": 678,
         "2026": 689
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2185
+        "transcript": 2186
       },
       "samples": [
         {
@@ -9192,8 +9192,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1524,
-      "hours": 153.57,
+      "count": 1526,
+      "hours": 153.7,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9201,13 +9201,13 @@
         "2022": 99,
         "2023": 261,
         "2024": 333,
-        "2025": 313,
-        "2026": 286
+        "2025": 314,
+        "2026": 287
       },
       "evidence": {
         "title": 34,
         "notes": 723,
-        "transcript": 767
+        "transcript": 769
       },
       "samples": [
         {
@@ -9340,8 +9340,8 @@
       "blurb": "Pandemics and vaccines.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1327,
-      "hours": 121.75,
+      "count": 1328,
+      "hours": 121.77,
       "byYear": {
         "2019": 1,
         "2020": 420,
@@ -9350,12 +9350,12 @@
         "2023": 106,
         "2024": 56,
         "2025": 81,
-        "2026": 44
+        "2026": 45
       },
       "evidence": {
         "title": 433,
         "notes": 677,
-        "transcript": 217
+        "transcript": 218
       },
       "samples": [
         {
@@ -9414,8 +9414,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1293,
-      "hours": 111.41,
+      "count": 1295,
+      "hours": 111.45,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9424,12 +9424,12 @@
         "2023": 178,
         "2024": 191,
         "2025": 417,
-        "2026": 363
+        "2026": 365
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1081
+        "transcript": 1083
       },
       "samples": [
         {
@@ -9489,7 +9489,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 1294,
-      "hours": 110.93,
+      "hours": 110.86,
       "byYear": {
         "2019": 30,
         "2020": 69,
@@ -9501,9 +9501,9 @@
         "2026": 280
       },
       "evidence": {
-        "title": 165,
+        "title": 164,
         "notes": 550,
-        "transcript": 579
+        "transcript": 580
       },
       "samples": [
         {
@@ -9710,8 +9710,8 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1162,
-      "hours": 96.33,
+      "count": 1163,
+      "hours": 96.39,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -9719,13 +9719,13 @@
         "2022": 89,
         "2023": 177,
         "2024": 186,
-        "2025": 275,
+        "2025": 276,
         "2026": 331
       },
       "evidence": {
         "title": 78,
         "notes": 300,
-        "transcript": 784
+        "transcript": 785
       },
       "samples": [
         {
@@ -9932,8 +9932,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 973,
-      "hours": 80.01,
+      "count": 976,
+      "hours": 80.22,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -9941,13 +9941,13 @@
         "2022": 65,
         "2023": 127,
         "2024": 132,
-        "2025": 213,
-        "2026": 307
+        "2025": 214,
+        "2026": 309
       },
       "evidence": {
         "title": 107,
         "notes": 194,
-        "transcript": 672
+        "transcript": 675
       },
       "samples": [
         {
@@ -9987,15 +9987,15 @@
           "d": "2026-10-14"
         },
         {
+          "i": 94,
+          "e": "'Spicy' late night letters about an AI world",
+          "p": "Politics Now",
+          "d": "2026-10-13"
+        },
+        {
           "i": 100,
           "e": "Why Trump's selling out to Putin again",
           "p": "ABC News Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 110,
-          "e": "Is Josh Frydenberg back?",
-          "p": "Politics Now",
           "d": "2026-10-12"
         }
       ]
@@ -10154,8 +10154,8 @@
       "blurb": "Crime and policing.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1003,
-      "hours": 69.04,
+      "count": 1004,
+      "hours": 69.07,
       "byYear": {
         "2019": 1,
         "2020": 10,
@@ -10163,13 +10163,13 @@
         "2022": 33,
         "2023": 178,
         "2024": 241,
-        "2025": 278,
+        "2025": 279,
         "2026": 255
       },
       "evidence": {
         "title": 0,
         "notes": 171,
-        "transcript": 832
+        "transcript": 833
       },
       "samples": [
         {
@@ -10229,7 +10229,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 471,
-      "hours": 63.66,
+      "hours": 63.55,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10241,9 +10241,9 @@
         "2026": 211
       },
       "evidence": {
-        "title": 34,
+        "title": 33,
         "notes": 139,
-        "transcript": 298
+        "transcript": 299
       },
       "samples": [
         {
@@ -10302,8 +10302,8 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 857,
-      "hours": 63.53,
+      "count": 858,
+      "hours": 63.54,
       "byYear": {
         "2020": 42,
         "2021": 36,
@@ -10311,12 +10311,12 @@
         "2023": 166,
         "2024": 172,
         "2025": 252,
-        "2026": 156
+        "2026": 157
       },
       "evidence": {
         "title": 5,
         "notes": 155,
-        "transcript": 697
+        "transcript": 698
       },
       "samples": [
         {
@@ -10523,8 +10523,8 @@
       "blurb": "US economy, Fed, markets.",
       "kind": "local",
       "facet": "local",
-      "count": 792,
-      "hours": 58.91,
+      "count": 793,
+      "hours": 58.98,
       "byYear": {
         "2019": 5,
         "2020": 12,
@@ -10533,12 +10533,12 @@
         "2023": 111,
         "2024": 137,
         "2025": 290,
-        "2026": 190
+        "2026": 191
       },
       "evidence": {
         "title": 48,
         "notes": 89,
-        "transcript": 655
+        "transcript": 656
       },
       "samples": [
         {
@@ -11335,7 +11335,7 @@
       "kind": "local",
       "facet": "local",
       "count": 506,
-      "hours": 43.35,
+      "hours": 43.32,
       "byYear": {
         "2019": 9,
         "2020": 37,
@@ -11347,9 +11347,9 @@
         "2026": 118
       },
       "evidence": {
-        "title": 61,
+        "title": 60,
         "notes": 139,
-        "transcript": 306
+        "transcript": 307
       },
       "samples": [
         {
@@ -11704,8 +11704,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 365,
-      "hours": 33.87,
+      "count": 366,
+      "hours": 33.89,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -11714,12 +11714,12 @@
         "2023": 54,
         "2024": 62,
         "2025": 85,
-        "2026": 94
+        "2026": 95
       },
       "evidence": {
         "title": 11,
         "notes": 98,
-        "transcript": 256
+        "transcript": 257
       },
       "samples": [
         {
@@ -11733,6 +11733,12 @@
           "e": "The productivity problem driving up interest rates",
           "p": "7am",
           "d": "2026-10-14"
+        },
+        {
+          "i": 94,
+          "e": "'Spicy' late night letters about an AI world",
+          "p": "Politics Now",
+          "d": "2026-10-13"
         },
         {
           "i": 98,
@@ -11763,12 +11769,6 @@
           "e": "The Medicare hack and the rise of rogue AI agents",
           "p": "7am",
           "d": "2026-09-29"
-        },
-        {
-          "i": 244,
-          "e": "Terras raras: quando o modelo extrativista do Brasil vai ao divã",
-          "p": "Durma com essa",
-          "d": "2026-09-28"
         }
       ]
     },
@@ -12218,8 +12218,8 @@
       "blurb": "US health policy and public health.",
       "kind": "local",
       "facet": "local",
-      "count": 317,
-      "hours": 26.4,
+      "count": 318,
+      "hours": 26.44,
       "byYear": {
         "2019": 1,
         "2020": 21,
@@ -12228,12 +12228,12 @@
         "2023": 55,
         "2024": 55,
         "2025": 92,
-        "2026": 41
+        "2026": 42
       },
       "evidence": {
         "title": 60,
         "notes": 13,
-        "transcript": 244
+        "transcript": 245
       },
       "samples": [
         {
