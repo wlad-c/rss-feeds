@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "stt": 2067,
-      "title": 9710,
+      "stt": 2071,
+      "title": 9706,
       "show-notes": 6493,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 5848,
+    "episodesWithTranscriptEvidence": 5852,
     "episodesWithNotesEvidence": 6493,
-    "episodesWithTitleOnlyEvidence": 9710,
+    "episodesWithTitleOnlyEvidence": 9706,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.42,
+      "hours": 1054.43,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2794,
+        "title": 2793,
         "notes": 446,
-        "transcript": 2898
+        "transcript": 2899
       },
       "samples": [
         {
@@ -265,9 +265,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1651,
+        "title": 1647,
         "notes": 1068,
-        "transcript": 2937
+        "transcript": 2941
       },
       "samples": [
         {
@@ -403,7 +403,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 345.09,
+      "hours": 344.95,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -415,9 +415,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 648,
+        "title": 644,
         "notes": 769,
-        "transcript": 1044
+        "transcript": 1048
       },
       "samples": [
         {
@@ -478,7 +478,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 241.48,
+      "hours": 241.41,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -490,9 +490,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 541,
+        "title": 540,
         "notes": 426,
-        "transcript": 1603
+        "transcript": 1604
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2763,
-      "hours": 199.16,
+      "count": 2764,
+      "hours": 199.18,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -711,13 +711,13 @@
         "2022": 211,
         "2023": 459,
         "2024": 532,
-        "2025": 685,
+        "2025": 686,
         "2026": 693
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2197
+        "transcript": 2198
       },
       "samples": [
         {
@@ -1077,8 +1077,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1305,
-      "hours": 111.66,
+      "count": 1306,
+      "hours": 111.69,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1087,12 +1087,12 @@
         "2023": 178,
         "2024": 191,
         "2025": 423,
-        "2026": 369
+        "2026": 370
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1093
+        "transcript": 1094
       },
       "samples": [
         {
@@ -1378,7 +1378,7 @@
       "kind": "local",
       "facet": "local",
       "count": 1173,
-      "hours": 97.19,
+      "hours": 97.13,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -1390,9 +1390,9 @@
         "2026": 335
       },
       "evidence": {
-        "title": 77,
+        "title": 76,
         "notes": 300,
-        "transcript": 796
+        "transcript": 797
       },
       "samples": [
         {
@@ -1897,6 +1897,81 @@
       "children": []
     },
     {
+      "id": "ai-technology",
+      "name": "Artificial intelligence",
+      "blurb": "AI, LLMs, and machine learning.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 476,
+      "hours": 63.66,
+      "byYear": {
+        "2019": 6,
+        "2020": 5,
+        "2021": 3,
+        "2022": 8,
+        "2023": 59,
+        "2024": 54,
+        "2025": 126,
+        "2026": 215
+      },
+      "evidence": {
+        "title": 33,
+        "notes": 139,
+        "transcript": 304
+      },
+      "samples": [
+        {
+          "i": 43,
+          "e": "Should AI, Music and Politics Mix?",
+          "p": "What's the Focus",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 60,
+          "e": "When A.I. Comes for Your Purpose in Life",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 73,
+          "e": "The mathematician taking on AI",
+          "p": "ABC News Daily",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 79,
+          "e": "The productivity problem driving up interest rates",
+          "p": "7am",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 81,
+          "e": "The Firmus 'flop' warning for the AI bubble",
+          "p": "ABC News Daily",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 94,
+          "e": "'Spicy' late night letters about an AI world",
+          "p": "Politics Now",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 101,
+          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 105,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "health-medicine",
       "name": "Health & medicine",
       "blurb": "Health and medicine.",
@@ -1966,81 +2041,6 @@
           "e": "Who will lead the Greens?",
           "p": "Politics Now",
           "d": "2026-09-29"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "ai-technology",
-      "name": "Artificial intelligence",
-      "blurb": "AI, LLMs, and machine learning.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 475,
-      "hours": 63.64,
-      "byYear": {
-        "2019": 6,
-        "2020": 5,
-        "2021": 3,
-        "2022": 8,
-        "2023": 59,
-        "2024": 54,
-        "2025": 126,
-        "2026": 214
-      },
-      "evidence": {
-        "title": 33,
-        "notes": 139,
-        "transcript": 303
-      },
-      "samples": [
-        {
-          "i": 43,
-          "e": "Should AI, Music and Politics Mix?",
-          "p": "What's the Focus",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 60,
-          "e": "When A.I. Comes for Your Purpose in Life",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 73,
-          "e": "The mathematician taking on AI",
-          "p": "ABC News Daily",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 79,
-          "e": "The productivity problem driving up interest rates",
-          "p": "7am",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 81,
-          "e": "The Firmus 'flop' warning for the AI bubble",
-          "p": "ABC News Daily",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 94,
-          "e": "'Spicy' late night letters about an AI world",
-          "p": "Politics Now",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 101,
-          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 105,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
         }
       ],
       "children": []
@@ -3771,21 +3771,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 660,
-      "hours": 28.02,
+      "count": 661,
+      "hours": 28.06,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 90,
         "2024": 154,
-        "2025": 193,
+        "2025": 194,
         "2026": 203
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 606
+        "transcript": 607
       },
       "samples": [
         {
@@ -4143,8 +4143,8 @@
       "blurb": "Football and World Cup.",
       "kind": "domain",
       "facet": "domain",
-      "count": 197,
-      "hours": 24.8,
+      "count": 198,
+      "hours": 24.82,
       "byYear": {
         "2019": 5,
         "2020": 5,
@@ -4153,12 +4153,12 @@
         "2023": 29,
         "2024": 18,
         "2025": 11,
-        "2026": 66
+        "2026": 67
       },
       "evidence": {
         "title": 58,
         "notes": 50,
-        "transcript": 89
+        "transcript": 90
       },
       "samples": [
         {
@@ -4592,8 +4592,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 261,
-      "hours": 20.2,
+      "count": 262,
+      "hours": 20.29,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -4601,13 +4601,13 @@
         "2022": 10,
         "2023": 33,
         "2024": 72,
-        "2025": 39,
+        "2025": 40,
         "2026": 87
       },
       "evidence": {
         "title": 19,
         "notes": 46,
-        "transcript": 196
+        "transcript": 197
       },
       "samples": [
         {
@@ -4817,8 +4817,8 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 365,
-      "hours": 16.76,
+      "count": 366,
+      "hours": 16.78,
       "byYear": {
         "2020": 1,
         "2021": 2,
@@ -4826,12 +4826,12 @@
         "2023": 67,
         "2024": 68,
         "2025": 106,
-        "2026": 115
+        "2026": 116
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 334
+        "transcript": 335
       },
       "samples": [
         {
@@ -8379,7 +8379,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6138,
-      "hours": 1054.42,
+      "hours": 1054.43,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8391,9 +8391,9 @@
         "2026": 910
       },
       "evidence": {
-        "title": 2794,
+        "title": 2793,
         "notes": 446,
-        "transcript": 2898
+        "transcript": 2899
       },
       "samples": [
         {
@@ -8613,9 +8613,9 @@
         "2026": 1085
       },
       "evidence": {
-        "title": 1651,
+        "title": 1647,
         "notes": 1068,
-        "transcript": 2937
+        "transcript": 2941
       },
       "samples": [
         {
@@ -8749,7 +8749,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 345.09,
+      "hours": 344.95,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8761,9 +8761,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 648,
+        "title": 644,
         "notes": 769,
-        "transcript": 1044
+        "transcript": 1048
       },
       "samples": [
         {
@@ -8823,7 +8823,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2570,
-      "hours": 241.48,
+      "hours": 241.41,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8835,9 +8835,9 @@
         "2026": 565
       },
       "evidence": {
-        "title": 541,
+        "title": 540,
         "notes": 426,
-        "transcript": 1603
+        "transcript": 1604
       },
       "samples": [
         {
@@ -9044,8 +9044,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2763,
-      "hours": 199.16,
+      "count": 2764,
+      "hours": 199.18,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9053,13 +9053,13 @@
         "2022": 211,
         "2023": 459,
         "2024": 532,
-        "2025": 685,
+        "2025": 686,
         "2026": 693
       },
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2197
+        "transcript": 2198
       },
       "samples": [
         {
@@ -9414,8 +9414,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1305,
-      "hours": 111.66,
+      "count": 1306,
+      "hours": 111.69,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9424,12 +9424,12 @@
         "2023": 178,
         "2024": 191,
         "2025": 423,
-        "2026": 369
+        "2026": 370
       },
       "evidence": {
         "title": 58,
         "notes": 154,
-        "transcript": 1093
+        "transcript": 1094
       },
       "samples": [
         {
@@ -9711,7 +9711,7 @@
       "kind": "local",
       "facet": "local",
       "count": 1173,
-      "hours": 97.19,
+      "hours": 97.13,
       "byYear": {
         "2019": 6,
         "2020": 39,
@@ -9723,9 +9723,9 @@
         "2026": 335
       },
       "evidence": {
-        "title": 77,
+        "title": 76,
         "notes": 300,
-        "transcript": 796
+        "transcript": 797
       },
       "samples": [
         {
@@ -10223,6 +10223,80 @@
       ]
     },
     {
+      "id": "ai-technology",
+      "name": "Artificial intelligence",
+      "blurb": "AI, LLMs, and machine learning.",
+      "kind": "domain",
+      "facet": "domain",
+      "count": 476,
+      "hours": 63.66,
+      "byYear": {
+        "2019": 6,
+        "2020": 5,
+        "2021": 3,
+        "2022": 8,
+        "2023": 59,
+        "2024": 54,
+        "2025": 126,
+        "2026": 215
+      },
+      "evidence": {
+        "title": 33,
+        "notes": 139,
+        "transcript": 304
+      },
+      "samples": [
+        {
+          "i": 43,
+          "e": "Should AI, Music and Politics Mix?",
+          "p": "What's the Focus",
+          "d": "2026-10-18"
+        },
+        {
+          "i": 60,
+          "e": "When A.I. Comes for Your Purpose in Life",
+          "p": "The Daily",
+          "d": "2026-10-16"
+        },
+        {
+          "i": 73,
+          "e": "The mathematician taking on AI",
+          "p": "ABC News Daily",
+          "d": "2026-10-15"
+        },
+        {
+          "i": 79,
+          "e": "The productivity problem driving up interest rates",
+          "p": "7am",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 81,
+          "e": "The Firmus 'flop' warning for the AI bubble",
+          "p": "ABC News Daily",
+          "d": "2026-10-14"
+        },
+        {
+          "i": 94,
+          "e": "'Spicy' late night letters about an AI world",
+          "p": "Politics Now",
+          "d": "2026-10-13"
+        },
+        {
+          "i": 101,
+          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
+          "p": "The Ezra Klein Show",
+          "d": "2026-10-12"
+        },
+        {
+          "i": 105,
+          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
+          "p": "The Daily",
+          "d": "2026-10-12"
+        }
+      ]
+    },
+    {
       "id": "health-medicine",
       "name": "Health & medicine",
       "blurb": "Health and medicine.",
@@ -10292,80 +10366,6 @@
           "e": "Who will lead the Greens?",
           "p": "Politics Now",
           "d": "2026-09-29"
-        }
-      ]
-    },
-    {
-      "id": "ai-technology",
-      "name": "Artificial intelligence",
-      "blurb": "AI, LLMs, and machine learning.",
-      "kind": "domain",
-      "facet": "domain",
-      "count": 475,
-      "hours": 63.64,
-      "byYear": {
-        "2019": 6,
-        "2020": 5,
-        "2021": 3,
-        "2022": 8,
-        "2023": 59,
-        "2024": 54,
-        "2025": 126,
-        "2026": 214
-      },
-      "evidence": {
-        "title": 33,
-        "notes": 139,
-        "transcript": 303
-      },
-      "samples": [
-        {
-          "i": 43,
-          "e": "Should AI, Music and Politics Mix?",
-          "p": "What's the Focus",
-          "d": "2026-10-18"
-        },
-        {
-          "i": 60,
-          "e": "When A.I. Comes for Your Purpose in Life",
-          "p": "The Daily",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 73,
-          "e": "The mathematician taking on AI",
-          "p": "ABC News Daily",
-          "d": "2026-10-15"
-        },
-        {
-          "i": 79,
-          "e": "The productivity problem driving up interest rates",
-          "p": "7am",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 81,
-          "e": "The Firmus 'flop' warning for the AI bubble",
-          "p": "ABC News Daily",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 94,
-          "e": "'Spicy' late night letters about an AI world",
-          "p": "Politics Now",
-          "d": "2026-10-13"
-        },
-        {
-          "i": 101,
-          "e": "‘This Is Nuts.’ An OpenAI Insider Explains Why He Quit.",
-          "p": "The Ezra Klein Show",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 105,
-          "e": "The Israeli Film Directors Pushing for a Reckoning in Their Home Country",
-          "p": "The Daily",
-          "d": "2026-10-12"
         }
       ]
     },
@@ -12072,21 +12072,21 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 660,
-      "hours": 28.02,
+      "count": 661,
+      "hours": 28.06,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
         "2023": 90,
         "2024": 154,
-        "2025": 193,
+        "2025": 194,
         "2026": 203
       },
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 606
+        "transcript": 607
       },
       "samples": [
         {
@@ -12439,8 +12439,8 @@
       "blurb": "Football and World Cup.",
       "kind": "domain",
       "facet": "domain",
-      "count": 197,
-      "hours": 24.8,
+      "count": 198,
+      "hours": 24.82,
       "byYear": {
         "2019": 5,
         "2020": 5,
@@ -12449,12 +12449,12 @@
         "2023": 29,
         "2024": 18,
         "2025": 11,
-        "2026": 66
+        "2026": 67
       },
       "evidence": {
         "title": 58,
         "notes": 50,
-        "transcript": 89
+        "transcript": 90
       },
       "samples": [
         {
@@ -12882,8 +12882,8 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 261,
-      "hours": 20.2,
+      "count": 262,
+      "hours": 20.29,
       "byYear": {
         "2019": 1,
         "2020": 9,
@@ -12891,13 +12891,13 @@
         "2022": 10,
         "2023": 33,
         "2024": 72,
-        "2025": 39,
+        "2025": 40,
         "2026": 87
       },
       "evidence": {
         "title": 19,
         "notes": 46,
-        "transcript": 196
+        "transcript": 197
       },
       "samples": [
         {
@@ -13104,8 +13104,8 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 365,
-      "hours": 16.76,
+      "count": 366,
+      "hours": 16.78,
       "byYear": {
         "2020": 1,
         "2021": 2,
@@ -13113,12 +13113,12 @@
         "2023": 67,
         "2024": 68,
         "2025": 106,
-        "2026": 115
+        "2026": 116
       },
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 334
+        "transcript": 335
       },
       "samples": [
         {
