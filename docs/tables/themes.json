@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 9444,
-      "stt": 2339,
+      "title": 9441,
+      "stt": 2342,
       "show-notes": 6493,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 6120,
+    "episodesWithTranscriptEvidence": 6123,
     "episodesWithNotesEvidence": 6493,
-    "episodesWithTitleOnlyEvidence": 9444,
+    "episodesWithTitleOnlyEvidence": 9441,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -253,7 +253,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5658,
-      "hours": 731.54,
+      "hours": 731.09,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -265,9 +265,9 @@
         "2026": 1087
       },
       "evidence": {
-        "title": 1381,
+        "title": 1378,
         "notes": 1068,
-        "transcript": 3209
+        "transcript": 3212
       },
       "samples": [
         {
@@ -403,7 +403,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 313.45,
+      "hours": 312.77,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -415,9 +415,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 377,
+        "title": 374,
         "notes": 769,
-        "transcript": 1315
+        "transcript": 1318
       },
       "samples": [
         {
@@ -477,14 +477,14 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3229,
-      "hours": 243.4,
+      "count": 3232,
+      "hours": 243.58,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 533,
+        "2023": 536,
         "2024": 551,
         "2025": 744,
         "2026": 692
@@ -492,7 +492,7 @@
       "evidence": {
         "title": 417,
         "notes": 1187,
-        "transcript": 1625
+        "transcript": 1628
       },
       "samples": [
         {
@@ -702,14 +702,14 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2847,
-      "hours": 201.32,
+      "count": 2848,
+      "hours": 201.33,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 470,
+        "2023": 471,
         "2024": 548,
         "2025": 728,
         "2026": 707
@@ -717,7 +717,7 @@
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2281
+        "transcript": 2282
       },
       "samples": [
         {
@@ -1152,14 +1152,14 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1345,
-      "hours": 111.87,
+      "count": 1347,
+      "hours": 111.98,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 216,
+        "2023": 218,
         "2024": 197,
         "2025": 268,
         "2026": 289
@@ -1167,7 +1167,7 @@
       "evidence": {
         "title": 161,
         "notes": 550,
-        "transcript": 634
+        "transcript": 636
       },
       "samples": [
         {
@@ -1377,14 +1377,14 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1237,
-      "hours": 101.77,
+      "count": 1238,
+      "hours": 101.85,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
         "2022": 89,
-        "2023": 180,
+        "2023": 181,
         "2024": 201,
         "2025": 318,
         "2026": 345
@@ -1392,7 +1392,7 @@
       "evidence": {
         "title": 56,
         "notes": 300,
-        "transcript": 881
+        "transcript": 882
       },
       "samples": [
         {
@@ -1452,14 +1452,14 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 1116,
-      "hours": 93.05,
+      "count": 1119,
+      "hours": 93.39,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
         "2022": 65,
-        "2023": 147,
+        "2023": 150,
         "2024": 159,
         "2025": 277,
         "2026": 339
@@ -1467,7 +1467,7 @@
       "evidence": {
         "title": 85,
         "notes": 194,
-        "transcript": 837
+        "transcript": 840
       },
       "samples": [
         {
@@ -2501,14 +2501,14 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 557,
-      "hours": 47.85,
+      "count": 559,
+      "hours": 48.05,
       "byYear": {
         "2019": 9,
         "2020": 37,
         "2021": 45,
         "2022": 48,
-        "2023": 63,
+        "2023": 65,
         "2024": 80,
         "2025": 148,
         "2026": 127
@@ -2516,7 +2516,7 @@
       "evidence": {
         "title": 57,
         "notes": 139,
-        "transcript": 361
+        "transcript": 363
       },
       "samples": [
         {
@@ -3771,13 +3771,13 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 686,
-      "hours": 28.57,
+      "count": 687,
+      "hours": 28.59,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
-        "2023": 93,
+        "2023": 94,
         "2024": 161,
         "2025": 205,
         "2026": 207
@@ -3785,7 +3785,7 @@
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 632
+        "transcript": 633
       },
       "samples": [
         {
@@ -4517,14 +4517,14 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 280,
-      "hours": 21.32,
+      "count": 281,
+      "hours": 21.4,
       "byYear": {
         "2019": 1,
         "2020": 9,
         "2021": 10,
         "2022": 10,
-        "2023": 35,
+        "2023": 36,
         "2024": 74,
         "2025": 50,
         "2026": 91
@@ -4532,7 +4532,7 @@
       "evidence": {
         "title": 12,
         "notes": 46,
-        "transcript": 222
+        "transcript": 223
       },
       "samples": [
         {
@@ -4667,13 +4667,13 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 468,
-      "hours": 19.65,
+      "count": 471,
+      "hours": 19.71,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 6,
-        "2023": 87,
+        "2023": 90,
         "2024": 102,
         "2025": 137,
         "2026": 133
@@ -4681,7 +4681,7 @@
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 437
+        "transcript": 440
       },
       "samples": [
         {
@@ -5712,13 +5712,13 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 244,
-      "hours": 10.27,
+      "count": 245,
+      "hours": 10.29,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
-        "2023": 57,
+        "2023": 58,
         "2024": 62,
         "2025": 51,
         "2026": 51
@@ -5726,7 +5726,7 @@
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 230
+        "transcript": 231
       },
       "samples": [
         {
@@ -6230,13 +6230,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 271,
-      "hours": 8.15,
+      "count": 273,
+      "hours": 8.19,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 72,
+        "2023": 74,
         "2024": 63,
         "2025": 51,
         "2026": 64
@@ -6244,7 +6244,7 @@
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 188
+        "transcript": 190
       },
       "samples": [
         {
@@ -8601,7 +8601,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5658,
-      "hours": 731.54,
+      "hours": 731.09,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8613,9 +8613,9 @@
         "2026": 1087
       },
       "evidence": {
-        "title": 1381,
+        "title": 1378,
         "notes": 1068,
-        "transcript": 3209
+        "transcript": 3212
       },
       "samples": [
         {
@@ -8749,7 +8749,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2461,
-      "hours": 313.45,
+      "hours": 312.77,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8761,9 +8761,9 @@
         "2026": 534
       },
       "evidence": {
-        "title": 377,
+        "title": 374,
         "notes": 769,
-        "transcript": 1315
+        "transcript": 1318
       },
       "samples": [
         {
@@ -8822,14 +8822,14 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3229,
-      "hours": 243.4,
+      "count": 3232,
+      "hours": 243.58,
       "byYear": {
         "2019": 51,
         "2020": 185,
         "2021": 195,
         "2022": 278,
-        "2023": 533,
+        "2023": 536,
         "2024": 551,
         "2025": 744,
         "2026": 692
@@ -8837,7 +8837,7 @@
       "evidence": {
         "title": 417,
         "notes": 1187,
-        "transcript": 1625
+        "transcript": 1628
       },
       "samples": [
         {
@@ -9044,14 +9044,14 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2847,
-      "hours": 201.32,
+      "count": 2848,
+      "hours": 201.33,
       "byYear": {
         "2019": 3,
         "2020": 58,
         "2021": 122,
         "2022": 211,
-        "2023": 470,
+        "2023": 471,
         "2024": 548,
         "2025": 728,
         "2026": 707
@@ -9059,7 +9059,7 @@
       "evidence": {
         "title": 3,
         "notes": 563,
-        "transcript": 2281
+        "transcript": 2282
       },
       "samples": [
         {
@@ -9488,14 +9488,14 @@
       "blurb": "Climate policy and energy.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1345,
-      "hours": 111.87,
+      "count": 1347,
+      "hours": 111.98,
       "byYear": {
         "2019": 30,
         "2020": 69,
         "2021": 122,
         "2022": 154,
-        "2023": 216,
+        "2023": 218,
         "2024": 197,
         "2025": 268,
         "2026": 289
@@ -9503,7 +9503,7 @@
       "evidence": {
         "title": 161,
         "notes": 550,
-        "transcript": 634
+        "transcript": 636
       },
       "samples": [
         {
@@ -9710,14 +9710,14 @@
       "blurb": "Australian defence and AUKUS politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1237,
-      "hours": 101.77,
+      "count": 1238,
+      "hours": 101.85,
       "byYear": {
         "2019": 6,
         "2020": 39,
         "2021": 59,
         "2022": 89,
-        "2023": 180,
+        "2023": 181,
         "2024": 201,
         "2025": 318,
         "2026": 345
@@ -9725,7 +9725,7 @@
       "evidence": {
         "title": 56,
         "notes": 300,
-        "transcript": 881
+        "transcript": 882
       },
       "samples": [
         {
@@ -9784,14 +9784,14 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 1116,
-      "hours": 93.05,
+      "count": 1119,
+      "hours": 93.39,
       "byYear": {
         "2019": 10,
         "2020": 72,
         "2021": 47,
         "2022": 65,
-        "2023": 147,
+        "2023": 150,
         "2024": 159,
         "2025": 277,
         "2026": 339
@@ -9799,7 +9799,7 @@
       "evidence": {
         "title": 85,
         "notes": 194,
-        "transcript": 837
+        "transcript": 840
       },
       "samples": [
         {
@@ -10819,14 +10819,14 @@
       "blurb": "Climate and energy policy in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 557,
-      "hours": 47.85,
+      "count": 559,
+      "hours": 48.05,
       "byYear": {
         "2019": 9,
         "2020": 37,
         "2021": 45,
         "2022": 48,
-        "2023": 63,
+        "2023": 65,
         "2024": 80,
         "2025": 148,
         "2026": 127
@@ -10834,7 +10834,7 @@
       "evidence": {
         "title": 57,
         "notes": 139,
-        "transcript": 361
+        "transcript": 363
       },
       "samples": [
         {
@@ -12072,13 +12072,13 @@
       "blurb": "Migration and borders.",
       "kind": "domain",
       "facet": "domain",
-      "count": 686,
-      "hours": 28.57,
+      "count": 687,
+      "hours": 28.59,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 12,
-        "2023": 93,
+        "2023": 94,
         "2024": 161,
         "2025": 205,
         "2026": 207
@@ -12086,7 +12086,7 @@
       "evidence": {
         "title": 0,
         "notes": 54,
-        "transcript": 632
+        "transcript": 633
       },
       "samples": [
         {
@@ -12808,14 +12808,14 @@
       "blurb": "Australian immigration and borders.",
       "kind": "local",
       "facet": "local",
-      "count": 280,
-      "hours": 21.32,
+      "count": 281,
+      "hours": 21.4,
       "byYear": {
         "2019": 1,
         "2020": 9,
         "2021": 10,
         "2022": 10,
-        "2023": 35,
+        "2023": 36,
         "2024": 74,
         "2025": 50,
         "2026": 91
@@ -12823,7 +12823,7 @@
       "evidence": {
         "title": 12,
         "notes": 46,
-        "transcript": 222
+        "transcript": 223
       },
       "samples": [
         {
@@ -12956,13 +12956,13 @@
       "blurb": "Housing and cost of living.",
       "kind": "domain",
       "facet": "domain",
-      "count": 468,
-      "hours": 19.65,
+      "count": 471,
+      "hours": 19.71,
       "byYear": {
         "2020": 1,
         "2021": 2,
         "2022": 6,
-        "2023": 87,
+        "2023": 90,
         "2024": 102,
         "2025": 137,
         "2026": 133
@@ -12970,7 +12970,7 @@
       "evidence": {
         "title": 0,
         "notes": 31,
-        "transcript": 437
+        "transcript": 440
       },
       "samples": [
         {
@@ -13987,13 +13987,13 @@
       "blurb": "Labor, wages, strikes, unions.",
       "kind": "domain",
       "facet": "domain",
-      "count": 244,
-      "hours": 10.27,
+      "count": 245,
+      "hours": 10.29,
       "byYear": {
         "2020": 4,
         "2021": 6,
         "2022": 13,
-        "2023": 57,
+        "2023": 58,
         "2024": 62,
         "2025": 51,
         "2026": 51
@@ -14001,7 +14001,7 @@
       "evidence": {
         "title": 0,
         "notes": 14,
-        "transcript": 230
+        "transcript": 231
       },
       "samples": [
         {
@@ -14498,13 +14498,13 @@
       "blurb": "Central banks and interest rates.",
       "kind": "domain",
       "facet": "domain",
-      "count": 271,
-      "hours": 8.15,
+      "count": 273,
+      "hours": 8.19,
       "byYear": {
         "2020": 2,
         "2021": 6,
         "2022": 13,
-        "2023": 72,
+        "2023": 74,
         "2024": 63,
         "2025": 51,
         "2026": 64
@@ -14512,7 +14512,7 @@
       "evidence": {
         "title": 19,
         "notes": 64,
-        "transcript": 188
+        "transcript": 190
       },
       "samples": [
         {
