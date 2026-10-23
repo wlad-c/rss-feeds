@@ -93,7 +93,7 @@ python3 scripts/fetch_omny_transcripts.py
 ```
 
 
-## Theme refresh (every 20 min)
+## Theme refresh (every 6 hours)
 
 When new full transcripts land in `transcripts/full.sqlite` (e.g. ongoing Gemini
 harvests), themes are rebuilt with within-episode **time shares**:
@@ -107,10 +107,10 @@ python3 scripts/refresh_themes_from_transcripts.py \
   --adopt-remote-branch cursor/xv-gemini-transcripts-8084
 ```
 
-**Schedule:** GitHub Action **Listening Log theme refresh** runs every **20 minutes**
-(`:05`, `:25`, `:45` UTC) and adopts `cursor/xv-gemini-transcripts-8084` when that
-branch has more transcript chars than `main`. Manual: Actions → Listening Log
-theme refresh → Run workflow.
+**Schedule:** GitHub Action **Listening Log theme refresh** runs every **6 hours**
+(`:05` UTC at 00:05 / 06:05 / 12:05 / 18:05) and adopts
+`cursor/xv-gemini-transcripts-8084` when that branch has more transcript chars
+than `main`. Manual: Actions → Listening Log theme refresh → Run workflow.
 
 ## Daily sync
 
