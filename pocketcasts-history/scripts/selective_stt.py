@@ -23,6 +23,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 
 from transcript_store import TABLES, connect, get_full, upsert_full, write_slim_notes
@@ -51,6 +52,7 @@ PRIORITY_SHOWS = [
     "ABC News Daily",
     "The Daily",
 ]
+RECENT_MAX_MINUTES = 150
 
 
 def normalize(s: str) -> str:
@@ -366,6 +368,16 @@ def remember_stt_skip(podcast: str, episode: str, reason: str) -> None:
     )
 
 
+def listened_epoch(ep: dict) -> float | None:
+    t = str(ep.get("t") or "").strip()
+    if not t:
+        return None
+    try:
+        return datetime.fromisoformat(t).replace(tzinfo=timezone.utc).timestamp()
+    except ValueError:
+        return None
+
+
 def pick_candidates(
     episodes: list[dict],
     conn,
@@ -373,23 +385,37 @@ def pick_candidates(
     years: set[int],
     max_episodes: int,
     max_minutes: float,
+    recent_days: float = 0,
 ) -> list[int]:
-    # score: priority show rank, recency, shorter duration
+    # Episodes listened within recent_days always come first (newest listen
+    # first) regardless of show, year, or the 45-min cap; the rest are scored
+    # by priority show rank, recency, shorter duration.
     show_rank = {n: i for i, n in enumerate(PRIORITY_SHOWS)}
     counts = Counter(ep.get("p") for ep in episodes)
     skip = load_stt_skip()
     good_keys = load_already_good_keys(conn)
+    recent_cutoff = time.time() - recent_days * 86400 if recent_days > 0 else None
     scored: list[tuple[float, int]] = []
     for i, ep in enumerate(episodes):
+        pod = ep.get("p") or ""
+        skip_key = f"{normalize(pod)}|{normalize(ep.get('e') or '')}"
+        if recent_cutoff is not None:
+            ts = listened_epoch(ep)
+            if ts is not None and ts >= recent_cutoff:
+                if already_good(conn, i, episodes, good_keys=good_keys):
+                    continue
+                if skip_key in skip:
+                    continue
+                if 3.0 <= dur_minutes(ep) <= RECENT_MAX_MINUTES:
+                    scored.append((-1e12 - ts, i))
+                continue
         y = int(ep.get("y") or 0)
         if years and y not in years:
             continue
         if already_good(conn, i, episodes, good_keys=good_keys):
             continue
-        pod = ep.get("p") or ""
         if pod not in show_rank and counts[pod] < 200:
             continue
-        skip_key = f"{normalize(pod)}|{normalize(ep.get('e') or '')}"
         if skip_key in skip:
             continue
         # skip if we already have any long-ish publisher text
@@ -442,8 +468,15 @@ def resolve_audio(episodes: list[dict], idxs: list[int]) -> dict[int, str]:
         print(f"  audio from episodes.csv: {len(audio_for)}/{len(idxs)}", flush=True)
         if len(audio_for) == len(idxs):
             return audio_for
+    audio_for.update(
+        rss_audio(episodes, [i for i in idxs if i not in audio_for])
+    )
+    return audio_for
 
-    # Fallback: current RSS feed enclosures (recent episodes only)
+
+def rss_audio(episodes: list[dict], idxs: list[int]) -> dict[int, str]:
+    """Current RSS feed enclosures (recent episodes only)."""
+    audio_for: dict[int, str] = {}
     by_show: dict[str, list[int]] = defaultdict(list)
     for i in idxs:
         if i in audio_for:
@@ -493,6 +526,12 @@ def main() -> None:
         default=10,
         help="Max free NoteTakers calls this run (API cap is 10/day/IP)",
     )
+    ap.add_argument(
+        "--recent-days",
+        type=float,
+        default=3,
+        help="Transcribe episodes listened within this many days first (0 = off)",
+    )
     args = ap.parse_args()
     years = {int(y) for y in args.years.split(",") if y.strip()}
 
@@ -504,6 +543,7 @@ def main() -> None:
         years=years,
         max_episodes=args.max_episodes,
         max_minutes=args.max_minutes,
+        recent_days=args.recent_days,
     )
     print(
         f"candidates={len(candidates)} years={sorted(years)} engine={args.engine}",
@@ -533,9 +573,18 @@ def main() -> None:
             raw = tdir / f"{idx}.audio"
             wav = tdir / f"{idx}.wav"
             try:
-                if not audio_url_ok(url):
-                    raise RuntimeError("audio URL preflight failed (404/empty)")
-                download_audio(url, raw)
+                try:
+                    if not audio_url_ok(url):
+                        raise RuntimeError("audio URL preflight failed (404/empty)")
+                    download_audio(url, raw)
+                except Exception as exc:  # noqa: BLE001
+                    # Publishers re-upload clips under new URLs; retry via RSS.
+                    alt = rss_audio(episodes, [idx]).get(idx)
+                    if not alt or alt == url:
+                        raise
+                    print(f"  csv audio failed ({exc}); retry via RSS", flush=True)
+                    url = alt
+                    download_audio(url, raw)
                 # Prefer compact mp3/m4a for NoteTakers; wav for local Whisper.
                 text, used = transcribe(
                     raw,
