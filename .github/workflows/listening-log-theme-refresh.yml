@@ -1,11 +1,11 @@
 name: Listening Log theme refresh
 
-# Every 20 minutes: if transcripts/full.sqlite gained new full-text evidence
+# Every 6 hours: if transcripts/full.sqlite gained new full-text evidence
 # (or a harvest branch has a richer store), rebuild themes with within-episode
 # time shares and push updated tables/docs to main.
 on:
   schedule:
-    - cron: "5,25,45 * * * *" # every 20 min at :05, :25, :45 UTC
+    - cron: "5 */6 * * *" # every 6 hours at :05 UTC (00:05, 06:05, 12:05, 18:05)
   workflow_dispatch:
     inputs:
       adopt_branch:
