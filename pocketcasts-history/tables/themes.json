@@ -8,15 +8,15 @@
     "childCount": 0,
     "themeCount": 113,
     "evidenceSourceCounts": {
-      "title": 9450,
-      "show-notes": 6407,
-      "stt": 2436,
+      "title": 9446,
+      "show-notes": 6403,
+      "stt": 2444,
       "youtube": 2079,
       "transcript": 1702
     },
-    "episodesWithTranscriptEvidence": 6217,
-    "episodesWithNotesEvidence": 6407,
-    "episodesWithTitleOnlyEvidence": 9450,
+    "episodesWithTranscriptEvidence": 6225,
+    "episodesWithNotesEvidence": 6403,
+    "episodesWithTitleOnlyEvidence": 9446,
     "method": "flat-transcript-first-time-shares",
     "note": "Flat themes. Hours are within-episode time shares. Evidence: transcript → notes → title/show. Geo + actors from title/show; show priors baseline known coverage. Scrubs production/platform boilerplate; theme min_hits apply to short and long text; hard-news entertainment needs title cue or substance body terms (not bare leftover music/soundbites)."
   },
@@ -28,7 +28,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6145,
-      "hours": 1055.31,
+      "hours": 1055.3,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -40,9 +40,9 @@
         "2026": 917
       },
       "evidence": {
-        "title": 2774,
+        "title": 2773,
         "notes": 428,
-        "transcript": 2943
+        "transcript": 2944
       },
       "samples": [
         {
@@ -103,7 +103,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 4166,
-      "hours": 971.05,
+      "hours": 970.62,
       "byYear": {
         "2019": 264,
         "2020": 446,
@@ -116,8 +116,8 @@
       },
       "evidence": {
         "title": 1090,
-        "notes": 2500,
-        "transcript": 576
+        "notes": 2496,
+        "transcript": 580
       },
       "samples": [
         {
@@ -178,7 +178,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 2681,
-      "hours": 769.7,
+      "hours": 769.27,
       "byYear": {
         "2019": 199,
         "2020": 279,
@@ -191,8 +191,8 @@
       },
       "evidence": {
         "title": 874,
-        "notes": 1652,
-        "transcript": 155
+        "notes": 1648,
+        "transcript": 159
       },
       "samples": [
         {
@@ -253,7 +253,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5666,
-      "hours": 732.98,
+      "hours": 732.29,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -265,9 +265,9 @@
         "2026": 1095
       },
       "evidence": {
-        "title": 1379,
-        "notes": 1059,
-        "transcript": 3228
+        "title": 1376,
+        "notes": 1058,
+        "transcript": 3232
       },
       "samples": [
         {
@@ -402,8 +402,8 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2463,
-      "hours": 312.59,
+      "count": 2465,
+      "hours": 312.52,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -412,18 +412,24 @@
         "2023": 294,
         "2024": 412,
         "2025": 609,
-        "2026": 536
+        "2026": 538
       },
       "evidence": {
-        "title": 372,
+        "title": 370,
         "notes": 767,
-        "transcript": 1324
+        "transcript": 1328
       },
       "samples": [
         {
           "i": 13,
           "e": "Victoria: Messiahs and naughty boys",
           "p": "Politics Now",
+          "d": "2026-10-22"
+        },
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
           "d": "2026-10-22"
         },
         {
@@ -461,12 +467,6 @@
           "e": "The Exclusive Brethren and the rare public grilling of its ‘Man of God’",
           "p": "The Morning Edition",
           "d": "2026-10-19"
-        },
-        {
-          "i": 72,
-          "e": "Is Josh Frydenberg coming for Angus Taylor?",
-          "p": "7am",
-          "d": "2026-10-17"
         }
       ],
       "children": []
@@ -477,8 +477,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3251,
-      "hours": 244.24,
+      "count": 3253,
+      "hours": 244.26,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -487,12 +487,12 @@
         "2023": 538,
         "2024": 551,
         "2025": 744,
-        "2026": 709
+        "2026": 711
       },
       "evidence": {
         "title": 417,
-        "notes": 1175,
-        "transcript": 1659
+        "notes": 1174,
+        "transcript": 1662
       },
       "samples": [
         {
@@ -500,6 +500,12 @@
           "e": "ASEAN in a Multipolar World",
           "p": "Beyond the Ballot Box",
           "d": "2026-10-23"
+        },
+        {
+          "i": 13,
+          "e": "Victoria: Messiahs and naughty boys",
+          "p": "Politics Now",
+          "d": "2026-10-22"
         },
         {
           "i": 21,
@@ -536,12 +542,6 @@
           "e": "An ugly internal Greens war",
           "p": "Politics Now",
           "d": "2026-10-19"
-        },
-        {
-          "i": 71,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-18"
         }
       ],
       "children": []
@@ -553,7 +553,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2575,
-      "hours": 240.84,
+      "hours": 240.83,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -565,9 +565,9 @@
         "2026": 570
       },
       "evidence": {
-        "title": 519,
+        "title": 518,
         "notes": 408,
-        "transcript": 1648
+        "transcript": 1649
       },
       "samples": [
         {
@@ -702,8 +702,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2901,
-      "hours": 205.75,
+      "count": 2903,
+      "hours": 205.8,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -712,14 +712,20 @@
         "2023": 472,
         "2024": 548,
         "2025": 730,
-        "2026": 757
+        "2026": 759
       },
       "evidence": {
         "title": 3,
         "notes": 554,
-        "transcript": 2344
+        "transcript": 2346
       },
       "samples": [
+        {
+          "i": 9,
+          "e": "Democratic Surrogates Campaign, US & Israel Plan Iran Strikes, Tesla SpaceX Merger",
+          "p": "Up First from NPR",
+          "d": "2026-10-23"
+        },
         {
           "i": 23,
           "e": "Donald Trump is becoming Vladimir Putin: Hartcher",
@@ -761,12 +767,6 @@
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
           "p": "Xadrez Verbal",
           "d": "2026-10-18"
-        },
-        {
-          "i": 78,
-          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
         }
       ],
       "children": []
@@ -777,8 +777,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1664,
-      "hours": 166.45,
+      "count": 1665,
+      "hours": 166.79,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -787,14 +787,26 @@
         "2023": 280,
         "2024": 350,
         "2025": 383,
-        "2026": 320
+        "2026": 321
       },
       "evidence": {
         "title": 31,
-        "notes": 719,
-        "transcript": 914
+        "notes": 718,
+        "transcript": 916
       },
       "samples": [
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
+        {
+          "i": 16,
+          "e": "A kinder, gentler politics",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 31,
           "e": "How do we change the political tone?",
@@ -830,18 +842,6 @@
           "e": "A sitting week with spooks and ghosts",
           "p": "Politics Now",
           "d": "2026-10-15"
-        },
-        {
-          "i": 108,
-          "e": "Got a problem? Just text the PM",
-          "p": "Politics Now",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 112,
-          "e": "Curtin's Cast Ep 73 - 13 October 2026 - George Megalogenis on Australia's 3 Great Shocks",
-          "p": "Curtin’s Cast",
-          "d": "2026-10-13"
         }
       ],
       "children": []
@@ -927,8 +927,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1574,
-      "hours": 123.92,
+      "count": 1575,
+      "hours": 123.96,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -937,14 +937,20 @@
         "2023": 267,
         "2024": 311,
         "2025": 438,
-        "2026": 455
+        "2026": 456
       },
       "evidence": {
         "title": 76,
         "notes": 92,
-        "transcript": 1406
+        "transcript": 1407
       },
       "samples": [
+        {
+          "i": 9,
+          "e": "Democratic Surrogates Campaign, US & Israel Plan Iran Strikes, Tesla SpaceX Merger",
+          "p": "Up First from NPR",
+          "d": "2026-10-23"
+        },
         {
           "i": 23,
           "e": "Donald Trump is becoming Vladimir Putin: Hartcher",
@@ -985,12 +991,6 @@
           "i": 80,
           "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
           "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 81,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
           "d": "2026-10-16"
         }
       ],
@@ -1077,8 +1077,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1470,
-      "hours": 116.12,
+      "count": 1474,
+      "hours": 116.32,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -1087,14 +1087,20 @@
         "2023": 198,
         "2024": 209,
         "2025": 480,
-        "2026": 439
+        "2026": 443
       },
       "evidence": {
         "title": 59,
         "notes": 154,
-        "transcript": 1257
+        "transcript": 1261
       },
       "samples": [
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
         {
           "i": 19,
           "e": "Why You Can’t Capitulate to Trump",
@@ -1136,12 +1142,6 @@
           "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
           "p": "Foro de Teresina",
           "d": "2026-10-17"
-        },
-        {
-          "i": 81,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
-          "d": "2026-10-16"
         }
       ],
       "children": []
@@ -1227,8 +1227,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1033,
-      "hours": 106.24,
+      "count": 1035,
+      "hours": 106.25,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -1237,12 +1237,12 @@
         "2023": 161,
         "2024": 172,
         "2025": 245,
-        "2026": 123
+        "2026": 125
       },
       "evidence": {
         "title": 2,
-        "notes": 560,
-        "transcript": 471
+        "notes": 559,
+        "transcript": 474
       },
       "samples": [
         {
@@ -1315,9 +1315,9 @@
         "2026": 101
       },
       "evidence": {
-        "title": 184,
+        "title": 183,
         "notes": 193,
-        "transcript": 491
+        "transcript": 492
       },
       "samples": [
         {
@@ -1452,8 +1452,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 1123,
-      "hours": 93.78,
+      "count": 1124,
+      "hours": 93.9,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -1462,14 +1462,20 @@
         "2023": 152,
         "2024": 159,
         "2025": 277,
-        "2026": 341
+        "2026": 342
       },
       "evidence": {
         "title": 85,
-        "notes": 192,
-        "transcript": 846
+        "notes": 191,
+        "transcript": 848
       },
       "samples": [
+        {
+          "i": 13,
+          "e": "Victoria: Messiahs and naughty boys",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 62,
           "e": "An ugly internal Greens war",
@@ -1511,12 +1517,6 @@
           "e": "Got a problem? Just text the PM",
           "p": "Politics Now",
           "d": "2026-10-14"
-        },
-        {
-          "i": 117,
-          "e": "'Spicy' late night letters about an AI world",
-          "p": "Politics Now",
-          "d": "2026-10-13"
         }
       ],
       "children": []
@@ -1527,8 +1527,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 872,
-      "hours": 93.29,
+      "count": 877,
+      "hours": 93.59,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -1537,14 +1537,26 @@
         "2023": 160,
         "2024": 190,
         "2025": 199,
-        "2026": 213
+        "2026": 218
       },
       "evidence": {
         "title": 4,
         "notes": 418,
-        "transcript": 450
+        "transcript": 455
       },
       "samples": [
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
+        {
+          "i": 16,
+          "e": "A kinder, gentler politics",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 20,
           "e": "How can we protect women in politics?",
@@ -1579,18 +1591,6 @@
           "i": 121,
           "e": "Will the ‘Albo-rithm’ censor the internet?",
           "p": "7am",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 126,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 134,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
           "d": "2026-10-12"
         }
       ],
@@ -1902,8 +1902,8 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 892,
-      "hours": 64.21,
+      "count": 893,
+      "hours": 64.26,
       "byYear": {
         "2020": 42,
         "2021": 36,
@@ -1911,14 +1911,20 @@
         "2023": 175,
         "2024": 176,
         "2025": 263,
-        "2026": 167
+        "2026": 168
       },
       "evidence": {
         "title": 5,
         "notes": 155,
-        "transcript": 732
+        "transcript": 733
       },
       "samples": [
+        {
+          "i": 16,
+          "e": "A kinder, gentler politics",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 31,
           "e": "How do we change the political tone?",
@@ -1960,12 +1966,6 @@
           "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
           "p": "Xadrez Verbal",
           "d": "2026-10-12"
-        },
-        {
-          "i": 153,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
         }
       ],
       "children": []
@@ -1977,7 +1977,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 486,
-      "hours": 63.7,
+      "hours": 63.65,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -1990,8 +1990,8 @@
       },
       "evidence": {
         "title": 27,
-        "notes": 129,
-        "transcript": 330
+        "notes": 127,
+        "transcript": 332
       },
       "samples": [
         {
@@ -2426,8 +2426,8 @@
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 389,
-      "hours": 54.12,
+      "count": 390,
+      "hours": 54.17,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -2436,12 +2436,12 @@
         "2023": 45,
         "2024": 60,
         "2025": 100,
-        "2026": 106
+        "2026": 107
       },
       "evidence": {
         "title": 0,
         "notes": 150,
-        "transcript": 239
+        "transcript": 240
       },
       "samples": [
         {
@@ -2874,8 +2874,8 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 413,
-      "hours": 44.58,
+      "count": 414,
+      "hours": 44.6,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -2884,14 +2884,20 @@
         "2023": 86,
         "2024": 111,
         "2025": 50,
-        "2026": 48
+        "2026": 49
       },
       "evidence": {
         "title": 50,
         "notes": 137,
-        "transcript": 226
+        "transcript": 227
       },
       "samples": [
+        {
+          "i": 13,
+          "e": "Victoria: Messiahs and naughty boys",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 20,
           "e": "How can we protect women in politics?",
@@ -2933,12 +2939,6 @@
           "e": "Curtin's Cast Episode 71 - 30 September 2026 - Viren Naidu on India's Gen Z 'Cockroach' Party",
           "p": "Curtin’s Cast",
           "d": "2026-09-30"
-        },
-        {
-          "i": 435,
-          "e": "Insegurança: quando a violência toma novas e velhas formas",
-          "p": "Durma com essa",
-          "d": "2026-09-11"
         }
       ],
       "children": []
@@ -3323,8 +3323,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 372,
-      "hours": 35.49,
+      "count": 373,
+      "hours": 35.57,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -3333,12 +3333,12 @@
         "2023": 50,
         "2024": 59,
         "2025": 80,
-        "2026": 59
+        "2026": 60
       },
       "evidence": {
         "title": 3,
         "notes": 179,
-        "transcript": 190
+        "transcript": 191
       },
       "samples": [
         {
@@ -3473,8 +3473,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 375,
-      "hours": 34.15,
+      "count": 377,
+      "hours": 34.23,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -3483,12 +3483,12 @@
         "2023": 54,
         "2024": 62,
         "2025": 89,
-        "2026": 100
+        "2026": 102
       },
       "evidence": {
         "title": 11,
         "notes": 97,
-        "transcript": 267
+        "transcript": 269
       },
       "samples": [
         {
@@ -3623,8 +3623,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 556,
-      "hours": 29.81,
+      "count": 557,
+      "hours": 29.83,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -3633,12 +3633,12 @@
         "2023": 64,
         "2024": 92,
         "2025": 157,
-        "2026": 135
+        "2026": 136
       },
       "evidence": {
         "title": 0,
         "notes": 159,
-        "transcript": 397
+        "transcript": 398
       },
       "samples": [
         {
@@ -3846,7 +3846,7 @@
       "kind": "story",
       "facet": "story",
       "count": 360,
-      "hours": 26.58,
+      "hours": 26.53,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -3857,9 +3857,9 @@
         "2026": 259
       },
       "evidence": {
-        "title": 55,
+        "title": 54,
         "notes": 42,
-        "transcript": 263
+        "transcript": 264
       },
       "samples": [
         {
@@ -4965,22 +4965,34 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 166,
-      "hours": 16.02,
+      "count": 168,
+      "hours": 16.08,
       "byYear": {
         "2021": 4,
         "2022": 10,
         "2023": 22,
         "2024": 31,
         "2025": 44,
-        "2026": 55
+        "2026": 57
       },
       "evidence": {
         "title": 2,
         "notes": 30,
-        "transcript": 134
+        "transcript": 136
       },
       "samples": [
+        {
+          "i": 9,
+          "e": "Democratic Surrogates Campaign, US & Israel Plan Iran Strikes, Tesla SpaceX Merger",
+          "p": "Up First from NPR",
+          "d": "2026-10-23"
+        },
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
         {
           "i": 80,
           "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
@@ -5016,18 +5028,6 @@
           "e": "Australia vs the algorithm",
           "p": "ABC News Daily",
           "d": "2026-09-10"
-        },
-        {
-          "i": 523,
-          "e": "Mushroom murder appeal: The jury issue that could decide Erin Patterson's fate",
-          "p": "The Morning Edition",
-          "d": "2026-09-02"
-        },
-        {
-          "i": 539,
-          "e": "Will online safety be Albanese's legacy policy?",
-          "p": "Politics Now",
-          "d": "2026-09-01"
         }
       ],
       "children": []
@@ -6529,7 +6529,7 @@
       "kind": "local",
       "facet": "local",
       "count": 44,
-      "hours": 6.69,
+      "hours": 6.89,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -6541,8 +6541,8 @@
       },
       "evidence": {
         "title": 6,
-        "notes": 22,
-        "transcript": 16
+        "notes": 20,
+        "transcript": 18
       },
       "samples": [
         {
@@ -6827,7 +6827,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 90,
-      "hours": 5.92,
+      "hours": 5.86,
       "byYear": {
         "2020": 6,
         "2021": 10,
@@ -6839,8 +6839,8 @@
       },
       "evidence": {
         "title": 0,
-        "notes": 32,
-        "transcript": 58
+        "notes": 30,
+        "transcript": 60
       },
       "samples": [
         {
@@ -7040,6 +7040,79 @@
       "children": []
     },
     {
+      "id": "id-elections",
+      "name": "Indonesian elections",
+      "blurb": "Elections and campaigns in Indonesia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 35,
+      "hours": 4.6,
+      "byYear": {
+        "2019": 2,
+        "2021": 1,
+        "2023": 2,
+        "2024": 14,
+        "2025": 14,
+        "2026": 2
+      },
+      "evidence": {
+        "title": 6,
+        "notes": 18,
+        "transcript": 11
+      },
+      "samples": [
+        {
+          "i": 1940,
+          "e": "Indonesia Rising: Can Australia keep up with our neighbour's rapid growth?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-04-20"
+        },
+        {
+          "i": 2611,
+          "e": "Your Call: Japan's 'Iron Lady' and Thailand's 'Cannabis King'; Indonesia commits troops to Gaza",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-02-17"
+        },
+        {
+          "i": 3944,
+          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
+          "p": "Southeast Asia Radio",
+          "d": "2025-10-08"
+        },
+        {
+          "i": 4071,
+          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
+          "p": "CNA Correspondent",
+          "d": "2025-09-29"
+        },
+        {
+          "i": 4347,
+          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-02"
+        },
+        {
+          "i": 4419,
+          "e": "Conversations: Indonesian foreign policy under President Prabowo",
+          "p": "Lowy Institute",
+          "d": "2025-08-26"
+        },
+        {
+          "i": 5029,
+          "e": "What does Putin want in Indonesia?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2025-06-30"
+        },
+        {
+          "i": 5270,
+          "e": "Development Futures: Indonesia’s economic policies under Prabowo — new era or same path?",
+          "p": "Lowy Institute",
+          "d": "2025-06-11"
+        }
+      ],
+      "children": []
+    },
+    {
       "id": "ph-government",
       "name": "Philippine government",
       "blurb": "Philippine government and politics.",
@@ -7107,79 +7180,6 @@
           "e": "Duterte in the Hague: The Philippines and the Geopolitics of International Law",
           "p": "Asia Geopolitics",
           "d": "2025-04-21"
-        }
-      ],
-      "children": []
-    },
-    {
-      "id": "id-elections",
-      "name": "Indonesian elections",
-      "blurb": "Elections and campaigns in Indonesia.",
-      "kind": "local",
-      "facet": "local",
-      "count": 34,
-      "hours": 4.47,
-      "byYear": {
-        "2019": 2,
-        "2021": 1,
-        "2023": 2,
-        "2024": 14,
-        "2025": 14,
-        "2026": 1
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 18,
-        "transcript": 10
-      },
-      "samples": [
-        {
-          "i": 2611,
-          "e": "Your Call: Japan's 'Iron Lady' and Thailand's 'Cannabis King'; Indonesia commits troops to Gaza",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-02-17"
-        },
-        {
-          "i": 3944,
-          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
-          "p": "Southeast Asia Radio",
-          "d": "2025-10-08"
-        },
-        {
-          "i": 4071,
-          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
-          "p": "CNA Correspondent",
-          "d": "2025-09-29"
-        },
-        {
-          "i": 4347,
-          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2025-09-02"
-        },
-        {
-          "i": 4419,
-          "e": "Conversations: Indonesian foreign policy under President Prabowo",
-          "p": "Lowy Institute",
-          "d": "2025-08-26"
-        },
-        {
-          "i": 5029,
-          "e": "What does Putin want in Indonesia?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2025-06-30"
-        },
-        {
-          "i": 5270,
-          "e": "Development Futures: Indonesia’s economic policies under Prabowo — new era or same path?",
-          "p": "Lowy Institute",
-          "d": "2025-06-11"
-        },
-        {
-          "i": 5318,
-          "e": "EP92: Indonesia’s Prabowo Navigates Global Shifts with Dr Yohannes Sulaiman",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2025-06-09"
         }
       ],
       "children": []
@@ -8380,7 +8380,7 @@
       "kind": "local",
       "facet": "local",
       "count": 6145,
-      "hours": 1055.31,
+      "hours": 1055.3,
       "byYear": {
         "2019": 497,
         "2020": 686,
@@ -8392,9 +8392,9 @@
         "2026": 917
       },
       "evidence": {
-        "title": 2774,
+        "title": 2773,
         "notes": 428,
-        "transcript": 2943
+        "transcript": 2944
       },
       "samples": [
         {
@@ -8454,7 +8454,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 4166,
-      "hours": 971.05,
+      "hours": 970.62,
       "byYear": {
         "2019": 264,
         "2020": 446,
@@ -8467,8 +8467,8 @@
       },
       "evidence": {
         "title": 1090,
-        "notes": 2500,
-        "transcript": 576
+        "notes": 2496,
+        "transcript": 580
       },
       "samples": [
         {
@@ -8528,7 +8528,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 2681,
-      "hours": 769.7,
+      "hours": 769.27,
       "byYear": {
         "2019": 199,
         "2020": 279,
@@ -8541,8 +8541,8 @@
       },
       "evidence": {
         "title": 874,
-        "notes": 1652,
-        "transcript": 155
+        "notes": 1648,
+        "transcript": 159
       },
       "samples": [
         {
@@ -8602,7 +8602,7 @@
       "kind": "local",
       "facet": "local",
       "count": 5666,
-      "hours": 732.98,
+      "hours": 732.29,
       "byYear": {
         "2019": 135,
         "2020": 427,
@@ -8614,9 +8614,9 @@
         "2026": 1095
       },
       "evidence": {
-        "title": 1379,
-        "notes": 1059,
-        "transcript": 3228
+        "title": 1376,
+        "notes": 1058,
+        "transcript": 3232
       },
       "samples": [
         {
@@ -8749,8 +8749,8 @@
       "blurb": "Federal and state elections in Australia.",
       "kind": "local",
       "facet": "local",
-      "count": 2463,
-      "hours": 312.59,
+      "count": 2465,
+      "hours": 312.52,
       "byYear": {
         "2019": 81,
         "2020": 163,
@@ -8759,18 +8759,24 @@
         "2023": 294,
         "2024": 412,
         "2025": 609,
-        "2026": 536
+        "2026": 538
       },
       "evidence": {
-        "title": 372,
+        "title": 370,
         "notes": 767,
-        "transcript": 1324
+        "transcript": 1328
       },
       "samples": [
         {
           "i": 13,
           "e": "Victoria: Messiahs and naughty boys",
           "p": "Politics Now",
+          "d": "2026-10-22"
+        },
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
           "d": "2026-10-22"
         },
         {
@@ -8808,12 +8814,6 @@
           "e": "The Exclusive Brethren and the rare public grilling of its ‘Man of God’",
           "p": "The Morning Edition",
           "d": "2026-10-19"
-        },
-        {
-          "i": 72,
-          "e": "Is Josh Frydenberg coming for Angus Taylor?",
-          "p": "7am",
-          "d": "2026-10-17"
         }
       ]
     },
@@ -8823,8 +8823,8 @@
       "blurb": "Economy, markets, inflation, trade.",
       "kind": "domain",
       "facet": "domain",
-      "count": 3251,
-      "hours": 244.24,
+      "count": 3253,
+      "hours": 244.26,
       "byYear": {
         "2019": 51,
         "2020": 185,
@@ -8833,12 +8833,12 @@
         "2023": 538,
         "2024": 551,
         "2025": 744,
-        "2026": 709
+        "2026": 711
       },
       "evidence": {
         "title": 417,
-        "notes": 1175,
-        "transcript": 1659
+        "notes": 1174,
+        "transcript": 1662
       },
       "samples": [
         {
@@ -8846,6 +8846,12 @@
           "e": "ASEAN in a Multipolar World",
           "p": "Beyond the Ballot Box",
           "d": "2026-10-23"
+        },
+        {
+          "i": 13,
+          "e": "Victoria: Messiahs and naughty boys",
+          "p": "Politics Now",
+          "d": "2026-10-22"
         },
         {
           "i": 21,
@@ -8882,12 +8888,6 @@
           "e": "An ugly internal Greens war",
           "p": "Politics Now",
           "d": "2026-10-19"
-        },
-        {
-          "i": 71,
-          "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
-          "p": "Xadrez Verbal",
-          "d": "2026-10-18"
         }
       ]
     },
@@ -8898,7 +8898,7 @@
       "kind": "local",
       "facet": "local",
       "count": 2575,
-      "hours": 240.84,
+      "hours": 240.83,
       "byYear": {
         "2019": 34,
         "2020": 101,
@@ -8910,9 +8910,9 @@
         "2026": 570
       },
       "evidence": {
-        "title": 519,
+        "title": 518,
         "notes": 408,
-        "transcript": 1648
+        "transcript": 1649
       },
       "samples": [
         {
@@ -9045,8 +9045,8 @@
       "blurb": "Military conflict and defence.",
       "kind": "domain",
       "facet": "domain",
-      "count": 2901,
-      "hours": 205.75,
+      "count": 2903,
+      "hours": 205.8,
       "byYear": {
         "2019": 3,
         "2020": 58,
@@ -9055,14 +9055,20 @@
         "2023": 472,
         "2024": 548,
         "2025": 730,
-        "2026": 757
+        "2026": 759
       },
       "evidence": {
         "title": 3,
         "notes": 554,
-        "transcript": 2344
+        "transcript": 2346
       },
       "samples": [
+        {
+          "i": 9,
+          "e": "Democratic Surrogates Campaign, US & Israel Plan Iran Strikes, Tesla SpaceX Merger",
+          "p": "Up First from NPR",
+          "d": "2026-10-23"
+        },
         {
           "i": 23,
           "e": "Donald Trump is becoming Vladimir Putin: Hartcher",
@@ -9104,12 +9110,6 @@
           "e": "Xadrez Verbal #479 Eleições no Brasil e América Latina",
           "p": "Xadrez Verbal",
           "d": "2026-10-18"
-        },
-        {
-          "i": 78,
-          "e": "Oregon School Shooting, Russia's View On US-Ukraine Split, DOJ Sues California",
-          "p": "Up First from NPR",
-          "d": "2026-10-16"
         }
       ]
     },
@@ -9119,8 +9119,8 @@
       "blurb": "Australian media and press politics.",
       "kind": "local",
       "facet": "local",
-      "count": 1664,
-      "hours": 166.45,
+      "count": 1665,
+      "hours": 166.79,
       "byYear": {
         "2019": 2,
         "2020": 114,
@@ -9129,14 +9129,26 @@
         "2023": 280,
         "2024": 350,
         "2025": 383,
-        "2026": 320
+        "2026": 321
       },
       "evidence": {
         "title": 31,
-        "notes": 719,
-        "transcript": 914
+        "notes": 718,
+        "transcript": 916
       },
       "samples": [
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
+        {
+          "i": 16,
+          "e": "A kinder, gentler politics",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 31,
           "e": "How do we change the political tone?",
@@ -9172,18 +9184,6 @@
           "e": "A sitting week with spooks and ghosts",
           "p": "Politics Now",
           "d": "2026-10-15"
-        },
-        {
-          "i": 108,
-          "e": "Got a problem? Just text the PM",
-          "p": "Politics Now",
-          "d": "2026-10-14"
-        },
-        {
-          "i": 112,
-          "e": "Curtin's Cast Ep 73 - 13 October 2026 - George Megalogenis on Australia's 3 Great Shocks",
-          "p": "Curtin’s Cast",
-          "d": "2026-10-13"
         }
       ]
     },
@@ -9267,8 +9267,8 @@
       "blurb": "US military and Pentagon.",
       "kind": "local",
       "facet": "local",
-      "count": 1574,
-      "hours": 123.92,
+      "count": 1575,
+      "hours": 123.96,
       "byYear": {
         "2019": 13,
         "2020": 8,
@@ -9277,14 +9277,20 @@
         "2023": 267,
         "2024": 311,
         "2025": 438,
-        "2026": 455
+        "2026": 456
       },
       "evidence": {
         "title": 76,
         "notes": 92,
-        "transcript": 1406
+        "transcript": 1407
       },
       "samples": [
+        {
+          "i": 9,
+          "e": "Democratic Surrogates Campaign, US & Israel Plan Iran Strikes, Tesla SpaceX Merger",
+          "p": "Up First from NPR",
+          "d": "2026-10-23"
+        },
         {
           "i": 23,
           "e": "Donald Trump is becoming Vladimir Putin: Hartcher",
@@ -9325,12 +9331,6 @@
           "i": 80,
           "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
           "p": "Up First from NPR",
-          "d": "2026-10-16"
-        },
-        {
-          "i": 81,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
           "d": "2026-10-16"
         }
       ]
@@ -9415,8 +9415,8 @@
       "blurb": "Ideas, society, and everyday life.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1470,
-      "hours": 116.12,
+      "count": 1474,
+      "hours": 116.32,
       "byYear": {
         "2019": 1,
         "2020": 15,
@@ -9425,14 +9425,20 @@
         "2023": 198,
         "2024": 209,
         "2025": 480,
-        "2026": 439
+        "2026": 443
       },
       "evidence": {
         "title": 59,
         "notes": 154,
-        "transcript": 1257
+        "transcript": 1261
       },
       "samples": [
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
         {
           "i": 19,
           "e": "Why You Can’t Capitulate to Trump",
@@ -9474,12 +9480,6 @@
           "e": "Lula no páreo e Kassio Nunes na piscina de Vorcaro",
           "p": "Foro de Teresina",
           "d": "2026-10-17"
-        },
-        {
-          "i": 81,
-          "e": "The U.S. Tried to Choke Russia’s Energy Market. Then It Made a Diesel Deal.",
-          "p": "The Daily",
-          "d": "2026-10-16"
         }
       ]
     },
@@ -9563,8 +9563,8 @@
       "blurb": "Schools and universities.",
       "kind": "domain",
       "facet": "domain",
-      "count": 1033,
-      "hours": 106.24,
+      "count": 1035,
+      "hours": 106.25,
       "byYear": {
         "2019": 3,
         "2020": 141,
@@ -9573,12 +9573,12 @@
         "2023": 161,
         "2024": 172,
         "2025": 245,
-        "2026": 123
+        "2026": 125
       },
       "evidence": {
         "title": 2,
-        "notes": 560,
-        "transcript": 471
+        "notes": 559,
+        "transcript": 474
       },
       "samples": [
         {
@@ -9650,9 +9650,9 @@
         "2026": 101
       },
       "evidence": {
-        "title": 184,
+        "title": 183,
         "notes": 193,
-        "transcript": 491
+        "transcript": 492
       },
       "samples": [
         {
@@ -9785,8 +9785,8 @@
       "blurb": "Australian economy, rates, budgets.",
       "kind": "local",
       "facet": "local",
-      "count": 1123,
-      "hours": 93.78,
+      "count": 1124,
+      "hours": 93.9,
       "byYear": {
         "2019": 10,
         "2020": 72,
@@ -9795,14 +9795,20 @@
         "2023": 152,
         "2024": 159,
         "2025": 277,
-        "2026": 341
+        "2026": 342
       },
       "evidence": {
         "title": 85,
-        "notes": 192,
-        "transcript": 846
+        "notes": 191,
+        "transcript": 848
       },
       "samples": [
+        {
+          "i": 13,
+          "e": "Victoria: Messiahs and naughty boys",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 62,
           "e": "An ugly internal Greens war",
@@ -9844,12 +9850,6 @@
           "e": "Got a problem? Just text the PM",
           "p": "Politics Now",
           "d": "2026-10-14"
-        },
-        {
-          "i": 117,
-          "e": "'Spicy' late night letters about an AI world",
-          "p": "Politics Now",
-          "d": "2026-10-13"
         }
       ]
     },
@@ -9859,8 +9859,8 @@
       "blurb": "Social platforms and big tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 872,
-      "hours": 93.29,
+      "count": 877,
+      "hours": 93.59,
       "byYear": {
         "2019": 5,
         "2020": 25,
@@ -9869,14 +9869,26 @@
         "2023": 160,
         "2024": 190,
         "2025": 199,
-        "2026": 213
+        "2026": 218
       },
       "evidence": {
         "title": 4,
         "notes": 418,
-        "transcript": 450
+        "transcript": 455
       },
       "samples": [
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
+        {
+          "i": 16,
+          "e": "A kinder, gentler politics",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 20,
           "e": "How can we protect women in politics?",
@@ -9911,18 +9923,6 @@
           "i": 121,
           "e": "Will the ‘Albo-rithm’ censor the internet?",
           "p": "7am",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 126,
-          "e": "She’s Been to Gaza. She Met With the Iranians. Now She Has a Warning.",
-          "p": "The Daily",
-          "d": "2026-10-12"
-        },
-        {
-          "i": 134,
-          "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
-          "p": "Xadrez Verbal",
           "d": "2026-10-12"
         }
       ]
@@ -10229,8 +10229,8 @@
       "blurb": "Health and medicine.",
       "kind": "domain",
       "facet": "domain",
-      "count": 892,
-      "hours": 64.21,
+      "count": 893,
+      "hours": 64.26,
       "byYear": {
         "2020": 42,
         "2021": 36,
@@ -10238,14 +10238,20 @@
         "2023": 175,
         "2024": 176,
         "2025": 263,
-        "2026": 167
+        "2026": 168
       },
       "evidence": {
         "title": 5,
         "notes": 155,
-        "transcript": 732
+        "transcript": 733
       },
       "samples": [
+        {
+          "i": 16,
+          "e": "A kinder, gentler politics",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 31,
           "e": "How do we change the political tone?",
@@ -10287,12 +10293,6 @@
           "e": "Xadrez Verbal #478 Política Externa Brasileira nas Eleições",
           "p": "Xadrez Verbal",
           "d": "2026-10-12"
-        },
-        {
-          "i": 153,
-          "e": "A Failed Execution and the Future of the Death Penalty",
-          "p": "The Daily",
-          "d": "2026-10-08"
         }
       ]
     },
@@ -10303,7 +10303,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 486,
-      "hours": 63.7,
+      "hours": 63.65,
       "byYear": {
         "2019": 6,
         "2020": 5,
@@ -10316,8 +10316,8 @@
       },
       "evidence": {
         "title": 27,
-        "notes": 129,
-        "transcript": 330
+        "notes": 127,
+        "transcript": 332
       },
       "samples": [
         {
@@ -10746,8 +10746,8 @@
       "blurb": "Books and literature.",
       "kind": "domain",
       "facet": "domain",
-      "count": 389,
-      "hours": 54.12,
+      "count": 390,
+      "hours": 54.17,
       "byYear": {
         "2019": 1,
         "2020": 16,
@@ -10756,12 +10756,12 @@
         "2023": 45,
         "2024": 60,
         "2025": 100,
-        "2026": 106
+        "2026": 107
       },
       "evidence": {
         "title": 0,
         "notes": 150,
-        "transcript": 239
+        "transcript": 240
       },
       "samples": [
         {
@@ -11188,8 +11188,8 @@
       "blurb": "Feminism, abortion, women’s rights.",
       "kind": "frame",
       "facet": "frame",
-      "count": 413,
-      "hours": 44.58,
+      "count": 414,
+      "hours": 44.6,
       "byYear": {
         "2019": 4,
         "2020": 36,
@@ -11198,14 +11198,20 @@
         "2023": 86,
         "2024": 111,
         "2025": 50,
-        "2026": 48
+        "2026": 49
       },
       "evidence": {
         "title": 50,
         "notes": 137,
-        "transcript": 226
+        "transcript": 227
       },
       "samples": [
+        {
+          "i": 13,
+          "e": "Victoria: Messiahs and naughty boys",
+          "p": "Politics Now",
+          "d": "2026-10-22"
+        },
         {
           "i": 20,
           "e": "How can we protect women in politics?",
@@ -11247,12 +11253,6 @@
           "e": "Curtin's Cast Episode 71 - 30 September 2026 - Viren Naidu on India's Gen Z 'Cockroach' Party",
           "p": "Curtin’s Cast",
           "d": "2026-09-30"
-        },
-        {
-          "i": 435,
-          "e": "Insegurança: quando a violência toma novas e velhas formas",
-          "p": "Durma com essa",
-          "d": "2026-09-11"
         }
       ]
     },
@@ -11631,8 +11631,8 @@
       "blurb": "Science and research.",
       "kind": "domain",
       "facet": "domain",
-      "count": 372,
-      "hours": 35.49,
+      "count": 373,
+      "hours": 35.57,
       "byYear": {
         "2019": 1,
         "2020": 52,
@@ -11641,12 +11641,12 @@
         "2023": 50,
         "2024": 59,
         "2025": 80,
-        "2026": 59
+        "2026": 60
       },
       "evidence": {
         "title": 3,
         "notes": 179,
-        "transcript": 190
+        "transcript": 191
       },
       "samples": [
         {
@@ -11779,8 +11779,8 @@
       "blurb": "Digital culture, internet behaviour, creative tech.",
       "kind": "domain",
       "facet": "domain",
-      "count": 375,
-      "hours": 34.15,
+      "count": 377,
+      "hours": 34.23,
       "byYear": {
         "2019": 6,
         "2020": 13,
@@ -11789,12 +11789,12 @@
         "2023": 54,
         "2024": 62,
         "2025": 89,
-        "2026": 100
+        "2026": 102
       },
       "evidence": {
         "title": 11,
         "notes": 97,
-        "transcript": 267
+        "transcript": 269
       },
       "samples": [
         {
@@ -11927,8 +11927,8 @@
       "blurb": "Press and journalism.",
       "kind": "domain",
       "facet": "domain",
-      "count": 556,
-      "hours": 29.81,
+      "count": 557,
+      "hours": 29.83,
       "byYear": {
         "2019": 1,
         "2020": 49,
@@ -11937,12 +11937,12 @@
         "2023": 64,
         "2024": 92,
         "2025": 157,
-        "2026": 135
+        "2026": 136
       },
       "evidence": {
         "title": 0,
         "notes": 159,
-        "transcript": 397
+        "transcript": 398
       },
       "samples": [
         {
@@ -12147,7 +12147,7 @@
       "kind": "story",
       "facet": "story",
       "count": 360,
-      "hours": 26.58,
+      "hours": 26.53,
       "byYear": {
         "2019": 7,
         "2020": 6,
@@ -12158,9 +12158,9 @@
         "2026": 259
       },
       "evidence": {
-        "title": 55,
+        "title": 54,
         "notes": 42,
-        "transcript": 263
+        "transcript": 264
       },
       "samples": [
         {
@@ -13251,22 +13251,34 @@
       "blurb": "Space exploration and satellites.",
       "kind": "domain",
       "facet": "domain",
-      "count": 166,
-      "hours": 16.02,
+      "count": 168,
+      "hours": 16.08,
       "byYear": {
         "2021": 4,
         "2022": 10,
         "2023": 22,
         "2024": 31,
         "2025": 44,
-        "2026": 55
+        "2026": 57
       },
       "evidence": {
         "title": 2,
         "notes": 30,
-        "transcript": 134
+        "transcript": 136
       },
       "samples": [
+        {
+          "i": 9,
+          "e": "Democratic Surrogates Campaign, US & Israel Plan Iran Strikes, Tesla SpaceX Merger",
+          "p": "Up First from NPR",
+          "d": "2026-10-23"
+        },
+        {
+          "i": 15,
+          "e": "Morality first, politics second – Waleed Aly on political violence",
+          "p": "The Morning Edition",
+          "d": "2026-10-22"
+        },
         {
           "i": 80,
           "e": "Trump's Midterm Travel, Ukraine Starshield Restrictions, Houthis Attack Aramco",
@@ -13302,18 +13314,6 @@
           "e": "Australia vs the algorithm",
           "p": "ABC News Daily",
           "d": "2026-09-10"
-        },
-        {
-          "i": 523,
-          "e": "Mushroom murder appeal: The jury issue that could decide Erin Patterson's fate",
-          "p": "The Morning Edition",
-          "d": "2026-09-02"
-        },
-        {
-          "i": 539,
-          "e": "Will online safety be Albanese's legacy policy?",
-          "p": "Politics Now",
-          "d": "2026-09-01"
         }
       ]
     },
@@ -14794,7 +14794,7 @@
       "kind": "local",
       "facet": "local",
       "count": 44,
-      "hours": 6.69,
+      "hours": 6.89,
       "byYear": {
         "2019": 2,
         "2020": 2,
@@ -14806,8 +14806,8 @@
       },
       "evidence": {
         "title": 6,
-        "notes": 22,
-        "transcript": 16
+        "notes": 20,
+        "transcript": 18
       },
       "samples": [
         {
@@ -15088,7 +15088,7 @@
       "kind": "domain",
       "facet": "domain",
       "count": 90,
-      "hours": 5.92,
+      "hours": 5.86,
       "byYear": {
         "2020": 6,
         "2021": 10,
@@ -15100,8 +15100,8 @@
       },
       "evidence": {
         "title": 0,
-        "notes": 32,
-        "transcript": 58
+        "notes": 30,
+        "transcript": 60
       },
       "samples": [
         {
@@ -15298,6 +15298,78 @@
       ]
     },
     {
+      "id": "id-elections",
+      "name": "Indonesian elections",
+      "blurb": "Elections and campaigns in Indonesia.",
+      "kind": "local",
+      "facet": "local",
+      "count": 35,
+      "hours": 4.6,
+      "byYear": {
+        "2019": 2,
+        "2021": 1,
+        "2023": 2,
+        "2024": 14,
+        "2025": 14,
+        "2026": 2
+      },
+      "evidence": {
+        "title": 6,
+        "notes": 18,
+        "transcript": 11
+      },
+      "samples": [
+        {
+          "i": 1940,
+          "e": "Indonesia Rising: Can Australia keep up with our neighbour's rapid growth?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-04-20"
+        },
+        {
+          "i": 2611,
+          "e": "Your Call: Japan's 'Iron Lady' and Thailand's 'Cannabis King'; Indonesia commits troops to Gaza",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2026-02-17"
+        },
+        {
+          "i": 3944,
+          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
+          "p": "Southeast Asia Radio",
+          "d": "2025-10-08"
+        },
+        {
+          "i": 4071,
+          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
+          "p": "CNA Correspondent",
+          "d": "2025-09-29"
+        },
+        {
+          "i": 4347,
+          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
+          "p": "Straight Talk Southeast Asia",
+          "d": "2025-09-02"
+        },
+        {
+          "i": 4419,
+          "e": "Conversations: Indonesian foreign policy under President Prabowo",
+          "p": "Lowy Institute",
+          "d": "2025-08-26"
+        },
+        {
+          "i": 5029,
+          "e": "What does Putin want in Indonesia?",
+          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
+          "d": "2025-06-30"
+        },
+        {
+          "i": 5270,
+          "e": "Development Futures: Indonesia’s economic policies under Prabowo — new era or same path?",
+          "p": "Lowy Institute",
+          "d": "2025-06-11"
+        }
+      ]
+    },
+    {
       "id": "ph-government",
       "name": "Philippine government",
       "blurb": "Philippine government and politics.",
@@ -15365,78 +15437,6 @@
           "e": "Duterte in the Hague: The Philippines and the Geopolitics of International Law",
           "p": "Asia Geopolitics",
           "d": "2025-04-21"
-        }
-      ]
-    },
-    {
-      "id": "id-elections",
-      "name": "Indonesian elections",
-      "blurb": "Elections and campaigns in Indonesia.",
-      "kind": "local",
-      "facet": "local",
-      "count": 34,
-      "hours": 4.47,
-      "byYear": {
-        "2019": 2,
-        "2021": 1,
-        "2023": 2,
-        "2024": 14,
-        "2025": 14,
-        "2026": 1
-      },
-      "evidence": {
-        "title": 6,
-        "notes": 18,
-        "transcript": 10
-      },
-      "samples": [
-        {
-          "i": 2611,
-          "e": "Your Call: Japan's 'Iron Lady' and Thailand's 'Cannabis King'; Indonesia commits troops to Gaza",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2026-02-17"
-        },
-        {
-          "i": 3944,
-          "e": "Indonesia’s Foreign Policy under Prabowo with Evan Laksmana",
-          "p": "Southeast Asia Radio",
-          "d": "2025-10-08"
-        },
-        {
-          "i": 4071,
-          "e": "The tussle for power in Indonesia between President Prabowo and regional leaders",
-          "p": "CNA Correspondent",
-          "d": "2025-09-29"
-        },
-        {
-          "i": 4347,
-          "e": "EP104: Protests in Indonesia with Dr. Rendy Pahrun Wadipalapa",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2025-09-02"
-        },
-        {
-          "i": 4419,
-          "e": "Conversations: Indonesian foreign policy under President Prabowo",
-          "p": "Lowy Institute",
-          "d": "2025-08-26"
-        },
-        {
-          "i": 5029,
-          "e": "What does Putin want in Indonesia?",
-          "p": "Global Roaming with Geraldine Doogue and Hamish Macdonald",
-          "d": "2025-06-30"
-        },
-        {
-          "i": 5270,
-          "e": "Development Futures: Indonesia’s economic policies under Prabowo — new era or same path?",
-          "p": "Lowy Institute",
-          "d": "2025-06-11"
-        },
-        {
-          "i": 5318,
-          "e": "EP92: Indonesia’s Prabowo Navigates Global Shifts with Dr Yohannes Sulaiman",
-          "p": "Straight Talk Southeast Asia",
-          "d": "2025-06-09"
         }
       ]
     },
