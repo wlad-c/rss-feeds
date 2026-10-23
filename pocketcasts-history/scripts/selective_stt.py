@@ -468,8 +468,15 @@ def resolve_audio(episodes: list[dict], idxs: list[int]) -> dict[int, str]:
         print(f"  audio from episodes.csv: {len(audio_for)}/{len(idxs)}", flush=True)
         if len(audio_for) == len(idxs):
             return audio_for
+    audio_for.update(
+        rss_audio(episodes, [i for i in idxs if i not in audio_for])
+    )
+    return audio_for
 
-    # Fallback: current RSS feed enclosures (recent episodes only)
+
+def rss_audio(episodes: list[dict], idxs: list[int]) -> dict[int, str]:
+    """Current RSS feed enclosures (recent episodes only)."""
+    audio_for: dict[int, str] = {}
     by_show: dict[str, list[int]] = defaultdict(list)
     for i in idxs:
         if i in audio_for:
@@ -566,9 +573,18 @@ def main() -> None:
             raw = tdir / f"{idx}.audio"
             wav = tdir / f"{idx}.wav"
             try:
-                if not audio_url_ok(url):
-                    raise RuntimeError("audio URL preflight failed (404/empty)")
-                download_audio(url, raw)
+                try:
+                    if not audio_url_ok(url):
+                        raise RuntimeError("audio URL preflight failed (404/empty)")
+                    download_audio(url, raw)
+                except Exception as exc:  # noqa: BLE001
+                    # Publishers re-upload clips under new URLs; retry via RSS.
+                    alt = rss_audio(episodes, [idx]).get(idx)
+                    if not alt or alt == url:
+                        raise
+                    print(f"  csv audio failed ({exc}); retry via RSS", flush=True)
+                    url = alt
+                    download_audio(url, raw)
                 # Prefer compact mp3/m4a for NoteTakers; wav for local Whisper.
                 text, used = transcribe(
                     raw,
