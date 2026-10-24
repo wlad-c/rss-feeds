@@ -1,0 +1,2219 @@
+/* Listening Log — Apple HIG / Liquid Glass visual system */
+
+:root {
+  /* Semantic system colors (iOS / macOS) */
+  --label: rgba(0, 0, 0, 0.88);
+  --secondary-label: rgba(60, 60, 67, 0.6);
+  --tertiary-label: rgba(60, 60, 67, 0.3);
+  --separator: rgba(60, 60, 67, 0.18);
+  --opaque-separator: #C6C6C8;
+
+  --grouped-bg: #F2F2F7;
+  --grouped-bg-elevated: #FFFFFF;
+  --fill: rgba(120, 120, 128, 0.16);
+  --fill-secondary: rgba(120, 120, 128, 0.12);
+  --fill-tertiary: rgba(120, 120, 128, 0.08);
+
+  --system-blue: #007AFF;
+  --system-blue-fill: #007AFF;
+  --system-green: #34C759;
+  --system-orange: #FF9500;
+  --system-red: #FF3B30;
+  --system-teal: #30B0C7;
+  --system-indigo: #5856D6;
+  --system-gray: #8E8E93;
+  --system-yellow: #FFCC00;
+  --on-accent: #FFFFFF;
+
+  --blue-soft: rgba(0, 122, 255, 0.12);
+  --green-soft: rgba(52, 199, 89, 0.14);
+  --orange-soft: rgba(255, 149, 0, 0.14);
+
+  --chrome: rgba(242, 242, 247, 0.78);
+  --chrome-solid: #F2F2F7;
+  --glass: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-highlight: inset 0 0.5px 0 rgba(255, 255, 255, 0.65);
+  --shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  --bar-track: rgba(120, 120, 128, 0.16);
+  --tag-bg: rgba(120, 120, 128, 0.14);
+  --heat-empty: #E5E5EA;
+  --heat-1: #B0D0FF;
+  --heat-2: #64A8FF;
+  --heat-3: #007AFF;
+  --heat-4: #0040DD;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-control: 12px;
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Helvetica Neue", "Segoe UI", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif;
+
+  /* Compat aliases used across markup / charts */
+  --ink: var(--label);
+  --muted: var(--secondary-label);
+  --line: var(--separator);
+  --paper: var(--grouped-bg);
+  --panel: var(--grouped-bg-elevated);
+  --input: var(--fill-tertiary);
+  --nav-bg: var(--chrome);
+  --sea: var(--system-blue);
+  --sea-soft: var(--blue-soft);
+  --sea-fill: var(--system-blue-fill);
+  --on-sea: var(--on-accent);
+  --clay: var(--system-orange);
+  --navy: var(--system-blue);
+  --amber: var(--system-orange);
+  --teal: var(--system-teal);
+  --display: var(--font-display);
+  --sans: var(--font);
+  --radius: var(--radius-lg);
+
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  /*
+   * Page gutters: ALWAYS apply max(16px, env(safe-area-…)) at use-site.
+   * Do NOT nest max(var(--page-inline), var(--safe-left)) into a custom
+   * property then re-use it — if that substitution fails on a WebKit build,
+   * padding becomes invalid-at-computed-value and collapses to 0 (edge clip).
+   */
+  --page-inline: 16px;
+  --inset-left: max(16px, env(safe-area-inset-left, 0px));
+  --inset-right: max(16px, env(safe-area-inset-right, 0px));
+  --tab-bar-h: 0px;
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --label: rgba(255, 255, 255, 0.92);
+  --secondary-label: rgba(235, 235, 245, 0.6);
+  --tertiary-label: rgba(235, 235, 245, 0.3);
+  --separator: rgba(84, 84, 88, 0.65);
+  --opaque-separator: #38383A;
+
+  --grouped-bg: #000000;
+  --grouped-bg-elevated: #1C1C1E;
+  --fill: rgba(120, 120, 128, 0.36);
+  --fill-secondary: rgba(120, 120, 128, 0.32);
+  --fill-tertiary: rgba(120, 120, 128, 0.24);
+
+  --system-blue: #0A84FF;
+  --system-blue-fill: #0A84FF;
+  --system-green: #30D158;
+  --system-orange: #FF9F0A;
+  --system-red: #FF453A;
+  --system-teal: #40CBE0;
+  --system-indigo: #5E5CE6;
+  --system-gray: #8E8E93;
+  --system-yellow: #FFD60A;
+
+  --blue-soft: rgba(10, 132, 255, 0.22);
+  --green-soft: rgba(48, 209, 88, 0.22);
+  --orange-soft: rgba(255, 159, 10, 0.22);
+
+  --chrome: rgba(28, 28, 30, 0.72);
+  --chrome-solid: #1C1C1E;
+  --glass: rgba(44, 44, 46, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-highlight: inset 0 0.5px 0 rgba(255, 255, 255, 0.12);
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.04), 0 10px 28px rgba(0, 0, 0, 0.45);
+
+  --bar-track: rgba(120, 120, 128, 0.36);
+  --tag-bg: rgba(120, 120, 128, 0.32);
+  --heat-empty: #2C2C2E;
+  --heat-1: #1A4A8A;
+  --heat-2: #0A84FF;
+  --heat-3: #64D2FF;
+  --heat-4: #B0E0FF;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7.5rem;
+  scroll-padding-bottom: calc(var(--tab-bar-h) + 1rem);
+  /* hidden before clip: older iOS ignores clip and then rubber-bands sideways */
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Runtime class from guardHorizontalOverflow() — belt-and-suspenders on iOS */
+html.edge-lock,
+html.edge-lock body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  overscroll-behavior-x: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  color: var(--label);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  background:
+    radial-gradient(120% 80% at 50% -20%, rgba(0, 122, 255, 0.08), transparent 55%),
+    radial-gradient(90% 60% at 100% 10%, rgba(48, 176, 199, 0.07), transparent 50%),
+    var(--grouped-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-bottom: calc(var(--tab-bar-h) + var(--safe-bottom));
+  /* Horizontal insets live on .wrap / fixed overlays — not body — so position:fixed
+     chrome shares the same gutter tokens and cannot escape into the unsafe edge. */
+  padding-left: 0;
+  padding-right: 0;
+  transition: background-color 240ms var(--ease-out), color 200ms var(--ease-out);
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(120% 80% at 50% -20%, rgba(10, 132, 255, 0.14), transparent 55%),
+    radial-gradient(90% 60% at 100% 10%, rgba(64, 203, 224, 0.08), transparent 50%),
+    var(--grouped-bg);
+}
+
+a { color: var(--system-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button, input, select { font: inherit; color: inherit; }
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  max-width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+  /*
+   * Gutter via TRANSPARENT BORDER (not padding).
+   * Overflowing flex kids paint into padding and still reach the screen edge;
+   * overflow:hidden clips at the padding edge, so padding gutters do not protect.
+   * Borders sit outside the clip edge — children cannot paint into them.
+   */
+  border-left: max(16px, env(safe-area-inset-left, 0px)) solid transparent;
+  border-right: max(16px, env(safe-area-inset-right, 0px)) solid transparent;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-clip: padding-box;
+}
+
+/* ——— Chrome bar (Liquid Glass) ——— */
+.chrome-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--chrome);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border-bottom: 0.5px solid var(--separator);
+  box-shadow: var(--glass-highlight);
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.chrome-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 52px;
+  min-width: 0;
+  max-width: 100%;
+  padding-block: 8px;
+  overflow: hidden;
+}
+
+.chrome-inner .brand {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.03em;
+  color: var(--label);
+  flex-shrink: 0;
+}
+
+.chrome-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--fill-tertiary);
+}
+
+.chrome-tab {
+  color: var(--secondary-label);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 6px 11px;
+  border-radius: 999px;
+  transition: color 160ms var(--ease-out), background 160ms var(--ease-out);
+}
+
+.chrome-tab:hover {
+  color: var(--label);
+  text-decoration: none;
+  background: var(--fill-secondary);
+}
+
+.chrome-tab:focus-visible {
+  outline: 2px solid var(--system-blue);
+  outline-offset: 2px;
+}
+
+.chrome-tab.is-active {
+  color: var(--label);
+  background: var(--grouped-bg-elevated);
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="dark"] .chrome-tab.is-active {
+  background: rgba(120, 120, 128, 0.42);
+  box-shadow: none;
+}
+
+.chrome-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex: 0 1 auto;
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.refresh-icon {
+  display: none;
+  flex-shrink: 0;
+}
+
+/* Segmented control (UISegmentedControl) */
+.segmented {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 9px;
+  background: var(--fill);
+  gap: 0;
+}
+
+.segmented-btn,
+.metric-toggle .metric-btn {
+  border: 0;
+  background: transparent;
+  color: var(--label);
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 160ms var(--ease-out), color 160ms var(--ease-out),
+    box-shadow 160ms var(--ease-out), transform 160ms var(--ease-spring);
+}
+
+.segmented-btn[aria-pressed="true"],
+.metric-toggle .metric-btn[aria-pressed="true"] {
+  background: var(--grouped-bg-elevated);
+  color: var(--label);
+  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="dark"] .segmented-btn[aria-pressed="true"],
+html[data-theme="dark"] .metric-toggle .metric-btn[aria-pressed="true"] {
+  background: rgba(120, 120, 128, 0.48);
+  box-shadow: 0 0.5px 0 rgba(255, 255, 255, 0.08);
+}
+
+.metric-toggle {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 9px;
+  background: var(--fill);
+}
+
+.metric-toggle .metric-btn + .metric-btn { border-left: 0; }
+
+.glass-btn,
+.tool-btn {
+  border: 0;
+  background: var(--fill);
+  color: var(--system-blue);
+  border-radius: var(--radius-control);
+  padding: 7px 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 160ms var(--ease-out), transform 160ms var(--ease-spring);
+}
+
+.glass-btn:hover,
+.tool-btn:hover {
+  background: var(--fill-secondary);
+}
+
+.glass-btn:active,
+.tool-btn:active {
+  transform: scale(0.97);
+}
+
+.glass-btn:disabled,
+.tool-btn:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+
+.theme-match-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.theme-match-head h3 { margin: 0 0 4px; }
+.theme-match-head .panel-note { margin: 0; }
+.theme-match-toggle { flex-shrink: 0; }
+
+/* ——— Sticky filter (glass surface) ——— */
+.period-dock {
+  position: sticky;
+  top: 52px;
+  z-index: 35;
+  padding: 8px 0 6px;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--chrome) 0%,
+    color-mix(in srgb, var(--chrome) 70%, transparent) 70%,
+    transparent 100%
+  );
+  backdrop-filter: saturate(160%) blur(16px);
+  -webkit-backdrop-filter: saturate(160%) blur(16px);
+}
+
+.glass-surface,
+.period-bar {
+  margin: 0 auto;
+  padding-block: 10px;
+  padding-inline: 12px;
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+  box-shadow: var(--shadow), var(--glass-highlight);
+  backdrop-filter: saturate(180%) blur(28px);
+  -webkit-backdrop-filter: saturate(180%) blur(28px);
+  display: grid;
+  gap: 8px;
+}
+
+/*
+ * .period-bar also has .wrap: the .period-bar { border: 0.5px solid } shorthand
+ * would wipe wrap gutters — re-assert transparent border gutters here.
+ */
+.wrap.period-bar,
+.period-bar.wrap {
+  padding-inline: 0;
+  border-left: max(16px, env(safe-area-inset-left, 0px)) solid transparent;
+  border-right: max(16px, env(safe-area-inset-right, 0px)) solid transparent;
+  border-top: 0;
+  border-bottom: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Non-wrap glass cards keep the hairline; wrap chrome uses transparent gutters only */
+.glass-surface:not(.wrap) {
+  border: 0.5px solid var(--glass-border);
+}
+
+.period-toolbar {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+}
+
+.period-toolbar .period-hero-show {
+  flex: 1;
+  min-width: 0;
+}
+
+.period-toolbar .period-hero-show select,
+.period-toolbar .period-hero-show .combo-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.period-field-search {
+  min-width: 12rem;
+  flex: 1 1 14rem;
+}
+
+.period-field-search input {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+/* Typeahead combobox for long filter lists */
+.combo {
+  position: relative;
+  min-width: 0;
+}
+
+.combo-native {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+.combo-input {
+  width: 100%;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.combo-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 80;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  max-height: min(280px, 50vh);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-md);
+  background: var(--grouped-bg-elevated);
+  border: 0.5px solid var(--separator);
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+}
+
+/*
+ * Desktop: list is portaled to <body> so sticky filter overflow-x:hidden
+ * (period-dock / period-bar / period-controls) cannot clip the options.
+ */
+.combo-list.is-ported,
+body > .combo-list {
+  position: fixed;
+  z-index: 240;
+  margin: 0;
+}
+
+.combo-list[hidden] { display: none !important; }
+
+.combo-option {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--label);
+  cursor: pointer;
+}
+
+.combo-option:hover,
+.combo-option.is-active {
+  background: var(--blue-soft);
+  color: var(--system-blue);
+}
+
+.combo-option.is-selected {
+  font-weight: 650;
+}
+
+.combo-empty {
+  padding: 12px;
+  color: var(--secondary-label);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.filter-sheet-body .combo-list {
+  z-index: 95;
+}
+
+/* Mobile: full visual-viewport picker so lists stay above the keyboard */
+.combo-picker-host {
+  display: none;
+}
+
+.combo-picker-host:not([hidden]) {
+  display: flex;
+  position: fixed;
+  /* Pin to the visual viewport so zoom / sideways overscroll cannot clip Cancel/Done */
+  top: var(--vv-top, 0px);
+  left: var(--vv-left, 0px);
+  width: var(--vv-width, 100%);
+  height: var(--vv-height, 100dvh);
+  z-index: 220;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.28);
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+.combo-picker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+  background: var(--grouped-bg);
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.combo-picker-chrome {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 48px;
+  padding: 6px max(16px, env(safe-area-inset-right, 0px)) 6px max(16px, env(safe-area-inset-left, 0px));
+  border-bottom: 0.5px solid var(--separator);
+  background: var(--grouped-bg-elevated);
+}
+
+.combo-picker-title {
+  margin: 0;
+  text-align: center;
+  font-size: 1.0625rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--label);
+}
+
+.combo-picker-chrome .sheet-text-btn {
+  justify-self: start;
+}
+
+.combo-picker-chrome .sheet-done {
+  justify-self: end;
+}
+
+.combo-picker-search {
+  flex-shrink: 0;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));
+  background: var(--grouped-bg);
+}
+
+.combo-picker-input,
+input.combo-picker-input[type="search"] {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--fill);
+  color: var(--label);
+  font: inherit;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.combo-picker-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+
+.combo-picker-list {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 4px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  list-style: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background: var(--grouped-bg);
+}
+
+.combo-picker-list .combo-option {
+  padding: 14px 12px;
+  font-size: 1.0625rem;
+  border-radius: 10px;
+}
+
+.combo-picker-list .combo-option.is-selected {
+  color: var(--system-blue);
+}
+
+.combo-picker-list .combo-empty {
+  padding: 24px 12px;
+}
+
+body.combo-picker-open {
+  overflow: hidden;
+}
+
+@media (min-width: 861px) {
+  .combo-picker-host {
+    display: none !important;
+  }
+}
+
+.filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--fill);
+  color: var(--system-blue);
+  border-radius: var(--radius-control);
+  padding: 9px 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  cursor: pointer;
+  min-height: 40px;
+  transition: background 160ms var(--ease-out), transform 160ms var(--ease-spring);
+}
+
+.filter-toggle:hover { background: var(--fill-secondary); }
+.filter-toggle:active { transform: scale(0.97); }
+
+.filter-toggle[aria-expanded="true"],
+.filter-toggle.has-filters {
+  background: var(--blue-soft);
+}
+
+.filter-toggle-icon { display: block; flex-shrink: 0; }
+
+.filter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--system-blue-fill);
+  color: var(--on-accent);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.filter-badge[hidden] { display: none !important; }
+
+.period-clear-inline {
+  flex-shrink: 0;
+  align-self: end;
+  min-height: 40px;
+  padding: 9px 14px;
+}
+
+.filter-sheet,
+.filter-sheet-backdrop {
+  display: none;
+}
+
+.period-secondary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.filter-panel {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.period-filter-line {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  min-width: 0;
+}
+
+.period-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px 10px;
+}
+
+/* Desktop: second filter line is a single non-wrapping row; overflow is measured in JS. */
+@media (min-width: 861px) {
+  .period-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .period-secondary > .filter-toggle {
+    /* Parked here only while the sheet is open; normally lives in .period-filter-line */
+    display: none;
+  }
+
+  body.filter-sheet-open .period-secondary > .filter-toggle {
+    display: none;
+  }
+
+  .period-filter-line {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .period-filter-line > .filter-toggle {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: 6px;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 9px 12px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: normal;
+    border-radius: var(--radius-sm);
+    background: var(--fill-tertiary);
+    color: var(--system-blue);
+  }
+
+  .period-filter-line > .filter-toggle:hover {
+    background: var(--fill-secondary);
+  }
+
+  .period-filter-line > .filter-toggle[aria-expanded="true"],
+  .period-filter-line > .filter-toggle.has-filters {
+    background: var(--blue-soft);
+  }
+
+  .period-filter-line > .filter-toggle .filter-toggle-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .period-controls {
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .period-controls > .period-field {
+    flex: 0 1 auto;
+    min-width: 6.5rem;
+    max-width: 14rem;
+    overflow: hidden;
+  }
+
+  .period-controls > .period-field-search {
+    flex: 1 1 9rem;
+    min-width: 8rem;
+    max-width: none;
+  }
+
+  .period-controls > .period-field-country,
+  .period-controls > .period-field-theme {
+    min-width: 7.5rem;
+    max-width: 12rem;
+  }
+
+  /* Prevent native/combo controls from painting over neighbors. */
+  .period-controls .period-field select,
+  .period-controls .period-field .combo,
+  .period-controls .period-field .combo-input,
+  .period-controls .period-field-search input {
+    width: 100%;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-sizing: border-box;
+  }
+
+  /* Natural widths while measuring — avoid flex-shrink making everything "fit". */
+  .period-controls.is-measuring > .period-field {
+    display: grid !important;
+    flex: 0 0 auto !important;
+    width: max-content;
+    max-width: none !important;
+    min-width: max-content !important;
+  }
+
+  .period-field.is-overflow-hidden {
+    display: none !important;
+  }
+
+  .period-filter-line > .filter-toggle {
+    min-height: 38px;
+  }
+
+  /*
+   * Desktop “more filters”: expand overflow facets in the same glass bar —
+   * same field chrome as the visible row. No bottom sheet / foreign modal.
+   */
+  body.filters-expanded .period-filter-line {
+    align-items: flex-start;
+  }
+
+  body.filters-expanded .period-controls {
+    flex-wrap: wrap;
+    overflow: visible;
+    row-gap: 10px;
+  }
+
+  body.filters-expanded .period-field.is-overflow-hidden {
+    display: grid !important;
+  }
+
+  body.filters-expanded .period-filter-line > .filter-toggle {
+    /* Keep the button on the first control row while facets wrap underneath. */
+    align-self: flex-start;
+    margin-top: calc(0.6875rem * 1.2 + 4px);
+    background: var(--blue-soft);
+  }
+
+  /* Desktop never uses the mobile bottom sheet. */
+  .filter-sheet,
+  .filter-sheet-backdrop {
+    display: none !important;
+  }
+}
+
+.period-field {
+  display: grid;
+  gap: 4px;
+  min-width: 7.25rem;
+}
+
+.period-field-country { min-width: 9.5rem; }
+.period-field-podcast { min-width: 11rem; }
+.period-field-theme { min-width: 10rem; }
+
+.period-field span,
+.period-search-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--secondary-label);
+}
+
+.period-field select,
+.period-search input,
+input[type="search"],
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: var(--fill-tertiary);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  color: var(--label);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  min-width: 8.5rem;
+  max-width: 16rem;
+  transition: background 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+
+/* iOS Safari zooms the visual viewport when focused text is <16px; that zoom
+   often sticks after typing in the Shows/Theme picker and clips L/R chrome. */
+.period-search input,
+input[type="search"],
+input.combo-input,
+input.combo-picker-input {
+  font-size: 16px;
+}
+
+.period-field select:focus,
+.period-search input:focus,
+input[type="search"]:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-soft);
+  background: var(--grouped-bg-elevated);
+}
+
+.period-field-country select { min-width: 10.5rem; }
+.period-field-podcast select,
+.period-field-theme select {
+  min-width: 11rem;
+  max-width: 18rem;
+}
+
+.period-field select:disabled { opacity: 0.4; }
+
+.period-search { display: grid; gap: 4px; }
+.period-search input { width: 100%; max-width: none; min-width: 0; }
+
+.period-summary {
+  margin: 0;
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.period-summary strong {
+  color: var(--label);
+  font-weight: 650;
+}
+
+/* ——— Large title / hero (content layer) ——— */
+.content-layer { position: relative; z-index: 1; }
+
+.hero {
+  padding: 20px 0 8px;
+  animation: rise 640ms var(--ease-spring) both;
+}
+
+.hero-eyebrow {
+  margin: 0 0 4px;
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.large-title,
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 5.5vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  margin: 0 0 8px;
+  color: var(--label);
+  max-width: 16ch;
+}
+
+.hero-lead {
+  margin: 0;
+  color: var(--secondary-label);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  max-width: 40ch;
+  line-height: 1.4;
+}
+
+.hero-meta {
+  margin-top: 8px;
+  color: var(--tertiary-label);
+  font-size: 0.8125rem;
+}
+
+/* Summary figures — no card chrome; Apple Fitness / Screen Time style */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 22px 0 0;
+  border-radius: var(--radius-lg);
+  background: var(--grouped-bg-elevated);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  animation: rise 720ms var(--ease-spring) both;
+  animation-delay: 60ms;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+  padding: 14px 16px 12px;
+  border-right: 0.5px solid var(--separator);
+  background: transparent;
+}
+
+.stat:nth-child(3n) { border-right: 0; }
+.stat:nth-child(n + 4) {
+  border-top: 0.5px solid var(--separator);
+}
+
+.stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.stat b.stat-value-compact {
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.stat span {
+  display: block;
+  margin-top: 2px;
+  color: var(--secondary-label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Kept for compatibility; hero insights now live inside #heroStats. */
+.insights-strip {
+  display: none;
+  margin: 0;
+}
+
+.insight {
+  padding: 14px 16px;
+  border-right: 0.5px solid var(--separator);
+  border-bottom: 0.5px solid var(--separator);
+  background: transparent;
+}
+
+.insight:last-child { border-right: 0; }
+
+.insight b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.insight span {
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.boot {
+  color: var(--secondary-label);
+  font-size: 0.875rem;
+  min-height: 1.2em;
+  margin: 12px 0 0;
+}
+
+/* ——— Sections ——— */
+section {
+  padding: 28px 0 4px;
+  animation: rise 680ms var(--ease-spring) both;
+}
+
+section.ready-delay { animation-delay: 100ms; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.section-head p {
+  margin: 4px 0 0;
+  color: var(--secondary-label);
+  font-size: 0.9375rem;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
+.stack-gap { margin-top: 12px; }
+
+/* Inset grouped panels (content containers) */
+.panel {
+  background: var(--grouped-bg-elevated);
+  border: 0;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.panel-flush { padding: 12px 0 16px; }
+.panel-flush .insights { padding: 0 16px; }
+.panel-flush .pager { padding: 0 16px; }
+
+.panel h3 {
+  margin: 0 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--secondary-label);
+  text-transform: none;
+}
+
+.panel-note {
+  margin: -4px 0 12px;
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.chart-box {
+  position: relative;
+  height: 280px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+.chart-box.tall { height: 360px; }
+.chart-box.short { height: 240px; }
+.chart-box.mid { height: 280px; }
+.chart-box.expandable {
+  transition: height 220ms var(--ease-spring);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 12px;
+}
+
+.grid-2.equal { grid-template-columns: 1fr 1fr; }
+
+.table-scroll {
+  max-height: 360px;
+  overflow: auto;
+  border-radius: var(--radius-sm);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Table — plain list rows */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 11px 8px;
+  border-bottom: 0.5px solid var(--separator);
+  vertical-align: middle;
+}
+
+th {
+  color: var(--secondary-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+tr:last-child td { border-bottom: 0; }
+
+.bar {
+  width: 100%;
+  height: 6px;
+  background: var(--bar-track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--system-blue);
+}
+
+.linkish {
+  border: 0;
+  background: none;
+  color: var(--system-blue);
+  font-weight: 500;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: -0.015em;
+}
+
+.linkish:hover { text-decoration: underline; }
+
+/* Theme chart — iOS-style hierarchical nav */
+.theme-chart-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin-bottom: 8px;
+  min-width: 0;
+}
+
+.theme-chart-head h3 {
+  margin: 0;
+  max-width: 100%;
+  line-height: 1.25;
+}
+
+.theme-nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  margin: 0 0 2px -4px;
+  padding: 2px 6px 2px 2px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--system-blue);
+  font-family: inherit;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-spring);
+}
+
+.theme-nav-back[hidden] {
+  display: none !important;
+}
+
+.theme-nav-back:hover {
+  opacity: 0.85;
+}
+
+.theme-nav-back:active {
+  opacity: 0.55;
+  transform: scale(0.98);
+}
+
+.theme-nav-chevron {
+  display: inline-block;
+  font-size: 1.55rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-top: -0.06em;
+  margin-right: 1px;
+}
+
+.chart-more {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  min-height: 1.2em;
+}
+
+.chart-more .btn {
+  padding: 7px 14px;
+  font-size: 0.8125rem;
+}
+
+.theme-samples {
+  display: grid;
+  gap: 0;
+  margin-bottom: 12px;
+  max-height: 360px;
+  overflow: auto;
+  border-radius: var(--radius-md);
+  background: var(--fill-tertiary);
+}
+
+.theme-sample {
+  border: 0;
+  border-bottom: 0.5px solid var(--separator);
+  border-radius: 0;
+  background: transparent;
+  padding: 12px 14px;
+}
+
+.theme-sample:last-child { border-bottom: 0; }
+
+.theme-sample strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.theme-sample span {
+  color: var(--secondary-label);
+  font-size: 0.75rem;
+}
+
+/* Buttons */
+.btn {
+  border: 0;
+  background: var(--system-blue-fill);
+  color: var(--on-accent);
+  border-radius: var(--radius-control);
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.015em;
+  cursor: pointer;
+  transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-spring);
+}
+
+.btn:hover { opacity: 0.92; }
+.btn:active { transform: scale(0.98); }
+
+.btn.secondary {
+  background: var(--fill);
+  color: var(--system-blue);
+}
+
+.btn.secondary:hover {
+  background: var(--fill-secondary);
+  opacity: 1;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.insights {
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  margin: 0 0 8px;
+  min-height: 1.2em;
+}
+
+/* Inset grouped episode list */
+.list { display: grid; gap: 8px; }
+
+.inset-list {
+  gap: 0;
+  margin: 0 12px;
+  border-radius: var(--radius-lg);
+  background: var(--grouped-bg-elevated);
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.panel .inset-list {
+  margin: 0;
+  background: var(--fill-tertiary);
+}
+
+.ep {
+  border: 0;
+  border-bottom: 0.5px solid var(--separator);
+  border-radius: 0;
+  background: transparent;
+  padding: 14px 16px;
+  transition: background 140ms var(--ease-out);
+}
+
+.ep:last-child { border-bottom: 0; }
+.ep:active { background: var(--fill-tertiary); }
+
+.ep-show {
+  color: var(--system-blue);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.ep h3 {
+  margin: 3px 0 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--label);
+}
+
+.ep-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+}
+
+.ep-note {
+  margin-top: 8px;
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.ep-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ep-themes .tag { cursor: pointer; border: 0; font: inherit; }
+
+.ep-meta .tag[data-country-jump] {
+  cursor: pointer;
+  border: 0;
+  font: inherit;
+  color: inherit;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  background: var(--tag-bg);
+  color: var(--secondary-label);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+}
+
+.tag.ok {
+  background: var(--green-soft);
+  color: #248A3D;
+}
+
+.tag.warn {
+  background: var(--orange-soft);
+  color: #C93400;
+}
+
+html[data-theme="dark"] .tag.ok {
+  background: var(--green-soft);
+  color: #30D158;
+}
+
+html[data-theme="dark"] .tag.warn {
+  background: var(--orange-soft);
+  color: #FF9F0A;
+}
+
+.empty {
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--secondary-label);
+  font-size: 0.9375rem;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.pager .info {
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Heatmap — scroll inside the panel; never widen the page */
+.heatmap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 11px);
+  grid-auto-columns: 11px;
+  gap: 3px;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+  touch-action: pan-x;
+}
+
+.heat-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--heat-empty);
+  transition: transform 140ms var(--ease-spring);
+}
+
+.heat-cell:hover { transform: scale(1.25); }
+
+.heat-cell[data-level="1"] { background: var(--heat-1); }
+.heat-cell[data-level="2"] { background: var(--heat-2); }
+.heat-cell[data-level="3"] { background: var(--heat-3); }
+.heat-cell[data-level="4"] { background: var(--heat-4); }
+
+.heat-legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+  color: var(--secondary-label);
+  font-size: 0.75rem;
+}
+
+.heat-legend i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--heat-empty);
+}
+
+.heat-legend i:nth-child(2) { background: var(--heat-1); }
+.heat-legend i:nth-child(3) { background: var(--heat-2); }
+.heat-legend i:nth-child(4) { background: var(--heat-3); }
+.heat-legend i:nth-child(5) { background: var(--heat-4); }
+
+.site-footer,
+footer {
+  padding: 28px 0 calc(36px + var(--safe-bottom));
+  color: var(--secondary-label);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.build-stamp {
+  margin-top: 8px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  color: var(--tertiary-label);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ——— Mobile tab bar ——— */
+.tab-bar {
+  display: none;
+  position: fixed;
+  /* left+right only — never also width/max-width:100% (over-constrains and clips) */
+  left: max(16px, env(safe-area-inset-left, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  height: 58px;
+  width: auto;
+  max-width: none;
+  box-sizing: border-box;
+  padding: 4px 4px;
+  border-radius: 22px;
+  background: var(--glass);
+  border: 0.5px solid var(--glass-border);
+  box-shadow: var(--shadow), var(--glass-highlight);
+  backdrop-filter: saturate(180%) blur(28px);
+  -webkit-backdrop-filter: saturate(180%) blur(28px);
+  align-items: stretch;
+  justify-content: space-around;
+  gap: 0;
+  overflow: hidden;
+}
+
+.tab-item {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--secondary-label);
+  text-decoration: none;
+  font-size: 0.625rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: color 160ms var(--ease-out), background 160ms var(--ease-out),
+    transform 160ms var(--ease-spring);
+}
+
+.tab-item:hover,
+.tab-item:focus-visible {
+  color: var(--system-blue);
+  text-decoration: none;
+  background: var(--blue-soft);
+}
+
+.tab-item.is-active {
+  color: var(--system-blue);
+}
+
+.tab-item:active { transform: scale(0.96); }
+
+.tab-icon {
+  display: flex;
+  color: inherit;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body:not(.ready) .charts-block,
+body:not(.ready) #explorePanel,
+body:not(.ready) #themes,
+body:not(.ready) #shows {
+  opacity: 0.4;
+}
+
+/* Filter changes: keep controls snappy; charts catch up in the background. */
+body.is-filtering .charts-block,
+body.is-filtering #themes,
+body.is-filtering #shows,
+body.is-filtering #explorePanel .ep-list {
+  opacity: 0.72;
+  transition: opacity 120ms var(--ease-out);
+  pointer-events: none;
+}
+body.is-filtering #periodSummary {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .chrome-bar,
+  .period-dock,
+  .glass-surface,
+  .period-bar,
+  .tab-bar,
+  .filter-sheet-backdrop {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--chrome-solid);
+  }
+
+  .glass-surface,
+  .period-bar,
+  .tab-bar,
+  body.filter-sheet-open .filter-sheet {
+    background: var(--grouped-bg-elevated);
+  }
+
+  .filter-sheet-backdrop {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html { scroll-behavior: auto; }
+}
+
+@media (max-width: 860px) {
+  /* Floating tab (58) + bottom gap (8) + breathing room above charts */
+  :root { --tab-bar-h: 88px; }
+
+  .wrap {
+    width: min(980px, 100%);
+    /* keep --inset-left/right padding — do not zero it on mobile */
+  }
+
+  .chrome-tabs { display: none; }
+  .chrome-tools { margin-left: auto; }
+  .tab-bar { display: flex; }
+
+  /* Tab panels: only the active bottom-nav section is on screen */
+  body.tab-mode main.charts-block > .tab-panel:not(.is-tab-active) {
+    display: none !important;
+  }
+
+  body.tab-mode:not([data-active-tab="trends"]) .hero {
+    display: none;
+  }
+
+  body.tab-mode main.charts-block > .tab-panel.is-tab-active {
+    display: block;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    animation: tab-fade 220ms var(--ease-out) both;
+  }
+
+  body.tab-mode .site-footer {
+    padding-bottom: calc(28px + var(--tab-bar-h) + var(--safe-bottom));
+  }
+
+  /* Compact sticky filter: search + Filters only (Apple Music / Photos pattern) */
+  .period-dock {
+    padding: 0;
+    top: 52px;
+    background: var(--chrome);
+    border-bottom: 0.5px solid var(--separator);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .period-bar {
+    padding-block: 8px;
+    gap: 0;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .period-toolbar {
+    align-items: stretch;
+    flex: 1 1 0;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Promote Show + Filters onto one row; keep the facet panel for the sheet only. */
+  .period-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  /*
+   * iOS Safari: search inputs ignore min-width:0 for flex min-content sizing, so a
+   * long show title expands the row and clips Filters / chrome tools. Force shrink.
+   */
+  .period-toolbar .period-hero-show {
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .period-toolbar .period-hero-show .combo,
+  .period-toolbar .period-hero-show .combo-input,
+  .period-toolbar .period-hero-show select {
+    width: 100%;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .period-secondary {
+    display: contents;
+  }
+
+  .period-secondary > .filter-panel {
+    display: contents;
+  }
+
+  .period-filter-line {
+    display: contents;
+  }
+
+  .period-controls,
+  .period-summary {
+    display: none;
+  }
+
+  .period-filter-line > .filter-toggle,
+  .period-toolbar .filter-toggle,
+  .period-secondary > .filter-toggle {
+    display: inline-flex;
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+
+  .period-search-label,
+  .period-clear-inline {
+    display: none;
+  }
+
+  .period-hero-show {
+    gap: 0;
+  }
+
+  .period-field-podcast {
+    min-width: 0;
+  }
+
+  .period-hero-show .combo-input,
+  .period-hero-show select {
+    min-height: 36px;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  .filter-toggle {
+    display: inline-flex;
+    min-height: 36px;
+    padding: 8px 10px;
+  }
+
+  .filter-sheet-backdrop:not([hidden]) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    background: rgba(0, 0, 0, 0.32);
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 220ms var(--ease-out);
+  }
+
+  body.filter-sheet-open {
+    overflow: hidden;
+  }
+
+  .filter-sheet:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    /* width from left/right only — avoid width:100% + left/right over-constraint */
+    width: auto;
+    max-width: none;
+    box-sizing: border-box;
+    max-height: min(78dvh, 640px);
+    padding: 0 max(16px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    border-radius: 14px 14px 0 0;
+    background: var(--grouped-bg);
+    border: 0.5px solid var(--separator);
+    border-bottom: 0;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.2);
+    animation: sheet-up 320ms var(--ease-spring) both;
+    overflow: hidden;
+  }
+
+  .filter-sheet-chrome {
+    display: block;
+    flex-shrink: 0;
+    /* horizontal inset comes from the sheet; keep vertical chrome padding only */
+    padding: 8px 0 4px;
+    border-bottom: 0.5px solid var(--separator);
+    background: var(--grouped-bg);
+  }
+
+  .filter-sheet-grabber {
+    width: 36px;
+    height: 5px;
+    margin: 0 auto 8px;
+    border-radius: 999px;
+    background: var(--fill);
+  }
+
+  .filter-sheet-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 36px;
+    margin-bottom: 4px;
+  }
+
+  .filter-sheet-header h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    color: var(--label);
+  }
+
+  .sheet-text-btn {
+    border: 0;
+    background: none;
+    color: var(--system-blue);
+    font: inherit;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+    padding: 6px 0;
+    justify-self: start;
+  }
+
+  .sheet-text-btn.sheet-done {
+    font-weight: 650;
+    justify-self: end;
+  }
+
+  .filter-sheet-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .filter-sheet-body .filter-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Inset grouped list — Apple Settings / filter sheet pattern.
+     Horizontal page inset already applied on .filter-sheet. */
+  .filter-sheet-body .period-controls {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    align-content: start;
+    align-items: stretch;
+    margin: 12px 0;
+    padding: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    border-radius: var(--radius-lg);
+    background: var(--grouped-bg-elevated);
+  }
+
+  .filter-sheet-body .period-field,
+  .filter-sheet-body .period-field-country,
+  .filter-sheet-body .period-field-podcast,
+  .filter-sheet-body .period-field-theme,
+  .filter-sheet-body .period-field-search {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 4px 14px;
+    min-height: 44px;
+    border-bottom: 0.5px solid var(--separator);
+  }
+
+  .filter-sheet-body .period-field:last-of-type {
+    border-bottom: 0;
+  }
+
+  .filter-sheet-body .period-field span {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--label);
+    letter-spacing: -0.02em;
+  }
+
+  .filter-sheet-body .period-field select,
+  .filter-sheet-body .period-field-podcast select,
+  .filter-sheet-body .period-field-theme select,
+  .filter-sheet-body .period-field-search input,
+  .filter-sheet-body .combo-input {
+    max-width: none;
+    width: 100%;
+    min-width: 0;
+    min-height: 36px;
+    text-align: right;
+    background: transparent;
+    border-radius: 0;
+    padding: 8px 0;
+    font-weight: 400;
+    color: var(--secondary-label);
+  }
+
+  .filter-sheet-body .period-field-search input,
+  .filter-sheet-body .combo-input,
+  .filter-sheet-body input[type="search"] {
+    font-size: 16px;
+  }
+
+  .filter-sheet-body .period-field select:focus,
+  .filter-sheet-body .period-field-search input:focus,
+  .filter-sheet-body .combo-input:focus {
+    box-shadow: none;
+    background: transparent;
+    color: var(--system-blue);
+  }
+
+  .filter-sheet-body .combo-list {
+    text-align: left;
+  }
+
+  .filter-sheet-body .period-summary {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 8px 20px 4px;
+    border-top: 0;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--secondary-label);
+  }
+
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3n) { border-right: 0.5px solid var(--separator); }
+  .stat:nth-child(2n) { border-right: 0; }
+  .stat:nth-child(n + 3) { border-top: 0.5px solid var(--separator); }
+
+  .insights-strip { grid-template-columns: 1fr; }
+  .insight {
+    border-right: 0;
+    border-bottom: 0.5px solid var(--separator);
+  }
+  .insight:last-child { border-bottom: 0; }
+
+  .grid-2,
+  .grid-2.equal { grid-template-columns: 1fr; }
+
+  /* Expandable h-bars set height inline from row count — do not clamp them. */
+  .chart-box:not(.expandable),
+  .chart-box.tall:not(.expandable),
+  .chart-box.mid:not(.expandable) { height: 260px; }
+  .chart-box.short:not(.expandable) { height: 200px; }
+
+  /* Content-first: shorter hero chrome on phones */
+  .hero {
+    padding-top: 14px;
+  }
+
+  .hero-lead {
+    font-size: 0.9375rem;
+    max-width: none;
+  }
+
+  .chrome-bar {
+    border-bottom: 0;
+  }
+
+  body:not(.ready) #themes { opacity: 0.4; }
+}
+
+@keyframes sheet-up {
+  from {
+    opacity: 0.6;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tab-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  .chrome-inner { gap: 6px; }
+  .brand {
+    font-size: 1rem;
+    max-width: 6.5rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-shrink: 1;
+  }
+  .chrome-tools { gap: 4px; flex-shrink: 0; }
+  .segmented-btn,
+  .metric-toggle .metric-btn { padding: 5px 8px; }
+  .glass-btn,
+  .tool-btn { padding: 7px 9px; font-size: 0.75rem; }
+  /* Icon-only Refresh so it isn't clipped off the right edge on iPhone */
+  #hardRefresh {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 8px;
+  }
+  #hardRefresh .refresh-label { display: none; }
+  #hardRefresh .refresh-icon { display: block; }
+  .hero { padding-top: 12px; }
+  .hero-lead { display: none; }
+  .large-title,
+  .hero h1 { font-size: 1.875rem; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .filter-toggle-label { display: none; }
+  .filter-toggle { padding: 9px 11px; }
+}
