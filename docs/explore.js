@@ -107,6 +107,7 @@
     _matchedCacheKey: "",
     _renderGen: 0,
     _renderTimer: 0,
+    _filterWatchdog: 0,
   };
   const BAR_PAGE = 12;
   const MONTH_OPTIONS = [
@@ -593,44 +594,56 @@
 
   async function runPeriodRender(gen) {
     if (gen !== state._renderGen) return;
-    // Hot path first: summary + lists so the click feels answered.
-    updatePeriodSummary();
-    renderHeroStats();
-    renderEpisodeList();
-    if (gen !== state._renderGen) return;
+    try {
+      // Hot path first: summary + lists so the click feels answered.
+      updatePeriodSummary();
+      renderHeroStats();
+      renderEpisodeList();
+      if (gen !== state._renderGen) return;
 
-    // Theme drill-down must paint before other charts. Otherwise the parent
-    // bars stay tappable for hundreds of ms while state already moved, and a
-    // second tap opens a different parent than the one on screen after paint.
-    pruneInvisibleThemeSelection();
-    renderThemeChart();
-    renderThemeDetail(state.activeTheme || state.focusedParentId || "");
-    renderThemeMatchPanel();
-    renderThemeYearChart();
-    syncThemeSelectOptions();
-    if (gen !== state._renderGen) return;
-    await yieldToPaint();
-    if (gen !== state._renderGen) return;
+      // Theme drill-down must paint before other charts. Otherwise the parent
+      // bars stay tappable for hundreds of ms while state already moved, and a
+      // second tap opens a different parent than the one on screen after paint.
+      pruneInvisibleThemeSelection();
+      renderThemeChart();
+      renderThemeDetail(state.activeTheme || state.focusedParentId || "");
+      renderThemeMatchPanel();
+      renderThemeYearChart();
+      syncThemeSelectOptions();
+      if (gen !== state._renderGen) return;
+      await yieldToPaint();
+      if (gen !== state._renderGen) return;
 
-    renderTrendChart();
-    renderCumulativeChart();
-    renderYearChart();
-    if (gen !== state._renderGen) return;
-    await yieldToPaint();
-    if (gen !== state._renderGen) return;
+      renderTrendChart();
+      renderCumulativeChart();
+      renderYearChart();
+      if (gen !== state._renderGen) return;
+      await yieldToPaint();
+      if (gen !== state._renderGen) return;
 
-    renderYoYChart();
-    renderTopPodcastsChart();
-    if (gen !== state._renderGen) return;
-    await yieldToPaint();
-    if (gen !== state._renderGen) return;
+      renderYoYChart();
+      renderTopPodcastsChart();
+      if (gen !== state._renderGen) return;
+      await yieldToPaint();
+      if (gen !== state._renderGen) return;
 
-    renderWeekdayHourCharts();
-    renderFolderStatusCharts();
-    renderCountryChart();
-    renderDurationChart();
-    renderHeatmap();
-    if (gen === state._renderGen) setFilteringUi(false);
+      renderWeekdayHourCharts();
+      renderFolderStatusCharts();
+      renderCountryChart();
+      renderDurationChart();
+      renderHeatmap();
+    } catch (err) {
+      console.error("period render failed", err);
+    } finally {
+      // Never leave charts dimmed/non-interactive after a throw or supersede.
+      if (gen === state._renderGen) {
+        if (state._filterWatchdog) {
+          clearTimeout(state._filterWatchdog);
+          state._filterWatchdog = 0;
+        }
+        setFilteringUi(false);
+      }
+    }
   }
 
   function schedulePeriodRender({ immediate = false } = {}) {
@@ -639,10 +652,23 @@
       clearTimeout(state._renderTimer);
       state._renderTimer = 0;
     }
+    if (state._filterWatchdog) {
+      clearTimeout(state._filterWatchdog);
+      state._filterWatchdog = 0;
+    }
     setFilteringUi(true);
+    // Safety: if a render never finishes (tab backgrounded mid-await, etc.),
+    // clear the dimmed/non-interactive overlay so the UI cannot stay frozen.
+    state._filterWatchdog = setTimeout(() => {
+      state._filterWatchdog = 0;
+      if (gen === state._renderGen) setFilteringUi(false);
+    }, 8000);
     const kick = () => {
       state._renderTimer = 0;
-      runPeriodRender(gen);
+      Promise.resolve(runPeriodRender(gen)).catch((err) => {
+        console.error("period render rejected", err);
+        if (gen === state._renderGen) setFilteringUi(false);
+      });
     };
     if (immediate) {
       queueMicrotask(kick);
