@@ -64,6 +64,59 @@ def fmt_secs(seconds: int | float | str | None) -> str:
     return f"{h}:{m:02d}:{sec:02d}" if h else f"{m}:{sec:02d}"
 
 
+def parse_hms_to_sec(value: int | float | str | None) -> int | None:
+    """Parse seconds int or m:ss / h:mm:ss string. Returns None when empty/invalid."""
+    if value in (None, ""):
+        return None
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        try:
+            s = int(value)
+        except (TypeError, ValueError):
+            return None
+        return s if s > 0 else None
+    text = str(value).strip()
+    if not text:
+        return None
+    if text.isdigit():
+        s = int(text)
+        return s if s > 0 else None
+    parts = text.split(":")
+    try:
+        nums = [int(p) for p in parts]
+    except ValueError:
+        return None
+    if len(nums) == 3:
+        s = nums[0] * 3600 + nums[1] * 60 + nums[2]
+    elif len(nums) == 2:
+        s = nums[0] * 60 + nums[1]
+    elif len(nums) == 1:
+        s = nums[0]
+    else:
+        return None
+    return s if s > 0 else None
+
+
+def resolve_duration_sec(
+    dur_sec: int | str | None, played_sec: int | str | None
+) -> tuple[int | str, bool]:
+    """Prefer catalog duration; fall back to played-up-to when duration is missing/0.
+
+    Pocket Casts often returns duration=0 while playedUpTo still has real listen
+    time. Hours charts use duration, so without this fallback Played episodes
+    count in Eps mode but show 0h.
+    """
+    d = parse_hms_to_sec(dur_sec)
+    if d is not None:
+        return d, False
+    p = parse_hms_to_sec(played_sec)
+    if p is not None:
+        return p, True
+    # Preserve empty vs explicit 0 from the API when nothing is recoverable.
+    if dur_sec == 0 or dur_sec == "0":
+        return 0, False
+    return "", False
+
+
 def ms_to_dt(ms: int | str) -> datetime:
     value = int(ms)
     if value > 1e12:
@@ -162,16 +215,17 @@ def build_rows(
         duration = prog.get("duration")
         played_up = prog.get("playedUpTo")
         status_code = prog.get("playingStatus")
-        dur_sec: int | str
+        raw_dur: int | str
         played_sec: int | str
         try:
-            dur_sec = int(duration) if duration not in (None, "") else ""
+            raw_dur = int(duration) if duration not in (None, "") else ""
         except (TypeError, ValueError):
-            dur_sec = ""
+            raw_dur = ""
         try:
             played_sec = int(played_up) if played_up not in (None, "") else ""
         except (TypeError, ValueError):
             played_sec = ""
+        dur_sec, _from_played = resolve_duration_sec(raw_dur, played_sec)
         prog_pct = ""
         if dur_sec not in ("", 0) and played_sec != "":
             prog_pct = f"{min(100.0, round(100.0 * float(played_sec) / float(dur_sec), 1))}"
@@ -227,24 +281,34 @@ def to_compact(r: dict) -> dict:
 
 def parse_dur_sec(r: dict) -> int | None:
     v = r.get("Duration (sec)")
-    if v not in (None, ""):
-        try:
-            return int(float(v))
-        except (TypeError, ValueError):
-            pass
-    d = r.get("Duration") or ""
-    if not d or d in ("0:00", "0:00:00"):
-        return None
-    parts = d.split(":")
-    try:
-        nums = [int(p) for p in parts]
-    except ValueError:
-        return None
-    if len(nums) == 3:
-        return nums[0] * 3600 + nums[1] * 60 + nums[2]
-    if len(nums) == 2:
-        return nums[0] * 60 + nums[1]
-    return None
+    parsed = parse_hms_to_sec(v)
+    if parsed is not None:
+        return parsed
+    return parse_hms_to_sec(r.get("Duration") or "")
+
+
+def repair_missing_durations(rows: list[dict]) -> int:
+    """Fill Duration from Played up to when catalog duration is missing/zero.
+
+    Returns the number of rows repaired. Safe to run repeatedly.
+    """
+    fixed = 0
+    for r in rows:
+        existing = parse_hms_to_sec(r.get("Duration (sec)")) or parse_hms_to_sec(
+            r.get("Duration")
+        )
+        if existing is not None:
+            continue
+        played_sec = parse_hms_to_sec(r.get("Played up to"))
+        if played_sec is None:
+            continue
+        r["Duration (sec)"] = played_sec
+        r["Duration"] = fmt_secs(played_sec)
+        # played-up-to is the only known length, so progress is complete vs that.
+        if r.get("Progress %") in (None, ""):
+            r["Progress %"] = "100.0"
+        fixed += 1
+    return fixed
 
 
 def build_aggregates(rows: list[dict], stats: dict, year_counts_raw: dict) -> tuple[dict, dict]:
@@ -654,7 +718,91 @@ def run_standalone() -> None:
     subprocess.check_call([sys.executable, str(script)], cwd=str(ROOT))
 
 
+def load_episode_csv() -> list[dict]:
+    path = TABLES / "episodes.csv"
+    if not path.exists():
+        die(f"missing {path}")
+    with path.open(encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def stats_from_coverage(coverage: dict) -> dict:
+    """Rebuild Pocket Casts stats-shaped dict from a prior coverage.json."""
+    listened = int(coverage.get("timeListenedSeconds") or 0)
+    return {
+        "timesStartedAt": coverage.get("accountStartedAt"),
+        "timeListened": listened,
+        "timeSilenceRemoval": int(coverage.get("timeSilenceRemovalSeconds") or 0),
+        "timeSkipping": int(coverage.get("timeSkippingSeconds") or 0),
+        "timeIntroSkipping": int(coverage.get("timeIntroSkippingSeconds") or 0),
+        "timeVariableSpeed": int(coverage.get("timeVariableSpeedSeconds") or 0),
+    }
+
+
+def repair_durations_offline() -> None:
+    """Fix existing tables without calling the Pocket Casts API."""
+    rows = load_episode_csv()
+    # DictReader values are strings; coerce Year for aggregate grouping.
+    for r in rows:
+        try:
+            r["Year"] = int(r["Year"])
+        except (TypeError, ValueError):
+            pass
+    fixed = repair_missing_durations(rows)
+    print(f"repaired durations from played-up-to on {fixed} rows")
+
+    coverage_path = TABLES / "coverage.json"
+    prior_coverage = (
+        json.loads(coverage_path.read_text(encoding="utf-8"))
+        if coverage_path.exists()
+        else {}
+    )
+    year_counts_raw = prior_coverage.get("yearsProbed") or {
+        str(y): 0 for y in range(2010, datetime.now(timezone.utc).year + 1)
+    }
+    stats = stats_from_coverage(prior_coverage)
+    built, coverage = build_aggregates(rows, stats, year_counts_raw)
+    # Keep prior account-level coverage fields; refresh listen bounds + sync time.
+    for key in (
+        "accountStartedAt",
+        "timeListenedSeconds",
+        "timeListenedHours",
+        "timeSilenceRemovalSeconds",
+        "timeSkippingSeconds",
+        "timeIntroSkippingSeconds",
+        "timeVariableSpeedSeconds",
+        "yearsProbed",
+        "note",
+        "perEpisodeHistoryAvailableFrom",
+    ):
+        if key in prior_coverage:
+            coverage[key] = prior_coverage[key]
+    built["coverage"] = coverage
+    built["aggregates"]["coverage"] = coverage
+    built["meta"]["accountStartedAt"] = coverage.get("accountStartedAt")
+    built["meta"]["accountTimeListenedHours"] = coverage.get("timeListenedHours")
+    built["meta"]["perEpisodeHistoryFrom"] = coverage.get(
+        "perEpisodeHistoryAvailableFrom"
+    )
+    built["meta"]["yearsWithoutHistory"] = [
+        y for y, c in (coverage.get("yearsProbed") or {}).items() if c == 0
+    ]
+
+    write_tables(rows, built)
+    write_excel(rows, coverage, built["meta"])
+    sync_docs()
+    run_standalone()
+    print(
+        f"duration repair complete: fixed={fixed} episodes={len(rows)} "
+        f"totalDurationHours={built['meta'].get('totalDurationHours')}"
+    )
+
+
 def main() -> None:
+    if "--repair-durations" in sys.argv:
+        repair_durations_offline()
+        return
+
     token = login()
     stats = fetch_stats(token)
     podcasts, folders = fetch_catalog(token)
