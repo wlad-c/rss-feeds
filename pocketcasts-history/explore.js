@@ -75,9 +75,9 @@
     _themeShowsThemeId: "",
     metric: "episodes", // "episodes" | "hours"
     chartPeriod: {
-      year: "",
-      month: "",
-      day: "",
+      from: "",
+      to: "",
+      preset: "all",
       country: "",
       podcast: "",
       theme: "",
@@ -279,17 +279,128 @@
     });
   }
 
+  function localISODate(d = new Date()) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  }
+
+  function parseLocalISODate(iso) {
+    const s = String(iso || "");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+    const y = Number(s.slice(0, 4));
+    const m = Number(s.slice(5, 7));
+    const d = Number(s.slice(8, 10));
+    const dt = new Date(y, m - 1, d);
+    if (dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d) return null;
+    return dt;
+  }
+
+  function addDaysISO(iso, delta) {
+    const dt = parseLocalISODate(iso);
+    if (!dt) return "";
+    dt.setDate(dt.getDate() + Number(delta || 0));
+    return localISODate(dt);
+  }
+
+  function daysBetweenISO(from, to) {
+    const a = parseLocalISODate(from);
+    const b = parseLocalISODate(to);
+    if (!a || !b) return null;
+    return Math.round((b - a) / 86400000);
+  }
+
+  function normalizeISODate(value) {
+    const s = String(value || "").trim().slice(0, 10);
+    return /^\d{4}-\d{2}-\d{2}$/.test(s) && parseLocalISODate(s) ? s : "";
+  }
+
+  function historyDateBounds() {
+    const idx = ensurePeriodIndex();
+    if (idx.minDate && idx.maxDate) return { from: idx.minDate, to: idx.maxDate };
+    const fromMeta = String(state.agg?.meta?.perEpisodeHistoryFrom || "").slice(0, 10);
+    const toMeta = localISODate();
+    return {
+      from: /^\d{4}-\d{2}-\d{2}$/.test(fromMeta) ? fromMeta : "",
+      to: toMeta,
+    };
+  }
+
+  function datePresetBounds(preset, today = localISODate()) {
+    const key = String(preset || "all");
+    if (key === "yesterday") {
+      const y = addDaysISO(today, -1);
+      return { from: y, to: y, preset: "yesterday" };
+    }
+    if (key === "7d") {
+      return { from: addDaysISO(today, -6), to: today, preset: "7d" };
+    }
+    if (key === "30d") {
+      return { from: addDaysISO(today, -29), to: today, preset: "30d" };
+    }
+    if (key === "1y") {
+      return { from: addDaysISO(today, -364), to: today, preset: "1y" };
+    }
+    return { from: "", to: "", preset: "all" };
+  }
+
+  function inferDatePreset(from, to, today = localISODate()) {
+    const f = normalizeISODate(from);
+    const t = normalizeISODate(to);
+    if (!f && !t) return "all";
+    for (const key of ["yesterday", "7d", "30d", "1y"]) {
+      const b = datePresetBounds(key, today);
+      if (b.from === f && b.to === t) return key;
+    }
+    return "custom";
+  }
+
+  function dateRangeActive(period = state.chartPeriod) {
+    return !!(normalizeISODate(period?.from) || normalizeISODate(period?.to));
+  }
+
+  function effectiveDateRange(period = state.chartPeriod) {
+    const bounds = historyDateBounds();
+    const from = normalizeISODate(period?.from) || bounds.from || "";
+    const to = normalizeISODate(period?.to) || bounds.to || localISODate();
+    if (from && to && from > to) return { from: to, to: from };
+    return { from, to };
+  }
+
+  function enumerateDayKeysInclusive(from, to) {
+    const start = normalizeISODate(from);
+    const end = normalizeISODate(to);
+    if (!start || !end || start > end) return [];
+    const keys = [];
+    let cur = start;
+    // Cap runaway ranges (multi-year day axes) — callers should prefer month grain.
+    for (let i = 0; i < 800; i++) {
+      keys.push(cur);
+      if (cur === end) break;
+      cur = addDaysISO(cur, 1);
+      if (!cur) break;
+    }
+    return keys;
+  }
+
   function chartPeriodActive() {
-    const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
-    return !!(year || month || day || country || podcast || theme || status || String(q || "").trim());
+    const { country, podcast, theme, status, q } = state.chartPeriod;
+    return !!(
+      dateRangeActive() ||
+      country ||
+      podcast ||
+      theme ||
+      status ||
+      String(q || "").trim()
+    );
   }
 
   function chartPeriodKey() {
-    const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
+    const { from, to, country, podcast, theme, status, q } = state.chartPeriod;
     return [
-      year || "all",
-      month || "all",
-      day || "all",
+      normalizeISODate(from) || "all",
+      normalizeISODate(to) || "all",
       country || "all",
       podcast || "all",
       theme || "all",
@@ -299,12 +410,23 @@
   }
 
   function chartPeriodLabel(opts = {}) {
-    const { year, month, day, country, podcast, theme, status, q } = state.chartPeriod;
+    const { from, to, preset, country, podcast, theme, status, q } = state.chartPeriod;
     const bits = [];
-    if (year) {
-      if (!month) bits.push(String(year));
-      else if (day) bits.push(formatDateKey(`${year}-${month}-${String(day).padStart(2, "0")}`));
-      else bits.push(formatMonthKey(`${year}-${month}`));
+    const f = normalizeISODate(from);
+    const t = normalizeISODate(to);
+    if (preset === "yesterday" || (f && t && f === t && f === addDaysISO(localISODate(), -1))) {
+      bits.push("Yesterday");
+    } else if (preset === "7d") {
+      bits.push("Last 7 days");
+    } else if (preset === "30d") {
+      bits.push("Last 30 days");
+    } else if (preset === "1y") {
+      bits.push("Last year");
+    } else if (f || t) {
+      if (f && t && f === t) bits.push(formatDateKey(f));
+      else if (f && t) bits.push(`${formatDateKey(f)} – ${formatDateKey(t)}`);
+      else if (f) bits.push(`From ${formatDateKey(f)}`);
+      else bits.push(`Through ${formatDateKey(t)}`);
     }
     if (country) bits.push(country);
     if (podcast) bits.push(podcast);
@@ -352,36 +474,23 @@
 
   function episodeMatchesChartPeriod(e, i = null, overrides = null) {
     const base = state.chartPeriod;
-    const year = overrides && Object.prototype.hasOwnProperty.call(overrides, "year")
-      ? overrides.year
-      : base.year;
-    const month = overrides && Object.prototype.hasOwnProperty.call(overrides, "month")
-      ? overrides.month
-      : base.month;
-    const day = overrides && Object.prototype.hasOwnProperty.call(overrides, "day")
-      ? overrides.day
-      : base.day;
-    const country = overrides && Object.prototype.hasOwnProperty.call(overrides, "country")
-      ? overrides.country
-      : base.country;
-    const podcast = overrides && Object.prototype.hasOwnProperty.call(overrides, "podcast")
-      ? overrides.podcast
-      : base.podcast;
-    const theme = overrides && Object.prototype.hasOwnProperty.call(overrides, "theme")
-      ? overrides.theme
-      : base.theme;
-    const status = overrides && Object.prototype.hasOwnProperty.call(overrides, "status")
-      ? overrides.status
-      : base.status;
-    const q = overrides && Object.prototype.hasOwnProperty.call(overrides, "q")
-      ? overrides.q
-      : base.q;
+    const pick = (key) =>
+      overrides && Object.prototype.hasOwnProperty.call(overrides, key)
+        ? overrides[key]
+        : base[key];
+    const from = normalizeISODate(pick("from"));
+    const to = normalizeISODate(pick("to"));
+    const country = pick("country");
+    const podcast = pick("podcast");
+    const theme = pick("theme");
+    const status = pick("status");
+    const q = pick("q");
     const qq = String(q || "").trim().toLowerCase();
-    if (!year && !month && !day && !country && !podcast && !theme && !status && !qq) return true;
-    const d = String(e.d || "");
-    if (year && String(e.y) !== String(year)) return false;
-    if (month && d.slice(5, 7) !== month) return false;
-    if (day && d.slice(8, 10) !== day) return false;
+    if (!from && !to && !country && !podcast && !theme && !status && !qq) return true;
+    const d = String(e.d || "").slice(0, 10);
+    if (from && d && d < from) return false;
+    if (to && d && d > to) return false;
+    if ((from || to) && !d) return false;
     if (country) {
       const c =
         i != null && state._epCountry ? state._epCountry[i] : countryForEpisode(e);
@@ -556,27 +665,21 @@
   function ensurePeriodIndex() {
     if (state._periodIndex) return state._periodIndex;
     const years = new Set();
-    const monthsByYear = Object.create(null);
-    const daysByYm = Object.create(null);
+    let minDate = "";
+    let maxDate = "";
     for (const e of state.episodes || []) {
-      const d = String(e.d || "");
+      const d = String(e.d || "").slice(0, 10);
       const y = e.y != null && e.y !== "" ? String(e.y) : d.slice(0, 4);
-      if (!y || y.length !== 4) continue;
-      years.add(y);
-      const m = d.slice(5, 7);
-      if (!m) continue;
-      if (!monthsByYear[y]) monthsByYear[y] = new Set();
-      monthsByYear[y].add(m);
-      const day = d.slice(8, 10);
-      if (!day) continue;
-      const ym = `${y}-${m}`;
-      if (!daysByYm[ym]) daysByYm[ym] = new Set();
-      daysByYm[ym].add(day);
+      if (y && y.length === 4) years.add(y);
+      if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
+        if (!minDate || d < minDate) minDate = d;
+        if (!maxDate || d > maxDate) maxDate = d;
+      }
     }
     state._periodIndex = {
       years: [...years].sort((a, b) => Number(b) - Number(a)),
-      monthsByYear,
-      daysByYm,
+      minDate,
+      maxDate,
     };
     return state._periodIndex;
   }
@@ -590,13 +693,33 @@
   }
 
   function applyChartPeriod(next, { rerender = true } = {}) {
-    const year = next.year ? String(next.year) : "";
-    const month = year && next.month ? String(next.month).padStart(2, "0") : "";
-    const day = year && month && next.day ? String(next.day).padStart(2, "0") : "";
     const pick = (key) =>
       Object.prototype.hasOwnProperty.call(next, key)
         ? String(next[key] || "")
         : String(state.chartPeriod[key] || "");
+    let from = normalizeISODate(
+      Object.prototype.hasOwnProperty.call(next, "from") ? next.from : state.chartPeriod.from
+    );
+    let to = normalizeISODate(
+      Object.prototype.hasOwnProperty.call(next, "to") ? next.to : state.chartPeriod.to
+    );
+    if (from && to && from > to) {
+      const swap = from;
+      from = to;
+      to = swap;
+    }
+    let preset = Object.prototype.hasOwnProperty.call(next, "preset")
+      ? String(next.preset || "")
+      : String(state.chartPeriod.preset || "");
+    if (!preset || preset === "custom") {
+      preset = inferDatePreset(from, to);
+    } else if (preset !== "all" && preset !== "custom") {
+      // Keep an explicit preset only if bounds still match it.
+      const expected = datePresetBounds(preset);
+      if (expected.from !== from || expected.to !== to) preset = inferDatePreset(from, to);
+    } else if (!from && !to) {
+      preset = "all";
+    }
     const country = pick("country");
     const podcast = pick("podcast");
     const theme = pick("theme");
@@ -604,7 +727,7 @@
     const q = Object.prototype.hasOwnProperty.call(next, "q")
       ? String(next.q || "")
       : String(state.chartPeriod.q || "");
-    state.chartPeriod = { year, month, day, country, podcast, theme, status, q };
+    state.chartPeriod = { from, to, preset, country, podcast, theme, status, q };
     syncThemeUiFromPeriod();
     invalidateChartStats();
     syncPeriodControls({ skipThemes: true });
@@ -723,43 +846,43 @@
     }
   }
 
+  function syncDatePresetButtons() {
+    const active = state.chartPeriod.preset || inferDatePreset(state.chartPeriod.from, state.chartPeriod.to);
+    $$("[data-date-preset]").forEach((btn) => {
+      const on = btn.getAttribute("data-date-preset") === active;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
   function syncPeriodControls({ skipThemes = false } = {}) {
-    const yearSel = $("#periodYear");
-    const monthSel = $("#periodMonth");
-    const daySel = $("#periodDay");
+    const fromInput = $("#periodFrom");
+    const toInput = $("#periodTo");
     const countrySel = $("#periodCountry");
     const podcastSel = $("#periodPodcast");
     const statusSel = $("#periodStatus");
     const qInput = $("#periodQ");
-    if (!yearSel || !monthSel || !daySel) return;
-    const idx = ensurePeriodIndex();
-    const { year, month, day, country, podcast, status, q } = state.chartPeriod;
-    yearSel.innerHTML =
-      `<option value="">All years</option>` +
-      idx.years.map((y) => `<option value="${escapeHtml(y)}">${escapeHtml(y)}</option>`).join("");
-    yearSel.value = year || "";
-
-    const months = year ? [...(idx.monthsByYear[year] || [])].sort() : [];
-    monthSel.disabled = !year;
-    monthSel.innerHTML =
-      `<option value="">All months</option>` +
-      months
-        .map((m) => `<option value="${m}">${escapeHtml(MONTH_NAME[m] || m)}</option>`)
-        .join("");
-    monthSel.value = month && months.includes(month) ? month : "";
-
-    const ym = year && monthSel.value ? `${year}-${monthSel.value}` : "";
-    const days = ym ? [...(idx.daysByYm[ym] || [])].sort() : [];
-    daySel.disabled = !ym;
-    daySel.innerHTML =
-      `<option value="">All days</option>` +
-      days.map((d) => `<option value="${d}">${Number(d)}</option>`).join("");
-    daySel.value = day && days.includes(day) ? day : "";
-
-    if (state.chartPeriod.month !== monthSel.value || state.chartPeriod.day !== daySel.value) {
-      state.chartPeriod.month = monthSel.value || "";
-      state.chartPeriod.day = daySel.value || "";
+    if (!fromInput || !toInput) return;
+    const { from, to, country, podcast, status, q } = state.chartPeriod;
+    const bounds = historyDateBounds();
+    const min = bounds.from || "";
+    const max = bounds.to || localISODate();
+    if (min) {
+      fromInput.min = min;
+      toInput.min = min;
+    } else {
+      fromInput.removeAttribute("min");
+      toInput.removeAttribute("min");
     }
+    if (max) {
+      fromInput.max = max;
+      toInput.max = max;
+    } else {
+      fromInput.removeAttribute("max");
+      toInput.removeAttribute("max");
+    }
+    fromInput.value = normalizeISODate(from) || "";
+    toInput.value = normalizeISODate(to) || "";
+    syncDatePresetButtons();
 
     if (countrySel && state.episodes) {
       if (!countrySel.options.length || countrySel.dataset.built !== "1") {
@@ -1224,9 +1347,7 @@
   function activeFacetCount({ includePodcast = true } = {}) {
     const p = state.chartPeriod;
     let n = 0;
-    if (p.year) n += 1;
-    if (p.month) n += 1;
-    if (p.day) n += 1;
+    if (dateRangeActive(p)) n += 1;
     if (p.country) n += 1;
     if (includePodcast && p.podcast) n += 1;
     if (p.theme) n += 1;
@@ -1392,7 +1513,7 @@
     placeFilterToggle();
     if (on) {
       requestAnimationFrame(() => {
-        ($("#periodQ") || $("#periodYear"))?.focus?.({ preventScroll: true });
+        ($("#periodQ") || $("#periodFrom"))?.focus?.({ preventScroll: true });
       });
     } else {
       resetViewportAfterOverlay();
@@ -1429,13 +1550,7 @@
     const hours = metricIsHours();
     const period = chartPeriodLabel();
     const periodSuffix = chartPeriodActive() ? ` · ${period}` : "";
-    const grain = state.chartPeriod.day
-      ? "day"
-      : state.chartPeriod.month
-        ? "day"
-        : state.chartPeriod.year
-          ? "month"
-          : "month";
+    const grain = periodAxisKeys().grain;
     const setText = (sel, episodesText, hoursText) => {
       const el = $(sel);
       if (el) el.textContent = (hours ? hoursText : episodesText) + periodSuffix;
@@ -1450,9 +1565,9 @@
         : "Monthly hours of episode duration with a 3-month average."
     );
     setText("#cumChartTitle", "Cumulative episodes", "Cumulative hours");
-    if (state.chartPeriod.month) {
+    if (grain === "day") {
       setText("#yearChartTitle", "Episodes by day", "Hours by day");
-    } else if (state.chartPeriod.year) {
+    } else if (grain === "month" && dateRangeActive()) {
       setText("#yearChartTitle", "Episodes by month", "Hours by month");
     } else {
       setText("#yearChartTitle", "Episodes by year", "Hours by year");
@@ -2363,32 +2478,32 @@
 
   /** Full calendar axis for the sticky time filter (not “keys that have listens”). */
   function periodAxisKeys() {
-    const { year, month, day } = state.chartPeriod;
-    if (year && month && day) {
-      const d = `${year}-${month}-${String(day).padStart(2, "0")}`;
-      return { grain: "day", keys: [d] };
+    if (!dateRangeActive()) {
+      const from = String(state.agg?.meta?.perEpisodeHistoryFrom || "").slice(0, 7);
+      const yearKeys = historyYearKeys();
+      if (/^\d{4}-\d{2}$/.test(from) && yearKeys.length) {
+        const endYear = yearKeys[yearKeys.length - 1];
+        const now = new Date();
+        const end =
+          Number(endYear) === now.getFullYear()
+            ? `${endYear}-${String(now.getMonth() + 1).padStart(2, "0")}`
+            : `${endYear}-12`;
+        // Trend/cumulative charts prefer month grain across all-time.
+        return { grain: "month", keys: enumerateMonthKeys(from, end) };
+      }
+      return { grain: "year", keys: yearKeys };
     }
-    if (year && month) {
-      return { grain: "day", keys: enumerateDayKeys(year, month) };
+    const { from, to } = effectiveDateRange();
+    if (!from || !to) return { grain: "year", keys: historyYearKeys() };
+    if (from === to) return { grain: "day", keys: [from] };
+    const span = daysBetweenISO(from, to);
+    if (span != null && span <= 62) {
+      return { grain: "day", keys: enumerateDayKeysInclusive(from, to) };
     }
-    if (year) {
-      return {
-        grain: "month",
-        keys: enumerateMonthKeys(`${year}-01`, `${year}-12`),
-      };
-    }
-    const from = String(state.agg?.meta?.perEpisodeHistoryFrom || "").slice(0, 7);
-    const yearKeys = historyYearKeys();
-    if (/^\d{4}-\d{2}$/.test(from) && yearKeys.length) {
-      const endYear = yearKeys[yearKeys.length - 1];
-      const now = new Date();
-      const end =
-        Number(endYear) === now.getFullYear()
-          ? `${endYear}-${String(now.getMonth() + 1).padStart(2, "0")}`
-          : `${endYear}-12`;
-      return { grain: "month", keys: enumerateMonthKeys(from, end) };
-    }
-    return { grain: "year", keys: yearKeys };
+    return {
+      grain: "month",
+      keys: enumerateMonthKeys(from.slice(0, 7), to.slice(0, 7)),
+    };
   }
 
   function seriesFromMapKeys(map, keys, useHours) {
@@ -2624,7 +2739,7 @@
         };
       });
     }
-    if (axis.grain === "month" && state.chartPeriod.year) {
+    if (axis.grain === "month" && dateRangeActive()) {
       const src = hours ? stats.byMonthHours : stats.byMonthCount;
       return axis.keys.map((ym) => {
         const raw = src[ym] || 0;
@@ -2905,9 +3020,9 @@
       onClick: (d) => {
         if (!d?.name) return;
         applyChartPeriod({
-          year: state.chartPeriod.year,
-          month: state.chartPeriod.month,
-          day: state.chartPeriod.day,
+          from: state.chartPeriod.from,
+          to: state.chartPeriod.to,
+          preset: state.chartPeriod.preset,
           country: d.name,
         });
         goToSection("explorePanel");
@@ -2934,12 +3049,26 @@
     });
   }
 
+  function yearsCoveredByDateRange() {
+    if (!dateRangeActive()) {
+      return (state.agg?.meta?.years || []).map(String).slice().reverse();
+    }
+    const { from, to } = effectiveDateRange();
+    if (!from || !to) return [];
+    const ys = [];
+    for (let y = Number(from.slice(0, 4)); y <= Number(to.slice(0, 4)); y++) {
+      ys.push(String(y));
+    }
+    return ys.reverse();
+  }
+
   function renderYoYChart() {
     const hostNote = $("#yoyChartNote");
     const canvas = $("#yoyChart");
     const panel = canvas?.closest(".panel");
-    // YoY comparison needs multiple years — hide when narrowed to a month/day.
-    if (state.chartPeriod.month || state.chartPeriod.day) {
+    // YoY comparison needs multi-month span — hide for short day-grain ranges.
+    const axis = periodAxisKeys();
+    if (axis.grain === "day") {
       destroyChart("yoy");
       if (panel) panel.hidden = true;
       return;
@@ -2952,13 +3081,13 @@
         : state.agg.yoyByMonth || {};
     const months = ["01","02","03","04","05","06","07","08","09","10","11","12"];
     const labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    let years = (state.agg.meta.years || []).slice().reverse();
-    if (state.chartPeriod.year) years = [String(state.chartPeriod.year)];
+    let years = yearsCoveredByDateRange();
+    if (!years.length) years = (state.agg.meta.years || []).slice().reverse();
     const dashes = [[], [6, 4], [2, 3], [8, 3, 2, 3], [], [6, 4], [2, 3], [8, 3, 2, 3]];
-    if (hostNote && state.chartPeriod.year) {
+    if (hostNote && dateRangeActive() && years.length === 1) {
       hostNote.textContent = metricIsHours()
-        ? `Month-by-month hours in ${state.chartPeriod.year}.`
-        : `Month-by-month episodes in ${state.chartPeriod.year}.`;
+        ? `Month-by-month hours in ${years[0]}.`
+        : `Month-by-month episodes in ${years[0]}.`;
     }
     destroyChart("yoy");
     state.charts.yoy = new Chart(canvas, {
@@ -2995,26 +3124,25 @@
     const stats = ensureChartStats();
     const hours = metricIsHours();
     const src = hours ? stats.byDateHours : stats.byDateCount;
-    const { year, month, day } = state.chartPeriod;
-    // Time-scoped filters: paint every calendar day in the selected period.
-    if (year && month) {
-      const keys = day
-        ? [`${year}-${month}-${String(day).padStart(2, "0")}`]
-        : enumerateDayKeys(year, month);
-      return keys.map((date) => {
-        const raw = src[date] || 0;
-        return { date, count: hours ? Math.round(raw * 10) / 10 : raw };
-      });
-    }
-    if (year) {
-      const keys = [];
-      for (let m = 1; m <= 12; m++) {
-        keys.push(...enumerateDayKeys(year, String(m).padStart(2, "0")));
+    // Time-scoped filters: paint every calendar day in the selected period
+    // when the span is short enough; otherwise show data days only.
+    if (dateRangeActive()) {
+      const { from, to } = effectiveDateRange();
+      const span = daysBetweenISO(from, to);
+      if (from && to && span != null && span <= 366) {
+        const keys = enumerateDayKeysInclusive(from, to);
+        return keys.map((date) => {
+          const raw = src[date] || 0;
+          return { date, count: hours ? Math.round(raw * 10) / 10 : raw };
+        });
       }
-      return keys.map((date) => {
-        const raw = src[date] || 0;
-        return { date, count: hours ? Math.round(raw * 10) / 10 : raw };
-      });
+      return Object.keys(src)
+        .sort()
+        .filter((date) => (!from || date >= from) && (!to || date <= to))
+        .map((date) => ({
+          date,
+          count: hours ? Math.round(src[date] * 10) / 10 : src[date],
+        }));
     }
     if (chartPeriodActive()) {
       // Non-time filters: keep data days only (no single calendar period to fill).
@@ -3546,22 +3674,22 @@
   }
 
   function themeTrendGrain() {
-    const { year, month } = state.chartPeriod;
-    if (year && month) return "day";
-    if (year) return "month";
-    return "year";
+    return periodAxisKeys().grain === "day"
+      ? "day"
+      : dateRangeActive()
+        ? "month"
+        : "year";
   }
 
   function themeTrendBuckets() {
     const grain = themeTrendGrain();
     if (grain === "day") {
-      const { year, month, day } = state.chartPeriod;
-      if (day) return [`${year}-${month}-${String(day).padStart(2, "0")}`];
-      return enumerateDayKeys(year, month);
+      const { from, to } = effectiveDateRange();
+      return enumerateDayKeysInclusive(from, to);
     }
     if (grain === "month") {
-      const { year } = state.chartPeriod;
-      return enumerateMonthKeys(`${year}-01`, `${year}-12`);
+      const { from, to } = effectiveDateRange();
+      return enumerateMonthKeys(from.slice(0, 7), to.slice(0, 7));
     }
     const years = historyYearKeys();
     if (years.length) return years;
@@ -3829,15 +3957,28 @@
         applyMetric(btn.dataset.metric);
       });
     });
-    $("#periodYear")?.addEventListener("change", (e) => {
-      patchChartPeriod({ year: e.target.value, month: "", day: "" });
+    $$("[data-date-preset]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-date-preset") || "all";
+        const bounds = datePresetBounds(key);
+        patchChartPeriod({
+          from: bounds.from,
+          to: bounds.to,
+          preset: bounds.preset,
+        });
+      });
     });
-    $("#periodMonth")?.addEventListener("change", (e) => {
-      patchChartPeriod({ month: e.target.value, day: "" });
-    });
-    $("#periodDay")?.addEventListener("change", (e) => {
-      patchChartPeriod({ day: e.target.value });
-    });
+    const onDateInput = () => {
+      const from = normalizeISODate($("#periodFrom")?.value);
+      const to = normalizeISODate($("#periodTo")?.value);
+      patchChartPeriod({
+        from,
+        to,
+        preset: inferDatePreset(from, to),
+      });
+    };
+    $("#periodFrom")?.addEventListener("change", onDateInput);
+    $("#periodTo")?.addEventListener("change", onDateInput);
     $("#periodCountry")?.addEventListener("change", (e) => {
       patchChartPeriod({ country: e.target.value });
     });
@@ -3869,9 +4010,9 @@
 
     const clearAllFilters = () => {
       applyChartPeriod({
-        year: "",
-        month: "",
-        day: "",
+        from: "",
+        to: "",
+        preset: "all",
         country: "",
         podcast: "",
         theme: "",

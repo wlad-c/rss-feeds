@@ -36,9 +36,9 @@
     })();
   </script>
   <meta http-equiv="Cache-Control" content="no-cache" />
-  <link rel="stylesheet" href="explore.css?v=pwa-icon-1022" />
+  <link rel="stylesheet" href="explore.css?v=date-range-1030" />
   <script src="vendor/chart.umd.min.js" defer></script>
-  <script src="explore.js?v=pwa-icon-1022" defer></script>
+  <script src="explore.js?v=date-range-1030" defer></script>
 </head>
 <body>
   <!-- UI chrome layer (Liquid Glass) -->
@@ -91,18 +91,29 @@
                 <span>Search</span>
                 <input id="periodQ" type="search" placeholder="Episode, author, notes…" aria-label="Search episodes" />
               </label>
-              <label class="period-field">
-                <span>Year</span>
-                <select id="periodYear" aria-label="Filter by year"></select>
-              </label>
-              <label class="period-field">
-                <span>Month</span>
-                <select id="periodMonth" aria-label="Filter by month" disabled></select>
-              </label>
-              <label class="period-field">
-                <span>Day</span>
-                <select id="periodDay" aria-label="Filter by day" disabled></select>
-              </label>
+              <div class="period-field period-field-dates">
+                <span id="periodDatesLabel">Dates</span>
+                <div class="period-date-block">
+                  <div class="period-date-presets" role="group" aria-labelledby="periodDatesLabel">
+                    <button type="button" class="period-preset-btn" data-date-preset="all" aria-pressed="true">All time</button>
+                    <button type="button" class="period-preset-btn" data-date-preset="yesterday" aria-pressed="false">Yesterday</button>
+                    <button type="button" class="period-preset-btn" data-date-preset="7d" aria-pressed="false">Last 7 days</button>
+                    <button type="button" class="period-preset-btn" data-date-preset="30d" aria-pressed="false">Last 30 days</button>
+                    <button type="button" class="period-preset-btn" data-date-preset="1y" aria-pressed="false">Last year</button>
+                  </div>
+                  <div class="period-date-inputs">
+                    <label class="period-date-input">
+                      <span class="period-date-input-label">From</span>
+                      <input id="periodFrom" type="date" aria-label="From date" />
+                    </label>
+                    <span class="period-date-sep" aria-hidden="true">–</span>
+                    <label class="period-date-input">
+                      <span class="period-date-input-label">To</span>
+                      <input id="periodTo" type="date" aria-label="To date" />
+                    </label>
+                  </div>
+                </div>
+              </div>
               <label class="period-field period-field-country">
                 <span>Country</span>
                 <select id="periodCountry" aria-label="Filter by country of origin"></select>
@@ -343,7 +354,7 @@
       Built from your Pocket Casts export in this repo.
       Raw tables live in <a href="./tables/">tables/</a>
       · Excel workbook <a href="./PocketCasts_Listening_History.xlsx">download</a>.
-      <div class="build-stamp" id="buildStamp">build pwa-icon-1022</div>
+      <div class="build-stamp" id="buildStamp">build date-range-1030</div>
     </footer>
   </div>
 
