@@ -396,7 +396,7 @@
     } else if (preset === "30d" || inclusiveDays === 30) {
       label = "prior 30 days";
     } else if (preset === "1y" || inclusiveDays === 365) {
-      label = "Last Year";
+      label = "prior 365 days";
     } else if (inclusiveDays > 1) {
       label = "PCP";
     }
@@ -601,7 +601,7 @@
     } else if (preset === "30d") {
       bits.push("Last 30 days");
     } else if (preset === "1y") {
-      bits.push("Last year");
+      bits.push("Last 365 days");
     } else if (f || t) {
       if (f && t && f === t) bits.push(formatDateKey(f));
       else if (f && t) bits.push(`${formatDateKey(f)} – ${formatDateKey(t)}`);
@@ -1058,7 +1058,7 @@
     if (key === "yesterday") return "Yesterday";
     if (key === "7d") return "Last 7 days";
     if (key === "30d") return "Last 30 days";
-    if (key === "1y") return "Last year";
+    if (key === "1y") return "Last 365 days";
     const f = normalizeISODate(from);
     const t = normalizeISODate(to);
     if (f && t && f === t) return formatDateKey(f);

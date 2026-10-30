@@ -2661,7 +2661,7 @@ body.is-filtering #periodSummary {
         <button type="button" class="period-preset-btn" data-date-preset="yesterday" aria-pressed="false">Yesterday</button>
         <button type="button" class="period-preset-btn" data-date-preset="7d" aria-pressed="false">Last 7 days</button>
         <button type="button" class="period-preset-btn" data-date-preset="30d" aria-pressed="false">Last 30 days</button>
-        <button type="button" class="period-preset-btn" data-date-preset="1y" aria-pressed="false">Last year</button>
+        <button type="button" class="period-preset-btn" data-date-preset="1y" aria-pressed="false">Last 365 days</button>
       </div>
       <div class="period-date-inputs">
         <label class="period-date-input">
@@ -2864,7 +2864,7 @@ body.is-filtering #periodSummary {
       Standalone offline build from your GitHub Pocket Casts export. No external network requests.
       Raw tables live in <a href="./tables/">tables/</a>
       · Excel workbook <a href="./PocketCasts_Listening_History.xlsx">download</a>.
-      <div class="build-stamp" id="buildStamp">build pcp-all-1030</div>
+      <div class="build-stamp" id="buildStamp">build last365-1030</div>
     </footer>
   </div>
 
@@ -3321,7 +3321,7 @@ body.is-filtering #periodSummary {
     } else if (preset === "30d" || inclusiveDays === 30) {
       label = "prior 30 days";
     } else if (preset === "1y" || inclusiveDays === 365) {
-      label = "Last Year";
+      label = "prior 365 days";
     } else if (inclusiveDays > 1) {
       label = "PCP";
     }
@@ -3526,7 +3526,7 @@ body.is-filtering #periodSummary {
     } else if (preset === "30d") {
       bits.push("Last 30 days");
     } else if (preset === "1y") {
-      bits.push("Last year");
+      bits.push("Last 365 days");
     } else if (f || t) {
       if (f && t && f === t) bits.push(formatDateKey(f));
       else if (f && t) bits.push(`${formatDateKey(f)} – ${formatDateKey(t)}`);
@@ -3983,7 +3983,7 @@ body.is-filtering #periodSummary {
     if (key === "yesterday") return "Yesterday";
     if (key === "7d") return "Last 7 days";
     if (key === "30d") return "Last 30 days";
-    if (key === "1y") return "Last year";
+    if (key === "1y") return "Last 365 days";
     const f = normalizeISODate(from);
     const t = normalizeISODate(to);
     if (f && t && f === t) return formatDateKey(f);
