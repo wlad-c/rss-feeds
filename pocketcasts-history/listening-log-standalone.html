@@ -927,10 +927,8 @@ body.combo-picker-open {
   }
 
   .period-controls > .period-field-dates {
-    flex: 1 1 22rem;
-    min-width: 14rem;
-    max-width: none;
-    overflow: visible;
+    min-width: 7.5rem;
+    max-width: 14rem;
   }
 
   .period-controls > .period-field-country,
@@ -944,7 +942,7 @@ body.combo-picker-open {
   .period-controls .period-field .combo,
   .period-controls .period-field .combo-input,
   .period-controls .period-field-search input,
-  .period-controls .period-date-input input[type="date"] {
+  .period-controls .date-filter-trigger {
     width: 100%;
     min-width: 0 !important;
     max-width: none !important;
@@ -1010,57 +1008,112 @@ body.combo-picker-open {
 .period-field-podcast { min-width: 11rem; }
 .period-field-theme { min-width: 10rem; }
 .period-field-dates {
-  min-width: min(100%, 24rem);
-  flex: 1 1 20rem;
+  min-width: 9.5rem;
 }
 
-.period-date-block {
+.date-filter-trigger {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: var(--fill-tertiary);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  color: var(--label);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: left;
+  min-width: 8.5rem;
+  max-width: 16rem;
+  width: 100%;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+
+.date-filter-trigger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-soft);
+  background: var(--grouped-bg-elevated);
+}
+
+.date-filter-trigger[aria-expanded="true"] {
+  box-shadow: 0 0 0 3px var(--blue-soft);
+  background: var(--grouped-bg-elevated);
+}
+
+/* Portaled date panel — desktop popover / mobile sheet */
+.date-filter-backdrop {
+  display: none;
+}
+
+.date-filter-panel {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: var(--grouped-bg-elevated);
+  color: var(--label);
+  z-index: 260;
+}
+
+.date-filter-panel.is-open {
+  display: flex;
+}
+
+.date-filter-chrome {
+  display: none;
+}
+
+.date-filter-body {
   display: grid;
-  gap: 6px;
+  gap: 14px;
+  padding: 14px;
   min-width: 0;
 }
 
 .period-date-presets {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
   min-width: 0;
-  max-width: 100%;
 }
 
 .period-date-inputs {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-end;
+  gap: 8px;
   min-width: 0;
 }
 
 .period-date-input {
   display: grid;
-  gap: 2px;
+  gap: 4px;
   min-width: 0;
   flex: 1 1 9rem;
 }
 
 .period-date-input-label {
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--tertiary-label);
+  color: var(--secondary-label);
 }
 
 .period-date-sep {
   color: var(--tertiary-label);
   font-weight: 600;
-  padding-top: 14px;
+  padding-bottom: 10px;
 }
 
 .period-preset-btn {
   border: 0;
   background: var(--fill-tertiary);
   color: var(--label);
-  padding: 8px 10px;
+  padding: 8px 11px;
   font: inherit;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -1109,7 +1162,85 @@ html[data-theme="dark"] .period-preset-btn[aria-pressed="true"] {
 .period-date-input input[type="date"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px var(--blue-soft);
-  background: var(--grouped-bg-elevated);
+  background: var(--fill);
+}
+
+/* Desktop: fixed popover under the Dates trigger */
+@media (min-width: 861px) {
+  .date-filter-panel.is-open.is-ported {
+    position: fixed;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow), 0 0 0 0.5px var(--separator);
+    width: min(22rem, calc(100vw - 24px));
+    max-height: min(70vh, 28rem);
+    overflow: auto;
+  }
+
+  .date-filter-backdrop {
+    display: none !important;
+  }
+}
+
+/* Compact: full-screen sheet like Shows picker */
+@media (max-width: 860px) {
+  .date-filter-backdrop.is-open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: rgba(0, 0, 0, 0.32);
+  }
+
+  .date-filter-panel.is-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    max-height: min(88vh, 34rem);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: var(--inset-left, 16px);
+    padding-right: var(--inset-right, 16px);
+    box-sizing: border-box;
+  }
+
+  .date-filter-chrome {
+    display: block;
+    padding-top: 8px;
+  }
+
+  .date-filter-grabber {
+    width: 36px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--fill);
+    margin: 0 auto 8px;
+  }
+
+  .date-filter-header {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr 4.5rem;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+  }
+
+  .date-filter-header h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  .date-filter-body {
+    padding: 8px 0 16px;
+  }
+
+  body.date-filter-open {
+    overflow: hidden;
+  }
 }
 
 .period-field span,
@@ -2224,12 +2355,6 @@ body.is-filtering #periodSummary {
     border-bottom: 0.5px solid var(--separator);
   }
 
-  .filter-sheet-body .period-field-dates {
-    align-items: start;
-    padding-top: 10px;
-    padding-bottom: 12px;
-  }
-
   .filter-sheet-body .period-field:last-of-type {
     border-bottom: 0;
   }
@@ -2247,7 +2372,8 @@ body.is-filtering #periodSummary {
   .filter-sheet-body .period-field-podcast select,
   .filter-sheet-body .period-field-theme select,
   .filter-sheet-body .period-field-search input,
-  .filter-sheet-body .combo-input {
+  .filter-sheet-body .combo-input,
+  .filter-sheet-body .date-filter-trigger {
     max-width: none;
     width: 100%;
     min-width: 0;
@@ -2262,58 +2388,16 @@ body.is-filtering #periodSummary {
 
   .filter-sheet-body .period-field-search input,
   .filter-sheet-body .combo-input,
-  .filter-sheet-body input[type="search"],
-  .filter-sheet-body .period-date-input input[type="date"] {
+  .filter-sheet-body input[type="search"] {
     font-size: 16px;
-  }
-
-  .filter-sheet-body .period-date-block {
-    gap: 8px;
-  }
-
-  .filter-sheet-body .period-date-presets {
-    justify-content: flex-end;
-  }
-
-  .filter-sheet-body .period-date-inputs {
-    justify-content: flex-end;
-  }
-
-  .filter-sheet-body .period-date-input {
-    flex: 1 1 8.5rem;
-  }
-
-  .filter-sheet-body .period-date-input-label {
-    text-align: right;
-  }
-
-  .filter-sheet-body .period-date-input input[type="date"] {
-    max-width: none;
-    width: 100%;
-    min-height: 36px;
-    text-align: right;
-    background: var(--fill);
-    border-radius: var(--radius-sm);
-    padding: 8px 10px;
-    font-weight: 400;
-    color: var(--secondary-label);
-  }
-
-  .filter-sheet-body .period-date-sep {
-    padding-top: 16px;
-  }
-
-  .filter-sheet-body .period-preset-btn {
-    background: var(--fill);
-    font-size: 0.8125rem;
-    padding: 7px 10px;
   }
 
   .filter-sheet-body .period-field select:focus,
   .filter-sheet-body .period-field-search input:focus,
   .filter-sheet-body .combo-input:focus,
-  .filter-sheet-body .period-date-input input[type="date"]:focus {
+  .filter-sheet-body .date-filter-trigger:focus {
     box-shadow: none;
+    background: transparent;
     color: var(--system-blue);
   }
 
@@ -2474,26 +2558,16 @@ body.is-filtering #periodSummary {
               </label>
               <div class="period-field period-field-dates">
                 <span id="periodDatesLabel">Dates</span>
-                <div class="period-date-block">
-                  <div class="period-date-presets" role="group" aria-labelledby="periodDatesLabel">
-                    <button type="button" class="period-preset-btn" data-date-preset="all" aria-pressed="true">All time</button>
-                    <button type="button" class="period-preset-btn" data-date-preset="yesterday" aria-pressed="false">Yesterday</button>
-                    <button type="button" class="period-preset-btn" data-date-preset="7d" aria-pressed="false">Last 7 days</button>
-                    <button type="button" class="period-preset-btn" data-date-preset="30d" aria-pressed="false">Last 30 days</button>
-                    <button type="button" class="period-preset-btn" data-date-preset="1y" aria-pressed="false">Last year</button>
-                  </div>
-                  <div class="period-date-inputs">
-                    <label class="period-date-input">
-                      <span class="period-date-input-label">From</span>
-                      <input id="periodFrom" type="date" aria-label="From date" />
-                    </label>
-                    <span class="period-date-sep" aria-hidden="true">–</span>
-                    <label class="period-date-input">
-                      <span class="period-date-input-label">To</span>
-                      <input id="periodTo" type="date" aria-label="To date" />
-                    </label>
-                  </div>
-                </div>
+                <button
+                  type="button"
+                  class="date-filter-trigger"
+                  id="periodDatesBtn"
+                  aria-haspopup="dialog"
+                  aria-expanded="false"
+                  aria-controls="dateFilterPanel"
+                >
+                  All time
+                </button>
               </div>
               <label class="period-field period-field-country">
                 <span>Country</span>
@@ -2546,6 +2620,46 @@ body.is-filtering #periodSummary {
       </div>
     </div>
     <div class="filter-sheet-body" id="filterSheetBody"></div>
+  </div>
+
+  <!-- Date range picker — portaled outside sticky chrome (overflow clips dropdowns) -->
+  <div class="date-filter-backdrop" id="dateFilterBackdrop" hidden></div>
+  <div
+    class="date-filter-panel"
+    id="dateFilterPanel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="dateFilterTitle"
+    hidden
+  >
+    <div class="date-filter-chrome">
+      <div class="date-filter-grabber" aria-hidden="true"></div>
+      <div class="date-filter-header">
+        <button type="button" class="sheet-text-btn" id="dateFilterClear" title="Reset to all time">Clear</button>
+        <h2 id="dateFilterTitle">Dates</h2>
+        <button type="button" class="sheet-text-btn sheet-done" id="dateFilterDone">Done</button>
+      </div>
+    </div>
+    <div class="date-filter-body">
+      <div class="period-date-presets" role="group" aria-label="Quick date ranges">
+        <button type="button" class="period-preset-btn" data-date-preset="all" aria-pressed="true">All time</button>
+        <button type="button" class="period-preset-btn" data-date-preset="yesterday" aria-pressed="false">Yesterday</button>
+        <button type="button" class="period-preset-btn" data-date-preset="7d" aria-pressed="false">Last 7 days</button>
+        <button type="button" class="period-preset-btn" data-date-preset="30d" aria-pressed="false">Last 30 days</button>
+        <button type="button" class="period-preset-btn" data-date-preset="1y" aria-pressed="false">Last year</button>
+      </div>
+      <div class="period-date-inputs">
+        <label class="period-date-input">
+          <span class="period-date-input-label">From</span>
+          <input id="periodFrom" type="date" aria-label="From date" />
+        </label>
+        <span class="period-date-sep" aria-hidden="true">–</span>
+        <label class="period-date-input">
+          <span class="period-date-input-label">To</span>
+          <input id="periodTo" type="date" aria-label="To date" />
+        </label>
+      </div>
+    </div>
   </div>
 
   <!-- Content layer -->
@@ -2735,7 +2849,7 @@ body.is-filtering #periodSummary {
       Standalone offline build from your GitHub Pocket Casts export. No external network requests.
       Raw tables live in <a href="./tables/">tables/</a>
       · Excel workbook <a href="./PocketCasts_Listening_History.xlsx">download</a>.
-      <div class="build-stamp" id="buildStamp">build date-range-1030</div>
+      <div class="build-stamp" id="buildStamp">build date-pop-1030</div>
     </footer>
   </div>
 
@@ -3642,12 +3756,145 @@ body.is-filtering #periodSummary {
     }
   }
 
+  function dateFilterTriggerLabel() {
+    const { from, to, preset } = state.chartPeriod;
+    const key = preset || inferDatePreset(from, to);
+    if (key === "all" || (!normalizeISODate(from) && !normalizeISODate(to))) return "All time";
+    if (key === "yesterday") return "Yesterday";
+    if (key === "7d") return "Last 7 days";
+    if (key === "30d") return "Last 30 days";
+    if (key === "1y") return "Last year";
+    const f = normalizeISODate(from);
+    const t = normalizeISODate(to);
+    if (f && t && f === t) return formatDateKey(f);
+    if (f && t) return `${formatDateKey(f)} – ${formatDateKey(t)}`;
+    if (f) return `From ${formatDateKey(f)}`;
+    if (t) return `Through ${formatDateKey(t)}`;
+    return "All time";
+  }
+
   function syncDatePresetButtons() {
     const active = state.chartPeriod.preset || inferDatePreset(state.chartPeriod.from, state.chartPeriod.to);
     $$("[data-date-preset]").forEach((btn) => {
       const on = btn.getAttribute("data-date-preset") === active;
       btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
+    const trigger = $("#periodDatesBtn");
+    if (trigger) {
+      const label = dateFilterTriggerLabel();
+      trigger.textContent = label;
+      trigger.title = label;
+    }
+  }
+
+  let dateFilterReposition = null;
+
+  function dateFilterIsOpen() {
+    return !!$("#dateFilterPanel")?.classList.contains("is-open");
+  }
+
+  function positionDateFilterPanel() {
+    const panel = $("#dateFilterPanel");
+    const trigger = $("#periodDatesBtn");
+    if (!panel || !trigger || !dateFilterIsOpen()) return;
+    if (isCompactFilterUi()) {
+      panel.classList.remove("is-ported");
+      panel.style.left = "";
+      panel.style.top = "";
+      panel.style.width = "";
+      panel.style.right = "";
+      panel.style.maxHeight = "";
+      return;
+    }
+    const r = trigger.getBoundingClientRect();
+    const gutter = 8;
+    const width = Math.min(352, Math.max(280, Math.round(r.width * 1.35)));
+    let left = Math.round(r.left);
+    left = Math.min(left, window.innerWidth - width - gutter);
+    left = Math.max(gutter, left);
+    const spaceBelow = window.innerHeight - r.bottom - gutter;
+    const spaceAbove = r.top - gutter;
+    const preferBelow = spaceBelow >= 220 || spaceBelow >= spaceAbove;
+    const maxH = Math.min(420, Math.max(200, preferBelow ? spaceBelow : spaceAbove));
+    const top = preferBelow
+      ? Math.round(r.bottom + 6)
+      : Math.round(Math.max(gutter, r.top - 6 - maxH));
+    panel.classList.add("is-ported");
+    panel.style.position = "fixed";
+    panel.style.left = `${left}px`;
+    panel.style.top = `${top}px`;
+    panel.style.width = `${width}px`;
+    panel.style.right = "auto";
+    panel.style.maxHeight = `${Math.round(maxH)}px`;
+  }
+
+  function closeDateFilterPanel() {
+    const panel = $("#dateFilterPanel");
+    const backdrop = $("#dateFilterBackdrop");
+    const trigger = $("#periodDatesBtn");
+    if (!panel) return;
+    panel.hidden = true;
+    panel.classList.remove("is-open", "is-ported");
+    panel.style.left = "";
+    panel.style.top = "";
+    panel.style.width = "";
+    panel.style.right = "";
+    panel.style.maxHeight = "";
+    panel.style.position = "";
+    if (backdrop) {
+      backdrop.hidden = true;
+      backdrop.classList.remove("is-open");
+    }
+    document.body.classList.remove("date-filter-open");
+    trigger?.setAttribute("aria-expanded", "false");
+    if (dateFilterReposition) {
+      window.removeEventListener("resize", dateFilterReposition);
+      window.removeEventListener("scroll", dateFilterReposition, true);
+      window.visualViewport?.removeEventListener("resize", dateFilterReposition);
+      window.visualViewport?.removeEventListener("scroll", dateFilterReposition);
+      dateFilterReposition = null;
+    }
+  }
+
+  function openDateFilterPanel() {
+    const panel = $("#dateFilterPanel");
+    const backdrop = $("#dateFilterBackdrop");
+    const trigger = $("#periodDatesBtn");
+    if (!panel || !trigger) return;
+    closeComboPicker(false);
+    syncPeriodControls({ skipThemes: true });
+    panel.hidden = false;
+    panel.classList.add("is-open");
+    trigger.setAttribute("aria-expanded", "true");
+    if (isCompactFilterUi()) {
+      document.body.classList.add("date-filter-open");
+      if (backdrop) {
+        backdrop.hidden = false;
+        backdrop.classList.add("is-open");
+      }
+    } else if (backdrop) {
+      backdrop.hidden = true;
+      backdrop.classList.remove("is-open");
+    }
+    positionDateFilterPanel();
+    if (!dateFilterReposition) {
+      dateFilterReposition = () => positionDateFilterPanel();
+      window.addEventListener("resize", dateFilterReposition);
+      window.addEventListener("scroll", dateFilterReposition, true);
+      window.visualViewport?.addEventListener("resize", dateFilterReposition);
+      window.visualViewport?.addEventListener("scroll", dateFilterReposition);
+    }
+    requestAnimationFrame(() => {
+      const active =
+        panel.querySelector('.period-preset-btn[aria-pressed="true"]') ||
+        $("#periodFrom");
+      active?.focus?.({ preventScroll: true });
+    });
+  }
+
+  function toggleDateFilterPanel() {
+    if (dateFilterIsOpen()) closeDateFilterPanel();
+    else openDateFilterPanel();
   }
 
   function syncPeriodControls({ skipThemes = false } = {}) {
@@ -3882,6 +4129,7 @@ body.is-filtering #periodSummary {
       },
     };
     renderComboPickerList("");
+    closeDateFilterPanel();
     host.hidden = false;
     document.body.classList.add("combo-picker-open");
     requestAnimationFrame(() => {
@@ -4268,6 +4516,7 @@ body.is-filtering #periodSummary {
   function setDesktopFiltersExpanded(open) {
     const on = !!open;
     closeComboPicker(false);
+    if (!on) closeDateFilterPanel();
     document.body.classList.toggle("filters-expanded", on);
     document.body.classList.remove("filter-sheet-open");
     const toggle = $("#filterSheetToggle");
@@ -4296,7 +4545,10 @@ body.is-filtering #periodSummary {
       return;
     }
     const on = !!open;
-    if (!on) closeComboPicker(false);
+    if (!on) {
+      closeComboPicker(false);
+      closeDateFilterPanel();
+    }
     document.body.classList.remove("filters-expanded");
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
@@ -4309,7 +4561,7 @@ body.is-filtering #periodSummary {
     placeFilterToggle();
     if (on) {
       requestAnimationFrame(() => {
-        ($("#periodQ") || $("#periodFrom"))?.focus?.({ preventScroll: true });
+        ($("#periodQ") || $("#periodDatesBtn"))?.focus?.({ preventScroll: true });
       });
     } else {
       resetViewportAfterOverlay();
@@ -6753,6 +7005,11 @@ body.is-filtering #periodSummary {
         applyMetric(btn.dataset.metric);
       });
     });
+    $("#periodDatesBtn")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDateFilterPanel();
+    });
     $$("[data-date-preset]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const key = btn.getAttribute("data-date-preset") || "all";
@@ -6762,6 +7019,7 @@ body.is-filtering #periodSummary {
           to: bounds.to,
           preset: bounds.preset,
         });
+        // Keep panel open so users can refine with the calendar; Done closes.
       });
     });
     const onDateInput = () => {
@@ -6775,6 +7033,20 @@ body.is-filtering #periodSummary {
     };
     $("#periodFrom")?.addEventListener("change", onDateInput);
     $("#periodTo")?.addEventListener("change", onDateInput);
+    $("#dateFilterDone")?.addEventListener("click", () => closeDateFilterPanel());
+    $("#dateFilterClear")?.addEventListener("click", () => {
+      patchChartPeriod({ from: "", to: "", preset: "all" });
+    });
+    $("#dateFilterBackdrop")?.addEventListener("click", () => closeDateFilterPanel());
+    document.addEventListener("pointerdown", (e) => {
+      if (!dateFilterIsOpen()) return;
+      const t = e.target;
+      if (!(t instanceof Node)) return;
+      if ($("#dateFilterPanel")?.contains(t)) return;
+      if ($("#periodDatesBtn")?.contains(t)) return;
+      // Compact uses explicit backdrop; desktop closes on outside click.
+      if (!isCompactFilterUi()) closeDateFilterPanel();
+    });
     $("#periodCountry")?.addEventListener("change", (e) => {
       patchChartPeriod({ country: e.target.value });
     });
@@ -6833,6 +7105,11 @@ body.is-filtering #periodSummary {
     });
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Escape") return;
+      if (dateFilterIsOpen()) {
+        e.preventDefault();
+        closeDateFilterPanel();
+        return;
+      }
       if (document.body.classList.contains("combo-picker-open")) {
         e.preventDefault();
         closeComboPicker(false);

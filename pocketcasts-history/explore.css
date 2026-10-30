@@ -888,10 +888,8 @@ body.combo-picker-open {
   }
 
   .period-controls > .period-field-dates {
-    flex: 1 1 22rem;
-    min-width: 14rem;
-    max-width: none;
-    overflow: visible;
+    min-width: 7.5rem;
+    max-width: 14rem;
   }
 
   .period-controls > .period-field-country,
@@ -905,7 +903,7 @@ body.combo-picker-open {
   .period-controls .period-field .combo,
   .period-controls .period-field .combo-input,
   .period-controls .period-field-search input,
-  .period-controls .period-date-input input[type="date"] {
+  .period-controls .date-filter-trigger {
     width: 100%;
     min-width: 0 !important;
     max-width: none !important;
@@ -971,57 +969,112 @@ body.combo-picker-open {
 .period-field-podcast { min-width: 11rem; }
 .period-field-theme { min-width: 10rem; }
 .period-field-dates {
-  min-width: min(100%, 24rem);
-  flex: 1 1 20rem;
+  min-width: 9.5rem;
 }
 
-.period-date-block {
+.date-filter-trigger {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: var(--fill-tertiary);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  color: var(--label);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: left;
+  min-width: 8.5rem;
+  max-width: 16rem;
+  width: 100%;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+
+.date-filter-trigger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--blue-soft);
+  background: var(--grouped-bg-elevated);
+}
+
+.date-filter-trigger[aria-expanded="true"] {
+  box-shadow: 0 0 0 3px var(--blue-soft);
+  background: var(--grouped-bg-elevated);
+}
+
+/* Portaled date panel — desktop popover / mobile sheet */
+.date-filter-backdrop {
+  display: none;
+}
+
+.date-filter-panel {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background: var(--grouped-bg-elevated);
+  color: var(--label);
+  z-index: 260;
+}
+
+.date-filter-panel.is-open {
+  display: flex;
+}
+
+.date-filter-chrome {
+  display: none;
+}
+
+.date-filter-body {
   display: grid;
-  gap: 6px;
+  gap: 14px;
+  padding: 14px;
   min-width: 0;
 }
 
 .period-date-presets {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
   min-width: 0;
-  max-width: 100%;
 }
 
 .period-date-inputs {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-end;
+  gap: 8px;
   min-width: 0;
 }
 
 .period-date-input {
   display: grid;
-  gap: 2px;
+  gap: 4px;
   min-width: 0;
   flex: 1 1 9rem;
 }
 
 .period-date-input-label {
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--tertiary-label);
+  color: var(--secondary-label);
 }
 
 .period-date-sep {
   color: var(--tertiary-label);
   font-weight: 600;
-  padding-top: 14px;
+  padding-bottom: 10px;
 }
 
 .period-preset-btn {
   border: 0;
   background: var(--fill-tertiary);
   color: var(--label);
-  padding: 8px 10px;
+  padding: 8px 11px;
   font: inherit;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -1070,7 +1123,85 @@ html[data-theme="dark"] .period-preset-btn[aria-pressed="true"] {
 .period-date-input input[type="date"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px var(--blue-soft);
-  background: var(--grouped-bg-elevated);
+  background: var(--fill);
+}
+
+/* Desktop: fixed popover under the Dates trigger */
+@media (min-width: 861px) {
+  .date-filter-panel.is-open.is-ported {
+    position: fixed;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow), 0 0 0 0.5px var(--separator);
+    width: min(22rem, calc(100vw - 24px));
+    max-height: min(70vh, 28rem);
+    overflow: auto;
+  }
+
+  .date-filter-backdrop {
+    display: none !important;
+  }
+}
+
+/* Compact: full-screen sheet like Shows picker */
+@media (max-width: 860px) {
+  .date-filter-backdrop.is-open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: rgba(0, 0, 0, 0.32);
+  }
+
+  .date-filter-panel.is-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    max-height: min(88vh, 34rem);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: var(--inset-left, 16px);
+    padding-right: var(--inset-right, 16px);
+    box-sizing: border-box;
+  }
+
+  .date-filter-chrome {
+    display: block;
+    padding-top: 8px;
+  }
+
+  .date-filter-grabber {
+    width: 36px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--fill);
+    margin: 0 auto 8px;
+  }
+
+  .date-filter-header {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr 4.5rem;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+  }
+
+  .date-filter-header h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+
+  .date-filter-body {
+    padding: 8px 0 16px;
+  }
+
+  body.date-filter-open {
+    overflow: hidden;
+  }
 }
 
 .period-field span,
@@ -2185,12 +2316,6 @@ body.is-filtering #periodSummary {
     border-bottom: 0.5px solid var(--separator);
   }
 
-  .filter-sheet-body .period-field-dates {
-    align-items: start;
-    padding-top: 10px;
-    padding-bottom: 12px;
-  }
-
   .filter-sheet-body .period-field:last-of-type {
     border-bottom: 0;
   }
@@ -2208,7 +2333,8 @@ body.is-filtering #periodSummary {
   .filter-sheet-body .period-field-podcast select,
   .filter-sheet-body .period-field-theme select,
   .filter-sheet-body .period-field-search input,
-  .filter-sheet-body .combo-input {
+  .filter-sheet-body .combo-input,
+  .filter-sheet-body .date-filter-trigger {
     max-width: none;
     width: 100%;
     min-width: 0;
@@ -2223,58 +2349,16 @@ body.is-filtering #periodSummary {
 
   .filter-sheet-body .period-field-search input,
   .filter-sheet-body .combo-input,
-  .filter-sheet-body input[type="search"],
-  .filter-sheet-body .period-date-input input[type="date"] {
+  .filter-sheet-body input[type="search"] {
     font-size: 16px;
-  }
-
-  .filter-sheet-body .period-date-block {
-    gap: 8px;
-  }
-
-  .filter-sheet-body .period-date-presets {
-    justify-content: flex-end;
-  }
-
-  .filter-sheet-body .period-date-inputs {
-    justify-content: flex-end;
-  }
-
-  .filter-sheet-body .period-date-input {
-    flex: 1 1 8.5rem;
-  }
-
-  .filter-sheet-body .period-date-input-label {
-    text-align: right;
-  }
-
-  .filter-sheet-body .period-date-input input[type="date"] {
-    max-width: none;
-    width: 100%;
-    min-height: 36px;
-    text-align: right;
-    background: var(--fill);
-    border-radius: var(--radius-sm);
-    padding: 8px 10px;
-    font-weight: 400;
-    color: var(--secondary-label);
-  }
-
-  .filter-sheet-body .period-date-sep {
-    padding-top: 16px;
-  }
-
-  .filter-sheet-body .period-preset-btn {
-    background: var(--fill);
-    font-size: 0.8125rem;
-    padding: 7px 10px;
   }
 
   .filter-sheet-body .period-field select:focus,
   .filter-sheet-body .period-field-search input:focus,
   .filter-sheet-body .combo-input:focus,
-  .filter-sheet-body .period-date-input input[type="date"]:focus {
+  .filter-sheet-body .date-filter-trigger:focus {
     box-shadow: none;
+    background: transparent;
     color: var(--system-blue);
   }
 

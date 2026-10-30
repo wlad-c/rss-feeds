@@ -846,12 +846,145 @@
     }
   }
 
+  function dateFilterTriggerLabel() {
+    const { from, to, preset } = state.chartPeriod;
+    const key = preset || inferDatePreset(from, to);
+    if (key === "all" || (!normalizeISODate(from) && !normalizeISODate(to))) return "All time";
+    if (key === "yesterday") return "Yesterday";
+    if (key === "7d") return "Last 7 days";
+    if (key === "30d") return "Last 30 days";
+    if (key === "1y") return "Last year";
+    const f = normalizeISODate(from);
+    const t = normalizeISODate(to);
+    if (f && t && f === t) return formatDateKey(f);
+    if (f && t) return `${formatDateKey(f)} – ${formatDateKey(t)}`;
+    if (f) return `From ${formatDateKey(f)}`;
+    if (t) return `Through ${formatDateKey(t)}`;
+    return "All time";
+  }
+
   function syncDatePresetButtons() {
     const active = state.chartPeriod.preset || inferDatePreset(state.chartPeriod.from, state.chartPeriod.to);
     $$("[data-date-preset]").forEach((btn) => {
       const on = btn.getAttribute("data-date-preset") === active;
       btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
+    const trigger = $("#periodDatesBtn");
+    if (trigger) {
+      const label = dateFilterTriggerLabel();
+      trigger.textContent = label;
+      trigger.title = label;
+    }
+  }
+
+  let dateFilterReposition = null;
+
+  function dateFilterIsOpen() {
+    return !!$("#dateFilterPanel")?.classList.contains("is-open");
+  }
+
+  function positionDateFilterPanel() {
+    const panel = $("#dateFilterPanel");
+    const trigger = $("#periodDatesBtn");
+    if (!panel || !trigger || !dateFilterIsOpen()) return;
+    if (isCompactFilterUi()) {
+      panel.classList.remove("is-ported");
+      panel.style.left = "";
+      panel.style.top = "";
+      panel.style.width = "";
+      panel.style.right = "";
+      panel.style.maxHeight = "";
+      return;
+    }
+    const r = trigger.getBoundingClientRect();
+    const gutter = 8;
+    const width = Math.min(352, Math.max(280, Math.round(r.width * 1.35)));
+    let left = Math.round(r.left);
+    left = Math.min(left, window.innerWidth - width - gutter);
+    left = Math.max(gutter, left);
+    const spaceBelow = window.innerHeight - r.bottom - gutter;
+    const spaceAbove = r.top - gutter;
+    const preferBelow = spaceBelow >= 220 || spaceBelow >= spaceAbove;
+    const maxH = Math.min(420, Math.max(200, preferBelow ? spaceBelow : spaceAbove));
+    const top = preferBelow
+      ? Math.round(r.bottom + 6)
+      : Math.round(Math.max(gutter, r.top - 6 - maxH));
+    panel.classList.add("is-ported");
+    panel.style.position = "fixed";
+    panel.style.left = `${left}px`;
+    panel.style.top = `${top}px`;
+    panel.style.width = `${width}px`;
+    panel.style.right = "auto";
+    panel.style.maxHeight = `${Math.round(maxH)}px`;
+  }
+
+  function closeDateFilterPanel() {
+    const panel = $("#dateFilterPanel");
+    const backdrop = $("#dateFilterBackdrop");
+    const trigger = $("#periodDatesBtn");
+    if (!panel) return;
+    panel.hidden = true;
+    panel.classList.remove("is-open", "is-ported");
+    panel.style.left = "";
+    panel.style.top = "";
+    panel.style.width = "";
+    panel.style.right = "";
+    panel.style.maxHeight = "";
+    panel.style.position = "";
+    if (backdrop) {
+      backdrop.hidden = true;
+      backdrop.classList.remove("is-open");
+    }
+    document.body.classList.remove("date-filter-open");
+    trigger?.setAttribute("aria-expanded", "false");
+    if (dateFilterReposition) {
+      window.removeEventListener("resize", dateFilterReposition);
+      window.removeEventListener("scroll", dateFilterReposition, true);
+      window.visualViewport?.removeEventListener("resize", dateFilterReposition);
+      window.visualViewport?.removeEventListener("scroll", dateFilterReposition);
+      dateFilterReposition = null;
+    }
+  }
+
+  function openDateFilterPanel() {
+    const panel = $("#dateFilterPanel");
+    const backdrop = $("#dateFilterBackdrop");
+    const trigger = $("#periodDatesBtn");
+    if (!panel || !trigger) return;
+    closeComboPicker(false);
+    syncPeriodControls({ skipThemes: true });
+    panel.hidden = false;
+    panel.classList.add("is-open");
+    trigger.setAttribute("aria-expanded", "true");
+    if (isCompactFilterUi()) {
+      document.body.classList.add("date-filter-open");
+      if (backdrop) {
+        backdrop.hidden = false;
+        backdrop.classList.add("is-open");
+      }
+    } else if (backdrop) {
+      backdrop.hidden = true;
+      backdrop.classList.remove("is-open");
+    }
+    positionDateFilterPanel();
+    if (!dateFilterReposition) {
+      dateFilterReposition = () => positionDateFilterPanel();
+      window.addEventListener("resize", dateFilterReposition);
+      window.addEventListener("scroll", dateFilterReposition, true);
+      window.visualViewport?.addEventListener("resize", dateFilterReposition);
+      window.visualViewport?.addEventListener("scroll", dateFilterReposition);
+    }
+    requestAnimationFrame(() => {
+      const active =
+        panel.querySelector('.period-preset-btn[aria-pressed="true"]') ||
+        $("#periodFrom");
+      active?.focus?.({ preventScroll: true });
+    });
+  }
+
+  function toggleDateFilterPanel() {
+    if (dateFilterIsOpen()) closeDateFilterPanel();
+    else openDateFilterPanel();
   }
 
   function syncPeriodControls({ skipThemes = false } = {}) {
@@ -1086,6 +1219,7 @@
       },
     };
     renderComboPickerList("");
+    closeDateFilterPanel();
     host.hidden = false;
     document.body.classList.add("combo-picker-open");
     requestAnimationFrame(() => {
@@ -1472,6 +1606,7 @@
   function setDesktopFiltersExpanded(open) {
     const on = !!open;
     closeComboPicker(false);
+    if (!on) closeDateFilterPanel();
     document.body.classList.toggle("filters-expanded", on);
     document.body.classList.remove("filter-sheet-open");
     const toggle = $("#filterSheetToggle");
@@ -1500,7 +1635,10 @@
       return;
     }
     const on = !!open;
-    if (!on) closeComboPicker(false);
+    if (!on) {
+      closeComboPicker(false);
+      closeDateFilterPanel();
+    }
     document.body.classList.remove("filters-expanded");
     document.body.classList.toggle("filter-sheet-open", on);
     const toggle = $("#filterSheetToggle");
@@ -1513,7 +1651,7 @@
     placeFilterToggle();
     if (on) {
       requestAnimationFrame(() => {
-        ($("#periodQ") || $("#periodFrom"))?.focus?.({ preventScroll: true });
+        ($("#periodQ") || $("#periodDatesBtn"))?.focus?.({ preventScroll: true });
       });
     } else {
       resetViewportAfterOverlay();
@@ -3957,6 +4095,11 @@
         applyMetric(btn.dataset.metric);
       });
     });
+    $("#periodDatesBtn")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDateFilterPanel();
+    });
     $$("[data-date-preset]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const key = btn.getAttribute("data-date-preset") || "all";
@@ -3966,6 +4109,7 @@
           to: bounds.to,
           preset: bounds.preset,
         });
+        // Keep panel open so users can refine with the calendar; Done closes.
       });
     });
     const onDateInput = () => {
@@ -3979,6 +4123,20 @@
     };
     $("#periodFrom")?.addEventListener("change", onDateInput);
     $("#periodTo")?.addEventListener("change", onDateInput);
+    $("#dateFilterDone")?.addEventListener("click", () => closeDateFilterPanel());
+    $("#dateFilterClear")?.addEventListener("click", () => {
+      patchChartPeriod({ from: "", to: "", preset: "all" });
+    });
+    $("#dateFilterBackdrop")?.addEventListener("click", () => closeDateFilterPanel());
+    document.addEventListener("pointerdown", (e) => {
+      if (!dateFilterIsOpen()) return;
+      const t = e.target;
+      if (!(t instanceof Node)) return;
+      if ($("#dateFilterPanel")?.contains(t)) return;
+      if ($("#periodDatesBtn")?.contains(t)) return;
+      // Compact uses explicit backdrop; desktop closes on outside click.
+      if (!isCompactFilterUi()) closeDateFilterPanel();
+    });
     $("#periodCountry")?.addEventListener("change", (e) => {
       patchChartPeriod({ country: e.target.value });
     });
@@ -4037,6 +4195,11 @@
     });
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Escape") return;
+      if (dateFilterIsOpen()) {
+        e.preventDefault();
+        closeDateFilterPanel();
+        return;
+      }
       if (document.body.classList.contains("combo-picker-open")) {
         e.preventDefault();
         closeComboPicker(false);
