@@ -475,27 +475,76 @@
     return { dir, text: `${arrow} ${pctText}% vs ${label}` };
   }
 
-  /** Lightweight volume totals for an alternate date window (keeps other filters). */
-  function volumeStatsForDateOverrides(from, to) {
+  /**
+   * Hero-stat totals for an alternate date window (keeps other filters).
+   * Mirrors the fields ensureChartStats() exposes for the 9 hero cards.
+   */
+  function heroComparableStatsForDateOverrides(from, to) {
     const overrides = { from, to };
     const eps = state.episodes || [];
     const epHours = state._epHours;
     const themeFilter = state.chartPeriod.theme || "";
     let episodeCount = 0;
     let hoursTotal = 0;
+    let progressSum = 0;
+    let progressN = 0;
+    const finishLagDays = [];
     const podcasts = Object.create(null);
+    const byMonthHours = Object.create(null);
+    const byMonthCount = Object.create(null);
+    const byDateHours = Object.create(null);
+    const byDateCount = Object.create(null);
+
     for (let i = 0; i < eps.length; i++) {
-      if (!episodeMatchesChartPeriod(eps[i], i, overrides)) continue;
+      const e = eps[i];
+      if (!episodeMatchesChartPeriod(e, i, overrides)) continue;
       episodeCount += 1;
-      const hFull = epHours ? epHours[i] : parseDurHours(eps[i].dur);
+      const hFull = epHours ? epHours[i] : parseDurHours(e.dur);
       const h = themeFilter ? hFull * themeWeightForIndex(i, themeFilter) : hFull;
       hoursTotal += h;
-      podcasts[eps[i].p || "Unknown"] = 1;
+      podcasts[e.p || "Unknown"] = 1;
+
+      if (e.prog !== "" && e.prog != null && !Number.isNaN(Number(e.prog))) {
+        progressSum += Number(e.prog);
+        progressN += 1;
+      }
+      if (e.st === "Played" && e.pub && e.t) {
+        const pubStr = String(e.pub);
+        const pubMs = Date.parse(
+          pubStr.length === 10 ? `${pubStr}T00:00:00Z` : pubStr
+        );
+        const listen = parseListenUtc(e.t);
+        if (listen && Number.isFinite(pubMs)) {
+          const lag = (listen.getTime() - pubMs) / 86400000;
+          if (lag >= 0) finishLagDays.push(lag);
+        }
+      }
+
+      const month = String(e.d || "").slice(0, 7);
+      const date = e.d || "";
+      if (month.length === 7) {
+        bump(byMonthHours, month, h);
+        bump(byMonthCount, month, 1);
+      }
+      if (date) {
+        bump(byDateHours, date, h);
+        bump(byDateCount, date, 1);
+      }
     }
+
     return {
       episodeCount,
       hoursTotal: Math.round(hoursTotal * 10) / 10,
       podcastCount: Object.keys(podcasts).length,
+      avgEpisodeMinutes:
+        episodeCount > 0 ? Math.round(((hoursTotal * 60) / episodeCount) * 10) / 10 : null,
+      avgProgressPct:
+        progressN > 0 ? Math.round((progressSum / progressN) * 10) / 10 : null,
+      medianFinishLagDays: medianOf(finishLagDays),
+      byMonthHours,
+      byMonthCount,
+      byDateHours,
+      byDateCount,
     };
   }
 
@@ -2865,13 +2914,26 @@
     }
 
     const pcp = previousComparablePeriod();
-    const pcpStats = pcp ? volumeStatsForDateOverrides(pcp.from, pcp.to) : null;
+    const pcpStats = pcp ? heroComparableStatsForDateOverrides(pcp.from, pcp.to) : null;
+    const pcpMonthPeak = pcpStats
+      ? peakFromMap(hours ? pcpStats.byMonthHours : pcpStats.byMonthCount, hours)
+      : null;
+    const pcpDayPeak = pcpStats
+      ? peakFromMap(hours ? pcpStats.byDateHours : pcpStats.byDateCount, hours)
+      : null;
+    const pcpAvgDay = pcpStats ? avgEpisodesPerDay(pcpStats) : null;
     const pcpTitle = pcp
       ? `Previous comparable period ${formatUiDate(pcp.from)} – ${formatUiDate(pcp.to)}`
       : "";
-    const pcpLine = (rawKey, currentRaw) => {
-      if (!pcp || !pcpStats) return "";
-      const rel = formatPcpRelativeChange(currentRaw, pcpStats[rawKey], pcp);
+    const pcpLine = (currentRaw, previousRaw) => {
+      if (!pcp) return "";
+      // Blank current value → nothing to annotate.
+      if (currentRaw == null || !Number.isFinite(Number(currentRaw))) return "";
+      const prev =
+        previousRaw == null || !Number.isFinite(Number(previousRaw))
+          ? 0
+          : Number(previousRaw);
+      const rel = formatPcpRelativeChange(Number(currentRaw), prev, pcp);
       if (!rel) return "";
       return `<span class="stat-pcp stat-pcp-${rel.dir}" title="${escapeHtml(pcpTitle)}">${escapeHtml(
         rel.text
@@ -2879,35 +2941,53 @@
     };
 
     // One 3×3 grid (no separate insights strip) so rows share the same card.
-    // Volume metrics get quick PcP relative-change lines when a date range is set.
+    // Every hero metric gets a PcP relative-change line when a date range is set.
     const items = [
       {
         label: "Episodes",
         value: fmt(stats.episodeCount),
-        pcp: pcpLine("episodeCount", stats.episodeCount),
+        pcp: pcpLine(stats.episodeCount, pcpStats?.episodeCount),
       },
       {
         label: "Podcasts",
         value: fmt(stats.podcastCount),
-        pcp: pcpLine("podcastCount", stats.podcastCount),
+        pcp: pcpLine(stats.podcastCount, pcpStats?.podcastCount),
       },
       {
         label: "Hours",
         value: fmtHours(stats.hoursTotal),
-        pcp: pcpLine("hoursTotal", stats.hoursTotal),
+        pcp: pcpLine(stats.hoursTotal, pcpStats?.hoursTotal),
       },
       {
         label: "Avg length",
         value: stats.avgEpisodeMinutes != null ? `${stats.avgEpisodeMinutes}m` : "—",
+        pcp: pcpLine(stats.avgEpisodeMinutes, pcpStats?.avgEpisodeMinutes),
       },
       {
         label: "Finish rate",
         value: stats.avgProgressPct != null ? `${stats.avgProgressPct}%` : "—",
+        pcp: pcpLine(stats.avgProgressPct, pcpStats?.avgProgressPct),
       },
-      { label: "Median finish lag", value: formatLagDuration(stats.medianFinishLagDays) },
-      { label: "Busiest month", value: monthValue },
-      { label: "Most active day", value: dayValue },
-      { label: "Avg episodes / day", value: avgDay != null ? String(avgDay) : "—" },
+      {
+        label: "Median finish lag",
+        value: formatLagDuration(stats.medianFinishLagDays),
+        pcp: pcpLine(stats.medianFinishLagDays, pcpStats?.medianFinishLagDays),
+      },
+      {
+        label: "Busiest month",
+        value: monthValue,
+        pcp: pcpLine(monthPeak?.value, pcpMonthPeak?.value),
+      },
+      {
+        label: "Most active day",
+        value: dayValue,
+        pcp: pcpLine(dayPeak?.value, pcpDayPeak?.value),
+      },
+      {
+        label: "Avg episodes / day",
+        value: avgDay != null ? String(avgDay) : "—",
+        pcp: pcpLine(avgDay, pcpAvgDay),
+      },
     ];
     $("#heroStats").innerHTML = items
       .map((item) => {
