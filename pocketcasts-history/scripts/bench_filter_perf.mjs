@@ -63,7 +63,7 @@ function time(label, fn) {
   return { ms, v };
 }
 
-const period = { year: "2024", month: "", day: "", country: "", podcast: "", theme: "", status: "", q: "" };
+const period = { from: "2024-01-01", to: "2024-12-31", preset: "custom", country: "", podcast: "", theme: "", status: "", q: "" };
 
 time("OLD match+haystack scan (year=2024)", () => {
   let n = 0;
